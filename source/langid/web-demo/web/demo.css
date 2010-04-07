@@ -1,0 +1,251 @@
+body {
+    /*margin:0px;*/
+	font-size:15px;
+	font-family:Arial, Helvetica, sans-serif;
+	overflow:visible;
+    margin-left:15px;
+    margin-right:15px;
+}
+
+/** Warning header */
+
+#warnheader {
+	width:100%;
+	margin-left:5px;
+	margin-right:5px;
+	text-align:left;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:10px;
+	margin-bottom:10px;
+	border-bottom:#000000 solid 1px;
+	color:red;
+}
+
+/** Header */
+
+#header {
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:10px;
+	width:100%;
+	height:100px;
+}
+
+.logo {
+	float: left;
+	width: auto;
+	margin: 10px 10px 11px 10px;
+}
+
+.header_right {
+	float: right;
+	width: auto;
+	height: 72px;
+}
+
+.logoText{
+	color: #C3593C;
+	font-size:20px;
+	background: inherit;
+}
+
+
+.top_info {
+	width: auto;
+	margin: 12px 0 5px 0;
+	padding: 0 5px 5px 0;
+	text-align: right;
+	background: #FFF url(dot.gif) repeat-x bottom;
+	color: #444;
+}
+
+.slogan {
+	text-align: right;
+	font-size: 12px;
+	height: 30px; 
+	padding: 0px 10px 0 0;
+}
+
+.slogan p span {
+	color: #20a020;
+	font-weight: bold;
+}
+
+
+
+/** footer */
+
+.footer { 
+	clear: both; 
+	text-align: center;
+	line-height: 20px;
+	color: #808080;
+	padding: 8px 0;
+}
+
+.footer a {
+	color: #C3593C;
+	background: inherit;
+}
+
+/** stat */
+
+#stat {
+	width:100%;
+	margin-left:5px;
+	margin-right:5px;
+	text-align:center;
+	padding-top:10px;
+	padding-bottom:10px;
+	margin-top:10px;
+	margin-bottom:10px;
+	border-top:#000000 solid 1px;
+	border-bottom:#000000 solid 1px;
+}
+
+#stat table {
+	margin-left:20%;
+	margin-right:20%;
+	width:60%;	
+	vertical-align:middle;
+	/*margin-bottom:20px;
+	margin-top:20px;
+	margin-left:30px;*/
+}
+
+#stat table tr {
+	width:100%;
+}
+
+#stat table tr th{
+	text-align:center;
+	font-weight:bold;
+	width:50%;
+}
+
+#stat table tr td{
+	text-align:center;
+	width:50%;
+}
+
+.leftDiv {
+	height:auto;
+	width:50%;
+          /*border-bottom:#000000 solid 1px;*/
+	margin-left:55px;
+	margin-right:5px;
+    border-bottom:#CCCCCC solid 2px;
+	margin-bottom:15px;
+	padding-bottom:15px;
+	color:black;
+	text-align:left;
+}
+
+.totalDiv {
+	height:auto;
+	width:100%;
+          /*border-bottom:#000000 solid 1px;*/
+          /*border-bottom:#CCCCCC solid 2px;*/
+	margin-bottom:15px;
+	padding-bottom:15px;
+	color:black;
+	text-align:left;
+    float:right;
+}
+
+#autotrans {
+    padding:4px;
+    margin-bottom:10px;
+    font-size:13px;
+	width:15px;
+}.normalbg{background-color:#ebeff9}.errorbg{background-color:#ff8}
+
+#headingtext {
+    margin-right:.6em
+}.normaltext{font-weight:bold;}.errortext{font-weight:normal;}
+
+.resultbg {
+	text-align:center;
+    background-color:#ebeff9;
+    padding:4px 24px;
+    margin-bottom:10px;
+    /*font-size:14px;*/
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_UNKNOWN, ///< language ID for unknown type*/
+.resultbg0 {
+    background-color:#C0C0C0;
+}
+
+/*LANGUAGE_ID_ENGLISH, ///< language ID for "English"*/
+.resultbg1 {
+    background-color:#B0C4DE;
+}
+
+/*LANGUAGE_ID_CHINESE_SIMPLIFIED, ///< language ID for "Chinese simplified"*/
+.resultbg2 {
+    background-color:#FFB6C1;
+}
+
+/*LANGUAGE_ID_CHINESE_TRADITIONAL, ///< language ID for "Chinese traditional"*/
+.resultbg3 {
+    background-color:#F0E68C;
+}
+
+/*LANGUAGE_ID_JAPANESE, ///< language ID for "Japanese"*/
+.resultbg4 {
+    background-color:#CCFFCC;
+}
+
+/*LANGUAGE_ID_KOREAN, ///< language ID for "Korean"*/
+.resultbg5 {
+    background-color:#FFCC99;
+}
+
+/*LANGUAGE_ID_UNKNOWN, ///< language ID for unknown type*/
+.languagebg0 {
+    background-color:#C0C0C0;
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_ENGLISH, ///< language ID for "English"*/
+.languagebg1 {
+    background-color:#B0C4DE;
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_CHINESE_SIMPLIFIED, ///< language ID for "Chinese simplified"*/
+.languagebg2 {
+    background-color:#FFB6C1;
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_CHINESE_TRADITIONAL, ///< language ID for "Chinese traditional"*/
+.languagebg3 {
+    background-color:#F0E68C;
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_JAPANESE, ///< language ID for "Japanese"*/
+.languagebg4 {
+    background-color:#CCFFCC;
+    font-weight:bold;
+}
+
+/*LANGUAGE_ID_KOREAN, ///< language ID for "Korean"*/
+.languagebg5 {
+    background-color:#FFCC99;
+    font-weight:bold;
+}
+
+#textAreaStyle {
+    overflow:auto;
+    width:100%;
+    height:60px;
+    font-family:arial,sans-serif;font-size:15px
+}
+/*.errorbg {*/
+/*background-color:#ff8;*/
+/*}*/

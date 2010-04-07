@@ -1,0 +1,47 @@
+#
+#   script category map for language identificatioin
+#   
+
+######################################################################
+#
+#   SCRIPT CATEGORY LIST
+#
+#   The available category below are defined in "source/include/script_table.h"
+#
+#   ALPHABET        alphabet such as "A", including half and full width
+#   SIMPLIFIED      Chinese simplified ideograph, such as "国"
+#   TRADITIONAL     Chinese traditional ideograph, such as "國"
+#   KANA            Japanese Hiragana and Katakana, such as "あ" and "ア"
+#   HANGUL          Korean Hangual, such as "가"
+#   OTHER           other character types
+#
+######################################################################
+
+#
+# CODE(UCS2 in HEX base) TO CATEGORY MAPPING
+#
+
+0x0041..0x005A ALPHABET # LATIN LETTER
+0x0061..0x007A ALPHABET
+0xFF21..0xFF3A ALPHABET # FULLWIDTH
+0xFF41..0xFF5A ALPHABET
+
+# CJK unified characters are defined as SIMPLIFIED here,
+# those Chinese traditional characters would be defined in "ct.table" instead.
+0x2E80..0x2EF3 SIMPLIFIED
+0x2F00..0x2FD5 SIMPLIFIED
+0x3005         SIMPLIFIED
+0x3007         SIMPLIFIED
+0x3400..0x4DB5 SIMPLIFIED
+0x4E00..0x9FC3 SIMPLIFIED
+0xF900..0xFAD9 SIMPLIFIED
+
+0x3041..0x309F KANA
+0x30A1..0x30FF KANA
+0x31F0..0x31FF KANA
+0xFF66..0xFF9F KANA
+
+0x1100..0x11FF HANGUL
+0x3131..0x318E HANGUL
+0xAC00..0xD7A3 HANGUL
+0xFFA0..0xFFDC HANGUL

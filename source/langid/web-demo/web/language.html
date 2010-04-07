@@ -1,0 +1,54 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="author" content="Jun Jiang (www.iZENEsoft.com)" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="demo.css" rel="stylesheet" type="text/css"/>
+<script language="JavaScript">
+function isLanguageFileValid(form) {
+    if(form.inputmethod[0].checked == true && form.languageFile.value == "") {
+        alert("No file is selected,\nplease upload a text file in UTF-8 encoding.");
+        return false;
+    }else {
+        if(form.inputmethod[1].checked == true) {
+            form.languageText.select();
+        }
+        return true;
+    }
+}
+function checkRadio(node) {
+    node.checked = true;
+}
+function testAlert() {
+    alert("hello");
+}
+function resultFrmUpdate(){
+top.resultframe.location="empty.html";
+}
+</script>
+</head>
+
+<body>
+
+<h3><a href="encoding.html" onClick="resultFrmUpdate();">Identify encoding</a>, or language</h3>
+Supporting languages:
+<br>English, Chinese Simplified, Chinese Traditional, Japanese, Korean
+
+<br><br>
+<form method="POST" action="identify_language.html" target ="resultframe" name="langform" enctype="multipart/form-data" onSubmit="return isLanguageFileValid(this);">
+<input type="radio" name="inputmethod" value="0" checked="true" />Upload a document in <strong>UTF-8 encoding</strong><br>
+<input type="file" name="languageFile" onclick="inputmethod[0].checked=true">
+<br><br>
+<input type="radio" name="inputmethod" value="1" /><span onClick="checkRadio(this.previousSibling);">or enter text</span><br>
+<textarea name="languageText" id="textAreaStyle" style="height:30%;width:100%" onclick="inputmethod[1].checked=true"></textarea>
+
+<h4>Select a feature:</h4>
+<input type="radio" name="executemethod" value="0" checked="true"/><span onClick="checkRadio(this.previousSibling);">identify the single <strong>primary</strong> language</span><br>
+<input type="radio" name="executemethod" value="1"/><span onClick="checkRadio(this.previousSibling);">identify the <strong>list</strong> of multiple languages</span><br>
+<input type="radio" name="executemethod" value="2"/><span onClick="checkRadio(this.previousSibling);"><strong>segment</strong> into single-language regions</span><br>
+<input type="submit" value="Execute">
+</form>
+
+
+</body>
+
+</html>

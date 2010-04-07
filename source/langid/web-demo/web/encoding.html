@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="author" content="Jun Jiang (www.iZENEsoft.com)" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="demo.css" rel="stylesheet" type="text/css"/>
+<script language="JavaScript">
+    function isEncodeFileValid(form) {
+        if(form.encodingFile.value == "") {
+            alert("No file is selected,\nplease upload a text file.");
+            return false;
+        }else {
+            return true;
+        }
+    }
+function resultFrmUpdate(){
+top.resultframe.location="empty.html";
+}
+</script>
+</head>
+
+<body>
+
+<h3>Identify encoding, or <a href="language.html" onClick="resultFrmUpdate();">language</a></h3>
+
+Supporting encodings:
+<br>
+UTF-8, GB18030, BIG5, EUC-JP, Shift_JIS, EUC-KR
+<br><br>
+<form method="POST" action="identify_encoding.html" target ="resultframe" enctype="multipart/form-data" onSubmit="return isEncodeFileValid(this);">
+<input type="file" name="encodingFile">&nbsp;<input type="submit" value="Identify Encoding">&nbsp;&nbsp;<span id="encodingResult"> </span>
+</form>
+
+</body>
+
+</html>

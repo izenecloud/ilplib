@@ -3,7 +3,7 @@
  * Below is the usage examples:
  * \code
  * To create "encoding.bin" from "encoding.config":
- * $./langid_build_encoding_model ../db/config/encoding.config encoding.bin
+ * $./langid_build_encoding_model ../db/langid/config/encoding.config encoding.bin
  * \endcode
  * 
  * \author Jun Jiang

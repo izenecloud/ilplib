@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     SentenceBreakTable table;
 
     // load configuration and table
-    const char* configFile = "../db/config/sentence_break.def";
+    const char* configFile = "../db/langid/config/sentence_break.def";
 
     bool result = table.loadConfig(configFile);
     if(! result)

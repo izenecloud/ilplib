@@ -519,9 +519,9 @@ int main(int argc, char* argv[])
     LanguageAnalyzer analyzer(scriptTable, sentenceTable);
 
     // load configuration and table
-    const char* scriptFile = "../db/config/script.def";
-    const char* tableFile = "../db/config/ct.table";
-    const char* sentenceFile = "../db/config/sentence_break.def";
+    const char* scriptFile = "../db/langid/config/script.def";
+    const char* tableFile = "../db/langid/config/ct.table";
+    const char* sentenceFile = "../db/langid/config/sentence_break.def";
 
     if(! scriptTable.loadConfig(scriptFile))
     {

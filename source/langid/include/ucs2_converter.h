@@ -13,8 +13,7 @@
 
 #include <cstddef> // std::size_t
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * UCS2_Converter converts the first character in input string to UCS2 value.
@@ -116,6 +115,6 @@ public:
 /** Utf8ToUcs2 converts from UTF-8 to UCS2. */
 typedef UCS2_Converter<ENCODING_ID_UTF8> Utf8ToUcs2;
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_UCS2_CONVERTER_H

@@ -17,7 +17,8 @@ then
     rm -fr $PROJECT_HOME/lib/lib*
 
     # remove all executable files
-    rm -fr $PROJECT_HOME/bin/test_* $PROJECT_HOME/bin/langid_* $PROJECT_HOME/bin/demo-server
+    ls $PROJECT_HOME/bin/langid_* | grep -v langid_build_model.sh | xargs rm -fr
+    rm -fr $PROJECT_HOME/bin/test_* $PROJECT_HOME/bin/demo-server
 elif [ "$1" = "" ] || [ "$1" = "debug" ] || [ "$1" = "release" ] || [ "$1" = "profile" ]
 then
     if [ "$1" != "" ]

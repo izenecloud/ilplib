@@ -11,8 +11,7 @@
 
 #include "langid/analyzer.h"
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 class KnowledgeImpl;
 class SentenceTokenizer;
@@ -141,6 +140,6 @@ private:
     EncodingAnalyzer* encodingAnalyzer_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_ANALYZER_IMPL_H

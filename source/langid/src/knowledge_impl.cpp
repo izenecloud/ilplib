@@ -17,8 +17,7 @@ using namespace std;
 
 #define LANGID_DEBUG_PRINT_LOAD 0
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 KnowledgeImpl::KnowledgeImpl()
 {
@@ -86,4 +85,4 @@ const ProfileModel& KnowledgeImpl::getProfileModel() const
     return profileModel_;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

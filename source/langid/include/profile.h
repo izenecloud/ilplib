@@ -9,6 +9,8 @@
 #ifndef LANGID_PROFILE_H
 #define LANGID_PROFILE_H
 
+#include <ilplib.h>
+
 #include <string>
 #include <istream>
 #include <fstream>
@@ -51,8 +53,7 @@ template<> struct hash<std::string>
 #include <map>
 #endif
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * Profile operates N-grams of a document or string, such as generate, compare, open and save into file.
@@ -192,6 +193,6 @@ private:
     TVec freqVec_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_PROFILE_H

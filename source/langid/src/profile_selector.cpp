@@ -22,8 +22,7 @@ using namespace std;
 #define LANGID_DEBUG_PRINT_LOAD 0
 #define LANGID_DEBUG_PRINT_SELECT 0
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 ProfileSelector::ProfileSelector(int ngram, int length)
     : ngramRange_(ngram), profileLength_(length)
@@ -157,4 +156,4 @@ const char* ProfileSelector::selectProfile(const Profile& document) const
     return profileNames_[minIndex].c_str();
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

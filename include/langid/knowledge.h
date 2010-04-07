@@ -10,9 +10,9 @@
 #define LANGID_KNOWLEDGE_H
 
 #include "language_id.h"
+#include <ilplib.h>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * Knowledge manages the linguistic information for language identification.
@@ -77,6 +77,6 @@ public:
     static const char* getEncodingNameFromID(EncodingID id);
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_KNOWLEDGE_H

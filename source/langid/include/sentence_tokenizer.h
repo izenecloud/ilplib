@@ -16,8 +16,7 @@
 
 #include <cstddef> // std::size_t
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * SentenceTokenizer tokenizes a raw input stream to a sequence of sentences.
@@ -103,6 +102,6 @@ private:
     Utf8ToUcs2 encoding_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_SENTENCE_TOKENIZER_H

@@ -84,8 +84,7 @@ unsigned short atoucs2(const char* str)
 }
 } // namespace
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 template<class T, class BIN_T> PropertyTable<T, BIN_T>::PropertyTable()
 : table_(PROPERTY_TABLE_SIZE, T(0))
@@ -421,4 +420,4 @@ template<class T, class BIN_T> bool PropertyTable<T, BIN_T>::loadBinary(std::ifs
     return true;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

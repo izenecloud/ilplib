@@ -18,8 +18,7 @@ using namespace std;
     #define LANGID_DEBUG_PRINT 1
 #endif
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 EncodingAnalyzer::EncodingAnalyzer(const ProfileModel& profileModel)
     : profileModel_(profileModel)
@@ -52,4 +51,4 @@ bool EncodingAnalyzer::encodingFromFile(const char* fileName, EncodingID& id, in
     return profileModel_.encodingFromProfile(p, id);
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

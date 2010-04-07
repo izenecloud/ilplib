@@ -14,8 +14,7 @@
 #include "script_table.h"
 #include "profile_model.h"
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * KnowledgeImpl is the implementation class for Knowledge.
@@ -77,6 +76,6 @@ private:
     ProfileModel profileModel_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_KNOWLEDGE_IMPL_H

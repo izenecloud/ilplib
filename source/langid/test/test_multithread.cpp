@@ -27,7 +27,7 @@
 #include <pthread.h>
 
 using namespace std;
-using namespace langid;
+using namespace ilplib::langid;
 
 /**
  * Data for each thread.

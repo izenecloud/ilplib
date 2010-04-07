@@ -10,14 +10,14 @@
 #define LANGID_ANALYZER_H
 
 #include "language_id.h"
+#include <ilplib.h>
 
 #include <vector>
 
 /**
  * namespace of library Language Identification.
  */
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 class Knowledge;
 
@@ -50,10 +50,10 @@ struct LanguageRegion
  * Knowledge* knowledge = factory->createKnowledge();
  *
  * // load encoding model for encoding identification
- * knowledge->loadEncodingModel("db/model/encoding.bin");
+ * knowledge->loadEncodingModel("db/langid/model/encoding.bin");
  *
  * // load language model for language identification or sentence tokenization
- * knowledge->loadLanguageModel("db/model/language.bin");
+ * knowledge->loadLanguageModel("db/langid/model/language.bin");
  *
  * // set knowledge
  * analyzer->setKnowledge(knowledge);
@@ -264,6 +264,6 @@ private:
     std::vector<int> options_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_ANALYZER_H

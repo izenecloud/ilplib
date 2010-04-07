@@ -13,8 +13,7 @@
 
 #include <stdint.h> // uint8_t
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * Enum of script types.
@@ -32,6 +31,7 @@ enum ScriptType
 
 /** ScriptTable gives the script type for each UCS2 value. */
 typedef PropertyTable<ScriptType, uint8_t> ScriptTable;
-} // namespace langid
+
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_SCRIPT_TABLE_H

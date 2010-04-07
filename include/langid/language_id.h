@@ -9,8 +9,9 @@
 #ifndef LANGID_LANGUAGE_ID_H
 #define LANGID_LANGUAGE_ID_H
 
-namespace langid
-{
+#include <ilplib.h>
+
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * Language types.
@@ -40,6 +41,6 @@ enum EncodingID
     ENCODING_ID_NUM ///< the count of encoding types
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_LANGUAGE_ID_H

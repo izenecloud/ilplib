@@ -15,8 +15,7 @@
 
 #include <cassert>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 AnalyzerImpl::AnalyzerImpl()
     : knowledge_(0), sentenceTokenizer_(0), languageAnalyzer_(0), encodingAnalyzer_(0)
@@ -101,4 +100,4 @@ bool AnalyzerImpl::segmentFile(const char* fileName, std::vector<LanguageRegion>
     return languageAnalyzer_->segmentFile(fileName, regionVec);
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

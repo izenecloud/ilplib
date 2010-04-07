@@ -31,8 +31,8 @@ using namespace std;
 #define LANGID_DEBUG_PRINT_MULTIPLE_ID 0
 #define LANGID_DEBUG_PRINT_ADD_REGION 0
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 LanguageAnalyzer::LanguageAnalyzer(const ScriptTable& scriptTable, const SentenceBreakTable& breakTable)
     : scriptTable_(scriptTable), sentenceTokenizer_(breakTable),
     option_(0)
@@ -605,4 +605,4 @@ void LanguageAnalyzer::setOptionSrc(const Analyzer* src)
     option_ = src;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

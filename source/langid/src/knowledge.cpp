@@ -16,10 +16,10 @@ using namespace std;
 namespace
 {
 /** language name for each language type */
-const char* LANGUAGE_NAME[langid::LANGUAGE_ID_NUM] = {"Unknown", "English", "Chinese Simplified", "Chinese Traditional", "Japanese", "Korean"};
+const char* LANGUAGE_NAME[ilplib::langid::LANGUAGE_ID_NUM] = {"Unknown", "English", "Chinese Simplified", "Chinese Traditional", "Japanese", "Korean"};
 
 /** encoding name for each encoding type */
-const char* ENCODING_NAME[langid::ENCODING_ID_NUM] = {"UTF-8", "GB18030", "BIG5", "EUC-JP", "Shift_JIS", "EUC-KR"};
+const char* ENCODING_NAME[ilplib::langid::ENCODING_ID_NUM] = {"UTF-8", "GB18030", "BIG5", "EUC-JP", "Shift_JIS", "EUC-KR"};
 
 /** string for undefined type */
 const char* UNDEFINED_NAME = "UNDEFINED";
@@ -45,8 +45,7 @@ string toLower(const char* s)
 }
 } // namespace
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 Knowledge::Knowledge()
 {
@@ -112,4 +111,4 @@ const char* Knowledge::getEncodingNameFromID(EncodingID id)
     return UNDEFINED_NAME;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

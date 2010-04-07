@@ -11,8 +11,7 @@
 
 #include "langid/language_id.h"
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 class ProfileModel;
 
@@ -51,6 +50,6 @@ private:
     const ProfileModel& profileModel_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_ENCODING_ANALYZER_H

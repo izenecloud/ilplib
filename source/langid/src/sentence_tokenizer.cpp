@@ -24,20 +24,19 @@ using namespace std;
 namespace
 {
 /** bit mask of paragraph separators */
-const int MASK_SEP = langid::SB_TYPE_SEP | langid::SB_TYPE_CR | langid::SB_TYPE_LF;
+const int MASK_SEP = ilplib::langid::SB_TYPE_SEP | ilplib::langid::SB_TYPE_CR | ilplib::langid::SB_TYPE_LF;
 
 /** bit mask of sentence terminators */
-const int MASK_TERM = langid::SB_TYPE_STERM | langid::SB_TYPE_ATERM;
+const int MASK_TERM = ilplib::langid::SB_TYPE_STERM | ilplib::langid::SB_TYPE_ATERM;
 
 /** bit mask of sentence separators, terminators and continues */
-const int MASK_SEP_TERM_CONTINUE = MASK_SEP | MASK_TERM | langid::SB_TYPE_SCONTINUE;
+const int MASK_SEP_TERM_CONTINUE = MASK_SEP | MASK_TERM | ilplib::langid::SB_TYPE_SCONTINUE;
 
 /** bit mask of negation of letters, sentence separators and terminators */
-const int MASK_NEG_LETTER = ~(langid::SB_TYPE_OLETTER | langid::SB_TYPE_UPPER | langid::SB_TYPE_LOWER | MASK_SEP | MASK_TERM);
+const int MASK_NEG_LETTER = ~(ilplib::langid::SB_TYPE_OLETTER | ilplib::langid::SB_TYPE_UPPER | ilplib::langid::SB_TYPE_LOWER | MASK_SEP | MASK_TERM);
 } // namespace
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 SentenceTokenizer::SentenceTokenizer(const SentenceBreakTable& table)
     : breakTable_(table)
@@ -317,4 +316,4 @@ void SentenceTokenizer::debugPrintUCS(const char* s, std::size_t n, SentenceBrea
         cerr << "error: unknown property: " << type << endl;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

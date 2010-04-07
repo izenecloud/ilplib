@@ -10,8 +10,7 @@
 
 #include <cassert>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 Analyzer::Analyzer()
     : options_(OPTION_TYPE_NUM)
@@ -35,4 +34,4 @@ int Analyzer::getOption(OptionType nOption) const
     return options_[nOption];
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

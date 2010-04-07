@@ -14,8 +14,7 @@
 
 #include <vector>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * ProfileSelector selects the best profile for language identification.
@@ -77,6 +76,6 @@ private:
     std::vector<std::string> profileNames_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_PROFILE_SELECTOR_H

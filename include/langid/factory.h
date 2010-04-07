@@ -9,8 +9,9 @@
 #ifndef LANGID_FACTORY_H
 #define LANGID_FACTORY_H
 
-namespace langid
-{
+#include <ilplib.h>
+
+NS_ILPLIB_LANGID_BEGIN
 
 class Analyzer;
 class Knowledge;
@@ -55,6 +56,6 @@ private:
     static Factory* instance_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_FACTORY_H

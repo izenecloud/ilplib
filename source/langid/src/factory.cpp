@@ -10,8 +10,7 @@
 #include "analyzer_impl.h"
 #include "knowledge_impl.h"
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 Factory* Factory::instance_;
 
@@ -43,4 +42,4 @@ Factory::~Factory()
 {
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

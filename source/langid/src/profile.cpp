@@ -45,8 +45,7 @@ bool isReplaceChar(char ch)
 }
 } // namespace
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 Profile::Profile(int ngram, int length)
     : ngramRange_(ngram), profileLength_(length)
@@ -487,4 +486,4 @@ bool Profile::loadBinary(std::ifstream& ifs)
     return true;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

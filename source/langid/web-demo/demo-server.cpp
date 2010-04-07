@@ -32,7 +32,7 @@
 static const unsigned int AWS_MAX_BUFFER_SIZE = 8192;
 
 using namespace std;
-using namespace langid;
+using namespace ilplib::langid;
 
 /**
  * Wrapper class to print content to AWS stream.

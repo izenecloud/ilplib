@@ -14,8 +14,7 @@
 
 #include <vector>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 /**
  * ProfileModel manages a list of profiles for encoding identification.
@@ -105,6 +104,6 @@ private:
     std::vector<EncodingID> encodingIDVec_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_PROFILE_MODEL_H

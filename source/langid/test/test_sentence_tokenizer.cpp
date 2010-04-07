@@ -20,7 +20,7 @@
 #include <cassert>
 
 using namespace std;
-using namespace langid;
+using namespace ilplib::langid;
 
 #ifndef LANGID_DEBUG_PRINT
 	#define LANGID_DEBUG_PRINT 1

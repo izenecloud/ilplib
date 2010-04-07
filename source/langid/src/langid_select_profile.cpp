@@ -32,7 +32,7 @@
 namespace po = boost::program_options;
 
 using namespace std;
-using namespace langid;
+using namespace ilplib::langid;
 
 /**
  * Main function.

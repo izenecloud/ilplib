@@ -19,7 +19,7 @@
 #include <cstdlib>
 
 using namespace std;
-using namespace langid;
+using namespace ilplib::langid;
 
 /**
  * Main function.

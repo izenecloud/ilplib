@@ -23,8 +23,7 @@ using namespace std;
 #define LANGID_DEBUG_PRINT_LOAD 0
 #define LANGID_DEBUG_PRINT_SELECT 0
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
 
 ProfileModel::ProfileModel()
     : ngramRange_(0), profileLength_(0)
@@ -349,4 +348,4 @@ bool ProfileModel::saveModel(const char* fileName) const
     return true;
 }
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

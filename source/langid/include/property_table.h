@@ -9,6 +9,8 @@
 #ifndef LANGID_PROPERTY_TABLE_H
 #define LANGID_PROPERTY_TABLE_H
 
+#include <ilplib.h>
+
 #include <vector>
 #include <map>
 #include <string>
@@ -16,8 +18,8 @@
 #include <cassert>
 #include <stdint.h> // uint32_t
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 /**
  * PropertyTable gives the character property for each UCS2 value.
  * \tparam T the type of property value
@@ -119,6 +121,6 @@ public:
     bool propertyToStr(const T& property, std::string& str) const;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_PROPERTY_TABLE_H

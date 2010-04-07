@@ -13,8 +13,8 @@
 
 #include <stdint.h> // uint16_t
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 /**
  * Enum of sentence break type, used to determine sentence boundary.
  * These types are based on "5.1 Default Sentence Boundary Specification" in "Unicode Standard Annex #29"
@@ -42,6 +42,6 @@ enum SentenceBreakType
 /** SentenceBreakTable gives the sentence break type for each UCS2 value. */
 typedef PropertyTable<SentenceBreakType, uint16_t> SentenceBreakTable;
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_SENTENCE_BREAK_TABLE_H

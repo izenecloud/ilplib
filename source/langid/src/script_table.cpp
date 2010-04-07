@@ -15,8 +15,8 @@ using namespace std;
 	#define LANGID_DEBUG_PRINT 1
 #endif
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 /**
  * PropertyTable<ScriptType> gives the script type for each UCS2 value.
  */
@@ -35,4 +35,4 @@ template<> PropertyTable<ScriptType, uint8_t>::PropertyTable()
  * so that we need only include header "script_table.h" to use it. */
 template class PropertyTable<ScriptType, uint8_t>;
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

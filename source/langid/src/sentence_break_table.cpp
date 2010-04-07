@@ -15,8 +15,8 @@ using namespace std;
 	#define LANGID_DEBUG_PRINT 1
 #endif
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 /**
  * PropertyTable<SentenceBreakType> gives the script type for each UCS2 value.
  */
@@ -44,4 +44,4 @@ template<> PropertyTable<SentenceBreakType, uint16_t>::PropertyTable()
  * so that we need only include header "sentence_break_table.h" to use it. */
 template class PropertyTable<SentenceBreakType, uint16_t>;
 
-} // namespace langid
+NS_ILPLIB_LANGID_END

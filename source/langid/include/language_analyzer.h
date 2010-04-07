@@ -18,8 +18,8 @@
 
 #include <vector>
 
-namespace langid
-{
+NS_ILPLIB_LANGID_BEGIN
+
 /**
  * LanguageAnalyzer identifies the language type for UTF-8 encoding.
  */
@@ -174,6 +174,6 @@ private:
     const Analyzer* option_;
 };
 
-} // namespace langid
+NS_ILPLIB_LANGID_END
 
 #endif // LANGID_LANGUAGE_ANALYZER_H

@@ -15,4 +15,7 @@
 #define NS_ILPLIB_LANGID_BEGIN namespace ilplib{ namespace langid{
 #define NS_ILPLIB_LANGID_END }}
 
+#define NS_ILPLIB_QA_BEGIN namespace ilplib{ namespace qa{
+#define NS_ILPLIB_QA_END }}
+
 #endif // ILPLIB_H

@@ -14,7 +14,6 @@ FIND_PACKAGE(Threads REQUIRED)
 # izenelib wiselib kma
 #####
 FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am)
-FIND_PACKAGE(wiselib REQUIRED)
 
 IF( USE_WISEKMA )
   FIND_PACKAGE(wisekma REQUIRED)

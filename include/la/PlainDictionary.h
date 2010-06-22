@@ -39,14 +39,14 @@ class PlainDictionary : public UpdatableDict
 {
 public:
 
-	PlainDictionary( wiselib::UString::EncodingType encoding = wiselib::UString::UTF_8 );
+	PlainDictionary( izenelib::util::UString::EncodingType encoding = izenelib::util::UString::UTF_8 );
 
 	~PlainDictionary();
 
 #ifdef USE_STD_MAP
-    typedef std::map<wiselib::UString,bool> DictType;
+    typedef std::map<izenelib::util::UString,bool> DictType;
 #else
-    typedef rde::hash_map<wiselib::UString,bool> DictType;
+    typedef rde::hash_map<izenelib::util::UString,bool> DictType;
 #endif
 
 	/**
@@ -76,7 +76,7 @@ public:
 	 * Add new word to the dictionary
 	 * \param word the new word
 	 */
-	inline void insert( const wiselib::UString& word )
+	inline void insert( const izenelib::util::UString& word )
 	{
 	    ScopedWriteLock<ReadWriteLock> swl( lock_ );
 	    words_[ word ] = true;
@@ -86,7 +86,7 @@ public:
 	 * Remove the specific from the dictionary
 	 * \param word the word to be removed
 	 */
-	inline void remove( const wiselib::UString& word )
+	inline void remove( const izenelib::util::UString& word )
 	{
 	    ScopedWriteLock<ReadWriteLock> swl( lock_ );
 	    words_.erase( word );
@@ -96,7 +96,7 @@ public:
 	 * Whether contains specific word
 	 * @param the specific word
 	 */
-	inline bool contain( const wiselib::UString& word )
+	inline bool contain( const izenelib::util::UString& word )
 	{
 	    ScopedReadLock<ReadWriteLock> srl( lock_ );
 	    return words_.find( word ) != words_.end();
@@ -131,7 +131,7 @@ public:
      * Invoke it before use getLock()
      * @param the specific word
      */
-    inline bool containNoLock( const wiselib::UString& word )
+    inline bool containNoLock( const izenelib::util::UString& word )
     {
         return words_.find( word ) != words_.end();
     }
@@ -150,7 +150,7 @@ private:
 	DictType words_;
 
 	/** The encoding for the Dictionary file */
-    wiselib::UString::EncodingType encoding_;
+    izenelib::util::UString::EncodingType encoding_;
 
 	/** The latest destination path */
     std::string destPath_;

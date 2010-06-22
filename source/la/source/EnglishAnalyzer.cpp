@@ -8,7 +8,7 @@
 
 #include <la/EnglishAnalyzer.h>
 
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 namespace la

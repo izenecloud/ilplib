@@ -33,7 +33,7 @@ namespace la
         public:
 
             // aligned the variables in size order
-            wiselib::UString    text_;          ///< text data of the term
+            izenelib::util::UString    text_;          ///< text data of the term
             std::string         pos_;           ///< pos tag
             unsigned int        wordOffset_;    ///< word offset of the term in original text
             int                 morpheme_;      ///< morpheme informations (for korean)
@@ -62,7 +62,7 @@ namespace la
                     ,stats_(0)
             {}
 
-            Term(const wiselib::UString & str) 
+            Term(const izenelib::util::UString & str)
                 :   text_(str),
                     pos_("?")
                     ,wordOffset_(0)
@@ -87,7 +87,7 @@ namespace la
             std::string textString() const 
             {
                 std::string tmp;
-                text_.convertString(tmp, wiselib::UString::UTF_8);
+                text_.convertString(tmp, izenelib::util::UString::UTF_8);
                 return tmp;
             }
 

@@ -10,8 +10,8 @@
 
 #include <iostream>
 using namespace std;
-using wiselib::UString;
-using wiselib::UCS2Char;
+using izenelib::util::UString;
+using izenelib::util::UCS2Char;
 
 namespace la
 {
@@ -166,7 +166,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
                 termItr->wordOffset_ = offset;
                 termItr->pos_ = pos;
 
-                wiselib::UString lowerUstr = ustr;
+                izenelib::util::UString lowerUstr = ustr;
                 // if it is not case sensitive, it has been in lower case
                 if( bCaseSensitive_  )
                 {
@@ -184,13 +184,13 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
                 if( bExtractEngStem_ )
                 {
                     string strUstr;
-                    lowerUstr.convertString( strUstr, wiselib::UString::UTF_8 );
+                    lowerUstr.convertString( strUstr, izenelib::util::UString::UTF_8 );
                     string stemstr;
                     pStemmer_->stem( strUstr, stemstr );
                     if( strUstr != stemstr )
                     {
                         termItr = output.insert( output.end(), newTerm_ );
-                        termItr->text_.assign( stemstr, wiselib::UString::UTF_8 );
+                        termItr->text_.assign( stemstr, izenelib::util::UString::UTF_8 );
                         termItr->wordOffset_ = offset;
                         termItr->pos_ = pos;
                     }

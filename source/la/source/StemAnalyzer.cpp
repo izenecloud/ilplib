@@ -7,7 +7,7 @@
 
 #include <la/StemAnalyzer.h>
 
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace la::stem;
 
 namespace la

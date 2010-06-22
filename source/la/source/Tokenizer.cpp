@@ -6,7 +6,7 @@
  */
 
 #include <la/Tokenizer.h>
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 namespace la
@@ -242,7 +242,7 @@ namespace la
         return true;
     }
 
-	bool Tokenizer::tokenizeWhite(const wiselib::UString& inputString, TermList& rawTerms)
+	bool Tokenizer::tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms)
     {
         rawTerms.clear();
 

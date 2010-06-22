@@ -133,7 +133,7 @@ namespace la
 
     // NON-MEMBER FUNCTION
     
-    void makeString( const TermList & input, wiselib::UString & outputString );
+    void makeString( const TermList & input, izenelib::util::UString & outputString );
 }
 
 #endif /* _LA_ANALYZER_H_ */

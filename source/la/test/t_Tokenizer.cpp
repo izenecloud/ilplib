@@ -8,7 +8,7 @@
 
 #include <la/Tokenizer.h>
 using namespace la;
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 void performTokenize( UString query, Tokenizer& tokenizer )
@@ -73,12 +73,12 @@ int main( int argc, char * argv[] )
     {
         if( specialChars.empty() == true )
         {
-            wiselib::UString query = showMenu();
+            izenelib::util::UString query = showMenu();
             performTokenize( query, tokenizerAllow );
         }
         else
         {
-            wiselib::UString query = showMenu();
+            izenelib::util::UString query = showMenu();
 
             cout<<"############### When set \""<<specialChars<<"\" as allow: "<<endl;
             performTokenize( query, tokenizerAllow );

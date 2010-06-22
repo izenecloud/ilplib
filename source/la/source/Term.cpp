@@ -17,7 +17,7 @@ namespace la
     std::string Term::toString() const
     {
         std::string tmp;
-        text_.convertString(tmp, wiselib::UString::UTF_8);
+        text_.convertString(tmp, izenelib::util::UString::UTF_8);
         std::stringstream ss;
         ss << "pos=" 		<< pos_ 		            << "\t";
         ss << "morpheme=" 	<< bitset<32>(morpheme_) 	<< "\t";
@@ -30,7 +30,7 @@ namespace la
     std::ostream & operator<<( std::ostream & out, const Term & term )
     {
         std::string tmp;
-        term.text_.convertString(tmp, wiselib::UString::UTF_8);
+        term.text_.convertString(tmp, izenelib::util::UString::UTF_8);
         out << "pos=" 		<< term.pos_ 		            << "\t";
         out << "morpheme=" 	<< bitset<32>(term.morpheme_) 	<< "\t";
         out << "woffset=" 	<< term.wordOffset_			    << "\t";

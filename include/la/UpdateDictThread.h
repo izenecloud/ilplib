@@ -87,7 +87,7 @@ public:
      */
     boost::shared_ptr< PlainDictionary > createPlainDictionary(
             const char* path,
-            wiselib::UString::EncodingType encoding,
+            izenelib::util::UString::EncodingType encoding,
             bool ignoreNoExistFile = false );
 
     /**

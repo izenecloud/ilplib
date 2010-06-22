@@ -10,7 +10,7 @@
 
 #include <cma_factory.h>
 #include <iostream>
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 using namespace cma;
 

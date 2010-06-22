@@ -85,7 +85,7 @@ namespace la
             
 
         private:
-            unsigned char getCharTypeBit( const wiselib::UCS2Char & c )
+            unsigned char getCharTypeBit( const izenelib::util::UCS2Char & c )
             {
                 unsigned char bitmap = 0x00;
 
@@ -109,24 +109,24 @@ namespace la
                 return bitmap;
             }
 
-            bool isCJKType( const wiselib::UCS2Char & c ) const
+            bool isCJKType( const izenelib::util::UCS2Char & c ) const
             {
-                return ( wiselib::UString::isThisKoreanChar(c) ||
-                        wiselib::UString::isThisChineseChar(c) ||
-                        wiselib::UString::isThisJapaneseChar(c) );
+                return ( izenelib::util::UString::isThisKoreanChar(c) ||
+                        izenelib::util::UString::isThisChineseChar(c) ||
+                        izenelib::util::UString::isThisJapaneseChar(c) );
             }
 
-            bool isAlphabeticType( const wiselib::UCS2Char & c ) const
+            bool isAlphabeticType( const izenelib::util::UCS2Char & c ) const
             {
-                return ( wiselib::UString::isThisAlphaChar(c) );
+                return ( izenelib::util::UString::isThisAlphaChar(c) );
             }
 
-            bool isNumericType( const wiselib::UCS2Char & c ) const
+            bool isNumericType( const izenelib::util::UCS2Char & c ) const
             {
-                return wiselib::UString::isThisDigitChar(c);
+                return izenelib::util::UString::isThisDigitChar(c);
             }
 
-            bool isOtherType( const wiselib::UCS2Char & c ) const
+            bool isOtherType( const izenelib::util::UCS2Char & c ) const
             {
                 return ( isCJKType(c) == false && isAlphabeticType(c) == false && isNumericType(c) == false );
             }

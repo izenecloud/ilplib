@@ -12,7 +12,7 @@
 #include <la/UpdateDictThread.h>
 
 using namespace la;
-using namespace wiselib;
+using namespace izenelib::util;
 
 int main( int argc, char * argv[] )
 {

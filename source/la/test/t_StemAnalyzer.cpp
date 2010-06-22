@@ -11,7 +11,7 @@
 #include <la/stem/Stemmer.h>
 #include <ctime>
 using namespace la;
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 using namespace la::stem;
 

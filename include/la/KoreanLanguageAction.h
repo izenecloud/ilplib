@@ -63,9 +63,9 @@ public:
         return kmaOrange::SC;
     }
 
-    inline wiselib::UString::EncodingType getEncodeType()
+    inline izenelib::util::UString::EncodingType getEncodeType()
     {
-        return wiselib::UString::CP949;
+        return izenelib::util::UString::CP949;
     }
 
     inline void setNBest( unsigned int num=2 )

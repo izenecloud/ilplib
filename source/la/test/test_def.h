@@ -3,13 +3,13 @@
 #define _LA_TEST_DEF_H_
 
 #include <Term.h>
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 #include <stdlib.h>
 #include <iostream>
 
 
-wiselib::UString::EncodingType IO_ENCODING = wiselib::UString::UTF_8;
-wiselib::UString::EncodingType FILE_ENCODING = wiselib::UString::UTF_8;
+izenelib::util::UString::EncodingType IO_ENCODING = izenelib::util::UString::UTF_8;
+izenelib::util::UString::EncodingType FILE_ENCODING = izenelib::util::UString::UTF_8;
 
 const unsigned int BUFFER = 1024;
 
@@ -36,14 +36,14 @@ std::ostream & printTermList( const la::TermList & termList, std::ostream & out=
     return out;
 }
 
-wiselib::UString showMenu()
+izenelib::util::UString showMenu()
 {
     std::cout << "Enter a text. (buffer size is: " << BUFFER << ")" << std::endl;
 
     char buf[BUFFER];
     std::cin.getline( buf, 1024 );
 
-    wiselib::UString query( buf, IO_ENCODING );
+    izenelib::util::UString query( buf, IO_ENCODING );
 
     return query;
 }

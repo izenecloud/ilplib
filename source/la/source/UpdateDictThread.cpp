@@ -24,7 +24,7 @@
     #define DEFAULT_CHECK_INTERVAL 600
 #endif
 
-using wiselib::UString;
+using izenelib::util::UString;
 
 namespace la
 {

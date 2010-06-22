@@ -186,7 +186,6 @@ SET( LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib" )
 INCLUDE_DIRECTORIES(
   "${lalib_SOURCE_DIR}/include"
   ${izenelib_INCLUDE_DIRS}
-  ${wiselib_INCLUDE_DIRS}
   ${wisekma_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
   ${izenecma_INCLUDE_DIRS}
@@ -219,13 +218,6 @@ IF(VERBOSE)
   ELSE(izenelib_FOUND)
     MESSAGE(STATUS "izenelib: not found")
   ENDIF(izenelib_FOUND)
-
-  IF(wiselib_FOUND)
-    MESSAGE(STATUS "wiselib:")
-    MESSAGE(STATUS "  header: ${wiselib_INCLUDE_DIRS}")
-  ELSE(wiselib_FOUND)
-    MESSAGE(STATUS "wiselib: not found")
-  ENDIF(wiselib_FOUND)
 
   IF( USE_WISEKMA )
   IF(wisekma_FOUND)

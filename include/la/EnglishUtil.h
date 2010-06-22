@@ -15,7 +15,7 @@
 namespace la
 {
 
-inline bool containUpperLetter( wiselib::UString& str )
+inline bool containUpperLetter( izenelib::util::UString& str )
 {
     size_t len = str.length();
     for( size_t i = 0; i < len; ++i )
@@ -26,7 +26,7 @@ inline bool containUpperLetter( wiselib::UString& str )
     return false;
 }
 
-inline bool isAllPunctuations( wiselib::UString& str )
+inline bool isAllPunctuations( izenelib::util::UString& str )
 {
     size_t len = str.length();
     for( size_t i = 0; i < len; ++i )

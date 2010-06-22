@@ -62,7 +62,7 @@ namespace la
             int nnpMorp_;
             std::string nnpPOS_;
             int scMorp_; // For KMA, it is kmaOrange::SC, special character
-            wiselib::UString::EncodingType encode_;
+            izenelib::util::UString::EncodingType encode_;
             /** In the same token, whether each Morpheme shared the same word offset */
             bool bSharedWordOffset_;
 

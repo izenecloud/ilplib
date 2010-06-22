@@ -9,7 +9,7 @@
 #include <la/EnglishUtil.h>
 
 using namespace la::stem;
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 namespace la
@@ -18,11 +18,11 @@ namespace la
     const string RES_PUNCT = "RP";
     const Term newTerm;
 
-    void LA::process_index( const wiselib::UString & inputString, TermList & outList )
+    void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
     {
         outList.clear();
 
-        wiselib::UString uinputstr = inputString;
+        izenelib::util::UString uinputstr = inputString;
         if( !bCaseSensitive_ )
             uinputstr.toLowerString();
 
@@ -41,11 +41,11 @@ namespace la
         lengthFilter( outList );
     }
 
-    void LA::process_search( const wiselib::UString & inputString, TermList & outList )
+    void LA::process_search( const izenelib::util::UString & inputString, TermList & outList )
     {
         outList.clear();
 
-        wiselib::UString uinputstr = inputString;
+        izenelib::util::UString uinputstr = inputString;
         if( !bCaseSensitive_ )
             uinputstr.toLowerString();
 
@@ -65,7 +65,7 @@ namespace la
     }
 
     void LA::process_index(
-            const wiselib::UString& inputString, 
+            const izenelib::util::UString& inputString,
             TermList & specialTermList, 
             TermList & primaryTermList, 
             TermList & outList
@@ -79,7 +79,7 @@ namespace la
             tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
         else
         {
-            wiselib::UString uinputstr = inputString;
+            izenelib::util::UString uinputstr = inputString;
             uinputstr.toLowerString();
             tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
         }
@@ -101,7 +101,7 @@ namespace la
     }
 
     void LA::process_search(
-            const wiselib::UString& inputString, 
+            const izenelib::util::UString& inputString,
             TermList & specialTermList, 
             TermList & primaryTermList, 
             TermList & outList
@@ -115,7 +115,7 @@ namespace la
             tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
         else
         {
-            wiselib::UString uinputstr = inputString;
+            izenelib::util::UString uinputstr = inputString;
             uinputstr.toLowerString();
             tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
         }
@@ -136,7 +136,7 @@ namespace la
         }
     }
 
-    wiselib::UString toExpandedString( const TermList & termList )
+    izenelib::util::UString toExpandedString( const TermList & termList )
     {
         if( termList.empty() )
         {
@@ -144,10 +144,10 @@ namespace la
             return ustr;
         }
 
-        wiselib::UCS2Char SPACE = 32;
-        wiselib::UCS2Char LBRACKET = 40;
-        wiselib::UCS2Char RBRACKET = 41;
-        wiselib::UCS2Char OR_CHAR = 124;
+        izenelib::util::UCS2Char SPACE = 32;
+        izenelib::util::UCS2Char LBRACKET = 40;
+        izenelib::util::UCS2Char RBRACKET = 41;
+        izenelib::util::UCS2Char OR_CHAR = 124;
 
         TermList::const_iterator it;
         unsigned int prevOffset = 0;
@@ -156,7 +156,7 @@ namespace la
         unsigned char prevAndOr = 0;
 
         unsigned char andOrBit = 0, level = 0;
-        wiselib::UString output;
+        izenelib::util::UString output;
 
         for( it = termList.begin(); it != termList.end(); it++ )
         {
@@ -212,7 +212,7 @@ namespace la
             prevOffset = it->wordOffset_;
             prevAndOr = andOrBit;
 
-            //output.displayStringValue( wiselib::UString::UTF_8 ); cout << endl;
+            //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
         }
         for( int i = prevLevel; i >= baseLevel; i-- )
             output += RBRACKET;
@@ -233,7 +233,7 @@ namespace la
         }
     }
 
-    void LA::process_MIA( const wiselib::UString& inputString, TermList & outList,
+    void LA::process_MIA( const izenelib::util::UString& inputString, TermList & outList,
             shared_ptr<PunctsType>& puncts, bool isIndex)
     {
         // if the special punctuations are empty
@@ -259,7 +259,7 @@ namespace la
             tokenizer_.tokenize(inputString, primaryTermList, primaryTermList );
         else
         {
-            wiselib::UString uinputstr = inputString;
+            izenelib::util::UString uinputstr = inputString;
             uinputstr.toLowerString();
             tokenizer_.tokenize(uinputstr, primaryTermList, primaryTermList );
         }

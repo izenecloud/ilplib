@@ -11,7 +11,7 @@
 
 #include <fstream>
 
-using wiselib::UString;
+using izenelib::util::UString;
 
 namespace la
 {

@@ -16,7 +16,7 @@
 
 #include <la/LA.h>
 
-#include <wiselib/profiler/ProfilerGroup.h>
+#include <util/profiler/ProfilerGroup.h>
 
 #include <boost/timer.hpp>
 
@@ -27,7 +27,7 @@
 
 using namespace std;
 using namespace la;
-using namespace wiselib;
+using namespace izenelib::util;
 
 const unsigned int PRINT_ROUND = 10000;
 
@@ -53,12 +53,12 @@ int main( int argc, char * argv[] )
     {
         if( strcmp( argv[3], "utf8" ) == 0 )
         {
-            FILE_ENCODING = wiselib::UString::UTF_8;
+            FILE_ENCODING = izenelib::util::UString::UTF_8;
             cout << "File encoding type is utf8" << endl;
         }
         else if( strcmp( argv[3], "euckr" ) == 0 )
         {
-            FILE_ENCODING = wiselib::UString::CP949;
+            FILE_ENCODING = izenelib::util::UString::CP949;
             cout << "File encoding type is euckr(cp949)" << endl;
         }
         else

@@ -104,9 +104,9 @@ public:
     }
 
 private:
-    inline Language getCharType( wiselib::UCS2Char ucs2Char );
+    inline Language getCharType( izenelib::util::UCS2Char ucs2Char );
 
-    inline void invokeMA( const wiselib::UString& ustr, TermList & output, bool isIndex, Language lang,
+    inline void invokeMA( const izenelib::util::UString& ustr, TermList & output, bool isIndex, Language lang,
             unsigned int woffset, unsigned int &listOffset, bool isEnd );
 
     inline void performAnalyze( const TermList & input, TermList & output, bool isIndex );

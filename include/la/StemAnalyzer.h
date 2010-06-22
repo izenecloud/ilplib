@@ -23,7 +23,7 @@ namespace la
     {
         protected:
             stem::Stemmer stemmer_; ///< a stemmer provided by "libstemmer"
-            //wiselib::UString::EncodingType encodingType_; ///< encoding type
+            //izenelib::util::UString::EncodingType encodingType_; ///< encoding type
             stem::Language language_; ///< language type
 
         public:

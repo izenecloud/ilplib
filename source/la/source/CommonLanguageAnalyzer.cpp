@@ -6,7 +6,7 @@
  *  Common Language Analyzer for Chinese/Japanese/Korean.
  */
 //#define SF1_TIME_CHECK
-#include <wiselib/profiler/ProfilerGroup.h>
+#include <util/profiler/ProfilerGroup.h>
 
 #include <la/CommonLanguageAnalyzer.h>
 #include <la/EnglishUtil.h>
@@ -24,7 +24,7 @@
     #include <la/ChineseLanguageAction.h>
 #endif
 
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 namespace la
@@ -260,7 +260,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                 bool isFL = (morpheme & flMorp_) == flMorp_;
                 #ifdef DEBUG_CLA
                 string sss;
-                lexiconUStr.convertString(sss, wiselib::UString::UTF_8 );
+                lexiconUStr.convertString(sss, izenelib::util::UString::UTF_8 );
                 cout<<"#"<<i<<","<<j<<" get lexicon "<<sss<<endl;
                 #endif
 
@@ -441,7 +441,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_search(
             #ifdef DEBUG_CLA
             UString uu1( lexicon, encode_ );
             string sss;
-            uu1.convertString(sss, wiselib::UString::UTF_8 );
+            uu1.convertString(sss, izenelib::util::UString::UTF_8 );
             cout<<"#"<<i<<","<<j<<" get lexicon "<<sss<<", pos: "<<pE->getStrPOS(i,j)<<", is index: "<<
             pE->isIndexWord(i, j)<<"."<<endl;
             #endif

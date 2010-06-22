@@ -10,7 +10,7 @@
 #include <la/UpdateDictThread.h>
 
 using namespace la;
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace std;
 
 enum ANALYSIS { 
@@ -285,7 +285,7 @@ int main( int argc, char * argv[] )
 
     while( true )
     {
-        wiselib::UString query = showMenu();
+        izenelib::util::UString query = showMenu();
 
         /*
         //cout << " Tokenizing only" << endl;

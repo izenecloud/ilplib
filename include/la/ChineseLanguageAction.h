@@ -75,9 +75,9 @@ public:
         return -1; //FIXME no such POS in iCMA
     }
 
-    inline wiselib::UString::EncodingType getEncodeType()
+    inline izenelib::util::UString::EncodingType getEncodeType()
     {
-        return wiselib::UString::UTF_8;
+        return izenelib::util::UString::UTF_8;
     }
 
     inline void setNBest( unsigned int num=2 )

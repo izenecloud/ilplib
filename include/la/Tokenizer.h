@@ -29,30 +29,30 @@ namespace la
     {
 
         public:
-            void addAllows(wiselib::UString astr){
+            void addAllows(izenelib::util::UString astr){
                 allows_ += astr;
             }
-            void addDivides(wiselib::UString dstr){
+            void addDivides(izenelib::util::UString dstr){
                 divides_ += dstr;
             }
-            void addUnites(wiselib::UString ustr){
+            void addUnites(izenelib::util::UString ustr){
                 unites_ += ustr;
             }
             void addAllows(std::string astr){
-                wiselib::UString str(astr, wiselib::UString::UTF_8);
+                izenelib::util::UString str(astr, izenelib::util::UString::UTF_8);
                 allows_ += str;
             }
             void addDivides(std::string dstr){
-                wiselib::UString str(dstr, wiselib::UString::UTF_8);
+                izenelib::util::UString str(dstr, izenelib::util::UString::UTF_8);
                 divides_ += str;
             }
             void addUnites(std::string ustr){
-                wiselib::UString str(ustr, wiselib::UString::UTF_8);
+                izenelib::util::UString str(ustr, izenelib::util::UString::UTF_8);
                 unites_ += str;
             }
-            wiselib::UString allows_;
-            wiselib::UString divides_;
-            wiselib::UString unites_;
+            izenelib::util::UString allows_;
+            izenelib::util::UString divides_;
+            izenelib::util::UString unites_;
     };
 
     //typedef vector<TokenizeOption> TokenOptList;
@@ -73,32 +73,32 @@ namespace la
         /// \param list user defined option list
         void setConfig(const TokenizeConfig& conf);
 
-        CharType getType(wiselib::UCS2Char c){
+        CharType getType(izenelib::util::UCS2Char c){
             return charTypeTable_[c];
         }
 
         /// \brief check whether default allow
         /// \param c char
         /// \return true if so, else false
-        bool isAllow(wiselib::UCS2Char c){
+        bool isAllow(izenelib::util::UCS2Char c){
             return charTypeTable_[c] == ALLOW_CHR ;
         }
 
         /// \brief check whether default divide
         /// \param c char
         /// \return true if so, else false
-        bool isDivide(wiselib::UCS2Char c){
+        bool isDivide(izenelib::util::UCS2Char c){
             return charTypeTable_[c] == DELIMITER_CHR ;
         }
 
         /// \brief check whether defined allow
         /// \param c char
         /// \return true if so, else false
-        bool isUnite(wiselib::UCS2Char c){
+        bool isUnite(izenelib::util::UCS2Char c){
             return charTypeTable_[c] == UNITE_CHR ;
         }
 
-        bool isEqualType(wiselib::UCS2Char c1, wiselib::UCS2Char c2){
+        bool isEqualType(izenelib::util::UCS2Char c1, izenelib::util::UCS2Char c2){
             return  charTypeTable_[c1] == charTypeTable_[c2] ;
         }
     };
@@ -135,19 +135,19 @@ namespace la
         /// \param inputString input text string
         /// \param rawTerms the output raw term list
         /// \param primTerms the output primary term list
-        bool tokenize(const wiselib::UString & inputString, TermList & specialTerms, TermList& primTerms );
+        bool tokenize(const izenelib::util::UString & inputString, TermList & specialTerms, TermList& primTerms );
 
         /// \brief tokenize the input text, remove the space chars, output raw term list
         /// \param inputString input text string
         /// \param rawTerms the output raw term list
-        bool tokenizeWhite(const wiselib::UString& inputString, TermList& rawTerms);
+        bool tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms);
 
         /// \brief tokenize the input text, output two term lists: raw term list and primary term list
         /// \param inputString input text string
         /// \param primTerms the output primary term list
-        bool tokenize(const wiselib::UString & inputString, TermList & primTerms);
+        bool tokenize(const izenelib::util::UString & inputString, TermList & primTerms);
 
-        //bool tokenize(const wiselib::UString& inputString, std::list<Term*> & primTerms);
+        //bool tokenize(const izenelib::util::UString& inputString, std::list<Term*> & primTerms);
 
     };
 

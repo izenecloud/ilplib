@@ -11,7 +11,7 @@
 namespace la
 {
 
-using namespace wiselib;
+using namespace izenelib::util;
 using namespace kmaOrange;
 using namespace std;
 

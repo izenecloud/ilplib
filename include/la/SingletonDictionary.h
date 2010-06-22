@@ -162,16 +162,16 @@ namespace la
 
 
     struct StopDicParam{
-        StopDicParam(std::string p, wiselib::UString::EncodingType e): path_(p), etype_(e)
+        StopDicParam(std::string p, izenelib::util::UString::EncodingType e): path_(p), etype_(e)
         {}
         std::string path_;
-        wiselib::UString::EncodingType etype_;
+        izenelib::util::UString::EncodingType etype_;
     };
 
     class StopWordDictionay: public Singleton<StopWordDictionay, StopDicParam>
     {
         private:
-            std::set<wiselib::UString> stopDic_; ///< stop word dictionary
+            std::set<izenelib::util::UString> stopDic_; ///< stop word dictionary
 
             StopWordDictionay(StopDicParam* param)
             {
@@ -184,7 +184,7 @@ namespace la
                 char buff[2000];
                 while( !ifs.eof() ){
                     ifs.getline( buff, 2000 );
-                    wiselib::UString str(buff, param->etype_);
+                    izenelib::util::UString str(buff, param->etype_);
                     if(!str.empty())
                         stopDic_.insert(str);
                 }
@@ -194,7 +194,7 @@ namespace la
 
 
         public:
-            bool found(wiselib::UString t){
+            bool found(izenelib::util::UString t){
                 return  (stopDic_.find(t) != stopDic_.end());
             }
 

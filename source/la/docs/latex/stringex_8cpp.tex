@@ -1,0 +1,193 @@
+\hypertarget{stringex_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/kma/stringex.cpp File Reference}
+\label{stringex_8cpp}\index{/disk/workspace-cpp/la-manager/source/kma/stringex.cpp@{/disk/workspace-cpp/la-manager/source/kma/stringex.cpp}}
+}
+{\tt \#include $<$stringex.h$>$}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{stringex_8cpp_b21c627a89faa50462becc507bc532a5}{DEFAULT\_\-divide\_\-MAX}~10
+\item 
+\#define \hyperlink{stringex_8cpp_c384e5184817ac1dcc5f861c6c8737c5}{GROWINGSIZE}~50
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+bool \hyperlink{stringex_8cpp_0352cabe898a856bb669a52b291f2b0c}{operator$>$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{stringex_8cpp_8ad4eaa758cf41431e7ad34e253fda8e}{operator$<$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{stringex_8cpp_50626126af7fa40dffff0b4011023fce}{operator$>$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{stringex_8cpp_193dfbca89ee16ca8cf8d70e4203487b}{operator$<$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{stringex_8cpp_73912fae5fd55593d41c26b62a165e69}{operator==} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{stringex_8cpp_529ca0692be82a0d7713aef9dc6b5034}{operator==} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{stringex_8cpp_be1be1e9825319fd3dc71dea82d42ad0}{operator!=} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{stringex_8cpp_5fd76bfce367d9e3f30b22169ffcb629}{operator!=} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+ostream \& \hyperlink{stringex_8cpp_d356a5f383f559309131d50ba6363d8a}{operator$<$$<$} (ostream \&sout, const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{stringex_8cpp_4f9c2af0a023cd809571333c19fa9cec}{operator+} (const char $\ast$str, const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+ostream \& \hyperlink{stringex_8cpp_9ed04896cb06ca94784a8bfc70017d5f}{operator$<$$<$} (ostream \&sout, const \hyperlink{classText}{Text} \&text)
+\item 
+\hyperlink{classText}{Text} \hyperlink{stringex_8cpp_4aade73f0c222cf01f495dc0abe96cfc}{operator+} (char $\ast$str, const \hyperlink{classText}{Text} \&text1)
+\item 
+\hyperlink{classText}{Text} \hyperlink{stringex_8cpp_c916767e68880e5755e974e1a3974700}{operator+} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classText}{Text} \&text1)
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{stringex_8cpp_b21c627a89faa50462becc507bc532a5}{
+\index{stringex.cpp@{stringex.cpp}!DEFAULT\_\-divide\_\-MAX@{DEFAULT\_\-divide\_\-MAX}}
+\index{DEFAULT\_\-divide\_\-MAX@{DEFAULT\_\-divide\_\-MAX}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{DEFAULT\_\-divide\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define DEFAULT\_\-divide\_\-MAX~10}}
+\label{stringex_8cpp_b21c627a89faa50462becc507bc532a5}
+
+
+
+
+Definition at line 460 of file stringex.cpp.
+
+Referenced by Text::divideStrings2Ptr(), and Text::divideStringsPtr().\hypertarget{stringex_8cpp_c384e5184817ac1dcc5f861c6c8737c5}{
+\index{stringex.cpp@{stringex.cpp}!GROWINGSIZE@{GROWINGSIZE}}
+\index{GROWINGSIZE@{GROWINGSIZE}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{GROWINGSIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define GROWINGSIZE~50}}
+\label{stringex_8cpp_c384e5184817ac1dcc5f861c6c8737c5}
+
+
+
+
+Definition at line 688 of file stringex.cpp.
+
+Referenced by Text::getStringsBetweenAnBs().
+
+\subsection{Function Documentation}
+\hypertarget{stringex_8cpp_5fd76bfce367d9e3f30b22169ffcb629}{
+\index{stringex.cpp@{stringex.cpp}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool operator!= (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})}}
+\label{stringex_8cpp_5fd76bfce367d9e3f30b22169ffcb629}
+
+
+
+
+Definition at line 62 of file stringex.cpp.\hypertarget{stringex_8cpp_be1be1e9825319fd3dc71dea82d42ad0}{
+\index{stringex.cpp@{stringex.cpp}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool operator!= (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})}}
+\label{stringex_8cpp_be1be1e9825319fd3dc71dea82d42ad0}
+
+
+
+
+Definition at line 55 of file stringex.cpp.\hypertarget{stringex_8cpp_c916767e68880e5755e974e1a3974700}{
+\index{stringex.cpp@{stringex.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} operator+ (const {\bf StringEx} \& {\em strex1}, \/  const {\bf Text} \& {\em text1})}}
+\label{stringex_8cpp_c916767e68880e5755e974e1a3974700}
+
+
+
+
+Definition at line 289 of file stringex.cpp.
+
+References StringEx::getBuffer().\hypertarget{stringex_8cpp_4aade73f0c222cf01f495dc0abe96cfc}{
+\index{stringex.cpp@{stringex.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} operator+ (char $\ast$ {\em str}, \/  const {\bf Text} \& {\em text1})}}
+\label{stringex_8cpp_4aade73f0c222cf01f495dc0abe96cfc}
+
+
+
+
+Definition at line 280 of file stringex.cpp.
+
+References StringEx::getBuffer().\hypertarget{stringex_8cpp_4f9c2af0a023cd809571333c19fa9cec}{
+\index{stringex.cpp@{stringex.cpp}!operator+@{operator+}}
+\index{operator+@{operator+}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} operator+ (const char $\ast$ {\em str}, \/  const {\bf StringEx} \& {\em strex})}}
+\label{stringex_8cpp_4f9c2af0a023cd809571333c19fa9cec}
+
+
+
+
+Definition at line 76 of file stringex.cpp.\hypertarget{stringex_8cpp_193dfbca89ee16ca8cf8d70e4203487b}{
+\index{stringex.cpp@{stringex.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})}}
+\label{stringex_8cpp_193dfbca89ee16ca8cf8d70e4203487b}
+
+
+
+
+Definition at line 34 of file stringex.cpp.\hypertarget{stringex_8cpp_8ad4eaa758cf41431e7ad34e253fda8e}{
+\index{stringex.cpp@{stringex.cpp}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})}}
+\label{stringex_8cpp_8ad4eaa758cf41431e7ad34e253fda8e}
+
+
+
+
+Definition at line 20 of file stringex.cpp.\hypertarget{stringex_8cpp_9ed04896cb06ca94784a8bfc70017d5f}{
+\index{stringex.cpp@{stringex.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (ostream \& {\em sout}, \/  const {\bf Text} \& {\em text})}}
+\label{stringex_8cpp_9ed04896cb06ca94784a8bfc70017d5f}
+
+
+
+
+Definition at line 208 of file stringex.cpp.
+
+References StringEx::getBuffer().\hypertarget{stringex_8cpp_d356a5f383f559309131d50ba6363d8a}{
+\index{stringex.cpp@{stringex.cpp}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (ostream \& {\em sout}, \/  const {\bf StringEx} \& {\em strex})}}
+\label{stringex_8cpp_d356a5f383f559309131d50ba6363d8a}
+
+
+
+
+Definition at line 69 of file stringex.cpp.\hypertarget{stringex_8cpp_529ca0692be82a0d7713aef9dc6b5034}{
+\index{stringex.cpp@{stringex.cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})}}
+\label{stringex_8cpp_529ca0692be82a0d7713aef9dc6b5034}
+
+
+
+
+Definition at line 48 of file stringex.cpp.\hypertarget{stringex_8cpp_73912fae5fd55593d41c26b62a165e69}{
+\index{stringex.cpp@{stringex.cpp}!operator==@{operator==}}
+\index{operator==@{operator==}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})}}
+\label{stringex_8cpp_73912fae5fd55593d41c26b62a165e69}
+
+
+
+
+Definition at line 41 of file stringex.cpp.\hypertarget{stringex_8cpp_50626126af7fa40dffff0b4011023fce}{
+\index{stringex.cpp@{stringex.cpp}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$>$ (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})}}
+\label{stringex_8cpp_50626126af7fa40dffff0b4011023fce}
+
+
+
+
+Definition at line 27 of file stringex.cpp.\hypertarget{stringex_8cpp_0352cabe898a856bb669a52b291f2b0c}{
+\index{stringex.cpp@{stringex.cpp}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!stringex.cpp@{stringex.cpp}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$>$ (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})}}
+\label{stringex_8cpp_0352cabe898a856bb669a52b291f2b0c}
+
+
+
+
+Definition at line 13 of file stringex.cpp.

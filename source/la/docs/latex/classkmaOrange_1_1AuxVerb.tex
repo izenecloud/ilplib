@@ -1,0 +1,301 @@
+\hypertarget{classkmaOrange_1_1AuxVerb}{
+\section{kmaOrange::AuxVerb Class Reference}
+\label{classkmaOrange_1_1AuxVerb}\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+}
+This class manages auxiliary verbs.  
+
+
+{\tt \#include $<$AuxVerb.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1AuxVerb_6ecc7657f31bf369345acce2b227aa73}{AuxVerb} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1AuxVerb}{AuxVerb} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1AuxVerb_ed72d211dc28805844b0272cd80604e7}{$\sim$AuxVerb} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1AuxVerb}{AuxVerb} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1AuxVerb_db8f3afc0ca17e2277c55661c7654a6b}{setAVList} ()
+\begin{CompactList}\small\item\em This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1AuxVerb_bb9f09a6080340f66463ed5ac8ee9681}{setAVInfo} (\hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} \&avInfo, int pos)
+\begin{CompactList}\small\item\em This function sets contents of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1AuxVerb_683102149981c86b57cf5331a89f05b9}{searchNgetInfoFromAvTrie} (const \hyperlink{classStringEx}{StringEx} \&strex, \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \&infoBuffer, int len=0)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1AuxVerb_23873257b24cdd49b86a54b9dee21c6c}{searchNgetInfoFromAvTrie} (const char $\ast$str, \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \&infoBuffer, int len=0)
+\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} $\ast$ \hyperlink{classkmaOrange_1_1AuxVerb_d08311a7c795a29ed267dfdff4e804d3}{searchNgetInfoFromAvTrie} (const \hyperlink{classStringEx}{StringEx} \&strex, int len=0)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} $\ast$ \hyperlink{classkmaOrange_1_1AuxVerb_68664b5fafa56a3c08bab09baa569f8f}{searchNgetInfoFromAvTrie} (const char $\ast$str, int len=0)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\item 
+\hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} $\ast$ \hyperlink{classkmaOrange_1_1AuxVerb_e56921cf22a0283c83ccbdb24187b6c7}{getAVInfo} (int pos)
+\begin{CompactList}\small\item\em This function gets contents of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} \hyperlink{classkmaOrange_1_1AuxVerb_44837d41f1db9576652a529cb29488b3}{\_\-avTrie}
+\begin{CompactList}\small\item\em a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of auxiliary verbs. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \hyperlink{classkmaOrange_1_1AuxVerb_d2a513a5da13dd067e84c45386b0af98}{\_\-infoBuffer}
+\begin{CompactList}\small\item\em temporary buffer. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} \hyperlink{classkmaOrange_1_1AuxVerb_701a88d643b13338185b36860a4b5a70}{\_\-avInfoPoolList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of information of auxiliary verbs. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class manages auxiliary verbs. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 37 of file AuxVerb.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1AuxVerb_6ecc7657f31bf369345acce2b227aa73}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!AuxVerb@{AuxVerb}}
+\index{AuxVerb@{AuxVerb}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{AuxVerb}]{\setlength{\rightskip}{0pt plus 5cm}AuxVerb::AuxVerb ()}}
+\label{classkmaOrange_1_1AuxVerb_6ecc7657f31bf369345acce2b227aa73}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1AuxVerb}{AuxVerb} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 28 of file AuxVerb.cpp.
+
+References setAVList().\hypertarget{classkmaOrange_1_1AuxVerb_ed72d211dc28805844b0272cd80604e7}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!$\sim$AuxVerb@{$\sim$AuxVerb}}
+\index{$\sim$AuxVerb@{$\sim$AuxVerb}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{$\sim$AuxVerb}]{\setlength{\rightskip}{0pt plus 5cm}AuxVerb::$\sim$AuxVerb ()}}
+\label{classkmaOrange_1_1AuxVerb_ed72d211dc28805844b0272cd80604e7}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1AuxVerb}{AuxVerb} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 33 of file AuxVerb.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1AuxVerb_e56921cf22a0283c83ccbdb24187b6c7}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!getAVInfo@{getAVInfo}}
+\index{getAVInfo@{getAVInfo}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{getAVInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AVInfo} $\ast$ AuxVerb::getAVInfo (int {\em pos})}}
+\label{classkmaOrange_1_1AuxVerb_e56921cf22a0283c83ccbdb24187b6c7}
+
+
+This function gets contents of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]an integer - the index number of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure - contents of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure. \end{Desc}
+
+
+Definition at line 37 of file AuxVerb.cpp.
+
+References \_\-avInfoPoolList.\hypertarget{classkmaOrange_1_1AuxVerb_68664b5fafa56a3c08bab09baa569f8f}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}}
+\index{searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{searchNgetInfoFromAvTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} $\ast$ AuxVerb::searchNgetInfoFromAvTrie (const char $\ast$ {\em str}, \/  int {\em len} = {\tt 0})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1AuxVerb_68664b5fafa56a3c08bab09baa569f8f}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em str}]a pointer of a character - input string. \item[{\em len}]an integer - the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object - temporary storage. \end{Desc}
+
+
+Definition at line 145 of file AuxVerb.cpp.
+
+References \_\-avTrie, \_\-infoBuffer, kmaOrange::InfoBuffer::\_\-posBuffer, kmaOrange::InfoBuffer::appendInfo(), kmaOrange::SyllableInfo::coda, CODA, kmaOrange::WK\_\-DaTrie::findNode(), kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::ExCP949::getInfo(), hlL, hlN, kmaOrange::SyllableInfo::info, and kmaOrange::WK\_\-DaTrie\_\-Node::mpData.\hypertarget{classkmaOrange_1_1AuxVerb_d08311a7c795a29ed267dfdff4e804d3}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}}
+\index{searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{searchNgetInfoFromAvTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} $\ast$ AuxVerb::searchNgetInfoFromAvTrie (const {\bf StringEx} \& {\em strex}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1AuxVerb_d08311a7c795a29ed267dfdff4e804d3}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referncing pointer of \hyperlink{classStringEx}{StringEx} object - input string. \item[{\em len}]an integer - the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object - temporary storage. \end{Desc}
+
+
+Definition at line 140 of file AuxVerb.cpp.
+
+References StringEx::buffer(), StringEx::length(), and searchNgetInfoFromAvTrie().\hypertarget{classkmaOrange_1_1AuxVerb_23873257b24cdd49b86a54b9dee21c6c}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}}
+\index{searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{searchNgetInfoFromAvTrie}]{\setlength{\rightskip}{0pt plus 5cm}int AuxVerb::searchNgetInfoFromAvTrie (const char $\ast$ {\em str}, \/  {\bf InfoBuffer} \& {\em infoBuffer}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1AuxVerb_23873257b24cdd49b86a54b9dee21c6c}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 104 of file AuxVerb.cpp.
+
+References \_\-avTrie, kmaOrange::InfoBuffer::appendInfo(), kmaOrange::SyllableInfo::coda, CODA, kmaOrange::WK\_\-DaTrie::findNode(), kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::ExCP949::getInfo(), hlL, hlN, kmaOrange::SyllableInfo::info, kmaOrange::InfoBuffer::initialize(), and kmaOrange::WK\_\-DaTrie\_\-Node::mpData.\hypertarget{classkmaOrange_1_1AuxVerb_683102149981c86b57cf5331a89f05b9}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}}
+\index{searchNgetInfoFromAvTrie@{searchNgetInfoFromAvTrie}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{searchNgetInfoFromAvTrie}]{\setlength{\rightskip}{0pt plus 5cm}int AuxVerb::searchNgetInfoFromAvTrie (const {\bf StringEx} \& {\em strex}, \/  {\bf InfoBuffer} \& {\em infoBuffer}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1AuxVerb_683102149981c86b57cf5331a89f05b9}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referncing pointer of \hyperlink{classStringEx}{StringEx} object - input string. \item[{\em infoBuffer}]an indirect referncing pointer of \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object - temporary storage. \item[{\em len}]an integer - the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 99 of file AuxVerb.cpp.
+
+References StringEx::buffer(), and StringEx::length().
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), and searchNgetInfoFromAvTrie().\hypertarget{classkmaOrange_1_1AuxVerb_bb9f09a6080340f66463ed5ac8ee9681}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!setAVInfo@{setAVInfo}}
+\index{setAVInfo@{setAVInfo}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{setAVInfo}]{\setlength{\rightskip}{0pt plus 5cm}int AuxVerb::setAVInfo ({\bf AVInfo} \& {\em avInfo}, \/  int {\em pos})}}
+\label{classkmaOrange_1_1AuxVerb_bb9f09a6080340f66463ed5ac8ee9681}
+
+
+This function sets contents of static array \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em avInfo}]an indirect referncing pointer of \hyperlink{structkmaOrange_1_1AVInfo}{AVInfo} structure - the list of auxiliary verbs and these information. \item[{\em pos}]an integer - the index number of the list of auxiliary verbs and these information. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 62 of file AuxVerb.cpp.
+
+References \_\-avTrie, kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::WK\_\-DaTrie::insertKey(), kmaOrange::WK\_\-DaTrie\_\-Node::setData(), and kmaOrange::AVInfo::transForm.
+
+Referenced by setAVList().\hypertarget{classkmaOrange_1_1AuxVerb_db8f3afc0ca17e2277c55661c7654a6b}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!setAVList@{setAVList}}
+\index{setAVList@{setAVList}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{setAVList}]{\setlength{\rightskip}{0pt plus 5cm}int AuxVerb::setAVList ()}}
+\label{classkmaOrange_1_1AuxVerb_db8f3afc0ca17e2277c55661c7654a6b}
+
+
+This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 42 of file AuxVerb.cpp.
+
+References \_\-avInfoPoolList, \_\-avTrie, kmaOrange::WK\_\-DaTrie::create(), and setAVInfo().
+
+Referenced by AuxVerb().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1AuxVerb_701a88d643b13338185b36860a4b5a70}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!\_\-avInfoPoolList@{\_\-avInfoPoolList}}
+\index{\_\-avInfoPoolList@{\_\-avInfoPoolList}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{\_\-avInfoPoolList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AVInfo} {\bf kmaOrange::AuxVerb::\_\-avInfoPoolList}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1AuxVerb_701a88d643b13338185b36860a4b5a70}
+
+
+the list of information of auxiliary verbs. 
+
+
+
+Definition at line 41 of file AuxVerb.h.
+
+Referenced by getAVInfo(), and setAVList().\hypertarget{classkmaOrange_1_1AuxVerb_44837d41f1db9576652a529cb29488b3}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!\_\-avTrie@{\_\-avTrie}}
+\index{\_\-avTrie@{\_\-avTrie}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{\_\-avTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie} {\bf kmaOrange::AuxVerb::\_\-avTrie}}}
+\label{classkmaOrange_1_1AuxVerb_44837d41f1db9576652a529cb29488b3}
+
+
+a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of auxiliary verbs. 
+
+
+
+Definition at line 40 of file AuxVerb.h.
+
+Referenced by searchNgetInfoFromAvTrie(), setAVInfo(), and setAVList().\hypertarget{classkmaOrange_1_1AuxVerb_d2a513a5da13dd067e84c45386b0af98}{
+\index{kmaOrange::AuxVerb@{kmaOrange::AuxVerb}!\_\-infoBuffer@{\_\-infoBuffer}}
+\index{\_\-infoBuffer@{\_\-infoBuffer}!kmaOrange::AuxVerb@{kmaOrange::AuxVerb}}
+\subsubsection[{\_\-infoBuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} {\bf kmaOrange::AuxVerb::\_\-infoBuffer}}}
+\label{classkmaOrange_1_1AuxVerb_d2a513a5da13dd067e84c45386b0af98}
+
+
+temporary buffer. 
+
+
+
+Definition at line 43 of file AuxVerb.h.
+
+Referenced by searchNgetInfoFromAvTrie().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{AuxVerb_8h}{AuxVerb.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{AuxVerb_8cpp}{AuxVerb.cpp}\end{CompactItemize}

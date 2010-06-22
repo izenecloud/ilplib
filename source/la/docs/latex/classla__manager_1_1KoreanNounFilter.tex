@@ -1,0 +1,207 @@
+\hypertarget{classla__manager_1_1KoreanNounFilter}{
+\section{la\_\-manager::KoreanNounFilter Class Reference}
+\label{classla__manager_1_1KoreanNounFilter}\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+}
+{\tt \#include $<$NounFilter.h$>$}
+
+Inheritance diagram for la\_\-manager::KoreanNounFilter::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classla__manager_1_1KoreanNounFilter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1KoreanNounFilter_1d9ef25ee72814af339c023f0c348764}{KoreanNounFilter} (string knowledgePath=\char`\"{}../resource/knowledge\char`\"{})
+\item 
+\hyperlink{classla__manager_1_1KoreanNounFilter_87509e16fd32308b618876c9bde46be6}{$\sim$KoreanNounFilter} ()
+\item 
+bool \hyperlink{classla__manager_1_1KoreanNounFilter_5722385ced3635d7d5f16cbc1db0f874}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Input, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Output)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1KoreanNounFilter_0ec4dcffc74feee2b7f72a2656c9c589}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&InOutPut)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{classla__manager_1_1KoreanNounFilter_39fcd85a5f34abb008ce24e7918f98ee}{sTagSetNOUN\_\-} = (NNG$|$NNP$|$NNU$|$NNR)
+\item 
+static const int \hyperlink{classla__manager_1_1KoreanNounFilter_c9e130d7190ad4b4b1034370b9b601f2}{sTagSetNOUN2\_\-} = (NNP$|$NNU)
+\item 
+static const int \hyperlink{classla__manager_1_1KoreanNounFilter_297deec22f0c84a6f16e612f531c4485}{sTagSetJOSA\_\-} = (JK$|$JX$|$JC$|$VC)
+\item 
+static const int \hyperlink{classla__manager_1_1KoreanNounFilter_a462e3d26dce41fdf7c40e84b5aaa842}{sTagSetVERB\_\-} = (VV$|$VA$|$VX)
+\item 
+static const int \hyperlink{classla__manager_1_1KoreanNounFilter_bc755f0dfcfcfa1000d573d9049aea2d}{sTagSetEOMI\_\-} = (EM$|$ETM$|$ETN$|$EP)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classWK__Knowledge}{WK\_\-Knowledge} $\ast$ \hyperlink{classla__manager_1_1KoreanNounFilter_9da3dab8d3dafb70aee2869e892c02fd}{pK}
+\item 
+\hyperlink{classWK__Eojul}{WK\_\-Eojul} $\ast$ \hyperlink{classla__manager_1_1KoreanNounFilter_48a4995bc41a46eed59f1362bf2ff1af}{pE}
+\item 
+\hyperlink{classWK__Analyzer}{WK\_\-Analyzer} $\ast$ \hyperlink{classla__manager_1_1KoreanNounFilter_479d20d289d8d2bef499469d43a2c2f8}{pA}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 40 of file NounFilter.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1KoreanNounFilter_1d9ef25ee72814af339c023f0c348764}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!KoreanNounFilter@{KoreanNounFilter}}
+\index{KoreanNounFilter@{KoreanNounFilter}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{KoreanNounFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::KoreanNounFilter::KoreanNounFilter (string {\em knowledgePath} = {\tt \char`\"{}../resource/knowledge\char`\"{}})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_1d9ef25ee72814af339c023f0c348764}
+
+
+
+
+$<$ ? 
+
+Definition at line 52 of file NounFilter.h.
+
+References WK\_\-Analyzer::createObject(), WK\_\-Eojul::createObject(), WK\_\-Knowledge::createObject(), WK\_\-Eojul::initialize(), WK\_\-Knowledge::loadKnowledge(), WK\_\-Knowledge::loadPreAnalysis(), WK\_\-Knowledge::loadUserNoun(), pA, pE, pK, WK\_\-Analyzer::setExOption(), WK\_\-Analyzer::setOption(), TAGGING, and WKO\_\-OPTION\_\-N\_\-BEST.\hypertarget{classla__manager_1_1KoreanNounFilter_87509e16fd32308b618876c9bde46be6}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!$\sim$KoreanNounFilter@{$\sim$KoreanNounFilter}}
+\index{$\sim$KoreanNounFilter@{$\sim$KoreanNounFilter}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{$\sim$KoreanNounFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::KoreanNounFilter::$\sim$KoreanNounFilter ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_87509e16fd32308b618876c9bde46be6}
+
+
+
+
+Definition at line 69 of file NounFilter.h.
+
+References pA, pE, and pK.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1KoreanNounFilter_0ec4dcffc74feee2b7f72a2656c9c589}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::KoreanNounFilter::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_0ec4dcffc74feee2b7f72a2656c9c589}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{la\_\-manager::Analyzer}.
+
+Definition at line 51 of file NounFilter.cpp.
+
+References WK\_\-Eojul::getCount(), WK\_\-Eojul::getOneBestIndex(), WK\_\-Eojul::getPOS(), pA, pE, WK\_\-Analyzer::runWithEojul(), WK\_\-Eojul::setString(), and sTagSetNOUN\_\-.\hypertarget{classla__manager_1_1KoreanNounFilter_5722385ced3635d7d5f16cbc1db0f874}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::KoreanNounFilter::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_5722385ced3635d7d5f16cbc1db0f874}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{la\_\-manager::Analyzer}.
+
+Definition at line 46 of file NounFilter.cpp.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1KoreanNounFilter_479d20d289d8d2bef499469d43a2c2f8}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!pA@{pA}}
+\index{pA@{pA}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{pA}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Analyzer}$\ast$ {\bf la\_\-manager::KoreanNounFilter::pA}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_479d20d289d8d2bef499469d43a2c2f8}
+
+
+
+
+Definition at line 43 of file NounFilter.h.
+
+Referenced by analyze(), KoreanNounFilter(), and $\sim$KoreanNounFilter().\hypertarget{classla__manager_1_1KoreanNounFilter_48a4995bc41a46eed59f1362bf2ff1af}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!pE@{pE}}
+\index{pE@{pE}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{pE}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Eojul}$\ast$ {\bf la\_\-manager::KoreanNounFilter::pE}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_48a4995bc41a46eed59f1362bf2ff1af}
+
+
+
+
+Definition at line 42 of file NounFilter.h.
+
+Referenced by analyze(), KoreanNounFilter(), and $\sim$KoreanNounFilter().\hypertarget{classla__manager_1_1KoreanNounFilter_9da3dab8d3dafb70aee2869e892c02fd}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!pK@{pK}}
+\index{pK@{pK}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{pK}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Knowledge}$\ast$ {\bf la\_\-manager::KoreanNounFilter::pK}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_9da3dab8d3dafb70aee2869e892c02fd}
+
+
+
+
+Definition at line 41 of file NounFilter.h.
+
+Referenced by KoreanNounFilter(), and $\sim$KoreanNounFilter().\hypertarget{classla__manager_1_1KoreanNounFilter_bc755f0dfcfcfa1000d573d9049aea2d}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!sTagSetEOMI\_\-@{sTagSetEOMI\_\-}}
+\index{sTagSetEOMI\_\-@{sTagSetEOMI\_\-}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{sTagSetEOMI\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::KoreanNounFilter::sTagSetEOMI\_\-} = (EM$|$ETM$|$ETN$|$EP)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_bc755f0dfcfcfa1000d573d9049aea2d}
+
+
+
+
+Definition at line 50 of file NounFilter.h.\hypertarget{classla__manager_1_1KoreanNounFilter_297deec22f0c84a6f16e612f531c4485}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!sTagSetJOSA\_\-@{sTagSetJOSA\_\-}}
+\index{sTagSetJOSA\_\-@{sTagSetJOSA\_\-}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{sTagSetJOSA\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::KoreanNounFilter::sTagSetJOSA\_\-} = (JK$|$JX$|$JC$|$VC)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_297deec22f0c84a6f16e612f531c4485}
+
+
+
+
+Definition at line 48 of file NounFilter.h.\hypertarget{classla__manager_1_1KoreanNounFilter_c9e130d7190ad4b4b1034370b9b601f2}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!sTagSetNOUN2\_\-@{sTagSetNOUN2\_\-}}
+\index{sTagSetNOUN2\_\-@{sTagSetNOUN2\_\-}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{sTagSetNOUN2\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::KoreanNounFilter::sTagSetNOUN2\_\-} = (NNP$|$NNU)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_c9e130d7190ad4b4b1034370b9b601f2}
+
+
+
+
+Definition at line 47 of file NounFilter.h.\hypertarget{classla__manager_1_1KoreanNounFilter_39fcd85a5f34abb008ce24e7918f98ee}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!sTagSetNOUN\_\-@{sTagSetNOUN\_\-}}
+\index{sTagSetNOUN\_\-@{sTagSetNOUN\_\-}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{sTagSetNOUN\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::KoreanNounFilter::sTagSetNOUN\_\-} = (NNG$|$NNP$|$NNU$|$NNR)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_39fcd85a5f34abb008ce24e7918f98ee}
+
+
+
+
+Definition at line 46 of file NounFilter.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1KoreanNounFilter_a462e3d26dce41fdf7c40e84b5aaa842}{
+\index{la\_\-manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}!sTagSetVERB\_\-@{sTagSetVERB\_\-}}
+\index{sTagSetVERB\_\-@{sTagSetVERB\_\-}!la_manager::KoreanNounFilter@{la\_\-manager::KoreanNounFilter}}
+\subsubsection[{sTagSetVERB\_\-}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::KoreanNounFilter::sTagSetVERB\_\-} = (VV$|$VA$|$VX)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1KoreanNounFilter_a462e3d26dce41fdf7c40e84b5aaa842}
+
+
+
+
+Definition at line 49 of file NounFilter.h.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{NounFilter_8h}{NounFilter.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{NounFilter_8cpp}{NounFilter.cpp}\end{CompactItemize}

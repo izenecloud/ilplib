@@ -1,0 +1,580 @@
+\hypertarget{classText}{
+\section{Text Class Reference}
+\label{classText}\index{Text@{Text}}
+}
+{\tt \#include $<$stringex.h$>$}
+
+Inheritance diagram for Text::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classText}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classText_94ffb3fc0b16c0404415b16e9f29c0aa}{getStringBetweenAnB} (int pos, char $\ast$A, char $\ast$B, int isIncluded)
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classText_b23de14f2e2378e8c3c6c73d9ae28eef}{getStringBetweenAnB} (char $\ast$A, char $\ast$B, int isIncluded)
+\item 
+void \hyperlink{classText_c1b92f62e2178448e32dd96a08100c94}{getStringsBetweenAnBs} (char $\ast$A, char $\ast$B, int isIncluded)
+\item 
+void \hyperlink{classText_20e3bcacb767a6a20bf9b727b6333cc5}{divideStrings} (char $\ast$delimiter)
+\item 
+void \hyperlink{classText_fe6e02880ca0687b7706dec9641b802c}{divideStrings} (char delimiter)
+\item 
+void \hyperlink{classText_7ab326bd81ec7440aac9427b6991ab8b}{divideStrings2} (char $\ast$delimiters)
+\item 
+char $\ast$ \hyperlink{classText_e14ba07e81e2f56fd571e5743fb5c926}{strChrs} (char $\ast$pspos, char $\ast$delimiters)
+\item 
+void \hyperlink{classText_218720737506b3278d080ba4198d0f86}{divideStringsPtr} (char $\ast$delimiter)
+\item 
+void \hyperlink{classText_f9b3e13192f2c151cb47ca6522f8bb26}{divideStringsPtr} (char delimiter)
+\item 
+void \hyperlink{classText_b7ef1700c05efefe44eda7961d06f017}{divideStrings2Ptr} (char $\ast$delimiters)
+\item 
+\hyperlink{classStringEx}{StringEx} $\ast$ \hyperlink{classText_b5914b3a33faf887c6a734cad528cc55}{getStringExs} () const 
+\item 
+char $\ast$$\ast$ \hyperlink{classText_a5ccfe846fc0a6976000feebc3775db9}{getPStr} () const 
+\item 
+int \hyperlink{classText_677230c4f58f15cff7b014a91492e10b}{getCount} () const 
+\item 
+int \hyperlink{classText_32420d62ad10114b5cb5bdff866ee48d}{getStatus} () const 
+\item 
+int \hyperlink{classText_c9e2de51189a6f09f2cbd70c240dd112}{getPos} () const 
+\item 
+const \hyperlink{classText}{Text} \& \hyperlink{classText_ba22939eb006c390ae1cb05598a8cfc3}{operator=} (const \hyperlink{classText}{Text} \&text)
+\item 
+const \hyperlink{classText}{Text} \& \hyperlink{classText_c5bed8a0fa6cc15e69fd3f3a6072e6ae}{operator=} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+const \hyperlink{classText}{Text} \& \hyperlink{classText_2e533762e9382fe330781206f7fc3c2d}{operator=} (char $\ast$str)
+\item 
+\hyperlink{classText_72c88fc77237d52539e27042cf361a47}{Text} (const \hyperlink{classText}{Text} \&text)
+\item 
+\hyperlink{classText_7c16faed13664c424a1ad4a28c8eae1f}{Text} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+\hyperlink{classText_ac05156e2f6cabf1317e5cb33156daee}{Text} (char $\ast$str)
+\item 
+\hyperlink{classText_db86317894cb1264b558a999090b9a68}{Text} (size\_\-t sizebuf)
+\item 
+\hyperlink{classText_b3e26143fccc52699bcc5149cae852bc}{Text} ()
+\item 
+\hyperlink{classText_2d49e5c280e205125b149f7777ae30c7}{$\sim$Text} ()
+\item 
+char \& \hyperlink{classText_bccce5d5b11116ac065b910ce8eefe17}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t offset)
+\item 
+char \hyperlink{classText_19b861315b5b50504740e3a843eba87b}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t offset) const 
+\item 
+void \hyperlink{classText_f6eb72fb91d55570fb8371e7a0479c5e}{operator+=} (const \hyperlink{classText}{Text} \&text)
+\item 
+void \hyperlink{classText_326e20a30f0362bd9c84cb61a065e9d0}{operator+=} (const \hyperlink{classStringEx}{StringEx} \&strex1)
+\item 
+void \hyperlink{classText_059126c0efdf2898e761fbc53693985b}{operator+=} (char $\ast$str)
+\item 
+\hyperlink{classText}{Text} \hyperlink{classText_075443ef50d5b86aca405a32e8223ba6}{operator+} (const \hyperlink{classText}{Text} \&text)
+\item 
+\hyperlink{classText}{Text} \hyperlink{classText_034badff7606ae00f30dc5b456a54ff9}{operator+} (const \hyperlink{classStringEx}{StringEx} \&strex1)
+\item 
+\hyperlink{classText}{Text} \hyperlink{classText_2544b46ef502514d1b08f5bd5934c6a2}{operator+} (char $\ast$str)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classStringEx}{StringEx} $\ast$ \hyperlink{classText_8f53b73678399a3d4614178d26ae20e5}{m\_\-pstrex}
+\item 
+char $\ast$$\ast$ \hyperlink{classText_a5170832eb29a4c7d5302e99d7e870b2}{m\_\-pstr}
+\item 
+size\_\-t \hyperlink{classText_f2c32afcd5df78e128ee510518cdfa80}{m\_\-num}
+\item 
+int \hyperlink{classText_24ca99bcb2250e922ce3e85cdda5e9df}{m\_\-status}
+\item 
+int \hyperlink{classText_75ef67b2a17b16921a57935bd14d5a98}{m\_\-pos}
+\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+\hyperlink{classText}{Text} \hyperlink{classText_2d8fa31b7e559f47220611a94b95621f}{operator+} (char $\ast$str, \hyperlink{classText}{Text} \&text)
+\item 
+\hyperlink{classText}{Text} \hyperlink{classText_feaf47fd3ca2d35a8c585cfc501f3232}{operator+} (const \hyperlink{classStringEx}{StringEx} $\ast$strex, const \hyperlink{classText}{Text} \&text)
+\item 
+ostream \& \hyperlink{classText_9ed04896cb06ca94784a8bfc70017d5f}{operator$<$$<$} (ostream \&sout, const \hyperlink{classText}{Text} \&text)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 796 of file stringex.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classText_72c88fc77237d52539e27042cf361a47}{
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::Text (const {\bf Text} \& {\em text})}}
+\label{classText_72c88fc77237d52539e27042cf361a47}
+
+
+
+
+Definition at line 117 of file stringex.cpp.
+
+References StringEx::getBuffer(), getCount(), getPos(), getStringExs(), m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, m\_\-status, and operator=().\hypertarget{classText_7c16faed13664c424a1ad4a28c8eae1f}{
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::Text (const {\bf StringEx} \& {\em strex})}}
+\label{classText_7c16faed13664c424a1ad4a28c8eae1f}
+
+
+
+
+Definition at line 110 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and m\_\-status.\hypertarget{classText_ac05156e2f6cabf1317e5cb33156daee}{
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::Text (char $\ast$ {\em str})}}
+\label{classText_ac05156e2f6cabf1317e5cb33156daee}
+
+
+
+
+Definition at line 103 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and m\_\-status.\hypertarget{classText_db86317894cb1264b558a999090b9a68}{
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::Text (size\_\-t {\em sizebuf})}}
+\label{classText_db86317894cb1264b558a999090b9a68}
+
+
+
+
+Definition at line 96 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and m\_\-status.\hypertarget{classText_b3e26143fccc52699bcc5149cae852bc}{
+\index{Text@{Text}!Text@{Text}}
+\index{Text@{Text}!Text@{Text}}
+\subsubsection[{Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::Text ()}}
+\label{classText_b3e26143fccc52699bcc5149cae852bc}
+
+
+
+
+Definition at line 89 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and m\_\-status.
+
+Referenced by operator+().\hypertarget{classText_2d49e5c280e205125b149f7777ae30c7}{
+\index{Text@{Text}!$\sim$Text@{$\sim$Text}}
+\index{$\sim$Text@{$\sim$Text}!Text@{Text}}
+\subsubsection[{$\sim$Text}]{\setlength{\rightskip}{0pt plus 5cm}Text::$\sim$Text ()}}
+\label{classText_2d49e5c280e205125b149f7777ae30c7}
+
+
+
+
+Definition at line 138 of file stringex.cpp.
+
+References m\_\-pstr, and m\_\-pstrex.
+
+\subsection{Member Function Documentation}
+\hypertarget{classText_fe6e02880ca0687b7706dec9641b802c}{
+\index{Text@{Text}!divideStrings@{divideStrings}}
+\index{divideStrings@{divideStrings}!Text@{Text}}
+\subsubsection[{divideStrings}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStrings (char {\em delimiter})}}
+\label{classText_fe6e02880ca0687b7706dec9641b802c}
+
+
+
+
+Definition at line 307 of file stringex.cpp.
+
+References StringEx::getIndex(), StringEx::getLength(), StringEx::getSubString(), m\_\-num, m\_\-pstrex, and m\_\-status.\hypertarget{classText_20e3bcacb767a6a20bf9b727b6333cc5}{
+\index{Text@{Text}!divideStrings@{divideStrings}}
+\index{divideStrings@{divideStrings}!Text@{Text}}
+\subsubsection[{divideStrings}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStrings (char $\ast$ {\em delimiter})}}
+\label{classText_20e3bcacb767a6a20bf9b727b6333cc5}
+
+
+
+
+Definition at line 356 of file stringex.cpp.
+
+References StringEx::getIndex(), StringEx::getLength(), StringEx::getSubString(), m\_\-num, m\_\-pstrex, and m\_\-status.\hypertarget{classText_7ab326bd81ec7440aac9427b6991ab8b}{
+\index{Text@{Text}!divideStrings2@{divideStrings2}}
+\index{divideStrings2@{divideStrings2}!Text@{Text}}
+\subsubsection[{divideStrings2}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStrings2 (char $\ast$ {\em delimiters})}}
+\label{classText_7ab326bd81ec7440aac9427b6991ab8b}
+
+
+
+
+Definition at line 406 of file stringex.cpp.
+
+References StringEx::getIndex2(), StringEx::getLength(), StringEx::getSubString(), m\_\-num, m\_\-pstrex, and m\_\-status.\hypertarget{classText_b7ef1700c05efefe44eda7961d06f017}{
+\index{Text@{Text}!divideStrings2Ptr@{divideStrings2Ptr}}
+\index{divideStrings2Ptr@{divideStrings2Ptr}!Text@{Text}}
+\subsubsection[{divideStrings2Ptr}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStrings2Ptr (char $\ast$ {\em delimiters})}}
+\label{classText_b7ef1700c05efefe44eda7961d06f017}
+
+
+
+
+Definition at line 567 of file stringex.cpp.
+
+References DEFAULT\_\-divide\_\-MAX, m\_\-num, m\_\-pstr, m\_\-status, and strChrs().\hypertarget{classText_f9b3e13192f2c151cb47ca6522f8bb26}{
+\index{Text@{Text}!divideStringsPtr@{divideStringsPtr}}
+\index{divideStringsPtr@{divideStringsPtr}!Text@{Text}}
+\subsubsection[{divideStringsPtr}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStringsPtr (char {\em delimiter})}}
+\label{classText_f9b3e13192f2c151cb47ca6522f8bb26}
+
+
+
+
+Definition at line 462 of file stringex.cpp.
+
+References DEFAULT\_\-divide\_\-MAX, m\_\-num, m\_\-pstr, and m\_\-status.\hypertarget{classText_218720737506b3278d080ba4198d0f86}{
+\index{Text@{Text}!divideStringsPtr@{divideStringsPtr}}
+\index{divideStringsPtr@{divideStringsPtr}!Text@{Text}}
+\subsubsection[{divideStringsPtr}]{\setlength{\rightskip}{0pt plus 5cm}void Text::divideStringsPtr (char $\ast$ {\em delimiter})}}
+\label{classText_218720737506b3278d080ba4198d0f86}
+
+
+
+
+Definition at line 507 of file stringex.cpp.
+
+References DEFAULT\_\-divide\_\-MAX, m\_\-num, m\_\-pstr, and m\_\-status.
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis(), and kmaOrange::Dictionary::readJosaEomiDictionary().\hypertarget{classText_677230c4f58f15cff7b014a91492e10b}{
+\index{Text@{Text}!getCount@{getCount}}
+\index{getCount@{getCount}!Text@{Text}}
+\subsubsection[{getCount}]{\setlength{\rightskip}{0pt plus 5cm}int Text::getCount () const}}
+\label{classText_677230c4f58f15cff7b014a91492e10b}
+
+
+
+
+Definition at line 730 of file stringex.cpp.
+
+References m\_\-num.
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis(), operator=(), kmaOrange::Dictionary::readJosaEomiDictionary(), and Text().\hypertarget{classText_c9e2de51189a6f09f2cbd70c240dd112}{
+\index{Text@{Text}!getPos@{getPos}}
+\index{getPos@{getPos}!Text@{Text}}
+\subsubsection[{getPos}]{\setlength{\rightskip}{0pt plus 5cm}int Text::getPos () const}}
+\label{classText_c9e2de51189a6f09f2cbd70c240dd112}
+
+
+
+
+Definition at line 740 of file stringex.cpp.
+
+References m\_\-pos.
+
+Referenced by operator=(), and Text().\hypertarget{classText_a5ccfe846fc0a6976000feebc3775db9}{
+\index{Text@{Text}!getPStr@{getPStr}}
+\index{getPStr@{getPStr}!Text@{Text}}
+\subsubsection[{getPStr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$$\ast$ Text::getPStr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classText_a5ccfe846fc0a6976000feebc3775db9}
+
+
+
+
+Definition at line 814 of file stringex.h.
+
+References m\_\-pstr.
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis(), and kmaOrange::Dictionary::readJosaEomiDictionary().\hypertarget{classText_32420d62ad10114b5cb5bdff866ee48d}{
+\index{Text@{Text}!getStatus@{getStatus}}
+\index{getStatus@{getStatus}!Text@{Text}}
+\subsubsection[{getStatus}]{\setlength{\rightskip}{0pt plus 5cm}int Text::getStatus () const}}
+\label{classText_32420d62ad10114b5cb5bdff866ee48d}
+
+
+
+
+Definition at line 735 of file stringex.cpp.
+
+References m\_\-status.\hypertarget{classText_b23de14f2e2378e8c3c6c73d9ae28eef}{
+\index{Text@{Text}!getStringBetweenAnB@{getStringBetweenAnB}}
+\index{getStringBetweenAnB@{getStringBetweenAnB}!Text@{Text}}
+\subsubsection[{getStringBetweenAnB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} Text::getStringBetweenAnB (char $\ast$ {\em A}, \/  char $\ast$ {\em B}, \/  int {\em isIncluded})}}
+\label{classText_b23de14f2e2378e8c3c6c73d9ae28eef}
+
+
+
+
+Reimplemented from \hyperlink{classStringEx_76f316d1d3db65232f5ad8224ab3db9c}{StringEx}.
+
+Definition at line 612 of file stringex.cpp.
+
+References StringEx::getIndex(), StringEx::getSubString(), m\_\-pos, and m\_\-status.\hypertarget{classText_94ffb3fc0b16c0404415b16e9f29c0aa}{
+\index{Text@{Text}!getStringBetweenAnB@{getStringBetweenAnB}}
+\index{getStringBetweenAnB@{getStringBetweenAnB}!Text@{Text}}
+\subsubsection[{getStringBetweenAnB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} Text::getStringBetweenAnB (int {\em pos}, \/  char $\ast$ {\em A}, \/  char $\ast$ {\em B}, \/  int {\em isIncluded})}}
+\label{classText_94ffb3fc0b16c0404415b16e9f29c0aa}
+
+
+
+
+Definition at line 650 of file stringex.cpp.
+
+References StringEx::getIndex(), StringEx::getSubString(), m\_\-pos, and m\_\-status.
+
+Referenced by getStringsBetweenAnBs().\hypertarget{classText_b5914b3a33faf887c6a734cad528cc55}{
+\index{Text@{Text}!getStringExs@{getStringExs}}
+\index{getStringExs@{getStringExs}!Text@{Text}}
+\subsubsection[{getStringExs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} $\ast$ Text::getStringExs () const}}
+\label{classText_b5914b3a33faf887c6a734cad528cc55}
+
+
+
+
+Definition at line 745 of file stringex.cpp.
+
+References m\_\-pstrex.
+
+Referenced by operator=(), and Text().\hypertarget{classText_c1b92f62e2178448e32dd96a08100c94}{
+\index{Text@{Text}!getStringsBetweenAnBs@{getStringsBetweenAnBs}}
+\index{getStringsBetweenAnBs@{getStringsBetweenAnBs}!Text@{Text}}
+\subsubsection[{getStringsBetweenAnBs}]{\setlength{\rightskip}{0pt plus 5cm}void Text::getStringsBetweenAnBs (char $\ast$ {\em A}, \/  char $\ast$ {\em B}, \/  int {\em isIncluded})}}
+\label{classText_c1b92f62e2178448e32dd96a08100c94}
+
+
+
+
+Definition at line 690 of file stringex.cpp.
+
+References getStringBetweenAnB(), GROWINGSIZE, m\_\-num, m\_\-pos, m\_\-pstrex, and m\_\-status.\hypertarget{classText_2544b46ef502514d1b08f5bd5934c6a2}{
+\index{Text@{Text}!operator+@{operator+}}
+\index{operator+@{operator+}!Text@{Text}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Text::operator+ (char $\ast$ {\em str})}}
+\label{classText_2544b46ef502514d1b08f5bd5934c6a2}
+
+
+
+
+Definition at line 259 of file stringex.cpp.
+
+References StringEx::getBuffer(), StringEx::StringEx(), and Text().\hypertarget{classText_034badff7606ae00f30dc5b456a54ff9}{
+\index{Text@{Text}!operator+@{operator+}}
+\index{operator+@{operator+}!Text@{Text}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Text::operator+ (const {\bf StringEx} \& {\em strex1})}}
+\label{classText_034badff7606ae00f30dc5b456a54ff9}
+
+
+
+
+Definition at line 266 of file stringex.cpp.
+
+References StringEx::getBuffer(), and Text().\hypertarget{classText_075443ef50d5b86aca405a32e8223ba6}{
+\index{Text@{Text}!operator+@{operator+}}
+\index{operator+@{operator+}!Text@{Text}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} Text::operator+ (const {\bf Text} \& {\em text})}}
+\label{classText_075443ef50d5b86aca405a32e8223ba6}
+
+
+
+
+Definition at line 273 of file stringex.cpp.
+
+References StringEx::getBuffer(), and Text().\hypertarget{classText_059126c0efdf2898e761fbc53693985b}{
+\index{Text@{Text}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Text@{Text}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}void Text::operator+= (char $\ast$ {\em str})}}
+\label{classText_059126c0efdf2898e761fbc53693985b}
+
+
+
+
+Definition at line 250 of file stringex.cpp.
+
+References StringEx::buffer().\hypertarget{classText_326e20a30f0362bd9c84cb61a065e9d0}{
+\index{Text@{Text}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Text@{Text}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}void Text::operator+= (const {\bf StringEx} \& {\em strex1})}}
+\label{classText_326e20a30f0362bd9c84cb61a065e9d0}
+
+
+
+
+Reimplemented from \hyperlink{classStringEx_08601f0088a4c472e9485243e03fca16}{StringEx}.
+
+Definition at line 241 of file stringex.cpp.
+
+References StringEx::buffer(), and StringEx::isEmpty().\hypertarget{classText_f6eb72fb91d55570fb8371e7a0479c5e}{
+\index{Text@{Text}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Text@{Text}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}void Text::operator+= (const {\bf Text} \& {\em text})}}
+\label{classText_f6eb72fb91d55570fb8371e7a0479c5e}
+
+
+
+
+Definition at line 232 of file stringex.cpp.
+
+References StringEx::buffer(), and StringEx::isEmpty().\hypertarget{classText_2e533762e9382fe330781206f7fc3c2d}{
+\index{Text@{Text}!operator=@{operator=}}
+\index{operator=@{operator=}!Text@{Text}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Text} \& Text::operator= (char $\ast$ {\em str})}}
+\label{classText_2e533762e9382fe330781206f7fc3c2d}
+
+
+
+
+Definition at line 144 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and operator=().\hypertarget{classText_c5bed8a0fa6cc15e69fd3f3a6072e6ae}{
+\index{Text@{Text}!operator=@{operator=}}
+\index{operator=@{operator=}!Text@{Text}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Text} \& Text::operator= (const {\bf StringEx} \& {\em strex})}}
+\label{classText_c5bed8a0fa6cc15e69fd3f3a6072e6ae}
+
+
+
+
+Reimplemented from \hyperlink{classStringEx_1071b3e23def59810d2a7d97a134cd72}{StringEx}.
+
+Definition at line 161 of file stringex.cpp.
+
+References m\_\-num, m\_\-pos, m\_\-pstr, m\_\-pstrex, and operator=().\hypertarget{classText_ba22939eb006c390ae1cb05598a8cfc3}{
+\index{Text@{Text}!operator=@{operator=}}
+\index{operator=@{operator=}!Text@{Text}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Text} \& Text::operator= (const {\bf Text} \& {\em text})}}
+\label{classText_ba22939eb006c390ae1cb05598a8cfc3}
+
+
+
+
+Definition at line 178 of file stringex.cpp.
+
+References StringEx::getBuffer(), getCount(), getPos(), getStringExs(), m\_\-num, m\_\-pos, m\_\-pstr, and m\_\-pstrex.
+
+Referenced by operator=(), and Text().\hypertarget{classText_19b861315b5b50504740e3a843eba87b}{
+\index{Text@{Text}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Text@{Text}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}char Text::operator\mbox{[}$\,$\mbox{]} (size\_\-t {\em offset}) const}}
+\label{classText_19b861315b5b50504740e3a843eba87b}
+
+
+
+
+Reimplemented from \hyperlink{classStringEx_9d84497552f7c6adfd065bfb4f40f9c2}{StringEx}.
+
+Definition at line 223 of file stringex.cpp.
+
+References StringEx::buffer(), and StringEx::length().\hypertarget{classText_bccce5d5b11116ac065b910ce8eefe17}{
+\index{Text@{Text}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Text@{Text}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}char \& Text::operator\mbox{[}$\,$\mbox{]} (size\_\-t {\em offset})}}
+\label{classText_bccce5d5b11116ac065b910ce8eefe17}
+
+
+
+
+Reimplemented from \hyperlink{classStringEx_bb126ddaf548a3432f55c2dada139f64}{StringEx}.
+
+Definition at line 214 of file stringex.cpp.
+
+References StringEx::buffer(), and StringEx::length().\hypertarget{classText_e14ba07e81e2f56fd571e5743fb5c926}{
+\index{Text@{Text}!strChrs@{strChrs}}
+\index{strChrs@{strChrs}!Text@{Text}}
+\subsubsection[{strChrs}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Text::strChrs (char $\ast$ {\em pspos}, \/  char $\ast$ {\em delimiters})}}
+\label{classText_e14ba07e81e2f56fd571e5743fb5c926}
+
+
+
+
+Definition at line 553 of file stringex.cpp.
+
+Referenced by divideStrings2Ptr().
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classText_feaf47fd3ca2d35a8c585cfc501f3232}{
+\index{Text@{Text}!operator+@{operator+}}
+\index{operator+@{operator+}!Text@{Text}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} operator+ (const {\bf StringEx} $\ast$ {\em strex}, \/  const {\bf Text} \& {\em text})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classText_feaf47fd3ca2d35a8c585cfc501f3232}
+
+
+\hypertarget{classText_2d8fa31b7e559f47220611a94b95621f}{
+\index{Text@{Text}!operator+@{operator+}}
+\index{operator+@{operator+}!Text@{Text}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Text} operator+ (char $\ast$ {\em str}, \/  {\bf Text} \& {\em text})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classText_2d8fa31b7e559f47220611a94b95621f}
+
+
+\hypertarget{classText_9ed04896cb06ca94784a8bfc70017d5f}{
+\index{Text@{Text}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Text@{Text}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (ostream \& {\em sout}, \/  const {\bf Text} \& {\em text})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classText_9ed04896cb06ca94784a8bfc70017d5f}
+
+
+
+
+Definition at line 208 of file stringex.cpp.
+
+\subsection{Member Data Documentation}
+\hypertarget{classText_f2c32afcd5df78e128ee510518cdfa80}{
+\index{Text@{Text}!m\_\-num@{m\_\-num}}
+\index{m\_\-num@{m\_\-num}!Text@{Text}}
+\subsubsection[{m\_\-num}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t {\bf Text::m\_\-num}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classText_f2c32afcd5df78e128ee510518cdfa80}
+
+
+
+
+Definition at line 847 of file stringex.h.
+
+Referenced by divideStrings(), divideStrings2(), divideStrings2Ptr(), divideStringsPtr(), getCount(), getStringsBetweenAnBs(), operator=(), and Text().\hypertarget{classText_75ef67b2a17b16921a57935bd14d5a98}{
+\index{Text@{Text}!m\_\-pos@{m\_\-pos}}
+\index{m\_\-pos@{m\_\-pos}!Text@{Text}}
+\subsubsection[{m\_\-pos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Text::m\_\-pos}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classText_75ef67b2a17b16921a57935bd14d5a98}
+
+
+
+
+Definition at line 849 of file stringex.h.
+
+Referenced by getPos(), getStringBetweenAnB(), getStringsBetweenAnBs(), operator=(), and Text().\hypertarget{classText_a5170832eb29a4c7d5302e99d7e870b2}{
+\index{Text@{Text}!m\_\-pstr@{m\_\-pstr}}
+\index{m\_\-pstr@{m\_\-pstr}!Text@{Text}}
+\subsubsection[{m\_\-pstr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$$\ast$ {\bf Text::m\_\-pstr}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classText_a5170832eb29a4c7d5302e99d7e870b2}
+
+
+
+
+Definition at line 846 of file stringex.h.
+
+Referenced by divideStrings2Ptr(), divideStringsPtr(), getPStr(), operator=(), Text(), and $\sim$Text().\hypertarget{classText_8f53b73678399a3d4614178d26ae20e5}{
+\index{Text@{Text}!m\_\-pstrex@{m\_\-pstrex}}
+\index{m\_\-pstrex@{m\_\-pstrex}!Text@{Text}}
+\subsubsection[{m\_\-pstrex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx}$\ast$ {\bf Text::m\_\-pstrex}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classText_8f53b73678399a3d4614178d26ae20e5}
+
+
+
+
+Definition at line 845 of file stringex.h.
+
+Referenced by divideStrings(), divideStrings2(), getStringExs(), getStringsBetweenAnBs(), operator=(), Text(), and $\sim$Text().\hypertarget{classText_24ca99bcb2250e922ce3e85cdda5e9df}{
+\index{Text@{Text}!m\_\-status@{m\_\-status}}
+\index{m\_\-status@{m\_\-status}!Text@{Text}}
+\subsubsection[{m\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf Text::m\_\-status}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classText_24ca99bcb2250e922ce3e85cdda5e9df}
+
+
+
+
+Definition at line 848 of file stringex.h.
+
+Referenced by divideStrings(), divideStrings2(), divideStrings2Ptr(), divideStringsPtr(), getStatus(), getStringBetweenAnB(), getStringsBetweenAnBs(), and Text().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{stringex_8h}{stringex.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{stringex_8cpp}{stringex.cpp}\end{CompactItemize}

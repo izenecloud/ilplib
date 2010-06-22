@@ -1,0 +1,109 @@
+\hypertarget{classkmaOrange_1_1Logger}{
+\section{kmaOrange::Logger Class Reference}
+\label{classkmaOrange_1_1Logger}\index{kmaOrange::Logger@{kmaOrange::Logger}}
+}
+{\tt \#include $<$logger.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1Logger_bc41bfb031d896170c7675fa96a6b30c}{Logger} ()
+\item 
+virtual \hyperlink{classkmaOrange_1_1Logger_cb668a9e186a25fbaad2e4af6d1ed00a}{$\sim$Logger} ()
+\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static int \hyperlink{classkmaOrange_1_1Logger_c80cafebd5d6501fb52a052ebe355293}{SetMessage} (\hyperlink{classStringEx}{StringEx} name, \hyperlink{classStringEx}{StringEx} message)
+\item 
+static int \hyperlink{classkmaOrange_1_1Logger_0d95f7da1542407908257b94c5f37475}{SetMessage} (\hyperlink{classStringEx}{StringEx} message)
+\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1Logger_4b0f42b5917a47a7c6cc171b9b74219a}{pathlog} = LOG\_\-PATH
+\item 
+static \hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1Logger_80b6d6d721c122c8e5727eed64a9f0d6}{namelog} = \char`\"{}\char`\"{}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file logger.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1Logger_bc41bfb031d896170c7675fa96a6b30c}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!Logger@{Logger}}
+\index{Logger@{Logger}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{Logger}]{\setlength{\rightskip}{0pt plus 5cm}Logger::Logger ()}}
+\label{classkmaOrange_1_1Logger_bc41bfb031d896170c7675fa96a6b30c}
+
+
+
+
+Definition at line 30 of file logger.cpp.\hypertarget{classkmaOrange_1_1Logger_cb668a9e186a25fbaad2e4af6d1ed00a}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!$\sim$Logger@{$\sim$Logger}}
+\index{$\sim$Logger@{$\sim$Logger}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{$\sim$Logger}]{\setlength{\rightskip}{0pt plus 5cm}Logger::$\sim$Logger ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Logger_cb668a9e186a25fbaad2e4af6d1ed00a}
+
+
+
+
+Definition at line 34 of file logger.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1Logger_0d95f7da1542407908257b94c5f37475}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!SetMessage@{SetMessage}}
+\index{SetMessage@{SetMessage}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{SetMessage}]{\setlength{\rightskip}{0pt plus 5cm}int Logger::SetMessage ({\bf StringEx} {\em message})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1Logger_0d95f7da1542407908257b94c5f37475}
+
+
+
+
+Definition at line 38 of file logger.cpp.
+
+References pathlog, and StringEx::replaceString().\hypertarget{classkmaOrange_1_1Logger_c80cafebd5d6501fb52a052ebe355293}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!SetMessage@{SetMessage}}
+\index{SetMessage@{SetMessage}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{SetMessage}]{\setlength{\rightskip}{0pt plus 5cm}int Logger::SetMessage ({\bf StringEx} {\em name}, \/  {\bf StringEx} {\em message})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1Logger_c80cafebd5d6501fb52a052ebe355293}
+
+
+
+
+Definition at line 73 of file logger.cpp.
+
+References pathlog.
+
+Referenced by kmaOrange::Eojul::Eojul(), kmaOrange::InfoBuffer::InfoBuffer(), kmaOrange::JEBuffer::JEBuffer(), kmaOrange::JEBuffer::reserve(), kmaOrange::Buffer::reserveBuffer(), kmaOrange::StrStream::setInStream(), kmaOrange::StrStream::setOutStream(), kmaOrange::Eojul::setString(), and kmaOrange::MAnalyzer::tokenizeSentence().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1Logger_80b6d6d721c122c8e5727eed64a9f0d6}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!namelog@{namelog}}
+\index{namelog@{namelog}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{namelog}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf Logger::namelog} = \char`\"{}\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1Logger_80b6d6d721c122c8e5727eed64a9f0d6}
+
+
+
+
+Definition at line 25 of file logger.h.\hypertarget{classkmaOrange_1_1Logger_4b0f42b5917a47a7c6cc171b9b74219a}{
+\index{kmaOrange::Logger@{kmaOrange::Logger}!pathlog@{pathlog}}
+\index{pathlog@{pathlog}!kmaOrange::Logger@{kmaOrange::Logger}}
+\subsubsection[{pathlog}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf Logger::pathlog} = LOG\_\-PATH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1Logger_4b0f42b5917a47a7c6cc171b9b74219a}
+
+
+
+
+Definition at line 24 of file logger.h.
+
+Referenced by SetMessage().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{logger_8h}{logger.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{logger_8cpp}{logger.cpp}\end{CompactItemize}

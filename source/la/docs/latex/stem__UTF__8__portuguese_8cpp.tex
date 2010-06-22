@@ -1,0 +1,2651 @@
+\hypertarget{stem__UTF__8__portuguese_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-portuguese.cpp File Reference}
+\label{stem__UTF__8__portuguese_8cpp}\index{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-portuguese.cpp@{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+}
+{\tt \#include $<$stem/header.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{stem__UTF__8__portuguese_8cpp_eca4c5fe3463c14d5a5d01e9c271c30c}{portuguese\_\-UTF\_\-8\_\-stem} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_cd0a0613041dc696453ca48833ea87b3}{r\_\-residual\_\-form} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_ef7b7ab838597ebe649dfb120b657019}{r\_\-residual\_\-suffix} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_4a67f8bbf6507006ee382b3b37cb67b4}{r\_\-verb\_\-suffix} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_339f3a63ea1265f2ffdbe75cff95d494}{r\_\-standard\_\-suffix} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_62fb9c1a3c4afb0fe6c91b21b277cf62}{r\_\-R2} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_97c389362c2409544e194f0ce6b27b80}{r\_\-R1} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_7ab6564bb908993b3fbf78d9bcb4a8a5}{r\_\-RV} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}{r\_\-mark\_\-regions} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_9a06115d1abdc06e1487c9af8a41a340}{r\_\-postlude} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__portuguese_8cpp_a2019117670eba2cd445fdc6d938db7d}{r\_\-prelude} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+struct \hyperlink{structSN__env}{SN\_\-env} $\ast$ \hyperlink{stem__UTF__8__portuguese_8cpp_c26fbfdbe81e04a02b21a702fa65c17d}{portuguese\_\-UTF\_\-8\_\-create\_\-env} (void)
+\item 
+void \hyperlink{stem__UTF__8__portuguese_8cpp_78de7c947db64d70f188689a48da5b61}{portuguese\_\-UTF\_\-8\_\-close\_\-env} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_345038d5a0b2cb4d30a68ade359811b1}{s\_\-0\_\-1} \mbox{[}2\mbox{]} = \{ 0xC3, 0xA3 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d47591b80a867b9c875c3dbae87f224e}{s\_\-0\_\-2} \mbox{[}2\mbox{]} = \{ 0xC3, 0xB5 \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_299a45e101fced59c065d99ce9e24daf}{a\_\-0} \mbox{[}3\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_70dfd76528f2e88574fe9f1f96fa231b}{s\_\-1\_\-1} \mbox{[}2\mbox{]} = \{ 'a', '$\sim$' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_25f62dccebd15f951b6904ba906baf27}{s\_\-1\_\-2} \mbox{[}2\mbox{]} = \{ 'o', '$\sim$' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_a1c0a820e790b2be5134dd36420b0cfa}{a\_\-1} \mbox{[}3\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{s\_\-2\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'c' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_eb067135b2b508ae55bc4cb83c35b16f}{s\_\-2\_\-1} \mbox{[}2\mbox{]} = \{ 'a', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0edfcf9a9f9cf1bba4698fd12e04fe5f}{s\_\-2\_\-2} \mbox{[}2\mbox{]} = \{ 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a35f28b9df4acbf1c44557e733d695b2}{s\_\-2\_\-3} \mbox{[}2\mbox{]} = \{ 'i', 'v' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_2114788e9ac3c40b37d5fe97e035051a}{a\_\-2} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_46c763c63a33422d302e4411cce28c7f}{s\_\-3\_\-0} \mbox{[}4\mbox{]} = \{ 'a', 'n', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b46ff2f98e1d96dde13d6318d3796e68}{s\_\-3\_\-1} \mbox{[}4\mbox{]} = \{ 'a', 'v', 'e', 'l' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_10e22574893bf8fd96862f79b46c4333}{s\_\-3\_\-2} \mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'v', 'e', 'l' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_4be915c69ef87bca935cae33ed7aa551}{a\_\-3} \mbox{[}3\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b654ffcad4bc378998b57b25b22bc18c}{s\_\-4\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'c' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_374e55297f91dbf53d68d4f89833e398}{s\_\-4\_\-1} \mbox{[}4\mbox{]} = \{ 'a', 'b', 'i', 'l' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a3783fc899e25126aee4811fc563ae68}{s\_\-4\_\-2} \mbox{[}2\mbox{]} = \{ 'i', 'v' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_53e60d1e021838dc0934244070ccad53}{a\_\-4} \mbox{[}3\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_63c43374c7d92c6d2fe886e0727fbed8}{s\_\-5\_\-0} \mbox{[}3\mbox{]} = \{ 'i', 'c', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_65d16cdd74510ef38a93cb41edaa4622}{s\_\-5\_\-1} \mbox{[}6\mbox{]} = \{ 0xC3, 0xA2, 'n', 'c', 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d99aa24f1c92a347edadd7fa39e26fc6}{s\_\-5\_\-2} \mbox{[}6\mbox{]} = \{ 0xC3, 0xAA, 'n', 'c', 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_81a552f6831c462f61152cf87f5fb5c4}{s\_\-5\_\-3} \mbox{[}3\mbox{]} = \{ 'i', 'r', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7835d6f9334c7d05b4cbee859a110c6c}{s\_\-5\_\-4} \mbox{[}5\mbox{]} = \{ 'a', 'd', 'o', 'r', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e9953dc012113cb7f7d2bcee333db3bc}{s\_\-5\_\-5} \mbox{[}3\mbox{]} = \{ 'o', 's', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_19e155fe0d779f43ee1a654188e8340f}{s\_\-5\_\-6} \mbox{[}4\mbox{]} = \{ 'i', 's', 't', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_64d0e97f50230ced5fd3a25b4903f083}{s\_\-5\_\-7} \mbox{[}3\mbox{]} = \{ 'i', 'v', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c3388388461fc7226c3c68dc1c87644b}{s\_\-5\_\-8} \mbox{[}3\mbox{]} = \{ 'e', 'z', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f1b42664649dbca08fe0722d9301bb75}{s\_\-5\_\-9} \mbox{[}6\mbox{]} = \{ 'l', 'o', 'g', 0xC3, 0xAD, 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4681efd4c76f8130ad89eb4e32b7d2fc}{s\_\-5\_\-10} \mbox{[}5\mbox{]} = \{ 'i', 'd', 'a', 'd', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ecf3a7004616be37a58c4edee73fc561}{s\_\-5\_\-11} \mbox{[}4\mbox{]} = \{ 'a', 'n', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4706f87809aa3c06200314ec00b21f78}{s\_\-5\_\-12} \mbox{[}5\mbox{]} = \{ 'm', 'e', 'n', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c6f0c84dc930a77a6bf2acdc0515028d}{s\_\-5\_\-13} \mbox{[}6\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0c766109bb08c426632abbef25d3d5ba}{s\_\-5\_\-14} \mbox{[}5\mbox{]} = \{ 0xC3, 0xA1, 'v', 'e', 'l' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f2600ad832b83e831a344bb088426fcc}{s\_\-5\_\-15} \mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'v', 'e', 'l' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_18dbce513054aecf8b5c74c5ba41bdee}{s\_\-5\_\-16} \mbox{[}6\mbox{]} = \{ 'u', 'c', 'i', 0xC3, 0xB3, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_58d100a0544be55b2d68540c33cba199}{s\_\-5\_\-17} \mbox{[}3\mbox{]} = \{ 'i', 'c', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ee48be8b71db374b63115358e9e8eeae}{s\_\-5\_\-18} \mbox{[}4\mbox{]} = \{ 'i', 's', 'm', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_639fa5a44276383c7fb971d5bca66ead}{s\_\-5\_\-19} \mbox{[}3\mbox{]} = \{ 'o', 's', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0891e51f62b2931c0ec4bc42b0cf3605}{s\_\-5\_\-20} \mbox{[}6\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c2894a9325c7f5c21af999857987b6e2}{s\_\-5\_\-21} \mbox{[}6\mbox{]} = \{ 'i', 'm', 'e', 'n', 't', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_19f23924be6fd2d1fed4c9ef906e25eb}{s\_\-5\_\-22} \mbox{[}3\mbox{]} = \{ 'i', 'v', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_088df3ea6307d870da812bdd230c7e91}{s\_\-5\_\-23} \mbox{[}6\mbox{]} = \{ 'a', 0xC3, 0xA7, 'a', '$\sim$', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_fa043078b4a849058d04bfe9140a41cb}{s\_\-5\_\-24} \mbox{[}4\mbox{]} = \{ 'a', 'd', 'o', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4a63d9059763ca7149916715bc4d1e3f}{s\_\-5\_\-25} \mbox{[}4\mbox{]} = \{ 'i', 'c', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_035f44a3856cd041bcb248866d6a9939}{s\_\-5\_\-26} \mbox{[}7\mbox{]} = \{ 0xC3, 0xAA, 'n', 'c', 'i', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_1de6b822b651c8fc6d927950bcc874d7}{s\_\-5\_\-27} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f1b641614745d4bb97d7bcc4def002af}{s\_\-5\_\-28} \mbox{[}6\mbox{]} = \{ 'a', 'd', 'o', 'r', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e892989344b5bbbe9488259613e4e7f1}{s\_\-5\_\-29} \mbox{[}4\mbox{]} = \{ 'o', 's', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_09720e3b601b1723d4fb313f1ecfaee0}{s\_\-5\_\-30} \mbox{[}5\mbox{]} = \{ 'i', 's', 't', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_9b27b00dd4867b224b7cf9f8eee51ef3}{s\_\-5\_\-31} \mbox{[}4\mbox{]} = \{ 'i', 'v', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_8123abd5d21c6565ca1b68efbc36e876}{s\_\-5\_\-32} \mbox{[}4\mbox{]} = \{ 'e', 'z', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6e30651ef4a9587772a42e7a3257b18c}{s\_\-5\_\-33} \mbox{[}7\mbox{]} = \{ 'l', 'o', 'g', 0xC3, 0xAD, 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_99862fb830362bf69177a258035083d0}{s\_\-5\_\-34} \mbox{[}6\mbox{]} = \{ 'i', 'd', 'a', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c9e587cc1acc4e20f5246c256db7514d}{s\_\-5\_\-35} \mbox{[}7\mbox{]} = \{ 'u', 'c', 'i', 'o', 'n', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_830cbc78253eea509cc9c6b8da681916}{s\_\-5\_\-36} \mbox{[}6\mbox{]} = \{ 'a', 'd', 'o', 'r', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_06c5a2e44b399a6770b601da9042bbb6}{s\_\-5\_\-37} \mbox{[}5\mbox{]} = \{ 'a', 'n', 't', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4c526168b0807d74b3793dea7ad9345a}{s\_\-5\_\-38} \mbox{[}7\mbox{]} = \{ 'a', 0xC3, 0xA7, 'o', '$\sim$', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_1d433391d725bfd743da0568487b2c64}{s\_\-5\_\-39} \mbox{[}4\mbox{]} = \{ 'i', 'c', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_43776801eb8f212f8072b3c33938641f}{s\_\-5\_\-40} \mbox{[}5\mbox{]} = \{ 'i', 's', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a0dc4f0bb6b24e365e96428f6138dbde}{s\_\-5\_\-41} \mbox{[}4\mbox{]} = \{ 'o', 's', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_692d72cb32e60afb12391136e8aa71d4}{s\_\-5\_\-42} \mbox{[}7\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b8332925da28b7e9cd1dd27b6f00a0d8}{s\_\-5\_\-43} \mbox{[}7\mbox{]} = \{ 'i', 'm', 'e', 'n', 't', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b11df965a58873d6f03a5fa094a71bd2}{s\_\-5\_\-44} \mbox{[}4\mbox{]} = \{ 'i', 'v', 'o', 's' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_c0e1fc9c196713f01f27aac81a8760de}{a\_\-5} \mbox{[}45\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c98120383d2595dcf5dc2fe9a00bf03e}{s\_\-6\_\-0} \mbox{[}3\mbox{]} = \{ 'a', 'd', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2cf8952ca50d937a3ec224c5277ea52c}{s\_\-6\_\-1} \mbox{[}3\mbox{]} = \{ 'i', 'd', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_8e3a6d314a441c0953ea453c2ef528c9}{s\_\-6\_\-2} \mbox{[}2\mbox{]} = \{ 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5695ef9b5831b7884bfb78723878f529}{s\_\-6\_\-3} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7606f4a1af6624092882734ffa6dc541}{s\_\-6\_\-4} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f459e6ce5d3d07c03dab0c03aef1ada7}{s\_\-6\_\-5} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'i', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_51c0d2018f2a1c2c26b5b0a1f57e7537}{s\_\-6\_\-6} \mbox{[}3\mbox{]} = \{ 'a', 'r', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_92669db3024ed5062ceea61874039804}{s\_\-6\_\-7} \mbox{[}3\mbox{]} = \{ 'e', 'r', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b2ade9bdb9c1e1b1ac22be9f7debc51e}{s\_\-6\_\-8} \mbox{[}3\mbox{]} = \{ 'i', 'r', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_76502c1ff63efc6c6e70ff04b235d1fe}{s\_\-6\_\-9} \mbox{[}3\mbox{]} = \{ 'a', 'v', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a5d298aa83e3b2abbcda27c969449c0a}{s\_\-6\_\-10} \mbox{[}4\mbox{]} = \{ 'a', 's', 's', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e8d05b8c18c0df91f63f424df7d50c20}{s\_\-6\_\-11} \mbox{[}4\mbox{]} = \{ 'e', 's', 's', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5e0fcce0fdc970a00d437ec97f9a9b4b}{s\_\-6\_\-12} \mbox{[}4\mbox{]} = \{ 'i', 's', 's', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_be07658da483bc8f23cfcf211da9d877}{s\_\-6\_\-13} \mbox{[}4\mbox{]} = \{ 'a', 's', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_bb0db5a8b94f803935bd9507dfefb4b0}{s\_\-6\_\-14} \mbox{[}4\mbox{]} = \{ 'e', 's', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c804727e754e8470677833afc4929e47}{s\_\-6\_\-15} \mbox{[}4\mbox{]} = \{ 'i', 's', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_041fa42b4646cb7089146d79f69c0200}{s\_\-6\_\-16} \mbox{[}2\mbox{]} = \{ 'e', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a5f0f93420334b165249a9cdafdea8b1}{s\_\-6\_\-17} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_74e31f31e92b217d0f940fa7d0bfa53e}{s\_\-6\_\-18} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7d7fc0f129d12c9c2aa5fa11edc4486b}{s\_\-6\_\-19} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7fdf210fafb155695d0c4f2cc61f9d46}{s\_\-6\_\-20} \mbox{[}2\mbox{]} = \{ 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6dd749c509cd72b85b300d8cc0d0eaed}{s\_\-6\_\-21} \mbox{[}3\mbox{]} = \{ 'i', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6f93e40c13137b535742d79ddc685d5f}{s\_\-6\_\-22} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'i', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_71fb71f13608cee0c9b656cf157656e9}{s\_\-6\_\-23} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'i', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_11d468de14e76c21823222d4a80cc5b4}{s\_\-6\_\-24} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'i', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d5b7c5e12c3aa1244ed582655251e2eb}{s\_\-6\_\-25} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_67b63a6da30618e05f1452f09a1706d9}{s\_\-6\_\-26} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6f4299393301cf6e99a56b19fc8e1895}{s\_\-6\_\-27} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e87679fe3841e950ebcba7e56a135c8c}{s\_\-6\_\-28} \mbox{[}4\mbox{]} = \{ 'a', 'v', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2cbeaa15ba5427f755e997fcc4d0746e}{s\_\-6\_\-29} \mbox{[}2\mbox{]} = \{ 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_93ee4a473bacf84dd942b0c1bbef97e1}{s\_\-6\_\-30} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_840971160ae5e6098c1587386a06477d}{s\_\-6\_\-31} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_623443e034e02602fe6f9fd1a8b15ed1}{s\_\-6\_\-32} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_33b51e7fc5eb164669a35d3cf09d1eea}{s\_\-6\_\-33} \mbox{[}5\mbox{]} = \{ 'a', 's', 's', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2ce7667a375ca632cca7bca217ce0d66}{s\_\-6\_\-34} \mbox{[}5\mbox{]} = \{ 'e', 's', 's', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b29da520f8ee358b88e918e494dc5f80}{s\_\-6\_\-35} \mbox{[}5\mbox{]} = \{ 'i', 's', 's', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b9172d3d6b0796fbe8e2a0480f1a0bf2}{s\_\-6\_\-36} \mbox{[}3\mbox{]} = \{ 'a', 'd', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e779b954ab7c1ea4af0cc592206fde8d}{s\_\-6\_\-37} \mbox{[}3\mbox{]} = \{ 'i', 'd', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_45a65bd612e442e639e706dd83569add}{s\_\-6\_\-38} \mbox{[}4\mbox{]} = \{ 'a', 'n', 'd', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5796f20768e169c956374dfab66d0195}{s\_\-6\_\-39} \mbox{[}4\mbox{]} = \{ 'e', 'n', 'd', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_07195663e7bb479b5b644c0e89373c43}{s\_\-6\_\-40} \mbox{[}4\mbox{]} = \{ 'i', 'n', 'd', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_af994203df4bb285336e03eb0d43fbed}{s\_\-6\_\-41} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'a', '$\sim$', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d4ef1e2862dc7787e237b84ea4b513fc}{s\_\-6\_\-42} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'a', '$\sim$', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_337df565957807e56b534d86b13b0849}{s\_\-6\_\-43} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'a', '$\sim$', 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2c9eafc8d1c67dd1a4ce44b1fac150ec}{s\_\-6\_\-44} \mbox{[}2\mbox{]} = \{ 'a', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3ee2b1277cd3dfb578cd457539fc5607}{s\_\-6\_\-45} \mbox{[}2\mbox{]} = \{ 'e', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5b4ff63499555440dc371455d8611224}{s\_\-6\_\-46} \mbox{[}2\mbox{]} = \{ 'i', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3ca59ea4beee4dbf0680d7e18ac970b0}{s\_\-6\_\-47} \mbox{[}2\mbox{]} = \{ 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0fe105d4501e1748ca9681c4d1ce8462}{s\_\-6\_\-48} \mbox{[}4\mbox{]} = \{ 'a', 'd', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ced6716e0488a4ea94afbaf6b932fa70}{s\_\-6\_\-49} \mbox{[}4\mbox{]} = \{ 'i', 'd', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_083726f30f606aa1dbd712ccd7f6078d}{s\_\-6\_\-50} \mbox{[}3\mbox{]} = \{ 'i', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_95042091256d75702a54d71a24573f0f}{s\_\-6\_\-51} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'i', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_438ef694ceb22f50074a0cc281ff9d2c}{s\_\-6\_\-52} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'i', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f3eda93b7f36ca72dcadf41c9e9b76af}{s\_\-6\_\-53} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'i', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6876ad1e516c2b4163b8df8b5bb9c9c6}{s\_\-6\_\-54} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_14a61cc9adeb8d5f26b44e8111d0fb27}{s\_\-6\_\-55} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0d497aa428adaec23abc573f66fd2d95}{s\_\-6\_\-56} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3eafb4add99b03b1059fc5b48e75d31a}{s\_\-6\_\-57} \mbox{[}4\mbox{]} = \{ 'a', 'v', 'a', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e3a7cb23525aee7ce4da8a86e148e6bd}{s\_\-6\_\-58} \mbox{[}2\mbox{]} = \{ 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_23d9694dcc2e6c79c12fb8d4824f98af}{s\_\-6\_\-59} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_39944448218daf88eaf48ca52c9568b2}{s\_\-6\_\-60} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7686bd3225162f8eac73b9dc44bc4530}{s\_\-6\_\-61} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_259fcbe7aef9c7935374c6cad48918af}{s\_\-6\_\-62} \mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_31cc6a6073415072d08aa7c810b5022a}{s\_\-6\_\-63} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_efd6ea8adf192b88195aafd8361524e0}{s\_\-6\_\-64} \mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_8c78a596f3e50b9bb82a162f4484db08}{s\_\-6\_\-65} \mbox{[}5\mbox{]} = \{ 'a', 's', 's', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_59eeb6517ec61161f6b4531a894626df}{s\_\-6\_\-66} \mbox{[}5\mbox{]} = \{ 'e', 's', 's', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_1a1d0a5a61b7e6b9229826be7b014fd5}{s\_\-6\_\-67} \mbox{[}5\mbox{]} = \{ 'i', 's', 's', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d433a4f02d2903315ef3c0b266e8bf66}{s\_\-6\_\-68} \mbox{[}5\mbox{]} = \{ 'a', 's', 't', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6d65a5d33c5c5ee9885cb1848d414e85}{s\_\-6\_\-69} \mbox{[}5\mbox{]} = \{ 'e', 's', 't', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_063857ec203e297d178c06e897589dfc}{s\_\-6\_\-70} \mbox{[}5\mbox{]} = \{ 'i', 's', 't', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_be80d3b549d671007aaa56d281c2eba0}{s\_\-6\_\-71} \mbox{[}2\mbox{]} = \{ 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0598f7b7f2ed799d7efa088991b177ba}{s\_\-6\_\-72} \mbox{[}3\mbox{]} = \{ 'a', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_37d0fe6bb6f8831ea67fbb912df16353}{s\_\-6\_\-73} \mbox{[}3\mbox{]} = \{ 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_995a10c0d970aad421551968895fc632}{s\_\-6\_\-74} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_640837af692f10545436ca73880e024b}{s\_\-6\_\-75} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_113b472afde3448643138fc5fc5dc425}{s\_\-6\_\-76} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_76f04836d0f2eca32cbb001a69516c32}{s\_\-6\_\-77} \mbox{[}6\mbox{]} = \{ 0xC3, 0xA1, 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f05c7fb140acb41694d4127b16bded58}{s\_\-6\_\-78} \mbox{[}6\mbox{]} = \{ 0xC3, 0xA9, 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a254c82ea5fe20f7399ddb81607f56e9}{s\_\-6\_\-79} \mbox{[}6\mbox{]} = \{ 0xC3, 0xAD, 'r', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7200674b78e9e32f2d04e698fbc60319}{s\_\-6\_\-80} \mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 's', 's', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d07ac6b953f81e5a2952a6b1959a628f}{s\_\-6\_\-81} \mbox{[}7\mbox{]} = \{ 0xC3, 0xA9, 's', 's', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_55d6b54fb534e80f6ee3bb5a4d5ec952}{s\_\-6\_\-82} \mbox{[}7\mbox{]} = \{ 0xC3, 0xAD, 's', 's', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_73607aa2c7a578ba710d6cb0464e1075}{s\_\-6\_\-83} \mbox{[}6\mbox{]} = \{ 0xC3, 0xA1, 'v', 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6845cbed08b31cd79fb367e3c612e124}{s\_\-6\_\-84} \mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3cb716b52c7cf85b2acce19b5d1adb5a}{s\_\-6\_\-85} \mbox{[}7\mbox{]} = \{ 'a', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d76f54899fb8f3f94ed3028c02ddbd74}{s\_\-6\_\-86} \mbox{[}7\mbox{]} = \{ 'e', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2b73ccd2eec2ba79b8152951d9b504d3}{s\_\-6\_\-87} \mbox{[}7\mbox{]} = \{ 'i', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_aabc3afa5f7fd7c00529a29db6e5dfe3}{s\_\-6\_\-88} \mbox{[}4\mbox{]} = \{ 'a', 'd', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b97cc3830ba0cfc268dd1d5f015d632d}{s\_\-6\_\-89} \mbox{[}4\mbox{]} = \{ 'i', 'd', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6656b70921819ab5fffdd052daf4e85e}{s\_\-6\_\-90} \mbox{[}4\mbox{]} = \{ 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5d4aaca0ac82ed805b1395d2bef428f1}{s\_\-6\_\-91} \mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 'r', 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_330221165c869635166733392d49557b}{s\_\-6\_\-92} \mbox{[}7\mbox{]} = \{ 0xC3, 0xA9, 'r', 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7676bf292a73241dbb28826c0abc5372}{s\_\-6\_\-93} \mbox{[}7\mbox{]} = \{ 0xC3, 0xAD, 'r', 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d9f90a55dfe764429cb72dd1737a266f}{s\_\-6\_\-94} \mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 'v', 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c1ce038a37ea1ce0eb114afb07b07e7e}{s\_\-6\_\-95} \mbox{[}6\mbox{]} = \{ 0xC3, 0xAD, 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_b2bb4648a746457a704c9145401c5905}{s\_\-6\_\-96} \mbox{[}8\mbox{]} = \{ 'a', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_400f4f0c6ec12f2e4f30f565380cd0a0}{s\_\-6\_\-97} \mbox{[}8\mbox{]} = \{ 'e', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_e5d92091850b88cc3eea7c3715ad5d7a}{s\_\-6\_\-98} \mbox{[}8\mbox{]} = \{ 'i', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d8b733efd2564237f881b5758e7367a5}{s\_\-6\_\-99} \mbox{[}4\mbox{]} = \{ 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_8beb64776606876beb9556aa7cca1bb1}{s\_\-6\_\-100} \mbox{[}6\mbox{]} = \{ 'a', 'r', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d025bab3ceb3fa3bc8cc5e414383e894}{s\_\-6\_\-101} \mbox{[}6\mbox{]} = \{ 'e', 'r', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_42bc5d6e14dfd864f7060a90e8debf80}{s\_\-6\_\-102} \mbox{[}6\mbox{]} = \{ 'i', 'r', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_53636f39181aa95ead6b2f27630deb86}{s\_\-6\_\-103} \mbox{[}8\mbox{]} = \{ 0xC3, 0xA1, 's', 's', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_18001244715c1bbb08f9caecc081b6de}{s\_\-6\_\-104} \mbox{[}8\mbox{]} = \{ 0xC3, 0xAA, 's', 's', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_5bc26594babf4bf6a4a373a1813c6e63}{s\_\-6\_\-105} \mbox{[}8\mbox{]} = \{ 0xC3, 0xAD, 's', 's', 'e', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0e49019da407707def946682b3f0459a}{s\_\-6\_\-106} \mbox{[}4\mbox{]} = \{ 'i', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_8452d750dff6710194a8b9d045d6db4b}{s\_\-6\_\-107} \mbox{[}5\mbox{]} = \{ 'a', 'r', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4327823654e71092415bc4b5bd165890}{s\_\-6\_\-108} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_9a3e7e456454fbe8e01fefd667c9c011}{s\_\-6\_\-109} \mbox{[}5\mbox{]} = \{ 'i', 'r', 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6a761dd8d7e8970ed12359de9aa79b5b}{s\_\-6\_\-110} \mbox{[}5\mbox{]} = \{ 0xC3, 0xA1, 'm', 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ef933ac3e85206c553f40ad5ded233d5}{s\_\-6\_\-111} \mbox{[}5\mbox{]} = \{ 'a', 'r', 0xC3, 0xA1, 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_3259e2cce0e3cf768076cbc3d518c492}{s\_\-6\_\-112} \mbox{[}5\mbox{]} = \{ 'e', 'r', 0xC3, 0xA1, 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ebce2e2e07b180290b8a69b707c1a230}{s\_\-6\_\-113} \mbox{[}5\mbox{]} = \{ 'i', 'r', 0xC3, 0xA1, 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_713bae07eb1d71a0067007c5c2d1db73}{s\_\-6\_\-114} \mbox{[}2\mbox{]} = \{ 'e', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_744d8b7cf5f3f333c4b5e4a1e10ef938}{s\_\-6\_\-115} \mbox{[}2\mbox{]} = \{ 'i', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_517829a93b49584e52cd303311d673af}{s\_\-6\_\-116} \mbox{[}2\mbox{]} = \{ 'o', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a49f56ac81a0f3138d9a1e750787f5f6}{s\_\-6\_\-117} \mbox{[}4\mbox{]} = \{ 'a', 'r', 0xC3, 0xA1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a38a287cf2ffe595fb3de967d62e7754}{s\_\-6\_\-118} \mbox{[}4\mbox{]} = \{ 'e', 'r', 0xC3, 0xA1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_376ab07389cea10edf86214b546a07f1}{s\_\-6\_\-119} \mbox{[}4\mbox{]} = \{ 'i', 'r', 0xC3, 0xA1 \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_f86866397dd6e95c48996a762bb3ff5c}{a\_\-6} \mbox{[}120\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ce833866200cf9eb089c201bf4f5089b}{s\_\-7\_\-0} \mbox{[}1\mbox{]} = \{ 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_4ab04d30b7c4e8be1e3f4c77d80a0fcf}{s\_\-7\_\-1} \mbox{[}1\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_2c69cf3bbefa21feb8ad23228a6a6657}{s\_\-7\_\-2} \mbox{[}1\mbox{]} = \{ 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_0aed1c428bcfa2a4c30afd4c280b31a5}{s\_\-7\_\-3} \mbox{[}2\mbox{]} = \{ 'o', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ace06cf9fd3062e4e97b96c066c87878}{s\_\-7\_\-4} \mbox{[}2\mbox{]} = \{ 0xC3, 0xA1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_491a4f122acbce0164588ca80bed0e2c}{s\_\-7\_\-5} \mbox{[}2\mbox{]} = \{ 0xC3, 0xAD \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_53fc70eb25c3e12fd1f28af3516d0781}{s\_\-7\_\-6} \mbox{[}2\mbox{]} = \{ 0xC3, 0xB3 \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_9e7b5830a8baba2a90379954c9e2891b}{a\_\-7} \mbox{[}7\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f7d96b4249f9f8ce3f1a32cdac4cb823}{s\_\-8\_\-0} \mbox{[}1\mbox{]} = \{ 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_c77d862be6dbdaf956ca10e05b02cb08}{s\_\-8\_\-1} \mbox{[}2\mbox{]} = \{ 0xC3, 0xA7 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_1241a115151a2344ce8a98969e91c359}{s\_\-8\_\-2} \mbox{[}2\mbox{]} = \{ 0xC3, 0xA9 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_7c8b219d494bd9e7fa82e16557d06b75}{s\_\-8\_\-3} \mbox{[}2\mbox{]} = \{ 0xC3, 0xAA \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__portuguese_8cpp_efc648ee973f9c241dc99c5710896342}{a\_\-8} \mbox{[}4\mbox{]}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__portuguese_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}{g\_\-v} \mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{s\_\-0} \mbox{[}$\,$\mbox{]} = \{ 'a', '$\sim$' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{s\_\-1} \mbox{[}$\,$\mbox{]} = \{ 'o', '$\sim$' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_05655860330cc397ec496b569962c207}{s\_\-2} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xA3 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_506031b4e4028f904c38bc9782cf4ea9}{s\_\-3} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB5 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}{s\_\-4} \mbox{[}$\,$\mbox{]} = \{ 'l', 'o', 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}{s\_\-5} \mbox{[}$\,$\mbox{]} = \{ 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_49dfcd185612e79f769e174b7c22846f}{s\_\-6} \mbox{[}$\,$\mbox{]} = \{ 'e', 'n', 't', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_643c8aee064467dc72f82ea3aca5afce}{s\_\-7} \mbox{[}$\,$\mbox{]} = \{ 'a', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f16bd0889f5653a235489fb6013bc454}{s\_\-8} \mbox{[}$\,$\mbox{]} = \{ 'a', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}{s\_\-9} \mbox{[}$\,$\mbox{]} = \{ 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}{s\_\-10} \mbox{[}$\,$\mbox{]} = \{ 'i', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_bf29e347ef2262f710baab60211b1f56}{s\_\-11} \mbox{[}$\,$\mbox{]} = \{ 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_bf6a284b08c13843e299aa6e1ad61653}{s\_\-12} \mbox{[}$\,$\mbox{]} = \{ 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}{s\_\-13} \mbox{[}$\,$\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}{s\_\-14} \mbox{[}$\,$\mbox{]} = \{ 'c' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_f86c6cb3251ecf295972b3ebde225e78}{s\_\-15} \mbox{[}$\,$\mbox{]} = \{ 'c' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_99b6e5272294e99839b85415ac1d3c52}{s\_\-16} \mbox{[}$\,$\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__portuguese_8cpp_d92d995ad8d6eadce002033b53d75255}{s\_\-17} \mbox{[}$\,$\mbox{]} = \{ 'c' \}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{stem__UTF__8__portuguese_8cpp_78de7c947db64d70f188689a48da5b61}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!portuguese\_\-UTF\_\-8\_\-close\_\-env@{portuguese\_\-UTF\_\-8\_\-close\_\-env}}
+\index{portuguese\_\-UTF\_\-8\_\-close\_\-env@{portuguese\_\-UTF\_\-8\_\-close\_\-env}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{portuguese\_\-UTF\_\-8\_\-close\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void portuguese\_\-UTF\_\-8\_\-close\_\-env (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__portuguese_8cpp_78de7c947db64d70f188689a48da5b61}
+
+
+\hypertarget{stem__UTF__8__portuguese_8cpp_c26fbfdbe81e04a02b21a702fa65c17d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!portuguese\_\-UTF\_\-8\_\-create\_\-env@{portuguese\_\-UTF\_\-8\_\-create\_\-env}}
+\index{portuguese\_\-UTF\_\-8\_\-create\_\-env@{portuguese\_\-UTF\_\-8\_\-create\_\-env}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{portuguese\_\-UTF\_\-8\_\-create\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf SN\_\-env}$\ast$ portuguese\_\-UTF\_\-8\_\-create\_\-env (void)\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c26fbfdbe81e04a02b21a702fa65c17d}
+
+
+\hypertarget{stem__UTF__8__portuguese_8cpp_eca4c5fe3463c14d5a5d01e9c271c30c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!portuguese\_\-UTF\_\-8\_\-stem@{portuguese\_\-UTF\_\-8\_\-stem}}
+\index{portuguese\_\-UTF\_\-8\_\-stem@{portuguese\_\-UTF\_\-8\_\-stem}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{portuguese\_\-UTF\_\-8\_\-stem}]{\setlength{\rightskip}{0pt plus 5cm}int portuguese\_\-UTF\_\-8\_\-stem (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__portuguese_8cpp_eca4c5fe3463c14d5a5d01e9c271c30c}
+
+
+\hypertarget{stem__UTF__8__portuguese_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-mark\_\-regions@{r\_\-mark\_\-regions}}
+\index{r\_\-mark\_\-regions@{r\_\-mark\_\-regions}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-mark\_\-regions}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-regions (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}
+
+
+
+
+Definition at line 519 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::c, g\_\-v, SN\_\-env::I, in\_\-grouping\_\-U(), SN\_\-env::l, out\_\-grouping\_\-U(), SN\_\-env::p, and skip\_\-utf8().\hypertarget{stem__UTF__8__portuguese_8cpp_9a06115d1abdc06e1487c9af8a41a340}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-postlude@{r\_\-postlude}}
+\index{r\_\-postlude@{r\_\-postlude}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-postlude}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-postlude (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_9a06115d1abdc06e1487c9af8a41a340}
+
+
+
+
+Definition at line 601 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among(), SN\_\-env::ket, SN\_\-env::l, SN\_\-env::p, s\_\-2, s\_\-3, skip\_\-utf8(), and slice\_\-from\_\-s().\hypertarget{stem__UTF__8__portuguese_8cpp_a2019117670eba2cd445fdc6d938db7d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-prelude@{r\_\-prelude}}
+\index{r\_\-prelude@{r\_\-prelude}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-prelude}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-prelude (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a2019117670eba2cd445fdc6d938db7d}
+
+
+
+
+Definition at line 483 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among(), SN\_\-env::ket, SN\_\-env::l, SN\_\-env::p, s\_\-0, s\_\-1, skip\_\-utf8(), and slice\_\-from\_\-s().\hypertarget{stem__UTF__8__portuguese_8cpp_97c389362c2409544e194f0ce6b27b80}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-R1@{r\_\-R1}}
+\index{r\_\-R1@{r\_\-R1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-R1}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-R1 (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_97c389362c2409544e194f0ce6b27b80}
+
+
+
+
+Definition at line 642 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::c, and SN\_\-env::I.\hypertarget{stem__UTF__8__portuguese_8cpp_62fb9c1a3c4afb0fe6c91b21b277cf62}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-R2@{r\_\-R2}}
+\index{r\_\-R2@{r\_\-R2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-R2}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-R2 (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_62fb9c1a3c4afb0fe6c91b21b277cf62}
+
+
+
+
+Definition at line 647 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::c, and SN\_\-env::I.\hypertarget{stem__UTF__8__portuguese_8cpp_cd0a0613041dc696453ca48833ea87b3}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-residual\_\-form@{r\_\-residual\_\-form}}
+\index{r\_\-residual\_\-form@{r\_\-residual\_\-form}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-residual\_\-form}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-residual\_\-form (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_cd0a0613041dc696453ca48833ea87b3}
+
+
+
+
+Definition at line 880 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, eq\_\-s\_\-b(), find\_\-among\_\-b(), SN\_\-env::ket, SN\_\-env::l, r\_\-RV(), s\_\-11, s\_\-12, s\_\-13, s\_\-14, s\_\-15, slice\_\-del(), and slice\_\-from\_\-s().
+
+Referenced by portuguese\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__portuguese_8cpp_ef7b7ab838597ebe649dfb120b657019}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-residual\_\-suffix@{r\_\-residual\_\-suffix}}
+\index{r\_\-residual\_\-suffix@{r\_\-residual\_\-suffix}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-residual\_\-suffix}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-residual\_\-suffix (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ef7b7ab838597ebe649dfb120b657019}
+
+
+
+
+Definition at line 859 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::ket, r\_\-RV(), and slice\_\-del().\hypertarget{stem__UTF__8__portuguese_8cpp_7ab6564bb908993b3fbf78d9bcb4a8a5}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-RV@{r\_\-RV}}
+\index{r\_\-RV@{r\_\-RV}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-RV}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-RV (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7ab6564bb908993b3fbf78d9bcb4a8a5}
+
+
+
+
+Definition at line 637 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::c, and SN\_\-env::I.\hypertarget{stem__UTF__8__portuguese_8cpp_339f3a63ea1265f2ffdbe75cff95d494}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-standard\_\-suffix@{r\_\-standard\_\-suffix}}
+\index{r\_\-standard\_\-suffix@{r\_\-standard\_\-suffix}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-standard\_\-suffix}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-standard\_\-suffix (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_339f3a63ea1265f2ffdbe75cff95d494}
+
+
+
+
+Definition at line 652 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, eq\_\-s\_\-b(), find\_\-among\_\-b(), SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, r\_\-R1(), r\_\-R2(), r\_\-RV(), s\_\-10, s\_\-4, s\_\-5, s\_\-6, s\_\-7, s\_\-8, s\_\-9, slice\_\-del(), and slice\_\-from\_\-s().\hypertarget{stem__UTF__8__portuguese_8cpp_4a67f8bbf6507006ee382b3b37cb67b4}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!r\_\-verb\_\-suffix@{r\_\-verb\_\-suffix}}
+\index{r\_\-verb\_\-suffix@{r\_\-verb\_\-suffix}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{r\_\-verb\_\-suffix}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-verb\_\-suffix (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4a67f8bbf6507006ee382b3b37cb67b4}
+
+
+
+
+Definition at line 834 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::I, SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, and slice\_\-del().
+
+\subsection{Variable Documentation}
+\hypertarget{stem__UTF__8__portuguese_8cpp_299a45e101fced59c065d99ce9e24daf}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-0@{a\_\-0}}
+\index{a\_\-0@{a\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-0}\mbox{[}3\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_299a45e101fced59c065d99ce9e24daf}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 0, 0, -1, 3, 0},
+ { 2, s_0_1, 0, 1, 0},
+ { 2, s_0_2, 0, 2, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 38 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a1c0a820e790b2be5134dd36420b0cfa}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-1@{a\_\-1}}
+\index{a\_\-1@{a\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-1}\mbox{[}3\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a1c0a820e790b2be5134dd36420b0cfa}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 0, 0, -1, 3, 0},
+ { 2, s_1_1, 0, 1, 0},
+ { 2, s_1_2, 0, 2, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 48 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2114788e9ac3c40b37d5fe97e035051a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-2@{a\_\-2}}
+\index{a\_\-2@{a\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-2}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2114788e9ac3c40b37d5fe97e035051a}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_2_0, -1, -1, 0},
+ { 2, s_2_1, -1, -1, 0},
+ { 2, s_2_2, -1, -1, 0},
+ { 2, s_2_3, -1, 1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 60 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4be915c69ef87bca935cae33ed7aa551}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-3@{a\_\-3}}
+\index{a\_\-3@{a\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-3}\mbox{[}3\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4be915c69ef87bca935cae33ed7aa551}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 4, s_3_0, -1, 1, 0},
+ { 4, s_3_1, -1, 1, 0},
+ { 5, s_3_2, -1, 1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 72 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_53e60d1e021838dc0934244070ccad53}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-4@{a\_\-4}}
+\index{a\_\-4@{a\_\-4}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-4}\mbox{[}3\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_53e60d1e021838dc0934244070ccad53}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_4_0, -1, 1, 0},
+ { 4, s_4_1, -1, 1, 0},
+ { 2, s_4_2, -1, 1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 83 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c0e1fc9c196713f01f27aac81a8760de}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-5@{a\_\-5}}
+\index{a\_\-5@{a\_\-5}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-5}\mbox{[}45\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c0e1fc9c196713f01f27aac81a8760de}
+
+
+
+
+Definition at line 136 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f86866397dd6e95c48996a762bb3ff5c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-6@{a\_\-6}}
+\index{a\_\-6@{a\_\-6}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-6}\mbox{[}120\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f86866397dd6e95c48996a762bb3ff5c}
+
+
+
+
+Definition at line 306 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_9e7b5830a8baba2a90379954c9e2891b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-7@{a\_\-7}}
+\index{a\_\-7@{a\_\-7}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-7}\mbox{[}7\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_9e7b5830a8baba2a90379954c9e2891b}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 1, s_7_0, -1, 1, 0},
+ { 1, s_7_1, -1, 1, 0},
+ { 1, s_7_2, -1, 1, 0},
+ { 2, s_7_3, -1, 1, 0},
+ { 2, s_7_4, -1, 1, 0},
+ { 2, s_7_5, -1, 1, 0},
+ { 2, s_7_6, -1, 1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 438 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_efc648ee973f9c241dc99c5710896342}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!a\_\-8@{a\_\-8}}
+\index{a\_\-8@{a\_\-8}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{a\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-8}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_efc648ee973f9c241dc99c5710896342}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 1, s_8_0, -1, 1, 0},
+ { 2, s_8_1, -1, 2, 0},
+ { 2, s_8_2, -1, 1, 0},
+ { 2, s_8_3, -1, 1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 454 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!g\_\-v@{g\_\-v}}
+\index{g\_\-v@{g\_\-v}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{g\_\-v}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-v}\mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 19, 12, 2 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}
+
+
+
+
+Definition at line 462 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-0@{s\_\-0}}
+\index{s\_\-0@{s\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0}\mbox{[}$\,$\mbox{]} = \{ 'a', '$\sim$' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_fe14f0598f9d8c17116566c4f3397dcd}
+
+
+
+
+Definition at line 464 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_345038d5a0b2cb4d30a68ade359811b1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-0\_\-1@{s\_\-0\_\-1}}
+\index{s\_\-0\_\-1@{s\_\-0\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-0\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-1}\mbox{[}2\mbox{]} = \{ 0xC3, 0xA3 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_345038d5a0b2cb4d30a68ade359811b1}
+
+
+
+
+Definition at line 35 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d47591b80a867b9c875c3dbae87f224e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-0\_\-2@{s\_\-0\_\-2}}
+\index{s\_\-0\_\-2@{s\_\-0\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-0\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-2}\mbox{[}2\mbox{]} = \{ 0xC3, 0xB5 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d47591b80a867b9c875c3dbae87f224e}
+
+
+
+
+Definition at line 36 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-1@{s\_\-1}}
+\index{s\_\-1@{s\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1}\mbox{[}$\,$\mbox{]} = \{ 'o', '$\sim$' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ac80d4eaad8b684f587a7e8101a53ced}
+
+
+
+
+Definition at line 465 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-10@{s\_\-10}}
+\index{s\_\-10@{s\_\-10}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-10}\mbox{[}$\,$\mbox{]} = \{ 'i', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}
+
+
+
+
+Definition at line 474 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_bf29e347ef2262f710baab60211b1f56}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-11@{s\_\-11}}
+\index{s\_\-11@{s\_\-11}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-11}\mbox{[}$\,$\mbox{]} = \{ 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_bf29e347ef2262f710baab60211b1f56}
+
+
+
+
+Definition at line 475 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_bf6a284b08c13843e299aa6e1ad61653}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-12@{s\_\-12}}
+\index{s\_\-12@{s\_\-12}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12}\mbox{[}$\,$\mbox{]} = \{ 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_bf6a284b08c13843e299aa6e1ad61653}
+
+
+
+
+Definition at line 476 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-13@{s\_\-13}}
+\index{s\_\-13@{s\_\-13}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13}\mbox{[}$\,$\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}
+
+
+
+
+Definition at line 477 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-14@{s\_\-14}}
+\index{s\_\-14@{s\_\-14}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14}\mbox{[}$\,$\mbox{]} = \{ 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}
+
+
+
+
+Definition at line 478 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f86c6cb3251ecf295972b3ebde225e78}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-15@{s\_\-15}}
+\index{s\_\-15@{s\_\-15}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15}\mbox{[}$\,$\mbox{]} = \{ 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f86c6cb3251ecf295972b3ebde225e78}
+
+
+
+
+Definition at line 479 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_99b6e5272294e99839b85415ac1d3c52}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-16@{s\_\-16}}
+\index{s\_\-16@{s\_\-16}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-16}\mbox{[}$\,$\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_99b6e5272294e99839b85415ac1d3c52}
+
+
+
+
+Definition at line 480 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d92d995ad8d6eadce002033b53d75255}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-17@{s\_\-17}}
+\index{s\_\-17@{s\_\-17}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17}\mbox{[}$\,$\mbox{]} = \{ 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d92d995ad8d6eadce002033b53d75255}
+
+
+
+
+Definition at line 481 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_70dfd76528f2e88574fe9f1f96fa231b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-1\_\-1@{s\_\-1\_\-1}}
+\index{s\_\-1\_\-1@{s\_\-1\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-1\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-1}\mbox{[}2\mbox{]} = \{ 'a', '$\sim$' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_70dfd76528f2e88574fe9f1f96fa231b}
+
+
+
+
+Definition at line 45 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_25f62dccebd15f951b6904ba906baf27}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-1\_\-2@{s\_\-1\_\-2}}
+\index{s\_\-1\_\-2@{s\_\-1\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-1\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-2}\mbox{[}2\mbox{]} = \{ 'o', '$\sim$' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_25f62dccebd15f951b6904ba906baf27}
+
+
+
+
+Definition at line 46 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_05655860330cc397ec496b569962c207}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-2@{s\_\-2}}
+\index{s\_\-2@{s\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xA3 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_05655860330cc397ec496b569962c207}
+
+
+
+
+Definition at line 466 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-2\_\-0@{s\_\-2\_\-0}}
+\index{s\_\-2\_\-0@{s\_\-2\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-2\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}
+
+
+
+
+Definition at line 55 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_eb067135b2b508ae55bc4cb83c35b16f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-2\_\-1@{s\_\-2\_\-1}}
+\index{s\_\-2\_\-1@{s\_\-2\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-2\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-1}\mbox{[}2\mbox{]} = \{ 'a', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_eb067135b2b508ae55bc4cb83c35b16f}
+
+
+
+
+Definition at line 56 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0edfcf9a9f9cf1bba4698fd12e04fe5f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-2\_\-2@{s\_\-2\_\-2}}
+\index{s\_\-2\_\-2@{s\_\-2\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-2\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-2}\mbox{[}2\mbox{]} = \{ 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0edfcf9a9f9cf1bba4698fd12e04fe5f}
+
+
+
+
+Definition at line 57 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a35f28b9df4acbf1c44557e733d695b2}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-2\_\-3@{s\_\-2\_\-3}}
+\index{s\_\-2\_\-3@{s\_\-2\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-2\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-3}\mbox{[}2\mbox{]} = \{ 'i', 'v' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a35f28b9df4acbf1c44557e733d695b2}
+
+
+
+
+Definition at line 58 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_506031b4e4028f904c38bc9782cf4ea9}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-3@{s\_\-3}}
+\index{s\_\-3@{s\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB5 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_506031b4e4028f904c38bc9782cf4ea9}
+
+
+
+
+Definition at line 467 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_46c763c63a33422d302e4411cce28c7f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-3\_\-0@{s\_\-3\_\-0}}
+\index{s\_\-3\_\-0@{s\_\-3\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-3\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-0}\mbox{[}4\mbox{]} = \{ 'a', 'n', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_46c763c63a33422d302e4411cce28c7f}
+
+
+
+
+Definition at line 68 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b46ff2f98e1d96dde13d6318d3796e68}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-3\_\-1@{s\_\-3\_\-1}}
+\index{s\_\-3\_\-1@{s\_\-3\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-3\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-1}\mbox{[}4\mbox{]} = \{ 'a', 'v', 'e', 'l' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b46ff2f98e1d96dde13d6318d3796e68}
+
+
+
+
+Definition at line 69 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_10e22574893bf8fd96862f79b46c4333}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-3\_\-2@{s\_\-3\_\-2}}
+\index{s\_\-3\_\-2@{s\_\-3\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-3\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-2}\mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'v', 'e', 'l' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_10e22574893bf8fd96862f79b46c4333}
+
+
+
+
+Definition at line 70 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-4@{s\_\-4}}
+\index{s\_\-4@{s\_\-4}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4}\mbox{[}$\,$\mbox{]} = \{ 'l', 'o', 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}
+
+
+
+
+Definition at line 468 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b654ffcad4bc378998b57b25b22bc18c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-4\_\-0@{s\_\-4\_\-0}}
+\index{s\_\-4\_\-0@{s\_\-4\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-4\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b654ffcad4bc378998b57b25b22bc18c}
+
+
+
+
+Definition at line 79 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_374e55297f91dbf53d68d4f89833e398}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-4\_\-1@{s\_\-4\_\-1}}
+\index{s\_\-4\_\-1@{s\_\-4\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-4\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4\_\-1}\mbox{[}4\mbox{]} = \{ 'a', 'b', 'i', 'l' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_374e55297f91dbf53d68d4f89833e398}
+
+
+
+
+Definition at line 80 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a3783fc899e25126aee4811fc563ae68}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-4\_\-2@{s\_\-4\_\-2}}
+\index{s\_\-4\_\-2@{s\_\-4\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-4\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4\_\-2}\mbox{[}2\mbox{]} = \{ 'i', 'v' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a3783fc899e25126aee4811fc563ae68}
+
+
+
+
+Definition at line 81 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5@{s\_\-5}}
+\index{s\_\-5@{s\_\-5}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5}\mbox{[}$\,$\mbox{]} = \{ 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}
+
+
+
+
+Definition at line 469 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_63c43374c7d92c6d2fe886e0727fbed8}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-0@{s\_\-5\_\-0}}
+\index{s\_\-5\_\-0@{s\_\-5\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-0}\mbox{[}3\mbox{]} = \{ 'i', 'c', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_63c43374c7d92c6d2fe886e0727fbed8}
+
+
+
+
+Definition at line 90 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_65d16cdd74510ef38a93cb41edaa4622}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-1@{s\_\-5\_\-1}}
+\index{s\_\-5\_\-1@{s\_\-5\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-1}\mbox{[}6\mbox{]} = \{ 0xC3, 0xA2, 'n', 'c', 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_65d16cdd74510ef38a93cb41edaa4622}
+
+
+
+
+Definition at line 91 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4681efd4c76f8130ad89eb4e32b7d2fc}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-10@{s\_\-5\_\-10}}
+\index{s\_\-5\_\-10@{s\_\-5\_\-10}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-10}\mbox{[}5\mbox{]} = \{ 'i', 'd', 'a', 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4681efd4c76f8130ad89eb4e32b7d2fc}
+
+
+
+
+Definition at line 100 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ecf3a7004616be37a58c4edee73fc561}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-11@{s\_\-5\_\-11}}
+\index{s\_\-5\_\-11@{s\_\-5\_\-11}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-11}\mbox{[}4\mbox{]} = \{ 'a', 'n', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ecf3a7004616be37a58c4edee73fc561}
+
+
+
+
+Definition at line 101 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4706f87809aa3c06200314ec00b21f78}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-12@{s\_\-5\_\-12}}
+\index{s\_\-5\_\-12@{s\_\-5\_\-12}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-12}\mbox{[}5\mbox{]} = \{ 'm', 'e', 'n', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4706f87809aa3c06200314ec00b21f78}
+
+
+
+
+Definition at line 102 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c6f0c84dc930a77a6bf2acdc0515028d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-13@{s\_\-5\_\-13}}
+\index{s\_\-5\_\-13@{s\_\-5\_\-13}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-13}\mbox{[}6\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c6f0c84dc930a77a6bf2acdc0515028d}
+
+
+
+
+Definition at line 103 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0c766109bb08c426632abbef25d3d5ba}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-14@{s\_\-5\_\-14}}
+\index{s\_\-5\_\-14@{s\_\-5\_\-14}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-14}\mbox{[}5\mbox{]} = \{ 0xC3, 0xA1, 'v', 'e', 'l' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0c766109bb08c426632abbef25d3d5ba}
+
+
+
+
+Definition at line 104 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f2600ad832b83e831a344bb088426fcc}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-15@{s\_\-5\_\-15}}
+\index{s\_\-5\_\-15@{s\_\-5\_\-15}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-15}\mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'v', 'e', 'l' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f2600ad832b83e831a344bb088426fcc}
+
+
+
+
+Definition at line 105 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_18dbce513054aecf8b5c74c5ba41bdee}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-16@{s\_\-5\_\-16}}
+\index{s\_\-5\_\-16@{s\_\-5\_\-16}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-16}\mbox{[}6\mbox{]} = \{ 'u', 'c', 'i', 0xC3, 0xB3, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_18dbce513054aecf8b5c74c5ba41bdee}
+
+
+
+
+Definition at line 106 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_58d100a0544be55b2d68540c33cba199}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-17@{s\_\-5\_\-17}}
+\index{s\_\-5\_\-17@{s\_\-5\_\-17}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-17}\mbox{[}3\mbox{]} = \{ 'i', 'c', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_58d100a0544be55b2d68540c33cba199}
+
+
+
+
+Definition at line 107 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ee48be8b71db374b63115358e9e8eeae}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-18@{s\_\-5\_\-18}}
+\index{s\_\-5\_\-18@{s\_\-5\_\-18}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-18}\mbox{[}4\mbox{]} = \{ 'i', 's', 'm', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ee48be8b71db374b63115358e9e8eeae}
+
+
+
+
+Definition at line 108 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_639fa5a44276383c7fb971d5bca66ead}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-19@{s\_\-5\_\-19}}
+\index{s\_\-5\_\-19@{s\_\-5\_\-19}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-19}\mbox{[}3\mbox{]} = \{ 'o', 's', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_639fa5a44276383c7fb971d5bca66ead}
+
+
+
+
+Definition at line 109 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d99aa24f1c92a347edadd7fa39e26fc6}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-2@{s\_\-5\_\-2}}
+\index{s\_\-5\_\-2@{s\_\-5\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-2}\mbox{[}6\mbox{]} = \{ 0xC3, 0xAA, 'n', 'c', 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d99aa24f1c92a347edadd7fa39e26fc6}
+
+
+
+
+Definition at line 92 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0891e51f62b2931c0ec4bc42b0cf3605}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-20@{s\_\-5\_\-20}}
+\index{s\_\-5\_\-20@{s\_\-5\_\-20}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-20}\mbox{[}6\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0891e51f62b2931c0ec4bc42b0cf3605}
+
+
+
+
+Definition at line 110 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c2894a9325c7f5c21af999857987b6e2}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-21@{s\_\-5\_\-21}}
+\index{s\_\-5\_\-21@{s\_\-5\_\-21}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-21}\mbox{[}6\mbox{]} = \{ 'i', 'm', 'e', 'n', 't', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c2894a9325c7f5c21af999857987b6e2}
+
+
+
+
+Definition at line 111 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_19f23924be6fd2d1fed4c9ef906e25eb}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-22@{s\_\-5\_\-22}}
+\index{s\_\-5\_\-22@{s\_\-5\_\-22}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-22}\mbox{[}3\mbox{]} = \{ 'i', 'v', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_19f23924be6fd2d1fed4c9ef906e25eb}
+
+
+
+
+Definition at line 112 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_088df3ea6307d870da812bdd230c7e91}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-23@{s\_\-5\_\-23}}
+\index{s\_\-5\_\-23@{s\_\-5\_\-23}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-23}\mbox{[}6\mbox{]} = \{ 'a', 0xC3, 0xA7, 'a', '$\sim$', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_088df3ea6307d870da812bdd230c7e91}
+
+
+
+
+Definition at line 113 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_fa043078b4a849058d04bfe9140a41cb}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-24@{s\_\-5\_\-24}}
+\index{s\_\-5\_\-24@{s\_\-5\_\-24}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-24}\mbox{[}4\mbox{]} = \{ 'a', 'd', 'o', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_fa043078b4a849058d04bfe9140a41cb}
+
+
+
+
+Definition at line 114 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4a63d9059763ca7149916715bc4d1e3f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-25@{s\_\-5\_\-25}}
+\index{s\_\-5\_\-25@{s\_\-5\_\-25}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-25}\mbox{[}4\mbox{]} = \{ 'i', 'c', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4a63d9059763ca7149916715bc4d1e3f}
+
+
+
+
+Definition at line 115 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_035f44a3856cd041bcb248866d6a9939}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-26@{s\_\-5\_\-26}}
+\index{s\_\-5\_\-26@{s\_\-5\_\-26}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-26}\mbox{[}7\mbox{]} = \{ 0xC3, 0xAA, 'n', 'c', 'i', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_035f44a3856cd041bcb248866d6a9939}
+
+
+
+
+Definition at line 116 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_1de6b822b651c8fc6d927950bcc874d7}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-27@{s\_\-5\_\-27}}
+\index{s\_\-5\_\-27@{s\_\-5\_\-27}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-27}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_1de6b822b651c8fc6d927950bcc874d7}
+
+
+
+
+Definition at line 117 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f1b641614745d4bb97d7bcc4def002af}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-28@{s\_\-5\_\-28}}
+\index{s\_\-5\_\-28@{s\_\-5\_\-28}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-28}\mbox{[}6\mbox{]} = \{ 'a', 'd', 'o', 'r', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f1b641614745d4bb97d7bcc4def002af}
+
+
+
+
+Definition at line 118 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e892989344b5bbbe9488259613e4e7f1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-29@{s\_\-5\_\-29}}
+\index{s\_\-5\_\-29@{s\_\-5\_\-29}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-29}\mbox{[}4\mbox{]} = \{ 'o', 's', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e892989344b5bbbe9488259613e4e7f1}
+
+
+
+
+Definition at line 119 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_81a552f6831c462f61152cf87f5fb5c4}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-3@{s\_\-5\_\-3}}
+\index{s\_\-5\_\-3@{s\_\-5\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-3}\mbox{[}3\mbox{]} = \{ 'i', 'r', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_81a552f6831c462f61152cf87f5fb5c4}
+
+
+
+
+Definition at line 93 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_09720e3b601b1723d4fb313f1ecfaee0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-30@{s\_\-5\_\-30}}
+\index{s\_\-5\_\-30@{s\_\-5\_\-30}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-30}\mbox{[}5\mbox{]} = \{ 'i', 's', 't', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_09720e3b601b1723d4fb313f1ecfaee0}
+
+
+
+
+Definition at line 120 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_9b27b00dd4867b224b7cf9f8eee51ef3}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-31@{s\_\-5\_\-31}}
+\index{s\_\-5\_\-31@{s\_\-5\_\-31}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-31}\mbox{[}4\mbox{]} = \{ 'i', 'v', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_9b27b00dd4867b224b7cf9f8eee51ef3}
+
+
+
+
+Definition at line 121 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_8123abd5d21c6565ca1b68efbc36e876}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-32@{s\_\-5\_\-32}}
+\index{s\_\-5\_\-32@{s\_\-5\_\-32}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-32}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-32}\mbox{[}4\mbox{]} = \{ 'e', 'z', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_8123abd5d21c6565ca1b68efbc36e876}
+
+
+
+
+Definition at line 122 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6e30651ef4a9587772a42e7a3257b18c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-33@{s\_\-5\_\-33}}
+\index{s\_\-5\_\-33@{s\_\-5\_\-33}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-33}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-33}\mbox{[}7\mbox{]} = \{ 'l', 'o', 'g', 0xC3, 0xAD, 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6e30651ef4a9587772a42e7a3257b18c}
+
+
+
+
+Definition at line 123 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_99862fb830362bf69177a258035083d0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-34@{s\_\-5\_\-34}}
+\index{s\_\-5\_\-34@{s\_\-5\_\-34}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-34}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-34}\mbox{[}6\mbox{]} = \{ 'i', 'd', 'a', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_99862fb830362bf69177a258035083d0}
+
+
+
+
+Definition at line 124 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c9e587cc1acc4e20f5246c256db7514d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-35@{s\_\-5\_\-35}}
+\index{s\_\-5\_\-35@{s\_\-5\_\-35}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-35}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-35}\mbox{[}7\mbox{]} = \{ 'u', 'c', 'i', 'o', 'n', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c9e587cc1acc4e20f5246c256db7514d}
+
+
+
+
+Definition at line 125 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_830cbc78253eea509cc9c6b8da681916}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-36@{s\_\-5\_\-36}}
+\index{s\_\-5\_\-36@{s\_\-5\_\-36}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-36}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-36}\mbox{[}6\mbox{]} = \{ 'a', 'd', 'o', 'r', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_830cbc78253eea509cc9c6b8da681916}
+
+
+
+
+Definition at line 126 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_06c5a2e44b399a6770b601da9042bbb6}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-37@{s\_\-5\_\-37}}
+\index{s\_\-5\_\-37@{s\_\-5\_\-37}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-37}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-37}\mbox{[}5\mbox{]} = \{ 'a', 'n', 't', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_06c5a2e44b399a6770b601da9042bbb6}
+
+
+
+
+Definition at line 127 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4c526168b0807d74b3793dea7ad9345a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-38@{s\_\-5\_\-38}}
+\index{s\_\-5\_\-38@{s\_\-5\_\-38}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-38}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-38}\mbox{[}7\mbox{]} = \{ 'a', 0xC3, 0xA7, 'o', '$\sim$', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4c526168b0807d74b3793dea7ad9345a}
+
+
+
+
+Definition at line 128 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_1d433391d725bfd743da0568487b2c64}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-39@{s\_\-5\_\-39}}
+\index{s\_\-5\_\-39@{s\_\-5\_\-39}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-39}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-39}\mbox{[}4\mbox{]} = \{ 'i', 'c', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_1d433391d725bfd743da0568487b2c64}
+
+
+
+
+Definition at line 129 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7835d6f9334c7d05b4cbee859a110c6c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-4@{s\_\-5\_\-4}}
+\index{s\_\-5\_\-4@{s\_\-5\_\-4}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-4}\mbox{[}5\mbox{]} = \{ 'a', 'd', 'o', 'r', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7835d6f9334c7d05b4cbee859a110c6c}
+
+
+
+
+Definition at line 94 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_43776801eb8f212f8072b3c33938641f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-40@{s\_\-5\_\-40}}
+\index{s\_\-5\_\-40@{s\_\-5\_\-40}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-40}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-40}\mbox{[}5\mbox{]} = \{ 'i', 's', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_43776801eb8f212f8072b3c33938641f}
+
+
+
+
+Definition at line 130 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a0dc4f0bb6b24e365e96428f6138dbde}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-41@{s\_\-5\_\-41}}
+\index{s\_\-5\_\-41@{s\_\-5\_\-41}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-41}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-41}\mbox{[}4\mbox{]} = \{ 'o', 's', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a0dc4f0bb6b24e365e96428f6138dbde}
+
+
+
+
+Definition at line 131 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_692d72cb32e60afb12391136e8aa71d4}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-42@{s\_\-5\_\-42}}
+\index{s\_\-5\_\-42@{s\_\-5\_\-42}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-42}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-42}\mbox{[}7\mbox{]} = \{ 'a', 'm', 'e', 'n', 't', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_692d72cb32e60afb12391136e8aa71d4}
+
+
+
+
+Definition at line 132 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b8332925da28b7e9cd1dd27b6f00a0d8}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-43@{s\_\-5\_\-43}}
+\index{s\_\-5\_\-43@{s\_\-5\_\-43}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-43}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-43}\mbox{[}7\mbox{]} = \{ 'i', 'm', 'e', 'n', 't', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b8332925da28b7e9cd1dd27b6f00a0d8}
+
+
+
+
+Definition at line 133 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b11df965a58873d6f03a5fa094a71bd2}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-44@{s\_\-5\_\-44}}
+\index{s\_\-5\_\-44@{s\_\-5\_\-44}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-44}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-44}\mbox{[}4\mbox{]} = \{ 'i', 'v', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b11df965a58873d6f03a5fa094a71bd2}
+
+
+
+
+Definition at line 134 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e9953dc012113cb7f7d2bcee333db3bc}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-5@{s\_\-5\_\-5}}
+\index{s\_\-5\_\-5@{s\_\-5\_\-5}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-5}\mbox{[}3\mbox{]} = \{ 'o', 's', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e9953dc012113cb7f7d2bcee333db3bc}
+
+
+
+
+Definition at line 95 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_19e155fe0d779f43ee1a654188e8340f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-6@{s\_\-5\_\-6}}
+\index{s\_\-5\_\-6@{s\_\-5\_\-6}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-6}\mbox{[}4\mbox{]} = \{ 'i', 's', 't', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_19e155fe0d779f43ee1a654188e8340f}
+
+
+
+
+Definition at line 96 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_64d0e97f50230ced5fd3a25b4903f083}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-7@{s\_\-5\_\-7}}
+\index{s\_\-5\_\-7@{s\_\-5\_\-7}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-7}\mbox{[}3\mbox{]} = \{ 'i', 'v', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_64d0e97f50230ced5fd3a25b4903f083}
+
+
+
+
+Definition at line 97 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c3388388461fc7226c3c68dc1c87644b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-8@{s\_\-5\_\-8}}
+\index{s\_\-5\_\-8@{s\_\-5\_\-8}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-8}\mbox{[}3\mbox{]} = \{ 'e', 'z', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c3388388461fc7226c3c68dc1c87644b}
+
+
+
+
+Definition at line 98 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f1b42664649dbca08fe0722d9301bb75}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-5\_\-9@{s\_\-5\_\-9}}
+\index{s\_\-5\_\-9@{s\_\-5\_\-9}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-5\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-9}\mbox{[}6\mbox{]} = \{ 'l', 'o', 'g', 0xC3, 0xAD, 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f1b42664649dbca08fe0722d9301bb75}
+
+
+
+
+Definition at line 99 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_49dfcd185612e79f769e174b7c22846f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6@{s\_\-6}}
+\index{s\_\-6@{s\_\-6}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6}\mbox{[}$\,$\mbox{]} = \{ 'e', 'n', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_49dfcd185612e79f769e174b7c22846f}
+
+
+
+
+Definition at line 470 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c98120383d2595dcf5dc2fe9a00bf03e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-0@{s\_\-6\_\-0}}
+\index{s\_\-6\_\-0@{s\_\-6\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-0}\mbox{[}3\mbox{]} = \{ 'a', 'd', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c98120383d2595dcf5dc2fe9a00bf03e}
+
+
+
+
+Definition at line 185 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2cf8952ca50d937a3ec224c5277ea52c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-1@{s\_\-6\_\-1}}
+\index{s\_\-6\_\-1@{s\_\-6\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-1}\mbox{[}3\mbox{]} = \{ 'i', 'd', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2cf8952ca50d937a3ec224c5277ea52c}
+
+
+
+
+Definition at line 186 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a5d298aa83e3b2abbcda27c969449c0a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-10@{s\_\-6\_\-10}}
+\index{s\_\-6\_\-10@{s\_\-6\_\-10}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-10}\mbox{[}4\mbox{]} = \{ 'a', 's', 's', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a5d298aa83e3b2abbcda27c969449c0a}
+
+
+
+
+Definition at line 195 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_8beb64776606876beb9556aa7cca1bb1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-100@{s\_\-6\_\-100}}
+\index{s\_\-6\_\-100@{s\_\-6\_\-100}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-100}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-100}\mbox{[}6\mbox{]} = \{ 'a', 'r', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_8beb64776606876beb9556aa7cca1bb1}
+
+
+
+
+Definition at line 285 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d025bab3ceb3fa3bc8cc5e414383e894}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-101@{s\_\-6\_\-101}}
+\index{s\_\-6\_\-101@{s\_\-6\_\-101}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-101}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-101}\mbox{[}6\mbox{]} = \{ 'e', 'r', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d025bab3ceb3fa3bc8cc5e414383e894}
+
+
+
+
+Definition at line 286 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_42bc5d6e14dfd864f7060a90e8debf80}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-102@{s\_\-6\_\-102}}
+\index{s\_\-6\_\-102@{s\_\-6\_\-102}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-102}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-102}\mbox{[}6\mbox{]} = \{ 'i', 'r', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_42bc5d6e14dfd864f7060a90e8debf80}
+
+
+
+
+Definition at line 287 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_53636f39181aa95ead6b2f27630deb86}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-103@{s\_\-6\_\-103}}
+\index{s\_\-6\_\-103@{s\_\-6\_\-103}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-103}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-103}\mbox{[}8\mbox{]} = \{ 0xC3, 0xA1, 's', 's', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_53636f39181aa95ead6b2f27630deb86}
+
+
+
+
+Definition at line 288 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_18001244715c1bbb08f9caecc081b6de}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-104@{s\_\-6\_\-104}}
+\index{s\_\-6\_\-104@{s\_\-6\_\-104}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-104}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-104}\mbox{[}8\mbox{]} = \{ 0xC3, 0xAA, 's', 's', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_18001244715c1bbb08f9caecc081b6de}
+
+
+
+
+Definition at line 289 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5bc26594babf4bf6a4a373a1813c6e63}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-105@{s\_\-6\_\-105}}
+\index{s\_\-6\_\-105@{s\_\-6\_\-105}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-105}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-105}\mbox{[}8\mbox{]} = \{ 0xC3, 0xAD, 's', 's', 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5bc26594babf4bf6a4a373a1813c6e63}
+
+
+
+
+Definition at line 290 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0e49019da407707def946682b3f0459a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-106@{s\_\-6\_\-106}}
+\index{s\_\-6\_\-106@{s\_\-6\_\-106}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-106}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-106}\mbox{[}4\mbox{]} = \{ 'i', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0e49019da407707def946682b3f0459a}
+
+
+
+
+Definition at line 291 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_8452d750dff6710194a8b9d045d6db4b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-107@{s\_\-6\_\-107}}
+\index{s\_\-6\_\-107@{s\_\-6\_\-107}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-107}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-107}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_8452d750dff6710194a8b9d045d6db4b}
+
+
+
+
+Definition at line 292 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4327823654e71092415bc4b5bd165890}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-108@{s\_\-6\_\-108}}
+\index{s\_\-6\_\-108@{s\_\-6\_\-108}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-108}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-108}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4327823654e71092415bc4b5bd165890}
+
+
+
+
+Definition at line 293 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_9a3e7e456454fbe8e01fefd667c9c011}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-109@{s\_\-6\_\-109}}
+\index{s\_\-6\_\-109@{s\_\-6\_\-109}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-109}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-109}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_9a3e7e456454fbe8e01fefd667c9c011}
+
+
+
+
+Definition at line 294 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e8d05b8c18c0df91f63f424df7d50c20}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-11@{s\_\-6\_\-11}}
+\index{s\_\-6\_\-11@{s\_\-6\_\-11}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-11}\mbox{[}4\mbox{]} = \{ 'e', 's', 's', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e8d05b8c18c0df91f63f424df7d50c20}
+
+
+
+
+Definition at line 196 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6a761dd8d7e8970ed12359de9aa79b5b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-110@{s\_\-6\_\-110}}
+\index{s\_\-6\_\-110@{s\_\-6\_\-110}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-110}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-110}\mbox{[}5\mbox{]} = \{ 0xC3, 0xA1, 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6a761dd8d7e8970ed12359de9aa79b5b}
+
+
+
+
+Definition at line 295 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ef933ac3e85206c553f40ad5ded233d5}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-111@{s\_\-6\_\-111}}
+\index{s\_\-6\_\-111@{s\_\-6\_\-111}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-111}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-111}\mbox{[}5\mbox{]} = \{ 'a', 'r', 0xC3, 0xA1, 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ef933ac3e85206c553f40ad5ded233d5}
+
+
+
+
+Definition at line 296 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3259e2cce0e3cf768076cbc3d518c492}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-112@{s\_\-6\_\-112}}
+\index{s\_\-6\_\-112@{s\_\-6\_\-112}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-112}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-112}\mbox{[}5\mbox{]} = \{ 'e', 'r', 0xC3, 0xA1, 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3259e2cce0e3cf768076cbc3d518c492}
+
+
+
+
+Definition at line 297 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ebce2e2e07b180290b8a69b707c1a230}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-113@{s\_\-6\_\-113}}
+\index{s\_\-6\_\-113@{s\_\-6\_\-113}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-113}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-113}\mbox{[}5\mbox{]} = \{ 'i', 'r', 0xC3, 0xA1, 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ebce2e2e07b180290b8a69b707c1a230}
+
+
+
+
+Definition at line 298 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_713bae07eb1d71a0067007c5c2d1db73}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-114@{s\_\-6\_\-114}}
+\index{s\_\-6\_\-114@{s\_\-6\_\-114}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-114}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-114}\mbox{[}2\mbox{]} = \{ 'e', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_713bae07eb1d71a0067007c5c2d1db73}
+
+
+
+
+Definition at line 299 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_744d8b7cf5f3f333c4b5e4a1e10ef938}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-115@{s\_\-6\_\-115}}
+\index{s\_\-6\_\-115@{s\_\-6\_\-115}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-115}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-115}\mbox{[}2\mbox{]} = \{ 'i', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_744d8b7cf5f3f333c4b5e4a1e10ef938}
+
+
+
+
+Definition at line 300 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_517829a93b49584e52cd303311d673af}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-116@{s\_\-6\_\-116}}
+\index{s\_\-6\_\-116@{s\_\-6\_\-116}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-116}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-116}\mbox{[}2\mbox{]} = \{ 'o', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_517829a93b49584e52cd303311d673af}
+
+
+
+
+Definition at line 301 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a49f56ac81a0f3138d9a1e750787f5f6}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-117@{s\_\-6\_\-117}}
+\index{s\_\-6\_\-117@{s\_\-6\_\-117}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-117}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-117}\mbox{[}4\mbox{]} = \{ 'a', 'r', 0xC3, 0xA1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a49f56ac81a0f3138d9a1e750787f5f6}
+
+
+
+
+Definition at line 302 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a38a287cf2ffe595fb3de967d62e7754}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-118@{s\_\-6\_\-118}}
+\index{s\_\-6\_\-118@{s\_\-6\_\-118}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-118}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-118}\mbox{[}4\mbox{]} = \{ 'e', 'r', 0xC3, 0xA1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a38a287cf2ffe595fb3de967d62e7754}
+
+
+
+
+Definition at line 303 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_376ab07389cea10edf86214b546a07f1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-119@{s\_\-6\_\-119}}
+\index{s\_\-6\_\-119@{s\_\-6\_\-119}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-119}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-119}\mbox{[}4\mbox{]} = \{ 'i', 'r', 0xC3, 0xA1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_376ab07389cea10edf86214b546a07f1}
+
+
+
+
+Definition at line 304 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5e0fcce0fdc970a00d437ec97f9a9b4b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-12@{s\_\-6\_\-12}}
+\index{s\_\-6\_\-12@{s\_\-6\_\-12}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-12}\mbox{[}4\mbox{]} = \{ 'i', 's', 's', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5e0fcce0fdc970a00d437ec97f9a9b4b}
+
+
+
+
+Definition at line 197 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_be07658da483bc8f23cfcf211da9d877}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-13@{s\_\-6\_\-13}}
+\index{s\_\-6\_\-13@{s\_\-6\_\-13}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-13}\mbox{[}4\mbox{]} = \{ 'a', 's', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_be07658da483bc8f23cfcf211da9d877}
+
+
+
+
+Definition at line 198 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_bb0db5a8b94f803935bd9507dfefb4b0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-14@{s\_\-6\_\-14}}
+\index{s\_\-6\_\-14@{s\_\-6\_\-14}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-14}\mbox{[}4\mbox{]} = \{ 'e', 's', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_bb0db5a8b94f803935bd9507dfefb4b0}
+
+
+
+
+Definition at line 199 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c804727e754e8470677833afc4929e47}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-15@{s\_\-6\_\-15}}
+\index{s\_\-6\_\-15@{s\_\-6\_\-15}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-15}\mbox{[}4\mbox{]} = \{ 'i', 's', 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c804727e754e8470677833afc4929e47}
+
+
+
+
+Definition at line 200 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_041fa42b4646cb7089146d79f69c0200}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-16@{s\_\-6\_\-16}}
+\index{s\_\-6\_\-16@{s\_\-6\_\-16}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-16}\mbox{[}2\mbox{]} = \{ 'e', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_041fa42b4646cb7089146d79f69c0200}
+
+
+
+
+Definition at line 201 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a5f0f93420334b165249a9cdafdea8b1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-17@{s\_\-6\_\-17}}
+\index{s\_\-6\_\-17@{s\_\-6\_\-17}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-17}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a5f0f93420334b165249a9cdafdea8b1}
+
+
+
+
+Definition at line 202 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_74e31f31e92b217d0f940fa7d0bfa53e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-18@{s\_\-6\_\-18}}
+\index{s\_\-6\_\-18@{s\_\-6\_\-18}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-18}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_74e31f31e92b217d0f940fa7d0bfa53e}
+
+
+
+
+Definition at line 203 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7d7fc0f129d12c9c2aa5fa11edc4486b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-19@{s\_\-6\_\-19}}
+\index{s\_\-6\_\-19@{s\_\-6\_\-19}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-19}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7d7fc0f129d12c9c2aa5fa11edc4486b}
+
+
+
+
+Definition at line 204 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_8e3a6d314a441c0953ea453c2ef528c9}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-2@{s\_\-6\_\-2}}
+\index{s\_\-6\_\-2@{s\_\-6\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-2}\mbox{[}2\mbox{]} = \{ 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_8e3a6d314a441c0953ea453c2ef528c9}
+
+
+
+
+Definition at line 187 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7fdf210fafb155695d0c4f2cc61f9d46}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-20@{s\_\-6\_\-20}}
+\index{s\_\-6\_\-20@{s\_\-6\_\-20}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-20}\mbox{[}2\mbox{]} = \{ 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7fdf210fafb155695d0c4f2cc61f9d46}
+
+
+
+
+Definition at line 205 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6dd749c509cd72b85b300d8cc0d0eaed}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-21@{s\_\-6\_\-21}}
+\index{s\_\-6\_\-21@{s\_\-6\_\-21}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-21}\mbox{[}3\mbox{]} = \{ 'i', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6dd749c509cd72b85b300d8cc0d0eaed}
+
+
+
+
+Definition at line 206 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6f93e40c13137b535742d79ddc685d5f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-22@{s\_\-6\_\-22}}
+\index{s\_\-6\_\-22@{s\_\-6\_\-22}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-22}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'i', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6f93e40c13137b535742d79ddc685d5f}
+
+
+
+
+Definition at line 207 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_71fb71f13608cee0c9b656cf157656e9}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-23@{s\_\-6\_\-23}}
+\index{s\_\-6\_\-23@{s\_\-6\_\-23}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-23}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'i', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_71fb71f13608cee0c9b656cf157656e9}
+
+
+
+
+Definition at line 208 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_11d468de14e76c21823222d4a80cc5b4}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-24@{s\_\-6\_\-24}}
+\index{s\_\-6\_\-24@{s\_\-6\_\-24}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-24}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'i', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_11d468de14e76c21823222d4a80cc5b4}
+
+
+
+
+Definition at line 209 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d5b7c5e12c3aa1244ed582655251e2eb}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-25@{s\_\-6\_\-25}}
+\index{s\_\-6\_\-25@{s\_\-6\_\-25}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-25}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d5b7c5e12c3aa1244ed582655251e2eb}
+
+
+
+
+Definition at line 210 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_67b63a6da30618e05f1452f09a1706d9}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-26@{s\_\-6\_\-26}}
+\index{s\_\-6\_\-26@{s\_\-6\_\-26}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-26}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_67b63a6da30618e05f1452f09a1706d9}
+
+
+
+
+Definition at line 211 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6f4299393301cf6e99a56b19fc8e1895}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-27@{s\_\-6\_\-27}}
+\index{s\_\-6\_\-27@{s\_\-6\_\-27}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-27}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6f4299393301cf6e99a56b19fc8e1895}
+
+
+
+
+Definition at line 212 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e87679fe3841e950ebcba7e56a135c8c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-28@{s\_\-6\_\-28}}
+\index{s\_\-6\_\-28@{s\_\-6\_\-28}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-28}\mbox{[}4\mbox{]} = \{ 'a', 'v', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e87679fe3841e950ebcba7e56a135c8c}
+
+
+
+
+Definition at line 213 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2cbeaa15ba5427f755e997fcc4d0746e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-29@{s\_\-6\_\-29}}
+\index{s\_\-6\_\-29@{s\_\-6\_\-29}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-29}\mbox{[}2\mbox{]} = \{ 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2cbeaa15ba5427f755e997fcc4d0746e}
+
+
+
+
+Definition at line 214 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5695ef9b5831b7884bfb78723878f529}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-3@{s\_\-6\_\-3}}
+\index{s\_\-6\_\-3@{s\_\-6\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-3}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5695ef9b5831b7884bfb78723878f529}
+
+
+
+
+Definition at line 188 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_93ee4a473bacf84dd942b0c1bbef97e1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-30@{s\_\-6\_\-30}}
+\index{s\_\-6\_\-30@{s\_\-6\_\-30}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-30}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_93ee4a473bacf84dd942b0c1bbef97e1}
+
+
+
+
+Definition at line 215 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_840971160ae5e6098c1587386a06477d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-31@{s\_\-6\_\-31}}
+\index{s\_\-6\_\-31@{s\_\-6\_\-31}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-31}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_840971160ae5e6098c1587386a06477d}
+
+
+
+
+Definition at line 216 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_623443e034e02602fe6f9fd1a8b15ed1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-32@{s\_\-6\_\-32}}
+\index{s\_\-6\_\-32@{s\_\-6\_\-32}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-32}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-32}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_623443e034e02602fe6f9fd1a8b15ed1}
+
+
+
+
+Definition at line 217 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_33b51e7fc5eb164669a35d3cf09d1eea}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-33@{s\_\-6\_\-33}}
+\index{s\_\-6\_\-33@{s\_\-6\_\-33}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-33}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-33}\mbox{[}5\mbox{]} = \{ 'a', 's', 's', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_33b51e7fc5eb164669a35d3cf09d1eea}
+
+
+
+
+Definition at line 218 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2ce7667a375ca632cca7bca217ce0d66}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-34@{s\_\-6\_\-34}}
+\index{s\_\-6\_\-34@{s\_\-6\_\-34}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-34}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-34}\mbox{[}5\mbox{]} = \{ 'e', 's', 's', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2ce7667a375ca632cca7bca217ce0d66}
+
+
+
+
+Definition at line 219 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b29da520f8ee358b88e918e494dc5f80}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-35@{s\_\-6\_\-35}}
+\index{s\_\-6\_\-35@{s\_\-6\_\-35}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-35}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-35}\mbox{[}5\mbox{]} = \{ 'i', 's', 's', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b29da520f8ee358b88e918e494dc5f80}
+
+
+
+
+Definition at line 220 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b9172d3d6b0796fbe8e2a0480f1a0bf2}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-36@{s\_\-6\_\-36}}
+\index{s\_\-6\_\-36@{s\_\-6\_\-36}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-36}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-36}\mbox{[}3\mbox{]} = \{ 'a', 'd', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b9172d3d6b0796fbe8e2a0480f1a0bf2}
+
+
+
+
+Definition at line 221 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e779b954ab7c1ea4af0cc592206fde8d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-37@{s\_\-6\_\-37}}
+\index{s\_\-6\_\-37@{s\_\-6\_\-37}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-37}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-37}\mbox{[}3\mbox{]} = \{ 'i', 'd', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e779b954ab7c1ea4af0cc592206fde8d}
+
+
+
+
+Definition at line 222 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_45a65bd612e442e639e706dd83569add}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-38@{s\_\-6\_\-38}}
+\index{s\_\-6\_\-38@{s\_\-6\_\-38}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-38}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-38}\mbox{[}4\mbox{]} = \{ 'a', 'n', 'd', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_45a65bd612e442e639e706dd83569add}
+
+
+
+
+Definition at line 223 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5796f20768e169c956374dfab66d0195}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-39@{s\_\-6\_\-39}}
+\index{s\_\-6\_\-39@{s\_\-6\_\-39}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-39}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-39}\mbox{[}4\mbox{]} = \{ 'e', 'n', 'd', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5796f20768e169c956374dfab66d0195}
+
+
+
+
+Definition at line 224 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7606f4a1af6624092882734ffa6dc541}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-4@{s\_\-6\_\-4}}
+\index{s\_\-6\_\-4@{s\_\-6\_\-4}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-4}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7606f4a1af6624092882734ffa6dc541}
+
+
+
+
+Definition at line 189 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_07195663e7bb479b5b644c0e89373c43}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-40@{s\_\-6\_\-40}}
+\index{s\_\-6\_\-40@{s\_\-6\_\-40}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-40}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-40}\mbox{[}4\mbox{]} = \{ 'i', 'n', 'd', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_07195663e7bb479b5b644c0e89373c43}
+
+
+
+
+Definition at line 225 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_af994203df4bb285336e03eb0d43fbed}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-41@{s\_\-6\_\-41}}
+\index{s\_\-6\_\-41@{s\_\-6\_\-41}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-41}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-41}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'a', '$\sim$', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_af994203df4bb285336e03eb0d43fbed}
+
+
+
+
+Definition at line 226 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d4ef1e2862dc7787e237b84ea4b513fc}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-42@{s\_\-6\_\-42}}
+\index{s\_\-6\_\-42@{s\_\-6\_\-42}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-42}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-42}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'a', '$\sim$', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d4ef1e2862dc7787e237b84ea4b513fc}
+
+
+
+
+Definition at line 227 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_337df565957807e56b534d86b13b0849}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-43@{s\_\-6\_\-43}}
+\index{s\_\-6\_\-43@{s\_\-6\_\-43}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-43}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-43}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'a', '$\sim$', 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_337df565957807e56b534d86b13b0849}
+
+
+
+
+Definition at line 228 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2c9eafc8d1c67dd1a4ce44b1fac150ec}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-44@{s\_\-6\_\-44}}
+\index{s\_\-6\_\-44@{s\_\-6\_\-44}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-44}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-44}\mbox{[}2\mbox{]} = \{ 'a', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2c9eafc8d1c67dd1a4ce44b1fac150ec}
+
+
+
+
+Definition at line 229 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3ee2b1277cd3dfb578cd457539fc5607}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-45@{s\_\-6\_\-45}}
+\index{s\_\-6\_\-45@{s\_\-6\_\-45}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-45}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-45}\mbox{[}2\mbox{]} = \{ 'e', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3ee2b1277cd3dfb578cd457539fc5607}
+
+
+
+
+Definition at line 230 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5b4ff63499555440dc371455d8611224}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-46@{s\_\-6\_\-46}}
+\index{s\_\-6\_\-46@{s\_\-6\_\-46}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-46}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-46}\mbox{[}2\mbox{]} = \{ 'i', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5b4ff63499555440dc371455d8611224}
+
+
+
+
+Definition at line 231 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3ca59ea4beee4dbf0680d7e18ac970b0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-47@{s\_\-6\_\-47}}
+\index{s\_\-6\_\-47@{s\_\-6\_\-47}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-47}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-47}\mbox{[}2\mbox{]} = \{ 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3ca59ea4beee4dbf0680d7e18ac970b0}
+
+
+
+
+Definition at line 232 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0fe105d4501e1748ca9681c4d1ce8462}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-48@{s\_\-6\_\-48}}
+\index{s\_\-6\_\-48@{s\_\-6\_\-48}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-48}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-48}\mbox{[}4\mbox{]} = \{ 'a', 'd', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0fe105d4501e1748ca9681c4d1ce8462}
+
+
+
+
+Definition at line 233 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ced6716e0488a4ea94afbaf6b932fa70}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-49@{s\_\-6\_\-49}}
+\index{s\_\-6\_\-49@{s\_\-6\_\-49}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-49}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-49}\mbox{[}4\mbox{]} = \{ 'i', 'd', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ced6716e0488a4ea94afbaf6b932fa70}
+
+
+
+
+Definition at line 234 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f459e6ce5d3d07c03dab0c03aef1ada7}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-5@{s\_\-6\_\-5}}
+\index{s\_\-6\_\-5@{s\_\-6\_\-5}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-5}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'i', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f459e6ce5d3d07c03dab0c03aef1ada7}
+
+
+
+
+Definition at line 190 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_083726f30f606aa1dbd712ccd7f6078d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-50@{s\_\-6\_\-50}}
+\index{s\_\-6\_\-50@{s\_\-6\_\-50}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-50}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-50}\mbox{[}3\mbox{]} = \{ 'i', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_083726f30f606aa1dbd712ccd7f6078d}
+
+
+
+
+Definition at line 235 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_95042091256d75702a54d71a24573f0f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-51@{s\_\-6\_\-51}}
+\index{s\_\-6\_\-51@{s\_\-6\_\-51}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-51}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-51}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'i', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_95042091256d75702a54d71a24573f0f}
+
+
+
+
+Definition at line 236 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_438ef694ceb22f50074a0cc281ff9d2c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-52@{s\_\-6\_\-52}}
+\index{s\_\-6\_\-52@{s\_\-6\_\-52}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-52}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-52}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'i', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_438ef694ceb22f50074a0cc281ff9d2c}
+
+
+
+
+Definition at line 237 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f3eda93b7f36ca72dcadf41c9e9b76af}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-53@{s\_\-6\_\-53}}
+\index{s\_\-6\_\-53@{s\_\-6\_\-53}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-53}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-53}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'i', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f3eda93b7f36ca72dcadf41c9e9b76af}
+
+
+
+
+Definition at line 238 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6876ad1e516c2b4163b8df8b5bb9c9c6}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-54@{s\_\-6\_\-54}}
+\index{s\_\-6\_\-54@{s\_\-6\_\-54}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-54}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-54}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6876ad1e516c2b4163b8df8b5bb9c9c6}
+
+
+
+
+Definition at line 239 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_14a61cc9adeb8d5f26b44e8111d0fb27}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-55@{s\_\-6\_\-55}}
+\index{s\_\-6\_\-55@{s\_\-6\_\-55}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-55}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-55}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_14a61cc9adeb8d5f26b44e8111d0fb27}
+
+
+
+
+Definition at line 240 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0d497aa428adaec23abc573f66fd2d95}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-56@{s\_\-6\_\-56}}
+\index{s\_\-6\_\-56@{s\_\-6\_\-56}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-56}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-56}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0d497aa428adaec23abc573f66fd2d95}
+
+
+
+
+Definition at line 241 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3eafb4add99b03b1059fc5b48e75d31a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-57@{s\_\-6\_\-57}}
+\index{s\_\-6\_\-57@{s\_\-6\_\-57}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-57}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-57}\mbox{[}4\mbox{]} = \{ 'a', 'v', 'a', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3eafb4add99b03b1059fc5b48e75d31a}
+
+
+
+
+Definition at line 242 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e3a7cb23525aee7ce4da8a86e148e6bd}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-58@{s\_\-6\_\-58}}
+\index{s\_\-6\_\-58@{s\_\-6\_\-58}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-58}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-58}\mbox{[}2\mbox{]} = \{ 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e3a7cb23525aee7ce4da8a86e148e6bd}
+
+
+
+
+Definition at line 243 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_23d9694dcc2e6c79c12fb8d4824f98af}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-59@{s\_\-6\_\-59}}
+\index{s\_\-6\_\-59@{s\_\-6\_\-59}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-59}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-59}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_23d9694dcc2e6c79c12fb8d4824f98af}
+
+
+
+
+Definition at line 244 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_51c0d2018f2a1c2c26b5b0a1f57e7537}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-6@{s\_\-6\_\-6}}
+\index{s\_\-6\_\-6@{s\_\-6\_\-6}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-6}\mbox{[}3\mbox{]} = \{ 'a', 'r', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_51c0d2018f2a1c2c26b5b0a1f57e7537}
+
+
+
+
+Definition at line 191 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_39944448218daf88eaf48ca52c9568b2}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-60@{s\_\-6\_\-60}}
+\index{s\_\-6\_\-60@{s\_\-6\_\-60}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-60}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-60}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_39944448218daf88eaf48ca52c9568b2}
+
+
+
+
+Definition at line 245 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7686bd3225162f8eac73b9dc44bc4530}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-61@{s\_\-6\_\-61}}
+\index{s\_\-6\_\-61@{s\_\-6\_\-61}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-61}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-61}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7686bd3225162f8eac73b9dc44bc4530}
+
+
+
+
+Definition at line 246 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_259fcbe7aef9c7935374c6cad48918af}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-62@{s\_\-6\_\-62}}
+\index{s\_\-6\_\-62@{s\_\-6\_\-62}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-62}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-62}\mbox{[}4\mbox{]} = \{ 'a', 'r', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_259fcbe7aef9c7935374c6cad48918af}
+
+
+
+
+Definition at line 247 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_31cc6a6073415072d08aa7c810b5022a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-63@{s\_\-6\_\-63}}
+\index{s\_\-6\_\-63@{s\_\-6\_\-63}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-63}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-63}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_31cc6a6073415072d08aa7c810b5022a}
+
+
+
+
+Definition at line 248 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_efd6ea8adf192b88195aafd8361524e0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-64@{s\_\-6\_\-64}}
+\index{s\_\-6\_\-64@{s\_\-6\_\-64}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-64}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-64}\mbox{[}4\mbox{]} = \{ 'i', 'r', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_efd6ea8adf192b88195aafd8361524e0}
+
+
+
+
+Definition at line 249 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_8c78a596f3e50b9bb82a162f4484db08}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-65@{s\_\-6\_\-65}}
+\index{s\_\-6\_\-65@{s\_\-6\_\-65}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-65}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-65}\mbox{[}5\mbox{]} = \{ 'a', 's', 's', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_8c78a596f3e50b9bb82a162f4484db08}
+
+
+
+
+Definition at line 250 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_59eeb6517ec61161f6b4531a894626df}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-66@{s\_\-6\_\-66}}
+\index{s\_\-6\_\-66@{s\_\-6\_\-66}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-66}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-66}\mbox{[}5\mbox{]} = \{ 'e', 's', 's', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_59eeb6517ec61161f6b4531a894626df}
+
+
+
+
+Definition at line 251 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_1a1d0a5a61b7e6b9229826be7b014fd5}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-67@{s\_\-6\_\-67}}
+\index{s\_\-6\_\-67@{s\_\-6\_\-67}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-67}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-67}\mbox{[}5\mbox{]} = \{ 'i', 's', 's', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_1a1d0a5a61b7e6b9229826be7b014fd5}
+
+
+
+
+Definition at line 252 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d433a4f02d2903315ef3c0b266e8bf66}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-68@{s\_\-6\_\-68}}
+\index{s\_\-6\_\-68@{s\_\-6\_\-68}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-68}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-68}\mbox{[}5\mbox{]} = \{ 'a', 's', 't', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d433a4f02d2903315ef3c0b266e8bf66}
+
+
+
+
+Definition at line 253 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6d65a5d33c5c5ee9885cb1848d414e85}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-69@{s\_\-6\_\-69}}
+\index{s\_\-6\_\-69@{s\_\-6\_\-69}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-69}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-69}\mbox{[}5\mbox{]} = \{ 'e', 's', 't', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6d65a5d33c5c5ee9885cb1848d414e85}
+
+
+
+
+Definition at line 254 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_92669db3024ed5062ceea61874039804}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-7@{s\_\-6\_\-7}}
+\index{s\_\-6\_\-7@{s\_\-6\_\-7}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-7}\mbox{[}3\mbox{]} = \{ 'e', 'r', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_92669db3024ed5062ceea61874039804}
+
+
+
+
+Definition at line 192 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_063857ec203e297d178c06e897589dfc}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-70@{s\_\-6\_\-70}}
+\index{s\_\-6\_\-70@{s\_\-6\_\-70}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-70}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-70}\mbox{[}5\mbox{]} = \{ 'i', 's', 't', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_063857ec203e297d178c06e897589dfc}
+
+
+
+
+Definition at line 255 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_be80d3b549d671007aaa56d281c2eba0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-71@{s\_\-6\_\-71}}
+\index{s\_\-6\_\-71@{s\_\-6\_\-71}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-71}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-71}\mbox{[}2\mbox{]} = \{ 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_be80d3b549d671007aaa56d281c2eba0}
+
+
+
+
+Definition at line 256 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0598f7b7f2ed799d7efa088991b177ba}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-72@{s\_\-6\_\-72}}
+\index{s\_\-6\_\-72@{s\_\-6\_\-72}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-72}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-72}\mbox{[}3\mbox{]} = \{ 'a', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0598f7b7f2ed799d7efa088991b177ba}
+
+
+
+
+Definition at line 257 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_37d0fe6bb6f8831ea67fbb912df16353}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-73@{s\_\-6\_\-73}}
+\index{s\_\-6\_\-73@{s\_\-6\_\-73}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-73}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-73}\mbox{[}3\mbox{]} = \{ 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_37d0fe6bb6f8831ea67fbb912df16353}
+
+
+
+
+Definition at line 258 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_995a10c0d970aad421551968895fc632}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-74@{s\_\-6\_\-74}}
+\index{s\_\-6\_\-74@{s\_\-6\_\-74}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-74}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-74}\mbox{[}5\mbox{]} = \{ 'a', 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_995a10c0d970aad421551968895fc632}
+
+
+
+
+Definition at line 259 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_640837af692f10545436ca73880e024b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-75@{s\_\-6\_\-75}}
+\index{s\_\-6\_\-75@{s\_\-6\_\-75}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-75}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-75}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_640837af692f10545436ca73880e024b}
+
+
+
+
+Definition at line 260 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_113b472afde3448643138fc5fc5dc425}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-76@{s\_\-6\_\-76}}
+\index{s\_\-6\_\-76@{s\_\-6\_\-76}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-76}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-76}\mbox{[}5\mbox{]} = \{ 'i', 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_113b472afde3448643138fc5fc5dc425}
+
+
+
+
+Definition at line 261 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_76f04836d0f2eca32cbb001a69516c32}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-77@{s\_\-6\_\-77}}
+\index{s\_\-6\_\-77@{s\_\-6\_\-77}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-77}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-77}\mbox{[}6\mbox{]} = \{ 0xC3, 0xA1, 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_76f04836d0f2eca32cbb001a69516c32}
+
+
+
+
+Definition at line 262 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f05c7fb140acb41694d4127b16bded58}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-78@{s\_\-6\_\-78}}
+\index{s\_\-6\_\-78@{s\_\-6\_\-78}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-78}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-78}\mbox{[}6\mbox{]} = \{ 0xC3, 0xA9, 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f05c7fb140acb41694d4127b16bded58}
+
+
+
+
+Definition at line 263 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_a254c82ea5fe20f7399ddb81607f56e9}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-79@{s\_\-6\_\-79}}
+\index{s\_\-6\_\-79@{s\_\-6\_\-79}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-79}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-79}\mbox{[}6\mbox{]} = \{ 0xC3, 0xAD, 'r', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_a254c82ea5fe20f7399ddb81607f56e9}
+
+
+
+
+Definition at line 264 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b2ade9bdb9c1e1b1ac22be9f7debc51e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-8@{s\_\-6\_\-8}}
+\index{s\_\-6\_\-8@{s\_\-6\_\-8}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-8}\mbox{[}3\mbox{]} = \{ 'i', 'r', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b2ade9bdb9c1e1b1ac22be9f7debc51e}
+
+
+
+
+Definition at line 193 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7200674b78e9e32f2d04e698fbc60319}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-80@{s\_\-6\_\-80}}
+\index{s\_\-6\_\-80@{s\_\-6\_\-80}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-80}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-80}\mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 's', 's', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7200674b78e9e32f2d04e698fbc60319}
+
+
+
+
+Definition at line 265 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d07ac6b953f81e5a2952a6b1959a628f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-81@{s\_\-6\_\-81}}
+\index{s\_\-6\_\-81@{s\_\-6\_\-81}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-81}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-81}\mbox{[}7\mbox{]} = \{ 0xC3, 0xA9, 's', 's', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d07ac6b953f81e5a2952a6b1959a628f}
+
+
+
+
+Definition at line 266 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_55d6b54fb534e80f6ee3bb5a4d5ec952}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-82@{s\_\-6\_\-82}}
+\index{s\_\-6\_\-82@{s\_\-6\_\-82}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-82}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-82}\mbox{[}7\mbox{]} = \{ 0xC3, 0xAD, 's', 's', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_55d6b54fb534e80f6ee3bb5a4d5ec952}
+
+
+
+
+Definition at line 267 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_73607aa2c7a578ba710d6cb0464e1075}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-83@{s\_\-6\_\-83}}
+\index{s\_\-6\_\-83@{s\_\-6\_\-83}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-83}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-83}\mbox{[}6\mbox{]} = \{ 0xC3, 0xA1, 'v', 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_73607aa2c7a578ba710d6cb0464e1075}
+
+
+
+
+Definition at line 268 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6845cbed08b31cd79fb367e3c612e124}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-84@{s\_\-6\_\-84}}
+\index{s\_\-6\_\-84@{s\_\-6\_\-84}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-84}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-84}\mbox{[}5\mbox{]} = \{ 0xC3, 0xAD, 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6845cbed08b31cd79fb367e3c612e124}
+
+
+
+
+Definition at line 269 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_3cb716b52c7cf85b2acce19b5d1adb5a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-85@{s\_\-6\_\-85}}
+\index{s\_\-6\_\-85@{s\_\-6\_\-85}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-85}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-85}\mbox{[}7\mbox{]} = \{ 'a', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_3cb716b52c7cf85b2acce19b5d1adb5a}
+
+
+
+
+Definition at line 270 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d76f54899fb8f3f94ed3028c02ddbd74}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-86@{s\_\-6\_\-86}}
+\index{s\_\-6\_\-86@{s\_\-6\_\-86}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-86}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-86}\mbox{[}7\mbox{]} = \{ 'e', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d76f54899fb8f3f94ed3028c02ddbd74}
+
+
+
+
+Definition at line 271 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2b73ccd2eec2ba79b8152951d9b504d3}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-87@{s\_\-6\_\-87}}
+\index{s\_\-6\_\-87@{s\_\-6\_\-87}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-87}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-87}\mbox{[}7\mbox{]} = \{ 'i', 'r', 0xC3, 0xAD, 'e', 'i', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2b73ccd2eec2ba79b8152951d9b504d3}
+
+
+
+
+Definition at line 272 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_aabc3afa5f7fd7c00529a29db6e5dfe3}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-88@{s\_\-6\_\-88}}
+\index{s\_\-6\_\-88@{s\_\-6\_\-88}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-88}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-88}\mbox{[}4\mbox{]} = \{ 'a', 'd', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_aabc3afa5f7fd7c00529a29db6e5dfe3}
+
+
+
+
+Definition at line 273 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b97cc3830ba0cfc268dd1d5f015d632d}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-89@{s\_\-6\_\-89}}
+\index{s\_\-6\_\-89@{s\_\-6\_\-89}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-89}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-89}\mbox{[}4\mbox{]} = \{ 'i', 'd', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b97cc3830ba0cfc268dd1d5f015d632d}
+
+
+
+
+Definition at line 274 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_76502c1ff63efc6c6e70ff04b235d1fe}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-9@{s\_\-6\_\-9}}
+\index{s\_\-6\_\-9@{s\_\-6\_\-9}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-9}\mbox{[}3\mbox{]} = \{ 'a', 'v', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_76502c1ff63efc6c6e70ff04b235d1fe}
+
+
+
+
+Definition at line 194 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_6656b70921819ab5fffdd052daf4e85e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-90@{s\_\-6\_\-90}}
+\index{s\_\-6\_\-90@{s\_\-6\_\-90}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-90}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-90}\mbox{[}4\mbox{]} = \{ 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_6656b70921819ab5fffdd052daf4e85e}
+
+
+
+
+Definition at line 275 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_5d4aaca0ac82ed805b1395d2bef428f1}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-91@{s\_\-6\_\-91}}
+\index{s\_\-6\_\-91@{s\_\-6\_\-91}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-91}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-91}\mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 'r', 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_5d4aaca0ac82ed805b1395d2bef428f1}
+
+
+
+
+Definition at line 276 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_330221165c869635166733392d49557b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-92@{s\_\-6\_\-92}}
+\index{s\_\-6\_\-92@{s\_\-6\_\-92}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-92}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-92}\mbox{[}7\mbox{]} = \{ 0xC3, 0xA9, 'r', 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_330221165c869635166733392d49557b}
+
+
+
+
+Definition at line 277 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7676bf292a73241dbb28826c0abc5372}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-93@{s\_\-6\_\-93}}
+\index{s\_\-6\_\-93@{s\_\-6\_\-93}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-93}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-93}\mbox{[}7\mbox{]} = \{ 0xC3, 0xAD, 'r', 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7676bf292a73241dbb28826c0abc5372}
+
+
+
+
+Definition at line 278 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d9f90a55dfe764429cb72dd1737a266f}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-94@{s\_\-6\_\-94}}
+\index{s\_\-6\_\-94@{s\_\-6\_\-94}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-94}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-94}\mbox{[}7\mbox{]} = \{ 0xC3, 0xA1, 'v', 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d9f90a55dfe764429cb72dd1737a266f}
+
+
+
+
+Definition at line 279 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c1ce038a37ea1ce0eb114afb07b07e7e}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-95@{s\_\-6\_\-95}}
+\index{s\_\-6\_\-95@{s\_\-6\_\-95}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-95}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-95}\mbox{[}6\mbox{]} = \{ 0xC3, 0xAD, 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c1ce038a37ea1ce0eb114afb07b07e7e}
+
+
+
+
+Definition at line 280 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_b2bb4648a746457a704c9145401c5905}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-96@{s\_\-6\_\-96}}
+\index{s\_\-6\_\-96@{s\_\-6\_\-96}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-96}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-96}\mbox{[}8\mbox{]} = \{ 'a', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_b2bb4648a746457a704c9145401c5905}
+
+
+
+
+Definition at line 281 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_400f4f0c6ec12f2e4f30f565380cd0a0}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-97@{s\_\-6\_\-97}}
+\index{s\_\-6\_\-97@{s\_\-6\_\-97}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-97}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-97}\mbox{[}8\mbox{]} = \{ 'e', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_400f4f0c6ec12f2e4f30f565380cd0a0}
+
+
+
+
+Definition at line 282 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_e5d92091850b88cc3eea7c3715ad5d7a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-98@{s\_\-6\_\-98}}
+\index{s\_\-6\_\-98@{s\_\-6\_\-98}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-98}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-98}\mbox{[}8\mbox{]} = \{ 'i', 'r', 0xC3, 0xAD, 'a', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_e5d92091850b88cc3eea7c3715ad5d7a}
+
+
+
+
+Definition at line 283 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_d8b733efd2564237f881b5758e7367a5}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-6\_\-99@{s\_\-6\_\-99}}
+\index{s\_\-6\_\-99@{s\_\-6\_\-99}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-6\_\-99}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-99}\mbox{[}4\mbox{]} = \{ 'e', 'm', 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_d8b733efd2564237f881b5758e7367a5}
+
+
+
+
+Definition at line 284 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_643c8aee064467dc72f82ea3aca5afce}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7@{s\_\-7}}
+\index{s\_\-7@{s\_\-7}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7}\mbox{[}$\,$\mbox{]} = \{ 'a', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_643c8aee064467dc72f82ea3aca5afce}
+
+
+
+
+Definition at line 471 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ce833866200cf9eb089c201bf4f5089b}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-0@{s\_\-7\_\-0}}
+\index{s\_\-7\_\-0@{s\_\-7\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-0}\mbox{[}1\mbox{]} = \{ 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ce833866200cf9eb089c201bf4f5089b}
+
+
+
+
+Definition at line 430 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_4ab04d30b7c4e8be1e3f4c77d80a0fcf}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-1@{s\_\-7\_\-1}}
+\index{s\_\-7\_\-1@{s\_\-7\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-1}\mbox{[}1\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_4ab04d30b7c4e8be1e3f4c77d80a0fcf}
+
+
+
+
+Definition at line 431 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_2c69cf3bbefa21feb8ad23228a6a6657}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-2@{s\_\-7\_\-2}}
+\index{s\_\-7\_\-2@{s\_\-7\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-2}\mbox{[}1\mbox{]} = \{ 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_2c69cf3bbefa21feb8ad23228a6a6657}
+
+
+
+
+Definition at line 432 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_0aed1c428bcfa2a4c30afd4c280b31a5}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-3@{s\_\-7\_\-3}}
+\index{s\_\-7\_\-3@{s\_\-7\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-3}\mbox{[}2\mbox{]} = \{ 'o', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_0aed1c428bcfa2a4c30afd4c280b31a5}
+
+
+
+
+Definition at line 433 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_ace06cf9fd3062e4e97b96c066c87878}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-4@{s\_\-7\_\-4}}
+\index{s\_\-7\_\-4@{s\_\-7\_\-4}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-4}\mbox{[}2\mbox{]} = \{ 0xC3, 0xA1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_ace06cf9fd3062e4e97b96c066c87878}
+
+
+
+
+Definition at line 434 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_491a4f122acbce0164588ca80bed0e2c}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-5@{s\_\-7\_\-5}}
+\index{s\_\-7\_\-5@{s\_\-7\_\-5}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-5}\mbox{[}2\mbox{]} = \{ 0xC3, 0xAD \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_491a4f122acbce0164588ca80bed0e2c}
+
+
+
+
+Definition at line 435 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_53fc70eb25c3e12fd1f28af3516d0781}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-7\_\-6@{s\_\-7\_\-6}}
+\index{s\_\-7\_\-6@{s\_\-7\_\-6}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-7\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-6}\mbox{[}2\mbox{]} = \{ 0xC3, 0xB3 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_53fc70eb25c3e12fd1f28af3516d0781}
+
+
+
+
+Definition at line 436 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f16bd0889f5653a235489fb6013bc454}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-8@{s\_\-8}}
+\index{s\_\-8@{s\_\-8}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8}\mbox{[}$\,$\mbox{]} = \{ 'a', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f16bd0889f5653a235489fb6013bc454}
+
+
+
+
+Definition at line 472 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f7d96b4249f9f8ce3f1a32cdac4cb823}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-8\_\-0@{s\_\-8\_\-0}}
+\index{s\_\-8\_\-0@{s\_\-8\_\-0}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-8\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-0}\mbox{[}1\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f7d96b4249f9f8ce3f1a32cdac4cb823}
+
+
+
+
+Definition at line 449 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_c77d862be6dbdaf956ca10e05b02cb08}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-8\_\-1@{s\_\-8\_\-1}}
+\index{s\_\-8\_\-1@{s\_\-8\_\-1}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-8\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-1}\mbox{[}2\mbox{]} = \{ 0xC3, 0xA7 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_c77d862be6dbdaf956ca10e05b02cb08}
+
+
+
+
+Definition at line 450 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_1241a115151a2344ce8a98969e91c359}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-8\_\-2@{s\_\-8\_\-2}}
+\index{s\_\-8\_\-2@{s\_\-8\_\-2}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-8\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-2}\mbox{[}2\mbox{]} = \{ 0xC3, 0xA9 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_1241a115151a2344ce8a98969e91c359}
+
+
+
+
+Definition at line 451 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_7c8b219d494bd9e7fa82e16557d06b75}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-8\_\-3@{s\_\-8\_\-3}}
+\index{s\_\-8\_\-3@{s\_\-8\_\-3}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-8\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-3}\mbox{[}2\mbox{]} = \{ 0xC3, 0xAA \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_7c8b219d494bd9e7fa82e16557d06b75}
+
+
+
+
+Definition at line 452 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.\hypertarget{stem__UTF__8__portuguese_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}{
+\index{stem\_\-UTF\_\-8\_\-portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}!s\_\-9@{s\_\-9}}
+\index{s\_\-9@{s\_\-9}!stem_UTF_8_portuguese.cpp@{stem\_\-UTF\_\-8\_\-portuguese.cpp}}
+\subsubsection[{s\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-9}\mbox{[}$\,$\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__portuguese_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}
+
+
+
+
+Definition at line 473 of file stem\_\-UTF\_\-8\_\-portuguese.cpp.

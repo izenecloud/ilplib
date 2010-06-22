@@ -1,0 +1,480 @@
+\hypertarget{classla__manager_1_1LAConfiguration}{
+\section{la\_\-manager::LAConfiguration Class Reference}
+\label{classla__manager_1_1LAConfiguration}\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+}
+interface of \hyperlink{classla__manager_1_1LAConfiguration}{LAConfiguration} This class defines the configuration of LA manager  
+
+
+{\tt \#include $<$LAManager.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1LAConfiguration_87843181ddb38cbed89ca0c5bce1dbb6}{LAConfiguration} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_9cca2d25b40c0104d0271a2a1403dcb7}{useNounFilter}
+\begin{CompactList}\small\item\em whether to use NounFilter \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_02c953de4f3db786e882ae7299b1afd0}{useLengthFilter}
+\begin{CompactList}\small\item\em whether to use \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_0e7754360be451943a8bdb250205a203}{useStopFilter}
+\begin{CompactList}\small\item\em whether to use StopAnalyzer \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_931c1acb6d3c09c43fabc8c40cc40c7e}{useStemAnalyzer}
+\begin{CompactList}\small\item\em whether to use \hyperlink{classla__manager_1_1StemAnalyzer}{StemAnalyzer} \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_9f03faf2af4dfd1deaea622324a7b8b2}{useNGramAnalyzer}
+\begin{CompactList}\small\item\em whether to use \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1LAConfiguration_b1d895d5e5fefba04c6e45acb6fb8f2e}{language}
+\begin{CompactList}\small\item\em language \item\end{CompactList}\item 
+UString::EncodingType \hyperlink{classla__manager_1_1LAConfiguration_5b41d31f3e921fc03a111ff0162f36a7}{encodingType}
+\begin{CompactList}\small\item\em encoding type \item\end{CompactList}\item 
+string \hyperlink{classla__manager_1_1LAConfiguration_742018fadbd178f65c971474765fc1e4}{stopDicPath}
+\begin{CompactList}\small\item\em stop word file path \item\end{CompactList}\item 
+string \hyperlink{classla__manager_1_1LAConfiguration_4fa8698f13d1fe2c9b946b12093e904a}{posModelDirEN}
+\begin{CompactList}\small\item\em model directory of English POS tagger \item\end{CompactList}\item 
+string \hyperlink{classla__manager_1_1LAConfiguration_b25c9b6b37231ef0cdf95bf482275a05}{posModelDirKR}
+\begin{CompactList}\small\item\em model directory of Korean POS tagger \item\end{CompactList}\item 
+\hyperlink{classla__manager_1_1TokenizeConfig}{TokenizeConfig} \hyperlink{classla__manager_1_1LAConfiguration_3f916f330bfc6dc84ea5db64e4e2a75c}{tokenConfig}
+\begin{CompactList}\small\item\em tokenizer configuration \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1LAConfiguration_f9d261511f52e4fd17b382bdfc03bab4}{minGram}
+\begin{CompactList}\small\item\em min gram \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1LAConfiguration_79b4e876fd224ec224b5572dfcc9ba6c}{maxGram}
+\begin{CompactList}\small\item\em max gram \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1LAConfiguration_7681232dc980fbacce77c82737244d86}{minChar}
+\begin{CompactList}\small\item\em min char for \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1LAConfiguration_fe9988d04c6006eb2ba27d8b74163eb1}{maxChar}
+\begin{CompactList}\small\item\em max char for \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LAConfiguration_085289667cf940da6e1ca45c16cacfac}{charLevelNgram}
+\begin{CompactList}\small\item\em ngram level for \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_a985c82a8f9c025137bded214ec9cd13}{LANGUAGE\_\-UNKNOWN} = Stemmer::STEM\_\-LANG\_\-UNKNOWN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_6e4734d71a49f6a79190dd9bcaa482fc}{LANGUAGE\_\-DUTCH} = Stemmer::STEM\_\-LANG\_\-DUTCH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_6da3eb83fc013880eecb635178f0631a}{LANGUAGE\_\-ENGLISH} = Stemmer::STEM\_\-LANG\_\-ENGLISH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_d4b37020e4318e3afce31fbbe993f74d}{LANGUAGE\_\-FINNISH} = Stemmer::STEM\_\-LANG\_\-FINNISH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_b2dce069bbee79d19e35cbfd624d7078}{LANGUAGE\_\-FRENCH} = Stemmer::STEM\_\-LANG\_\-FRENCH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_6443ae7996afe191eff4dffeeba61468}{LANGUAGE\_\-GERMAN} = Stemmer::STEM\_\-LANG\_\-GERMAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_8bfd78dc7c3c226c23ec70b90850c84c}{LANGUAGE\_\-HUNGARIAN} = Stemmer::STEM\_\-LANG\_\-HUNGARIAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_d1fdc7507060f8bb4aa564968c5ceeed}{LANGUAGE\_\-ITALIAN} = Stemmer::STEM\_\-LANG\_\-ITALIAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_a3aaa794eb886307ff56c15ccbd0447a}{LANGUAGE\_\-NORWEGIAN} = Stemmer::STEM\_\-LANG\_\-NORWEGIAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_886b546adfed6958a82b427545b7d91a}{LANGUAGE\_\-PORTUGUESE} = Stemmer::STEM\_\-LANG\_\-PORTUGUESE
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_badd19034cd02a738ab488e2f588a31a}{LANGUAGE\_\-ROMANIAN} = Stemmer::STEM\_\-LANG\_\-ROMANIAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_391aade71f995d9f4e09e50a341c3cbf}{LANGUAGE\_\-RUSSIAN} = Stemmer::STEM\_\-LANG\_\-RUSSIAN
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_cba69eb692010c894d4b3932c02ffe00}{LANGUAGE\_\-SPANISH} = Stemmer::STEM\_\-LANG\_\-SPANISH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_a72891063ae53484e3c962dbf0fd566d}{LANGUAGE\_\-SWEDISH} = Stemmer::STEM\_\-LANG\_\-SWEDISH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_3584d8a2504d4aa80ed208aac9b64943}{LANGUAGE\_\-TURKISH} = Stemmer::STEM\_\-LANG\_\-TURKISH
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_139bdfd5b3dac7170cbc9c5df132c6dc}{LANGUAGE\_\-EOS} = Stemmer::STEM\_\-LANG\_\-EOS
+\item 
+static const int \hyperlink{classla__manager_1_1LAConfiguration_e9be58e2f82a87896be78b364ad61f88}{LANGUAGE\_\-KOREAN} = Stemmer::STEM\_\-LANG\_\-EOS + 1
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+interface of \hyperlink{classla__manager_1_1LAConfiguration}{LAConfiguration} This class defines the configuration of LA manager 
+
+Definition at line 30 of file LAManager.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1LAConfiguration_87843181ddb38cbed89ca0c5bce1dbb6}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LAConfiguration@{LAConfiguration}}
+\index{LAConfiguration@{LAConfiguration}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LAConfiguration}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::LAConfiguration::LAConfiguration ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_87843181ddb38cbed89ca0c5bce1dbb6}
+
+
+
+
+Definition at line 51 of file LAManager.h.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1LAConfiguration_085289667cf940da6e1ca45c16cacfac}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!charLevelNgram@{charLevelNgram}}
+\index{charLevelNgram@{charLevelNgram}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{charLevelNgram}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::charLevelNgram}}}
+\label{classla__manager_1_1LAConfiguration_085289667cf940da6e1ca45c16cacfac}
+
+
+ngram level for \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} 
+
+
+
+Definition at line 79 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_5b41d31f3e921fc03a111ff0162f36a7}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!encodingType@{encodingType}}
+\index{encodingType@{encodingType}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{encodingType}]{\setlength{\rightskip}{0pt plus 5cm}UString::EncodingType {\bf la\_\-manager::LAConfiguration::encodingType}}}
+\label{classla__manager_1_1LAConfiguration_5b41d31f3e921fc03a111ff0162f36a7}
+
+
+encoding type 
+
+
+
+Definition at line 66 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_b1d895d5e5fefba04c6e45acb6fb8f2e}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!language@{language}}
+\index{language@{language}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{language}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LAConfiguration::language}}}
+\label{classla__manager_1_1LAConfiguration_b1d895d5e5fefba04c6e45acb6fb8f2e}
+
+
+language 
+
+
+
+Definition at line 65 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_6e4734d71a49f6a79190dd9bcaa482fc}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-DUTCH@{LANGUAGE\_\-DUTCH}}
+\index{LANGUAGE\_\-DUTCH@{LANGUAGE\_\-DUTCH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-DUTCH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-DUTCH} = Stemmer::STEM\_\-LANG\_\-DUTCH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_6e4734d71a49f6a79190dd9bcaa482fc}
+
+
+
+
+Definition at line 34 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_6da3eb83fc013880eecb635178f0631a}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-ENGLISH@{LANGUAGE\_\-ENGLISH}}
+\index{LANGUAGE\_\-ENGLISH@{LANGUAGE\_\-ENGLISH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-ENGLISH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-ENGLISH} = Stemmer::STEM\_\-LANG\_\-ENGLISH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_6da3eb83fc013880eecb635178f0631a}
+
+
+
+
+Definition at line 35 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_139bdfd5b3dac7170cbc9c5df132c6dc}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-EOS@{LANGUAGE\_\-EOS}}
+\index{LANGUAGE\_\-EOS@{LANGUAGE\_\-EOS}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-EOS}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-EOS} = Stemmer::STEM\_\-LANG\_\-EOS\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_139bdfd5b3dac7170cbc9c5df132c6dc}
+
+
+
+
+Definition at line 48 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_d4b37020e4318e3afce31fbbe993f74d}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-FINNISH@{LANGUAGE\_\-FINNISH}}
+\index{LANGUAGE\_\-FINNISH@{LANGUAGE\_\-FINNISH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-FINNISH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-FINNISH} = Stemmer::STEM\_\-LANG\_\-FINNISH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_d4b37020e4318e3afce31fbbe993f74d}
+
+
+
+
+Definition at line 36 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_b2dce069bbee79d19e35cbfd624d7078}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-FRENCH@{LANGUAGE\_\-FRENCH}}
+\index{LANGUAGE\_\-FRENCH@{LANGUAGE\_\-FRENCH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-FRENCH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-FRENCH} = Stemmer::STEM\_\-LANG\_\-FRENCH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_b2dce069bbee79d19e35cbfd624d7078}
+
+
+
+
+Definition at line 37 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_6443ae7996afe191eff4dffeeba61468}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-GERMAN@{LANGUAGE\_\-GERMAN}}
+\index{LANGUAGE\_\-GERMAN@{LANGUAGE\_\-GERMAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-GERMAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-GERMAN} = Stemmer::STEM\_\-LANG\_\-GERMAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_6443ae7996afe191eff4dffeeba61468}
+
+
+
+
+Definition at line 38 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_8bfd78dc7c3c226c23ec70b90850c84c}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-HUNGARIAN@{LANGUAGE\_\-HUNGARIAN}}
+\index{LANGUAGE\_\-HUNGARIAN@{LANGUAGE\_\-HUNGARIAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-HUNGARIAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-HUNGARIAN} = Stemmer::STEM\_\-LANG\_\-HUNGARIAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_8bfd78dc7c3c226c23ec70b90850c84c}
+
+
+
+
+Definition at line 39 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_d1fdc7507060f8bb4aa564968c5ceeed}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-ITALIAN@{LANGUAGE\_\-ITALIAN}}
+\index{LANGUAGE\_\-ITALIAN@{LANGUAGE\_\-ITALIAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-ITALIAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-ITALIAN} = Stemmer::STEM\_\-LANG\_\-ITALIAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_d1fdc7507060f8bb4aa564968c5ceeed}
+
+
+
+
+Definition at line 40 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_e9be58e2f82a87896be78b364ad61f88}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-KOREAN@{LANGUAGE\_\-KOREAN}}
+\index{LANGUAGE\_\-KOREAN@{LANGUAGE\_\-KOREAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-KOREAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-KOREAN} = Stemmer::STEM\_\-LANG\_\-EOS + 1\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_e9be58e2f82a87896be78b364ad61f88}
+
+
+
+
+Definition at line 49 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_a3aaa794eb886307ff56c15ccbd0447a}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-NORWEGIAN@{LANGUAGE\_\-NORWEGIAN}}
+\index{LANGUAGE\_\-NORWEGIAN@{LANGUAGE\_\-NORWEGIAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-NORWEGIAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-NORWEGIAN} = Stemmer::STEM\_\-LANG\_\-NORWEGIAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_a3aaa794eb886307ff56c15ccbd0447a}
+
+
+
+
+Definition at line 41 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_886b546adfed6958a82b427545b7d91a}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-PORTUGUESE@{LANGUAGE\_\-PORTUGUESE}}
+\index{LANGUAGE\_\-PORTUGUESE@{LANGUAGE\_\-PORTUGUESE}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-PORTUGUESE}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-PORTUGUESE} = Stemmer::STEM\_\-LANG\_\-PORTUGUESE\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_886b546adfed6958a82b427545b7d91a}
+
+
+
+
+Definition at line 42 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_badd19034cd02a738ab488e2f588a31a}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-ROMANIAN@{LANGUAGE\_\-ROMANIAN}}
+\index{LANGUAGE\_\-ROMANIAN@{LANGUAGE\_\-ROMANIAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-ROMANIAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-ROMANIAN} = Stemmer::STEM\_\-LANG\_\-ROMANIAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_badd19034cd02a738ab488e2f588a31a}
+
+
+
+
+Definition at line 43 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_391aade71f995d9f4e09e50a341c3cbf}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-RUSSIAN@{LANGUAGE\_\-RUSSIAN}}
+\index{LANGUAGE\_\-RUSSIAN@{LANGUAGE\_\-RUSSIAN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-RUSSIAN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-RUSSIAN} = Stemmer::STEM\_\-LANG\_\-RUSSIAN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_391aade71f995d9f4e09e50a341c3cbf}
+
+
+
+
+Definition at line 44 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_cba69eb692010c894d4b3932c02ffe00}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-SPANISH@{LANGUAGE\_\-SPANISH}}
+\index{LANGUAGE\_\-SPANISH@{LANGUAGE\_\-SPANISH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-SPANISH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-SPANISH} = Stemmer::STEM\_\-LANG\_\-SPANISH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_cba69eb692010c894d4b3932c02ffe00}
+
+
+
+
+Definition at line 45 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_a72891063ae53484e3c962dbf0fd566d}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-SWEDISH@{LANGUAGE\_\-SWEDISH}}
+\index{LANGUAGE\_\-SWEDISH@{LANGUAGE\_\-SWEDISH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-SWEDISH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-SWEDISH} = Stemmer::STEM\_\-LANG\_\-SWEDISH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_a72891063ae53484e3c962dbf0fd566d}
+
+
+
+
+Definition at line 46 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_3584d8a2504d4aa80ed208aac9b64943}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-TURKISH@{LANGUAGE\_\-TURKISH}}
+\index{LANGUAGE\_\-TURKISH@{LANGUAGE\_\-TURKISH}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-TURKISH}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-TURKISH} = Stemmer::STEM\_\-LANG\_\-TURKISH\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_3584d8a2504d4aa80ed208aac9b64943}
+
+
+
+
+Definition at line 47 of file LAManager.h.\hypertarget{classla__manager_1_1LAConfiguration_a985c82a8f9c025137bded214ec9cd13}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!LANGUAGE\_\-UNKNOWN@{LANGUAGE\_\-UNKNOWN}}
+\index{LANGUAGE\_\-UNKNOWN@{LANGUAGE\_\-UNKNOWN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{LANGUAGE\_\-UNKNOWN}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf la\_\-manager::LAConfiguration::LANGUAGE\_\-UNKNOWN} = Stemmer::STEM\_\-LANG\_\-UNKNOWN\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1LAConfiguration_a985c82a8f9c025137bded214ec9cd13}
+
+
+
+
+Definition at line 33 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_fe9988d04c6006eb2ba27d8b74163eb1}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!maxChar@{maxChar}}
+\index{maxChar@{maxChar}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{maxChar}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LAConfiguration::maxChar}}}
+\label{classla__manager_1_1LAConfiguration_fe9988d04c6006eb2ba27d8b74163eb1}
+
+
+max char for \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} 
+
+
+
+Definition at line 78 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_79b4e876fd224ec224b5572dfcc9ba6c}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!maxGram@{maxGram}}
+\index{maxGram@{maxGram}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{maxGram}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LAConfiguration::maxGram}}}
+\label{classla__manager_1_1LAConfiguration_79b4e876fd224ec224b5572dfcc9ba6c}
+
+
+max gram 
+
+
+
+Definition at line 75 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_7681232dc980fbacce77c82737244d86}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!minChar@{minChar}}
+\index{minChar@{minChar}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{minChar}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LAConfiguration::minChar}}}
+\label{classla__manager_1_1LAConfiguration_7681232dc980fbacce77c82737244d86}
+
+
+min char for \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} 
+
+
+
+Definition at line 77 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_f9d261511f52e4fd17b382bdfc03bab4}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!minGram@{minGram}}
+\index{minGram@{minGram}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{minGram}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LAConfiguration::minGram}}}
+\label{classla__manager_1_1LAConfiguration_f9d261511f52e4fd17b382bdfc03bab4}
+
+
+min gram 
+
+
+
+Definition at line 74 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_4fa8698f13d1fe2c9b946b12093e904a}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!posModelDirEN@{posModelDirEN}}
+\index{posModelDirEN@{posModelDirEN}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{posModelDirEN}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf la\_\-manager::LAConfiguration::posModelDirEN}}}
+\label{classla__manager_1_1LAConfiguration_4fa8698f13d1fe2c9b946b12093e904a}
+
+
+model directory of English POS tagger 
+
+
+
+Definition at line 69 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_b25c9b6b37231ef0cdf95bf482275a05}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!posModelDirKR@{posModelDirKR}}
+\index{posModelDirKR@{posModelDirKR}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{posModelDirKR}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf la\_\-manager::LAConfiguration::posModelDirKR}}}
+\label{classla__manager_1_1LAConfiguration_b25c9b6b37231ef0cdf95bf482275a05}
+
+
+model directory of Korean POS tagger 
+
+
+
+Definition at line 70 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_742018fadbd178f65c971474765fc1e4}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!stopDicPath@{stopDicPath}}
+\index{stopDicPath@{stopDicPath}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{stopDicPath}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf la\_\-manager::LAConfiguration::stopDicPath}}}
+\label{classla__manager_1_1LAConfiguration_742018fadbd178f65c971474765fc1e4}
+
+
+stop word file path 
+
+
+
+Definition at line 68 of file LAManager.h.
+
+Referenced by main(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_3f916f330bfc6dc84ea5db64e4e2a75c}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!tokenConfig@{tokenConfig}}
+\index{tokenConfig@{tokenConfig}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{tokenConfig}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TokenizeConfig} {\bf la\_\-manager::LAConfiguration::tokenConfig}}}
+\label{classla__manager_1_1LAConfiguration_3f916f330bfc6dc84ea5db64e4e2a75c}
+
+
+tokenizer configuration 
+
+
+
+Definition at line 72 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and main().\hypertarget{classla__manager_1_1LAConfiguration_02c953de4f3db786e882ae7299b1afd0}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!useLengthFilter@{useLengthFilter}}
+\index{useLengthFilter@{useLengthFilter}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{useLengthFilter}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::useLengthFilter}}}
+\label{classla__manager_1_1LAConfiguration_02c953de4f3db786e882ae7299b1afd0}
+
+
+whether to use \hyperlink{classla__manager_1_1LengthFilter}{LengthFilter} 
+
+
+
+Definition at line 60 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_9f03faf2af4dfd1deaea622324a7b8b2}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!useNGramAnalyzer@{useNGramAnalyzer}}
+\index{useNGramAnalyzer@{useNGramAnalyzer}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{useNGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::useNGramAnalyzer}}}
+\label{classla__manager_1_1LAConfiguration_9f03faf2af4dfd1deaea622324a7b8b2}
+
+
+whether to use \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} 
+
+
+
+Definition at line 63 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_9cca2d25b40c0104d0271a2a1403dcb7}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!useNounFilter@{useNounFilter}}
+\index{useNounFilter@{useNounFilter}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{useNounFilter}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::useNounFilter}}}
+\label{classla__manager_1_1LAConfiguration_9cca2d25b40c0104d0271a2a1403dcb7}
+
+
+whether to use NounFilter 
+
+
+
+Definition at line 59 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), main(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_931c1acb6d3c09c43fabc8c40cc40c7e}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!useStemAnalyzer@{useStemAnalyzer}}
+\index{useStemAnalyzer@{useStemAnalyzer}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{useStemAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::useStemAnalyzer}}}
+\label{classla__manager_1_1LAConfiguration_931c1acb6d3c09c43fabc8c40cc40c7e}
+
+
+whether to use \hyperlink{classla__manager_1_1StemAnalyzer}{StemAnalyzer} 
+
+
+
+Definition at line 62 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), main(), and la\_\-manager::LAManager::setConfig().\hypertarget{classla__manager_1_1LAConfiguration_0e7754360be451943a8bdb250205a203}{
+\index{la\_\-manager::LAConfiguration@{la\_\-manager::LAConfiguration}!useStopFilter@{useStopFilter}}
+\index{useStopFilter@{useStopFilter}!la_manager::LAConfiguration@{la\_\-manager::LAConfiguration}}
+\subsubsection[{useStopFilter}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::LAConfiguration::useStopFilter}}}
+\label{classla__manager_1_1LAConfiguration_0e7754360be451943a8bdb250205a203}
+
+
+whether to use StopAnalyzer 
+
+
+
+Definition at line 61 of file LAManager.h.
+
+Referenced by la\_\-manager::LAManager::analyze(), main(), and la\_\-manager::LAManager::setConfig().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{LAManager_8h}{LAManager.h}\end{CompactItemize}

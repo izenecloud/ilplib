@@ -1,0 +1,196 @@
+\hypertarget{classkmaOrange_1_1StopWordContainer}{
+\section{kmaOrange::StopWordContainer Class Reference}
+\label{classkmaOrange_1_1StopWordContainer}\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+}
+a class manages the stop-word dictionary.  
+
+
+{\tt \#include $<$StopWord.h$>$}
+
+Inheritance diagram for kmaOrange::StopWordContainer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classkmaOrange_1_1StopWordContainer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1StopWordContainer_7356fb7080dee806d788624b8a247dba}{StopWordContainer} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1StopWordContainer}{StopWordContainer} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1StopWordContainer_853fda3c028335f2529c57e0341f22fd}{$\sim$StopWordContainer} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1StopWordContainer}{StopWordContainer} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StopWordContainer_143f32eb2e3b314d596cbd30f7ed6cfd}{createTrie} ()
+\begin{CompactList}\small\item\em This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StopWordContainer_653df376c7907c3d6e87d77a223cd271}{loadStopWord} (\hyperlink{classStringEx}{StringEx} pathDic=\char`\"{}./knowledge\char`\"{}, StringEx nameDic=\char`\"{}stopword.txt\char`\"{}, StringEx strID=\char`\"{}STW\char`\"{})
+\begin{CompactList}\small\item\em This function loads contents of the stop-word dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StopWordContainer_ab4a54069abd335d64dd34d6f194b1a2}{loadStopWord} (const char $\ast$pathDic, const char $\ast$nameDic)
+\item 
+bool \hyperlink{classkmaOrange_1_1StopWordContainer_a2bd1c44212a17f7ae12de9287860ad1}{searchNgetInfoFromStopWordTrie} (const char $\ast$str)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} \hyperlink{classkmaOrange_1_1StopWordContainer_dcc2e81494476e1718dacb36fbe075dc}{\_\-stopWordTrie}
+\begin{CompactList}\small\item\em a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of the stop-word dictionary. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class manages the stop-word dictionary. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 24 of file StopWord.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1StopWordContainer_7356fb7080dee806d788624b8a247dba}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!StopWordContainer@{StopWordContainer}}
+\index{StopWordContainer@{StopWordContainer}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{StopWordContainer}]{\setlength{\rightskip}{0pt plus 5cm}StopWordContainer::StopWordContainer ()}}
+\label{classkmaOrange_1_1StopWordContainer_7356fb7080dee806d788624b8a247dba}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1StopWordContainer}{StopWordContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 14 of file StopWord.cpp.\hypertarget{classkmaOrange_1_1StopWordContainer_853fda3c028335f2529c57e0341f22fd}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!$\sim$StopWordContainer@{$\sim$StopWordContainer}}
+\index{$\sim$StopWordContainer@{$\sim$StopWordContainer}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{$\sim$StopWordContainer}]{\setlength{\rightskip}{0pt plus 5cm}StopWordContainer::$\sim$StopWordContainer ()}}
+\label{classkmaOrange_1_1StopWordContainer_853fda3c028335f2529c57e0341f22fd}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1StopWordContainer}{StopWordContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 18 of file StopWord.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1StopWordContainer_143f32eb2e3b314d596cbd30f7ed6cfd}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!createTrie@{createTrie}}
+\index{createTrie@{createTrie}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{createTrie}]{\setlength{\rightskip}{0pt plus 5cm}int StopWordContainer::createTrie ()}}
+\label{classkmaOrange_1_1StopWordContainer_143f32eb2e3b314d596cbd30f7ed6cfd}
+
+
+This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 22 of file StopWord.cpp.
+
+References \_\-stopWordTrie, kmaOrange::WK\_\-DaTrie::create(), and TRIE\_\-EXTEND\_\-SIZE.
+
+Referenced by loadStopWord().\hypertarget{classkmaOrange_1_1StopWordContainer_ab4a54069abd335d64dd34d6f194b1a2}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!loadStopWord@{loadStopWord}}
+\index{loadStopWord@{loadStopWord}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{loadStopWord}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::StopWordContainer::loadStopWord (const char $\ast$ {\em pathDic}, \/  const char $\ast$ {\em nameDic})\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classkmaOrange_1_1StopWordContainer_ab4a54069abd335d64dd34d6f194b1a2}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Implements \hyperlink{classWK__StopWordContainer_2c85df71a7a6a3b86495aed3d21e26d7}{WK\_\-StopWordContainer}.
+
+Definition at line 67 of file StopWord.h.
+
+References loadStopWord().
+
+Referenced by loadStopWord().\hypertarget{classkmaOrange_1_1StopWordContainer_653df376c7907c3d6e87d77a223cd271}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!loadStopWord@{loadStopWord}}
+\index{loadStopWord@{loadStopWord}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{loadStopWord}]{\setlength{\rightskip}{0pt plus 5cm}int StopWordContainer::loadStopWord ({\bf StringEx} {\em pathDic} = {\tt \char`\"{}./knowledge\char`\"{}}, \/  {\bf StringEx} {\em nameDic} = {\tt \char`\"{}stopword.txt\char`\"{}}, \/  {\bf StringEx} {\em strID} = {\tt \char`\"{}STW\char`\"{}})}}
+\label{classkmaOrange_1_1StopWordContainer_653df376c7907c3d6e87d77a223cd271}
+
+
+This function loads contents of the stop-word dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pathDic}]a pointer of a constant charater - the path of the directory, which the stop-word dictionary file is stored. \item[{\em nameDic}]a pointer of a constant charater - the name of the stop-word dictionary file. \item[{\em strID}]the ID of the stop-word dictionary. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 34 of file StopWord.cpp.
+
+References \_\-stopWordTrie, StringEx::buffer(), createTrie(), StringEx::endWith(), kmaOrange::WK\_\-DaTrie::insertKey(), StringEx::startWith(), and StringEx::trimRight().\hypertarget{classkmaOrange_1_1StopWordContainer_a2bd1c44212a17f7ae12de9287860ad1}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!searchNgetInfoFromStopWordTrie@{searchNgetInfoFromStopWordTrie}}
+\index{searchNgetInfoFromStopWordTrie@{searchNgetInfoFromStopWordTrie}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{searchNgetInfoFromStopWordTrie}]{\setlength{\rightskip}{0pt plus 5cm}bool StopWordContainer::searchNgetInfoFromStopWordTrie (const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1StopWordContainer_a2bd1c44212a17f7ae12de9287860ad1}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em str}]a pointer of a constant charater - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - input string is a stop-word.\par
+ false - input string is not a stop-word. \end{Desc}
+
+
+Implements \hyperlink{classWK__StopWordContainer_03819e17b2d47d76452505b9cf03c685}{WK\_\-StopWordContainer}.
+
+Definition at line 92 of file StopWord.cpp.
+
+References \_\-stopWordTrie, kmaOrange::WK\_\-DaTrie::findNode(), and kmaOrange::WK\_\-DaTrie\_\-Node::mpData.
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1StopWordContainer_dcc2e81494476e1718dacb36fbe075dc}{
+\index{kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}!\_\-stopWordTrie@{\_\-stopWordTrie}}
+\index{\_\-stopWordTrie@{\_\-stopWordTrie}!kmaOrange::StopWordContainer@{kmaOrange::StopWordContainer}}
+\subsubsection[{\_\-stopWordTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie} {\bf kmaOrange::StopWordContainer::\_\-stopWordTrie}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StopWordContainer_dcc2e81494476e1718dacb36fbe075dc}
+
+
+a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of the stop-word dictionary. 
+
+
+
+Definition at line 81 of file StopWord.h.
+
+Referenced by createTrie(), loadStopWord(), and searchNgetInfoFromStopWordTrie().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{StopWord_8h}{StopWord.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{StopWord_8cpp}{StopWord.cpp}\end{CompactItemize}

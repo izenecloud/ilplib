@@ -1,0 +1,172 @@
+\hypertarget{classla__manager_1_1StemAnalyzer}{
+\section{la\_\-manager::StemAnalyzer Class Reference}
+\label{classla__manager_1_1StemAnalyzer}\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+}
+interface of \hyperlink{classla__manager_1_1StemAnalyzer}{StemAnalyzer} This class extracts terms with stemming method  
+
+
+{\tt \#include $<$StemAnalyzer.h$>$}
+
+Inheritance diagram for la\_\-manager::StemAnalyzer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classla__manager_1_1StemAnalyzer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1StemAnalyzer_61ce978ad675e7c304a474ce072bbd37}{StemAnalyzer} (int lang, UString::EncodingType etype=UString::UTF\_\-8)
+\item 
+\hyperlink{classla__manager_1_1StemAnalyzer_8a0db479e0cb751532c54dfd717024cb}{$\sim$StemAnalyzer} ()
+\item 
+bool \hyperlink{classla__manager_1_1StemAnalyzer_bd1334a97df94c78f58a02a7af73d55a}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1StemAnalyzer_a3ad462a3d098e7abfbab604b47d1f21}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\end{CompactItemize}
+\subsection*{Protected Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1stem_1_1Stemmer}{Stemmer} \hyperlink{classla__manager_1_1StemAnalyzer_9b62790b49a8b011722029948483099a}{stemmer\_\-}
+\begin{CompactList}\small\item\em a stemmer provided by \char`\"{}libstemmer\char`\"{} \item\end{CompactList}\item 
+UString::EncodingType \hyperlink{classla__manager_1_1StemAnalyzer_f9c9b55d970a5fac76d890c59ee909fb}{encodingType\_\-}
+\begin{CompactList}\small\item\em encoding type \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1StemAnalyzer_b83df9d67ea2e32b8f7c92ee1c9d8292}{language\_\-}
+\begin{CompactList}\small\item\em language type \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{namespacela__manager_8a93c4bd160d94957812fb620225a17e}{MLRUCacheString} \hyperlink{classla__manager_1_1StemAnalyzer_f874202062430a5bce7b8ca72ee632ea}{cache\_\-}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+interface of \hyperlink{classla__manager_1_1StemAnalyzer}{StemAnalyzer} This class extracts terms with stemming method 
+
+Definition at line 27 of file StemAnalyzer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1StemAnalyzer_61ce978ad675e7c304a474ce072bbd37}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!StemAnalyzer@{StemAnalyzer}}
+\index{StemAnalyzer@{StemAnalyzer}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{StemAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::StemAnalyzer::StemAnalyzer (int {\em lang}, \/  UString::EncodingType {\em etype} = {\tt UString::UTF\_\-8})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_61ce978ad675e7c304a474ce072bbd37}
+
+
+
+
+Definition at line 36 of file StemAnalyzer.h.
+
+References la\_\-manager::stem::Stemmer::init(), language\_\-, and stemmer\_\-.\hypertarget{classla__manager_1_1StemAnalyzer_8a0db479e0cb751532c54dfd717024cb}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!$\sim$StemAnalyzer@{$\sim$StemAnalyzer}}
+\index{$\sim$StemAnalyzer@{$\sim$StemAnalyzer}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{$\sim$StemAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::StemAnalyzer::$\sim$StemAnalyzer ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_8a0db479e0cb751532c54dfd717024cb}
+
+
+
+
+Definition at line 46 of file StemAnalyzer.h.
+
+References la\_\-manager::stem::Stemmer::deinit(), and stemmer\_\-.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1StemAnalyzer_a3ad462a3d098e7abfbab604b47d1f21}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::StemAnalyzer::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_a3ad462a3d098e7abfbab604b47d1f21}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{la\_\-manager::Analyzer}.
+
+Definition at line 37 of file StemAnalyzer.cpp.
+
+References cache\_\-, encodingType\_\-, la\_\-manager::stem::Stemmer::stem(), and stemmer\_\-.\hypertarget{classla__manager_1_1StemAnalyzer_bd1334a97df94c78f58a02a7af73d55a}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::StemAnalyzer::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_bd1334a97df94c78f58a02a7af73d55a}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{la\_\-manager::Analyzer}.
+
+Definition at line 15 of file StemAnalyzer.cpp.
+
+References cache\_\-, encodingType\_\-, la\_\-manager::stem::Stemmer::stem(), stemmer\_\-, and la\_\-manager::Term::text.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1StemAnalyzer_f874202062430a5bce7b8ca72ee632ea}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!cache\_\-@{cache\_\-}}
+\index{cache\_\-@{cache\_\-}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{cache\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MLRUCacheString} {\bf la\_\-manager::StemAnalyzer::cache\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_f874202062430a5bce7b8ca72ee632ea}
+
+
+
+
+Definition at line 29 of file StemAnalyzer.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1StemAnalyzer_f9c9b55d970a5fac76d890c59ee909fb}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!encodingType\_\-@{encodingType\_\-}}
+\index{encodingType\_\-@{encodingType\_\-}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{encodingType\_\-}]{\setlength{\rightskip}{0pt plus 5cm}UString::EncodingType {\bf la\_\-manager::StemAnalyzer::encodingType\_\-}\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_f9c9b55d970a5fac76d890c59ee909fb}
+
+
+encoding type 
+
+
+
+Definition at line 32 of file StemAnalyzer.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1StemAnalyzer_b83df9d67ea2e32b8f7c92ee1c9d8292}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!language\_\-@{language\_\-}}
+\index{language\_\-@{language\_\-}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{language\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::StemAnalyzer::language\_\-}\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_b83df9d67ea2e32b8f7c92ee1c9d8292}
+
+
+language type 
+
+
+
+Definition at line 33 of file StemAnalyzer.h.
+
+Referenced by StemAnalyzer().\hypertarget{classla__manager_1_1StemAnalyzer_9b62790b49a8b011722029948483099a}{
+\index{la\_\-manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}!stemmer\_\-@{stemmer\_\-}}
+\index{stemmer\_\-@{stemmer\_\-}!la_manager::StemAnalyzer@{la\_\-manager::StemAnalyzer}}
+\subsubsection[{stemmer\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Stemmer} {\bf la\_\-manager::StemAnalyzer::stemmer\_\-}\hspace{0.3cm}{\tt  \mbox{[}protected\mbox{]}}}}
+\label{classla__manager_1_1StemAnalyzer_9b62790b49a8b011722029948483099a}
+
+
+a stemmer provided by \char`\"{}libstemmer\char`\"{} 
+
+
+
+Definition at line 31 of file StemAnalyzer.h.
+
+Referenced by analyze(), StemAnalyzer(), and $\sim$StemAnalyzer().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{StemAnalyzer_8h}{StemAnalyzer.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{StemAnalyzer_8cpp}{StemAnalyzer.cpp}\end{CompactItemize}

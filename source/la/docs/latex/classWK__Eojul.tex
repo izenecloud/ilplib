@@ -1,0 +1,359 @@
+\hypertarget{classWK__Eojul}{
+\section{WK\_\-Eojul Class Reference}
+\label{classWK__Eojul}\index{WK\_\-Eojul@{WK\_\-Eojul}}
+}
+a class for a Eojul that is stored KMA results.  
+
+
+{\tt \#include $<$wk\_\-eojul.h$>$}
+
+Inheritance diagram for WK\_\-Eojul::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classWK__Eojul}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual \hyperlink{classWK__Eojul_ea467188fd903acf353d8bdf586196de}{$\sim$WK\_\-Eojul} ()
+\item 
+virtual void \hyperlink{classWK__Eojul_0a47e3d87115a85868ed5b3cfecc6787}{initialize} (bool willBeTheDefaultState=false)=0
+\begin{CompactList}\small\item\em This function initializes a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__Eojul_ddb3f1626f2dd6f0dc4bcfe8de43fd05}{setString} (const char $\ast$pString)=0
+\begin{CompactList}\small\item\em This function sets a string in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\item 
+virtual char $\ast$ \hyperlink{classWK__Eojul_ac9caae5a102114862eb398994596fbf}{getString} (void)=0
+\begin{CompactList}\small\item\em This function gets a string in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Eojul_3c0cccef5359472075e758274f716720}{getListSize} (void)=0
+\begin{CompactList}\small\item\em This function gets the number of the list of morphological analyzed results in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Eojul_ebb07e0b90314607d6742517a6de6fbd}{getCount} (int nPos)=0
+\begin{CompactList}\small\item\em This function gets the number of morphemes in each list of morphological analyzed results. \item\end{CompactList}\item 
+virtual char $\ast$ \hyperlink{classWK__Eojul_d0799c16981e56643926838c91ad2be7}{getLexicon} (int nPos, int nIdx)=0
+\begin{CompactList}\small\item\em This function gets the string of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Eojul_e558aad6c32e899ea725882f3bdc0896}{getPOS} (int nPos, int nIdx)=0
+\begin{CompactList}\small\item\em This function gets the POS value of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+virtual char $\ast$ \hyperlink{classWK__Eojul_87720be1679d0d1c86c193e4c3953d00}{getStrPOS} (int nPos, int nIdx)=0
+\begin{CompactList}\small\item\em This function gets the POS string of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+virtual bool \hyperlink{classWK__Eojul_fcffd7053b36792cbd4dcca3a0949542}{isIndexWord} (int nPos, int nIdx)=0
+\begin{CompactList}\small\item\em This function gets whether each morpheme in each list of morphological analyzed results is an index word or not. \item\end{CompactList}\item 
+virtual double \hyperlink{classWK__Eojul_4b7079e12cf56a9f9211c3177096c018}{getScore} (int nPos)=0
+\begin{CompactList}\small\item\em This function gets the score of each list of morphological analyzed results. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Eojul_0588cf004a9d2f10cebd1d729c328abd}{getOneBestIndex} (void)=0
+\begin{CompactList}\small\item\em This function gets the index number of the list, which has the most high score in morphological analyzed results. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Eojul_45b0ae73689aca02fb735332ba63150d}{getLinkedIndex} (int nPos)=0
+\begin{CompactList}\small\item\em This function gets the index number of the list, which has the analysis result composed affix. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classWK__Eojul}{WK\_\-Eojul} $\ast$ \hyperlink{classWK__Eojul_46148f4762f080b15e5bd8e21f98a8a8}{createObject} (void)
+\begin{CompactList}\small\item\em This function creates a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class for a Eojul that is stored KMA results. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 15 of file wk\_\-eojul.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWK__Eojul_ea467188fd903acf353d8bdf586196de}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!$\sim$WK\_\-Eojul@{$\sim$WK\_\-Eojul}}
+\index{$\sim$WK\_\-Eojul@{$\sim$WK\_\-Eojul}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{$\sim$WK\_\-Eojul}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-Eojul::$\sim$WK\_\-Eojul ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classWK__Eojul_ea467188fd903acf353d8bdf586196de}
+
+
+
+
+Definition at line 13 of file wk\_\-eojul.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classWK__Eojul_46148f4762f080b15e5bd8e21f98a8a8}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Eojul} $\ast$ WK\_\-Eojul::createObject (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__Eojul_46148f4762f080b15e5bd8e21f98a8a8}
+
+
+This function creates a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \end{Desc}
+
+
+Definition at line 17 of file wk\_\-eojul.cpp.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Eojul_ebb07e0b90314607d6742517a6de6fbd}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getCount@{getCount}}
+\index{getCount@{getCount}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getCount}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Eojul::getCount (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_ebb07e0b90314607d6742517a6de6fbd}
+
+
+This function gets the number of morphemes in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of morphemes in each list of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_e0f30e4becfe50ed6208b8079f08e51a}{kmaOrange::Eojul}.
+
+Referenced by la\_\-manager::KoreanNounFilter::analyze().\hypertarget{classWK__Eojul_d0799c16981e56643926838c91ad2be7}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getLexicon@{getLexicon}}
+\index{getLexicon@{getLexicon}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getLexicon}]{\setlength{\rightskip}{0pt plus 5cm}virtual char$\ast$ WK\_\-Eojul::getLexicon (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_d0799c16981e56643926838c91ad2be7}
+
+
+This function gets the string of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - the string of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_7d21a51dc637dcd68d2bfa3ae01cb656}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_45b0ae73689aca02fb735332ba63150d}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getLinkedIndex@{getLinkedIndex}}
+\index{getLinkedIndex@{getLinkedIndex}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getLinkedIndex}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Eojul::getLinkedIndex (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_45b0ae73689aca02fb735332ba63150d}
+
+
+This function gets the index number of the list, which has the analysis result composed affix. 
+
+\begin{Desc}
+\item[Date:]2009-01-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the index number of the list, which has the analysis result composed affix. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_c90fa4bf9cfd402caf1aaeee1166d7d1}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_3c0cccef5359472075e758274f716720}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getListSize@{getListSize}}
+\index{getListSize@{getListSize}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getListSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Eojul::getListSize (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_3c0cccef5359472075e758274f716720}
+
+
+This function gets the number of the list of morphological analyzed results in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of the lists of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_74dedea3f0a141fe7f03af3a8aaa29ac}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_0588cf004a9d2f10cebd1d729c328abd}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getOneBestIndex@{getOneBestIndex}}
+\index{getOneBestIndex@{getOneBestIndex}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getOneBestIndex}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Eojul::getOneBestIndex (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_0588cf004a9d2f10cebd1d729c328abd}
+
+
+This function gets the index number of the list, which has the most high score in morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the index number of the list, which has the most high score in morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_4fe920a2411e20769cc049e2c3ea8571}{kmaOrange::Eojul}.
+
+Referenced by la\_\-manager::KoreanNounFilter::analyze().\hypertarget{classWK__Eojul_e558aad6c32e899ea725882f3bdc0896}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getPOS@{getPOS}}
+\index{getPOS@{getPOS}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getPOS}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Eojul::getPOS (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_e558aad6c32e899ea725882f3bdc0896}
+
+
+This function gets the POS value of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the POS value of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_d0bdce94d093e68e8fd455bdb660aa47}{kmaOrange::Eojul}.
+
+Referenced by la\_\-manager::KoreanNounFilter::analyze().\hypertarget{classWK__Eojul_4b7079e12cf56a9f9211c3177096c018}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getScore@{getScore}}
+\index{getScore@{getScore}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getScore}]{\setlength{\rightskip}{0pt plus 5cm}virtual double WK\_\-Eojul::getScore (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_4b7079e12cf56a9f9211c3177096c018}
+
+
+This function gets the score of each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a double - the score of the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_4fe935c9f57b939f523ea2431af635c4}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_ac9caae5a102114862eb398994596fbf}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getString@{getString}}
+\index{getString@{getString}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getString}]{\setlength{\rightskip}{0pt plus 5cm}virtual char$\ast$ WK\_\-Eojul::getString (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_ac9caae5a102114862eb398994596fbf}
+
+
+This function gets a string in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - a set string in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_3d9a40689d2eb031b43cc98e08ce25da}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_87720be1679d0d1c86c193e4c3953d00}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!getStrPOS@{getStrPOS}}
+\index{getStrPOS@{getStrPOS}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{getStrPOS}]{\setlength{\rightskip}{0pt plus 5cm}virtual char$\ast$ WK\_\-Eojul::getStrPOS (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_87720be1679d0d1c86c193e4c3953d00}
+
+
+This function gets the POS string of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - the POS string of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_c69fdea5b0394919a4eb95726c1d6cea}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_0a47e3d87115a85868ed5b3cfecc6787}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!initialize@{initialize}}
+\index{initialize@{initialize}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Eojul::initialize (bool {\em willBeTheDefaultState} = {\tt false})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_0a47e3d87115a85868ed5b3cfecc6787}
+
+
+This function initializes a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em willBeTheDefaultState}]a boolean. \par
+ true - it entirely sets a Eojul object to initial statement. \par
+ false - it only sets values in a Eojul object. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_59b5129bafa674c7f13a64c75f92cbcd}{kmaOrange::Eojul}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Eojul_fcffd7053b36792cbd4dcca3a0949542}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!isIndexWord@{isIndexWord}}
+\index{isIndexWord@{isIndexWord}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{isIndexWord}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool WK\_\-Eojul::isIndexWord (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_fcffd7053b36792cbd4dcca3a0949542}
+
+
+This function gets whether each morpheme in each list of morphological analyzed results is an index word or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - index word.\par
+ false - no index word. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_01a808fcd00cb51d2fe0fe1e3d390cb4}{kmaOrange::Eojul}.\hypertarget{classWK__Eojul_ddb3f1626f2dd6f0dc4bcfe8de43fd05}{
+\index{WK\_\-Eojul@{WK\_\-Eojul}!setString@{setString}}
+\index{setString@{setString}!WK_Eojul@{WK\_\-Eojul}}
+\subsubsection[{setString}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Eojul::setString (const char $\ast$ {\em pString})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Eojul_ddb3f1626f2dd6f0dc4bcfe8de43fd05}
+
+
+This function sets a string in a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pString}]a pointer of a character - a setting string based on a word. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Eojul_5f553fa542efc366e13729c270cb5001}{kmaOrange::Eojul}.
+
+Referenced by la\_\-manager::KoreanNounFilter::analyze().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{wk__eojul_8h}{wk\_\-eojul.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{wk__eojul_8cpp}{wk\_\-eojul.cpp}\end{CompactItemize}

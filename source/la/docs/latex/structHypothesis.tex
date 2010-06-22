@@ -1,0 +1,150 @@
+\hypertarget{structHypothesis}{
+\section{Hypothesis Struct Reference}
+\label{structHypothesis}\index{Hypothesis@{Hypothesis}}
+}
+{\tt \#include $<$bidir.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+bool \hyperlink{structHypothesis_8ddf211bd1d982dcf7256bb8b87b46f4}{operator$<$} (const \hyperlink{structHypothesis}{Hypothesis} \&h) const 
+\item 
+\hyperlink{structHypothesis_83ba05ec1c34ffa81137fcefaad9054c}{Hypothesis} (const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt\_\-, const multimap$<$ string, string $>$ \&tagdic, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme)
+\item 
+void \hyperlink{structHypothesis_8b727811ecdc043196ccb2443f0926fd}{Print} ()
+\item 
+void \hyperlink{structHypothesis_890db467cee870f4f2bbaab38a1c7dcf}{Update} (const int j, const multimap$<$ string, string $>$ \&tagdic, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme)
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \hyperlink{structHypothesis_358eab95366fb8cbe00d0ce77a2cba0c}{vt}
+\item 
+\hyperlink{classstd_1_1vector}{vector}$<$ double $>$ \hyperlink{structHypothesis_71d6219f3db132b8f8cb6c1a74ee8e50}{vent}
+\item 
+\hyperlink{classstd_1_1vector}{vector}$<$ int $>$ \hyperlink{structHypothesis_52746abb6a7c86a554f65544457b604b}{order}
+\item 
+\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classstd_1_1vector}{vector}$<$ pair$<$ string, double $>$ $>$ $>$ \hyperlink{structHypothesis_6fc223c39b3b4589c72ef511d9c2dcc7}{vvp}
+\item 
+double \hyperlink{structHypothesis_b713fec07803264399fd86adfa5800fd}{prob}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 40 of file bidir.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structHypothesis_83ba05ec1c34ffa81137fcefaad9054c}{
+\index{Hypothesis@{Hypothesis}!Hypothesis@{Hypothesis}}
+\index{Hypothesis@{Hypothesis}!Hypothesis@{Hypothesis}}
+\subsubsection[{Hypothesis}]{\setlength{\rightskip}{0pt plus 5cm}Hypothesis::Hypothesis (const {\bf vector}$<$ {\bf Token} $>$ \& {\em vt\_\-}, \/  const multimap$<$ string, string $>$ \& {\em tagdic}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{structHypothesis_83ba05ec1c34ffa81137fcefaad9054c}
+
+
+
+
+Definition at line 50 of file bidir.h.
+
+References order, prob, Update(), vent, vt, and vvp.
+
+\subsection{Member Function Documentation}
+\hypertarget{structHypothesis_8ddf211bd1d982dcf7256bb8b87b46f4}{
+\index{Hypothesis@{Hypothesis}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Hypothesis@{Hypothesis}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool Hypothesis::operator$<$ (const {\bf Hypothesis} \& {\em h}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{structHypothesis_8ddf211bd1d982dcf7256bb8b87b46f4}
+
+
+
+
+Definition at line 47 of file bidir.h.
+
+References prob.\hypertarget{structHypothesis_8b727811ecdc043196ccb2443f0926fd}{
+\index{Hypothesis@{Hypothesis}!Print@{Print}}
+\index{Print@{Print}!Hypothesis@{Hypothesis}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void Hypothesis::Print ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{structHypothesis_8b727811ecdc043196ccb2443f0926fd}
+
+
+
+
+Definition at line 65 of file bidir.h.
+
+References vt.\hypertarget{structHypothesis_890db467cee870f4f2bbaab38a1c7dcf}{
+\index{Hypothesis@{Hypothesis}!Update@{Update}}
+\index{Update@{Update}!Hypothesis@{Hypothesis}}
+\subsubsection[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void Hypothesis::Update (const int {\em j}, \/  const multimap$<$ string, string $>$ \& {\em tagdic}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{structHypothesis_890db467cee870f4f2bbaab38a1c7dcf}
+
+
+
+
+Definition at line 75 of file bidir.h.
+
+References BEAM\_\-WINDOW, ME\_\-Model::classify(), entropy(), ME\_\-Model::get\_\-class\_\-id(), ME\_\-Model::get\_\-class\_\-label(), ME\_\-Sample::label, mesample(), ME\_\-Model::num\_\-classes(), vent, vt, and vvp.
+
+Referenced by generate\_\-hypotheses(), and Hypothesis().
+
+\subsection{Member Data Documentation}
+\hypertarget{structHypothesis_52746abb6a7c86a554f65544457b604b}{
+\index{Hypothesis@{Hypothesis}!order@{order}}
+\index{order@{order}!Hypothesis@{Hypothesis}}
+\subsubsection[{order}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector}$<$int$>$ {\bf Hypothesis::order}}}
+\label{structHypothesis_52746abb6a7c86a554f65544457b604b}
+
+
+
+
+Definition at line 44 of file bidir.h.
+
+Referenced by generate\_\-hypotheses(), and Hypothesis().\hypertarget{structHypothesis_b713fec07803264399fd86adfa5800fd}{
+\index{Hypothesis@{Hypothesis}!prob@{prob}}
+\index{prob@{prob}!Hypothesis@{Hypothesis}}
+\subsubsection[{prob}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf Hypothesis::prob}}}
+\label{structHypothesis_b713fec07803264399fd86adfa5800fd}
+
+
+
+
+Definition at line 46 of file bidir.h.
+
+Referenced by generate\_\-hypotheses(), Hypothesis(), and operator$<$().\hypertarget{structHypothesis_71d6219f3db132b8f8cb6c1a74ee8e50}{
+\index{Hypothesis@{Hypothesis}!vent@{vent}}
+\index{vent@{vent}!Hypothesis@{Hypothesis}}
+\subsubsection[{vent}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector}$<$double$>$ {\bf Hypothesis::vent}}}
+\label{structHypothesis_71d6219f3db132b8f8cb6c1a74ee8e50}
+
+
+
+
+Definition at line 43 of file bidir.h.
+
+Referenced by generate\_\-hypotheses(), Hypothesis(), and Update().\hypertarget{structHypothesis_358eab95366fb8cbe00d0ce77a2cba0c}{
+\index{Hypothesis@{Hypothesis}!vt@{vt}}
+\index{vt@{vt}!Hypothesis@{Hypothesis}}
+\subsubsection[{vt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector}$<${\bf Token}$>$ {\bf Hypothesis::vt}}}
+\label{structHypothesis_358eab95366fb8cbe00d0ce77a2cba0c}
+
+
+
+
+Definition at line 42 of file bidir.h.
+
+Referenced by bidir\_\-decode\_\-beam(), generate\_\-hypotheses(), Hypothesis(), Print(), and Update().\hypertarget{structHypothesis_6fc223c39b3b4589c72ef511d9c2dcc7}{
+\index{Hypothesis@{Hypothesis}!vvp@{vvp}}
+\index{vvp@{vvp}!Hypothesis@{Hypothesis}}
+\subsubsection[{vvp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector}$<$ {\bf vector}$<$pair$<$string, double$>$ $>$ $>$ {\bf Hypothesis::vvp}}}
+\label{structHypothesis_6fc223c39b3b4589c72ef511d9c2dcc7}
+
+
+
+
+Definition at line 45 of file bidir.h.
+
+Referenced by generate\_\-hypotheses(), Hypothesis(), and Update().
+
+The documentation for this struct was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/pos/\hyperlink{bidir_8h}{bidir.h}\end{CompactItemize}

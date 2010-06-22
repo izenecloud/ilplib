@@ -1,0 +1,172 @@
+\hypertarget{bidir_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/pos/bidir.cpp File Reference}
+\label{bidir_8cpp}\index{/disk/workspace-cpp/la-manager/source/pos/bidir.cpp@{/disk/workspace-cpp/la-manager/source/pos/bidir.cpp}}
+}
+{\tt \#include $<$sys/time.h$>$}\par
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$fstream$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include $<$list$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$cmath$>$}\par
+{\tt \#include $<$set$>$}\par
+{\tt \#include $<$pos/bidir.h$>$}\par
+{\tt \#include $<$pos/maxent.h$>$}\par
+{\tt \#include $<$pos/common.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{bidir_8cpp_02f9409e50bc713db6db70b01ea0a794}{tokenize} (const string \&s1, list$<$ string $>$ \&lt)
+\item 
+\hyperlink{structME__Sample}{ME\_\-Sample} \hyperlink{bidir_8cpp_d6c1b66043b8281f85a6f35e5e6ce1e9}{mesample} (const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt, int i, const string \&pos\_\-left2, const string \&pos\_\-left1, const string \&pos\_\-right1, const string \&pos\_\-right2)
+\item 
+\hyperlink{structME__Sample}{ME\_\-Sample} \hyperlink{bidir_8cpp_d5f6d8f06de4f89ee13c16e02a7d9a0e}{mesample} (const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt, int i, const string \&prepos)
+\item 
+double \hyperlink{bidir_8cpp_1a51b2477e6670f71887343123191fac}{entropy} (const \hyperlink{classstd_1_1vector}{vector}$<$ double $>$ \&v)
+\item 
+int \hyperlink{bidir_8cpp_0490c01c8c680389f5d99b50fcdf5fd0}{bidir\_\-train} (const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classSentence}{Sentence} $>$ \&vs, int para)
+\item 
+void \hyperlink{bidir_8cpp_3cda3e22abc3c039eabea93b50793786}{generate\_\-hypotheses} (const int order, const \hyperlink{structHypothesis}{Hypothesis} \&h, const multimap$<$ string, string $>$ \&tag\_\-dictionary, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme, list$<$ \hyperlink{structHypothesis}{Hypothesis} $>$ \&vh)
+\item 
+void \hyperlink{bidir_8cpp_0306979e3e0554bd4f08514b25aa6ccb}{bidir\_\-decode\_\-beam} (\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt, const multimap$<$ string, string $>$ \&tag\_\-dictionary, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme)
+\item 
+void \hyperlink{bidir_8cpp_5e6f46cfb4fecb110b8aa616128f23bd}{decode\_\-no\_\-context} (\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt, const \hyperlink{classME__Model}{ME\_\-Model} \&me\_\-none)
+\item 
+string \hyperlink{bidir_8cpp_461c83b53ea6035b69bac29005cb256a}{bidir\_\-postag} (const string \&s, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme)
+\item 
+int \hyperlink{bidir_8cpp_7978be7637f6a0ae3b40ce06a4144f85}{push\_\-stop\_\-watch} ()
+\item 
+void \hyperlink{bidir_8cpp_4d88d410f42cf2533ac6dd5b1f959519}{bidir\_\-postagging} (\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classSentence}{Sentence} $>$ \&vs, const multimap$<$ string, string $>$ \&tag\_\-dictionary, const \hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{classME__Model}{ME\_\-Model} $>$ \&vme)
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{bidir_8cpp_0306979e3e0554bd4f08514b25aa6ccb}{
+\index{bidir.cpp@{bidir.cpp}!bidir\_\-decode\_\-beam@{bidir\_\-decode\_\-beam}}
+\index{bidir\_\-decode\_\-beam@{bidir\_\-decode\_\-beam}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{bidir\_\-decode\_\-beam}]{\setlength{\rightskip}{0pt plus 5cm}void bidir\_\-decode\_\-beam ({\bf vector}$<$ {\bf Token} $>$ \& {\em vt}, \/  const multimap$<$ string, string $>$ \& {\em tag\_\-dictionary}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme})}}
+\label{bidir_8cpp_0306979e3e0554bd4f08514b25aa6ccb}
+
+
+
+
+Definition at line 292 of file bidir.cpp.
+
+References BEAM\_\-NUM, generate\_\-hypotheses(), and Hypothesis::vt.
+
+Referenced by bidir\_\-postag(), bidir\_\-postagging(), and la\_\-manager::POSTaggerEnglish::tag().\hypertarget{bidir_8cpp_461c83b53ea6035b69bac29005cb256a}{
+\index{bidir.cpp@{bidir.cpp}!bidir\_\-postag@{bidir\_\-postag}}
+\index{bidir\_\-postag@{bidir\_\-postag}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{bidir\_\-postag}]{\setlength{\rightskip}{0pt plus 5cm}string bidir\_\-postag (const string \& {\em s}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme})}}
+\label{bidir_8cpp_461c83b53ea6035b69bac29005cb256a}
+
+
+
+
+Definition at line 347 of file bidir.cpp.
+
+References bidir\_\-decode\_\-beam(), and tokenize().\hypertarget{bidir_8cpp_4d88d410f42cf2533ac6dd5b1f959519}{
+\index{bidir.cpp@{bidir.cpp}!bidir\_\-postagging@{bidir\_\-postagging}}
+\index{bidir\_\-postagging@{bidir\_\-postagging}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{bidir\_\-postagging}]{\setlength{\rightskip}{0pt plus 5cm}void bidir\_\-postagging ({\bf vector}$<$ {\bf Sentence} $>$ \& {\em vs}, \/  const multimap$<$ string, string $>$ \& {\em tag\_\-dictionary}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme})}}
+\label{bidir_8cpp_4d88d410f42cf2533ac6dd5b1f959519}
+
+
+
+
+Definition at line 402 of file bidir.cpp.
+
+References bidir\_\-decode\_\-beam(), and push\_\-stop\_\-watch().\hypertarget{bidir_8cpp_0490c01c8c680389f5d99b50fcdf5fd0}{
+\index{bidir.cpp@{bidir.cpp}!bidir\_\-train@{bidir\_\-train}}
+\index{bidir\_\-train@{bidir\_\-train}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{bidir\_\-train}]{\setlength{\rightskip}{0pt plus 5cm}int bidir\_\-train (const {\bf vector}$<$ {\bf Sentence} $>$ \& {\em vs}, \/  int {\em para})}}
+\label{bidir_8cpp_0490c01c8c680389f5d99b50fcdf5fd0}
+
+
+
+
+Definition at line 201 of file bidir.cpp.
+
+References mesample(), ME\_\-Model::save\_\-to\_\-file(), and ME\_\-Model::train().\hypertarget{bidir_8cpp_5e6f46cfb4fecb110b8aa616128f23bd}{
+\index{bidir.cpp@{bidir.cpp}!decode\_\-no\_\-context@{decode\_\-no\_\-context}}
+\index{decode\_\-no\_\-context@{decode\_\-no\_\-context}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{decode\_\-no\_\-context}]{\setlength{\rightskip}{0pt plus 5cm}void decode\_\-no\_\-context ({\bf vector}$<$ {\bf Token} $>$ \& {\em vt}, \/  const {\bf ME\_\-Model} \& {\em me\_\-none})}}
+\label{bidir_8cpp_5e6f46cfb4fecb110b8aa616128f23bd}
+
+
+
+
+Definition at line 326 of file bidir.cpp.
+
+References ME\_\-Model::classify(), ME\_\-Sample::label, and mesample().\hypertarget{bidir_8cpp_1a51b2477e6670f71887343123191fac}{
+\index{bidir.cpp@{bidir.cpp}!entropy@{entropy}}
+\index{entropy@{entropy}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{entropy}]{\setlength{\rightskip}{0pt plus 5cm}double entropy (const {\bf vector}$<$ double $>$ \& {\em v})}}
+\label{bidir_8cpp_1a51b2477e6670f71887343123191fac}
+
+
+
+
+Definition at line 188 of file bidir.cpp.
+
+Referenced by Hypothesis::Update().\hypertarget{bidir_8cpp_3cda3e22abc3c039eabea93b50793786}{
+\index{bidir.cpp@{bidir.cpp}!generate\_\-hypotheses@{generate\_\-hypotheses}}
+\index{generate\_\-hypotheses@{generate\_\-hypotheses}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{generate\_\-hypotheses}]{\setlength{\rightskip}{0pt plus 5cm}void generate\_\-hypotheses (const int {\em order}, \/  const {\bf Hypothesis} \& {\em h}, \/  const multimap$<$ string, string $>$ \& {\em tag\_\-dictionary}, \/  const {\bf vector}$<$ {\bf ME\_\-Model} $>$ \& {\em vme}, \/  list$<$ {\bf Hypothesis} $>$ \& {\em vh})}}
+\label{bidir_8cpp_3cda3e22abc3c039eabea93b50793786}
+
+
+
+
+Definition at line 251 of file bidir.cpp.
+
+References Hypothesis::order, Hypothesis::prob, Hypothesis::Update(), UPDATE\_\-WINDOW\_\-SIZE, Hypothesis::vent, Hypothesis::vt, and Hypothesis::vvp.
+
+Referenced by bidir\_\-decode\_\-beam().\hypertarget{bidir_8cpp_d5f6d8f06de4f89ee13c16e02a7d9a0e}{
+\index{bidir.cpp@{bidir.cpp}!mesample@{mesample}}
+\index{mesample@{mesample}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{mesample}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ME\_\-Sample} mesample (const {\bf vector}$<$ {\bf Token} $>$ \& {\em vt}, \/  int {\em i}, \/  const string \& {\em prepos})}}
+\label{bidir_8cpp_d5f6d8f06de4f89ee13c16e02a7d9a0e}
+
+
+
+
+Definition at line 148 of file bidir.cpp.
+
+References ME\_\-Sample::features, ME\_\-Sample::label, and normalize().\hypertarget{bidir_8cpp_d6c1b66043b8281f85a6f35e5e6ce1e9}{
+\index{bidir.cpp@{bidir.cpp}!mesample@{mesample}}
+\index{mesample@{mesample}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{mesample}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ME\_\-Sample} mesample (const {\bf vector}$<$ {\bf Token} $>$ \& {\em vt}, \/  int {\em i}, \/  const string \& {\em pos\_\-left2}, \/  const string \& {\em pos\_\-left1}, \/  const string \& {\em pos\_\-right1}, \/  const string \& {\em pos\_\-right2})}}
+\label{bidir_8cpp_d6c1b66043b8281f85a6f35e5e6ce1e9}
+
+
+
+
+Definition at line 25 of file bidir.cpp.
+
+References ME\_\-Sample::features, ME\_\-Sample::label, and ONLY\_\-VERTICAL\_\-FEATURES.
+
+Referenced by bidir\_\-train(), decode\_\-no\_\-context(), Hypothesis::Update(), and viterbi().\hypertarget{bidir_8cpp_7978be7637f6a0ae3b40ce06a4144f85}{
+\index{bidir.cpp@{bidir.cpp}!push\_\-stop\_\-watch@{push\_\-stop\_\-watch}}
+\index{push\_\-stop\_\-watch@{push\_\-stop\_\-watch}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{push\_\-stop\_\-watch}]{\setlength{\rightskip}{0pt plus 5cm}int push\_\-stop\_\-watch ()}}
+\label{bidir_8cpp_7978be7637f6a0ae3b40ce06a4144f85}
+
+
+
+
+Definition at line 383 of file bidir.cpp.
+
+Referenced by bidir\_\-postagging().\hypertarget{bidir_8cpp_02f9409e50bc713db6db70b01ea0a794}{
+\index{bidir.cpp@{bidir.cpp}!tokenize@{tokenize}}
+\index{tokenize@{tokenize}!bidir.cpp@{bidir.cpp}}
+\subsubsection[{tokenize}]{\setlength{\rightskip}{0pt plus 5cm}void tokenize (const string \& {\em s1}, \/  list$<$ string $>$ \& {\em lt})}}
+\label{bidir_8cpp_02f9409e50bc713db6db70b01ea0a794}
+
+
+
+
+Definition at line 11 of file tokenize.cpp.
+
+References replace().

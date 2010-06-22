@@ -1,0 +1,36 @@
+The library requires the 'WISEKMA' environment variable to be set before building.
+
+The wisenut KMA library can be  retrieved by using rsync. The following shows a few commands that can be used.
+
+	1. View local directory
+	rsync -avn firstname.lastname@izenesoft.com:/research-data/kma/ .
+
+	2. rsync local to remote
+	rsync -avP . firstname.lastname@izenesoft.com:/research-data/kma/
+
+	3. rsync remote to local
+	rsync -avP firstname.lastname@izenesoft.com:/research-data/kma/ .
+
+
+	The directories under this directory indicate each build option of which the library was created from.
+	For example, "ia64-glibc27-gcc41" directory shows that this directory contains the library built with glibc 2.7 and gcc 4.1
+
+
+Then set the 'WISEKMA' environment variable to a specific library directory (e.g. ia64-glibc27-gcc41)
+
+#################################################################################
+The following is the instruction to use iCMA.
+
+	1. Clone the project chinese-ma-chem
+	git clone firstname.lastname@izenesoft.com:/git/chinese-ma-chen.git
+
+	2. Set the Environment Variable IZENECMA as the root directory of that project.
+	
+	3. Compile this project. The default dictionary directory is ${IZENECMA}/db/icwb/utf8 (with utf-8 encoding); All the libraries (static or shared) are under ${IZENECMA}/lib; And the header files are under ${IZENECMA}/include.
+
+	4. Enter the "build" directory in the la-manager; then type "cmake -D USE_IZENECMA=TRUE .. ", "make" in sequence to compile the la-manager with iCMA.
+
+The t_LA and performance-test can test iCMA if iCMA is used in the la-manager.
+
+###############################################################################
+

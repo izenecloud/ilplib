@@ -1,0 +1,399 @@
+\hypertarget{classkmaOrange_1_1Buffer}{
+\section{kmaOrange::Buffer Class Reference}
+\label{classkmaOrange_1_1Buffer}\index{kmaOrange::Buffer@{kmaOrange::Buffer}}
+}
+This is a foundation class for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} class.\par
+ This class is stored the the string buffer and the information.  
+
+
+{\tt \#include $<$Buffer.h$>$}
+
+Inheritance diagram for kmaOrange::Buffer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classkmaOrange_1_1Buffer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1Buffer_a8957deac57937576dd6693106ea824a}{Buffer} (unsigned int sizeBuffer=DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE)
+\begin{CompactList}\small\item\em This function is a constructor of a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Buffer_884ca5fae46e971a28b63b901b2330ae}{$\sim$Buffer} (void)
+\begin{CompactList}\small\item\em This function is a destructor of a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \item\end{CompactList}\item 
+const \hyperlink{classkmaOrange_1_1Buffer}{Buffer} \& \hyperlink{classkmaOrange_1_1Buffer_c68390a0989f7433f7727ae4be023c11}{operator=} (const \hyperlink{classkmaOrange_1_1Buffer}{Buffer} \&eojul)
+\begin{CompactList}\small\item\em This function assigns a right-hand-side to a left-hand-side. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Buffer_1d59bc9cc086950f9cbebba033c12c7e}{appendBuffer} (char $\ast$word, unsigned int length)
+\begin{CompactList}\small\item\em This function inserts the string of a word. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Buffer_dd289fa535ca2c9576e0226dbaa93a48}{initialize} (bool willBeToTheDefaultState=false)
+\begin{CompactList}\small\item\em This function initializes a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Buffer_731c624eb9b6e4536226925a4c1ab067}{freeBuffer} ()
+\begin{CompactList}\small\item\em This function frees the allocated memories for a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Buffer_4d13cf9b192211134c9a2e92d4eec326}{doubleBuffer} ()
+\begin{CompactList}\small\item\em This function enlarges twice the allocated memories for a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Buffer_506499720e4e8cfdd18ac973d9ea9e71}{getBufferPos} () const 
+\begin{CompactList}\small\item\em This function gets the current position of the buffer. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Buffer_2e3c1afe4c305888ec50458256a9e2d6}{getBufferSize} () const 
+\begin{CompactList}\small\item\em This function gets the size of the buffer. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Buffer_05b1cadf0bc0a1ec4c5bb03fc02654bf}{getBufferPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the buffer. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Buffer_22aa8b5ca6b4a4135762883479bc7d16}{setPosBuffer} (int pos)
+\begin{CompactList}\small\item\em This function sets the current position of the buffer. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Buffer_0d7ee52c85477ab147f8cc741cfcac50}{setSizeBuffer} (int size)
+\begin{CompactList}\small\item\em This function sets the size of the buffer. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Buffer_4afbe5aa986d4f15d9ae93358a716e62}{reserveBuffer} (int size)
+\begin{CompactList}\small\item\em This function sets the size of the buffer. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Buffer_ba8240e4cf81f0878217f8350ca3dae6}{\_\-buffer}
+\begin{CompactList}\small\item\em the buffer of a word. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Buffer_9802c22c40425c9588b33a59cc9f7636}{\_\-sizeBuffer}
+\begin{CompactList}\small\item\em the size of the buffer. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Buffer_f4bb54f6fd24ec09040b1e7f54ee3167}{\_\-posBuffer}
+\begin{CompactList}\small\item\em the position of the buffer. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This is a foundation class for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} class.\par
+ This class is stored the the string buffer and the information. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 146 of file Buffer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1Buffer_a8957deac57937576dd6693106ea824a}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Buffer::Buffer (unsigned int {\em sizeBuffer} = {\tt DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE})}}
+\label{classkmaOrange_1_1Buffer_a8957deac57937576dd6693106ea824a}
+
+
+This function is a constructor of a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sizeBuffer}]an unsigned integer - the size of a set string in a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. \end{description}
+\end{Desc}
+
+
+Definition at line 118 of file Buffer.cpp.
+
+References reserveBuffer().\hypertarget{classkmaOrange_1_1Buffer_884ca5fae46e971a28b63b901b2330ae}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!$\sim$Buffer@{$\sim$Buffer}}
+\index{$\sim$Buffer@{$\sim$Buffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{$\sim$Buffer}]{\setlength{\rightskip}{0pt plus 5cm}Buffer::$\sim$Buffer (void)}}
+\label{classkmaOrange_1_1Buffer_884ca5fae46e971a28b63b901b2330ae}
+
+
+This function is a destructor of a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 123 of file Buffer.cpp.
+
+References freeBuffer().
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1Buffer_1d59bc9cc086950f9cbebba033c12c7e}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!appendBuffer@{appendBuffer}}
+\index{appendBuffer@{appendBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{appendBuffer}]{\setlength{\rightskip}{0pt plus 5cm}int Buffer::appendBuffer (char $\ast$ {\em word}, \/  unsigned int {\em length})}}
+\label{classkmaOrange_1_1Buffer_1d59bc9cc086950f9cbebba033c12c7e}
+
+
+This function inserts the string of a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]a pointer of a character - the string of a word. \item[{\em length}]an unsigned integer - the size of the a word. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 167 of file Buffer.cpp.
+
+References \_\-buffer, \_\-posBuffer, \_\-sizeBuffer, and doubleBuffer().
+
+Referenced by kmaOrange::Dictionary::makeMainTrieInfo(), kmaOrange::Dictionary::readJosaEomiDictionary(), and kmaOrange::Dictionary::setOnsetEomi().\hypertarget{classkmaOrange_1_1Buffer_4d13cf9b192211134c9a2e92d4eec326}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!doubleBuffer@{doubleBuffer}}
+\index{doubleBuffer@{doubleBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{doubleBuffer}]{\setlength{\rightskip}{0pt plus 5cm}int Buffer::doubleBuffer ()}}
+\label{classkmaOrange_1_1Buffer_4d13cf9b192211134c9a2e92d4eec326}
+
+
+This function enlarges twice the allocated memories for a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an interger. \end{Desc}
+
+
+Definition at line 181 of file Buffer.cpp.
+
+References \_\-buffer, \_\-sizeBuffer, and TWICE.
+
+Referenced by appendBuffer().\hypertarget{classkmaOrange_1_1Buffer_731c624eb9b6e4536226925a4c1ab067}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!freeBuffer@{freeBuffer}}
+\index{freeBuffer@{freeBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{freeBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void Buffer::freeBuffer ()}}
+\label{classkmaOrange_1_1Buffer_731c624eb9b6e4536226925a4c1ab067}
+
+
+This function frees the allocated memories for a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 162 of file Buffer.cpp.
+
+References \_\-buffer.
+
+Referenced by initialize(), operator=(), and $\sim$Buffer().\hypertarget{classkmaOrange_1_1Buffer_506499720e4e8cfdd18ac973d9ea9e71}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!getBufferPos@{getBufferPos}}
+\index{getBufferPos@{getBufferPos}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{getBufferPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Buffer::getBufferPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_506499720e4e8cfdd18ac973d9ea9e71}
+
+
+This function gets the current position of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned interger. \end{Desc}
+
+
+Definition at line 212 of file Buffer.h.
+
+References \_\-posBuffer.
+
+Referenced by kmaOrange::Dictionary::makeMainTrieInfo(), operator=(), kmaOrange::Dictionary::readJosaEomiDictionary(), kmaOrange::Dictionary::setOnsetEomi(), kmaOrange::Dictionary::writeJosaEomiTrie(), and kmaOrange::Dictionary::writeMainTrie().\hypertarget{classkmaOrange_1_1Buffer_05b1cadf0bc0a1ec4c5bb03fc02654bf}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!getBufferPtr@{getBufferPtr}}
+\index{getBufferPtr@{getBufferPtr}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{getBufferPtr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ kmaOrange::Buffer::getBufferPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_05b1cadf0bc0a1ec4c5bb03fc02654bf}
+
+
+This function gets the starting pointer of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character. \end{Desc}
+
+
+Definition at line 228 of file Buffer.h.
+
+References \_\-buffer.
+
+Referenced by kmaOrange::Dictionary::getBufferInfo(), kmaOrange::Dictionary::getJEInfo(), operator=(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), and kmaOrange::Dictionary::writeMainTrie().\hypertarget{classkmaOrange_1_1Buffer_2e3c1afe4c305888ec50458256a9e2d6}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!getBufferSize@{getBufferSize}}
+\index{getBufferSize@{getBufferSize}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{getBufferSize}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Buffer::getBufferSize () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_2e3c1afe4c305888ec50458256a9e2d6}
+
+
+This function gets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned interger. \end{Desc}
+
+
+Definition at line 220 of file Buffer.h.
+
+References \_\-sizeBuffer.
+
+Referenced by operator=().\hypertarget{classkmaOrange_1_1Buffer_dd289fa535ca2c9576e0226dbaa93a48}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!initialize@{initialize}}
+\index{initialize@{initialize}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Buffer::initialize (bool {\em willBeToTheDefaultState} = {\tt false})}}
+\label{classkmaOrange_1_1Buffer_dd289fa535ca2c9576e0226dbaa93a48}
+
+
+This function initializes a \hyperlink{classkmaOrange_1_1Buffer}{Buffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em willBeToTheDefaultState}]a boolean.\par
+ true - it entirely sets an \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object to initial statement. \par
+ false - it only sets values in an \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object. \end{description}
+\end{Desc}
+
+
+Definition at line 143 of file Buffer.cpp.
+
+References \_\-buffer, \_\-posBuffer, \_\-sizeBuffer, DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE, and freeBuffer().\hypertarget{classkmaOrange_1_1Buffer_c68390a0989f7433f7727ae4be023c11}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!operator=@{operator=}}
+\index{operator=@{operator=}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Buffer} \& Buffer::operator= (const {\bf Buffer} \& {\em eojul})}}
+\label{classkmaOrange_1_1Buffer_c68390a0989f7433f7727ae4be023c11}
+
+
+This function assigns a right-hand-side to a left-hand-side. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 199 of file Buffer.cpp.
+
+References \_\-buffer, \_\-posBuffer, \_\-sizeBuffer, freeBuffer(), getBufferPos(), getBufferPtr(), and getBufferSize().\hypertarget{classkmaOrange_1_1Buffer_4afbe5aa986d4f15d9ae93358a716e62}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!reserveBuffer@{reserveBuffer}}
+\index{reserveBuffer@{reserveBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{reserveBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void Buffer::reserveBuffer (int {\em size})}}
+\label{classkmaOrange_1_1Buffer_4afbe5aa986d4f15d9ae93358a716e62}
+
+
+This function sets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]an integer - the size of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 128 of file Buffer.cpp.
+
+References \_\-buffer, \_\-posBuffer, \_\-sizeBuffer, DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE, and kmaOrange::Logger::SetMessage().
+
+Referenced by Buffer(), kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::readMainTrie().\hypertarget{classkmaOrange_1_1Buffer_22aa8b5ca6b4a4135762883479bc7d16}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!setPosBuffer@{setPosBuffer}}
+\index{setPosBuffer@{setPosBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{setPosBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Buffer::setPosBuffer (int {\em pos})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_22aa8b5ca6b4a4135762883479bc7d16}
+
+
+This function sets the current position of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]an integer - the current position of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 236 of file Buffer.h.
+
+References \_\-posBuffer.
+
+Referenced by kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::readMainTrie().\hypertarget{classkmaOrange_1_1Buffer_0d7ee52c85477ab147f8cc741cfcac50}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!setSizeBuffer@{setSizeBuffer}}
+\index{setSizeBuffer@{setSizeBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{setSizeBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Buffer::setSizeBuffer (int {\em size})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_0d7ee52c85477ab147f8cc741cfcac50}
+
+
+This function sets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]an integer - the size of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 244 of file Buffer.h.
+
+References \_\-sizeBuffer.
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1Buffer_ba8240e4cf81f0878217f8350ca3dae6}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!\_\-buffer@{\_\-buffer}}
+\index{\_\-buffer@{\_\-buffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf kmaOrange::Buffer::\_\-buffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_ba8240e4cf81f0878217f8350ca3dae6}
+
+
+the buffer of a word. 
+
+
+
+Definition at line 255 of file Buffer.h.
+
+Referenced by appendBuffer(), doubleBuffer(), freeBuffer(), getBufferPtr(), initialize(), operator=(), and reserveBuffer().\hypertarget{classkmaOrange_1_1Buffer_f4bb54f6fd24ec09040b1e7f54ee3167}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!\_\-posBuffer@{\_\-posBuffer}}
+\index{\_\-posBuffer@{\_\-posBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{\_\-posBuffer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Buffer::\_\-posBuffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_f4bb54f6fd24ec09040b1e7f54ee3167}
+
+
+the position of the buffer. 
+
+
+
+Definition at line 257 of file Buffer.h.
+
+Referenced by appendBuffer(), getBufferPos(), initialize(), operator=(), reserveBuffer(), and setPosBuffer().\hypertarget{classkmaOrange_1_1Buffer_9802c22c40425c9588b33a59cc9f7636}{
+\index{kmaOrange::Buffer@{kmaOrange::Buffer}!\_\-sizeBuffer@{\_\-sizeBuffer}}
+\index{\_\-sizeBuffer@{\_\-sizeBuffer}!kmaOrange::Buffer@{kmaOrange::Buffer}}
+\subsubsection[{\_\-sizeBuffer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Buffer::\_\-sizeBuffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Buffer_9802c22c40425c9588b33a59cc9f7636}
+
+
+the size of the buffer. 
+
+
+
+Definition at line 256 of file Buffer.h.
+
+Referenced by appendBuffer(), doubleBuffer(), getBufferSize(), initialize(), operator=(), reserveBuffer(), and setSizeBuffer().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{Buffer_8h}{Buffer.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{Buffer_8cpp}{Buffer.cpp}\end{CompactItemize}

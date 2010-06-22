@@ -1,0 +1,466 @@
+\hypertarget{classkmaOrange_1_1JEBuffer}{
+\section{kmaOrange::JEBuffer Class Reference}
+\label{classkmaOrange_1_1JEBuffer}\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+}
+This class is stored the string buffer and the information of a searched postposition or ending in a word.  
+
+
+{\tt \#include $<$Buffer.h$>$}
+
+Inheritance diagram for kmaOrange::JEBuffer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classkmaOrange_1_1JEBuffer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1JEBuffer_3778d966cc4cf4e93b22e0e17ca84e92}{JEBuffer} (unsigned int size=DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE)
+\begin{CompactList}\small\item\em This function is a constructor of a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1JEBuffer_ff64ccdec4b316f7d2dd23bd66693f82}{$\sim$JEBuffer} (void)
+\begin{CompactList}\small\item\em This function is a destructor of a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1JEBuffer_aaaffab5a6c0ecad023a286ab81124c1}{appendInfo} (int pos, unsigned int tag, short int info, unsigned char coda)
+\begin{CompactList}\small\item\em This function inserts the information of a postposition or ending in a word. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1JEBuffer_516f7964ac619106e7a8f5aef02bd3a0}{freeJEBuffer} ()
+\begin{CompactList}\small\item\em This function frees the allocated memories for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1JEBuffer_7a5fb7133ad58c60dafd9e9ab5c1158b}{doubleJEBuffer} ()
+\begin{CompactList}\small\item\em This function enlarges twice the allocated memories for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1JEBuffer_9b038ab505a0d970bc8a8dddef62f02c}{getPos} () const 
+\begin{CompactList}\small\item\em This function gets the current position of the buffer. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1JEBuffer_2865cf31a9ee16e962c7c0c9aa564b32}{getSize} () const 
+\begin{CompactList}\small\item\em This function gets the size of the buffer. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_636ee5050c0533db99ca8632c311389c}{getIndexesPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the list of starting positions. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_895da3d5f392bd96761102d707ac54f4}{getTagsPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the list of POS tags. \item\end{CompactList}\item 
+short int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_80d5bebfcc288edc6543e2d89c6e65a0}{getInfosPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the list of information codes. \item\end{CompactList}\item 
+unsigned char $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_f7132e64eb9c4392442b8b34112ec88a}{getCodasPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the list of codas. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1JEBuffer_0992fe0c2cab27f8e5055112cdcb163c}{setPos} (int pos)
+\begin{CompactList}\small\item\em This function sets the current position of the buffer. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1JEBuffer_d602533167f2eb6719e70d62c1f9345d}{setSize} (int size)
+\begin{CompactList}\small\item\em This function sets the size of the buffer. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1JEBuffer_481e90a2667cfc2948edab85edea8f39}{reserve} (int size)
+\begin{CompactList}\small\item\em This function sets the size of the buffer. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_8206c9c71650e6daad097f4ddd168acb}{\_\-indexes}
+\begin{CompactList}\small\item\em the list of starting positions. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_0b50e5baadc2fa26a8fec01cde35ef9f}{\_\-tags}
+\begin{CompactList}\small\item\em the list of POS tags. \item\end{CompactList}\item 
+short int $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_4eeb75367509a98bf49f65433684fb15}{\_\-infos}
+\begin{CompactList}\small\item\em the list of information codes. \item\end{CompactList}\item 
+unsigned char $\ast$ \hyperlink{classkmaOrange_1_1JEBuffer_29fea2590f8a6de7f9e68c1ef8209be8}{\_\-codas}
+\begin{CompactList}\small\item\em the list of codas. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1JEBuffer_a6cc6d994de00fa730148f6b63abdab8}{\_\-size}
+\begin{CompactList}\small\item\em the size of the buffer. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1JEBuffer_8ddb33c9299dd4c93fb6dd976b2b95dc}{\_\-pos}
+\begin{CompactList}\small\item\em the position of the buffer. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class is stored the string buffer and the information of a searched postposition or ending in a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[See also:]\hyperlink{classkmaOrange_1_1Buffer}{Buffer} \end{Desc}
+
+
+Definition at line 266 of file Buffer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1JEBuffer_3778d966cc4cf4e93b22e0e17ca84e92}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!JEBuffer@{JEBuffer}}
+\index{JEBuffer@{JEBuffer}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{JEBuffer}]{\setlength{\rightskip}{0pt plus 5cm}JEBuffer::JEBuffer (unsigned int {\em size} = {\tt DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE})}}
+\label{classkmaOrange_1_1JEBuffer_3778d966cc4cf4e93b22e0e17ca84e92}
+
+
+This function is a constructor of a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]an unsigned integer - the size of a set string in a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. \end{description}
+\end{Desc}
+
+
+Definition at line 224 of file Buffer.cpp.
+
+References \_\-codas, \_\-indexes, \_\-infos, \_\-pos, \_\-size, \_\-tags, DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE, and kmaOrange::Logger::SetMessage().\hypertarget{classkmaOrange_1_1JEBuffer_ff64ccdec4b316f7d2dd23bd66693f82}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!$\sim$JEBuffer@{$\sim$JEBuffer}}
+\index{$\sim$JEBuffer@{$\sim$JEBuffer}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{$\sim$JEBuffer}]{\setlength{\rightskip}{0pt plus 5cm}JEBuffer::$\sim$JEBuffer (void)}}
+\label{classkmaOrange_1_1JEBuffer_ff64ccdec4b316f7d2dd23bd66693f82}
+
+
+This function is a destructor of a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 246 of file Buffer.cpp.
+
+References freeJEBuffer().
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1JEBuffer_aaaffab5a6c0ecad023a286ab81124c1}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!appendInfo@{appendInfo}}
+\index{appendInfo@{appendInfo}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{appendInfo}]{\setlength{\rightskip}{0pt plus 5cm}int JEBuffer::appendInfo (int {\em pos}, \/  unsigned int {\em tag}, \/  short int {\em info}, \/  unsigned char {\em coda})}}
+\label{classkmaOrange_1_1JEBuffer_aaaffab5a6c0ecad023a286ab81124c1}
+
+
+This function inserts the information of a postposition or ending in a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]an integer - the starting position of a postposition or ending in a word. \item[{\em tag}]an unsigned integer - the POS tag of a postposition or ending. \item[{\em info}]a short integer - the information code of a postposition or ending. \item[{\em coda}]an unsigned character - the KSSM code for the first byte of a postposition or ending, which has a coda( final consonant ) as the first syllable. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 281 of file Buffer.cpp.
+
+References \_\-codas, \_\-indexes, \_\-infos, \_\-pos, \_\-size, \_\-tags, and doubleJEBuffer().
+
+Referenced by kmaOrange::Dictionary::readJosaEomiDictionary(), and kmaOrange::Dictionary::setOnsetEomi().\hypertarget{classkmaOrange_1_1JEBuffer_7a5fb7133ad58c60dafd9e9ab5c1158b}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!doubleJEBuffer@{doubleJEBuffer}}
+\index{doubleJEBuffer@{doubleJEBuffer}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{doubleJEBuffer}]{\setlength{\rightskip}{0pt plus 5cm}int JEBuffer::doubleJEBuffer ()}}
+\label{classkmaOrange_1_1JEBuffer_7a5fb7133ad58c60dafd9e9ab5c1158b}
+
+
+This function enlarges twice the allocated memories for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an interger. \end{Desc}
+
+
+Definition at line 298 of file Buffer.cpp.
+
+References \_\-codas, \_\-indexes, \_\-infos, \_\-size, \_\-tags, freeJEBuffer(), and TWICE.
+
+Referenced by appendInfo().\hypertarget{classkmaOrange_1_1JEBuffer_516f7964ac619106e7a8f5aef02bd3a0}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!freeJEBuffer@{freeJEBuffer}}
+\index{freeJEBuffer@{freeJEBuffer}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{freeJEBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void JEBuffer::freeJEBuffer ()}}
+\label{classkmaOrange_1_1JEBuffer_516f7964ac619106e7a8f5aef02bd3a0}
+
+
+This function frees the allocated memories for a \hyperlink{classkmaOrange_1_1JEBuffer}{JEBuffer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 273 of file Buffer.cpp.
+
+References \_\-codas, \_\-indexes, \_\-infos, and \_\-tags.
+
+Referenced by doubleJEBuffer(), and $\sim$JEBuffer().\hypertarget{classkmaOrange_1_1JEBuffer_f7132e64eb9c4392442b8b34112ec88a}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getCodasPtr@{getCodasPtr}}
+\index{getCodasPtr@{getCodasPtr}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getCodasPtr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ kmaOrange::JEBuffer::getCodasPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_f7132e64eb9c4392442b8b34112ec88a}
+
+
+This function gets the starting pointer of the list of codas. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an unsigned character. \end{Desc}
+
+
+Definition at line 357 of file Buffer.h.
+
+References \_\-codas.
+
+Referenced by kmaOrange::Dictionary::getJEInfo(), kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::writeJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_636ee5050c0533db99ca8632c311389c}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getIndexesPtr@{getIndexesPtr}}
+\index{getIndexesPtr@{getIndexesPtr}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getIndexesPtr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ kmaOrange::JEBuffer::getIndexesPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_636ee5050c0533db99ca8632c311389c}
+
+
+This function gets the starting pointer of the list of starting positions. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an unsigned integer. \end{Desc}
+
+
+Definition at line 333 of file Buffer.h.
+
+References \_\-indexes.
+
+Referenced by kmaOrange::Dictionary::getJEInfo(), kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::writeJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_80d5bebfcc288edc6543e2d89c6e65a0}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getInfosPtr@{getInfosPtr}}
+\index{getInfosPtr@{getInfosPtr}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getInfosPtr}]{\setlength{\rightskip}{0pt plus 5cm}short int$\ast$ kmaOrange::JEBuffer::getInfosPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_80d5bebfcc288edc6543e2d89c6e65a0}
+
+
+This function gets the starting pointer of the list of information codes. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an short integer. \end{Desc}
+
+
+Definition at line 349 of file Buffer.h.
+
+References \_\-infos.
+
+Referenced by kmaOrange::Dictionary::getJEInfo(), kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::writeJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_9b038ab505a0d970bc8a8dddef62f02c}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getPos@{getPos}}
+\index{getPos@{getPos}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::JEBuffer::getPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_9b038ab505a0d970bc8a8dddef62f02c}
+
+
+This function gets the current position of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned interger. \end{Desc}
+
+
+Definition at line 317 of file Buffer.h.
+
+References \_\-pos.
+
+Referenced by kmaOrange::Dictionary::readJosaEomiDictionary(), kmaOrange::Dictionary::setOnsetEomi(), and kmaOrange::Dictionary::writeJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_2865cf31a9ee16e962c7c0c9aa564b32}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getSize@{getSize}}
+\index{getSize@{getSize}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getSize}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::JEBuffer::getSize () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_2865cf31a9ee16e962c7c0c9aa564b32}
+
+
+This function gets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned interger. \end{Desc}
+
+
+Definition at line 325 of file Buffer.h.
+
+References \_\-size.\hypertarget{classkmaOrange_1_1JEBuffer_895da3d5f392bd96761102d707ac54f4}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!getTagsPtr@{getTagsPtr}}
+\index{getTagsPtr@{getTagsPtr}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{getTagsPtr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ kmaOrange::JEBuffer::getTagsPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_895da3d5f392bd96761102d707ac54f4}
+
+
+This function gets the starting pointer of the list of POS tags. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an unsigned integer. \end{Desc}
+
+
+Definition at line 341 of file Buffer.h.
+
+References \_\-tags.
+
+Referenced by kmaOrange::Dictionary::getJEInfo(), kmaOrange::Dictionary::readJosaEomiTrie(), and kmaOrange::Dictionary::writeJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_481e90a2667cfc2948edab85edea8f39}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!reserve@{reserve}}
+\index{reserve@{reserve}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{reserve}]{\setlength{\rightskip}{0pt plus 5cm}void JEBuffer::reserve (int {\em size})}}
+\label{classkmaOrange_1_1JEBuffer_481e90a2667cfc2948edab85edea8f39}
+
+
+This function sets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]an integer - the size of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 251 of file Buffer.cpp.
+
+References \_\-codas, \_\-indexes, \_\-infos, \_\-pos, \_\-size, \_\-tags, DEFAULT\_\-BUFFER\_\-BUFFER\_\-SIZE, and kmaOrange::Logger::SetMessage().
+
+Referenced by kmaOrange::Dictionary::readJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_0992fe0c2cab27f8e5055112cdcb163c}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!setPos@{setPos}}
+\index{setPos@{setPos}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{setPos}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::JEBuffer::setPos (int {\em pos})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_0992fe0c2cab27f8e5055112cdcb163c}
+
+
+This function sets the current position of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]an integer - the current position of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 365 of file Buffer.h.
+
+References \_\-pos.
+
+Referenced by kmaOrange::Dictionary::readJosaEomiTrie().\hypertarget{classkmaOrange_1_1JEBuffer_d602533167f2eb6719e70d62c1f9345d}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!setSize@{setSize}}
+\index{setSize@{setSize}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{setSize}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::JEBuffer::setSize (int {\em size})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_d602533167f2eb6719e70d62c1f9345d}
+
+
+This function sets the size of the buffer. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em size}]an integer - the size of the buffer. \end{description}
+\end{Desc}
+
+
+Definition at line 373 of file Buffer.h.
+
+References \_\-size.
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1JEBuffer_29fea2590f8a6de7f9e68c1ef8209be8}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-codas@{\_\-codas}}
+\index{\_\-codas@{\_\-codas}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-codas}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ {\bf kmaOrange::JEBuffer::\_\-codas}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_29fea2590f8a6de7f9e68c1ef8209be8}
+
+
+the list of codas. 
+
+
+
+Definition at line 387 of file Buffer.h.
+
+Referenced by appendInfo(), doubleJEBuffer(), freeJEBuffer(), getCodasPtr(), JEBuffer(), and reserve().\hypertarget{classkmaOrange_1_1JEBuffer_8206c9c71650e6daad097f4ddd168acb}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-indexes@{\_\-indexes}}
+\index{\_\-indexes@{\_\-indexes}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-indexes}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf kmaOrange::JEBuffer::\_\-indexes}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_8206c9c71650e6daad097f4ddd168acb}
+
+
+the list of starting positions. 
+
+
+
+Definition at line 384 of file Buffer.h.
+
+Referenced by appendInfo(), doubleJEBuffer(), freeJEBuffer(), getIndexesPtr(), JEBuffer(), and reserve().\hypertarget{classkmaOrange_1_1JEBuffer_4eeb75367509a98bf49f65433684fb15}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-infos@{\_\-infos}}
+\index{\_\-infos@{\_\-infos}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-infos}]{\setlength{\rightskip}{0pt plus 5cm}short int$\ast$ {\bf kmaOrange::JEBuffer::\_\-infos}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_4eeb75367509a98bf49f65433684fb15}
+
+
+the list of information codes. 
+
+
+
+Definition at line 386 of file Buffer.h.
+
+Referenced by appendInfo(), doubleJEBuffer(), freeJEBuffer(), getInfosPtr(), JEBuffer(), and reserve().\hypertarget{classkmaOrange_1_1JEBuffer_8ddb33c9299dd4c93fb6dd976b2b95dc}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-pos@{\_\-pos}}
+\index{\_\-pos@{\_\-pos}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-pos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::JEBuffer::\_\-pos}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_8ddb33c9299dd4c93fb6dd976b2b95dc}
+
+
+the position of the buffer. 
+
+
+
+Definition at line 389 of file Buffer.h.
+
+Referenced by appendInfo(), getPos(), JEBuffer(), reserve(), and setPos().\hypertarget{classkmaOrange_1_1JEBuffer_a6cc6d994de00fa730148f6b63abdab8}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-size@{\_\-size}}
+\index{\_\-size@{\_\-size}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::JEBuffer::\_\-size}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_a6cc6d994de00fa730148f6b63abdab8}
+
+
+the size of the buffer. 
+
+
+
+Definition at line 388 of file Buffer.h.
+
+Referenced by appendInfo(), doubleJEBuffer(), getSize(), JEBuffer(), reserve(), and setSize().\hypertarget{classkmaOrange_1_1JEBuffer_0b50e5baadc2fa26a8fec01cde35ef9f}{
+\index{kmaOrange::JEBuffer@{kmaOrange::JEBuffer}!\_\-tags@{\_\-tags}}
+\index{\_\-tags@{\_\-tags}!kmaOrange::JEBuffer@{kmaOrange::JEBuffer}}
+\subsubsection[{\_\-tags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf kmaOrange::JEBuffer::\_\-tags}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1JEBuffer_0b50e5baadc2fa26a8fec01cde35ef9f}
+
+
+the list of POS tags. 
+
+
+
+Definition at line 385 of file Buffer.h.
+
+Referenced by appendInfo(), doubleJEBuffer(), freeJEBuffer(), getTagsPtr(), JEBuffer(), and reserve().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{Buffer_8h}{Buffer.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{Buffer_8cpp}{Buffer.cpp}\end{CompactItemize}

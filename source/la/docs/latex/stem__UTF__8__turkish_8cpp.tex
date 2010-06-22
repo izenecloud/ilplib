@@ -1,0 +1,2976 @@
+\hypertarget{stem__UTF__8__turkish_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-turkish.cpp File Reference}
+\label{stem__UTF__8__turkish_8cpp}\index{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-turkish.cpp@{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-turkish.cpp}}
+}
+{\tt \#include $<$stem/header.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{stem__UTF__8__turkish_8cpp_bb7a153a4a43ef3a0abf24ddd944918c}{turkish\_\-UTF\_\-8\_\-stem} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_c045d52c030df901fac0807cb015f7ef}{r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_dafb42a5e45aa73216b4c4843f55ba74}{r\_\-stem\_\-noun\_\-suffixes} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_a0c7ba7df0e31ba846ce28496f773f87}{r\_\-stem\_\-nominal\_\-verb\_\-suffixes} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_9a06115d1abdc06e1487c9af8a41a340}{r\_\-postlude} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_dac0fc1cff3bc833dc1168020ce01e5b}{r\_\-post\_\-process\_\-last\_\-consonants} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_c9c171388261ea76ed86a92af307617a}{r\_\-more\_\-than\_\-one\_\-syllable\_\-word} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_211c9eb9e1a7b60aac06e2e67977df08}{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_0731dc945e7df47e63a5d49bf77833c7}{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_c22755b5b89d64ea61b426870dce8919}{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_8e5d43bab752bb72ed3b8c8dccdb473c}{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_be5f67539ee9692f961b13f9b39db27c}{r\_\-mark\_\-ysA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_022834a18235adfcc29684041c57899a}{r\_\-mark\_\-ymUs\_\-} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_128e07ad11732d0eb2e1dd9cd8ddefde}{r\_\-mark\_\-yken} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_a924ada8f9ab9fb7f75c64d7791e4c15}{r\_\-mark\_\-yDU} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_72f37de034f69334bda1b7eac8a46517}{r\_\-mark\_\-yUz} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_2af7248ba132a129cb4c39de003acf08}{r\_\-mark\_\-yUm} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_6a12607670c49f0338f67cd9395c3fae}{r\_\-mark\_\-yU} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_56f2818a528afa7fea39b61314b80e90}{r\_\-mark\_\-ylA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_58cf1bb9a1f0774a4f80a16c7d03a5d4}{r\_\-mark\_\-yA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_c9e1cb61919f46d0385e3ead8b0981d8}{r\_\-mark\_\-possessives} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_e26063c7433f45ad20311b03cd09a279}{r\_\-mark\_\-sUnUz} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_2de7f205d67f4699426f95b92c291ed9}{r\_\-mark\_\-sUn} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_5d03c810597015f3e62deaf723b6d285}{r\_\-mark\_\-sU} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_0751616bc39671ae4c7ff96e39b78bf1}{r\_\-mark\_\-nUz} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_240c3ec32cabcfeacfd83e535e0de814}{r\_\-mark\_\-nUn} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_c2cd4d6d6f1f79bdb99e9cd8d337b626}{r\_\-mark\_\-nU} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_8651fc90d39c9bcb2bd8d5938165787c}{r\_\-mark\_\-ndAn} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_5a05f2e107e81b983fd45ce2ac77ae9f}{r\_\-mark\_\-ndA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_cf1c4deddf8129d34120ab7e06e9f1bb}{r\_\-mark\_\-ncA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_7085e58c9468413f5192539c8ca1c20b}{r\_\-mark\_\-nA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_854d2e0d005dd4ef42998e8489ed0440}{r\_\-mark\_\-lArI} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_bdb903c406a11298632f4fba026886fc}{r\_\-mark\_\-lAr} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_98d33842d9a32c9acc80a8a49f6e342d}{r\_\-mark\_\-ki} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_9e3bddb10bd3f4b00c8a6d4f10365a18}{r\_\-mark\_\-DUr} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_843f43801fc1464314e0fa14d28800e7}{r\_\-mark\_\-DAn} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_503df82c5718f3388a2122a52449469a}{r\_\-mark\_\-DA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_786ebcb206aedbc6175a840cb8c2774f}{r\_\-mark\_\-cAsInA} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_1383214984aba8c0ea89d5c7f8e78b7b}{r\_\-is\_\-reserved\_\-word} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_860de7b024545b36db5a0331619e8541}{r\_\-check\_\-vowel\_\-harmony} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__turkish_8cpp_42f4aba4a2c8458ff03f65ce1bdb7f87}{r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+struct \hyperlink{structSN__env}{SN\_\-env} $\ast$ \hyperlink{stem__UTF__8__turkish_8cpp_d2d2d21ff5091a9686533dee9268deda}{turkish\_\-UTF\_\-8\_\-create\_\-env} (void)
+\item 
+void \hyperlink{stem__UTF__8__turkish_8cpp_8925b52636907fb33b4a71ad793d1262}{turkish\_\-UTF\_\-8\_\-close\_\-env} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_2dbe550d75025c4b1cd5fe29a14b9c58}{s\_\-0\_\-0} \mbox{[}1\mbox{]} = \{ 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c8b3eaa6a21eba2f04260e217a65f238}{s\_\-0\_\-1} \mbox{[}1\mbox{]} = \{ 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_0827aa66f084e80af0611e8ea8b96f8f}{s\_\-0\_\-2} \mbox{[}3\mbox{]} = \{ 'm', 'i', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_25785aa019ea111d46c4c8c914735ac5}{s\_\-0\_\-3} \mbox{[}3\mbox{]} = \{ 'n', 'i', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_feb9479a361b4de8bf40a97594998eee}{s\_\-0\_\-4} \mbox{[}3\mbox{]} = \{ 'm', 'u', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_203316aa7581d52def217691d971a546}{s\_\-0\_\-5} \mbox{[}3\mbox{]} = \{ 'n', 'u', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_841f6fa15936e9299e5e2dfb8178f4b5}{s\_\-0\_\-6} \mbox{[}4\mbox{]} = \{ 'm', 0xC4, 0xB1, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_a60370cd0b3ede44b29f7c34199cbefa}{s\_\-0\_\-7} \mbox{[}4\mbox{]} = \{ 'n', 0xC4, 0xB1, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c95056116f5dbb5ac05e902425040b55}{s\_\-0\_\-8} \mbox{[}4\mbox{]} = \{ 'm', 0xC3, 0xBC, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_843acf3a8a842d4edbdc5fc0fb418a9d}{s\_\-0\_\-9} \mbox{[}4\mbox{]} = \{ 'n', 0xC3, 0xBC, 'z' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_ffc25b1d990a79d9eeb689e536ccb1f0}{a\_\-0} \mbox{[}10\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_fd3aa499ede81bc6ed26794ce3de4cf5}{s\_\-1\_\-0} \mbox{[}4\mbox{]} = \{ 'l', 'e', 'r', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d5ab78c8bbfacda80ac9c7a5413daa33}{s\_\-1\_\-1} \mbox{[}5\mbox{]} = \{ 'l', 'a', 'r', 0xC4, 0xB1 \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_ef23e6e2c47c3d839da5305194092053}{a\_\-1} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{s\_\-2\_\-0} \mbox{[}2\mbox{]} = \{ 'n', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_eb067135b2b508ae55bc4cb83c35b16f}{s\_\-2\_\-1} \mbox{[}2\mbox{]} = \{ 'n', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b9cac81f1578c40fc213fdfa524eeaff}{s\_\-2\_\-2} \mbox{[}3\mbox{]} = \{ 'n', 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_3699511a74365c37bc72b66e80ec3143}{s\_\-2\_\-3} \mbox{[}3\mbox{]} = \{ 'n', 0xC3, 0xBC \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_2114788e9ac3c40b37d5fe97e035051a}{a\_\-2} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_521a9030b51dd477506c58b1f5c8b3dc}{s\_\-3\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_2bc1d33372e674a72924c7886e35fcc5}{s\_\-3\_\-1} \mbox{[}2\mbox{]} = \{ 'u', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_13fe7e241118fbcc54b35a7af14b6894}{s\_\-3\_\-2} \mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b5fa0512d642a44dbd85fedce8f113b1}{s\_\-3\_\-3} \mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'n' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_a5af5265c31c6993ac50f2fac4b9a134}{a\_\-3} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_abd9c9de786dbaa7acf282c86b11e936}{s\_\-4\_\-0} \mbox{[}1\mbox{]} = \{ 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9241f37f2292e371bb37268d326e18c4}{s\_\-4\_\-1} \mbox{[}1\mbox{]} = \{ 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_9c494c780489c8a8c2707bdafb6fed89}{a\_\-4} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_317c54824e403ccc456298e89a2a5f0e}{s\_\-5\_\-0} \mbox{[}2\mbox{]} = \{ 'n', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d09a5913bf18b13b6b38001a430193ab}{s\_\-5\_\-1} \mbox{[}2\mbox{]} = \{ 'n', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_3ac4fdc865ff3da9e2012f27838280bb}{a\_\-5} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f09056600cbdce27e330d48549eaa7e4}{s\_\-6\_\-0} \mbox{[}2\mbox{]} = \{ 'd', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c046f80c6af9de5718fe457fecc928dd}{s\_\-6\_\-1} \mbox{[}2\mbox{]} = \{ 't', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8e3a6d314a441c0953ea453c2ef528c9}{s\_\-6\_\-2} \mbox{[}2\mbox{]} = \{ 'd', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c1d4a390f21097e6163bbfbec994bbb5}{s\_\-6\_\-3} \mbox{[}2\mbox{]} = \{ 't', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_8bacd317f123c995c39420a0d7e19cb4}{a\_\-6} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_847eafda609e4ee4b3d9687daf6cd7ef}{s\_\-7\_\-0} \mbox{[}3\mbox{]} = \{ 'n', 'd', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_595a09aec55805422d3ee94cfcbf93c4}{s\_\-7\_\-1} \mbox{[}3\mbox{]} = \{ 'n', 'd', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_ec73f317785b3e336dd9f67980006abc}{a\_\-7} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_648502092e526b438d8829acba6e83f2}{s\_\-8\_\-0} \mbox{[}3\mbox{]} = \{ 'd', 'a', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8711b63d63f857c33ad4043fc18a421c}{s\_\-8\_\-1} \mbox{[}3\mbox{]} = \{ 't', 'a', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_6bd8f32021b08095c63a6bfc0d5590d5}{s\_\-8\_\-2} \mbox{[}3\mbox{]} = \{ 'd', 'e', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f88cba7b53fd4844575e966b193ed86b}{s\_\-8\_\-3} \mbox{[}3\mbox{]} = \{ 't', 'e', 'n' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_efc648ee973f9c241dc99c5710896342}{a\_\-8} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9f3443f9b9f07461e6ee6b2ed0914eec}{s\_\-9\_\-0} \mbox{[}4\mbox{]} = \{ 'n', 'd', 'a', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_afe82bbbb98d88a5990319769464920c}{s\_\-9\_\-1} \mbox{[}4\mbox{]} = \{ 'n', 'd', 'e', 'n' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_b67db52eff9021094788ec72d20f7762}{a\_\-9} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_cb31380fa265a0fd0fc130e6cac84ee5}{s\_\-10\_\-0} \mbox{[}2\mbox{]} = \{ 'l', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_80a16a7d5e01e34c039af86933da15f0}{s\_\-10\_\-1} \mbox{[}2\mbox{]} = \{ 'l', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_e7e65de70b80061c3b53c967fb59cc04}{a\_\-10} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f983133c0675fb13f6391bd0047202ef}{s\_\-11\_\-0} \mbox{[}2\mbox{]} = \{ 'c', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_12049c9b4168098c3fcd646eced44abd}{s\_\-11\_\-1} \mbox{[}2\mbox{]} = \{ 'c', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_10ef62b1067203b3342e9b8d8398be30}{a\_\-11} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_15711129ff321b8791af092541292a24}{s\_\-12\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8170eb3fca4764ecdb60e78d64a6034e}{s\_\-12\_\-1} \mbox{[}2\mbox{]} = \{ 'u', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f0b294951aafa92e0e065a6cc7895035}{s\_\-12\_\-2} \mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_54d2829f847872d87704d39d1274aee1}{s\_\-12\_\-3} \mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'm' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_345d01373903c507890f211051cd3d62}{a\_\-12} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_2cc0e131e0a56971e151a25e1ab62181}{s\_\-13\_\-0} \mbox{[}3\mbox{]} = \{ 's', 'i', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7387a49d7acb5f6f2132200fb9e86c36}{s\_\-13\_\-1} \mbox{[}3\mbox{]} = \{ 's', 'u', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_e0e4248b8f57ece5f5fec4dc7d16feac}{s\_\-13\_\-2} \mbox{[}4\mbox{]} = \{ 's', 0xC4, 0xB1, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_06299f814014ee58e05dd5417f95f695}{s\_\-13\_\-3} \mbox{[}4\mbox{]} = \{ 's', 0xC3, 0xBC, 'n' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_907ce0b3d2b5d539a31456819d98abcb}{a\_\-13} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_761b6b4cdfba4fcae74f70fa29a48b73}{s\_\-14\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_df6aa44da6d2cdd1745274d9ea3f9cef}{s\_\-14\_\-1} \mbox{[}2\mbox{]} = \{ 'u', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b52f6bf0c78a6ed5980fc44dadd872ba}{s\_\-14\_\-2} \mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_eb740595eb92f3e558473b83c3c560e4}{s\_\-14\_\-3} \mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'z' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_4c864d75ff0329e711e44b630d2b2f09}{a\_\-14} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_533861ace279541a219d4ed75e377dba}{s\_\-15\_\-0} \mbox{[}5\mbox{]} = \{ 's', 'i', 'n', 'i', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9efb9bb2da02afa27f9dbf92a1cca082}{s\_\-15\_\-1} \mbox{[}5\mbox{]} = \{ 's', 'u', 'n', 'u', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_1f67d10f1b43548af8f02a649170e856}{s\_\-15\_\-2} \mbox{[}7\mbox{]} = \{ 's', 0xC4, 0xB1, 'n', 0xC4, 0xB1, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8fc66f25659ced7f94ab9db48426c068}{s\_\-15\_\-3} \mbox{[}7\mbox{]} = \{ 's', 0xC3, 0xBC, 'n', 0xC3, 0xBC, 'z' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_b6425154925fdb6a882e72d029db30c0}{a\_\-15} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_e676fa0b30d32e8dbb88d0f72e269b74}{s\_\-16\_\-0} \mbox{[}3\mbox{]} = \{ 'l', 'a', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7d8f517a4ba6394b8c7d74a28fcc68c8}{s\_\-16\_\-1} \mbox{[}3\mbox{]} = \{ 'l', 'e', 'r' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_08e519a6086d9f8a5195e0675b34525e}{a\_\-16} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_74751484df27a9b3ba402b0c64b6b8e9}{s\_\-17\_\-0} \mbox{[}3\mbox{]} = \{ 'n', 'i', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b88a8a3a27197d0bd09962b0621262fa}{s\_\-17\_\-1} \mbox{[}3\mbox{]} = \{ 'n', 'u', 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_986b604e443c17ad832d69ce5ec638b1}{s\_\-17\_\-2} \mbox{[}4\mbox{]} = \{ 'n', 0xC4, 0xB1, 'z' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_1ec3479a9d58aaa0169d429e59f1793f}{s\_\-17\_\-3} \mbox{[}4\mbox{]} = \{ 'n', 0xC3, 0xBC, 'z' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_a154521e898bad98770e8a85024ae25d}{a\_\-17} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7cd7a8ab5a3a9dcfac3b38d0dfe91065}{s\_\-18\_\-0} \mbox{[}3\mbox{]} = \{ 'd', 'i', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_5cf1d37cdbe953845ff4612e0e100ec8}{s\_\-18\_\-1} \mbox{[}3\mbox{]} = \{ 't', 'i', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_55d1b861412e0a071b62a03df8ead1dc}{s\_\-18\_\-2} \mbox{[}3\mbox{]} = \{ 'd', 'u', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7339b3444dd300c257f7a8c3a379497b}{s\_\-18\_\-3} \mbox{[}3\mbox{]} = \{ 't', 'u', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_5acfecd8ac0509d2dc859580977fe44a}{s\_\-18\_\-4} \mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d1803344434bf447e05a31c47becf1f0}{s\_\-18\_\-5} \mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d60d64b331b602dd7f0b2c3d888946f4}{s\_\-18\_\-6} \mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_47699d82f5c5f8e7e02e818a6f2f9b94}{s\_\-18\_\-7} \mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'r' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_7684a245d9429b6baf4587c03813376f}{a\_\-18} \mbox{[}8\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_3aa504d3fbf769d960374ec3ca9776ea}{s\_\-19\_\-0} \mbox{[}7\mbox{]} = \{ 'c', 'a', 's', 0xC4, 0xB1, 'n', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_54b6dcab83658967e36f9d9ba52db993}{s\_\-19\_\-1} \mbox{[}6\mbox{]} = \{ 'c', 'e', 's', 'i', 'n', 'e' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_84e42f7bcec1a6aae1c8a5c6117466fd}{a\_\-19} \mbox{[}2\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_13677e8fc977b26ef168250de93a40a8}{s\_\-20\_\-0} \mbox{[}2\mbox{]} = \{ 'd', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_bd46dcba3f4514d20412890a52a94feb}{s\_\-20\_\-1} \mbox{[}2\mbox{]} = \{ 't', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9508efc3c27f8f43c381785210de5f03}{s\_\-20\_\-2} \mbox{[}3\mbox{]} = \{ 'd', 'i', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_55d1f53b17e645e03631eb8d460b3a8f}{s\_\-20\_\-3} \mbox{[}3\mbox{]} = \{ 't', 'i', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8580ffda757c68d169f78bb5fd4393f3}{s\_\-20\_\-4} \mbox{[}3\mbox{]} = \{ 'd', 'u', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_bedbdf26fe6fe5f3b6df2e2e771020eb}{s\_\-20\_\-5} \mbox{[}3\mbox{]} = \{ 't', 'u', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_551f6be36e2b313e139d4a2dcf797c18}{s\_\-20\_\-6} \mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c56e38e2657248cd985dcfe14f0ee8fd}{s\_\-20\_\-7} \mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_5f7f8caa96939c34bcb169421d71b1cf}{s\_\-20\_\-8} \mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_ae0a14b4f1021f1f749579f7810c400c}{s\_\-20\_\-9} \mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_34b0cb1e245d4717214cf1e95a49fbe2}{s\_\-20\_\-10} \mbox{[}3\mbox{]} = \{ 'd', 'i', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f7f43f28c77e3f6fb46a6c88ea620d09}{s\_\-20\_\-11} \mbox{[}3\mbox{]} = \{ 't', 'i', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_cf7db91c2ea29694643a65fac610c5df}{s\_\-20\_\-12} \mbox{[}3\mbox{]} = \{ 'd', 'u', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_21fc2c41468985e49ade4dd041adf39c}{s\_\-20\_\-13} \mbox{[}3\mbox{]} = \{ 't', 'u', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_357fe9933a1c5b7ba70e37eb05e0d718}{s\_\-20\_\-14} \mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f30433fc666af655167be49cfbbd31e9}{s\_\-20\_\-15} \mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f72839d6433691d6a2165d73ad535c43}{s\_\-20\_\-16} \mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_46e47068105d30267ff763aabc0c51bf}{s\_\-20\_\-17} \mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c16d14875412f471474956b7bda4a9c3}{s\_\-20\_\-18} \mbox{[}3\mbox{]} = \{ 'd', 'i', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_73be9ccd0515aa219d6039033bbd6393}{s\_\-20\_\-19} \mbox{[}3\mbox{]} = \{ 't', 'i', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b5c2d3e360cd545790f6aa12755d27d1}{s\_\-20\_\-20} \mbox{[}3\mbox{]} = \{ 'd', 'u', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_01e2ccffa6900eef8b9d50fd0ca1f7fd}{s\_\-20\_\-21} \mbox{[}3\mbox{]} = \{ 't', 'u', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_45b73dd3e9687bb203e0cf166f719d47}{s\_\-20\_\-22} \mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_962cddcaa947bec93fcdd9c94a70329e}{s\_\-20\_\-23} \mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_17f5d6358eeaa4e56d71246c489b23ff}{s\_\-20\_\-24} \mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_98173fe69eed291ba426a292e3238d22}{s\_\-20\_\-25} \mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_1113d126c5cf60c3d23839d5a9d82179}{s\_\-20\_\-26} \mbox{[}2\mbox{]} = \{ 'd', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_73007e70dcd02e16d752466d13fb63fc}{s\_\-20\_\-27} \mbox{[}2\mbox{]} = \{ 't', 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b055658aa9d18c82923011663ddf55bd}{s\_\-20\_\-28} \mbox{[}3\mbox{]} = \{ 'd', 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d5d2c9609428b83261527e85fc5013bf}{s\_\-20\_\-29} \mbox{[}3\mbox{]} = \{ 't', 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_743ea48cd6b16122e6e8b3083dcfd1c6}{s\_\-20\_\-30} \mbox{[}3\mbox{]} = \{ 'd', 0xC3, 0xBC \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_58831e9e20da530512c67fd35ea5911b}{s\_\-20\_\-31} \mbox{[}3\mbox{]} = \{ 't', 0xC3, 0xBC \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_548edaab8d7224b0919e6669d400bab0}{a\_\-20} \mbox{[}32\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_88678ad5345e0aea288a50e0731672bc}{s\_\-21\_\-0} \mbox{[}2\mbox{]} = \{ 's', 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_34c46c767d829030f405b9a847865703}{s\_\-21\_\-1} \mbox{[}2\mbox{]} = \{ 's', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_e7ab0d1c2cc77175e2218cd287b1cdd4}{s\_\-21\_\-2} \mbox{[}3\mbox{]} = \{ 's', 'a', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_32a1ccab10098c4589c9be1cd5a475e1}{s\_\-21\_\-3} \mbox{[}3\mbox{]} = \{ 's', 'e', 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c4a418c73fa02292dd39db80990b4d2a}{s\_\-21\_\-4} \mbox{[}3\mbox{]} = \{ 's', 'a', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_839d617d6f83da7bf07f759306ff5c4f}{s\_\-21\_\-5} \mbox{[}3\mbox{]} = \{ 's', 'e', 'm' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_4f850aadb80387fafe1939844b3fc625}{s\_\-21\_\-6} \mbox{[}3\mbox{]} = \{ 's', 'a', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_aefdb712f39f5a1a0671135c460f8d04}{s\_\-21\_\-7} \mbox{[}3\mbox{]} = \{ 's', 'e', 'n' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_e1ec6bd6cff866e9fdbe00aefe497137}{a\_\-21} \mbox{[}8\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_012f9c468b3de0cf6e52fa84821ec84a}{s\_\-22\_\-0} \mbox{[}4\mbox{]} = \{ 'm', 'i', 0xC5, 0x9F \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_88ddd2eb7a400b79138cfe1abba691b3}{s\_\-22\_\-1} \mbox{[}4\mbox{]} = \{ 'm', 'u', 0xC5, 0x9F \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_cc990b6e3b7741f650fd88000f042797}{s\_\-22\_\-2} \mbox{[}5\mbox{]} = \{ 'm', 0xC4, 0xB1, 0xC5, 0x9F \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_db309a5f8253427fd288fc7eee2a883f}{s\_\-22\_\-3} \mbox{[}5\mbox{]} = \{ 'm', 0xC3, 0xBC, 0xC5, 0x9F \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_db89c046abe238e926c0fda686254968}{a\_\-22} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_c6d614e0866921f725169f29cf4edeeb}{s\_\-23\_\-0} \mbox{[}1\mbox{]} = \{ 'b' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_6c8135ae090d7fac7518cecb63866d55}{s\_\-23\_\-1} \mbox{[}1\mbox{]} = \{ 'c' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_73225a89afda2fe8152f69e8c98c425d}{s\_\-23\_\-2} \mbox{[}1\mbox{]} = \{ 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_fdb3efa10cb5e221b71c1ee6ddd8e924}{s\_\-23\_\-3} \mbox{[}2\mbox{]} = \{ 0xC4, 0x9F \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__turkish_8cpp_00e65f2366743785c521e2624e97769d}{a\_\-23} \mbox{[}4\mbox{]}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_e78773dbaff2278093654b68f6a10b4d}{g\_\-vowel} \mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 8, 0, 0, 0, 0, 0, 0, 1 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_c0a94f45b908c26830a6b2e3e8cce3bc}{g\_\-U} \mbox{[}$\,$\mbox{]} = \{ 1, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_9a1f9b4af782e5e74114a3ca028be994}{g\_\-vowel1} \mbox{[}$\,$\mbox{]} = \{ 1, 64, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_360618b08c2dadcddafd4513b2dfb353}{g\_\-vowel2} \mbox{[}$\,$\mbox{]} = \{ 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_eccdd85015cacc563c82e3a9c0c6f42c}{g\_\-vowel3} \mbox{[}$\,$\mbox{]} = \{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_da30a008787f5d4765caf26f3f711208}{g\_\-vowel4} \mbox{[}$\,$\mbox{]} = \{ 17 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_226cc62512b80443b36b061dc1e29d0b}{g\_\-vowel5} \mbox{[}$\,$\mbox{]} = \{ 65 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__turkish_8cpp_c2b7b1b3fa9aa3400ed5c4cff30dc3c6}{g\_\-vowel6} \mbox{[}$\,$\mbox{]} = \{ 65 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{s\_\-0} \mbox{[}$\,$\mbox{]} = \{ 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{s\_\-1} \mbox{[}$\,$\mbox{]} = \{ 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_05655860330cc397ec496b569962c207}{s\_\-2} \mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_506031b4e4028f904c38bc9782cf4ea9}{s\_\-3} \mbox{[}$\,$\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}{s\_\-4} \mbox{[}$\,$\mbox{]} = \{ 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}{s\_\-5} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB6 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_49dfcd185612e79f769e174b7c22846f}{s\_\-6} \mbox{[}$\,$\mbox{]} = \{ 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_643c8aee064467dc72f82ea3aca5afce}{s\_\-7} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f16bd0889f5653a235489fb6013bc454}{s\_\-8} \mbox{[}$\,$\mbox{]} = \{ 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}{s\_\-9} \mbox{[}$\,$\mbox{]} = \{ 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}{s\_\-10} \mbox{[}$\,$\mbox{]} = \{ 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_bf29e347ef2262f710baab60211b1f56}{s\_\-11} \mbox{[}$\,$\mbox{]} = \{ 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_bf6a284b08c13843e299aa6e1ad61653}{s\_\-12} \mbox{[}$\,$\mbox{]} = \{ 'y' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}{s\_\-13} \mbox{[}$\,$\mbox{]} = \{ 'y' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}{s\_\-14} \mbox{[}$\,$\mbox{]} = \{ 'k', 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_f86c6cb3251ecf295972b3ebde225e78}{s\_\-15} \mbox{[}$\,$\mbox{]} = \{ 'k', 'e', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_99b6e5272294e99839b85415ac1d3c52}{s\_\-16} \mbox{[}$\,$\mbox{]} = \{ 'p' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d92d995ad8d6eadce002033b53d75255}{s\_\-17} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xA7 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_d7c47721bf8a3f762c1c1787b4ce3e16}{s\_\-18} \mbox{[}$\,$\mbox{]} = \{ 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7fec5104766bc31c3366d920ee10d4b9}{s\_\-19} \mbox{[}$\,$\mbox{]} = \{ 'k' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_71a04db2550a351ea58d78a81ec00e35}{s\_\-20} \mbox{[}$\,$\mbox{]} = \{ 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_4f7200c800c3085488b2df028a7edc1b}{s\_\-21} \mbox{[}$\,$\mbox{]} = \{ 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_9db1913ca8110f2dd53d29b04b7e08fa}{s\_\-22} \mbox{[}$\,$\mbox{]} = \{ 'a' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_8096a8ece0e17f06a29f7f6393a19eaa}{s\_\-23} \mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_87c18bfe15850e6ceb775bfb9daad2d6}{s\_\-24} \mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_051c065d605cb14ed312019f0dc30c3f}{s\_\-25} \mbox{[}$\,$\mbox{]} = \{ 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_fac466ada3021df80b3286e746580ff6}{s\_\-26} \mbox{[}$\,$\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_405d249eb6a4002475c22514d0e7acfa}{s\_\-27} \mbox{[}$\,$\mbox{]} = \{ 'i' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_e6ba72305b93d4fd47cb604ecf98f340}{s\_\-28} \mbox{[}$\,$\mbox{]} = \{ 'o' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_36876cea8136b2f7072d9cee4da27986}{s\_\-29} \mbox{[}$\,$\mbox{]} = \{ 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_22789eb794b8f6eeedf74fe10df017c4}{s\_\-30} \mbox{[}$\,$\mbox{]} = \{ 'u' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_b5c2524fcf2bfc83e7d690bba105ae34}{s\_\-31} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB6 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_6583c4f75f65276f772742bd12b4c8c5}{s\_\-32} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_cba51b44e8f1246425c4fbd8fb18f6b1}{s\_\-33} \mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_ff0107139a85c87694430777873d5ca1}{s\_\-34} \mbox{[}$\,$\mbox{]} = \{ 'a', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__turkish_8cpp_7b1f06285932f23189660a7237a92b56}{s\_\-35} \mbox{[}$\,$\mbox{]} = \{ 's', 'o', 'y', 'a', 'd' \}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{stem__UTF__8__turkish_8cpp_42f4aba4a2c8458ff03f65ce1bdb7f87}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g@{r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g}}
+\index{r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g@{r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_42f4aba4a2c8458ff03f65ce1bdb7f87}
+
+
+
+
+Definition at line 1983 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s\_\-b(), g\_\-vowel, insert\_\-s(), SN\_\-env::l, out\_\-grouping\_\-b\_\-U(), s\_\-20, s\_\-21, s\_\-22, s\_\-23, s\_\-24, s\_\-25, s\_\-26, s\_\-27, s\_\-28, s\_\-29, s\_\-30, s\_\-31, s\_\-32, and s\_\-33.
+
+Referenced by r\_\-postlude().\hypertarget{stem__UTF__8__turkish_8cpp_860de7b024545b36db5a0331619e8541}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-check\_\-vowel\_\-harmony@{r\_\-check\_\-vowel\_\-harmony}}
+\index{r\_\-check\_\-vowel\_\-harmony@{r\_\-check\_\-vowel\_\-harmony}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-check\_\-vowel\_\-harmony}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-check\_\-vowel\_\-harmony (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_860de7b024545b36db5a0331619e8541}
+
+
+
+
+Definition at line 479 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s\_\-b(), g\_\-vowel, g\_\-vowel1, g\_\-vowel2, g\_\-vowel3, g\_\-vowel4, g\_\-vowel5, g\_\-vowel6, SN\_\-env::l, out\_\-grouping\_\-b\_\-U(), s\_\-0, s\_\-1, s\_\-2, s\_\-3, s\_\-4, s\_\-5, s\_\-6, and s\_\-7.
+
+Referenced by r\_\-mark\_\-DA(), r\_\-mark\_\-DAn(), r\_\-mark\_\-DUr(), r\_\-mark\_\-lAr(), r\_\-mark\_\-nA(), r\_\-mark\_\-ncA(), r\_\-mark\_\-ndA(), r\_\-mark\_\-ndAn(), r\_\-mark\_\-nU(), r\_\-mark\_\-nUn(), r\_\-mark\_\-nUz(), r\_\-mark\_\-sU(), r\_\-mark\_\-sUn(), r\_\-mark\_\-yA(), r\_\-mark\_\-yDU(), r\_\-mark\_\-ylA(), r\_\-mark\_\-ymUs\_\-(), r\_\-mark\_\-yU(), r\_\-mark\_\-yUm(), and r\_\-mark\_\-yUz().\hypertarget{stem__UTF__8__turkish_8cpp_1383214984aba8c0ea89d5c7f8e78b7b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-is\_\-reserved\_\-word@{r\_\-is\_\-reserved\_\-word}}
+\index{r\_\-is\_\-reserved\_\-word@{r\_\-is\_\-reserved\_\-word}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-is\_\-reserved\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-is\_\-reserved\_\-word (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_1383214984aba8c0ea89d5c7f8e78b7b}
+
+
+
+
+Definition at line 2101 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s(), SN\_\-env::I, SN\_\-env::l, SN\_\-env::p, s\_\-34, s\_\-35, and skip\_\-utf8().
+
+Referenced by r\_\-postlude().\hypertarget{stem__UTF__8__turkish_8cpp_786ebcb206aedbc6175a840cb8c2774f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-cAsInA@{r\_\-mark\_\-cAsInA}}
+\index{r\_\-mark\_\-cAsInA@{r\_\-mark\_\-cAsInA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-cAsInA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-cAsInA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_786ebcb206aedbc6175a840cb8c2774f}
+
+
+
+
+Definition at line 931 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, and SN\_\-env::p.
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_503df82c5718f3388a2122a52449469a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-DA@{r\_\-mark\_\-DA}}
+\index{r\_\-mark\_\-DA@{r\_\-mark\_\-DA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-DA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-DA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_503df82c5718f3388a2122a52449469a}
+
+
+
+
+Definition at line 784 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_843f43801fc1464314e0fa14d28800e7}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-DAn@{r\_\-mark\_\-DAn}}
+\index{r\_\-mark\_\-DAn@{r\_\-mark\_\-DAn}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-DAn}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-DAn (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_843f43801fc1464314e0fa14d28800e7}
+
+
+
+
+Definition at line 804 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_9e3bddb10bd3f4b00c8a6d4f10365a18}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-DUr@{r\_\-mark\_\-DUr}}
+\index{r\_\-mark\_\-DUr@{r\_\-mark\_\-DUr}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-DUr}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-DUr (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9e3bddb10bd3f4b00c8a6d4f10365a18}
+
+
+
+
+Definition at line 921 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_98d33842d9a32c9acc80a8a49f6e342d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ki@{r\_\-mark\_\-ki}}
+\index{r\_\-mark\_\-ki@{r\_\-mark\_\-ki}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ki}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ki (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_98d33842d9a32c9acc80a8a49f6e342d}
+
+
+
+
+Definition at line 838 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References eq\_\-s\_\-b(), and s\_\-14.
+
+Referenced by r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_bdb903c406a11298632f4fba026886fc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-lAr@{r\_\-mark\_\-lAr}}
+\index{r\_\-mark\_\-lAr@{r\_\-mark\_\-lAr}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-lAr}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-lAr (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_bdb903c406a11298632f4fba026886fc}
+
+
+
+
+Definition at line 901 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes(), r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_854d2e0d005dd4ef42998e8489ed0440}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-lArI@{r\_\-mark\_\-lArI}}
+\index{r\_\-mark\_\-lArI@{r\_\-mark\_\-lArI}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-lArI}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-lArI (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_854d2e0d005dd4ef42998e8489ed0440}
+
+
+
+
+Definition at line 718 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, and SN\_\-env::p.
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_7085e58c9468413f5192539c8ca1c20b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-nA@{r\_\-mark\_\-nA}}
+\index{r\_\-mark\_\-nA@{r\_\-mark\_\-nA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-nA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-nA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7085e58c9468413f5192539c8ca1c20b}
+
+
+
+
+Definition at line 774 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_cf1c4deddf8129d34120ab7e06e9f1bb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ncA@{r\_\-mark\_\-ncA}}
+\index{r\_\-mark\_\-ncA@{r\_\-mark\_\-ncA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ncA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ncA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_cf1c4deddf8129d34120ab7e06e9f1bb}
+
+
+
+
+Definition at line 843 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_5a05f2e107e81b983fd45ce2ac77ae9f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ndA@{r\_\-mark\_\-ndA}}
+\index{r\_\-mark\_\-ndA@{r\_\-mark\_\-ndA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ndA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ndA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_5a05f2e107e81b983fd45ce2ac77ae9f}
+
+
+
+
+Definition at line 794 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_8651fc90d39c9bcb2bd8d5938165787c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ndAn@{r\_\-mark\_\-ndAn}}
+\index{r\_\-mark\_\-ndAn@{r\_\-mark\_\-ndAn}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ndAn}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ndAn (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8651fc90d39c9bcb2bd8d5938165787c}
+
+
+
+
+Definition at line 814 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_c2cd4d6d6f1f79bdb99e9cd8d337b626}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-nU@{r\_\-mark\_\-nU}}
+\index{r\_\-mark\_\-nU@{r\_\-mark\_\-nU}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-nU}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-nU (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c2cd4d6d6f1f79bdb99e9cd8d337b626}
+
+
+
+
+Definition at line 737 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References find\_\-among\_\-b(), and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_240c3ec32cabcfeacfd83e535e0de814}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-nUn@{r\_\-mark\_\-nUn}}
+\index{r\_\-mark\_\-nUn@{r\_\-mark\_\-nUn}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-nUn}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-nUn (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_240c3ec32cabcfeacfd83e535e0de814}
+
+
+
+
+Definition at line 746 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_0751616bc39671ae4c7ff96e39b78bf1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-nUz@{r\_\-mark\_\-nUz}}
+\index{r\_\-mark\_\-nUz@{r\_\-mark\_\-nUz}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-nUz}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-nUz (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_0751616bc39671ae4c7ff96e39b78bf1}
+
+
+
+
+Definition at line 911 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_c9e1cb61919f46d0385e3ead8b0981d8}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-possessives@{r\_\-mark\_\-possessives}}
+\index{r\_\-mark\_\-possessives@{r\_\-mark\_\-possessives}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-possessives}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-possessives (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c9e1cb61919f46d0385e3ead8b0981d8}
+
+
+
+
+Definition at line 695 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_5d03c810597015f3e62deaf723b6d285}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-sU@{r\_\-mark\_\-sU}}
+\index{r\_\-mark\_\-sU@{r\_\-mark\_\-sU}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-sU}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-sU (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_5d03c810597015f3e62deaf723b6d285}
+
+
+
+
+Definition at line 705 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References g\_\-U, in\_\-grouping\_\-b\_\-U(), r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes(), and r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki().\hypertarget{stem__UTF__8__turkish_8cpp_0731dc945e7df47e63a5d49bf77833c7}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant}}
+\index{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_0731dc945e7df47e63a5d49bf77833c7}
+
+
+
+
+Definition at line 527 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s\_\-b(), g\_\-vowel, in\_\-grouping\_\-b\_\-U(), SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, s\_\-8, s\_\-9, and skip\_\-utf8().
+
+Referenced by r\_\-mark\_\-ncA(), and r\_\-mark\_\-nUn().\hypertarget{stem__UTF__8__turkish_8cpp_211c9eb9e1a7b60aac06e2e67977df08}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant}}
+\index{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_211c9eb9e1a7b60aac06e2e67977df08}
+
+
+
+
+Definition at line 569 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s\_\-b(), g\_\-vowel, in\_\-grouping\_\-b\_\-U(), SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, s\_\-10, s\_\-11, and skip\_\-utf8().
+
+Referenced by r\_\-mark\_\-sU().\hypertarget{stem__UTF__8__turkish_8cpp_c22755b5b89d64ea61b426870dce8919}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel}}
+\index{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c22755b5b89d64ea61b426870dce8919}
+
+
+
+
+Definition at line 653 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, g\_\-U, g\_\-vowel, in\_\-grouping\_\-b\_\-U(), SN\_\-env::l, SN\_\-env::lb, out\_\-grouping\_\-b\_\-U(), SN\_\-env::p, and skip\_\-utf8().
+
+Referenced by r\_\-mark\_\-possessives().\hypertarget{stem__UTF__8__turkish_8cpp_8e5d43bab752bb72ed3b8c8dccdb473c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant}}
+\index{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant@{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8e5d43bab752bb72ed3b8c8dccdb473c}
+
+
+
+
+Definition at line 611 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, eq\_\-s\_\-b(), g\_\-vowel, in\_\-grouping\_\-b\_\-U(), SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, s\_\-12, s\_\-13, and skip\_\-utf8().
+
+Referenced by r\_\-mark\_\-yA(), r\_\-mark\_\-yDU(), r\_\-mark\_\-yken(), r\_\-mark\_\-ylA(), r\_\-mark\_\-ymUs\_\-(), r\_\-mark\_\-ysA(), r\_\-mark\_\-yU(), r\_\-mark\_\-yUm(), and r\_\-mark\_\-yUz().\hypertarget{stem__UTF__8__turkish_8cpp_2de7f205d67f4699426f95b92c291ed9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-sUn@{r\_\-mark\_\-sUn}}
+\index{r\_\-mark\_\-sUn@{r\_\-mark\_\-sUn}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-sUn}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-sUn (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2de7f205d67f4699426f95b92c291ed9}
+
+
+
+
+Definition at line 871 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-check\_\-vowel\_\-harmony().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_e26063c7433f45ad20311b03cd09a279}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-sUnUz@{r\_\-mark\_\-sUnUz}}
+\index{r\_\-mark\_\-sUnUz@{r\_\-mark\_\-sUnUz}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-sUnUz}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-sUnUz (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e26063c7433f45ad20311b03cd09a279}
+
+
+
+
+Definition at line 895 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, and SN\_\-env::p.
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_58cf1bb9a1f0774a4f80a16c7d03a5d4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yA@{r\_\-mark\_\-yA}}
+\index{r\_\-mark\_\-yA@{r\_\-mark\_\-yA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_58cf1bb9a1f0774a4f80a16c7d03a5d4}
+
+
+
+
+Definition at line 760 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_a924ada8f9ab9fb7f75c64d7791e4c15}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yDU@{r\_\-mark\_\-yDU}}
+\index{r\_\-mark\_\-yDU@{r\_\-mark\_\-yDU}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yDU}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yDU (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a924ada8f9ab9fb7f75c64d7791e4c15}
+
+
+
+
+Definition at line 937 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References find\_\-among\_\-b(), r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_128e07ad11732d0eb2e1dd9cd8ddefde}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yken@{r\_\-mark\_\-yken}}
+\index{r\_\-mark\_\-yken@{r\_\-mark\_\-yken}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yken}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yken (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_128e07ad11732d0eb2e1dd9cd8ddefde}
+
+
+
+
+Definition at line 974 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References eq\_\-s\_\-b(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant(), and s\_\-15.
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_56f2818a528afa7fea39b61314b80e90}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ylA@{r\_\-mark\_\-ylA}}
+\index{r\_\-mark\_\-ylA@{r\_\-mark\_\-ylA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ylA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ylA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_56f2818a528afa7fea39b61314b80e90}
+
+
+
+
+Definition at line 824 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_022834a18235adfcc29684041c57899a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ymUs\_\-@{r\_\-mark\_\-ymUs\_\-}}
+\index{r\_\-mark\_\-ymUs\_\-@{r\_\-mark\_\-ymUs\_\-}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ymUs\_\-}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ymUs\_\- (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_022834a18235adfcc29684041c57899a}
+
+
+
+
+Definition at line 960 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_be5f67539ee9692f961b13f9b39db27c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-ysA@{r\_\-mark\_\-ysA}}
+\index{r\_\-mark\_\-ysA@{r\_\-mark\_\-ysA}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-ysA}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-ysA (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_be5f67539ee9692f961b13f9b39db27c}
+
+
+
+
+Definition at line 950 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_6a12607670c49f0338f67cd9395c3fae}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yU@{r\_\-mark\_\-yU}}
+\index{r\_\-mark\_\-yU@{r\_\-mark\_\-yU}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yU}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yU (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_6a12607670c49f0338f67cd9395c3fae}
+
+
+
+
+Definition at line 724 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References g\_\-U, in\_\-grouping\_\-b\_\-U(), r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_2af7248ba132a129cb4c39de003acf08}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yUm@{r\_\-mark\_\-yUm}}
+\index{r\_\-mark\_\-yUm@{r\_\-mark\_\-yUm}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yUm}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yUm (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2af7248ba132a129cb4c39de003acf08}
+
+
+
+
+Definition at line 857 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_72f37de034f69334bda1b7eac8a46517}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-mark\_\-yUz@{r\_\-mark\_\-yUz}}
+\index{r\_\-mark\_\-yUz@{r\_\-mark\_\-yUz}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-mark\_\-yUz}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-yUz (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_72f37de034f69334bda1b7eac8a46517}
+
+
+
+
+Definition at line 881 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::lb, SN\_\-env::p, r\_\-check\_\-vowel\_\-harmony(), and r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant().
+
+Referenced by r\_\-stem\_\-nominal\_\-verb\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_c9c171388261ea76ed86a92af307617a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-more\_\-than\_\-one\_\-syllable\_\-word@{r\_\-more\_\-than\_\-one\_\-syllable\_\-word}}
+\index{r\_\-more\_\-than\_\-one\_\-syllable\_\-word@{r\_\-more\_\-than\_\-one\_\-syllable\_\-word}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-more\_\-than\_\-one\_\-syllable\_\-word}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-more\_\-than\_\-one\_\-syllable\_\-word (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c9c171388261ea76ed86a92af307617a}
+
+
+
+
+Definition at line 2078 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, g\_\-vowel, and out\_\-grouping\_\-U().
+
+Referenced by turkish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__turkish_8cpp_dac0fc1cff3bc833dc1168020ce01e5b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-post\_\-process\_\-last\_\-consonants@{r\_\-post\_\-process\_\-last\_\-consonants}}
+\index{r\_\-post\_\-process\_\-last\_\-consonants@{r\_\-post\_\-process\_\-last\_\-consonants}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-post\_\-process\_\-last\_\-consonants}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-post\_\-process\_\-last\_\-consonants (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_dac0fc1cff3bc833dc1168020ce01e5b}
+
+
+
+
+Definition at line 1951 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::ket, s\_\-16, s\_\-17, s\_\-18, s\_\-19, and slice\_\-from\_\-s().
+
+Referenced by r\_\-postlude().\hypertarget{stem__UTF__8__turkish_8cpp_9a06115d1abdc06e1487c9af8a41a340}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-postlude@{r\_\-postlude}}
+\index{r\_\-postlude@{r\_\-postlude}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-postlude}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-postlude (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9a06115d1abdc06e1487c9af8a41a340}
+
+
+
+
+Definition at line 2139 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, SN\_\-env::lb, r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g(), r\_\-is\_\-reserved\_\-word(), and r\_\-post\_\-process\_\-last\_\-consonants().\hypertarget{stem__UTF__8__turkish_8cpp_a0c7ba7df0e31ba846ce28496f773f87}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-stem\_\-nominal\_\-verb\_\-suffixes@{r\_\-stem\_\-nominal\_\-verb\_\-suffixes}}
+\index{r\_\-stem\_\-nominal\_\-verb\_\-suffixes@{r\_\-stem\_\-nominal\_\-verb\_\-suffixes}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-stem\_\-nominal\_\-verb\_\-suffixes}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-stem\_\-nominal\_\-verb\_\-suffixes (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a0c7ba7df0e31ba846ce28496f773f87}
+
+
+
+
+Definition at line 983 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::B, SN\_\-env::bra, SN\_\-env::c, SN\_\-env::ket, SN\_\-env::l, r\_\-mark\_\-cAsInA(), r\_\-mark\_\-DUr(), r\_\-mark\_\-lAr(), r\_\-mark\_\-nUz(), r\_\-mark\_\-sUn(), r\_\-mark\_\-sUnUz(), r\_\-mark\_\-yDU(), r\_\-mark\_\-yken(), r\_\-mark\_\-ymUs\_\-(), r\_\-mark\_\-ysA(), r\_\-mark\_\-yUm(), r\_\-mark\_\-yUz(), and slice\_\-del().
+
+Referenced by turkish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__turkish_8cpp_dafb42a5e45aa73216b4c4843f55ba74}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-stem\_\-noun\_\-suffixes@{r\_\-stem\_\-noun\_\-suffixes}}
+\index{r\_\-stem\_\-noun\_\-suffixes@{r\_\-stem\_\-noun\_\-suffixes}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-stem\_\-noun\_\-suffixes}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-stem\_\-noun\_\-suffixes (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_dafb42a5e45aa73216b4c4843f55ba74}
+
+
+
+
+Definition at line 1440 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, SN\_\-env::ket, SN\_\-env::l, r\_\-mark\_\-DA(), r\_\-mark\_\-DAn(), r\_\-mark\_\-lAr(), r\_\-mark\_\-lArI(), r\_\-mark\_\-nA(), r\_\-mark\_\-ncA(), r\_\-mark\_\-ndA(), r\_\-mark\_\-ndAn(), r\_\-mark\_\-nU(), r\_\-mark\_\-nUn(), r\_\-mark\_\-possessives(), r\_\-mark\_\-sU(), r\_\-mark\_\-yA(), r\_\-mark\_\-ylA(), r\_\-mark\_\-yU(), r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki(), and slice\_\-del().
+
+Referenced by turkish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__turkish_8cpp_c045d52c030df901fac0807cb015f7ef}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki@{r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki}}
+\index{r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki@{r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c045d52c030df901fac0807cb015f7ef}
+
+
+
+
+Definition at line 1241 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, SN\_\-env::ket, SN\_\-env::l, r\_\-mark\_\-DA(), r\_\-mark\_\-ki(), r\_\-mark\_\-lAr(), r\_\-mark\_\-lArI(), r\_\-mark\_\-ndA(), r\_\-mark\_\-nUn(), r\_\-mark\_\-possessives(), r\_\-mark\_\-sU(), and slice\_\-del().
+
+Referenced by r\_\-stem\_\-noun\_\-suffixes().\hypertarget{stem__UTF__8__turkish_8cpp_8925b52636907fb33b4a71ad793d1262}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!turkish\_\-UTF\_\-8\_\-close\_\-env@{turkish\_\-UTF\_\-8\_\-close\_\-env}}
+\index{turkish\_\-UTF\_\-8\_\-close\_\-env@{turkish\_\-UTF\_\-8\_\-close\_\-env}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{turkish\_\-UTF\_\-8\_\-close\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void turkish\_\-UTF\_\-8\_\-close\_\-env (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__turkish_8cpp_8925b52636907fb33b4a71ad793d1262}
+
+
+\hypertarget{stem__UTF__8__turkish_8cpp_d2d2d21ff5091a9686533dee9268deda}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!turkish\_\-UTF\_\-8\_\-create\_\-env@{turkish\_\-UTF\_\-8\_\-create\_\-env}}
+\index{turkish\_\-UTF\_\-8\_\-create\_\-env@{turkish\_\-UTF\_\-8\_\-create\_\-env}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{turkish\_\-UTF\_\-8\_\-create\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf SN\_\-env}$\ast$ turkish\_\-UTF\_\-8\_\-create\_\-env (void)\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d2d2d21ff5091a9686533dee9268deda}
+
+
+\hypertarget{stem__UTF__8__turkish_8cpp_bb7a153a4a43ef3a0abf24ddd944918c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!turkish\_\-UTF\_\-8\_\-stem@{turkish\_\-UTF\_\-8\_\-stem}}
+\index{turkish\_\-UTF\_\-8\_\-stem@{turkish\_\-UTF\_\-8\_\-stem}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{turkish\_\-UTF\_\-8\_\-stem}]{\setlength{\rightskip}{0pt plus 5cm}int turkish\_\-UTF\_\-8\_\-stem (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__turkish_8cpp_bb7a153a4a43ef3a0abf24ddd944918c}
+
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{stem__UTF__8__turkish_8cpp_ffc25b1d990a79d9eeb689e536ccb1f0}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-0@{a\_\-0}}
+\index{a\_\-0@{a\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-0}\mbox{[}10\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ffc25b1d990a79d9eeb689e536ccb1f0}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 1, s_0_0, -1, -1, 0},
+ { 1, s_0_1, -1, -1, 0},
+ { 3, s_0_2, -1, -1, 0},
+ { 3, s_0_3, -1, -1, 0},
+ { 3, s_0_4, -1, -1, 0},
+ { 3, s_0_5, -1, -1, 0},
+ { 4, s_0_6, -1, -1, 0},
+ { 4, s_0_7, -1, -1, 0},
+ { 4, s_0_8, -1, -1, 0},
+ { 4, s_0_9, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 77 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_ef23e6e2c47c3d839da5305194092053}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-1@{a\_\-1}}
+\index{a\_\-1@{a\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-1}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ef23e6e2c47c3d839da5305194092053}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 4, s_1_0, -1, -1, 0},
+ { 5, s_1_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 94 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e7e65de70b80061c3b53c967fb59cc04}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-10@{a\_\-10}}
+\index{a\_\-10@{a\_\-10}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-10}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e7e65de70b80061c3b53c967fb59cc04}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_10_0, -1, -1, 0},
+ { 2, s_10_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 191 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_10ef62b1067203b3342e9b8d8398be30}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-11@{a\_\-11}}
+\index{a\_\-11@{a\_\-11}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-11}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_10ef62b1067203b3342e9b8d8398be30}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_11_0, -1, -1, 0},
+ { 2, s_11_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 200 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_345d01373903c507890f211051cd3d62}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-12@{a\_\-12}}
+\index{a\_\-12@{a\_\-12}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-12}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_345d01373903c507890f211051cd3d62}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_12_0, -1, -1, 0},
+ { 2, s_12_1, -1, -1, 0},
+ { 3, s_12_2, -1, -1, 0},
+ { 3, s_12_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 211 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_907ce0b3d2b5d539a31456819d98abcb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-13@{a\_\-13}}
+\index{a\_\-13@{a\_\-13}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-13}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_907ce0b3d2b5d539a31456819d98abcb}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_13_0, -1, -1, 0},
+ { 3, s_13_1, -1, -1, 0},
+ { 4, s_13_2, -1, -1, 0},
+ { 4, s_13_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 224 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_4c864d75ff0329e711e44b630d2b2f09}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-14@{a\_\-14}}
+\index{a\_\-14@{a\_\-14}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-14}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_4c864d75ff0329e711e44b630d2b2f09}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_14_0, -1, -1, 0},
+ { 2, s_14_1, -1, -1, 0},
+ { 3, s_14_2, -1, -1, 0},
+ { 3, s_14_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 237 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b6425154925fdb6a882e72d029db30c0}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-15@{a\_\-15}}
+\index{a\_\-15@{a\_\-15}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-15}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b6425154925fdb6a882e72d029db30c0}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 5, s_15_0, -1, -1, 0},
+ { 5, s_15_1, -1, -1, 0},
+ { 7, s_15_2, -1, -1, 0},
+ { 7, s_15_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 250 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_08e519a6086d9f8a5195e0675b34525e}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-16@{a\_\-16}}
+\index{a\_\-16@{a\_\-16}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-16}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_08e519a6086d9f8a5195e0675b34525e}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_16_0, -1, -1, 0},
+ { 3, s_16_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 261 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_a154521e898bad98770e8a85024ae25d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-17@{a\_\-17}}
+\index{a\_\-17@{a\_\-17}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-17}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a154521e898bad98770e8a85024ae25d}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_17_0, -1, -1, 0},
+ { 3, s_17_1, -1, -1, 0},
+ { 4, s_17_2, -1, -1, 0},
+ { 4, s_17_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 272 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7684a245d9429b6baf4587c03813376f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-18@{a\_\-18}}
+\index{a\_\-18@{a\_\-18}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-18}\mbox{[}8\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7684a245d9429b6baf4587c03813376f}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_18_0, -1, -1, 0},
+ { 3, s_18_1, -1, -1, 0},
+ { 3, s_18_2, -1, -1, 0},
+ { 3, s_18_3, -1, -1, 0},
+ { 4, s_18_4, -1, -1, 0},
+ { 4, s_18_5, -1, -1, 0},
+ { 4, s_18_6, -1, -1, 0},
+ { 4, s_18_7, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 289 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_84e42f7bcec1a6aae1c8a5c6117466fd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-19@{a\_\-19}}
+\index{a\_\-19@{a\_\-19}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-19}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_84e42f7bcec1a6aae1c8a5c6117466fd}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 7, s_19_0, -1, -1, 0},
+ { 6, s_19_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 304 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_2114788e9ac3c40b37d5fe97e035051a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-2@{a\_\-2}}
+\index{a\_\-2@{a\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-2}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2114788e9ac3c40b37d5fe97e035051a}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_2_0, -1, -1, 0},
+ { 2, s_2_1, -1, -1, 0},
+ { 3, s_2_2, -1, -1, 0},
+ { 3, s_2_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 105 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_548edaab8d7224b0919e6669d400bab0}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-20@{a\_\-20}}
+\index{a\_\-20@{a\_\-20}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-20}\mbox{[}32\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_548edaab8d7224b0919e6669d400bab0}
+
+
+
+
+Definition at line 343 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e1ec6bd6cff866e9fdbe00aefe497137}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-21@{a\_\-21}}
+\index{a\_\-21@{a\_\-21}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-21}\mbox{[}8\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e1ec6bd6cff866e9fdbe00aefe497137}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_21_0, -1, -1, 0},
+ { 2, s_21_1, -1, -1, 0},
+ { 3, s_21_2, -1, -1, 0},
+ { 3, s_21_3, -1, -1, 0},
+ { 3, s_21_4, -1, -1, 0},
+ { 3, s_21_5, -1, -1, 0},
+ { 3, s_21_6, -1, -1, 0},
+ { 3, s_21_7, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 388 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_db89c046abe238e926c0fda686254968}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-22@{a\_\-22}}
+\index{a\_\-22@{a\_\-22}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-22}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_db89c046abe238e926c0fda686254968}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 4, s_22_0, -1, -1, 0},
+ { 4, s_22_1, -1, -1, 0},
+ { 5, s_22_2, -1, -1, 0},
+ { 5, s_22_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 405 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_00e65f2366743785c521e2624e97769d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-23@{a\_\-23}}
+\index{a\_\-23@{a\_\-23}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-23}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_00e65f2366743785c521e2624e97769d}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 1, s_23_0, -1, 1, 0},
+ { 1, s_23_1, -1, 2, 0},
+ { 1, s_23_2, -1, 3, 0},
+ { 2, s_23_3, -1, 4, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 418 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_a5af5265c31c6993ac50f2fac4b9a134}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-3@{a\_\-3}}
+\index{a\_\-3@{a\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-3}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a5af5265c31c6993ac50f2fac4b9a134}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_3_0, -1, -1, 0},
+ { 2, s_3_1, -1, -1, 0},
+ { 3, s_3_2, -1, -1, 0},
+ { 3, s_3_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 118 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9c494c780489c8a8c2707bdafb6fed89}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-4@{a\_\-4}}
+\index{a\_\-4@{a\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-4}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9c494c780489c8a8c2707bdafb6fed89}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 1, s_4_0, -1, -1, 0},
+ { 1, s_4_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 129 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_3ac4fdc865ff3da9e2012f27838280bb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-5@{a\_\-5}}
+\index{a\_\-5@{a\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-5}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_3ac4fdc865ff3da9e2012f27838280bb}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_5_0, -1, -1, 0},
+ { 2, s_5_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 138 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8bacd317f123c995c39420a0d7e19cb4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-6@{a\_\-6}}
+\index{a\_\-6@{a\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-6}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8bacd317f123c995c39420a0d7e19cb4}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_6_0, -1, -1, 0},
+ { 2, s_6_1, -1, -1, 0},
+ { 2, s_6_2, -1, -1, 0},
+ { 2, s_6_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 149 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_ec73f317785b3e336dd9f67980006abc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-7@{a\_\-7}}
+\index{a\_\-7@{a\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-7}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ec73f317785b3e336dd9f67980006abc}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_7_0, -1, -1, 0},
+ { 3, s_7_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 160 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_efc648ee973f9c241dc99c5710896342}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-8@{a\_\-8}}
+\index{a\_\-8@{a\_\-8}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-8}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_efc648ee973f9c241dc99c5710896342}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 3, s_8_0, -1, -1, 0},
+ { 3, s_8_1, -1, -1, 0},
+ { 3, s_8_2, -1, -1, 0},
+ { 3, s_8_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 171 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b67db52eff9021094788ec72d20f7762}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!a\_\-9@{a\_\-9}}
+\index{a\_\-9@{a\_\-9}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{a\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-9}\mbox{[}2\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b67db52eff9021094788ec72d20f7762}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 4, s_9_0, -1, -1, 0},
+ { 4, s_9_1, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 182 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c0a94f45b908c26830a6b2e3e8cce3bc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-U@{g\_\-U}}
+\index{g\_\-U@{g\_\-U}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-U}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-U}\mbox{[}$\,$\mbox{]} = \{ 1, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c0a94f45b908c26830a6b2e3e8cce3bc}
+
+
+
+
+Definition at line 428 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-mark\_\-sU(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel(), and r\_\-mark\_\-yU().\hypertarget{stem__UTF__8__turkish_8cpp_e78773dbaff2278093654b68f6a10b4d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel@{g\_\-vowel}}
+\index{g\_\-vowel@{g\_\-vowel}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel}\mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 8, 0, 0, 0, 0, 0, 0, 1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e78773dbaff2278093654b68f6a10b4d}
+
+
+
+
+Definition at line 426 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g(), r\_\-check\_\-vowel\_\-harmony(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant(), and r\_\-more\_\-than\_\-one\_\-syllable\_\-word().\hypertarget{stem__UTF__8__turkish_8cpp_9a1f9b4af782e5e74114a3ca028be994}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel1@{g\_\-vowel1}}
+\index{g\_\-vowel1@{g\_\-vowel1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel1}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel1}\mbox{[}$\,$\mbox{]} = \{ 1, 64, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9a1f9b4af782e5e74114a3ca028be994}
+
+
+
+
+Definition at line 430 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_360618b08c2dadcddafd4513b2dfb353}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel2@{g\_\-vowel2}}
+\index{g\_\-vowel2@{g\_\-vowel2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel2}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel2}\mbox{[}$\,$\mbox{]} = \{ 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 130 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_360618b08c2dadcddafd4513b2dfb353}
+
+
+
+
+Definition at line 432 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_eccdd85015cacc563c82e3a9c0c6f42c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel3@{g\_\-vowel3}}
+\index{g\_\-vowel3@{g\_\-vowel3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel3}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel3}\mbox{[}$\,$\mbox{]} = \{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_eccdd85015cacc563c82e3a9c0c6f42c}
+
+
+
+
+Definition at line 434 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_da30a008787f5d4765caf26f3f711208}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel4@{g\_\-vowel4}}
+\index{g\_\-vowel4@{g\_\-vowel4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel4}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel4}\mbox{[}$\,$\mbox{]} = \{ 17 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_da30a008787f5d4765caf26f3f711208}
+
+
+
+
+Definition at line 436 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_226cc62512b80443b36b061dc1e29d0b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel5@{g\_\-vowel5}}
+\index{g\_\-vowel5@{g\_\-vowel5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel5}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel5}\mbox{[}$\,$\mbox{]} = \{ 65 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_226cc62512b80443b36b061dc1e29d0b}
+
+
+
+
+Definition at line 438 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_c2b7b1b3fa9aa3400ed5c4cff30dc3c6}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!g\_\-vowel6@{g\_\-vowel6}}
+\index{g\_\-vowel6@{g\_\-vowel6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{g\_\-vowel6}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-vowel6}\mbox{[}$\,$\mbox{]} = \{ 65 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c2b7b1b3fa9aa3400ed5c4cff30dc3c6}
+
+
+
+
+Definition at line 440 of file stem\_\-UTF\_\-8\_\-turkish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony().\hypertarget{stem__UTF__8__turkish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0@{s\_\-0}}
+\index{s\_\-0@{s\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0}\mbox{[}$\,$\mbox{]} = \{ 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}
+
+
+
+
+Definition at line 442 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_2dbe550d75025c4b1cd5fe29a14b9c58}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-0@{s\_\-0\_\-0}}
+\index{s\_\-0\_\-0@{s\_\-0\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-0}\mbox{[}1\mbox{]} = \{ 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2dbe550d75025c4b1cd5fe29a14b9c58}
+
+
+
+
+Definition at line 66 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c8b3eaa6a21eba2f04260e217a65f238}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-1@{s\_\-0\_\-1}}
+\index{s\_\-0\_\-1@{s\_\-0\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-1}\mbox{[}1\mbox{]} = \{ 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c8b3eaa6a21eba2f04260e217a65f238}
+
+
+
+
+Definition at line 67 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_0827aa66f084e80af0611e8ea8b96f8f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-2@{s\_\-0\_\-2}}
+\index{s\_\-0\_\-2@{s\_\-0\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-2}\mbox{[}3\mbox{]} = \{ 'm', 'i', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_0827aa66f084e80af0611e8ea8b96f8f}
+
+
+
+
+Definition at line 68 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_25785aa019ea111d46c4c8c914735ac5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-3@{s\_\-0\_\-3}}
+\index{s\_\-0\_\-3@{s\_\-0\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-3}\mbox{[}3\mbox{]} = \{ 'n', 'i', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_25785aa019ea111d46c4c8c914735ac5}
+
+
+
+
+Definition at line 69 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_feb9479a361b4de8bf40a97594998eee}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-4@{s\_\-0\_\-4}}
+\index{s\_\-0\_\-4@{s\_\-0\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-4}\mbox{[}3\mbox{]} = \{ 'm', 'u', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_feb9479a361b4de8bf40a97594998eee}
+
+
+
+
+Definition at line 70 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_203316aa7581d52def217691d971a546}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-5@{s\_\-0\_\-5}}
+\index{s\_\-0\_\-5@{s\_\-0\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-5}\mbox{[}3\mbox{]} = \{ 'n', 'u', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_203316aa7581d52def217691d971a546}
+
+
+
+
+Definition at line 71 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_841f6fa15936e9299e5e2dfb8178f4b5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-6@{s\_\-0\_\-6}}
+\index{s\_\-0\_\-6@{s\_\-0\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-6}\mbox{[}4\mbox{]} = \{ 'm', 0xC4, 0xB1, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_841f6fa15936e9299e5e2dfb8178f4b5}
+
+
+
+
+Definition at line 72 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_a60370cd0b3ede44b29f7c34199cbefa}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-7@{s\_\-0\_\-7}}
+\index{s\_\-0\_\-7@{s\_\-0\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-7}\mbox{[}4\mbox{]} = \{ 'n', 0xC4, 0xB1, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a60370cd0b3ede44b29f7c34199cbefa}
+
+
+
+
+Definition at line 73 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c95056116f5dbb5ac05e902425040b55}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-8@{s\_\-0\_\-8}}
+\index{s\_\-0\_\-8@{s\_\-0\_\-8}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-8}\mbox{[}4\mbox{]} = \{ 'm', 0xC3, 0xBC, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c95056116f5dbb5ac05e902425040b55}
+
+
+
+
+Definition at line 74 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_843acf3a8a842d4edbdc5fc0fb418a9d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-0\_\-9@{s\_\-0\_\-9}}
+\index{s\_\-0\_\-9@{s\_\-0\_\-9}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-0\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-9}\mbox{[}4\mbox{]} = \{ 'n', 0xC3, 0xBC, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_843acf3a8a842d4edbdc5fc0fb418a9d}
+
+
+
+
+Definition at line 75 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-1@{s\_\-1}}
+\index{s\_\-1@{s\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1}\mbox{[}$\,$\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}
+
+
+
+
+Definition at line 443 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-10@{s\_\-10}}
+\index{s\_\-10@{s\_\-10}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-10}\mbox{[}$\,$\mbox{]} = \{ 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_a635baf6f4cab6fd1b04acdff88ccb76}
+
+
+
+
+Definition at line 452 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_cb31380fa265a0fd0fc130e6cac84ee5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-10\_\-0@{s\_\-10\_\-0}}
+\index{s\_\-10\_\-0@{s\_\-10\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-10\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-10\_\-0}\mbox{[}2\mbox{]} = \{ 'l', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_cb31380fa265a0fd0fc130e6cac84ee5}
+
+
+
+
+Definition at line 188 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_80a16a7d5e01e34c039af86933da15f0}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-10\_\-1@{s\_\-10\_\-1}}
+\index{s\_\-10\_\-1@{s\_\-10\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-10\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-10\_\-1}\mbox{[}2\mbox{]} = \{ 'l', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_80a16a7d5e01e34c039af86933da15f0}
+
+
+
+
+Definition at line 189 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_bf29e347ef2262f710baab60211b1f56}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-11@{s\_\-11}}
+\index{s\_\-11@{s\_\-11}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-11}\mbox{[}$\,$\mbox{]} = \{ 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_bf29e347ef2262f710baab60211b1f56}
+
+
+
+
+Definition at line 453 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f983133c0675fb13f6391bd0047202ef}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-11\_\-0@{s\_\-11\_\-0}}
+\index{s\_\-11\_\-0@{s\_\-11\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-11\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-11\_\-0}\mbox{[}2\mbox{]} = \{ 'c', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f983133c0675fb13f6391bd0047202ef}
+
+
+
+
+Definition at line 197 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_12049c9b4168098c3fcd646eced44abd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-11\_\-1@{s\_\-11\_\-1}}
+\index{s\_\-11\_\-1@{s\_\-11\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-11\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-11\_\-1}\mbox{[}2\mbox{]} = \{ 'c', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_12049c9b4168098c3fcd646eced44abd}
+
+
+
+
+Definition at line 198 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_bf6a284b08c13843e299aa6e1ad61653}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-12@{s\_\-12}}
+\index{s\_\-12@{s\_\-12}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12}\mbox{[}$\,$\mbox{]} = \{ 'y' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_bf6a284b08c13843e299aa6e1ad61653}
+
+
+
+
+Definition at line 454 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_15711129ff321b8791af092541292a24}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-12\_\-0@{s\_\-12\_\-0}}
+\index{s\_\-12\_\-0@{s\_\-12\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-12\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_15711129ff321b8791af092541292a24}
+
+
+
+
+Definition at line 206 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8170eb3fca4764ecdb60e78d64a6034e}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-12\_\-1@{s\_\-12\_\-1}}
+\index{s\_\-12\_\-1@{s\_\-12\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-12\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12\_\-1}\mbox{[}2\mbox{]} = \{ 'u', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8170eb3fca4764ecdb60e78d64a6034e}
+
+
+
+
+Definition at line 207 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f0b294951aafa92e0e065a6cc7895035}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-12\_\-2@{s\_\-12\_\-2}}
+\index{s\_\-12\_\-2@{s\_\-12\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-12\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12\_\-2}\mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f0b294951aafa92e0e065a6cc7895035}
+
+
+
+
+Definition at line 208 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_54d2829f847872d87704d39d1274aee1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-12\_\-3@{s\_\-12\_\-3}}
+\index{s\_\-12\_\-3@{s\_\-12\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-12\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-12\_\-3}\mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_54d2829f847872d87704d39d1274aee1}
+
+
+
+
+Definition at line 209 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-13@{s\_\-13}}
+\index{s\_\-13@{s\_\-13}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13}\mbox{[}$\,$\mbox{]} = \{ 'y' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_6875c76d4de2ad50f0989b1fc0ea7066}
+
+
+
+
+Definition at line 455 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_2cc0e131e0a56971e151a25e1ab62181}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-13\_\-0@{s\_\-13\_\-0}}
+\index{s\_\-13\_\-0@{s\_\-13\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-13\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13\_\-0}\mbox{[}3\mbox{]} = \{ 's', 'i', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2cc0e131e0a56971e151a25e1ab62181}
+
+
+
+
+Definition at line 219 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7387a49d7acb5f6f2132200fb9e86c36}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-13\_\-1@{s\_\-13\_\-1}}
+\index{s\_\-13\_\-1@{s\_\-13\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-13\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13\_\-1}\mbox{[}3\mbox{]} = \{ 's', 'u', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7387a49d7acb5f6f2132200fb9e86c36}
+
+
+
+
+Definition at line 220 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e0e4248b8f57ece5f5fec4dc7d16feac}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-13\_\-2@{s\_\-13\_\-2}}
+\index{s\_\-13\_\-2@{s\_\-13\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-13\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13\_\-2}\mbox{[}4\mbox{]} = \{ 's', 0xC4, 0xB1, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e0e4248b8f57ece5f5fec4dc7d16feac}
+
+
+
+
+Definition at line 221 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_06299f814014ee58e05dd5417f95f695}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-13\_\-3@{s\_\-13\_\-3}}
+\index{s\_\-13\_\-3@{s\_\-13\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-13\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-13\_\-3}\mbox{[}4\mbox{]} = \{ 's', 0xC3, 0xBC, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_06299f814014ee58e05dd5417f95f695}
+
+
+
+
+Definition at line 222 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-14@{s\_\-14}}
+\index{s\_\-14@{s\_\-14}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14}\mbox{[}$\,$\mbox{]} = \{ 'k', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9a1cd1464ab9d490e3a15181fbcdacb1}
+
+
+
+
+Definition at line 456 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_761b6b4cdfba4fcae74f70fa29a48b73}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-14\_\-0@{s\_\-14\_\-0}}
+\index{s\_\-14\_\-0@{s\_\-14\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-14\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_761b6b4cdfba4fcae74f70fa29a48b73}
+
+
+
+
+Definition at line 232 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_df6aa44da6d2cdd1745274d9ea3f9cef}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-14\_\-1@{s\_\-14\_\-1}}
+\index{s\_\-14\_\-1@{s\_\-14\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-14\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14\_\-1}\mbox{[}2\mbox{]} = \{ 'u', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_df6aa44da6d2cdd1745274d9ea3f9cef}
+
+
+
+
+Definition at line 233 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b52f6bf0c78a6ed5980fc44dadd872ba}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-14\_\-2@{s\_\-14\_\-2}}
+\index{s\_\-14\_\-2@{s\_\-14\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-14\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14\_\-2}\mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b52f6bf0c78a6ed5980fc44dadd872ba}
+
+
+
+
+Definition at line 234 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_eb740595eb92f3e558473b83c3c560e4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-14\_\-3@{s\_\-14\_\-3}}
+\index{s\_\-14\_\-3@{s\_\-14\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-14\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-14\_\-3}\mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_eb740595eb92f3e558473b83c3c560e4}
+
+
+
+
+Definition at line 235 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f86c6cb3251ecf295972b3ebde225e78}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-15@{s\_\-15}}
+\index{s\_\-15@{s\_\-15}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15}\mbox{[}$\,$\mbox{]} = \{ 'k', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f86c6cb3251ecf295972b3ebde225e78}
+
+
+
+
+Definition at line 457 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_533861ace279541a219d4ed75e377dba}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-15\_\-0@{s\_\-15\_\-0}}
+\index{s\_\-15\_\-0@{s\_\-15\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-15\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15\_\-0}\mbox{[}5\mbox{]} = \{ 's', 'i', 'n', 'i', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_533861ace279541a219d4ed75e377dba}
+
+
+
+
+Definition at line 245 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9efb9bb2da02afa27f9dbf92a1cca082}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-15\_\-1@{s\_\-15\_\-1}}
+\index{s\_\-15\_\-1@{s\_\-15\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-15\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15\_\-1}\mbox{[}5\mbox{]} = \{ 's', 'u', 'n', 'u', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9efb9bb2da02afa27f9dbf92a1cca082}
+
+
+
+
+Definition at line 246 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_1f67d10f1b43548af8f02a649170e856}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-15\_\-2@{s\_\-15\_\-2}}
+\index{s\_\-15\_\-2@{s\_\-15\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-15\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15\_\-2}\mbox{[}7\mbox{]} = \{ 's', 0xC4, 0xB1, 'n', 0xC4, 0xB1, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_1f67d10f1b43548af8f02a649170e856}
+
+
+
+
+Definition at line 247 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8fc66f25659ced7f94ab9db48426c068}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-15\_\-3@{s\_\-15\_\-3}}
+\index{s\_\-15\_\-3@{s\_\-15\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-15\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-15\_\-3}\mbox{[}7\mbox{]} = \{ 's', 0xC3, 0xBC, 'n', 0xC3, 0xBC, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8fc66f25659ced7f94ab9db48426c068}
+
+
+
+
+Definition at line 248 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_99b6e5272294e99839b85415ac1d3c52}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-16@{s\_\-16}}
+\index{s\_\-16@{s\_\-16}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-16}\mbox{[}$\,$\mbox{]} = \{ 'p' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_99b6e5272294e99839b85415ac1d3c52}
+
+
+
+
+Definition at line 458 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e676fa0b30d32e8dbb88d0f72e269b74}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-16\_\-0@{s\_\-16\_\-0}}
+\index{s\_\-16\_\-0@{s\_\-16\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-16\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-16\_\-0}\mbox{[}3\mbox{]} = \{ 'l', 'a', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e676fa0b30d32e8dbb88d0f72e269b74}
+
+
+
+
+Definition at line 258 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7d8f517a4ba6394b8c7d74a28fcc68c8}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-16\_\-1@{s\_\-16\_\-1}}
+\index{s\_\-16\_\-1@{s\_\-16\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-16\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-16\_\-1}\mbox{[}3\mbox{]} = \{ 'l', 'e', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7d8f517a4ba6394b8c7d74a28fcc68c8}
+
+
+
+
+Definition at line 259 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d92d995ad8d6eadce002033b53d75255}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-17@{s\_\-17}}
+\index{s\_\-17@{s\_\-17}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xA7 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d92d995ad8d6eadce002033b53d75255}
+
+
+
+
+Definition at line 459 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_74751484df27a9b3ba402b0c64b6b8e9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-17\_\-0@{s\_\-17\_\-0}}
+\index{s\_\-17\_\-0@{s\_\-17\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-17\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17\_\-0}\mbox{[}3\mbox{]} = \{ 'n', 'i', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_74751484df27a9b3ba402b0c64b6b8e9}
+
+
+
+
+Definition at line 267 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b88a8a3a27197d0bd09962b0621262fa}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-17\_\-1@{s\_\-17\_\-1}}
+\index{s\_\-17\_\-1@{s\_\-17\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-17\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17\_\-1}\mbox{[}3\mbox{]} = \{ 'n', 'u', 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b88a8a3a27197d0bd09962b0621262fa}
+
+
+
+
+Definition at line 268 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_986b604e443c17ad832d69ce5ec638b1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-17\_\-2@{s\_\-17\_\-2}}
+\index{s\_\-17\_\-2@{s\_\-17\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-17\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17\_\-2}\mbox{[}4\mbox{]} = \{ 'n', 0xC4, 0xB1, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_986b604e443c17ad832d69ce5ec638b1}
+
+
+
+
+Definition at line 269 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_1ec3479a9d58aaa0169d429e59f1793f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-17\_\-3@{s\_\-17\_\-3}}
+\index{s\_\-17\_\-3@{s\_\-17\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-17\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-17\_\-3}\mbox{[}4\mbox{]} = \{ 'n', 0xC3, 0xBC, 'z' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_1ec3479a9d58aaa0169d429e59f1793f}
+
+
+
+
+Definition at line 270 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d7c47721bf8a3f762c1c1787b4ce3e16}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18@{s\_\-18}}
+\index{s\_\-18@{s\_\-18}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18}\mbox{[}$\,$\mbox{]} = \{ 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d7c47721bf8a3f762c1c1787b4ce3e16}
+
+
+
+
+Definition at line 460 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7cd7a8ab5a3a9dcfac3b38d0dfe91065}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-0@{s\_\-18\_\-0}}
+\index{s\_\-18\_\-0@{s\_\-18\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-0}\mbox{[}3\mbox{]} = \{ 'd', 'i', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7cd7a8ab5a3a9dcfac3b38d0dfe91065}
+
+
+
+
+Definition at line 280 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_5cf1d37cdbe953845ff4612e0e100ec8}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-1@{s\_\-18\_\-1}}
+\index{s\_\-18\_\-1@{s\_\-18\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-1}\mbox{[}3\mbox{]} = \{ 't', 'i', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_5cf1d37cdbe953845ff4612e0e100ec8}
+
+
+
+
+Definition at line 281 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_55d1b861412e0a071b62a03df8ead1dc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-2@{s\_\-18\_\-2}}
+\index{s\_\-18\_\-2@{s\_\-18\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-2}\mbox{[}3\mbox{]} = \{ 'd', 'u', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_55d1b861412e0a071b62a03df8ead1dc}
+
+
+
+
+Definition at line 282 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7339b3444dd300c257f7a8c3a379497b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-3@{s\_\-18\_\-3}}
+\index{s\_\-18\_\-3@{s\_\-18\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-3}\mbox{[}3\mbox{]} = \{ 't', 'u', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7339b3444dd300c257f7a8c3a379497b}
+
+
+
+
+Definition at line 283 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_5acfecd8ac0509d2dc859580977fe44a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-4@{s\_\-18\_\-4}}
+\index{s\_\-18\_\-4@{s\_\-18\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-4}\mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_5acfecd8ac0509d2dc859580977fe44a}
+
+
+
+
+Definition at line 284 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d1803344434bf447e05a31c47becf1f0}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-5@{s\_\-18\_\-5}}
+\index{s\_\-18\_\-5@{s\_\-18\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-5}\mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d1803344434bf447e05a31c47becf1f0}
+
+
+
+
+Definition at line 285 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d60d64b331b602dd7f0b2c3d888946f4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-6@{s\_\-18\_\-6}}
+\index{s\_\-18\_\-6@{s\_\-18\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-6}\mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d60d64b331b602dd7f0b2c3d888946f4}
+
+
+
+
+Definition at line 286 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_47699d82f5c5f8e7e02e818a6f2f9b94}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-18\_\-7@{s\_\-18\_\-7}}
+\index{s\_\-18\_\-7@{s\_\-18\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-18\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-18\_\-7}\mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_47699d82f5c5f8e7e02e818a6f2f9b94}
+
+
+
+
+Definition at line 287 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7fec5104766bc31c3366d920ee10d4b9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-19@{s\_\-19}}
+\index{s\_\-19@{s\_\-19}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-19}\mbox{[}$\,$\mbox{]} = \{ 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7fec5104766bc31c3366d920ee10d4b9}
+
+
+
+
+Definition at line 461 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_3aa504d3fbf769d960374ec3ca9776ea}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-19\_\-0@{s\_\-19\_\-0}}
+\index{s\_\-19\_\-0@{s\_\-19\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-19\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-19\_\-0}\mbox{[}7\mbox{]} = \{ 'c', 'a', 's', 0xC4, 0xB1, 'n', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_3aa504d3fbf769d960374ec3ca9776ea}
+
+
+
+
+Definition at line 301 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_54b6dcab83658967e36f9d9ba52db993}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-19\_\-1@{s\_\-19\_\-1}}
+\index{s\_\-19\_\-1@{s\_\-19\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-19\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-19\_\-1}\mbox{[}6\mbox{]} = \{ 'c', 'e', 's', 'i', 'n', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_54b6dcab83658967e36f9d9ba52db993}
+
+
+
+
+Definition at line 302 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_fd3aa499ede81bc6ed26794ce3de4cf5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-1\_\-0@{s\_\-1\_\-0}}
+\index{s\_\-1\_\-0@{s\_\-1\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-1\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-0}\mbox{[}4\mbox{]} = \{ 'l', 'e', 'r', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_fd3aa499ede81bc6ed26794ce3de4cf5}
+
+
+
+
+Definition at line 91 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d5ab78c8bbfacda80ac9c7a5413daa33}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-1\_\-1@{s\_\-1\_\-1}}
+\index{s\_\-1\_\-1@{s\_\-1\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-1\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-1}\mbox{[}5\mbox{]} = \{ 'l', 'a', 'r', 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d5ab78c8bbfacda80ac9c7a5413daa33}
+
+
+
+
+Definition at line 92 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_05655860330cc397ec496b569962c207}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-2@{s\_\-2}}
+\index{s\_\-2@{s\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2}\mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_05655860330cc397ec496b569962c207}
+
+
+
+
+Definition at line 444 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_71a04db2550a351ea58d78a81ec00e35}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20@{s\_\-20}}
+\index{s\_\-20@{s\_\-20}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20}\mbox{[}$\,$\mbox{]} = \{ 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_71a04db2550a351ea58d78a81ec00e35}
+
+
+
+
+Definition at line 462 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_13677e8fc977b26ef168250de93a40a8}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-0@{s\_\-20\_\-0}}
+\index{s\_\-20\_\-0@{s\_\-20\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-0}\mbox{[}2\mbox{]} = \{ 'd', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_13677e8fc977b26ef168250de93a40a8}
+
+
+
+
+Definition at line 310 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_bd46dcba3f4514d20412890a52a94feb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-1@{s\_\-20\_\-1}}
+\index{s\_\-20\_\-1@{s\_\-20\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-1}\mbox{[}2\mbox{]} = \{ 't', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_bd46dcba3f4514d20412890a52a94feb}
+
+
+
+
+Definition at line 311 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_34b0cb1e245d4717214cf1e95a49fbe2}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-10@{s\_\-20\_\-10}}
+\index{s\_\-20\_\-10@{s\_\-20\_\-10}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-10}\mbox{[}3\mbox{]} = \{ 'd', 'i', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_34b0cb1e245d4717214cf1e95a49fbe2}
+
+
+
+
+Definition at line 320 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f7f43f28c77e3f6fb46a6c88ea620d09}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-11@{s\_\-20\_\-11}}
+\index{s\_\-20\_\-11@{s\_\-20\_\-11}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-11}\mbox{[}3\mbox{]} = \{ 't', 'i', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f7f43f28c77e3f6fb46a6c88ea620d09}
+
+
+
+
+Definition at line 321 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_cf7db91c2ea29694643a65fac610c5df}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-12@{s\_\-20\_\-12}}
+\index{s\_\-20\_\-12@{s\_\-20\_\-12}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-12}\mbox{[}3\mbox{]} = \{ 'd', 'u', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_cf7db91c2ea29694643a65fac610c5df}
+
+
+
+
+Definition at line 322 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_21fc2c41468985e49ade4dd041adf39c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-13@{s\_\-20\_\-13}}
+\index{s\_\-20\_\-13@{s\_\-20\_\-13}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-13}\mbox{[}3\mbox{]} = \{ 't', 'u', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_21fc2c41468985e49ade4dd041adf39c}
+
+
+
+
+Definition at line 323 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_357fe9933a1c5b7ba70e37eb05e0d718}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-14@{s\_\-20\_\-14}}
+\index{s\_\-20\_\-14@{s\_\-20\_\-14}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-14}\mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_357fe9933a1c5b7ba70e37eb05e0d718}
+
+
+
+
+Definition at line 324 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f30433fc666af655167be49cfbbd31e9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-15@{s\_\-20\_\-15}}
+\index{s\_\-20\_\-15@{s\_\-20\_\-15}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-15}\mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f30433fc666af655167be49cfbbd31e9}
+
+
+
+
+Definition at line 325 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f72839d6433691d6a2165d73ad535c43}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-16@{s\_\-20\_\-16}}
+\index{s\_\-20\_\-16@{s\_\-20\_\-16}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-16}\mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f72839d6433691d6a2165d73ad535c43}
+
+
+
+
+Definition at line 326 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_46e47068105d30267ff763aabc0c51bf}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-17@{s\_\-20\_\-17}}
+\index{s\_\-20\_\-17@{s\_\-20\_\-17}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-17}\mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_46e47068105d30267ff763aabc0c51bf}
+
+
+
+
+Definition at line 327 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c16d14875412f471474956b7bda4a9c3}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-18@{s\_\-20\_\-18}}
+\index{s\_\-20\_\-18@{s\_\-20\_\-18}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-18}\mbox{[}3\mbox{]} = \{ 'd', 'i', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c16d14875412f471474956b7bda4a9c3}
+
+
+
+
+Definition at line 328 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_73be9ccd0515aa219d6039033bbd6393}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-19@{s\_\-20\_\-19}}
+\index{s\_\-20\_\-19@{s\_\-20\_\-19}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-19}\mbox{[}3\mbox{]} = \{ 't', 'i', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_73be9ccd0515aa219d6039033bbd6393}
+
+
+
+
+Definition at line 329 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9508efc3c27f8f43c381785210de5f03}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-2@{s\_\-20\_\-2}}
+\index{s\_\-20\_\-2@{s\_\-20\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-2}\mbox{[}3\mbox{]} = \{ 'd', 'i', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9508efc3c27f8f43c381785210de5f03}
+
+
+
+
+Definition at line 312 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b5c2d3e360cd545790f6aa12755d27d1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-20@{s\_\-20\_\-20}}
+\index{s\_\-20\_\-20@{s\_\-20\_\-20}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-20}\mbox{[}3\mbox{]} = \{ 'd', 'u', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b5c2d3e360cd545790f6aa12755d27d1}
+
+
+
+
+Definition at line 330 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_01e2ccffa6900eef8b9d50fd0ca1f7fd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-21@{s\_\-20\_\-21}}
+\index{s\_\-20\_\-21@{s\_\-20\_\-21}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-21}\mbox{[}3\mbox{]} = \{ 't', 'u', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_01e2ccffa6900eef8b9d50fd0ca1f7fd}
+
+
+
+
+Definition at line 331 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_45b73dd3e9687bb203e0cf166f719d47}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-22@{s\_\-20\_\-22}}
+\index{s\_\-20\_\-22@{s\_\-20\_\-22}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-22}\mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_45b73dd3e9687bb203e0cf166f719d47}
+
+
+
+
+Definition at line 332 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_962cddcaa947bec93fcdd9c94a70329e}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-23@{s\_\-20\_\-23}}
+\index{s\_\-20\_\-23@{s\_\-20\_\-23}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-23}\mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_962cddcaa947bec93fcdd9c94a70329e}
+
+
+
+
+Definition at line 333 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_17f5d6358eeaa4e56d71246c489b23ff}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-24@{s\_\-20\_\-24}}
+\index{s\_\-20\_\-24@{s\_\-20\_\-24}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-24}\mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_17f5d6358eeaa4e56d71246c489b23ff}
+
+
+
+
+Definition at line 334 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_98173fe69eed291ba426a292e3238d22}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-25@{s\_\-20\_\-25}}
+\index{s\_\-20\_\-25@{s\_\-20\_\-25}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-25}\mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_98173fe69eed291ba426a292e3238d22}
+
+
+
+
+Definition at line 335 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_1113d126c5cf60c3d23839d5a9d82179}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-26@{s\_\-20\_\-26}}
+\index{s\_\-20\_\-26@{s\_\-20\_\-26}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-26}\mbox{[}2\mbox{]} = \{ 'd', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_1113d126c5cf60c3d23839d5a9d82179}
+
+
+
+
+Definition at line 336 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_73007e70dcd02e16d752466d13fb63fc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-27@{s\_\-20\_\-27}}
+\index{s\_\-20\_\-27@{s\_\-20\_\-27}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-27}\mbox{[}2\mbox{]} = \{ 't', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_73007e70dcd02e16d752466d13fb63fc}
+
+
+
+
+Definition at line 337 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b055658aa9d18c82923011663ddf55bd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-28@{s\_\-20\_\-28}}
+\index{s\_\-20\_\-28@{s\_\-20\_\-28}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-28}\mbox{[}3\mbox{]} = \{ 'd', 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b055658aa9d18c82923011663ddf55bd}
+
+
+
+
+Definition at line 338 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d5d2c9609428b83261527e85fc5013bf}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-29@{s\_\-20\_\-29}}
+\index{s\_\-20\_\-29@{s\_\-20\_\-29}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-29}\mbox{[}3\mbox{]} = \{ 't', 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d5d2c9609428b83261527e85fc5013bf}
+
+
+
+
+Definition at line 339 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_55d1f53b17e645e03631eb8d460b3a8f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-3@{s\_\-20\_\-3}}
+\index{s\_\-20\_\-3@{s\_\-20\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-3}\mbox{[}3\mbox{]} = \{ 't', 'i', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_55d1f53b17e645e03631eb8d460b3a8f}
+
+
+
+
+Definition at line 313 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_743ea48cd6b16122e6e8b3083dcfd1c6}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-30@{s\_\-20\_\-30}}
+\index{s\_\-20\_\-30@{s\_\-20\_\-30}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-30}\mbox{[}3\mbox{]} = \{ 'd', 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_743ea48cd6b16122e6e8b3083dcfd1c6}
+
+
+
+
+Definition at line 340 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_58831e9e20da530512c67fd35ea5911b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-31@{s\_\-20\_\-31}}
+\index{s\_\-20\_\-31@{s\_\-20\_\-31}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-31}\mbox{[}3\mbox{]} = \{ 't', 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_58831e9e20da530512c67fd35ea5911b}
+
+
+
+
+Definition at line 341 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8580ffda757c68d169f78bb5fd4393f3}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-4@{s\_\-20\_\-4}}
+\index{s\_\-20\_\-4@{s\_\-20\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-4}\mbox{[}3\mbox{]} = \{ 'd', 'u', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8580ffda757c68d169f78bb5fd4393f3}
+
+
+
+
+Definition at line 314 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_bedbdf26fe6fe5f3b6df2e2e771020eb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-5@{s\_\-20\_\-5}}
+\index{s\_\-20\_\-5@{s\_\-20\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-5}\mbox{[}3\mbox{]} = \{ 't', 'u', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_bedbdf26fe6fe5f3b6df2e2e771020eb}
+
+
+
+
+Definition at line 315 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_551f6be36e2b313e139d4a2dcf797c18}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-6@{s\_\-20\_\-6}}
+\index{s\_\-20\_\-6@{s\_\-20\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-6}\mbox{[}4\mbox{]} = \{ 'd', 0xC4, 0xB1, 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_551f6be36e2b313e139d4a2dcf797c18}
+
+
+
+
+Definition at line 316 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c56e38e2657248cd985dcfe14f0ee8fd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-7@{s\_\-20\_\-7}}
+\index{s\_\-20\_\-7@{s\_\-20\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-7}\mbox{[}4\mbox{]} = \{ 't', 0xC4, 0xB1, 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c56e38e2657248cd985dcfe14f0ee8fd}
+
+
+
+
+Definition at line 317 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_5f7f8caa96939c34bcb169421d71b1cf}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-8@{s\_\-20\_\-8}}
+\index{s\_\-20\_\-8@{s\_\-20\_\-8}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-8}\mbox{[}4\mbox{]} = \{ 'd', 0xC3, 0xBC, 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_5f7f8caa96939c34bcb169421d71b1cf}
+
+
+
+
+Definition at line 318 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_ae0a14b4f1021f1f749579f7810c400c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-20\_\-9@{s\_\-20\_\-9}}
+\index{s\_\-20\_\-9@{s\_\-20\_\-9}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-20\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-20\_\-9}\mbox{[}4\mbox{]} = \{ 't', 0xC3, 0xBC, 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ae0a14b4f1021f1f749579f7810c400c}
+
+
+
+
+Definition at line 319 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_4f7200c800c3085488b2df028a7edc1b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21@{s\_\-21}}
+\index{s\_\-21@{s\_\-21}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21}\mbox{[}$\,$\mbox{]} = \{ 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_4f7200c800c3085488b2df028a7edc1b}
+
+
+
+
+Definition at line 463 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_88678ad5345e0aea288a50e0731672bc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-0@{s\_\-21\_\-0}}
+\index{s\_\-21\_\-0@{s\_\-21\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-0}\mbox{[}2\mbox{]} = \{ 's', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_88678ad5345e0aea288a50e0731672bc}
+
+
+
+
+Definition at line 379 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_34c46c767d829030f405b9a847865703}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-1@{s\_\-21\_\-1}}
+\index{s\_\-21\_\-1@{s\_\-21\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-1}\mbox{[}2\mbox{]} = \{ 's', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_34c46c767d829030f405b9a847865703}
+
+
+
+
+Definition at line 380 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e7ab0d1c2cc77175e2218cd287b1cdd4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-2@{s\_\-21\_\-2}}
+\index{s\_\-21\_\-2@{s\_\-21\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-2}\mbox{[}3\mbox{]} = \{ 's', 'a', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e7ab0d1c2cc77175e2218cd287b1cdd4}
+
+
+
+
+Definition at line 381 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_32a1ccab10098c4589c9be1cd5a475e1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-3@{s\_\-21\_\-3}}
+\index{s\_\-21\_\-3@{s\_\-21\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-3}\mbox{[}3\mbox{]} = \{ 's', 'e', 'k' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_32a1ccab10098c4589c9be1cd5a475e1}
+
+
+
+
+Definition at line 382 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c4a418c73fa02292dd39db80990b4d2a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-4@{s\_\-21\_\-4}}
+\index{s\_\-21\_\-4@{s\_\-21\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-4}\mbox{[}3\mbox{]} = \{ 's', 'a', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c4a418c73fa02292dd39db80990b4d2a}
+
+
+
+
+Definition at line 383 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_839d617d6f83da7bf07f759306ff5c4f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-5@{s\_\-21\_\-5}}
+\index{s\_\-21\_\-5@{s\_\-21\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-5}\mbox{[}3\mbox{]} = \{ 's', 'e', 'm' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_839d617d6f83da7bf07f759306ff5c4f}
+
+
+
+
+Definition at line 384 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_4f850aadb80387fafe1939844b3fc625}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-6@{s\_\-21\_\-6}}
+\index{s\_\-21\_\-6@{s\_\-21\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-6}\mbox{[}3\mbox{]} = \{ 's', 'a', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_4f850aadb80387fafe1939844b3fc625}
+
+
+
+
+Definition at line 385 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_aefdb712f39f5a1a0671135c460f8d04}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-21\_\-7@{s\_\-21\_\-7}}
+\index{s\_\-21\_\-7@{s\_\-21\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-21\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-21\_\-7}\mbox{[}3\mbox{]} = \{ 's', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_aefdb712f39f5a1a0671135c460f8d04}
+
+
+
+
+Definition at line 386 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9db1913ca8110f2dd53d29b04b7e08fa}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-22@{s\_\-22}}
+\index{s\_\-22@{s\_\-22}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-22}\mbox{[}$\,$\mbox{]} = \{ 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9db1913ca8110f2dd53d29b04b7e08fa}
+
+
+
+
+Definition at line 464 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_012f9c468b3de0cf6e52fa84821ec84a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-22\_\-0@{s\_\-22\_\-0}}
+\index{s\_\-22\_\-0@{s\_\-22\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-22\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-22\_\-0}\mbox{[}4\mbox{]} = \{ 'm', 'i', 0xC5, 0x9F \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_012f9c468b3de0cf6e52fa84821ec84a}
+
+
+
+
+Definition at line 400 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_88ddd2eb7a400b79138cfe1abba691b3}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-22\_\-1@{s\_\-22\_\-1}}
+\index{s\_\-22\_\-1@{s\_\-22\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-22\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-22\_\-1}\mbox{[}4\mbox{]} = \{ 'm', 'u', 0xC5, 0x9F \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_88ddd2eb7a400b79138cfe1abba691b3}
+
+
+
+
+Definition at line 401 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_cc990b6e3b7741f650fd88000f042797}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-22\_\-2@{s\_\-22\_\-2}}
+\index{s\_\-22\_\-2@{s\_\-22\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-22\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-22\_\-2}\mbox{[}5\mbox{]} = \{ 'm', 0xC4, 0xB1, 0xC5, 0x9F \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_cc990b6e3b7741f650fd88000f042797}
+
+
+
+
+Definition at line 402 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_db309a5f8253427fd288fc7eee2a883f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-22\_\-3@{s\_\-22\_\-3}}
+\index{s\_\-22\_\-3@{s\_\-22\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-22\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-22\_\-3}\mbox{[}5\mbox{]} = \{ 'm', 0xC3, 0xBC, 0xC5, 0x9F \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_db309a5f8253427fd288fc7eee2a883f}
+
+
+
+
+Definition at line 403 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8096a8ece0e17f06a29f7f6393a19eaa}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-23@{s\_\-23}}
+\index{s\_\-23@{s\_\-23}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-23}\mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8096a8ece0e17f06a29f7f6393a19eaa}
+
+
+
+
+Definition at line 465 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c6d614e0866921f725169f29cf4edeeb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-23\_\-0@{s\_\-23\_\-0}}
+\index{s\_\-23\_\-0@{s\_\-23\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-23\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-23\_\-0}\mbox{[}1\mbox{]} = \{ 'b' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c6d614e0866921f725169f29cf4edeeb}
+
+
+
+
+Definition at line 413 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_6c8135ae090d7fac7518cecb63866d55}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-23\_\-1@{s\_\-23\_\-1}}
+\index{s\_\-23\_\-1@{s\_\-23\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-23\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-23\_\-1}\mbox{[}1\mbox{]} = \{ 'c' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_6c8135ae090d7fac7518cecb63866d55}
+
+
+
+
+Definition at line 414 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_73225a89afda2fe8152f69e8c98c425d}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-23\_\-2@{s\_\-23\_\-2}}
+\index{s\_\-23\_\-2@{s\_\-23\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-23\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-23\_\-2}\mbox{[}1\mbox{]} = \{ 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_73225a89afda2fe8152f69e8c98c425d}
+
+
+
+
+Definition at line 415 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_fdb3efa10cb5e221b71c1ee6ddd8e924}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-23\_\-3@{s\_\-23\_\-3}}
+\index{s\_\-23\_\-3@{s\_\-23\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-23\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-23\_\-3}\mbox{[}2\mbox{]} = \{ 0xC4, 0x9F \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_fdb3efa10cb5e221b71c1ee6ddd8e924}
+
+
+
+
+Definition at line 416 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_87c18bfe15850e6ceb775bfb9daad2d6}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-24@{s\_\-24}}
+\index{s\_\-24@{s\_\-24}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-24}\mbox{[}$\,$\mbox{]} = \{ 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_87c18bfe15850e6ceb775bfb9daad2d6}
+
+
+
+
+Definition at line 466 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_051c065d605cb14ed312019f0dc30c3f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-25@{s\_\-25}}
+\index{s\_\-25@{s\_\-25}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-25}\mbox{[}$\,$\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_051c065d605cb14ed312019f0dc30c3f}
+
+
+
+
+Definition at line 467 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_fac466ada3021df80b3286e746580ff6}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-26@{s\_\-26}}
+\index{s\_\-26@{s\_\-26}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-26}\mbox{[}$\,$\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_fac466ada3021df80b3286e746580ff6}
+
+
+
+
+Definition at line 468 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_405d249eb6a4002475c22514d0e7acfa}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-27@{s\_\-27}}
+\index{s\_\-27@{s\_\-27}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-27}\mbox{[}$\,$\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_405d249eb6a4002475c22514d0e7acfa}
+
+
+
+
+Definition at line 469 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_e6ba72305b93d4fd47cb604ecf98f340}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-28@{s\_\-28}}
+\index{s\_\-28@{s\_\-28}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-28}\mbox{[}$\,$\mbox{]} = \{ 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_e6ba72305b93d4fd47cb604ecf98f340}
+
+
+
+
+Definition at line 470 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_36876cea8136b2f7072d9cee4da27986}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-29@{s\_\-29}}
+\index{s\_\-29@{s\_\-29}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-29}\mbox{[}$\,$\mbox{]} = \{ 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_36876cea8136b2f7072d9cee4da27986}
+
+
+
+
+Definition at line 471 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-2\_\-0@{s\_\-2\_\-0}}
+\index{s\_\-2\_\-0@{s\_\-2\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-2\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-0}\mbox{[}2\mbox{]} = \{ 'n', 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}
+
+
+
+
+Definition at line 100 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_eb067135b2b508ae55bc4cb83c35b16f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-2\_\-1@{s\_\-2\_\-1}}
+\index{s\_\-2\_\-1@{s\_\-2\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-2\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-1}\mbox{[}2\mbox{]} = \{ 'n', 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_eb067135b2b508ae55bc4cb83c35b16f}
+
+
+
+
+Definition at line 101 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b9cac81f1578c40fc213fdfa524eeaff}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-2\_\-2@{s\_\-2\_\-2}}
+\index{s\_\-2\_\-2@{s\_\-2\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-2\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-2}\mbox{[}3\mbox{]} = \{ 'n', 0xC4, 0xB1 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b9cac81f1578c40fc213fdfa524eeaff}
+
+
+
+
+Definition at line 102 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_3699511a74365c37bc72b66e80ec3143}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-2\_\-3@{s\_\-2\_\-3}}
+\index{s\_\-2\_\-3@{s\_\-2\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-2\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-3}\mbox{[}3\mbox{]} = \{ 'n', 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_3699511a74365c37bc72b66e80ec3143}
+
+
+
+
+Definition at line 103 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_506031b4e4028f904c38bc9782cf4ea9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-3@{s\_\-3}}
+\index{s\_\-3@{s\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3}\mbox{[}$\,$\mbox{]} = \{ 'i' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_506031b4e4028f904c38bc9782cf4ea9}
+
+
+
+
+Definition at line 445 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_22789eb794b8f6eeedf74fe10df017c4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-30@{s\_\-30}}
+\index{s\_\-30@{s\_\-30}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-30}\mbox{[}$\,$\mbox{]} = \{ 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_22789eb794b8f6eeedf74fe10df017c4}
+
+
+
+
+Definition at line 472 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b5c2524fcf2bfc83e7d690bba105ae34}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-31@{s\_\-31}}
+\index{s\_\-31@{s\_\-31}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-31}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB6 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b5c2524fcf2bfc83e7d690bba105ae34}
+
+
+
+
+Definition at line 473 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_6583c4f75f65276f772742bd12b4c8c5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-32@{s\_\-32}}
+\index{s\_\-32@{s\_\-32}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-32}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-32}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_6583c4f75f65276f772742bd12b4c8c5}
+
+
+
+
+Definition at line 474 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_cba51b44e8f1246425c4fbd8fb18f6b1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-33@{s\_\-33}}
+\index{s\_\-33@{s\_\-33}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-33}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-33}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_cba51b44e8f1246425c4fbd8fb18f6b1}
+
+
+
+
+Definition at line 475 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_ff0107139a85c87694430777873d5ca1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-34@{s\_\-34}}
+\index{s\_\-34@{s\_\-34}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-34}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-34}\mbox{[}$\,$\mbox{]} = \{ 'a', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_ff0107139a85c87694430777873d5ca1}
+
+
+
+
+Definition at line 476 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_7b1f06285932f23189660a7237a92b56}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-35@{s\_\-35}}
+\index{s\_\-35@{s\_\-35}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-35}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-35}\mbox{[}$\,$\mbox{]} = \{ 's', 'o', 'y', 'a', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_7b1f06285932f23189660a7237a92b56}
+
+
+
+
+Definition at line 477 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_521a9030b51dd477506c58b1f5c8b3dc}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-3\_\-0@{s\_\-3\_\-0}}
+\index{s\_\-3\_\-0@{s\_\-3\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-3\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_521a9030b51dd477506c58b1f5c8b3dc}
+
+
+
+
+Definition at line 113 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_2bc1d33372e674a72924c7886e35fcc5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-3\_\-1@{s\_\-3\_\-1}}
+\index{s\_\-3\_\-1@{s\_\-3\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-3\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-1}\mbox{[}2\mbox{]} = \{ 'u', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_2bc1d33372e674a72924c7886e35fcc5}
+
+
+
+
+Definition at line 114 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_13fe7e241118fbcc54b35a7af14b6894}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-3\_\-2@{s\_\-3\_\-2}}
+\index{s\_\-3\_\-2@{s\_\-3\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-3\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-2}\mbox{[}3\mbox{]} = \{ 0xC4, 0xB1, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_13fe7e241118fbcc54b35a7af14b6894}
+
+
+
+
+Definition at line 115 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_b5fa0512d642a44dbd85fedce8f113b1}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-3\_\-3@{s\_\-3\_\-3}}
+\index{s\_\-3\_\-3@{s\_\-3\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-3\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-3\_\-3}\mbox{[}3\mbox{]} = \{ 0xC3, 0xBC, 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_b5fa0512d642a44dbd85fedce8f113b1}
+
+
+
+
+Definition at line 116 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-4@{s\_\-4}}
+\index{s\_\-4@{s\_\-4}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4}\mbox{[}$\,$\mbox{]} = \{ 'o' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_1338c0b57e6821c5ed2c4f2fccd6103f}
+
+
+
+
+Definition at line 446 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_abd9c9de786dbaa7acf282c86b11e936}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-4\_\-0@{s\_\-4\_\-0}}
+\index{s\_\-4\_\-0@{s\_\-4\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-4\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4\_\-0}\mbox{[}1\mbox{]} = \{ 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_abd9c9de786dbaa7acf282c86b11e936}
+
+
+
+
+Definition at line 126 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9241f37f2292e371bb37268d326e18c4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-4\_\-1@{s\_\-4\_\-1}}
+\index{s\_\-4\_\-1@{s\_\-4\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-4\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-4\_\-1}\mbox{[}1\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9241f37f2292e371bb37268d326e18c4}
+
+
+
+
+Definition at line 127 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-5@{s\_\-5}}
+\index{s\_\-5@{s\_\-5}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xB6 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f68f2bbd8a1f41b7e78aa8859269b5cb}
+
+
+
+
+Definition at line 447 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_317c54824e403ccc456298e89a2a5f0e}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-5\_\-0@{s\_\-5\_\-0}}
+\index{s\_\-5\_\-0@{s\_\-5\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-5\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-0}\mbox{[}2\mbox{]} = \{ 'n', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_317c54824e403ccc456298e89a2a5f0e}
+
+
+
+
+Definition at line 135 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_d09a5913bf18b13b6b38001a430193ab}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-5\_\-1@{s\_\-5\_\-1}}
+\index{s\_\-5\_\-1@{s\_\-5\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-5\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-5\_\-1}\mbox{[}2\mbox{]} = \{ 'n', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_d09a5913bf18b13b6b38001a430193ab}
+
+
+
+
+Definition at line 136 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_49dfcd185612e79f769e174b7c22846f}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-6@{s\_\-6}}
+\index{s\_\-6@{s\_\-6}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6}\mbox{[}$\,$\mbox{]} = \{ 'u' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_49dfcd185612e79f769e174b7c22846f}
+
+
+
+
+Definition at line 448 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f09056600cbdce27e330d48549eaa7e4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-6\_\-0@{s\_\-6\_\-0}}
+\index{s\_\-6\_\-0@{s\_\-6\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-6\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-0}\mbox{[}2\mbox{]} = \{ 'd', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f09056600cbdce27e330d48549eaa7e4}
+
+
+
+
+Definition at line 144 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c046f80c6af9de5718fe457fecc928dd}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-6\_\-1@{s\_\-6\_\-1}}
+\index{s\_\-6\_\-1@{s\_\-6\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-6\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-1}\mbox{[}2\mbox{]} = \{ 't', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c046f80c6af9de5718fe457fecc928dd}
+
+
+
+
+Definition at line 145 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8e3a6d314a441c0953ea453c2ef528c9}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-6\_\-2@{s\_\-6\_\-2}}
+\index{s\_\-6\_\-2@{s\_\-6\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-6\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-2}\mbox{[}2\mbox{]} = \{ 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8e3a6d314a441c0953ea453c2ef528c9}
+
+
+
+
+Definition at line 146 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_c1d4a390f21097e6163bbfbec994bbb5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-6\_\-3@{s\_\-6\_\-3}}
+\index{s\_\-6\_\-3@{s\_\-6\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-6\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-6\_\-3}\mbox{[}2\mbox{]} = \{ 't', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_c1d4a390f21097e6163bbfbec994bbb5}
+
+
+
+
+Definition at line 147 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_643c8aee064467dc72f82ea3aca5afce}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-7@{s\_\-7}}
+\index{s\_\-7@{s\_\-7}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7}\mbox{[}$\,$\mbox{]} = \{ 0xC3, 0xBC \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_643c8aee064467dc72f82ea3aca5afce}
+
+
+
+
+Definition at line 449 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_847eafda609e4ee4b3d9687daf6cd7ef}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-7\_\-0@{s\_\-7\_\-0}}
+\index{s\_\-7\_\-0@{s\_\-7\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-7\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-0}\mbox{[}3\mbox{]} = \{ 'n', 'd', 'a' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_847eafda609e4ee4b3d9687daf6cd7ef}
+
+
+
+
+Definition at line 157 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_595a09aec55805422d3ee94cfcbf93c4}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-7\_\-1@{s\_\-7\_\-1}}
+\index{s\_\-7\_\-1@{s\_\-7\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-7\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-7\_\-1}\mbox{[}3\mbox{]} = \{ 'n', 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_595a09aec55805422d3ee94cfcbf93c4}
+
+
+
+
+Definition at line 158 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f16bd0889f5653a235489fb6013bc454}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-8@{s\_\-8}}
+\index{s\_\-8@{s\_\-8}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8}\mbox{[}$\,$\mbox{]} = \{ 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f16bd0889f5653a235489fb6013bc454}
+
+
+
+
+Definition at line 450 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_648502092e526b438d8829acba6e83f2}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-8\_\-0@{s\_\-8\_\-0}}
+\index{s\_\-8\_\-0@{s\_\-8\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-8\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-0}\mbox{[}3\mbox{]} = \{ 'd', 'a', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_648502092e526b438d8829acba6e83f2}
+
+
+
+
+Definition at line 166 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_8711b63d63f857c33ad4043fc18a421c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-8\_\-1@{s\_\-8\_\-1}}
+\index{s\_\-8\_\-1@{s\_\-8\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-8\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-1}\mbox{[}3\mbox{]} = \{ 't', 'a', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_8711b63d63f857c33ad4043fc18a421c}
+
+
+
+
+Definition at line 167 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_6bd8f32021b08095c63a6bfc0d5590d5}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-8\_\-2@{s\_\-8\_\-2}}
+\index{s\_\-8\_\-2@{s\_\-8\_\-2}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-8\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-2}\mbox{[}3\mbox{]} = \{ 'd', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_6bd8f32021b08095c63a6bfc0d5590d5}
+
+
+
+
+Definition at line 168 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f88cba7b53fd4844575e966b193ed86b}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-8\_\-3@{s\_\-8\_\-3}}
+\index{s\_\-8\_\-3@{s\_\-8\_\-3}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-8\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-8\_\-3}\mbox{[}3\mbox{]} = \{ 't', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f88cba7b53fd4844575e966b193ed86b}
+
+
+
+
+Definition at line 169 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-9@{s\_\-9}}
+\index{s\_\-9@{s\_\-9}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-9}\mbox{[}$\,$\mbox{]} = \{ 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_f1890a72217c2e1d1f5cb6b90f1ea87a}
+
+
+
+
+Definition at line 451 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_9f3443f9b9f07461e6ee6b2ed0914eec}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-9\_\-0@{s\_\-9\_\-0}}
+\index{s\_\-9\_\-0@{s\_\-9\_\-0}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-9\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-9\_\-0}\mbox{[}4\mbox{]} = \{ 'n', 'd', 'a', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_9f3443f9b9f07461e6ee6b2ed0914eec}
+
+
+
+
+Definition at line 179 of file stem\_\-UTF\_\-8\_\-turkish.cpp.\hypertarget{stem__UTF__8__turkish_8cpp_afe82bbbb98d88a5990319769464920c}{
+\index{stem\_\-UTF\_\-8\_\-turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}!s\_\-9\_\-1@{s\_\-9\_\-1}}
+\index{s\_\-9\_\-1@{s\_\-9\_\-1}!stem_UTF_8_turkish.cpp@{stem\_\-UTF\_\-8\_\-turkish.cpp}}
+\subsubsection[{s\_\-9\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-9\_\-1}\mbox{[}4\mbox{]} = \{ 'n', 'd', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__turkish_8cpp_afe82bbbb98d88a5990319769464920c}
+
+
+
+
+Definition at line 180 of file stem\_\-UTF\_\-8\_\-turkish.cpp.

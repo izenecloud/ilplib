@@ -1,0 +1,691 @@
+\hypertarget{classkmaOrange_1_1WK__DaTrie}{
+\section{kmaOrange::WK\_\-DaTrie Class Reference}
+\label{classkmaOrange_1_1WK__DaTrie}\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}}
+}
+{\tt \#include $<$daTrie.h$>$}
+
+\subsection*{Public Types}
+\begin{CompactItemize}
+\item 
+enum \{ \hyperlink{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9d9e414838be039ecba340b533796cd92}{BC\_\-EXTEND\_\-SIZE} =  1024 $\ast$ 100, 
+\hyperlink{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9c2392aec155032bb2c5bd6ce7ca7b33e}{TAIL\_\-EXTEND\_\-SIZE} =  1024 $\ast$ 50, 
+\hyperlink{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9bd8e354447f7e4a066cb0810c696fc7e}{KEY\_\-LEN} =  128, 
+\hyperlink{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd986f1894798d1ef14c5795fa3ed0d36c9}{TERMINAL} =  0x3b
+ \}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie_32f9a370dbbbd73eb8b0fe4d5dc2e37b}{WK\_\-DaTrie} ()
+\item 
+virtual \hyperlink{classkmaOrange_1_1WK__DaTrie_1f27e5aebb3e64d233e86a572ecdf8e7}{$\sim$WK\_\-DaTrie} ()
+\item 
+bool \hyperlink{classkmaOrange_1_1WK__DaTrie_8dfd668709a4befbed549225a8a8bd89}{isCreated} ()
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_f8b50a62c397ba902f8c07d559a9435b}{create} (int bcSize=BC\_\-EXTEND\_\-SIZE, int tailSize=TAIL\_\-EXTEND\_\-SIZE, int bcExtendSize=BC\_\-EXTEND\_\-SIZE, int tailExtendSize=TAIL\_\-EXTEND\_\-SIZE)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_9481717e899b14ef84195b178aa137bf}{insertKey} (const char $\ast$pKey, \hyperlink{classkmaOrange_1_1WK__DaTrie__Node}{WK\_\-DaTrie\_\-Node} \&rNode)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_5ef6c2879707d53ad98e33ed9a99562f}{getBcPos} (void)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_691a09e71153084e72c27abef781318f}{getTailPos} (void)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_79141779af95af6ea2f4e449e149f0cc}{getBcEmptyStart} (void)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_fc6dd41e1d99fae4cfaa432b8ca41608}{getBcEmptyEnd} (void)
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie__BaseCheck}{WK\_\-DaTrie\_\-BaseCheck} $\ast$ \hyperlink{classkmaOrange_1_1WK__DaTrie_bde541a15af9eb87a19e77a1cf7cfff4}{getBaseCheckArray} (void)
+\item 
+unsigned char $\ast$ \hyperlink{classkmaOrange_1_1WK__DaTrie_d0bd9785aed0cfa5a57f1acb8ceaaab1}{getTailBuffer} (void)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_96450cb69fa65fa3c1ee1f0de4bb879b}{free} ()
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_71281285c6619f4d4cae35c5d946e0ca}{setBcPos} (int bcPos)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_bcc6b5c4e73a9720e527207f295970f3}{setTailPos} (int tailPos)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_cd996ae8c95d27195a1cd8c1ce80e9e5}{setBcEmptyStart} (int bcEmptyStart)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_034eb62f286852f141d1a9e8e2133fd8}{setBcEmptyEnd} (int bcEmptyEnd)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_3fd02d2af0c0a366bdeb404931939629}{searchKey} (const char $\ast$pKey, \hyperlink{classkmaOrange_1_1WK__DaTrie__Node}{WK\_\-DaTrie\_\-Node} \&rNode)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_6e7d0b752fabe564f26a7dc7858fa16a}{findNode} (const char ch, \hyperlink{classkmaOrange_1_1WK__DaTrie__Node}{WK\_\-DaTrie\_\-Node} \&rNode)
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_9650f85dca062aaf5f47e655c75c3636}{compareTail} (int index, unsigned char $\ast$pSingleString)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_6a24a68ab03b2c7b67a0d7afb9e6a50c}{getList} (int index, unsigned char $\ast$pList)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_96512aeeb6292c12527549871c5d8dce}{xCheck} (unsigned char $\ast$pList)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_49cd7da71c9abdfb4f2cb42f6812364a}{modify} (int currentIndex, int index, unsigned char add, unsigned char $\ast$pList, int listsize)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_8cf41d1c0e9bbb637546b9be9154f89a}{extendBc} (void)
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_e9755508bc6486ef0ef80f92ed556253}{extendTail} (void)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_ba318c78d76ced03e5532262e9f4fa42}{setEmptyLink} (int index)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_319d39734cb76c19cfdbb590ef8305f1}{setBase} (int index, int value)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_664e00b10c46bc5d5c574e011df2b02d}{setCheck} (int index, int value)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_555c33c26021b15185f381c905eb0160}{writeTailAt} (int index, unsigned char $\ast$pkey, int tailpos)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_1db7401997386c439101d73755237f2e}{insertA} (int index, unsigned char $\ast$pkey, \hyperlink{classkmaOrange_1_1WK__DaTrie__Node}{WK\_\-DaTrie\_\-Node} \&rNode)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_f62510c6a31a6d182a27945cd4666365}{insertB} (int index, unsigned char $\ast$pkey, \hyperlink{classkmaOrange_1_1WK__DaTrie__Node}{WK\_\-DaTrie\_\-Node} \&rNode)
+\item 
+void \hyperlink{classkmaOrange_1_1WK__DaTrie_88a54c5695dcd02b8cbd9470a8fd595c}{appendTerminator} (const char $\ast$pKey, unsigned char $\ast$pBuff)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie__BaseCheck}{WK\_\-DaTrie\_\-BaseCheck} $\ast$ \hyperlink{classkmaOrange_1_1WK__DaTrie_b38384c3518cda2c18cb7df9ca545d2b}{mpBc}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_7cacfd204194abf8a7268f1ada5d57e9}{mBcMax}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_741be3eaf97a855170c8788dc7d22489}{mBcExtendSize}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_333ee479adc676b119e70549d700ed11}{mBcPos}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_8d0259cebfc10f071fb52b21741ae2ac}{mBcEmptyStart}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_e7ff8c1e65b3ba0d5dcdb8642e3df08f}{mBcEmptyEnd}
+\item 
+unsigned char $\ast$ \hyperlink{classkmaOrange_1_1WK__DaTrie_bb8b7967fe594713be8b3251a70fb4bc}{mpTail}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_c6d9d5b5e398da6caf9777deeb0e3373}{mTailMax}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_6c8329e34f6d9baccfd4e41fe5298f33}{mTailExtendSize}
+\item 
+int \hyperlink{classkmaOrange_1_1WK__DaTrie_669d9098fbac22173ea4b26f91051b16}{mTailPos}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 58 of file daTrie.h.
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9}{
+\subsubsection[{"@0}]{\setlength{\rightskip}{0pt plus 5cm}anonymous enum}}
+\label{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9}
+
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{BC\_\-EXTEND\_\-SIZE@{BC\_\-EXTEND\_\-SIZE}!kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}}\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!BC\_\-EXTEND\_\-SIZE@{BC\_\-EXTEND\_\-SIZE}}\item[{\em 
+\hypertarget{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9d9e414838be039ecba340b533796cd92}{
+BC\_\-EXTEND\_\-SIZE}
+\label{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9d9e414838be039ecba340b533796cd92}
+}]\index{TAIL\_\-EXTEND\_\-SIZE@{TAIL\_\-EXTEND\_\-SIZE}!kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}}\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!TAIL\_\-EXTEND\_\-SIZE@{TAIL\_\-EXTEND\_\-SIZE}}\item[{\em 
+\hypertarget{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9c2392aec155032bb2c5bd6ce7ca7b33e}{
+TAIL\_\-EXTEND\_\-SIZE}
+\label{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9c2392aec155032bb2c5bd6ce7ca7b33e}
+}]\index{KEY\_\-LEN@{KEY\_\-LEN}!kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}}\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!KEY\_\-LEN@{KEY\_\-LEN}}\item[{\em 
+\hypertarget{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9bd8e354447f7e4a066cb0810c696fc7e}{
+KEY\_\-LEN}
+\label{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd9bd8e354447f7e4a066cb0810c696fc7e}
+}]\index{TERMINAL@{TERMINAL}!kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}}\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!TERMINAL@{TERMINAL}}\item[{\em 
+\hypertarget{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd986f1894798d1ef14c5795fa3ed0d36c9}{
+TERMINAL}
+\label{classkmaOrange_1_1WK__DaTrie_c1ebc5a418bfeaf67d4ed99397bddfd986f1894798d1ef14c5795fa3ed0d36c9}
+}]\end{description}
+\end{Desc}
+
+
+
+Definition at line 108 of file daTrie.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1WK__DaTrie_32f9a370dbbbd73eb8b0fe4d5dc2e37b}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!WK\_\-DaTrie@{WK\_\-DaTrie}}
+\index{WK\_\-DaTrie@{WK\_\-DaTrie}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{WK\_\-DaTrie}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-DaTrie::WK\_\-DaTrie ()}}
+\label{classkmaOrange_1_1WK__DaTrie_32f9a370dbbbd73eb8b0fe4d5dc2e37b}
+
+
+
+
+Definition at line 32 of file daTrie.cpp.
+
+References mBcEmptyEnd, mBcEmptyStart, mBcExtendSize, mBcMax, mBcPos, mpBc, mpTail, mTailExtendSize, mTailMax, and mTailPos.\hypertarget{classkmaOrange_1_1WK__DaTrie_1f27e5aebb3e64d233e86a572ecdf8e7}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!$\sim$WK\_\-DaTrie@{$\sim$WK\_\-DaTrie}}
+\index{$\sim$WK\_\-DaTrie@{$\sim$WK\_\-DaTrie}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{$\sim$WK\_\-DaTrie}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-DaTrie::$\sim$WK\_\-DaTrie ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_1f27e5aebb3e64d233e86a572ecdf8e7}
+
+
+
+
+Definition at line 47 of file daTrie.cpp.
+
+References free().
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1WK__DaTrie_88a54c5695dcd02b8cbd9470a8fd595c}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!appendTerminator@{appendTerminator}}
+\index{appendTerminator@{appendTerminator}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{appendTerminator}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::WK\_\-DaTrie::appendTerminator (const char $\ast$ {\em pKey}, \/  unsigned char $\ast$ {\em pBuff})\hspace{0.3cm}{\tt  \mbox{[}inline, private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_88a54c5695dcd02b8cbd9470a8fd595c}
+
+
+
+
+Definition at line 276 of file daTrie.h.
+
+References KEY\_\-LEN, and TERMINAL.
+
+Referenced by insertKey(), and searchKey().\hypertarget{classkmaOrange_1_1WK__DaTrie_9650f85dca062aaf5f47e655c75c3636}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!compareTail@{compareTail}}
+\index{compareTail@{compareTail}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{compareTail}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::compareTail (int {\em index}, \/  unsigned char $\ast$ {\em pSingleString})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_9650f85dca062aaf5f47e655c75c3636}
+
+
+
+
+Definition at line 160 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, mpBc, mpTail, and TERMINAL.
+
+Referenced by insertKey(), and searchKey().\hypertarget{classkmaOrange_1_1WK__DaTrie_f8b50a62c397ba902f8c07d559a9435b}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!create@{create}}
+\index{create@{create}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{create}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::create (int {\em bcSize} = {\tt BC\_\-EXTEND\_\-SIZE}, \/  int {\em tailSize} = {\tt TAIL\_\-EXTEND\_\-SIZE}, \/  int {\em bcExtendSize} = {\tt BC\_\-EXTEND\_\-SIZE}, \/  int {\em tailExtendSize} = {\tt TAIL\_\-EXTEND\_\-SIZE})}}
+\label{classkmaOrange_1_1WK__DaTrie_f8b50a62c397ba902f8c07d559a9435b}
+
+
+check array에 index(s) 노드 값을 반환한다.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index(s)}]: 노드\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]index(s) 노드에 해당하는 값 \end{Desc}
+
+
+Definition at line 393 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, KEY\_\-LEN, mBcEmptyEnd, mBcEmptyStart, mBcExtendSize, mBcMax, mBcPos, mpBc, mpTail, mTailExtendSize, mTailMax, mTailPos, kmaOrange::NUM\_\-CODES, and TERMINAL.
+
+Referenced by kmaOrange::SynonymContainer::createTrie(), kmaOrange::StopWordContainer::createTrie(), kmaOrange::Dictionary::loadKnowledge(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::Dictionary::readDivideInfo(), kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), kmaOrange::Dictionary::readPostionInfo(), kmaOrange::Dictionary::readPreAnalysisTrie(), kmaOrange::AuxVerb::setAVList(), kmaOrange::PreFinalEomi::setEPList(), and kmaOrange::PredicativeSuffix::setXSDList().\hypertarget{classkmaOrange_1_1WK__DaTrie_8cf41d1c0e9bbb637546b9be9154f89a}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!extendBc@{extendBc}}
+\index{extendBc@{extendBc}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{extendBc}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::extendBc (void)\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_8cf41d1c0e9bbb637546b9be9154f89a}
+
+
+
+
+Definition at line 441 of file daTrie.cpp.
+
+References free(), mBcExtendSize, mBcMax, mpBc, and kmaOrange::NUM\_\-CODES.
+
+Referenced by setBase(), setCheck(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_e9755508bc6486ef0ef80f92ed556253}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!extendTail@{extendTail}}
+\index{extendTail@{extendTail}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{extendTail}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::extendTail (void)\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_e9755508bc6486ef0ef80f92ed556253}
+
+
+
+
+Definition at line 473 of file daTrie.cpp.
+
+References free(), KEY\_\-LEN, mpTail, mTailExtendSize, and mTailMax.
+
+Referenced by writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_6e7d0b752fabe564f26a7dc7858fa16a}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!findNode@{findNode}}
+\index{findNode@{findNode}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{findNode}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::findNode (const char {\em ch}, \/  {\bf WK\_\-DaTrie\_\-Node} \& {\em rNode})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_6e7d0b752fabe564f26a7dc7858fa16a}
+
+
+
+
+Definition at line 187 of file daTrie.h.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, kmaOrange::CODE, mBcPos, mpBc, kmaOrange::WK\_\-DaTrie\_\-Node::mpData, mpTail, kmaOrange::WK\_\-DaTrie\_\-Node::mState, and TERMINAL.
+
+Referenced by kmaOrange::AuxVerb::searchNgetInfoFromAvTrie(), kmaOrange::Dictionary::searchNgetInfoFromDivTrie(), kmaOrange::PreFinalEomi::searchNgetInfoFromEpTrie(), kmaOrange::Dictionary::searchNgetInfoFromJosaEomiTrie(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), kmaOrange::Dictionary::searchNgetInfoFromPosTrie(), kmaOrange::Dictionary::searchNgetInfoFromPreAnalTrie(), kmaOrange::StopWordContainer::searchNgetInfoFromStopWordTrie(), kmaOrange::SynonymContainer::searchNgetInfoFromSynonymTrie(), and kmaOrange::PredicativeSuffix::searchNgetInfoFromXsdTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_96450cb69fa65fa3c1ee1f0de4bb879b}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!free@{free}}
+\index{free@{free}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{free}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::free ()}}
+\label{classkmaOrange_1_1WK__DaTrie_96450cb69fa65fa3c1ee1f0de4bb879b}
+
+
+
+
+Definition at line 428 of file daTrie.cpp.
+
+References mBcMax, mBcPos, mpBc, mpTail, mTailMax, and mTailPos.
+
+Referenced by extendBc(), extendTail(), and $\sim$WK\_\-DaTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_bde541a15af9eb87a19e77a1cf7cfff4}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getBaseCheckArray@{getBaseCheckArray}}
+\index{getBaseCheckArray@{getBaseCheckArray}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getBaseCheckArray}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie\_\-BaseCheck} $\ast$ kmaOrange::WK\_\-DaTrie::getBaseCheckArray (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_bde541a15af9eb87a19e77a1cf7cfff4}
+
+
+
+
+Definition at line 248 of file daTrie.h.
+
+References mpBc.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), kmaOrange::Dictionary::readPreAnalysisTrie(), kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_fc6dd41e1d99fae4cfaa432b8ca41608}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getBcEmptyEnd@{getBcEmptyEnd}}
+\index{getBcEmptyEnd@{getBcEmptyEnd}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getBcEmptyEnd}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::getBcEmptyEnd (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_fc6dd41e1d99fae4cfaa432b8ca41608}
+
+
+
+
+Definition at line 271 of file daTrie.h.
+
+References mBcEmptyEnd.
+
+Referenced by kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_79141779af95af6ea2f4e449e149f0cc}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getBcEmptyStart@{getBcEmptyStart}}
+\index{getBcEmptyStart@{getBcEmptyStart}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getBcEmptyStart}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::getBcEmptyStart (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_79141779af95af6ea2f4e449e149f0cc}
+
+
+
+
+Definition at line 266 of file daTrie.h.
+
+References mBcEmptyStart.
+
+Referenced by kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_5ef6c2879707d53ad98e33ed9a99562f}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getBcPos@{getBcPos}}
+\index{getBcPos@{getBcPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getBcPos}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::getBcPos (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_5ef6c2879707d53ad98e33ed9a99562f}
+
+
+
+
+Definition at line 251 of file daTrie.h.
+
+References mBcPos.
+
+Referenced by kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_6a24a68ab03b2c7b67a0d7afb9e6a50c}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getList@{getList}}
+\index{getList@{getList}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getList}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::getList (int {\em index}, \/  unsigned char $\ast$ {\em pList})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_6a24a68ab03b2c7b67a0d7afb9e6a50c}
+
+
+
+
+Definition at line 176 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, mpBc, and kmaOrange::NUM\_\-CODES.
+
+Referenced by insertA().\hypertarget{classkmaOrange_1_1WK__DaTrie_d0bd9785aed0cfa5a57f1acb8ceaaab1}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getTailBuffer@{getTailBuffer}}
+\index{getTailBuffer@{getTailBuffer}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getTailBuffer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char $\ast$ kmaOrange::WK\_\-DaTrie::getTailBuffer (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_d0bd9785aed0cfa5a57f1acb8ceaaab1}
+
+
+
+
+Definition at line 257 of file daTrie.h.
+
+References mpTail.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), kmaOrange::Dictionary::readPreAnalysisTrie(), kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_691a09e71153084e72c27abef781318f}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!getTailPos@{getTailPos}}
+\index{getTailPos@{getTailPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{getTailPos}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::getTailPos (void)\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_691a09e71153084e72c27abef781318f}
+
+
+
+
+Definition at line 260 of file daTrie.h.
+
+References mTailPos.
+
+Referenced by kmaOrange::Dictionary::writeDivPosTrie(), kmaOrange::Dictionary::writeJosaEomiTrie(), kmaOrange::Dictionary::writeMainTrie(), and kmaOrange::Dictionary::writePreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_1db7401997386c439101d73755237f2e}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!insertA@{insertA}}
+\index{insertA@{insertA}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{insertA}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::insertA (int {\em index}, \/  unsigned char $\ast$ {\em pkey}, \/  {\bf WK\_\-DaTrie\_\-Node} \& {\em rNode})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_1db7401997386c439101d73755237f2e}
+
+
+
+
+Definition at line 327 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, kmaOrange::CODE, getList(), modify(), mpBc, kmaOrange::WK\_\-DaTrie\_\-Node::mpData, mpTail, kmaOrange::WK\_\-DaTrie\_\-Node::mState, mTailPos, kmaOrange::NUM\_\-CODES, and writeTailAt().
+
+Referenced by insertKey().\hypertarget{classkmaOrange_1_1WK__DaTrie_f62510c6a31a6d182a27945cd4666365}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!insertB@{insertB}}
+\index{insertB@{insertB}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{insertB}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::insertB (int {\em index}, \/  unsigned char $\ast$ {\em pkey}, \/  {\bf WK\_\-DaTrie\_\-Node} \& {\em rNode})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_f62510c6a31a6d182a27945cd4666365}
+
+
+
+
+Definition at line 353 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::CODE, mpBc, kmaOrange::WK\_\-DaTrie\_\-Node::mpData, mpTail, kmaOrange::WK\_\-DaTrie\_\-Node::mState, mTailPos, setBase(), setCheck(), TERMINAL, writeTailAt(), and xCheck().
+
+Referenced by insertKey().\hypertarget{classkmaOrange_1_1WK__DaTrie_9481717e899b14ef84195b178aa137bf}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!insertKey@{insertKey}}
+\index{insertKey@{insertKey}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{insertKey}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::insertKey (const char $\ast$ {\em pKey}, \/  {\bf WK\_\-DaTrie\_\-Node} \& {\em rNode})}}
+\label{classkmaOrange_1_1WK__DaTrie_9481717e899b14ef84195b178aa137bf}
+
+
+
+
+Definition at line 498 of file daTrie.cpp.
+
+References appendTerminator(), kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::CODE, compareTail(), insertA(), insertB(), KEY\_\-LEN, mBcPos, mpBc, kmaOrange::WK\_\-DaTrie\_\-Node::mpData, mpTail, kmaOrange::WK\_\-DaTrie\_\-Node::mState, kmaOrange::WK\_\-DaTrie\_\-Node::setRoot(), and TERMINAL.
+
+Referenced by kmaOrange::SynonymContainer::insertSynonym(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::StopWordContainer::loadStopWord(), kmaOrange::Dictionary::readCommonDictionary(), kmaOrange::Dictionary::readDivideInfo(), kmaOrange::Dictionary::readJosaEomiDictionary(), kmaOrange::Dictionary::readPostionInfo(), kmaOrange::AuxVerb::setAVInfo(), kmaOrange::PreFinalEomi::setEPInfo(), and kmaOrange::PredicativeSuffix::setXSDInfo().\hypertarget{classkmaOrange_1_1WK__DaTrie_8dfd668709a4befbed549225a8a8bd89}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!isCreated@{isCreated}}
+\index{isCreated@{isCreated}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{isCreated}]{\setlength{\rightskip}{0pt plus 5cm}bool kmaOrange::WK\_\-DaTrie::isCreated ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_8dfd668709a4befbed549225a8a8bd89}
+
+
+
+
+Definition at line 121 of file daTrie.h.
+
+References mpBc.
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis().\hypertarget{classkmaOrange_1_1WK__DaTrie_49cd7da71c9abdfb4f2cb42f6812364a}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!modify@{modify}}
+\index{modify@{modify}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{modify}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::modify (int {\em currentIndex}, \/  int {\em index}, \/  unsigned char {\em add}, \/  unsigned char $\ast$ {\em pList}, \/  int {\em listsize})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_49cd7da71c9abdfb4f2cb42f6812364a}
+
+
+
+
+Definition at line 275 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::CODE, mpBc, kmaOrange::NUM\_\-CODES, setBase(), setCheck(), and xCheck().
+
+Referenced by insertA().\hypertarget{classkmaOrange_1_1WK__DaTrie_3fd02d2af0c0a366bdeb404931939629}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!searchKey@{searchKey}}
+\index{searchKey@{searchKey}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{searchKey}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::WK\_\-DaTrie::searchKey (const char $\ast$ {\em pKey}, \/  {\bf WK\_\-DaTrie\_\-Node} \& {\em rNode})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_3fd02d2af0c0a366bdeb404931939629}
+
+
+
+
+Definition at line 148 of file daTrie.h.
+
+References appendTerminator(), kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::CODE, compareTail(), KEY\_\-LEN, mBcPos, mpBc, kmaOrange::WK\_\-DaTrie\_\-Node::mpData, mpTail, kmaOrange::WK\_\-DaTrie\_\-Node::mState, kmaOrange::WK\_\-DaTrie\_\-Node::setRoot(), and TERMINAL.\hypertarget{classkmaOrange_1_1WK__DaTrie_319d39734cb76c19cfdbb590ef8305f1}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setBase@{setBase}}
+\index{setBase@{setBase}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setBase}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::setBase (int {\em index}, \/  int {\em value})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_319d39734cb76c19cfdbb590ef8305f1}
+
+
+base array에 index(s) 노드를 value로 설정한다.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index(s)}]: 노드 value : 값\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+
+
+Definition at line 84 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, extendBc(), mBcMax, mBcPos, mpBc, and setEmptyLink().
+
+Referenced by insertB(), modify(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_034eb62f286852f141d1a9e8e2133fd8}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setBcEmptyEnd@{setBcEmptyEnd}}
+\index{setBcEmptyEnd@{setBcEmptyEnd}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setBcEmptyEnd}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::WK\_\-DaTrie::setBcEmptyEnd (int {\em bcEmptyEnd})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_034eb62f286852f141d1a9e8e2133fd8}
+
+
+
+
+Definition at line 273 of file daTrie.h.
+
+References mBcEmptyEnd.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), and kmaOrange::Dictionary::readPreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_cd996ae8c95d27195a1cd8c1ce80e9e5}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setBcEmptyStart@{setBcEmptyStart}}
+\index{setBcEmptyStart@{setBcEmptyStart}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setBcEmptyStart}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::WK\_\-DaTrie::setBcEmptyStart (int {\em bcEmptyStart})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_cd996ae8c95d27195a1cd8c1ce80e9e5}
+
+
+
+
+Definition at line 268 of file daTrie.h.
+
+References mBcEmptyStart.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), and kmaOrange::Dictionary::readPreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_71281285c6619f4d4cae35c5d946e0ca}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setBcPos@{setBcPos}}
+\index{setBcPos@{setBcPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setBcPos}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::WK\_\-DaTrie::setBcPos (int {\em bcPos})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_71281285c6619f4d4cae35c5d946e0ca}
+
+
+
+
+Definition at line 254 of file daTrie.h.
+
+References mBcPos.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), and kmaOrange::Dictionary::readPreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_664e00b10c46bc5d5c574e011df2b02d}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setCheck@{setCheck}}
+\index{setCheck@{setCheck}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setCheck}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::setCheck (int {\em index}, \/  int {\em value})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_664e00b10c46bc5d5c574e011df2b02d}
+
+
+check array에 index(s) 노드를 value로 설정한다.
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index(s)}]: 노드 value : 값\end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]void \end{Desc}
+
+
+Definition at line 96 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, extendBc(), mBcEmptyEnd, mBcEmptyStart, mBcMax, mBcPos, mpBc, and setEmptyLink().
+
+Referenced by insertB(), modify(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_ba318c78d76ced03e5532262e9f4fa42}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setEmptyLink@{setEmptyLink}}
+\index{setEmptyLink@{setEmptyLink}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setEmptyLink}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::setEmptyLink (int {\em index})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_ba318c78d76ced03e5532262e9f4fa42}
+
+
+
+
+Definition at line 53 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, mBcEmptyEnd, mBcEmptyStart, mBcPos, and mpBc.
+
+Referenced by setBase(), and setCheck().\hypertarget{classkmaOrange_1_1WK__DaTrie_bcc6b5c4e73a9720e527207f295970f3}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!setTailPos@{setTailPos}}
+\index{setTailPos@{setTailPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{setTailPos}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::WK\_\-DaTrie::setTailPos (int {\em tailPos})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_bcc6b5c4e73a9720e527207f295970f3}
+
+
+
+
+Definition at line 263 of file daTrie.h.
+
+References mTailPos.
+
+Referenced by kmaOrange::Dictionary::readDivPosTrie(), kmaOrange::Dictionary::readJosaEomiTrie(), kmaOrange::Dictionary::readMainTrie(), and kmaOrange::Dictionary::readPreAnalysisTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_555c33c26021b15185f381c905eb0160}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!writeTailAt@{writeTailAt}}
+\index{writeTailAt@{writeTailAt}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{writeTailAt}]{\setlength{\rightskip}{0pt plus 5cm}void WK\_\-DaTrie::writeTailAt (int {\em index}, \/  unsigned char $\ast$ {\em pkey}, \/  int {\em tailpos})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_555c33c26021b15185f381c905eb0160}
+
+
+
+
+Definition at line 198 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Base, kmaOrange::CODE, extendBc(), extendTail(), mBcMax, mBcPos, mpBc, mpTail, mTailMax, mTailPos, setBase(), setCheck(), and TERMINAL.
+
+Referenced by insertA(), and insertB().\hypertarget{classkmaOrange_1_1WK__DaTrie_96512aeeb6292c12527549871c5d8dce}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!xCheck@{xCheck}}
+\index{xCheck@{xCheck}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{xCheck}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-DaTrie::xCheck (unsigned char $\ast$ {\em pList})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_96512aeeb6292c12527549871c5d8dce}
+
+
+
+
+Definition at line 248 of file daTrie.cpp.
+
+References kmaOrange::WK\_\-DaTrie\_\-BaseCheck::Check, mBcEmptyStart, mBcPos, and mpBc.
+
+Referenced by insertB(), and modify().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1WK__DaTrie_e7ff8c1e65b3ba0d5dcdb8642e3df08f}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mBcEmptyEnd@{mBcEmptyEnd}}
+\index{mBcEmptyEnd@{mBcEmptyEnd}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mBcEmptyEnd}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mBcEmptyEnd}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_e7ff8c1e65b3ba0d5dcdb8642e3df08f}
+
+
+
+
+Definition at line 67 of file daTrie.h.
+
+Referenced by create(), getBcEmptyEnd(), setBcEmptyEnd(), setCheck(), setEmptyLink(), and WK\_\-DaTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_8d0259cebfc10f071fb52b21741ae2ac}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mBcEmptyStart@{mBcEmptyStart}}
+\index{mBcEmptyStart@{mBcEmptyStart}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mBcEmptyStart}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mBcEmptyStart}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_8d0259cebfc10f071fb52b21741ae2ac}
+
+
+
+
+Definition at line 66 of file daTrie.h.
+
+Referenced by create(), getBcEmptyStart(), setBcEmptyStart(), setCheck(), setEmptyLink(), WK\_\-DaTrie(), and xCheck().\hypertarget{classkmaOrange_1_1WK__DaTrie_741be3eaf97a855170c8788dc7d22489}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mBcExtendSize@{mBcExtendSize}}
+\index{mBcExtendSize@{mBcExtendSize}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mBcExtendSize}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mBcExtendSize}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_741be3eaf97a855170c8788dc7d22489}
+
+
+
+
+Definition at line 64 of file daTrie.h.
+
+Referenced by create(), extendBc(), and WK\_\-DaTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_7cacfd204194abf8a7268f1ada5d57e9}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mBcMax@{mBcMax}}
+\index{mBcMax@{mBcMax}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mBcMax}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mBcMax}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_7cacfd204194abf8a7268f1ada5d57e9}
+
+
+
+
+Definition at line 63 of file daTrie.h.
+
+Referenced by create(), extendBc(), free(), setBase(), setCheck(), WK\_\-DaTrie(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_333ee479adc676b119e70549d700ed11}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mBcPos@{mBcPos}}
+\index{mBcPos@{mBcPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mBcPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mBcPos}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_333ee479adc676b119e70549d700ed11}
+
+
+
+
+Definition at line 65 of file daTrie.h.
+
+Referenced by create(), findNode(), free(), getBcPos(), insertKey(), searchKey(), setBase(), setBcPos(), setCheck(), setEmptyLink(), WK\_\-DaTrie(), writeTailAt(), and xCheck().\hypertarget{classkmaOrange_1_1WK__DaTrie_b38384c3518cda2c18cb7df9ca545d2b}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mpBc@{mpBc}}
+\index{mpBc@{mpBc}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mpBc}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie\_\-BaseCheck}$\ast$ {\bf kmaOrange::WK\_\-DaTrie::mpBc}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_b38384c3518cda2c18cb7df9ca545d2b}
+
+
+
+
+Definition at line 62 of file daTrie.h.
+
+Referenced by compareTail(), create(), extendBc(), findNode(), free(), getBaseCheckArray(), getList(), insertA(), insertB(), insertKey(), isCreated(), modify(), searchKey(), setBase(), setCheck(), setEmptyLink(), WK\_\-DaTrie(), writeTailAt(), and xCheck().\hypertarget{classkmaOrange_1_1WK__DaTrie_bb8b7967fe594713be8b3251a70fb4bc}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mpTail@{mpTail}}
+\index{mpTail@{mpTail}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mpTail}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char$\ast$ {\bf kmaOrange::WK\_\-DaTrie::mpTail}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_bb8b7967fe594713be8b3251a70fb4bc}
+
+
+
+
+Definition at line 69 of file daTrie.h.
+
+Referenced by compareTail(), create(), extendTail(), findNode(), free(), getTailBuffer(), insertA(), insertB(), insertKey(), searchKey(), WK\_\-DaTrie(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_6c8329e34f6d9baccfd4e41fe5298f33}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mTailExtendSize@{mTailExtendSize}}
+\index{mTailExtendSize@{mTailExtendSize}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mTailExtendSize}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mTailExtendSize}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_6c8329e34f6d9baccfd4e41fe5298f33}
+
+
+
+
+Definition at line 71 of file daTrie.h.
+
+Referenced by create(), extendTail(), and WK\_\-DaTrie().\hypertarget{classkmaOrange_1_1WK__DaTrie_c6d9d5b5e398da6caf9777deeb0e3373}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mTailMax@{mTailMax}}
+\index{mTailMax@{mTailMax}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mTailMax}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mTailMax}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_c6d9d5b5e398da6caf9777deeb0e3373}
+
+
+
+
+Definition at line 70 of file daTrie.h.
+
+Referenced by create(), extendTail(), free(), WK\_\-DaTrie(), and writeTailAt().\hypertarget{classkmaOrange_1_1WK__DaTrie_669d9098fbac22173ea4b26f91051b16}{
+\index{kmaOrange::WK\_\-DaTrie@{kmaOrange::WK\_\-DaTrie}!mTailPos@{mTailPos}}
+\index{mTailPos@{mTailPos}!kmaOrange::WK_DaTrie@{kmaOrange::WK\_\-DaTrie}}
+\subsubsection[{mTailPos}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::WK\_\-DaTrie::mTailPos}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1WK__DaTrie_669d9098fbac22173ea4b26f91051b16}
+
+
+
+
+Definition at line 72 of file daTrie.h.
+
+Referenced by create(), free(), getTailPos(), insertA(), insertB(), setTailPos(), WK\_\-DaTrie(), and writeTailAt().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{daTrie_8h}{daTrie.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{daTrie_8cpp}{daTrie.cpp}\end{CompactItemize}

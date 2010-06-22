@@ -1,0 +1,126 @@
+\hypertarget{classWK__StopWordContainer}{
+\section{WK\_\-StopWordContainer Class Reference}
+\label{classWK__StopWordContainer}\index{WK\_\-StopWordContainer@{WK\_\-StopWordContainer}}
+}
+a class manages the stop-word dictionary.  
+
+
+{\tt \#include $<$wk\_\-stopword.h$>$}
+
+Inheritance diagram for WK\_\-StopWordContainer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classWK__StopWordContainer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual \hyperlink{classWK__StopWordContainer_bbda87b2202288b98b9d3639595b9c88}{$\sim$WK\_\-StopWordContainer} ()
+\item 
+virtual int \hyperlink{classWK__StopWordContainer_2c85df71a7a6a3b86495aed3d21e26d7}{loadStopWord} (const char $\ast$pathDic=\char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}, const char $\ast$nameDic=\char`\"{}stopword.txt\char`\"{})=0
+\begin{CompactList}\small\item\em This function loads contents of the stop-word dictionary file into a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object. \item\end{CompactList}\item 
+virtual bool \hyperlink{classWK__StopWordContainer_03819e17b2d47d76452505b9cf03c685}{searchNgetInfoFromStopWordTrie} (const char $\ast$str)=0
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object for input string. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} $\ast$ \hyperlink{classWK__StopWordContainer_a880c07993f02ddb6d821512d0e5bd0a}{createObject} (void)
+\begin{CompactList}\small\item\em This function creates a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class manages the stop-word dictionary. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 15 of file wk\_\-stopword.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWK__StopWordContainer_bbda87b2202288b98b9d3639595b9c88}{
+\index{WK\_\-StopWordContainer@{WK\_\-StopWordContainer}!$\sim$WK\_\-StopWordContainer@{$\sim$WK\_\-StopWordContainer}}
+\index{$\sim$WK\_\-StopWordContainer@{$\sim$WK\_\-StopWordContainer}!WK_StopWordContainer@{WK\_\-StopWordContainer}}
+\subsubsection[{$\sim$WK\_\-StopWordContainer}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-StopWordContainer::$\sim$WK\_\-StopWordContainer ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classWK__StopWordContainer_bbda87b2202288b98b9d3639595b9c88}
+
+
+
+
+Definition at line 13 of file wk\_\-stopword.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classWK__StopWordContainer_a880c07993f02ddb6d821512d0e5bd0a}{
+\index{WK\_\-StopWordContainer@{WK\_\-StopWordContainer}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_StopWordContainer@{WK\_\-StopWordContainer}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-StopWordContainer} $\ast$ WK\_\-StopWordContainer::createObject (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__StopWordContainer_a880c07993f02ddb6d821512d0e5bd0a}
+
+
+This function creates a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object. \end{Desc}
+
+
+Definition at line 17 of file wk\_\-stopword.cpp.\hypertarget{classWK__StopWordContainer_2c85df71a7a6a3b86495aed3d21e26d7}{
+\index{WK\_\-StopWordContainer@{WK\_\-StopWordContainer}!loadStopWord@{loadStopWord}}
+\index{loadStopWord@{loadStopWord}!WK_StopWordContainer@{WK\_\-StopWordContainer}}
+\subsubsection[{loadStopWord}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-StopWordContainer::loadStopWord (const char $\ast$ {\em pathDic} = {\tt \char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}}, \/  const char $\ast$ {\em nameDic} = {\tt \char`\"{}stopword.txt\char`\"{}})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__StopWordContainer_2c85df71a7a6a3b86495aed3d21e26d7}
+
+
+This function loads contents of the stop-word dictionary file into a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pathDic}]a pointer of a constant charater - the path of the directory, which the stop-word dictionary file is stored. \item[{\em nameDic}]a pointer of a constant charater - the name of the stop-word dictionary file. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1StopWordContainer_ab4a54069abd335d64dd34d6f194b1a2}{kmaOrange::StopWordContainer}.\hypertarget{classWK__StopWordContainer_03819e17b2d47d76452505b9cf03c685}{
+\index{WK\_\-StopWordContainer@{WK\_\-StopWordContainer}!searchNgetInfoFromStopWordTrie@{searchNgetInfoFromStopWordTrie}}
+\index{searchNgetInfoFromStopWordTrie@{searchNgetInfoFromStopWordTrie}!WK_StopWordContainer@{WK\_\-StopWordContainer}}
+\subsubsection[{searchNgetInfoFromStopWordTrie}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool WK\_\-StopWordContainer::searchNgetInfoFromStopWordTrie (const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__StopWordContainer_03819e17b2d47d76452505b9cf03c685}
+
+
+This function searches a \hyperlink{classWK__StopWordContainer}{WK\_\-StopWordContainer} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em str}]a pointer of a constant charater - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - input string is a stop-word.\par
+ false - input string is not a stop-word. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1StopWordContainer_a2bd1c44212a17f7ae12de9287860ad1}{kmaOrange::StopWordContainer}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{wk__stopword_8h}{wk\_\-stopword.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{wk__stopword_8cpp}{wk\_\-stopword.cpp}\end{CompactItemize}

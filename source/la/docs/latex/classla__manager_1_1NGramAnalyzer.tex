@@ -1,0 +1,183 @@
+\hypertarget{classla__manager_1_1NGramAnalyzer}{
+\section{la\_\-manager::NGramAnalyzer Class Reference}
+\label{classla__manager_1_1NGramAnalyzer}\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+}
+interface of \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} This class extracts terms with char-based n-gram method  
+
+
+{\tt \#include $<$NGramAnalyzer.h$>$}
+
+Inheritance diagram for la\_\-manager::NGramAnalyzer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classla__manager_1_1NGramAnalyzer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1NGramAnalyzer_05e6b652c06667bb8a860c710bc438c6}{NGramAnalyzer} ()
+\item 
+\hyperlink{classla__manager_1_1NGramAnalyzer_952815ff68d49c40b0ecf1f5d1617b31}{NGramAnalyzer} (bool char\_\-based)
+\item 
+\hyperlink{classla__manager_1_1NGramAnalyzer_4f19056e90bd0a8235c78d179ab4e723}{NGramAnalyzer} (int ngram, bool char\_\-based)
+\item 
+\hyperlink{classla__manager_1_1NGramAnalyzer_6e4a166130e6c68ef77da3639c9cae58}{NGramAnalyzer} (int gmin, int gmax, bool char\_\-based)
+\item 
+\hyperlink{classla__manager_1_1NGramAnalyzer_e0de14f9762805085a4d09772c0c50f5}{$\sim$NGramAnalyzer} ()
+\item 
+bool \hyperlink{classla__manager_1_1NGramAnalyzer_09bdd966dba6ac9b3ef4858fd0b24699}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1NGramAnalyzer_9774217127e1d89b57ff5aded31df290}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classla__manager_1_1NGramAnalyzer_d126ddf018bf01f6438fcdb016617dfa}{minGram\_\-}
+\begin{CompactList}\small\item\em min gram \item\end{CompactList}\item 
+int \hyperlink{classla__manager_1_1NGramAnalyzer_1e26dc15f529448357b98b716c3d38a8}{maxGram\_\-}
+\begin{CompactList}\small\item\em max gram (mingram $<$= ngram $<$= maxgram) \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1NGramAnalyzer_658ed8026b730416d1cf6729ae0deb11}{isCharLevel}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+interface of \hyperlink{classla__manager_1_1NGramAnalyzer}{NGramAnalyzer} This class extracts terms with char-based n-gram method 
+
+Definition at line 19 of file NGramAnalyzer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1NGramAnalyzer_05e6b652c06667bb8a860c710bc438c6}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!NGramAnalyzer@{NGramAnalyzer}}
+\index{NGramAnalyzer@{NGramAnalyzer}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{NGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::NGramAnalyzer::NGramAnalyzer ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_05e6b652c06667bb8a860c710bc438c6}
+
+
+
+
+Definition at line 25 of file NGramAnalyzer.h.\hypertarget{classla__manager_1_1NGramAnalyzer_952815ff68d49c40b0ecf1f5d1617b31}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!NGramAnalyzer@{NGramAnalyzer}}
+\index{NGramAnalyzer@{NGramAnalyzer}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{NGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::NGramAnalyzer::NGramAnalyzer (bool {\em char\_\-based})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_952815ff68d49c40b0ecf1f5d1617b31}
+
+
+
+
+Definition at line 27 of file NGramAnalyzer.h.\hypertarget{classla__manager_1_1NGramAnalyzer_4f19056e90bd0a8235c78d179ab4e723}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!NGramAnalyzer@{NGramAnalyzer}}
+\index{NGramAnalyzer@{NGramAnalyzer}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{NGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::NGramAnalyzer::NGramAnalyzer (int {\em ngram}, \/  bool {\em char\_\-based})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_4f19056e90bd0a8235c78d179ab4e723}
+
+
+
+
+Definition at line 29 of file NGramAnalyzer.h.\hypertarget{classla__manager_1_1NGramAnalyzer_6e4a166130e6c68ef77da3639c9cae58}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!NGramAnalyzer@{NGramAnalyzer}}
+\index{NGramAnalyzer@{NGramAnalyzer}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{NGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::NGramAnalyzer::NGramAnalyzer (int {\em gmin}, \/  int {\em gmax}, \/  bool {\em char\_\-based})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_6e4a166130e6c68ef77da3639c9cae58}
+
+
+
+
+Definition at line 31 of file NGramAnalyzer.h.\hypertarget{classla__manager_1_1NGramAnalyzer_e0de14f9762805085a4d09772c0c50f5}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!$\sim$NGramAnalyzer@{$\sim$NGramAnalyzer}}
+\index{$\sim$NGramAnalyzer@{$\sim$NGramAnalyzer}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{$\sim$NGramAnalyzer}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::NGramAnalyzer::$\sim$NGramAnalyzer ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_e0de14f9762805085a4d09772c0c50f5}
+
+
+
+
+Definition at line 34 of file NGramAnalyzer.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1NGramAnalyzer_9774217127e1d89b57ff5aded31df290}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::NGramAnalyzer::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_9774217127e1d89b57ff5aded31df290}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{la\_\-manager::Analyzer}.
+
+Definition at line 67 of file NGramAnalyzer.cpp.
+
+References la\_\-manager::Term::end, isCharLevel, maxGram\_\-, minGram\_\-, and la\_\-manager::Term::text.\hypertarget{classla__manager_1_1NGramAnalyzer_09bdd966dba6ac9b3ef4858fd0b24699}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::NGramAnalyzer::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_09bdd966dba6ac9b3ef4858fd0b24699}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{la\_\-manager::Analyzer}.
+
+Definition at line 13 of file NGramAnalyzer.cpp.
+
+References la\_\-manager::Term::end, isCharLevel, maxGram\_\-, minGram\_\-, and la\_\-manager::Term::text.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1NGramAnalyzer_658ed8026b730416d1cf6729ae0deb11}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!isCharLevel@{isCharLevel}}
+\index{isCharLevel@{isCharLevel}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{isCharLevel}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf la\_\-manager::NGramAnalyzer::isCharLevel}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_658ed8026b730416d1cf6729ae0deb11}
+
+
+
+
+Definition at line 22 of file NGramAnalyzer.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1NGramAnalyzer_1e26dc15f529448357b98b716c3d38a8}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!maxGram\_\-@{maxGram\_\-}}
+\index{maxGram\_\-@{maxGram\_\-}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{maxGram\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::NGramAnalyzer::maxGram\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_1e26dc15f529448357b98b716c3d38a8}
+
+
+max gram (mingram $<$= ngram $<$= maxgram) 
+
+
+
+Definition at line 21 of file NGramAnalyzer.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1NGramAnalyzer_d126ddf018bf01f6438fcdb016617dfa}{
+\index{la\_\-manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}!minGram\_\-@{minGram\_\-}}
+\index{minGram\_\-@{minGram\_\-}!la_manager::NGramAnalyzer@{la\_\-manager::NGramAnalyzer}}
+\subsubsection[{minGram\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::NGramAnalyzer::minGram\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1NGramAnalyzer_d126ddf018bf01f6438fcdb016617dfa}
+
+
+min gram 
+
+
+
+Definition at line 20 of file NGramAnalyzer.h.
+
+Referenced by analyze().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{NGramAnalyzer_8h}{NGramAnalyzer.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{NGramAnalyzer_8cpp}{NGramAnalyzer.cpp}\end{CompactItemize}

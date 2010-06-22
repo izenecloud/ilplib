@@ -1,0 +1,1576 @@
+\hypertarget{classkmaOrange_1_1Eojul}{
+\section{kmaOrange::Eojul Class Reference}
+\label{classkmaOrange_1_1Eojul}\index{kmaOrange::Eojul@{kmaOrange::Eojul}}
+}
+This class is stored the results of KMA.  
+
+
+{\tt \#include $<$Eojul.h$>$}
+
+Inheritance diagram for kmaOrange::Eojul::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classkmaOrange_1_1Eojul}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+void \hyperlink{classkmaOrange_1_1Eojul_59b5129bafa674c7f13a64c75f92cbcd}{initialize} (bool willBeTheDefaultState=true)
+\begin{CompactList}\small\item\em This function initializes a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_5f553fa542efc366e13729c270cb5001}{setString} (const char $\ast$pString)
+\begin{CompactList}\small\item\em This function sets a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_3d9a40689d2eb031b43cc98e08ce25da}{getString} (void)
+\begin{CompactList}\small\item\em This function gets a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_74dedea3f0a141fe7f03af3a8aaa29ac}{getListSize} (void)
+\begin{CompactList}\small\item\em This function gets the number of the list of morphological analyzed results in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_e0f30e4becfe50ed6208b8079f08e51a}{getCount} (int nPos)
+\begin{CompactList}\small\item\em This function gets the number of morphemes in each list of morphological analyzed results. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_7d21a51dc637dcd68d2bfa3ae01cb656}{getLexicon} (int nPos, int nIdx)
+\begin{CompactList}\small\item\em This function gets the string of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_d0bdce94d093e68e8fd455bdb660aa47}{getPOS} (int nPos, int nIdx)
+\begin{CompactList}\small\item\em This function gets the POS value of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_c69fdea5b0394919a4eb95726c1d6cea}{getStrPOS} (int nPos, int nIdx)
+\begin{CompactList}\small\item\em This function gets the POS string of each morpheme in each list of morphological analyzed results. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1Eojul_01a808fcd00cb51d2fe0fe1e3d390cb4}{isIndexWord} (int nPos, int nIdx)
+\begin{CompactList}\small\item\em This function gets whether each morpheme in each list of morphological analyzed results is an index word or not. \item\end{CompactList}\item 
+double \hyperlink{classkmaOrange_1_1Eojul_4fe935c9f57b939f523ea2431af635c4}{getScore} (int nPos)
+\begin{CompactList}\small\item\em This function gets the score of each list of morphological analyzed results. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_4fe920a2411e20769cc049e2c3ea8571}{getOneBestIndex} (void)
+\begin{CompactList}\small\item\em This function gets the index number of the list, which has the most high score in morphological analyzed results. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_c90fa4bf9cfd402caf1aaeee1166d7d1}{getLinkedIndex} (int nPos)
+\begin{CompactList}\small\item\em This function gets the index number of the list, which has the analysis result composed affix. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_57e60eef8fa3e325fc6641d5c92414dd}{makeNBest} (unsigned char nBest)
+\begin{CompactList}\small\item\em This function makes the score order list for the N-Best option. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_8210deb01790f9a7b65f605ec4cfc898}{setOffset} (int offset)
+\item 
+int \hyperlink{classkmaOrange_1_1Eojul_e64d7c1fb622736a65f1a2404b3281e2}{getOffset} (void) const 
+\item 
+\hyperlink{classkmaOrange_1_1Eojul_f10b3119393efabe4703c9220100103a}{Eojul} (unsigned int sizeBuffer=DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE)
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul_1fa0c3be3131d9503d2b5f2c2d2be37b}{Eojul} (const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul)
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul_d62e78d3d4da31baba75547aa162a084}{$\sim$Eojul} (void)
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \& \hyperlink{classkmaOrange_1_1Eojul_6fabc64769d256665d2eb7c464280799}{operator=} (const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul)
+\begin{CompactList}\small\item\em This function assigns a right-hand-side to a left-hand-side. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_42436f38b66c3ae7ab4dbaaf07c9a146}{freeBuffer} ()
+\begin{CompactList}\small\item\em This function empties assigned buffers of the \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_360174ffa30308c088a1adaffe7125a5}{isDigit} (\hyperlink{classStringEx}{StringEx} \&strex)
+\begin{CompactList}\small\item\em This function checks whether an input string is a digit or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_27b2b157bea0b6dee7f973305b775861}{isDigit} (const char ch)
+\item 
+int \hyperlink{classkmaOrange_1_1Eojul_a99ae840ae7b57c8d4db4d5c7c844cd3}{doubleBuffer} ()
+\begin{CompactList}\small\item\em This function doubles the size of buffers. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_f9bddc48aae79153feaf81be9dd0f50f}{setEojulAndInfo} (const char $\ast$word, unsigned int info)
+\begin{CompactList}\small\item\em This function sets a string and the information of a word. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_3747d3a84c7201c54d3a412ad375dc22}{setMorphAndTag} (const char $\ast$word, unsigned int tag)
+\begin{CompactList}\small\item\em This function sets a string and the information of a morpheme. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_ac57c48cf0452b554929f4098fddf6b9}{setMorphAndTag} (const char $\ast$str, char $\ast$word, unsigned int tag)
+\item 
+int \hyperlink{classkmaOrange_1_1Eojul_57d7364be2ee38be36f92d821c206358}{setMorphAndTag} (unsigned int tag)
+\item 
+void \hyperlink{classkmaOrange_1_1Eojul_d3422d95511559a839ad6f27f2197c51}{increaseAnalysisResults} ()
+\begin{CompactList}\small\item\em This function increases 1 in the number of total lists. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_4081a34c576bbd06687810a26be6ede7}{showInfomation} (std::ostream \&outStream, bool isPreAnalysis=false)
+\begin{CompactList}\small\item\em This function shows the results of KMA through outStream( a screen or a file ). \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_f1cbe3289cfd4407181923ad542d8ddc}{getBufferSize} () const 
+\begin{CompactList}\small\item\em This function gets the size of a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_251cc0e3ffe55853805758c08b8a697f}{getBufferPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1Eojul_bc1b4e72547827856993c19ee6ff7ea5}{getTagsPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the POS tags in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1Eojul_fa185ea49a8491150e2eac7b0cd71ef3}{getCountsPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the count numbers in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+double $\ast$ \hyperlink{classkmaOrange_1_1Eojul_cb77ebad2dcc18ac60ac2d60b56c1b73}{getScoresPtr} () const 
+\begin{CompactList}\small\item\em This function gets the starting pointer of the scores in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_03b6b9ac5652e63121f6885bc4a6aca3}{getBufferPos} () const 
+\begin{CompactList}\small\item\em This function gets the position of the string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_48c949c07d6ce260e8e4a7a4f6ac8205}{getTagsPos} () const 
+\begin{CompactList}\small\item\em This function gets the position of the POS tags in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_49ff769b310b0281ea5141c2b4f1da04}{getCountsPos} () const 
+\begin{CompactList}\small\item\em This function gets the position of the count numbers in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_7deda20a42f8f105afa0ebe6d542f86a}{getScoresPos} () const 
+\begin{CompactList}\small\item\em This function gets the position of the scores in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_d0eeca0eaa2df3cc0564f192f673f331}{getEojulInfo} () const 
+\begin{CompactList}\small\item\em This function gets the information of a word in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_e170567ed034d4116fb978c4d21d1113}{setEojulInfo} (unsigned int info)
+\begin{CompactList}\small\item\em This function sets the information of a word. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_fa9b69ec66be0c2b4c1a686aea943859}{addEojulInfo} (unsigned int info)
+\begin{CompactList}\small\item\em This function adds the information of a word. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_2ccfc6903152e7dbf5e1c193f13cab8c}{append} (const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&peojul)
+\begin{CompactList}\small\item\em This function appends a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object to another \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_5e4da6edcc92737c33a68e4d04d33dc2}{merge} (const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul1, const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul2)
+\begin{CompactList}\small\item\em This function merges two \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_bf0f43b901dfd399fcb128e65bc8f011}{backmerge} (const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul1, const \hyperlink{classkmaOrange_1_1Eojul}{Eojul} \&eojul2)
+\begin{CompactList}\small\item\em This function merges two \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_a67c96ac8ed0e71b3ffe358f2d821665}{setScore} (double score)
+\begin{CompactList}\small\item\em This function sets a score of the list of KMA results in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1Eojul_6137248e4abc0054aa0edfcded4d1169}{setScore} (int nPos, double score)
+\item 
+void \hyperlink{classkmaOrange_1_1Eojul_bbf27b53f8ff24e26bb65174e269b5e3}{close} ()
+\begin{CompactList}\small\item\em This function closes setting contents of a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_1e14cac4916db0820c7e521d89d6bcd9}{getBufferByIndex} (int index)
+\begin{CompactList}\small\item\em This function gets a string of a stored morpheme in input index. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1Eojul_69c82b49f0d18d19014d9231614ac6fc}{getNBestState} ()
+\begin{CompactList}\small\item\em This function gets the state of N-Best mode. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1Eojul_58286d874fe76c1a3b7ad8ed31c8fd1d}{getOrdersState} ()
+\begin{CompactList}\small\item\em This function gets the state of orders list. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+char \hyperlink{classkmaOrange_1_1Eojul_b2aa292fb85f8b077bd2557486c14c7c}{innerBuffer} \mbox{[}DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE\mbox{]}
+\begin{CompactList}\small\item\em the inner buffers of strings. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_1b9b12447345aba5ca62e817b15f1810}{innerTags} \mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-TAGS)\mbox{]}
+\begin{CompactList}\small\item\em the inner buffers of POS tags. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_45250405dd37c74a0ca0f0b4337ac530}{innerCounts} \mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)\mbox{]}
+\begin{CompactList}\small\item\em the inner buffers of counts. \item\end{CompactList}\item 
+double \hyperlink{classkmaOrange_1_1Eojul_e10befde2c1799eff5acd90ec6576c38}{innerScores} \mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)\mbox{]}
+\begin{CompactList}\small\item\em the inner buffers of scores. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_0a71104cfa77269014fbeda1ea3b7bc3}{innerOrders} \mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)$\ast$2\mbox{]}
+\begin{CompactList}\small\item\em the inner buffers of orders. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_7877b8626b70ffa209224c977757899f}{mIndexTagSet}
+\begin{CompactList}\small\item\em the set of index POS tags. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_8abf826575d133204bec14ccda72f785}{mIndexLength}
+\begin{CompactList}\small\item\em the length of DIGIT or ALPHABET, which is a index word. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1Eojul_d5f81c9aace2f0b7a16ca6c388d56315}{\_\-buffer}
+\begin{CompactList}\small\item\em the buffers of strings. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1Eojul_6e408f24277429307fc5a440e81118d1}{\_\-tags}
+\begin{CompactList}\small\item\em the buffers of POS tags. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1Eojul_114db830f5d9d1dd5982880e83f1145e}{\_\-counts}
+\begin{CompactList}\small\item\em the buffers of counts. \item\end{CompactList}\item 
+double $\ast$ \hyperlink{classkmaOrange_1_1Eojul_f987ff39bc183daea1a8bf3683c7a675}{\_\-scores}
+\begin{CompactList}\small\item\em the buffers of scores. \item\end{CompactList}\item 
+unsigned int $\ast$ \hyperlink{classkmaOrange_1_1Eojul_c677dd4573c964f0797041c182470171}{\_\-orders}
+\begin{CompactList}\small\item\em the buffers of scores. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_5f1574885a666b893e06b867871857c9}{\_\-sizeBuffer}
+\begin{CompactList}\small\item\em the size of a set string. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_5d5fd5f385118c76870fddbd3fc8ed5c}{\_\-posBuffer}
+\begin{CompactList}\small\item\em the position of a string buffer. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_ac31cc0c79c24298329ba6dd4487f4a0}{\_\-posTags}
+\begin{CompactList}\small\item\em the position of a POS tag. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_dc03c21295c820fc14607412649f8eb4}{\_\-posCounts}
+\begin{CompactList}\small\item\em the position of a count. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_030fbdc3cb13b54da1edfba60bc0acb3}{\_\-posScores}
+\begin{CompactList}\small\item\em the position of a score. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1Eojul_f6091b8a739193e6fe374807bcdb8bc3}{\_\-posOrders}
+\begin{CompactList}\small\item\em the position of a score. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1Eojul_cb98cb5f36b5c8b0d426fb2eb81d741f}{\_\-offset}
+\item 
+bool \hyperlink{classkmaOrange_1_1Eojul_20a07ad0a674a032a69b3efe457bef10}{\_\-isNBestMode}
+\begin{CompactList}\small\item\em the state of N-Best mode. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1Eojul_4a2c3f9d7116e39a5d275326f4fcf1c9}{\_\-isOrdersExpanded}
+\begin{CompactList}\small\item\em the state of orders list. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Private Attributes}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1Eojul_6214d89fa8375306de7dff64913dc2ce}{\_\-charDelimiter} = \char`\"{}?!.-,$\backslash$\char`\"{}'()\mbox{[}$\,$\mbox{]}$<$$>$$\sim$$\backslash$$\backslash$:;`\_\-/$|$+=$\ast$\&$^\wedge$\%\$\#@\{\}\char`\"{}
+\begin{CompactList}\small\item\em the set of 1 byte special characters. \item\end{CompactList}\item 
+static \hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1Eojul_37e50c4a7cc8c3f5b9d93c9148778c6d}{\_\-wcharDelimiter} = \char`\"{}£¡:£§:£¬:£®:£¯:£º:£»:£¿:£Þ:£ß:£à:£ü:£þ:¡¢:¡£:¡¤:¡¥:¡¦:¡§:¡¨:¡©:¡ª:¡«:¡¬:¡­:¢¥:¢¦:¢§:¢¨:¢©:¢ª:¢«:¢¬:¢­:¢®:¢¯:¢°:£¢:£¨:£©:£Û:£Ý:£û:£ý:¡®:¡¯:¡°:¡±:¡²:¡³:¡´:¡µ:¡¶:¡·:¡¸:¡¹:¡º:¡»:¡¼:¡½:£«:£­:£¼:£½:£¾:¡¾:¡¿:¡À:¡Á:¡Â:¡Ã:¡Ä:¡Å:¡Î:¡Ï:¡Ð:¡Ñ:¡Ò:¡Ó:¡Ô:¡Õ:¡Ö:¡ì:¡í:¡î:¡ï:¡ð:¡ñ:¡ò:¡ó:¡ô:¡õ:¡ö:¡÷:¡ø:¡ù:¡ú:¡û:¡ü:¡ý:¡þ:¢¡:¢¢:¢£:¢¤:¢±:¢²:¢³:£¤:£¥:£Ü:£Æ:¡Ç:¡È:¡É:¡Ê:¡Ë:¡Ì:¡Í:¢´:¢µ:¢¶:?:§¡:§¢:§£:§¥:§¦:§§:§¨:§©:§ª:§«:§¬:§­:§®:§¯:§°:§±:§²:§³:§´:§µ:§¶:§·:§¸:§¹:§º:§»:§¼:§½:§¾:§¿:§À:§Á:§Â:§Ã:§Ä:§Å:§Æ:§Ç:§È:§É:§Ê:§Ë:§Ì:§Í:§Î:§Ï:§Ð:§Ñ:§Ò:§Ó:§Ô:§Õ:§Ö:§×:§Ø:§Ù:§Ú:§Û:§Ü:§Ý:§Þ:§ß:§à:§á:§â:§ã:§ä:§å:§æ:§ç:§è:§é:§ê:§ë:§ì:§í:§î:§ï:££:£¦:£ª:£À:¡×:¡Ø:¡Ù:¡Ú:¡Û:¡Ü:¡Ý:¡Þ:¡ß:¡à:¡á:¡â:¡ã:¡ä:¡å:¡æ:¡ç:¡è:¡é:¡ê:¡ë:¢¹:¢¸:¢¹:¢º:¢»:¢¼:¢½:¢¾:¢¿:¢Á:¢Â:¢Ã:¢Ä:¢Å:¢Æ:¢Ç:¢È:¢É:¢Ê:¢Ë:¢Ì:¢Í:¢Î:¢Ï:¢Ð:¢Ñ:¢Ò:¢Ó:¢Ô:¢Õ:¢Ö:¢×:¢Ø:¢Ù:¢Ú:¢Û:¢Ü:¢Ý:¢Þ:¢ß:¢à:¢á:¢â:¢ã:¢ä:¢å:?:¨£:¨¬:¦¡:¦¢:¦£:¦¤:¦¥:¦¦:¦§:¦¨:¦©:¦ª:¦«:¦¬:¦­:¦®:¦¯:¦°:¦±:¦²:¦³:¦´:¦µ:¦¶:¦·:¦¸:¦¹:¦º:¦»:¦¼:¦½:¦¾:¦¿:¦À:¦Á:¦Â:¦Ã:¦Ä:¦Å:¦Æ:¦Ç:¦È:¦É:¦Ê:¦Ë:¦Ì:¦Í:¦Î:¦Ï:¦Ð:¦Ñ:¦Ò:¦Ô:¦Õ:¦Ö:¦×:¦Ø:¦Ù:¦Ú:¦Û:¦Ü:¦Ý:¦Þ:¦ß:¦à:¦á:¦â:¦ã:¦ä:¨±:¨²:¨³:¨´:¨µ:¨¶:¨·:¨¸:¨¹:¨º:¨»:¨¼:¨½:¨¾:¨¿:¨À:¨Á:¨Â:¨Ã:¨Ä:¨Å:¨Æ:¨Ç:¨È:¨É:¨Ê:¨Ë:¨Ì:©±:©²:©³:©´:©µ:©¶:©·:©¸:©¹:©º:©»:©¼:©½:©¾:©¿:©À:©Á:©Â:©Ã:©Ä:©Å:©Æ:©Ç:©È:©É:©Ê:©Ë:©Ì:¨Í:¨Î:¨Ï:¨Ð:¨Ñ:¨Ò:¨Ó:¨Ô:¨Õ:¨Ö:¨×:¨Ø:¨Ù:¨Ú:¨Û:¨Ü:¨Ý:¨Þ:¨ß:¨à:¨á:¨â:¨ã:¨ä:¨å:¨æ:¨ç:¨è:¨é:¨ê:¨ë:¨ì:¨í:¨î:¨ï:¨ð:¨ñ:¨ò:¨ó:¨ô:¨õ:©Í:©Î:©Ï:©Ð:©Ñ:©Ò:©Ó:©Ô:©Õ:©Ö:©×:©Ø:©Ù:©Ú:©Û:©Ü:©Ý:©Þ:©ß:©à:©á:©â:©ã:©ä:©å:©æ:©ç:©è:©é:©ê:©ë:©ì:©í:©î:©ï:©ð:©ñ:©ò:©ó:©ô:©õ:£°:£±:£²:£³:£´:£µ:£¶:£·:£¸:£¹:¥¡:¥¢:¥£:¥¤:¥¥:¥¦:¥§:¥¨:¥©:¥ª:¥°:¥±:¥²:¥³:¥´:¥µ:¥¶:¥·:¥¸:¥¹:¨ö:¨÷:¨ø:¨ù:¨ú:¨û:¨ü:¨ý:¨þ:©ö:©÷:©ø:©ù:©ú:©û:©ü:©ý:©þ\char`\"{}
+\begin{CompactList}\small\item\em the set of 2 bytes special characters. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class is stored the results of KMA. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[See also:]\hyperlink{classWK__Eojul}{WK\_\-Eojul} \end{Desc}
+
+
+Definition at line 29 of file Eojul.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1Eojul_f10b3119393efabe4703c9220100103a}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!Eojul@{Eojul}}
+\index{Eojul@{Eojul}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{Eojul}]{\setlength{\rightskip}{0pt plus 5cm}Eojul::Eojul (unsigned int {\em sizeBuffer} = {\tt DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE})}}
+\label{classkmaOrange_1_1Eojul_f10b3119393efabe4703c9220100103a}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sizeBuffer}]an unsigned integer - the size of a set string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \end{description}
+\end{Desc}
+
+
+Definition at line 24 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-scores, \_\-sizeBuffer, \_\-tags, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, innerBuffer, innerCounts, innerScores, innerTags, RATIO\_\-BUFFER\_\-AND\_\-COUNTS, RATIO\_\-BUFFER\_\-AND\_\-TAGS, and kmaOrange::Logger::SetMessage().\hypertarget{classkmaOrange_1_1Eojul_1fa0c3be3131d9503d2b5f2c2d2be37b}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!Eojul@{Eojul}}
+\index{Eojul@{Eojul}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{Eojul}]{\setlength{\rightskip}{0pt plus 5cm}Eojul::Eojul (const {\bf Eojul} \& {\em eojul})}}
+\label{classkmaOrange_1_1Eojul_1fa0c3be3131d9503d2b5f2c2d2be37b}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eojul}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \end{description}
+\end{Desc}
+
+
+Definition at line 58 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-offset, \_\-posBuffer, \_\-posCounts, \_\-posScores, \_\-posTags, \_\-scores, \_\-sizeBuffer, \_\-tags, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, getBufferPos(), getBufferPtr(), getBufferSize(), getCountsPos(), getCountsPtr(), getOffset(), getScoresPos(), getScoresPtr(), getTagsPos(), getTagsPtr(), innerBuffer, innerCounts, innerScores, innerTags, RATIO\_\-BUFFER\_\-AND\_\-COUNTS, and RATIO\_\-BUFFER\_\-AND\_\-TAGS.\hypertarget{classkmaOrange_1_1Eojul_d62e78d3d4da31baba75547aa162a084}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!$\sim$Eojul@{$\sim$Eojul}}
+\index{$\sim$Eojul@{$\sim$Eojul}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{$\sim$Eojul}]{\setlength{\rightskip}{0pt plus 5cm}Eojul::$\sim$Eojul (void)}}
+\label{classkmaOrange_1_1Eojul_d62e78d3d4da31baba75547aa162a084}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 98 of file Eojul.cpp.
+
+References \_\-sizeBuffer, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, and freeBuffer().
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1Eojul_fa9b69ec66be0c2b4c1a686aea943859}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!addEojulInfo@{addEojulInfo}}
+\index{addEojulInfo@{addEojulInfo}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{addEojulInfo}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Eojul::addEojulInfo (unsigned int {\em info})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_fa9b69ec66be0c2b4c1a686aea943859}
+
+
+This function adds the information of a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]an unsigned integer - the information of a word. \end{description}
+\end{Desc}
+
+
+Definition at line 382 of file Eojul.h.
+
+References \_\-tags.\hypertarget{classkmaOrange_1_1Eojul_2ccfc6903152e7dbf5e1c193f13cab8c}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!append@{append}}
+\index{append@{append}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{append}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::append (const {\bf Eojul} \& {\em peojul})}}
+\label{classkmaOrange_1_1Eojul_2ccfc6903152e7dbf5e1c193f13cab8c}
+
+
+This function appends a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object to another \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em peojul}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \end{description}
+\end{Desc}
+
+
+Definition at line 701 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-posScores, \_\-scores, \_\-tags, setMorphAndTag(), and setScore().
+
+Referenced by GuessCandidate::addNVC(), GuessCandidate::addNXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), and kmaOrange::MAnalyzer::composeAffixes().\hypertarget{classkmaOrange_1_1Eojul_bf0f43b901dfd399fcb128e65bc8f011}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!backmerge@{backmerge}}
+\index{backmerge@{backmerge}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{backmerge}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::backmerge (const {\bf Eojul} \& {\em eojul1}, \/  const {\bf Eojul} \& {\em eojul2})}}
+\label{classkmaOrange_1_1Eojul_bf0f43b901dfd399fcb128e65bc8f011}
+
+
+This function merges two \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. 
+
+\begin{Desc}
+\item[Date:]2008-11-12 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eojul1}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object - it has only one list of KMA results. \item[{\em eojul2}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object - it has various lists of KMA results. \end{description}
+\end{Desc}
+
+
+Definition at line 779 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-scores, \_\-tags, close(), getBufferPtr(), increaseAnalysisResults(), NNR, setMorphAndTag(), and setScore().
+
+Referenced by kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), and kmaOrange::MAnalyzer::analyzeSubHangulWordforSN().\hypertarget{classkmaOrange_1_1Eojul_bbf27b53f8ff24e26bb65174e269b5e3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!close@{close}}
+\index{close@{close}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::close ()}}
+\label{classkmaOrange_1_1Eojul_bbf27b53f8ff24e26bb65174e269b5e3}
+
+
+This function closes setting contents of a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-12 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 554 of file Eojul.cpp.
+
+References \_\-counts, \_\-posCounts, \_\-posScores, and \_\-scores.
+
+Referenced by GuessCandidate::addAuxVerb(), kmaOrange::Tagger::addEojul(), GuessCandidate::addNVC(), GuessCandidate::addNXSD(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), backmerge(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-CHEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-HOMOPHONE(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::MAnalyzer::composeAffixes(), and merge().\hypertarget{classkmaOrange_1_1Eojul_a99ae840ae7b57c8d4db4d5c7c844cd3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!doubleBuffer@{doubleBuffer}}
+\index{doubleBuffer@{doubleBuffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{doubleBuffer}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::doubleBuffer ()}}
+\label{classkmaOrange_1_1Eojul_a99ae840ae7b57c8d4db4d5c7c844cd3}
+
+
+This function doubles the size of buffers. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 565 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-scores, \_\-sizeBuffer, \_\-tags, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, freeBuffer(), RATIO\_\-BUFFER\_\-AND\_\-COUNTS, RATIO\_\-BUFFER\_\-AND\_\-TAGS, and TWICE.
+
+Referenced by setEojulAndInfo(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_42436f38b66c3ae7ab4dbaaf07c9a146}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!freeBuffer@{freeBuffer}}
+\index{freeBuffer@{freeBuffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{freeBuffer}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::freeBuffer ()}}
+\label{classkmaOrange_1_1Eojul_42436f38b66c3ae7ab4dbaaf07c9a146}
+
+
+This function empties assigned buffers of the \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 425 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-isOrdersExpanded, \_\-orders, \_\-scores, \_\-tags, and innerOrders.
+
+Referenced by doubleBuffer(), initialize(), operator=(), and $\sim$Eojul().\hypertarget{classkmaOrange_1_1Eojul_1e14cac4916db0820c7e521d89d6bcd9}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getBufferByIndex@{getBufferByIndex}}
+\index{getBufferByIndex@{getBufferByIndex}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getBufferByIndex}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Eojul::getBufferByIndex (int {\em index})}}
+\label{classkmaOrange_1_1Eojul_1e14cac4916db0820c7e521d89d6bcd9}
+
+
+This function gets a string of a stored morpheme in input index. 
+
+\begin{Desc}
+\item[Date:]2008-11-12 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index}]an integer. \end{description}
+\end{Desc}
+
+
+Definition at line 826 of file Eojul.cpp.
+
+References \_\-buffer, \_\-posTags, and \_\-tags.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb().\hypertarget{classkmaOrange_1_1Eojul_03b6b9ac5652e63121f6885bc4a6aca3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getBufferPos@{getBufferPos}}
+\index{getBufferPos@{getBufferPos}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getBufferPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getBufferPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_03b6b9ac5652e63121f6885bc4a6aca3}
+
+
+This function gets the position of the string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 334 of file Eojul.h.
+
+References \_\-posBuffer.
+
+Referenced by Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_251cc0e3ffe55853805758c08b8a697f}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getBufferPtr@{getBufferPtr}}
+\index{getBufferPtr@{getBufferPtr}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getBufferPtr}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ kmaOrange::Eojul::getBufferPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_251cc0e3ffe55853805758c08b8a697f}
+
+
+This function gets the starting pointer of the string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character. \end{Desc}
+
+
+Definition at line 302 of file Eojul.h.
+
+References \_\-buffer.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDeclinableWord(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeHeadTail(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), backmerge(), kmaOrange::MAnalyzer::checkNanalyzeCopular(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), Eojul(), kmaOrange::MAnalyzer::makeSubRanking(), merge(), operator=(), and kmaOrange::MAnalyzer::warmUpAnalysis().\hypertarget{classkmaOrange_1_1Eojul_f1cbe3289cfd4407181923ad542d8ddc}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getBufferSize@{getBufferSize}}
+\index{getBufferSize@{getBufferSize}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getBufferSize}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getBufferSize () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_f1cbe3289cfd4407181923ad542d8ddc}
+
+
+This function gets the size of a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 294 of file Eojul.h.
+
+References \_\-sizeBuffer.
+
+Referenced by Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_e0f30e4becfe50ed6208b8079f08e51a}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getCount@{getCount}}
+\index{getCount@{getCount}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getCount}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::Eojul::getCount (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_e0f30e4becfe50ed6208b8079f08e51a}
+
+
+This function gets the number of morphemes in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of morphemes in each list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_ebb07e0b90314607d6742517a6de6fbd}{WK\_\-Eojul}.
+
+Definition at line 84 of file Eojul.h.
+
+References \_\-counts, \_\-isNBestMode, and \_\-orders.
+
+Referenced by kmaOrange::Tagger::addEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::composeAffixes(), kmaOrange::MAnalyzer::makeSubRanking(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_49ff769b310b0281ea5141c2b4f1da04}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getCountsPos@{getCountsPos}}
+\index{getCountsPos@{getCountsPos}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getCountsPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getCountsPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_49ff769b310b0281ea5141c2b4f1da04}
+
+
+This function gets the position of the count numbers in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 350 of file Eojul.h.
+
+References \_\-posCounts.
+
+Referenced by Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_fa185ea49a8491150e2eac7b0cd71ef3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getCountsPtr@{getCountsPtr}}
+\index{getCountsPtr@{getCountsPtr}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getCountsPtr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ kmaOrange::Eojul::getCountsPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_fa185ea49a8491150e2eac7b0cd71ef3}
+
+
+This function gets the starting pointer of the count numbers in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an unsigned character. \end{Desc}
+
+
+Definition at line 318 of file Eojul.h.
+
+References \_\-counts.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_d0eeca0eaa2df3cc0564f192f673f331}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getEojulInfo@{getEojulInfo}}
+\index{getEojulInfo@{getEojulInfo}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getEojulInfo}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getEojulInfo () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_d0eeca0eaa2df3cc0564f192f673f331}
+
+
+This function gets the information of a word in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 366 of file Eojul.h.
+
+References \_\-tags.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeHeadTail(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeCopular(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::MAnalyzer::composeAffixes(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_7d21a51dc637dcd68d2bfa3ae01cb656}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getLexicon@{getLexicon}}
+\index{getLexicon@{getLexicon}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getLexicon}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Eojul::getLexicon (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_7d21a51dc637dcd68d2bfa3ae01cb656}
+
+
+This function gets the string of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - the string of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_d0799c16981e56643926838c91ad2be7}{WK\_\-Eojul}.
+
+Definition at line 274 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-isNBestMode, \_\-orders, and \_\-tags.
+
+Referenced by kmaOrange::Tagger::addEojul(), kmaOrange::MAnalyzer::composeAffixes(), isIndexWord(), kmaOrange::MAnalyzer::makeSubRanking(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_c90fa4bf9cfd402caf1aaeee1166d7d1}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getLinkedIndex@{getLinkedIndex}}
+\index{getLinkedIndex@{getLinkedIndex}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getLinkedIndex}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::getLinkedIndex (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_c90fa4bf9cfd402caf1aaeee1166d7d1}
+
+
+This function gets the index number of the list, which has the analysis result composed affix. 
+
+\begin{Desc}
+\item[Date:]2009-01-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the index number of the list, which has the analysis result composed affix. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_45b0ae73689aca02fb735332ba63150d}{WK\_\-Eojul}.
+
+Definition at line 377 of file Eojul.cpp.
+
+References \_\-scores.
+
+Referenced by kmaOrange::MAnalyzer::composeAffixes().\hypertarget{classkmaOrange_1_1Eojul_74dedea3f0a141fe7f03af3a8aaa29ac}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getListSize@{getListSize}}
+\index{getListSize@{getListSize}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getListSize}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::Eojul::getListSize (void)\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_74dedea3f0a141fe7f03af3a8aaa29ac}
+
+
+This function gets the number of the list of morphological analyzed results in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of the list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_3c0cccef5359472075e758274f716720}{WK\_\-Eojul}.
+
+Definition at line 71 of file Eojul.h.
+
+References \_\-counts, \_\-isNBestMode, and \_\-orders.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::composeAffixes(), kmaOrange::MAnalyzer::makeRanking(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_69c82b49f0d18d19014d9231614ac6fc}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getNBestState@{getNBestState}}
+\index{getNBestState@{getNBestState}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getNBestState}]{\setlength{\rightskip}{0pt plus 5cm}bool kmaOrange::Eojul::getNBestState ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_69c82b49f0d18d19014d9231614ac6fc}
+
+
+This function gets the state of N-Best mode. 
+
+\begin{Desc}
+\item[Date:]2009-01-12 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean. \end{Desc}
+
+
+Definition at line 444 of file Eojul.h.
+
+References \_\-isNBestMode.
+
+Referenced by operator=().\hypertarget{classkmaOrange_1_1Eojul_e64d7c1fb622736a65f1a2404b3281e2}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getOffset@{getOffset}}
+\index{getOffset@{getOffset}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getOffset}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::Eojul::getOffset (void) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_e64d7c1fb622736a65f1a2404b3281e2}
+
+
+
+
+Definition at line 172 of file Eojul.h.
+
+References \_\-offset.
+
+Referenced by Eojul(), operator=(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_4fe920a2411e20769cc049e2c3ea8571}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getOneBestIndex@{getOneBestIndex}}
+\index{getOneBestIndex@{getOneBestIndex}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getOneBestIndex}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::getOneBestIndex (void)\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_4fe920a2411e20769cc049e2c3ea8571}
+
+
+This function gets the index number of the list, which has the most high score in morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the index number of the list, which has the most high score in morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_0588cf004a9d2f10cebd1d729c328abd}{WK\_\-Eojul}.
+
+Definition at line 345 of file Eojul.cpp.
+
+References \_\-counts, \_\-isNBestMode, and \_\-scores.
+
+Referenced by makeNBest(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_58286d874fe76c1a3b7ad8ed31c8fd1d}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getOrdersState@{getOrdersState}}
+\index{getOrdersState@{getOrdersState}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getOrdersState}]{\setlength{\rightskip}{0pt plus 5cm}bool kmaOrange::Eojul::getOrdersState ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_58286d874fe76c1a3b7ad8ed31c8fd1d}
+
+
+This function gets the state of orders list. 
+
+\begin{Desc}
+\item[Date:]2009-01-12 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean. \end{Desc}
+
+
+Definition at line 452 of file Eojul.h.
+
+References \_\-isOrdersExpanded.
+
+Referenced by operator=().\hypertarget{classkmaOrange_1_1Eojul_d0bdce94d093e68e8fd455bdb660aa47}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getPOS@{getPOS}}
+\index{getPOS@{getPOS}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getPOS}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::getPOS (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_d0bdce94d093e68e8fd455bdb660aa47}
+
+
+This function gets the POS value of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the POS value of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_e558aad6c32e899ea725882f3bdc0896}{WK\_\-Eojul}.
+
+Definition at line 287 of file Eojul.cpp.
+
+References \_\-counts, \_\-isNBestMode, \_\-orders, and \_\-tags.
+
+Referenced by kmaOrange::Tagger::addEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::composeAffixes(), getStrPOS(), isIndexWord(), kmaOrange::MAnalyzer::makeSubRanking(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_4fe935c9f57b939f523ea2431af635c4}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getScore@{getScore}}
+\index{getScore@{getScore}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getScore}]{\setlength{\rightskip}{0pt plus 5cm}double Eojul::getScore (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_4fe935c9f57b939f523ea2431af635c4}
+
+
+This function gets the score of each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a double - the score of the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_4b7079e12cf56a9f9211c3177096c018}{WK\_\-Eojul}.
+
+Definition at line 331 of file Eojul.cpp.
+
+References \_\-isNBestMode, \_\-orders, and \_\-scores.
+
+Referenced by kmaOrange::Tagger::addEojul(), and kmaOrange::MAnalyzer::composeAffixes().\hypertarget{classkmaOrange_1_1Eojul_7deda20a42f8f105afa0ebe6d542f86a}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getScoresPos@{getScoresPos}}
+\index{getScoresPos@{getScoresPos}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getScoresPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getScoresPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_7deda20a42f8f105afa0ebe6d542f86a}
+
+
+This function gets the position of the scores in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 358 of file Eojul.h.
+
+References \_\-posScores.
+
+Referenced by Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_cb77ebad2dcc18ac60ac2d60b56c1b73}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getScoresPtr@{getScoresPtr}}
+\index{getScoresPtr@{getScoresPtr}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getScoresPtr}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ kmaOrange::Eojul::getScoresPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_cb77ebad2dcc18ac60ac2d60b56c1b73}
+
+
+This function gets the starting pointer of the scores in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a double. \end{Desc}
+
+
+Definition at line 326 of file Eojul.h.
+
+References \_\-scores.
+
+Referenced by kmaOrange::MAnalyzer::composeAffixes(), Eojul(), kmaOrange::MAnalyzer::makeRanking(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_3d9a40689d2eb031b43cc98e08ce25da}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getString@{getString}}
+\index{getString@{getString}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getString}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ kmaOrange::Eojul::getString (void)\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_3d9a40689d2eb031b43cc98e08ce25da}
+
+
+This function gets a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - a set string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_ac9caae5a102114862eb398994596fbf}{WK\_\-Eojul}.
+
+Definition at line 63 of file Eojul.h.
+
+References \_\-buffer.
+
+Referenced by kmaOrange::MAnalyzer::composeAffixes(), and kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_c69fdea5b0394919a4eb95726c1d6cea}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getStrPOS@{getStrPOS}}
+\index{getStrPOS@{getStrPOS}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getStrPOS}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ Eojul::getStrPOS (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_c69fdea5b0394919a4eb95726c1d6cea}
+
+
+This function gets the POS string of each morpheme in each list of morphological analyzed results. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - the POS string of the nIdx-th morpheme in the nPos-th list of morphological analyzed results. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_87720be1679d0d1c86c193e4c3953d00}{WK\_\-Eojul}.
+
+Definition at line 300 of file Eojul.cpp.
+
+References kmaOrange::TagSet::convertCodeToTagString(), and getPOS().\hypertarget{classkmaOrange_1_1Eojul_48c949c07d6ce260e8e4a7a4f6ac8205}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getTagsPos@{getTagsPos}}
+\index{getTagsPos@{getTagsPos}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getTagsPos}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int kmaOrange::Eojul::getTagsPos () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_48c949c07d6ce260e8e4a7a4f6ac8205}
+
+
+This function gets the position of the POS tags in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer. \end{Desc}
+
+
+Definition at line 342 of file Eojul.h.
+
+References \_\-posTags.
+
+Referenced by Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_bc1b4e72547827856993c19ee6ff7ea5}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!getTagsPtr@{getTagsPtr}}
+\index{getTagsPtr@{getTagsPtr}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{getTagsPtr}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ kmaOrange::Eojul::getTagsPtr () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_bc1b4e72547827856993c19ee6ff7ea5}
+
+
+This function gets the starting pointer of the POS tags in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of an unsigned integer. \end{Desc}
+
+
+Definition at line 310 of file Eojul.h.
+
+References \_\-tags.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), Eojul(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_d3422d95511559a839ad6f27f2197c51}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!increaseAnalysisResults@{increaseAnalysisResults}}
+\index{increaseAnalysisResults@{increaseAnalysisResults}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{increaseAnalysisResults}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::increaseAnalysisResults ()}}
+\label{classkmaOrange_1_1Eojul_d3422d95511559a839ad6f27f2197c51}
+
+
+This function increases 1 in the number of total lists. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 527 of file Eojul.cpp.
+
+References \_\-counts, \_\-posCounts, \_\-posScores, and \_\-scores.
+
+Referenced by GuessCandidate::addAuxVerb(), kmaOrange::Tagger::addEojul(), GuessCandidate::addNVC(), GuessCandidate::addNXSD(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), backmerge(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-CHEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-HOMOPHONE(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::MAnalyzer::composeAffixes(), and merge().\hypertarget{classkmaOrange_1_1Eojul_59b5129bafa674c7f13a64c75f92cbcd}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!initialize@{initialize}}
+\index{initialize@{initialize}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::initialize (bool {\em willBeTheDefaultState} = {\tt true})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_59b5129bafa674c7f13a64c75f92cbcd}
+
+
+This function initializes a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em willBeTheDefaultState}]a boolean. \par
+ true - it entirely sets a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object to initial statement. \par
+ false - it only sets values in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_0a47e3d87115a85868ed5b3cfecc6787}{WK\_\-Eojul}.
+
+Definition at line 390 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-isNBestMode, \_\-isOrdersExpanded, \_\-offset, \_\-posBuffer, \_\-posCounts, \_\-posScores, \_\-posTags, \_\-scores, \_\-sizeBuffer, \_\-tags, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, freeBuffer(), innerBuffer, innerCounts, innerScores, and innerTags.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::composeAffixes(), kmaOrange::Tagger::runTagging(), setEojulAndInfo(), and kmaOrange::MAnalyzer::tokenizeSentence().\hypertarget{classkmaOrange_1_1Eojul_27b2b157bea0b6dee7f973305b775861}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!isDigit@{isDigit}}
+\index{isDigit@{isDigit}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{isDigit}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::isDigit (const char {\em ch})}}
+\label{classkmaOrange_1_1Eojul_27b2b157bea0b6dee7f973305b775861}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 113 of file Eojul.cpp.\hypertarget{classkmaOrange_1_1Eojul_360174ffa30308c088a1adaffe7125a5}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!isDigit@{isDigit}}
+\index{isDigit@{isDigit}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{isDigit}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::isDigit ({\bf StringEx} \& {\em strex})}}
+\label{classkmaOrange_1_1Eojul_360174ffa30308c088a1adaffe7125a5}
+
+
+This function checks whether an input string is a digit or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referncing pointer of \hyperlink{classStringEx}{StringEx} object - an input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - not digit.\par
+ 1 - digit. \end{Desc}
+
+
+Definition at line 103 of file Eojul.cpp.
+
+References StringEx::length().\hypertarget{classkmaOrange_1_1Eojul_01a808fcd00cb51d2fe0fe1e3d390cb4}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!isIndexWord@{isIndexWord}}
+\index{isIndexWord@{isIndexWord}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{isIndexWord}]{\setlength{\rightskip}{0pt plus 5cm}bool Eojul::isIndexWord (int {\em nPos}, \/  int {\em nIdx})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_01a808fcd00cb51d2fe0fe1e3d390cb4}
+
+
+This function gets whether each morpheme in each list of morphological analyzed results is an index word or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of the list of morphological analyzed results. \item[{\em nIdx}]an integer - the index number of the morpheme in the list of morphological analyzed results. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - index word.\par
+ false - no index word. \end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_fcffd7053b36792cbd4dcca3a0949542}{WK\_\-Eojul}.
+
+Definition at line 307 of file Eojul.cpp.
+
+References FL, getLexicon(), getPOS(), mIndexLength, mIndexTagSet, and SN.\hypertarget{classkmaOrange_1_1Eojul_57e60eef8fa3e325fc6641d5c92414dd}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!makeNBest@{makeNBest}}
+\index{makeNBest@{makeNBest}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{makeNBest}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::makeNBest (unsigned char {\em nBest})}}
+\label{classkmaOrange_1_1Eojul_57e60eef8fa3e325fc6641d5c92414dd}
+
+
+This function makes the score order list for the N-Best option. 
+
+\begin{Desc}
+\item[Date:]2009-01-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nBest}]an unsigned character - the number of the score order list. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 204 of file Eojul.cpp.
+
+References \_\-counts, \_\-isNBestMode, \_\-isOrdersExpanded, \_\-orders, \_\-scores, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, getOneBestIndex(), innerOrders, and RATIO\_\-BUFFER\_\-AND\_\-COUNTS.
+
+Referenced by kmaOrange::MAnalyzer::runWithEojul().\hypertarget{classkmaOrange_1_1Eojul_5e4da6edcc92737c33a68e4d04d33dc2}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!merge@{merge}}
+\index{merge@{merge}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{merge}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::merge (const {\bf Eojul} \& {\em eojul1}, \/  const {\bf Eojul} \& {\em eojul2})}}
+\label{classkmaOrange_1_1Eojul_5e4da6edcc92737c33a68e4d04d33dc2}
+
+
+This function merges two \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. 
+
+\begin{Desc}
+\item[Date:]2008-11-12 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eojul1}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object - it has various lists of KMA results. \item[{\em eojul2}]an indirect referncing pointer of a constant \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object - it has only one list of KMA results. \end{description}
+\end{Desc}
+
+
+Definition at line 730 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-scores, \_\-tags, close(), getBufferPtr(), increaseAnalysisResults(), NNR, setMorphAndTag(), and setScore().
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), and kmaOrange::MAnalyzer::analyzeSubHangulWordforSN().\hypertarget{classkmaOrange_1_1Eojul_6fabc64769d256665d2eb7c464280799}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!operator=@{operator=}}
+\index{operator=@{operator=}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Eojul} \& Eojul::operator= (const {\bf Eojul} \& {\em eojul})}}
+\label{classkmaOrange_1_1Eojul_6fabc64769d256665d2eb7c464280799}
+
+
+This function assigns a right-hand-side to a left-hand-side. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 662 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-isNBestMode, \_\-isOrdersExpanded, \_\-offset, \_\-posBuffer, \_\-posCounts, \_\-posScores, \_\-posTags, \_\-scores, \_\-sizeBuffer, \_\-tags, DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE, freeBuffer(), getBufferPos(), getBufferPtr(), getBufferSize(), getCountsPos(), getCountsPtr(), getNBestState(), getOffset(), getOrdersState(), getScoresPos(), getScoresPtr(), getTagsPos(), getTagsPtr(), RATIO\_\-BUFFER\_\-AND\_\-COUNTS, and RATIO\_\-BUFFER\_\-AND\_\-TAGS.\hypertarget{classkmaOrange_1_1Eojul_f9bddc48aae79153feaf81be9dd0f50f}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setEojulAndInfo@{setEojulAndInfo}}
+\index{setEojulAndInfo@{setEojulAndInfo}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setEojulAndInfo}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::setEojulAndInfo (const char $\ast$ {\em word}, \/  unsigned int {\em info})}}
+\label{classkmaOrange_1_1Eojul_f9bddc48aae79153feaf81be9dd0f50f}
+
+
+This function sets a string and the information of a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]a pointer of a character - an input string. \item[{\em info}]an unsigned integer - the information of a word. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 438 of file Eojul.cpp.
+
+References \_\-buffer, \_\-posBuffer, \_\-posTags, \_\-sizeBuffer, \_\-tags, doubleBuffer(), initialize(), and RATIO\_\-BUFFER\_\-AND\_\-TAGS.
+
+Referenced by GuessCandidate::addAuxVerb(), GuessCandidate::addNVC(), GuessCandidate::addNXSD(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::MAnalyzer::composeAffixes(), kmaOrange::Tagger::runTagging(), setString(), and kmaOrange::MAnalyzer::tokenizeSentence().\hypertarget{classkmaOrange_1_1Eojul_e170567ed034d4116fb978c4d21d1113}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setEojulInfo@{setEojulInfo}}
+\index{setEojulInfo@{setEojulInfo}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setEojulInfo}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Eojul::setEojulInfo (unsigned int {\em info})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_e170567ed034d4116fb978c4d21d1113}
+
+
+This function sets the information of a word. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em info}]an unsigned integer - the information of a word. \end{description}
+\end{Desc}
+
+
+Definition at line 374 of file Eojul.h.
+
+References \_\-tags.\hypertarget{classkmaOrange_1_1Eojul_57d7364be2ee38be36f92d821c206358}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setMorphAndTag@{setMorphAndTag}}
+\index{setMorphAndTag@{setMorphAndTag}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setMorphAndTag}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::setMorphAndTag (unsigned int {\em tag})}}
+\label{classkmaOrange_1_1Eojul_57d7364be2ee38be36f92d821c206358}
+
+
+overload int \hyperlink{classkmaOrange_1_1Eojul_57d7364be2ee38be36f92d821c206358}{setMorphAndTag( unsigned int tag )} 
+
+Definition at line 462 of file Eojul.cpp.
+
+References \_\-counts, \_\-posCounts, \_\-posTags, \_\-sizeBuffer, \_\-tags, doubleBuffer(), and RATIO\_\-BUFFER\_\-AND\_\-TAGS.\hypertarget{classkmaOrange_1_1Eojul_ac57c48cf0452b554929f4098fddf6b9}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setMorphAndTag@{setMorphAndTag}}
+\index{setMorphAndTag@{setMorphAndTag}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setMorphAndTag}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::setMorphAndTag (const char $\ast$ {\em str}, \/  char $\ast$ {\em word}, \/  unsigned int {\em tag})}}
+\label{classkmaOrange_1_1Eojul_ac57c48cf0452b554929f4098fddf6b9}
+
+
+
+
+Definition at line 501 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-posBuffer, \_\-posCounts, \_\-posTags, \_\-sizeBuffer, \_\-tags, doubleBuffer(), and RATIO\_\-BUFFER\_\-AND\_\-TAGS.\hypertarget{classkmaOrange_1_1Eojul_3747d3a84c7201c54d3a412ad375dc22}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setMorphAndTag@{setMorphAndTag}}
+\index{setMorphAndTag@{setMorphAndTag}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setMorphAndTag}]{\setlength{\rightskip}{0pt plus 5cm}int Eojul::setMorphAndTag (const char $\ast$ {\em word}, \/  unsigned int {\em tag})}}
+\label{classkmaOrange_1_1Eojul_3747d3a84c7201c54d3a412ad375dc22}
+
+
+This function sets a string and the information of a morpheme. 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]a pointer of a character - an input string. \item[{\em tag}]an unsigned integer - the information of a morpheme. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 477 of file Eojul.cpp.
+
+References \_\-buffer, \_\-counts, \_\-posBuffer, \_\-posCounts, \_\-posTags, \_\-sizeBuffer, \_\-tags, doubleBuffer(), and RATIO\_\-BUFFER\_\-AND\_\-TAGS.
+
+Referenced by kmaOrange::Tagger::addEojul(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), append(), backmerge(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-CHEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-HOMOPHONE(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::MAnalyzer::composeAffixes(), and merge().\hypertarget{classkmaOrange_1_1Eojul_8210deb01790f9a7b65f605ec4cfc898}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setOffset@{setOffset}}
+\index{setOffset@{setOffset}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setOffset}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Eojul::setOffset (int {\em offset})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_8210deb01790f9a7b65f605ec4cfc898}
+
+
+
+
+Definition at line 171 of file Eojul.h.
+
+References \_\-offset.
+
+Referenced by kmaOrange::Tagger::runTagging().\hypertarget{classkmaOrange_1_1Eojul_6137248e4abc0054aa0edfcded4d1169}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setScore@{setScore}}
+\index{setScore@{setScore}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setScore}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::setScore (int {\em nPos}, \/  double {\em score})}}
+\label{classkmaOrange_1_1Eojul_6137248e4abc0054aa0edfcded4d1169}
+
+
+overload void \hyperlink{classkmaOrange_1_1Eojul_6137248e4abc0054aa0edfcded4d1169}{setScore( int nPos, double score )} 
+
+Definition at line 549 of file Eojul.cpp.
+
+References \_\-scores.\hypertarget{classkmaOrange_1_1Eojul_a67c96ac8ed0e71b3ffe358f2d821665}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setScore@{setScore}}
+\index{setScore@{setScore}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setScore}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::setScore (double {\em score})}}
+\label{classkmaOrange_1_1Eojul_a67c96ac8ed0e71b3ffe358f2d821665}
+
+
+This function sets a score of the list of KMA results in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} objects. 
+
+\begin{Desc}
+\item[Date:]2008-11-12 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em score}]a double. \end{description}
+\end{Desc}
+
+
+Definition at line 544 of file Eojul.cpp.
+
+References \_\-posScores, and \_\-scores.
+
+Referenced by kmaOrange::Tagger::addEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), append(), backmerge(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::composeAffixes(), and merge().\hypertarget{classkmaOrange_1_1Eojul_5f553fa542efc366e13729c270cb5001}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!setString@{setString}}
+\index{setString@{setString}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{setString}]{\setlength{\rightskip}{0pt plus 5cm}void Eojul::setString (const char $\ast$ {\em pString})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_5f553fa542efc366e13729c270cb5001}
+
+
+This function sets a string in a \hyperlink{classkmaOrange_1_1Eojul}{Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-10 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pString}]a pointer of a character - a setting string based on a word. \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classWK__Eojul_ddb3f1626f2dd6f0dc4bcfe8de43fd05}{WK\_\-Eojul}.
+
+Definition at line 120 of file Eojul.cpp.
+
+References \_\-charDelimiter, \_\-wcharDelimiter, kmaOrange::WK\_\-Hanja::convertToHangul(), DEFAULT\_\-LINE\_\-BUFF\_\-SIZE, DEFAULT\_\-WORD\_\-SIZE, EI\_\-ALPHABET, EI\_\-DIGIT, EI\_\-HANGUL, EI\_\-ILLEGAL, EI\_\-TOOLONG, StringEx::getIndex(), setEojulAndInfo(), kmaOrange::Logger::SetMessage(), and TEI\_\-INCLUDESC.\hypertarget{classkmaOrange_1_1Eojul_4081a34c576bbd06687810a26be6ede7}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!showInfomation@{showInfomation}}
+\index{showInfomation@{showInfomation}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{showInfomation}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::Eojul::showInfomation (std::ostream \& {\em outStream}, \/  bool {\em isPreAnalysis} = {\tt false})}}
+\label{classkmaOrange_1_1Eojul_4081a34c576bbd06687810a26be6ede7}
+
+
+This function shows the results of KMA through outStream( a screen or a file ). 
+
+\begin{Desc}
+\item[Date:]2008-11-11 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em outStream}]an indirect referncing pointer of std::ostream object. \item[{\em isPreAnalysis}]a boolean\par
+ true - system pre-analysis dictionary making mode. flase - common mode. \end{description}
+\end{Desc}
+
+
+Referenced by kmaOrange::MAnalyzer::preprocessBeforeAnalysis(), and kmaOrange::MAnalyzer::tokenizeSentence().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1Eojul_d5f81c9aace2f0b7a16ca6c388d56315}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-buffer@{\_\-buffer}}
+\index{\_\-buffer@{\_\-buffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-buffer}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ {\bf kmaOrange::Eojul::\_\-buffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_d5f81c9aace2f0b7a16ca6c388d56315}
+
+
+the buffers of strings. 
+
+
+
+Definition at line 452 of file Eojul.h.
+
+Referenced by append(), backmerge(), doubleBuffer(), Eojul(), freeBuffer(), getBufferByIndex(), getBufferPtr(), getLexicon(), getString(), initialize(), merge(), operator=(), setEojulAndInfo(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_6214d89fa8375306de7dff64913dc2ce}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-charDelimiter@{\_\-charDelimiter}}
+\index{\_\-charDelimiter@{\_\-charDelimiter}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-charDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf Eojul::\_\-charDelimiter} = \char`\"{}?!.-,$\backslash$\char`\"{}'()\mbox{[}$\,$\mbox{]}$<$$>$$\sim$$\backslash$$\backslash$:;`\_\-/$|$+=$\ast$\&$^\wedge$\%\$\#@\{\}\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_6214d89fa8375306de7dff64913dc2ce}
+
+
+the set of 1 byte special characters. 
+
+
+
+Definition at line 468 of file Eojul.h.
+
+Referenced by setString().\hypertarget{classkmaOrange_1_1Eojul_114db830f5d9d1dd5982880e83f1145e}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-counts@{\_\-counts}}
+\index{\_\-counts@{\_\-counts}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-counts}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf kmaOrange::Eojul::\_\-counts}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_114db830f5d9d1dd5982880e83f1145e}
+
+
+the buffers of counts. 
+
+
+
+Definition at line 457 of file Eojul.h.
+
+Referenced by append(), backmerge(), close(), doubleBuffer(), Eojul(), freeBuffer(), getCount(), getCountsPtr(), getLexicon(), getListSize(), getOneBestIndex(), getPOS(), increaseAnalysisResults(), initialize(), makeNBest(), merge(), operator=(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_20a07ad0a674a032a69b3efe457bef10}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-isNBestMode@{\_\-isNBestMode}}
+\index{\_\-isNBestMode@{\_\-isNBestMode}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-isNBestMode}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf kmaOrange::Eojul::\_\-isNBestMode}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_20a07ad0a674a032a69b3efe457bef10}
+
+
+the state of N-Best mode. 
+
+
+
+Definition at line 473 of file Eojul.h.
+
+Referenced by getCount(), getLexicon(), getListSize(), getNBestState(), getOneBestIndex(), getPOS(), getScore(), initialize(), makeNBest(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_4a2c3f9d7116e39a5d275326f4fcf1c9}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-isOrdersExpanded@{\_\-isOrdersExpanded}}
+\index{\_\-isOrdersExpanded@{\_\-isOrdersExpanded}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-isOrdersExpanded}]{\setlength{\rightskip}{0pt plus 5cm}bool {\bf kmaOrange::Eojul::\_\-isOrdersExpanded}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_4a2c3f9d7116e39a5d275326f4fcf1c9}
+
+
+the state of orders list. 
+
+
+
+Definition at line 474 of file Eojul.h.
+
+Referenced by freeBuffer(), getOrdersState(), initialize(), makeNBest(), and operator=().\hypertarget{classkmaOrange_1_1Eojul_cb98cb5f36b5c8b0d426fb2eb81d741f}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-offset@{\_\-offset}}
+\index{\_\-offset@{\_\-offset}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-offset}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::Eojul::\_\-offset}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_cb98cb5f36b5c8b0d426fb2eb81d741f}
+
+
+
+
+Definition at line 471 of file Eojul.h.
+
+Referenced by Eojul(), getOffset(), initialize(), operator=(), and setOffset().\hypertarget{classkmaOrange_1_1Eojul_c677dd4573c964f0797041c182470171}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-orders@{\_\-orders}}
+\index{\_\-orders@{\_\-orders}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-orders}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf kmaOrange::Eojul::\_\-orders}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_c677dd4573c964f0797041c182470171}
+
+
+the buffers of scores. 
+
+
+
+Definition at line 459 of file Eojul.h.
+
+Referenced by freeBuffer(), getCount(), getLexicon(), getListSize(), getPOS(), getScore(), and makeNBest().\hypertarget{classkmaOrange_1_1Eojul_5d5fd5f385118c76870fddbd3fc8ed5c}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-posBuffer@{\_\-posBuffer}}
+\index{\_\-posBuffer@{\_\-posBuffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-posBuffer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-posBuffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_5d5fd5f385118c76870fddbd3fc8ed5c}
+
+
+the position of a string buffer. 
+
+
+
+Definition at line 462 of file Eojul.h.
+
+Referenced by Eojul(), getBufferPos(), initialize(), operator=(), setEojulAndInfo(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_dc03c21295c820fc14607412649f8eb4}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-posCounts@{\_\-posCounts}}
+\index{\_\-posCounts@{\_\-posCounts}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-posCounts}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-posCounts}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_dc03c21295c820fc14607412649f8eb4}
+
+
+the position of a count. 
+
+
+
+Definition at line 464 of file Eojul.h.
+
+Referenced by close(), Eojul(), getCountsPos(), increaseAnalysisResults(), initialize(), operator=(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_f6091b8a739193e6fe374807bcdb8bc3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-posOrders@{\_\-posOrders}}
+\index{\_\-posOrders@{\_\-posOrders}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-posOrders}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-posOrders}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_f6091b8a739193e6fe374807bcdb8bc3}
+
+
+the position of a score. 
+
+
+
+Definition at line 466 of file Eojul.h.\hypertarget{classkmaOrange_1_1Eojul_030fbdc3cb13b54da1edfba60bc0acb3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-posScores@{\_\-posScores}}
+\index{\_\-posScores@{\_\-posScores}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-posScores}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-posScores}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_030fbdc3cb13b54da1edfba60bc0acb3}
+
+
+the position of a score. 
+
+
+
+Definition at line 465 of file Eojul.h.
+
+Referenced by append(), close(), Eojul(), getScoresPos(), increaseAnalysisResults(), initialize(), operator=(), and setScore().\hypertarget{classkmaOrange_1_1Eojul_ac31cc0c79c24298329ba6dd4487f4a0}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-posTags@{\_\-posTags}}
+\index{\_\-posTags@{\_\-posTags}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-posTags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-posTags}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_ac31cc0c79c24298329ba6dd4487f4a0}
+
+
+the position of a POS tag. 
+
+
+
+Definition at line 463 of file Eojul.h.
+
+Referenced by Eojul(), getBufferByIndex(), getTagsPos(), initialize(), operator=(), setEojulAndInfo(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_f987ff39bc183daea1a8bf3683c7a675}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-scores@{\_\-scores}}
+\index{\_\-scores@{\_\-scores}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-scores}]{\setlength{\rightskip}{0pt plus 5cm}double$\ast$ {\bf kmaOrange::Eojul::\_\-scores}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_f987ff39bc183daea1a8bf3683c7a675}
+
+
+the buffers of scores. 
+
+
+
+Definition at line 458 of file Eojul.h.
+
+Referenced by append(), backmerge(), close(), doubleBuffer(), Eojul(), freeBuffer(), getLinkedIndex(), getOneBestIndex(), getScore(), getScoresPtr(), increaseAnalysisResults(), initialize(), makeNBest(), merge(), operator=(), and setScore().\hypertarget{classkmaOrange_1_1Eojul_5f1574885a666b893e06b867871857c9}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-sizeBuffer@{\_\-sizeBuffer}}
+\index{\_\-sizeBuffer@{\_\-sizeBuffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-sizeBuffer}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::\_\-sizeBuffer}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_5f1574885a666b893e06b867871857c9}
+
+
+the size of a set string. 
+
+
+
+Definition at line 461 of file Eojul.h.
+
+Referenced by doubleBuffer(), Eojul(), getBufferSize(), initialize(), operator=(), setEojulAndInfo(), setMorphAndTag(), and $\sim$Eojul().\hypertarget{classkmaOrange_1_1Eojul_6e408f24277429307fc5a440e81118d1}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-tags@{\_\-tags}}
+\index{\_\-tags@{\_\-tags}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-tags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int$\ast$ {\bf kmaOrange::Eojul::\_\-tags}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_6e408f24277429307fc5a440e81118d1}
+
+
+the buffers of POS tags. 
+
+
+
+Definition at line 456 of file Eojul.h.
+
+Referenced by addEojulInfo(), append(), backmerge(), doubleBuffer(), Eojul(), freeBuffer(), getBufferByIndex(), getEojulInfo(), getLexicon(), getPOS(), getTagsPtr(), initialize(), merge(), operator=(), setEojulAndInfo(), setEojulInfo(), and setMorphAndTag().\hypertarget{classkmaOrange_1_1Eojul_37e50c4a7cc8c3f5b9d93c9148778c6d}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!\_\-wcharDelimiter@{\_\-wcharDelimiter}}
+\index{\_\-wcharDelimiter@{\_\-wcharDelimiter}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{\_\-wcharDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf Eojul::\_\-wcharDelimiter} = \char`\"{}£¡:£§:£¬:£®:£¯:£º:£»:£¿:£Þ:£ß:£à:£ü:£þ:¡¢:¡£:¡¤:¡¥:¡¦:¡§:¡¨:¡©:¡ª:¡«:¡¬:¡­:¢¥:¢¦:¢§:¢¨:¢©:¢ª:¢«:¢¬:¢­:¢®:¢¯:¢°:£¢:£¨:£©:£Û:£Ý:£û:£ý:¡®:¡¯:¡°:¡±:¡²:¡³:¡´:¡µ:¡¶:¡·:¡¸:¡¹:¡º:¡»:¡¼:¡½:£«:£­:£¼:£½:£¾:¡¾:¡¿:¡À:¡Á:¡Â:¡Ã:¡Ä:¡Å:¡Î:¡Ï:¡Ð:¡Ñ:¡Ò:¡Ó:¡Ô:¡Õ:¡Ö:¡ì:¡í:¡î:¡ï:¡ð:¡ñ:¡ò:¡ó:¡ô:¡õ:¡ö:¡÷:¡ø:¡ù:¡ú:¡û:¡ü:¡ý:¡þ:¢¡:¢¢:¢£:¢¤:¢±:¢²:¢³:£¤:£¥:£Ü:£Æ:¡Ç:¡È:¡É:¡Ê:¡Ë:¡Ì:¡Í:¢´:¢µ:¢¶:?:§¡:§¢:§£:§¥:§¦:§§:§¨:§©:§ª:§«:§¬:§­:§®:§¯:§°:§±:§²:§³:§´:§µ:§¶:§·:§¸:§¹:§º:§»:§¼:§½:§¾:§¿:§À:§Á:§Â:§Ã:§Ä:§Å:§Æ:§Ç:§È:§É:§Ê:§Ë:§Ì:§Í:§Î:§Ï:§Ð:§Ñ:§Ò:§Ó:§Ô:§Õ:§Ö:§×:§Ø:§Ù:§Ú:§Û:§Ü:§Ý:§Þ:§ß:§à:§á:§â:§ã:§ä:§å:§æ:§ç:§è:§é:§ê:§ë:§ì:§í:§î:§ï:££:£¦:£ª:£À:¡×:¡Ø:¡Ù:¡Ú:¡Û:¡Ü:¡Ý:¡Þ:¡ß:¡à:¡á:¡â:¡ã:¡ä:¡å:¡æ:¡ç:¡è:¡é:¡ê:¡ë:¢¹:¢¸:¢¹:¢º:¢»:¢¼:¢½:¢¾:¢¿:¢Á:¢Â:¢Ã:¢Ä:¢Å:¢Æ:¢Ç:¢È:¢É:¢Ê:¢Ë:¢Ì:¢Í:¢Î:¢Ï:¢Ð:¢Ñ:¢Ò:¢Ó:¢Ô:¢Õ:¢Ö:¢×:¢Ø:¢Ù:¢Ú:¢Û:¢Ü:¢Ý:¢Þ:¢ß:¢à:¢á:¢â:¢ã:¢ä:¢å:?:¨£:¨¬:¦¡:¦¢:¦£:¦¤:¦¥:¦¦:¦§:¦¨:¦©:¦ª:¦«:¦¬:¦­:¦®:¦¯:¦°:¦±:¦²:¦³:¦´:¦µ:¦¶:¦·:¦¸:¦¹:¦º:¦»:¦¼:¦½:¦¾:¦¿:¦À:¦Á:¦Â:¦Ã:¦Ä:¦Å:¦Æ:¦Ç:¦È:¦É:¦Ê:¦Ë:¦Ì:¦Í:¦Î:¦Ï:¦Ð:¦Ñ:¦Ò:¦Ô:¦Õ:¦Ö:¦×:¦Ø:¦Ù:¦Ú:¦Û:¦Ü:¦Ý:¦Þ:¦ß:¦à:¦á:¦â:¦ã:¦ä:¨±:¨²:¨³:¨´:¨µ:¨¶:¨·:¨¸:¨¹:¨º:¨»:¨¼:¨½:¨¾:¨¿:¨À:¨Á:¨Â:¨Ã:¨Ä:¨Å:¨Æ:¨Ç:¨È:¨É:¨Ê:¨Ë:¨Ì:©±:©²:©³:©´:©µ:©¶:©·:©¸:©¹:©º:©»:©¼:©½:©¾:©¿:©À:©Á:©Â:©Ã:©Ä:©Å:©Æ:©Ç:©È:©É:©Ê:©Ë:©Ì:¨Í:¨Î:¨Ï:¨Ð:¨Ñ:¨Ò:¨Ó:¨Ô:¨Õ:¨Ö:¨×:¨Ø:¨Ù:¨Ú:¨Û:¨Ü:¨Ý:¨Þ:¨ß:¨à:¨á:¨â:¨ã:¨ä:¨å:¨æ:¨ç:¨è:¨é:¨ê:¨ë:¨ì:¨í:¨î:¨ï:¨ð:¨ñ:¨ò:¨ó:¨ô:¨õ:©Í:©Î:©Ï:©Ð:©Ñ:©Ò:©Ó:©Ô:©Õ:©Ö:©×:©Ø:©Ù:©Ú:©Û:©Ü:©Ý:©Þ:©ß:©à:©á:©â:©ã:©ä:©å:©æ:©ç:©è:©é:©ê:©ë:©ì:©í:©î:©ï:©ð:©ñ:©ò:©ó:©ô:©õ:£°:£±:£²:£³:£´:£µ:£¶:£·:£¸:£¹:¥¡:¥¢:¥£:¥¤:¥¥:¥¦:¥§:¥¨:¥©:¥ª:¥°:¥±:¥²:¥³:¥´:¥µ:¥¶:¥·:¥¸:¥¹:¨ö:¨÷:¨ø:¨ù:¨ú:¨û:¨ü:¨ý:¨þ:©ö:©÷:©ø:©ù:©ú:©û:©ü:©ý:©þ\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1Eojul_37e50c4a7cc8c3f5b9d93c9148778c6d}
+
+
+the set of 2 bytes special characters. 
+
+
+
+Definition at line 469 of file Eojul.h.
+
+Referenced by setString().\hypertarget{classkmaOrange_1_1Eojul_b2aa292fb85f8b077bd2557486c14c7c}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!innerBuffer@{innerBuffer}}
+\index{innerBuffer@{innerBuffer}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{innerBuffer}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf kmaOrange::Eojul::innerBuffer}\mbox{[}DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE\mbox{]}}}
+\label{classkmaOrange_1_1Eojul_b2aa292fb85f8b077bd2557486c14c7c}
+
+
+the inner buffers of strings. 
+
+
+
+Definition at line 33 of file Eojul.h.
+
+Referenced by Eojul(), and initialize().\hypertarget{classkmaOrange_1_1Eojul_45250405dd37c74a0ca0f0b4337ac530}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!innerCounts@{innerCounts}}
+\index{innerCounts@{innerCounts}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{innerCounts}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::innerCounts}\mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)\mbox{]}}}
+\label{classkmaOrange_1_1Eojul_45250405dd37c74a0ca0f0b4337ac530}
+
+
+the inner buffers of counts. 
+
+
+
+Definition at line 35 of file Eojul.h.
+
+Referenced by Eojul(), and initialize().\hypertarget{classkmaOrange_1_1Eojul_0a71104cfa77269014fbeda1ea3b7bc3}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!innerOrders@{innerOrders}}
+\index{innerOrders@{innerOrders}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{innerOrders}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::innerOrders}\mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)$\ast$2\mbox{]}}}
+\label{classkmaOrange_1_1Eojul_0a71104cfa77269014fbeda1ea3b7bc3}
+
+
+the inner buffers of orders. 
+
+
+
+Definition at line 37 of file Eojul.h.
+
+Referenced by freeBuffer(), and makeNBest().\hypertarget{classkmaOrange_1_1Eojul_e10befde2c1799eff5acd90ec6576c38}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!innerScores@{innerScores}}
+\index{innerScores@{innerScores}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{innerScores}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf kmaOrange::Eojul::innerScores}\mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-COUNTS)\mbox{]}}}
+\label{classkmaOrange_1_1Eojul_e10befde2c1799eff5acd90ec6576c38}
+
+
+the inner buffers of scores. 
+
+
+
+Definition at line 36 of file Eojul.h.
+
+Referenced by Eojul(), and initialize().\hypertarget{classkmaOrange_1_1Eojul_1b9b12447345aba5ca62e817b15f1810}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!innerTags@{innerTags}}
+\index{innerTags@{innerTags}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{innerTags}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::innerTags}\mbox{[}(int)(DEFAULT\_\-EOJUL\_\-BUFFER\_\-SIZE/RATIO\_\-BUFFER\_\-AND\_\-TAGS)\mbox{]}}}
+\label{classkmaOrange_1_1Eojul_1b9b12447345aba5ca62e817b15f1810}
+
+
+the inner buffers of POS tags. 
+
+
+
+Definition at line 34 of file Eojul.h.
+
+Referenced by Eojul(), and initialize().\hypertarget{classkmaOrange_1_1Eojul_8abf826575d133204bec14ccda72f785}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!mIndexLength@{mIndexLength}}
+\index{mIndexLength@{mIndexLength}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{mIndexLength}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::mIndexLength}}}
+\label{classkmaOrange_1_1Eojul_8abf826575d133204bec14ccda72f785}
+
+
+the length of DIGIT or ALPHABET, which is a index word. 
+
+
+
+Definition at line 200 of file Eojul.h.
+
+Referenced by isIndexWord(), and kmaOrange::MAnalyzer::setOption().\hypertarget{classkmaOrange_1_1Eojul_7877b8626b70ffa209224c977757899f}{
+\index{kmaOrange::Eojul@{kmaOrange::Eojul}!mIndexTagSet@{mIndexTagSet}}
+\index{mIndexTagSet@{mIndexTagSet}!kmaOrange::Eojul@{kmaOrange::Eojul}}
+\subsubsection[{mIndexTagSet}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::Eojul::mIndexTagSet}}}
+\label{classkmaOrange_1_1Eojul_7877b8626b70ffa209224c977757899f}
+
+
+the set of index POS tags. 
+
+
+
+Definition at line 199 of file Eojul.h.
+
+Referenced by isIndexWord(), kmaOrange::MAnalyzer::setDefault(), and kmaOrange::MAnalyzer::setOption().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{Eojul_8h}{Eojul.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{Eojul_8cpp}{Eojul.cpp}\end{CompactItemize}

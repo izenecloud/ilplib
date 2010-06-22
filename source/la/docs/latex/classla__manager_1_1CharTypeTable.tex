@@ -1,0 +1,413 @@
+\hypertarget{classla__manager_1_1CharTypeTable}{
+\section{la\_\-manager::CharTypeTable Class Reference}
+\label{classla__manager_1_1CharTypeTable}\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+}
+class of char type table This class record the char type table for tokenizer to look up  
+
+
+{\tt \#include $<$Tokenizer.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1CharTypeTable_4faeb450b4c48e55459ade19145652a2}{CharTypeTable} ()
+\item 
+void \hyperlink{classla__manager_1_1CharTypeTable_53548c650bdf26954fe3b4443290827c}{setConfig} (const \hyperlink{classla__manager_1_1TokenizeConfig}{TokenizeConfig} \&conf)
+\begin{CompactList}\small\item\em change the char type table according to user's defined option list \item\end{CompactList}\item 
+void \hyperlink{classla__manager_1_1CharTypeTable_de4d78b3913cb199ca359d989f73ab30}{setDefinedType} (UCS2Char c, const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} dtype)
+\begin{CompactList}\small\item\em set the defined type for specific char \item\end{CompactList}\item 
+void \hyperlink{classla__manager_1_1CharTypeTable_6f3e4cc8a2f71aee53a5abf4734a2757}{setDefaultType} (UCS2Char c, const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} dtype)
+\begin{CompactList}\small\item\em set the default type for specific char \item\end{CompactList}\item 
+\hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_5b4079ad0b89f6c84053ee955e3bc312}{getDefinedType} (UCS2Char c)
+\begin{CompactList}\small\item\em get the defined type for specific char \item\end{CompactList}\item 
+\hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_af12cb9b55886d533da4270683655d2b}{getDefaultType} (UCS2Char c)
+\begin{CompactList}\small\item\em get the default type for specific char \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_872ee1be76a6008bf86b2255b16d3679}{isDefaultAllow} (UCS2Char c)
+\begin{CompactList}\small\item\em check whether default allow \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_8d9a80838209b03f1003a4e0e6157011}{isDefaultDivide} (UCS2Char c)
+\begin{CompactList}\small\item\em check whether default divide \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_9fcbc2d5747462459023da70ccf0631d}{isDefinedAllow} (UCS2Char c)
+\begin{CompactList}\small\item\em check whether defined allow \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_ad7404ec8db73433231eec802efea540}{isDefinedDivide} (UCS2Char c)
+\begin{CompactList}\small\item\em check whether defined divide \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_e804d650ddf512317379b6b0bdca79e3}{isDefinedUnite} (UCS2Char c)
+\begin{CompactList}\small\item\em check whether defined unit \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_98b7aabf9aad40b466d02a3caa023c6c}{isDefaultEqual} (UCS2Char c1, UCS2Char c2)
+\begin{CompactList}\small\item\em check whether two chars has the same default type \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1CharTypeTable_bcbf2007f841e5cbb37ff00e3fa8584a}{isDefinedEqual} (UCS2Char c1, UCS2Char c2)
+\begin{CompactList}\small\item\em check whether two chars has the same defined type \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_f3e49258e07d5f67515de16598ef70b3}{DEFAULT\_\-ALLOW} = 0x00
+\begin{CompactList}\small\item\em \char`\"{}xxxx 0000\char`\"{} use the lower 4 bit to encode default char type: char allow is to be indexed, e.g. 'A' and 'B' in \char`\"{}A\#B\char`\"{} \item\end{CompactList}\item 
+static const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_3e1273a73ef3b0f495c08b53e0fb17ce}{DEFAULT\_\-DIVIDE} = 0x01
+\begin{CompactList}\small\item\em \char`\"{}xxxx 0001\char`\"{} delimiter character that should removed and divide the string. e.g. '\#' in \char`\"{}A\#B\char`\"{} if we set \char`\"{}\#\char`\"{} to be \char`\"{}divide\char`\"{}, and the result terms are \char`\"{}A\char`\"{}, \char`\"{}B\char`\"{} \item\end{CompactList}\item 
+static const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_24cd292ce579aec3623576c01f825711}{DEFINED\_\-ALLOW} = 0x00
+\begin{CompactList}\small\item\em \char`\"{}0000 xxxx\char`\"{} use the higher 4 bit to encode the regulator option type defined by user \item\end{CompactList}\item 
+static const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_0f2478ccc6c68f09e814030b82bf0b3e}{DEFINED\_\-DIVIDE} = 0x10
+\begin{CompactList}\small\item\em \char`\"{}0001 xxxx\char`\"{} \item\end{CompactList}\item 
+static const \hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_7c1779063e32cc836decb19a51ada7bb}{DEFINED\_\-UNITE} = 0x20
+\begin{CompactList}\small\item\em \char`\"{}0010 xxxx\char`\"{} ignored character that should be removed but not divide the string, e.g. if we set \char`\"{}\# to be \char`\"{}unite\char`\"{}, the result term will be \char`\"{}AB\char`\"{} \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{namespacela__manager_aa4b42b4146948a208eabd25288ad99b}{CharType} \hyperlink{classla__manager_1_1CharTypeTable_a310585720c29aff0eed743865ead8fc}{charTypeTable} \mbox{[}\hyperlink{namespacela__manager_209bf4bd6bbc83558619fa8b8f6dc451}{TWO\_\-BYPE\_\-MAX}\mbox{]}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+class of char type table This class record the char type table for tokenizer to look up 
+
+Definition at line 59 of file Tokenizer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1CharTypeTable_4faeb450b4c48e55459ade19145652a2}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!CharTypeTable@{CharTypeTable}}
+\index{CharTypeTable@{CharTypeTable}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{CharTypeTable}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::CharTypeTable::CharTypeTable ()}}
+\label{classla__manager_1_1CharTypeTable_4faeb450b4c48e55459ade19145652a2}
+
+
+
+
+Definition at line 12 of file Tokenizer.cpp.
+
+References charTypeTable, DEFAULT\_\-DIVIDE, DEFINED\_\-DIVIDE, setDefaultType(), setDefinedType(), and la\_\-manager::TWO\_\-BYPE\_\-MAX.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1CharTypeTable_af12cb9b55886d533da4270683655d2b}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!getDefaultType@{getDefaultType}}
+\index{getDefaultType@{getDefaultType}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{getDefaultType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CharType} la\_\-manager::CharTypeTable::getDefaultType (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_af12cb9b55886d533da4270683655d2b}
+
+
+get the default type for specific char 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]default type \end{Desc}
+
+
+Definition at line 100 of file Tokenizer.h.
+
+References charTypeTable.
+
+Referenced by isDefaultAllow(), isDefaultDivide(), and isDefaultEqual().\hypertarget{classla__manager_1_1CharTypeTable_5b4079ad0b89f6c84053ee955e3bc312}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!getDefinedType@{getDefinedType}}
+\index{getDefinedType@{getDefinedType}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{getDefinedType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CharType} la\_\-manager::CharTypeTable::getDefinedType (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_5b4079ad0b89f6c84053ee955e3bc312}
+
+
+get the defined type for specific char 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]defined type \end{Desc}
+
+
+Definition at line 93 of file Tokenizer.h.
+
+References charTypeTable.
+
+Referenced by isDefinedAllow(), isDefinedDivide(), isDefinedEqual(), and isDefinedUnite().\hypertarget{classla__manager_1_1CharTypeTable_872ee1be76a6008bf86b2255b16d3679}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefaultAllow@{isDefaultAllow}}
+\index{isDefaultAllow@{isDefaultAllow}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefaultAllow}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefaultAllow (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_872ee1be76a6008bf86b2255b16d3679}
+
+
+check whether default allow 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 107 of file Tokenizer.h.
+
+References DEFAULT\_\-ALLOW, and getDefaultType().\hypertarget{classla__manager_1_1CharTypeTable_8d9a80838209b03f1003a4e0e6157011}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefaultDivide@{isDefaultDivide}}
+\index{isDefaultDivide@{isDefaultDivide}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefaultDivide}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefaultDivide (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_8d9a80838209b03f1003a4e0e6157011}
+
+
+check whether default divide 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 114 of file Tokenizer.h.
+
+References DEFAULT\_\-DIVIDE, and getDefaultType().
+
+Referenced by la\_\-manager::Tokenizer::tokenize().\hypertarget{classla__manager_1_1CharTypeTable_98b7aabf9aad40b466d02a3caa023c6c}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefaultEqual@{isDefaultEqual}}
+\index{isDefaultEqual@{isDefaultEqual}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefaultEqual}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefaultEqual (UCS2Char {\em c1}, \/  UCS2Char {\em c2})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_98b7aabf9aad40b466d02a3caa023c6c}
+
+
+check whether two chars has the same default type 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 142 of file Tokenizer.h.
+
+References getDefaultType().\hypertarget{classla__manager_1_1CharTypeTable_9fcbc2d5747462459023da70ccf0631d}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefinedAllow@{isDefinedAllow}}
+\index{isDefinedAllow@{isDefinedAllow}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefinedAllow}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefinedAllow (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_9fcbc2d5747462459023da70ccf0631d}
+
+
+check whether defined allow 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 121 of file Tokenizer.h.
+
+References DEFINED\_\-ALLOW, and getDefinedType().
+
+Referenced by la\_\-manager::Tokenizer::setTermType(), and la\_\-manager::Tokenizer::tokenize().\hypertarget{classla__manager_1_1CharTypeTable_ad7404ec8db73433231eec802efea540}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefinedDivide@{isDefinedDivide}}
+\index{isDefinedDivide@{isDefinedDivide}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefinedDivide}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefinedDivide (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_ad7404ec8db73433231eec802efea540}
+
+
+check whether defined divide 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 128 of file Tokenizer.h.
+
+References DEFINED\_\-DIVIDE, and getDefinedType().
+
+Referenced by la\_\-manager::Tokenizer::tokenize().\hypertarget{classla__manager_1_1CharTypeTable_bcbf2007f841e5cbb37ff00e3fa8584a}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefinedEqual@{isDefinedEqual}}
+\index{isDefinedEqual@{isDefinedEqual}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefinedEqual}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefinedEqual (UCS2Char {\em c1}, \/  UCS2Char {\em c2})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_bcbf2007f841e5cbb37ff00e3fa8584a}
+
+
+check whether two chars has the same defined type 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 149 of file Tokenizer.h.
+
+References getDefinedType().\hypertarget{classla__manager_1_1CharTypeTable_e804d650ddf512317379b6b0bdca79e3}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!isDefinedUnite@{isDefinedUnite}}
+\index{isDefinedUnite@{isDefinedUnite}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{isDefinedUnite}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::CharTypeTable::isDefinedUnite (UCS2Char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_e804d650ddf512317379b6b0bdca79e3}
+
+
+check whether defined unit 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]true if so, else false \end{Desc}
+
+
+Definition at line 135 of file Tokenizer.h.
+
+References DEFINED\_\-UNITE, and getDefinedType().\hypertarget{classla__manager_1_1CharTypeTable_53548c650bdf26954fe3b4443290827c}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!setConfig@{setConfig}}
+\index{setConfig@{setConfig}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{setConfig}]{\setlength{\rightskip}{0pt plus 5cm}void la\_\-manager::CharTypeTable::setConfig (const {\bf TokenizeConfig} \& {\em conf})}}
+\label{classla__manager_1_1CharTypeTable_53548c650bdf26954fe3b4443290827c}
+
+
+change the char type table according to user's defined option list 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]user defined option list \end{description}
+\end{Desc}
+
+
+Definition at line 26 of file Tokenizer.cpp.
+
+References la\_\-manager::TokenizeConfig::allows, DEFINED\_\-ALLOW, DEFINED\_\-DIVIDE, DEFINED\_\-UNITE, la\_\-manager::TokenizeConfig::divides, setDefinedType(), and la\_\-manager::TokenizeConfig::unites.
+
+Referenced by la\_\-manager::Tokenizer::setConfig().\hypertarget{classla__manager_1_1CharTypeTable_6f3e4cc8a2f71aee53a5abf4734a2757}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!setDefaultType@{setDefaultType}}
+\index{setDefaultType@{setDefaultType}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{setDefaultType}]{\setlength{\rightskip}{0pt plus 5cm}void la\_\-manager::CharTypeTable::setDefaultType (UCS2Char {\em c}, \/  const {\bf CharType} {\em dtype})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_6f3e4cc8a2f71aee53a5abf4734a2757}
+
+
+set the default type for specific char 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \item[{\em dtype}]type \end{description}
+\end{Desc}
+
+
+Definition at line 85 of file Tokenizer.h.
+
+References charTypeTable.
+
+Referenced by CharTypeTable().\hypertarget{classla__manager_1_1CharTypeTable_de4d78b3913cb199ca359d989f73ab30}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!setDefinedType@{setDefinedType}}
+\index{setDefinedType@{setDefinedType}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{setDefinedType}]{\setlength{\rightskip}{0pt plus 5cm}void la\_\-manager::CharTypeTable::setDefinedType (UCS2Char {\em c}, \/  const {\bf CharType} {\em dtype})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_de4d78b3913cb199ca359d989f73ab30}
+
+
+set the defined type for specific char 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em c}]char \item[{\em dtype}]type \end{description}
+\end{Desc}
+
+
+Definition at line 77 of file Tokenizer.h.
+
+References charTypeTable.
+
+Referenced by CharTypeTable(), and setConfig().
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1CharTypeTable_a310585720c29aff0eed743865ead8fc}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!charTypeTable@{charTypeTable}}
+\index{charTypeTable@{charTypeTable}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{charTypeTable}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CharType} {\bf la\_\-manager::CharTypeTable::charTypeTable}\mbox{[}{\bf TWO\_\-BYPE\_\-MAX}\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_a310585720c29aff0eed743865ead8fc}
+
+
+
+
+Definition at line 60 of file Tokenizer.h.
+
+Referenced by CharTypeTable(), getDefaultType(), getDefinedType(), setDefaultType(), and setDefinedType().\hypertarget{classla__manager_1_1CharTypeTable_f3e49258e07d5f67515de16598ef70b3}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!DEFAULT\_\-ALLOW@{DEFAULT\_\-ALLOW}}
+\index{DEFAULT\_\-ALLOW@{DEFAULT\_\-ALLOW}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{DEFAULT\_\-ALLOW}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf CharType} {\bf la\_\-manager::CharTypeTable::DEFAULT\_\-ALLOW} = 0x00\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_f3e49258e07d5f67515de16598ef70b3}
+
+
+\char`\"{}xxxx 0000\char`\"{} use the lower 4 bit to encode default char type: char allow is to be indexed, e.g. 'A' and 'B' in \char`\"{}A\#B\char`\"{} 
+
+
+
+Definition at line 62 of file Tokenizer.h.
+
+Referenced by isDefaultAllow().\hypertarget{classla__manager_1_1CharTypeTable_3e1273a73ef3b0f495c08b53e0fb17ce}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!DEFAULT\_\-DIVIDE@{DEFAULT\_\-DIVIDE}}
+\index{DEFAULT\_\-DIVIDE@{DEFAULT\_\-DIVIDE}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{DEFAULT\_\-DIVIDE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf CharType} {\bf la\_\-manager::CharTypeTable::DEFAULT\_\-DIVIDE} = 0x01\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_3e1273a73ef3b0f495c08b53e0fb17ce}
+
+
+\char`\"{}xxxx 0001\char`\"{} delimiter character that should removed and divide the string. e.g. '\#' in \char`\"{}A\#B\char`\"{} if we set \char`\"{}\#\char`\"{} to be \char`\"{}divide\char`\"{}, and the result terms are \char`\"{}A\char`\"{}, \char`\"{}B\char`\"{} 
+
+
+
+Definition at line 63 of file Tokenizer.h.
+
+Referenced by CharTypeTable(), and isDefaultDivide().\hypertarget{classla__manager_1_1CharTypeTable_24cd292ce579aec3623576c01f825711}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!DEFINED\_\-ALLOW@{DEFINED\_\-ALLOW}}
+\index{DEFINED\_\-ALLOW@{DEFINED\_\-ALLOW}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{DEFINED\_\-ALLOW}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf CharType} {\bf la\_\-manager::CharTypeTable::DEFINED\_\-ALLOW} = 0x00\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_24cd292ce579aec3623576c01f825711}
+
+
+\char`\"{}0000 xxxx\char`\"{} use the higher 4 bit to encode the regulator option type defined by user 
+
+
+
+Definition at line 64 of file Tokenizer.h.
+
+Referenced by isDefinedAllow(), and setConfig().\hypertarget{classla__manager_1_1CharTypeTable_0f2478ccc6c68f09e814030b82bf0b3e}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!DEFINED\_\-DIVIDE@{DEFINED\_\-DIVIDE}}
+\index{DEFINED\_\-DIVIDE@{DEFINED\_\-DIVIDE}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{DEFINED\_\-DIVIDE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf CharType} {\bf la\_\-manager::CharTypeTable::DEFINED\_\-DIVIDE} = 0x10\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_0f2478ccc6c68f09e814030b82bf0b3e}
+
+
+\char`\"{}0001 xxxx\char`\"{} 
+
+
+
+Definition at line 65 of file Tokenizer.h.
+
+Referenced by CharTypeTable(), isDefinedDivide(), and setConfig().\hypertarget{classla__manager_1_1CharTypeTable_7c1779063e32cc836decb19a51ada7bb}{
+\index{la\_\-manager::CharTypeTable@{la\_\-manager::CharTypeTable}!DEFINED\_\-UNITE@{DEFINED\_\-UNITE}}
+\index{DEFINED\_\-UNITE@{DEFINED\_\-UNITE}!la_manager::CharTypeTable@{la\_\-manager::CharTypeTable}}
+\subsubsection[{DEFINED\_\-UNITE}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf CharType} {\bf la\_\-manager::CharTypeTable::DEFINED\_\-UNITE} = 0x20\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1CharTypeTable_7c1779063e32cc836decb19a51ada7bb}
+
+
+\char`\"{}0010 xxxx\char`\"{} ignored character that should be removed but not divide the string, e.g. if we set \char`\"{}\# to be \char`\"{}unite\char`\"{}, the result term will be \char`\"{}AB\char`\"{} 
+
+
+
+Definition at line 66 of file Tokenizer.h.
+
+Referenced by isDefinedUnite(), and setConfig().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{Tokenizer_8h}{Tokenizer.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{Tokenizer_8cpp}{Tokenizer.cpp}\end{CompactItemize}

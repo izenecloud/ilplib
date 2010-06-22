@@ -1,0 +1,623 @@
+\hypertarget{classkmaOrange_1_1StrStream}{
+\section{kmaOrange::StrStream Class Reference}
+\label{classkmaOrange_1_1StrStream}\index{kmaOrange::StrStream@{kmaOrange::StrStream}}
+}
+This class manages the input and output of the KMA.  
+
+
+{\tt \#include $<$StrStream.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1StrStream_1298b43a81e72deebca46f146dad02e8}{StrStream} (\hyperlink{classStringEx}{StringEx} nameinfile, \hyperlink{classStringEx}{StringEx} nameoutfile)
+\begin{CompactList}\small\item\em This function is a constructor of a \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1StrStream_43671c7f0630f630c346e61df2e8ec5b}{StrStream} (\hyperlink{classStringEx}{StringEx} nameinfile)
+\item 
+\hyperlink{classkmaOrange_1_1StrStream_f828ced82d9272444be6bcfc60b33fd5}{StrStream} ()
+\item 
+\hyperlink{classkmaOrange_1_1StrStream_49071b602f5e14265b81c2280c8c56de}{$\sim$StrStream} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_0edd64d2f685a6009bf551b3599cb151}{write} (const char $\ast$pstr)
+\begin{CompactList}\small\item\em This function outputs the input string to the set output stream. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_c466e1f8494ee24b4cfe7e24ef20682e}{write} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+void \hyperlink{classkmaOrange_1_1StrStream_04f651a33a14034c003763cd46ce7920}{writeLine} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\begin{CompactList}\small\item\em This function outputs the input string to the set output stream on one line. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_c61d2e7c94badd87624c973a1682096a}{getLine} (\hyperlink{classStringEx}{StringEx} \&strex)
+\begin{CompactList}\small\item\em This function gets the string of a line in an input file. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1StrStream_2a65fe8f2e6a748e719f24a5ba415074}{getLine} ()
+\begin{CompactList}\small\item\em This function gets the string of a line in an input file. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_8f51bbfc68c5f84a299134f7c85097da}{cinGetLine} (char $\ast$pstr, int MAX)
+\begin{CompactList}\small\item\em This function gets the string of a line from the standard input. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_6a1562a9ccdd5ca9c935a904aa27e250}{setStream} (\hyperlink{classStringEx}{StringEx} nameinfile, \hyperlink{classStringEx}{StringEx} nameoutfile)
+\begin{CompactList}\small\item\em This function sets both the input stream and the output stream to the file. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_d2fc861331ed65e13c09eaf55b4456d8}{setStream} (\hyperlink{classStringEx}{StringEx} nameinfile)
+\begin{CompactList}\small\item\em This function sets the input stream to the file, and sets the output stream to the standard output. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_2a79107f7cdaaeafa95e6da05cbea3d1}{setInStream} (\hyperlink{classStringEx}{StringEx} nameinfile)
+\begin{CompactList}\small\item\em This function sets the input stream to the file. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_afc296be71f9d177e34e658e97ec64bd}{setOutStream} (\hyperlink{classStringEx}{StringEx} nameoutfile)
+\begin{CompactList}\small\item\em This function sets the output stream to the file. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1StrStream_34015d2312ef738560106c753582506b}{close} ()
+\begin{CompactList}\small\item\em This function closes both the input stream and the output stream. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_4a78cce030396f522ec87618e097da57}{isInEOF} ()
+\begin{CompactList}\small\item\em This function checks whether the current position of the input stream is the end of the input stream or not. \item\end{CompactList}\item 
+std::istream \& \hyperlink{classkmaOrange_1_1StrStream_54f1c6671fa352d232aff029810bdcd9}{getInStream} ()
+\begin{CompactList}\small\item\em This function gets the input stream. \item\end{CompactList}\item 
+std::ostream \& \hyperlink{classkmaOrange_1_1StrStream_c08555e223358f4758518cd678161cf2}{getOutStream} ()
+\begin{CompactList}\small\item\em This function gets the output stream. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1StrStream_d34724e619d312651ab85ac9a70b4e03}{IsInFileOpen} ()
+\begin{CompactList}\small\item\em This function checks whether the input stream is the file or not. \item\end{CompactList}\item 
+bool \hyperlink{classkmaOrange_1_1StrStream_d48ff9ac58ada57fbfded35c0e50ee6e}{IsOutFileOpen} ()
+\begin{CompactList}\small\item\em This function checks whether the output stream is the file or not. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+ifstream \hyperlink{classkmaOrange_1_1StrStream_a24688ba32500f2f906c7f89eca4e667}{\_\-fin}
+\begin{CompactList}\small\item\em file input stream. \item\end{CompactList}\item 
+ofstream \hyperlink{classkmaOrange_1_1StrStream_7d971213b6446bbb7fec046702959edb}{\_\-fout}
+\begin{CompactList}\small\item\em file output stream. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_4e12ef11501334df836783f1f5328436}{\_\-status}
+\begin{CompactList}\small\item\em this variable stores whether the input stream or the output stream is created or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_47f0d0b245d807cefd3e6755ac27488f}{\_\-isInFile}
+\begin{CompactList}\small\item\em this variable stores whether the input stream is the file or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1StrStream_7cf62f7fb6c32f88966896ed486980a0}{\_\-isOutFile}
+\begin{CompactList}\small\item\em this variable stores whether the output stream is the file or not. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \& \hyperlink{classkmaOrange_1_1StrStream_410bc1a06275f285fbd7e5e77f5584a2}{operator$<$$<$} (\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \&sout, const \hyperlink{classStringEx}{StringEx} \&strex)
+\begin{CompactList}\small\item\em This function outputs the input string to the set output stream. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \& \hyperlink{classkmaOrange_1_1StrStream_b601ecae9d38437878116f4d2f1a70c9}{operator$<$$<$} (\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \&sout, const char $\ast$pstr)
+\item 
+\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \& \hyperlink{classkmaOrange_1_1StrStream_c6389cf6b3e7bf3dd2b00fd219351eb4}{operator$<$$<$} (\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \&sout, const char ch)
+\item 
+\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \& \hyperlink{classkmaOrange_1_1StrStream_3dc307219c9aa34369ba14448e84f855}{operator$<$$<$} (\hyperlink{classkmaOrange_1_1StrStream}{StrStream} \&sout, const int n)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class manages the input and output of the KMA. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 29 of file StrStream.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1StrStream_1298b43a81e72deebca46f146dad02e8}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!StrStream@{StrStream}}
+\index{StrStream@{StrStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{StrStream}]{\setlength{\rightskip}{0pt plus 5cm}StrStream::StrStream ({\bf StringEx} {\em nameinfile}, \/  {\bf StringEx} {\em nameoutfile})}}
+\label{classkmaOrange_1_1StrStream_1298b43a81e72deebca46f146dad02e8}
+
+
+This function is a constructor of a \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nameinfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an input file. \item[{\em nameoutfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an output file. \end{description}
+\end{Desc}
+
+
+Definition at line 24 of file StrStream.cpp.
+
+References setInStream(), and setOutStream().\hypertarget{classkmaOrange_1_1StrStream_43671c7f0630f630c346e61df2e8ec5b}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!StrStream@{StrStream}}
+\index{StrStream@{StrStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{StrStream}]{\setlength{\rightskip}{0pt plus 5cm}StrStream::StrStream ({\bf StringEx} {\em nameinfile})}}
+\label{classkmaOrange_1_1StrStream_43671c7f0630f630c346e61df2e8ec5b}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 19 of file StrStream.cpp.
+
+References setInStream().\hypertarget{classkmaOrange_1_1StrStream_f828ced82d9272444be6bcfc60b33fd5}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!StrStream@{StrStream}}
+\index{StrStream@{StrStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{StrStream}]{\setlength{\rightskip}{0pt plus 5cm}StrStream::StrStream ()}}
+\label{classkmaOrange_1_1StrStream_f828ced82d9272444be6bcfc60b33fd5}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 14 of file StrStream.cpp.
+
+References \_\-status.\hypertarget{classkmaOrange_1_1StrStream_49071b602f5e14265b81c2280c8c56de}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!$\sim$StrStream@{$\sim$StrStream}}
+\index{$\sim$StrStream@{$\sim$StrStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{$\sim$StrStream}]{\setlength{\rightskip}{0pt plus 5cm}StrStream::$\sim$StrStream ()}}
+\label{classkmaOrange_1_1StrStream_49071b602f5e14265b81c2280c8c56de}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 30 of file StrStream.cpp.
+
+References close().
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1StrStream_8f51bbfc68c5f84a299134f7c85097da}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!cinGetLine@{cinGetLine}}
+\index{cinGetLine@{cinGetLine}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{cinGetLine}]{\setlength{\rightskip}{0pt plus 5cm}int StrStream::cinGetLine (char $\ast$ {\em pstr}, \/  int {\em MAX})}}
+\label{classkmaOrange_1_1StrStream_8f51bbfc68c5f84a299134f7c85097da}
+
+
+This function gets the string of a line from the standard input. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pstr}]a pointer of a character - a string repository. \item[{\em MAX}]an integer - the maximum size of a string repository. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - MAX. \end{Desc}
+
+
+Definition at line 93 of file StrStream.cpp.\hypertarget{classkmaOrange_1_1StrStream_34015d2312ef738560106c753582506b}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!close@{close}}
+\index{close@{close}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{close}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::StrStream::close ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_34015d2312ef738560106c753582506b}
+
+
+This function closes both the input stream and the output stream. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 146 of file StrStream.h.
+
+References \_\-fin, \_\-fout, \_\-isInFile, and \_\-isOutFile.
+
+Referenced by kmaOrange::MAnalyzer::commonRunWithStream(), and $\sim$StrStream().\hypertarget{classkmaOrange_1_1StrStream_54f1c6671fa352d232aff029810bdcd9}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!getInStream@{getInStream}}
+\index{getInStream@{getInStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{getInStream}]{\setlength{\rightskip}{0pt plus 5cm}std::istream\& kmaOrange::StrStream::getInStream ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_54f1c6671fa352d232aff029810bdcd9}
+
+
+This function gets the input stream. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an indirect referencing pointer of a std::istream. \end{Desc}
+
+
+Definition at line 168 of file StrStream.h.
+
+References \_\-fin, and \_\-isInFile.\hypertarget{classkmaOrange_1_1StrStream_2a65fe8f2e6a748e719f24a5ba415074}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!getLine@{getLine}}
+\index{getLine@{getLine}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{getLine}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StrStream::getLine ()}}
+\label{classkmaOrange_1_1StrStream_2a65fe8f2e6a748e719f24a5ba415074}
+
+
+This function gets the string of a line in an input file. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a \hyperlink{classStringEx}{StringEx} object - a string of a line. \end{Desc}
+
+
+Definition at line 117 of file StrStream.cpp.
+
+References \_\-fin, \_\-isInFile, StringEx::setLength(), and SIZE\_\-LINE\_\-BUFFER.\hypertarget{classkmaOrange_1_1StrStream_c61d2e7c94badd87624c973a1682096a}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!getLine@{getLine}}
+\index{getLine@{getLine}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{getLine}]{\setlength{\rightskip}{0pt plus 5cm}int StrStream::getLine ({\bf StringEx} \& {\em strex})}}
+\label{classkmaOrange_1_1StrStream_c61d2e7c94badd87624c973a1682096a}
+
+
+This function gets the string of a line in an input file. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referencing pointer of a constant \hyperlink{classStringEx}{StringEx} object - a string repository. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 152 of file StrStream.cpp.
+
+References \_\-fin, \_\-isInFile, StringEx::getBufferSize(), StringEx::setBufferSize(), StringEx::setLength(), and SIZE\_\-LINE\_\-BUFFER.
+
+Referenced by kmaOrange::MAnalyzer::commonRunWithStream().\hypertarget{classkmaOrange_1_1StrStream_c08555e223358f4758518cd678161cf2}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!getOutStream@{getOutStream}}
+\index{getOutStream@{getOutStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{getOutStream}]{\setlength{\rightskip}{0pt plus 5cm}std::ostream\& kmaOrange::StrStream::getOutStream ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_c08555e223358f4758518cd678161cf2}
+
+
+This function gets the output stream. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an indirect referencing pointer of a std::ostream. \end{Desc}
+
+
+Definition at line 180 of file StrStream.h.
+
+References \_\-fout, and \_\-isOutFile.
+
+Referenced by kmaOrange::MAnalyzer::preprocessBeforeAnalysis(), kmaOrange::Tagger::showResult(), and kmaOrange::MAnalyzer::tokenizeSentence().\hypertarget{classkmaOrange_1_1StrStream_4a78cce030396f522ec87618e097da57}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!isInEOF@{isInEOF}}
+\index{isInEOF@{isInEOF}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{isInEOF}]{\setlength{\rightskip}{0pt plus 5cm}int StrStream::isInEOF ()}}
+\label{classkmaOrange_1_1StrStream_4a78cce030396f522ec87618e097da57}
+
+
+This function checks whether the current position of the input stream is the end of the input stream or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - not the end of the input stream. 1 - the end of the input stream. \end{Desc}
+
+
+Definition at line 81 of file StrStream.cpp.
+
+References \_\-fin, and \_\-isInFile.
+
+Referenced by kmaOrange::MAnalyzer::commonRunWithStream().\hypertarget{classkmaOrange_1_1StrStream_d34724e619d312651ab85ac9a70b4e03}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!IsInFileOpen@{IsInFileOpen}}
+\index{IsInFileOpen@{IsInFileOpen}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{IsInFileOpen}]{\setlength{\rightskip}{0pt plus 5cm}bool kmaOrange::StrStream::IsInFileOpen ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_d34724e619d312651ab85ac9a70b4e03}
+
+
+This function checks whether the input stream is the file or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - file.\par
+ false - not file. \end{Desc}
+
+
+Definition at line 219 of file StrStream.h.
+
+References \_\-isInFile.\hypertarget{classkmaOrange_1_1StrStream_d48ff9ac58ada57fbfded35c0e50ee6e}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!IsOutFileOpen@{IsOutFileOpen}}
+\index{IsOutFileOpen@{IsOutFileOpen}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{IsOutFileOpen}]{\setlength{\rightskip}{0pt plus 5cm}bool kmaOrange::StrStream::IsOutFileOpen ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_d48ff9ac58ada57fbfded35c0e50ee6e}
+
+
+This function checks whether the output stream is the file or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a boolean.\par
+ true - file.\par
+ false - not file. \end{Desc}
+
+
+Definition at line 229 of file StrStream.h.
+
+References \_\-isOutFile.\hypertarget{classkmaOrange_1_1StrStream_2a79107f7cdaaeafa95e6da05cbea3d1}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!setInStream@{setInStream}}
+\index{setInStream@{setInStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{setInStream}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::setInStream ({\bf StringEx} {\em nameinfile})}}
+\label{classkmaOrange_1_1StrStream_2a79107f7cdaaeafa95e6da05cbea3d1}
+
+
+This function sets the input stream to the file. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nameinfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an input file. \end{description}
+\end{Desc}
+
+
+Definition at line 46 of file StrStream.cpp.
+
+References \_\-fin, \_\-isInFile, \_\-status, StringEx::getBuffer(), and kmaOrange::Logger::SetMessage().
+
+Referenced by setStream(), and StrStream().\hypertarget{classkmaOrange_1_1StrStream_afc296be71f9d177e34e658e97ec64bd}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!setOutStream@{setOutStream}}
+\index{setOutStream@{setOutStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{setOutStream}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::setOutStream ({\bf StringEx} {\em nameoutfile})}}
+\label{classkmaOrange_1_1StrStream_afc296be71f9d177e34e658e97ec64bd}
+
+
+This function sets the output stream to the file. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nameoutfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an output file. \end{description}
+\end{Desc}
+
+
+Definition at line 64 of file StrStream.cpp.
+
+References \_\-fout, \_\-isOutFile, \_\-status, StringEx::getBuffer(), and kmaOrange::Logger::SetMessage().
+
+Referenced by kmaOrange::MAnalyzer::runWithString(), setStream(), and StrStream().\hypertarget{classkmaOrange_1_1StrStream_d2fc861331ed65e13c09eaf55b4456d8}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!setStream@{setStream}}
+\index{setStream@{setStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{setStream}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::setStream ({\bf StringEx} {\em nameinfile})}}
+\label{classkmaOrange_1_1StrStream_d2fc861331ed65e13c09eaf55b4456d8}
+
+
+This function sets the input stream to the file, and sets the output stream to the standard output. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nameinfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an input file. \end{description}
+\end{Desc}
+
+
+Definition at line 35 of file StrStream.cpp.
+
+References setInStream().\hypertarget{classkmaOrange_1_1StrStream_6a1562a9ccdd5ca9c935a904aa27e250}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!setStream@{setStream}}
+\index{setStream@{setStream}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{setStream}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::setStream ({\bf StringEx} {\em nameinfile}, \/  {\bf StringEx} {\em nameoutfile})}}
+\label{classkmaOrange_1_1StrStream_6a1562a9ccdd5ca9c935a904aa27e250}
+
+
+This function sets both the input stream and the output stream to the file. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nameinfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an input file. \item[{\em nameoutfile}]a \hyperlink{classStringEx}{StringEx} object - the name of an output file. \end{description}
+\end{Desc}
+
+
+Definition at line 40 of file StrStream.cpp.
+
+References setInStream(), and setOutStream().
+
+Referenced by kmaOrange::MAnalyzer::runWithStream().\hypertarget{classkmaOrange_1_1StrStream_c466e1f8494ee24b4cfe7e24ef20682e}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!write@{write}}
+\index{write@{write}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::write (const {\bf StringEx} \& {\em strex})}}
+\label{classkmaOrange_1_1StrStream_c466e1f8494ee24b4cfe7e24ef20682e}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 204 of file StrStream.cpp.
+
+References \_\-fout, and \_\-isOutFile.\hypertarget{classkmaOrange_1_1StrStream_0edd64d2f685a6009bf551b3599cb151}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!write@{write}}
+\index{write@{write}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{write}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::write (const char $\ast$ {\em pstr})}}
+\label{classkmaOrange_1_1StrStream_0edd64d2f685a6009bf551b3599cb151}
+
+
+This function outputs the input string to the set output stream. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pstr}]a pointer of a constant character - an input string. \end{description}
+\end{Desc}
+
+
+Definition at line 216 of file StrStream.cpp.
+
+References \_\-fout, and \_\-isOutFile.\hypertarget{classkmaOrange_1_1StrStream_04f651a33a14034c003763cd46ce7920}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!writeLine@{writeLine}}
+\index{writeLine@{writeLine}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{writeLine}]{\setlength{\rightskip}{0pt plus 5cm}void StrStream::writeLine (const {\bf StringEx} \& {\em strex})}}
+\label{classkmaOrange_1_1StrStream_04f651a33a14034c003763cd46ce7920}
+
+
+This function outputs the input string to the set output stream on one line. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referencing pointer of a constant \hyperlink{classStringEx}{StringEx} object - an input string. \end{description}
+\end{Desc}
+
+
+Definition at line 190 of file StrStream.cpp.
+
+References \_\-fout, and \_\-isOutFile.
+
+Referenced by kmaOrange::Tagger::showResult().
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classkmaOrange_1_1StrStream_3dc307219c9aa34369ba14448e84f855}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StrStream}\& operator$<$$<$ ({\bf StrStream} \& {\em sout}, \/  const int {\em n})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_3dc307219c9aa34369ba14448e84f855}
+
+
+
+
+Definition at line 272 of file StrStream.cpp.\hypertarget{classkmaOrange_1_1StrStream_c6389cf6b3e7bf3dd2b00fd219351eb4}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StrStream}\& operator$<$$<$ ({\bf StrStream} \& {\em sout}, \/  const char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_c6389cf6b3e7bf3dd2b00fd219351eb4}
+
+
+
+
+Definition at line 258 of file StrStream.cpp.\hypertarget{classkmaOrange_1_1StrStream_b601ecae9d38437878116f4d2f1a70c9}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StrStream}\& operator$<$$<$ ({\bf StrStream} \& {\em sout}, \/  const char $\ast$ {\em pstr})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_b601ecae9d38437878116f4d2f1a70c9}
+
+
+
+
+Definition at line 244 of file StrStream.cpp.\hypertarget{classkmaOrange_1_1StrStream_410bc1a06275f285fbd7e5e77f5584a2}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StrStream}\& operator$<$$<$ ({\bf StrStream} \& {\em sout}, \/  const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_410bc1a06275f285fbd7e5e77f5584a2}
+
+
+This function outputs the input string to the set output stream. 
+
+\begin{Desc}
+\item[Date:]2008-11-17 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em sout}]an indirect referencing pointer of a \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object - the set output stream. \item[{\em strex}]an indirect referencing pointer of a constant \hyperlink{classStringEx}{StringEx} object - an input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an indirect referencing pointer of a \hyperlink{classkmaOrange_1_1StrStream}{StrStream} object. \end{Desc}
+
+
+Definition at line 230 of file StrStream.cpp.
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1StrStream_a24688ba32500f2f906c7f89eca4e667}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!\_\-fin@{\_\-fin}}
+\index{\_\-fin@{\_\-fin}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{\_\-fin}]{\setlength{\rightskip}{0pt plus 5cm}ifstream {\bf kmaOrange::StrStream::\_\-fin}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_a24688ba32500f2f906c7f89eca4e667}
+
+
+file input stream. 
+
+
+
+Definition at line 229 of file StrStream.h.
+
+Referenced by close(), getInStream(), getLine(), isInEOF(), and setInStream().\hypertarget{classkmaOrange_1_1StrStream_7d971213b6446bbb7fec046702959edb}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!\_\-fout@{\_\-fout}}
+\index{\_\-fout@{\_\-fout}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{\_\-fout}]{\setlength{\rightskip}{0pt plus 5cm}ofstream {\bf kmaOrange::StrStream::\_\-fout}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_7d971213b6446bbb7fec046702959edb}
+
+
+file output stream. 
+
+
+
+Definition at line 233 of file StrStream.h.
+
+Referenced by close(), getOutStream(), kmaOrange::operator$<$$<$(), setOutStream(), write(), and writeLine().\hypertarget{classkmaOrange_1_1StrStream_47f0d0b245d807cefd3e6755ac27488f}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!\_\-isInFile@{\_\-isInFile}}
+\index{\_\-isInFile@{\_\-isInFile}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{\_\-isInFile}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::StrStream::\_\-isInFile}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_47f0d0b245d807cefd3e6755ac27488f}
+
+
+this variable stores whether the input stream is the file or not. 
+
+
+
+Definition at line 236 of file StrStream.h.
+
+Referenced by close(), getInStream(), getLine(), isInEOF(), IsInFileOpen(), and setInStream().\hypertarget{classkmaOrange_1_1StrStream_7cf62f7fb6c32f88966896ed486980a0}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!\_\-isOutFile@{\_\-isOutFile}}
+\index{\_\-isOutFile@{\_\-isOutFile}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{\_\-isOutFile}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::StrStream::\_\-isOutFile}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_7cf62f7fb6c32f88966896ed486980a0}
+
+
+this variable stores whether the output stream is the file or not. 
+
+
+
+Definition at line 237 of file StrStream.h.
+
+Referenced by close(), getOutStream(), IsOutFileOpen(), kmaOrange::operator$<$$<$(), setOutStream(), write(), and writeLine().\hypertarget{classkmaOrange_1_1StrStream_4e12ef11501334df836783f1f5328436}{
+\index{kmaOrange::StrStream@{kmaOrange::StrStream}!\_\-status@{\_\-status}}
+\index{\_\-status@{\_\-status}!kmaOrange::StrStream@{kmaOrange::StrStream}}
+\subsubsection[{\_\-status}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::StrStream::\_\-status}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1StrStream_4e12ef11501334df836783f1f5328436}
+
+
+this variable stores whether the input stream or the output stream is created or not. 
+
+
+
+Definition at line 235 of file StrStream.h.
+
+Referenced by setInStream(), setOutStream(), and StrStream().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{StrStream_8h}{StrStream.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{StrStream_8cpp}{StrStream.cpp}\end{CompactItemize}

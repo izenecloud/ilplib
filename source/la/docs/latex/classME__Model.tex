@@ -1,0 +1,525 @@
+\hypertarget{classME__Model}{
+\section{ME\_\-Model Class Reference}
+\label{classME__Model}\index{ME\_\-Model@{ME\_\-Model}}
+}
+{\tt \#include $<$maxent.h$>$}
+
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structME__Model_1_1hashfun__str}{hashfun\_\-str}
+\item 
+struct \hyperlink{structME__Model_1_1ME__Feature}{ME\_\-Feature}
+\item 
+struct \hyperlink{structME__Model_1_1ME__FeatureBag}{ME\_\-FeatureBag}
+\item 
+struct \hyperlink{structME__Model_1_1MiniStringBag}{MiniStringBag}
+\item 
+struct \hyperlink{structME__Model_1_1Sample}{Sample}
+\item 
+struct \hyperlink{structME__Model_1_1StringBag}{StringBag}
+\end{CompactItemize}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classME__Model_246ff3f37fbee3abf4bef0f978bd031e}{train} (const std::vector$<$ \hyperlink{structME__Sample}{ME\_\-Sample} $>$ \&train, const int cutoff=0, const double sigma=0, const double widthfactor=0)
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_28a77dc1738038d8a5a1350e157428c4}{classify} (\hyperlink{structME__Sample}{ME\_\-Sample} \&s) const 
+\item 
+bool \hyperlink{classME__Model_a1e19dc4d15bc1c0f4602a1bbd9174a4}{load\_\-from\_\-file} (const std::string \&filename)
+\item 
+bool \hyperlink{classME__Model_f87748d7eecfe434b3d8091e0bae51b5}{save\_\-to\_\-file} (const std::string \&filename) const 
+\item 
+int \hyperlink{classME__Model_eb9794bcc52f8a3a811ac81965ba49ce}{num\_\-classes} () const 
+\item 
+std::string \hyperlink{classME__Model_ab8a707a23f53cb60a0bb6eff0a602bd}{get\_\-class\_\-label} (int i) const 
+\item 
+int \hyperlink{classME__Model_1723d988619ce8b789de6181630f384a}{get\_\-class\_\-id} (const std::string \&s) const 
+\item 
+void \hyperlink{classME__Model_bd1372fb000a4fdc8ef9b560a0c8b4c3}{get\_\-features} (std::list$<$ std::pair$<$ std::pair$<$ std::string, std::string $>$, double $>$ $>$ \&fl)
+\item 
+void \hyperlink{classME__Model_3968368d934b31e0a541654f64513ad6}{set\_\-heldout} (const int h, const int n)
+\item 
+bool \hyperlink{classME__Model_9c920643190ccbec467e4e9cf916c4b8}{load\_\-from\_\-array} (const \hyperlink{structME__Model__Data}{ME\_\-Model\_\-Data} data\mbox{[}$\,$\mbox{]})
+\item 
+\hyperlink{classME__Model_8f611394be442ebd07ef20cb866e09ee}{ME\_\-Model} ()
+\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+double \hyperlink{classME__Model_39490060a9aa91c5bfef26db89995d81}{heldout\_\-likelihood} ()
+\item 
+void \hyperlink{classME__Model_8210bdb521edd5c9293b3ebba75d7c06}{conditional\_\-probability} (const \hyperlink{structME__Model_1_1Sample}{Sample} \&nbs, std::vector$<$ double $>$ \&membp) const 
+\item 
+int \hyperlink{classME__Model_44b71ee757d6494e852ea36bacfe6634}{make\_\-feature\_\-bag} (const int cutoff)
+\item 
+int \hyperlink{classME__Model_5683347be55aef212b56dec1fdf54a37}{classify} (const \hyperlink{structME__Model_1_1Sample}{Sample} \&nbs, std::vector$<$ double $>$ \&membp) const 
+\item 
+double \hyperlink{classME__Model_d21f4e1132f6d710d41d4b3ef206d1f2}{update\_\-model\_\-expectation} ()
+\item 
+int \hyperlink{classME__Model_754103cb516b470c0d74538e3fca78b6}{perform\_\-LMVM} ()
+\item 
+int \hyperlink{classME__Model_4ae94151fff132f87341a1c5f91b38d1}{perform\_\-GIS} (int C)
+\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{structME__Model_1_1StringBag}{StringBag} \hyperlink{classME__Model_4182ebe09a43ab1e94d6b438d79c3075}{\_\-label\_\-bag}
+\item 
+\hyperlink{structME__Model_1_1MiniStringBag}{MiniStringBag} \hyperlink{classME__Model_97517bda659bd3137e6e94810f08897d}{\_\-featurename\_\-bag}
+\item 
+double \hyperlink{classME__Model_da41f84f6e6c25acec3698903f3a5cb3}{\_\-sigma}
+\item 
+double \hyperlink{classME__Model_8fe5e308a2901c6792abe6c305491bcd}{\_\-inequality\_\-width}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_a0dc1dcca7431b816b27c1d7c9f0379a}{\_\-vl}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_30e8d601c952bf0aa22da5837149e7a1}{\_\-va}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_85968df26e2c2515e94e9d7dc5904d80}{\_\-vb}
+\item 
+\hyperlink{structME__Model_1_1ME__FeatureBag}{ME\_\-FeatureBag} \hyperlink{classME__Model_b52455eefd6359c8d38631f712a07c5c}{\_\-fb}
+\item 
+int \hyperlink{classME__Model_7a85f402ac9fea030c49f7c6216df686}{\_\-num\_\-classes}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_6d1c21872d8899cd512ce560216bcfda}{\_\-vee}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_f73cc90b01028ab54527df94d6c8a123}{\_\-vme}
+\item 
+std::vector$<$ std::vector$<$ int $>$ $>$ \hyperlink{classME__Model_5d08a0ae3292a2fecf9473aee17660a8}{\_\-sample2feature}
+\item 
+std::vector$<$ \hyperlink{structME__Model_1_1Sample}{Sample} $>$ \hyperlink{classME__Model_01bbc4b24d88cda6c77db3ef17f48f19}{\_\-train}
+\item 
+std::vector$<$ \hyperlink{structME__Model_1_1Sample}{Sample} $>$ \hyperlink{classME__Model_ee10259b3dbbc99acb9c0f0e200b598b}{\_\-heldout}
+\item 
+double \hyperlink{classME__Model_aab235eaccf24824812370d60ca079e4}{\_\-train\_\-error}
+\item 
+double \hyperlink{classME__Model_daf5973e7d0bf53c3d747da90dc20036}{\_\-heldout\_\-error}
+\item 
+int \hyperlink{classME__Model_ba7ea42febb256bf94f54245255a34a5}{\_\-nheldout}
+\item 
+int \hyperlink{classME__Model_8d93484c679c42bbedf68c8a6bde5d9c}{\_\-early\_\-stopping\_\-n}
+\item 
+std::vector$<$ double $>$ \hyperlink{classME__Model_ff95546f6b66221b240b2f2316f55aac}{\_\-vhlogl}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 40 of file maxent.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classME__Model_8f611394be442ebd07ef20cb866e09ee}{
+\index{ME\_\-Model@{ME\_\-Model}!ME\_\-Model@{ME\_\-Model}}
+\index{ME\_\-Model@{ME\_\-Model}!ME_Model@{ME\_\-Model}}
+\subsubsection[{ME\_\-Model}]{\setlength{\rightskip}{0pt plus 5cm}ME\_\-Model::ME\_\-Model ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classME__Model_8f611394be442ebd07ef20cb866e09ee}
+
+
+
+
+Definition at line 56 of file maxent.h.
+
+References \_\-early\_\-stopping\_\-n, and \_\-nheldout.
+
+\subsection{Member Function Documentation}
+\hypertarget{classME__Model_5683347be55aef212b56dec1fdf54a37}{
+\index{ME\_\-Model@{ME\_\-Model}!classify@{classify}}
+\index{classify@{classify}!ME_Model@{ME\_\-Model}}
+\subsubsection[{classify}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::classify (const {\bf Sample} \& {\em nbs}, \/  std::vector$<$ double $>$ \& {\em membp}) const\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_5683347be55aef212b56dec1fdf54a37}
+
+
+\hypertarget{classME__Model_28a77dc1738038d8a5a1350e157428c4}{
+\index{ME\_\-Model@{ME\_\-Model}!classify@{classify}}
+\index{classify@{classify}!ME_Model@{ME\_\-Model}}
+\subsubsection[{classify}]{\setlength{\rightskip}{0pt plus 5cm}{\bf vector}$<$ double $>$ ME\_\-Model::classify ({\bf ME\_\-Sample} \& {\em s}) const}}
+\label{classME__Model_28a77dc1738038d8a5a1350e157428c4}
+
+
+
+
+Definition at line 564 of file maxent.cpp.
+
+References \_\-featurename\_\-bag, \_\-num\_\-classes, ME\_\-Sample::features, get\_\-class\_\-label(), ME\_\-Model::ME\_\-Model::MiniStringBag::Id(), ME\_\-Sample::label, and ME\_\-Model::ME\_\-Model::Sample::positive\_\-features.
+
+Referenced by decode\_\-no\_\-context(), heldout\_\-likelihood(), Hypothesis::Update(), and viterbi().\hypertarget{classME__Model_8210bdb521edd5c9293b3ebba75d7c06}{
+\index{ME\_\-Model@{ME\_\-Model}!conditional\_\-probability@{conditional\_\-probability}}
+\index{conditional\_\-probability@{conditional\_\-probability}!ME_Model@{ME\_\-Model}}
+\subsubsection[{conditional\_\-probability}]{\setlength{\rightskip}{0pt plus 5cm}void ME\_\-Model::conditional\_\-probability (const {\bf Sample} \& {\em nbs}, \/  std::vector$<$ double $>$ \& {\em membp}) const\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_8210bdb521edd5c9293b3ebba75d7c06}
+
+
+
+
+Definition at line 154 of file maxent.cpp.
+
+References \_\-fb, \_\-vl, ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Id(), num\_\-classes(), and ME\_\-Model::ME\_\-Model::Sample::positive\_\-features.\hypertarget{classME__Model_1723d988619ce8b789de6181630f384a}{
+\index{ME\_\-Model@{ME\_\-Model}!get\_\-class\_\-id@{get\_\-class\_\-id}}
+\index{get\_\-class\_\-id@{get\_\-class\_\-id}!ME_Model@{ME\_\-Model}}
+\subsubsection[{get\_\-class\_\-id}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::get\_\-class\_\-id (const std::string \& {\em s}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classME__Model_1723d988619ce8b789de6181630f384a}
+
+
+
+
+Definition at line 51 of file maxent.h.
+
+References \_\-label\_\-bag, and ME\_\-Model::ME\_\-Model::MiniStringBag::Id().
+
+Referenced by Hypothesis::Update().\hypertarget{classME__Model_ab8a707a23f53cb60a0bb6eff0a602bd}{
+\index{ME\_\-Model@{ME\_\-Model}!get\_\-class\_\-label@{get\_\-class\_\-label}}
+\index{get\_\-class\_\-label@{get\_\-class\_\-label}!ME_Model@{ME\_\-Model}}
+\subsubsection[{get\_\-class\_\-label}]{\setlength{\rightskip}{0pt plus 5cm}std::string ME\_\-Model::get\_\-class\_\-label (int {\em i}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classME__Model_ab8a707a23f53cb60a0bb6eff0a602bd}
+
+
+
+
+Definition at line 50 of file maxent.h.
+
+References \_\-label\_\-bag, and ME\_\-Model::ME\_\-Model::StringBag::Str().
+
+Referenced by classify(), Hypothesis::Update(), and viterbi().\hypertarget{classME__Model_bd1372fb000a4fdc8ef9b560a0c8b4c3}{
+\index{ME\_\-Model@{ME\_\-Model}!get\_\-features@{get\_\-features}}
+\index{get\_\-features@{get\_\-features}!ME_Model@{ME\_\-Model}}
+\subsubsection[{get\_\-features}]{\setlength{\rightskip}{0pt plus 5cm}void ME\_\-Model::get\_\-features (std::list$<$ std::pair$<$ std::pair$<$ std::string, std::string $>$, double $>$ $>$ \& {\em fl})}}
+\label{classME__Model_bd1372fb000a4fdc8ef9b560a0c8b4c3}
+
+
+\hypertarget{classME__Model_39490060a9aa91c5bfef26db89995d81}{
+\index{ME\_\-Model@{ME\_\-Model}!heldout\_\-likelihood@{heldout\_\-likelihood}}
+\index{heldout\_\-likelihood@{heldout\_\-likelihood}!ME_Model@{ME\_\-Model}}
+\subsubsection[{heldout\_\-likelihood}]{\setlength{\rightskip}{0pt plus 5cm}double ME\_\-Model::heldout\_\-likelihood ()\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_39490060a9aa91c5bfef26db89995d81}
+
+
+
+
+Definition at line 247 of file maxent.cpp.
+
+References \_\-heldout, \_\-heldout\_\-error, \_\-num\_\-classes, and classify().
+
+Referenced by perform\_\-GIS().\hypertarget{classME__Model_9c920643190ccbec467e4e9cf916c4b8}{
+\index{ME\_\-Model@{ME\_\-Model}!load\_\-from\_\-array@{load\_\-from\_\-array}}
+\index{load\_\-from\_\-array@{load\_\-from\_\-array}!ME_Model@{ME\_\-Model}}
+\subsubsection[{load\_\-from\_\-array}]{\setlength{\rightskip}{0pt plus 5cm}bool ME\_\-Model::load\_\-from\_\-array (const {\bf ME\_\-Model\_\-Data} {\em data}\mbox{[}$\,$\mbox{]})}}
+\label{classME__Model_9c920643190ccbec467e4e9cf916c4b8}
+
+
+
+
+Definition at line 502 of file maxent.cpp.
+
+References \_\-fb, \_\-featurename\_\-bag, \_\-label\_\-bag, \_\-num\_\-classes, \_\-vl, ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Put(), ME\_\-Model::ME\_\-Model::MiniStringBag::Put(), ME\_\-Model::ME\_\-Model::StringBag::Put(), and ME\_\-Model::ME\_\-Model::StringBag::Size().\hypertarget{classME__Model_a1e19dc4d15bc1c0f4602a1bbd9174a4}{
+\index{ME\_\-Model@{ME\_\-Model}!load\_\-from\_\-file@{load\_\-from\_\-file}}
+\index{load\_\-from\_\-file@{load\_\-from\_\-file}!ME_Model@{ME\_\-Model}}
+\subsubsection[{load\_\-from\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}bool ME\_\-Model::load\_\-from\_\-file (const std::string \& {\em filename})}}
+\label{classME__Model_a1e19dc4d15bc1c0f4602a1bbd9174a4}
+
+
+\hypertarget{classME__Model_44b71ee757d6494e852ea36bacfe6634}{
+\index{ME\_\-Model@{ME\_\-Model}!make\_\-feature\_\-bag@{make\_\-feature\_\-bag}}
+\index{make\_\-feature\_\-bag@{make\_\-feature\_\-bag}!ME_Model@{ME\_\-Model}}
+\subsubsection[{make\_\-feature\_\-bag}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::make\_\-feature\_\-bag (const int {\em cutoff})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_44b71ee757d6494e852ea36bacfe6634}
+
+
+
+
+Definition at line 179 of file maxent.cpp.
+
+References \_\-fb, \_\-num\_\-classes, \_\-sample2feature, \_\-train, ME\_\-Model::ME\_\-Model::ME\_\-Feature::body(), ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Id(), and ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Put().\hypertarget{classME__Model_eb9794bcc52f8a3a811ac81965ba49ce}{
+\index{ME\_\-Model@{ME\_\-Model}!num\_\-classes@{num\_\-classes}}
+\index{num\_\-classes@{num\_\-classes}!ME_Model@{ME\_\-Model}}
+\subsubsection[{num\_\-classes}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::num\_\-classes () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classME__Model_eb9794bcc52f8a3a811ac81965ba49ce}
+
+
+
+
+Definition at line 49 of file maxent.h.
+
+References \_\-num\_\-classes.
+
+Referenced by conditional\_\-probability(), Hypothesis::Update(), and viterbi().\hypertarget{classME__Model_4ae94151fff132f87341a1c5f91b38d1}{
+\index{ME\_\-Model@{ME\_\-Model}!perform\_\-GIS@{perform\_\-GIS}}
+\index{perform\_\-GIS@{perform\_\-GIS}!ME_Model@{ME\_\-Model}}
+\subsubsection[{perform\_\-GIS}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::perform\_\-GIS (int {\em C})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_4ae94151fff132f87341a1c5f91b38d1}
+
+
+
+
+Definition at line 74 of file maxent.cpp.
+
+References \_\-fb, \_\-heldout, \_\-heldout\_\-error, \_\-train\_\-error, \_\-vee, \_\-vl, \_\-vme, heldout\_\-likelihood(), ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Size(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_754103cb516b470c0d74538e3fca78b6}{
+\index{ME\_\-Model@{ME\_\-Model}!perform\_\-LMVM@{perform\_\-LMVM}}
+\index{perform\_\-LMVM@{perform\_\-LMVM}!ME_Model@{ME\_\-Model}}
+\subsubsection[{perform\_\-LMVM}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::perform\_\-LMVM ()\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_754103cb516b470c0d74538e3fca78b6}
+
+
+
+
+Definition at line 111 of file maxent.cpp.
+
+References \_\-fb, \_\-inequality\_\-width, \_\-va, \_\-vb, \_\-vl, and ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Size().\hypertarget{classME__Model_f87748d7eecfe434b3d8091e0bae51b5}{
+\index{ME\_\-Model@{ME\_\-Model}!save\_\-to\_\-file@{save\_\-to\_\-file}}
+\index{save\_\-to\_\-file@{save\_\-to\_\-file}!ME_Model@{ME\_\-Model}}
+\subsubsection[{save\_\-to\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}bool ME\_\-Model::save\_\-to\_\-file (const std::string \& {\em filename}) const}}
+\label{classME__Model_f87748d7eecfe434b3d8091e0bae51b5}
+
+
+
+
+Referenced by bidir\_\-train().\hypertarget{classME__Model_3968368d934b31e0a541654f64513ad6}{
+\index{ME\_\-Model@{ME\_\-Model}!set\_\-heldout@{set\_\-heldout}}
+\index{set\_\-heldout@{set\_\-heldout}!ME_Model@{ME\_\-Model}}
+\subsubsection[{set\_\-heldout}]{\setlength{\rightskip}{0pt plus 5cm}void ME\_\-Model::set\_\-heldout (const int {\em h}, \/  const int {\em n})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classME__Model_3968368d934b31e0a541654f64513ad6}
+
+
+
+
+Definition at line 53 of file maxent.h.
+
+References \_\-early\_\-stopping\_\-n, and \_\-nheldout.\hypertarget{classME__Model_246ff3f37fbee3abf4bef0f978bd031e}{
+\index{ME\_\-Model@{ME\_\-Model}!train@{train}}
+\index{train@{train}!ME_Model@{ME\_\-Model}}
+\subsubsection[{train}]{\setlength{\rightskip}{0pt plus 5cm}int ME\_\-Model::train (const std::vector$<$ {\bf ME\_\-Sample} $>$ \& {\em train}, \/  const int {\em cutoff} = {\tt 0}, \/  const double {\em sigma} = {\tt 0}, \/  const double {\em widthfactor} = {\tt 0})}}
+\label{classME__Model_246ff3f37fbee3abf4bef0f978bd031e}
+
+
+
+
+Referenced by bidir\_\-train().\hypertarget{classME__Model_d21f4e1132f6d710d41d4b3ef206d1f2}{
+\index{ME\_\-Model@{ME\_\-Model}!update\_\-model\_\-expectation@{update\_\-model\_\-expectation}}
+\index{update\_\-model\_\-expectation@{update\_\-model\_\-expectation}!ME_Model@{ME\_\-Model}}
+\subsubsection[{update\_\-model\_\-expectation}]{\setlength{\rightskip}{0pt plus 5cm}double ME\_\-Model::update\_\-model\_\-expectation ()\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_d21f4e1132f6d710d41d4b3ef206d1f2}
+
+
+
+
+Definition at line 263 of file maxent.cpp.
+
+References \_\-fb, \_\-inequality\_\-width, \_\-num\_\-classes, \_\-sample2feature, \_\-sigma, \_\-train, \_\-train\_\-error, \_\-va, \_\-vb, \_\-vl, \_\-vme, ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Feature(), ME\_\-Model::ME\_\-Model::ME\_\-Feature::label(), and ME\_\-Model::ME\_\-Model::ME\_\-FeatureBag::Size().
+
+Referenced by perform\_\-GIS().
+
+\subsection{Member Data Documentation}
+\hypertarget{classME__Model_8d93484c679c42bbedf68c8a6bde5d9c}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-early\_\-stopping\_\-n@{\_\-early\_\-stopping\_\-n}}
+\index{\_\-early\_\-stopping\_\-n@{\_\-early\_\-stopping\_\-n}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-early\_\-stopping\_\-n}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ME\_\-Model::\_\-early\_\-stopping\_\-n}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_8d93484c679c42bbedf68c8a6bde5d9c}
+
+
+
+
+Definition at line 211 of file maxent.h.
+
+Referenced by ME\_\-Model(), and set\_\-heldout().\hypertarget{classME__Model_b52455eefd6359c8d38631f712a07c5c}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-fb@{\_\-fb}}
+\index{\_\-fb@{\_\-fb}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-fb}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ME\_\-FeatureBag} {\bf ME\_\-Model::\_\-fb}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_b52455eefd6359c8d38631f712a07c5c}
+
+
+
+
+Definition at line 201 of file maxent.h.
+
+Referenced by conditional\_\-probability(), load\_\-from\_\-array(), make\_\-feature\_\-bag(), perform\_\-GIS(), perform\_\-LMVM(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_97517bda659bd3137e6e94810f08897d}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-featurename\_\-bag@{\_\-featurename\_\-bag}}
+\index{\_\-featurename\_\-bag@{\_\-featurename\_\-bag}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-featurename\_\-bag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MiniStringBag} {\bf ME\_\-Model::\_\-featurename\_\-bag}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_97517bda659bd3137e6e94810f08897d}
+
+
+
+
+Definition at line 195 of file maxent.h.
+
+Referenced by classify(), and load\_\-from\_\-array().\hypertarget{classME__Model_ee10259b3dbbc99acb9c0f0e200b598b}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-heldout@{\_\-heldout}}
+\index{\_\-heldout@{\_\-heldout}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-heldout}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf Sample} $>$ {\bf ME\_\-Model::\_\-heldout}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_ee10259b3dbbc99acb9c0f0e200b598b}
+
+
+
+
+Definition at line 207 of file maxent.h.
+
+Referenced by heldout\_\-likelihood(), and perform\_\-GIS().\hypertarget{classME__Model_daf5973e7d0bf53c3d747da90dc20036}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-heldout\_\-error@{\_\-heldout\_\-error}}
+\index{\_\-heldout\_\-error@{\_\-heldout\_\-error}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-heldout\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf ME\_\-Model::\_\-heldout\_\-error}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_daf5973e7d0bf53c3d747da90dc20036}
+
+
+
+
+Definition at line 209 of file maxent.h.
+
+Referenced by heldout\_\-likelihood(), and perform\_\-GIS().\hypertarget{classME__Model_8fe5e308a2901c6792abe6c305491bcd}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-inequality\_\-width@{\_\-inequality\_\-width}}
+\index{\_\-inequality\_\-width@{\_\-inequality\_\-width}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-inequality\_\-width}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf ME\_\-Model::\_\-inequality\_\-width}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_8fe5e308a2901c6792abe6c305491bcd}
+
+
+
+
+Definition at line 197 of file maxent.h.
+
+Referenced by perform\_\-LMVM(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_4182ebe09a43ab1e94d6b438d79c3075}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-label\_\-bag@{\_\-label\_\-bag}}
+\index{\_\-label\_\-bag@{\_\-label\_\-bag}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-label\_\-bag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringBag} {\bf ME\_\-Model::\_\-label\_\-bag}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_4182ebe09a43ab1e94d6b438d79c3075}
+
+
+
+
+Definition at line 194 of file maxent.h.
+
+Referenced by get\_\-class\_\-id(), get\_\-class\_\-label(), and load\_\-from\_\-array().\hypertarget{classME__Model_ba7ea42febb256bf94f54245255a34a5}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-nheldout@{\_\-nheldout}}
+\index{\_\-nheldout@{\_\-nheldout}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-nheldout}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ME\_\-Model::\_\-nheldout}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_ba7ea42febb256bf94f54245255a34a5}
+
+
+
+
+Definition at line 210 of file maxent.h.
+
+Referenced by ME\_\-Model(), and set\_\-heldout().\hypertarget{classME__Model_7a85f402ac9fea030c49f7c6216df686}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-num\_\-classes@{\_\-num\_\-classes}}
+\index{\_\-num\_\-classes@{\_\-num\_\-classes}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-num\_\-classes}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf ME\_\-Model::\_\-num\_\-classes}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_7a85f402ac9fea030c49f7c6216df686}
+
+
+
+
+Definition at line 202 of file maxent.h.
+
+Referenced by classify(), heldout\_\-likelihood(), load\_\-from\_\-array(), make\_\-feature\_\-bag(), num\_\-classes(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_5d08a0ae3292a2fecf9473aee17660a8}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-sample2feature@{\_\-sample2feature}}
+\index{\_\-sample2feature@{\_\-sample2feature}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-sample2feature}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ std::vector$<$ int $>$ $>$ {\bf ME\_\-Model::\_\-sample2feature}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_5d08a0ae3292a2fecf9473aee17660a8}
+
+
+
+
+Definition at line 205 of file maxent.h.
+
+Referenced by make\_\-feature\_\-bag(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_da41f84f6e6c25acec3698903f3a5cb3}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-sigma@{\_\-sigma}}
+\index{\_\-sigma@{\_\-sigma}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-sigma}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf ME\_\-Model::\_\-sigma}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_da41f84f6e6c25acec3698903f3a5cb3}
+
+
+
+
+Definition at line 196 of file maxent.h.
+
+Referenced by update\_\-model\_\-expectation().\hypertarget{classME__Model_01bbc4b24d88cda6c77db3ef17f48f19}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-train@{\_\-train}}
+\index{\_\-train@{\_\-train}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-train}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf Sample} $>$ {\bf ME\_\-Model::\_\-train}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_01bbc4b24d88cda6c77db3ef17f48f19}
+
+
+
+
+Definition at line 206 of file maxent.h.
+
+Referenced by make\_\-feature\_\-bag(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_aab235eaccf24824812370d60ca079e4}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-train\_\-error@{\_\-train\_\-error}}
+\index{\_\-train\_\-error@{\_\-train\_\-error}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-train\_\-error}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf ME\_\-Model::\_\-train\_\-error}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_aab235eaccf24824812370d60ca079e4}
+
+
+
+
+Definition at line 208 of file maxent.h.
+
+Referenced by perform\_\-GIS(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_30e8d601c952bf0aa22da5837149e7a1}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-va@{\_\-va}}
+\index{\_\-va@{\_\-va}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-va}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-va}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_30e8d601c952bf0aa22da5837149e7a1}
+
+
+
+
+Definition at line 199 of file maxent.h.
+
+Referenced by perform\_\-LMVM(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_85968df26e2c2515e94e9d7dc5904d80}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-vb@{\_\-vb}}
+\index{\_\-vb@{\_\-vb}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-vb}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-vb}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_85968df26e2c2515e94e9d7dc5904d80}
+
+
+
+
+Definition at line 200 of file maxent.h.
+
+Referenced by perform\_\-LMVM(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_6d1c21872d8899cd512ce560216bcfda}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-vee@{\_\-vee}}
+\index{\_\-vee@{\_\-vee}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-vee}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-vee}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_6d1c21872d8899cd512ce560216bcfda}
+
+
+
+
+Definition at line 203 of file maxent.h.
+
+Referenced by perform\_\-GIS().\hypertarget{classME__Model_ff95546f6b66221b240b2f2316f55aac}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-vhlogl@{\_\-vhlogl}}
+\index{\_\-vhlogl@{\_\-vhlogl}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-vhlogl}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-vhlogl}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_ff95546f6b66221b240b2f2316f55aac}
+
+
+
+
+Definition at line 212 of file maxent.h.\hypertarget{classME__Model_a0dc1dcca7431b816b27c1d7c9f0379a}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-vl@{\_\-vl}}
+\index{\_\-vl@{\_\-vl}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-vl}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-vl}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_a0dc1dcca7431b816b27c1d7c9f0379a}
+
+
+
+
+Definition at line 198 of file maxent.h.
+
+Referenced by conditional\_\-probability(), load\_\-from\_\-array(), perform\_\-GIS(), perform\_\-LMVM(), and update\_\-model\_\-expectation().\hypertarget{classME__Model_f73cc90b01028ab54527df94d6c8a123}{
+\index{ME\_\-Model@{ME\_\-Model}!\_\-vme@{\_\-vme}}
+\index{\_\-vme@{\_\-vme}!ME_Model@{ME\_\-Model}}
+\subsubsection[{\_\-vme}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$double$>$ {\bf ME\_\-Model::\_\-vme}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classME__Model_f73cc90b01028ab54527df94d6c8a123}
+
+
+
+
+Definition at line 204 of file maxent.h.
+
+Referenced by perform\_\-GIS(), and update\_\-model\_\-expectation().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/pos/\hyperlink{maxent_8h}{maxent.h}\item 
+/disk/workspace-cpp/la-manager/source/pos/\hyperlink{maxent_8cpp}{maxent.cpp}\end{CompactItemize}

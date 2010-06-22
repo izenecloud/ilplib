@@ -1,0 +1,55 @@
+\hypertarget{Synonym_8h}{
+\section{/disk/workspace-cpp/la-manager/include/kma/Synonym.h File Reference}
+\label{Synonym_8h}\index{/disk/workspace-cpp/la-manager/include/kma/Synonym.h@{/disk/workspace-cpp/la-manager/include/kma/Synonym.h}}
+}
+{\tt \#include $<$vector$>$}\par
+{\tt \#include \char`\"{}wk\_\-synonym.h\char`\"{}}\par
+{\tt \#include \char`\"{}stringex.h\char`\"{}}\par
+{\tt \#include \char`\"{}daTrie.h\char`\"{}}\par
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class \hyperlink{classkmaOrange_1_1EntryNInfo}{kmaOrange::EntryNInfo}
+\begin{CompactList}\small\item\em a class has the string of synonym dictionary entry and the information of this string. \item\end{CompactList}\item 
+class \hyperlink{classkmaOrange_1_1Synonym}{kmaOrange::Synonym}
+\begin{CompactList}\small\item\em a class has and manages the list of an entry in the synonym dictionary. \item\end{CompactList}\item 
+class \hyperlink{classkmaOrange_1_1SynonymContainer}{kmaOrange::SynonymContainer}
+\begin{CompactList}\small\item\em a class has and manages the list of synonym lists. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace \hyperlink{namespacekmaOrange}{kmaOrange}
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static const int \hyperlink{Synonym_8h_20a8000dbee23206ae2d45cc1613aacb}{HEADWORD\_\-FLAG} = 0x80000000
+\item 
+static const int \hyperlink{Synonym_8h_0c65b6883900ea3c5822f613b5eab92e}{OVERLAP\_\-FLAG} = 0x40000000
+\end{CompactItemize}
+
+
+\subsection{Variable Documentation}
+\hypertarget{Synonym_8h_20a8000dbee23206ae2d45cc1613aacb}{
+\index{Synonym.h@{Synonym.h}!HEADWORD\_\-FLAG@{HEADWORD\_\-FLAG}}
+\index{HEADWORD\_\-FLAG@{HEADWORD\_\-FLAG}!Synonym.h@{Synonym.h}}
+\subsubsection[{HEADWORD\_\-FLAG}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf HEADWORD\_\-FLAG} = 0x80000000\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{Synonym_8h_20a8000dbee23206ae2d45cc1613aacb}
+
+
+
+
+Definition at line 16 of file Synonym.h.
+
+Referenced by kmaOrange::Synonym::getHeadWord(), kmaOrange::Synonym::getSynonymCountByIndex(), kmaOrange::Synonym::getWord(), kmaOrange::SynonymContainer::insertSynonym(), and kmaOrange::SynonymContainer::loadSynonym().\hypertarget{Synonym_8h_0c65b6883900ea3c5822f613b5eab92e}{
+\index{Synonym.h@{Synonym.h}!OVERLAP\_\-FLAG@{OVERLAP\_\-FLAG}}
+\index{OVERLAP\_\-FLAG@{OVERLAP\_\-FLAG}!Synonym.h@{Synonym.h}}
+\subsubsection[{OVERLAP\_\-FLAG}]{\setlength{\rightskip}{0pt plus 5cm}const int {\bf OVERLAP\_\-FLAG} = 0x40000000\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{Synonym_8h_0c65b6883900ea3c5822f613b5eab92e}
+
+
+
+
+Definition at line 17 of file Synonym.h.
+
+Referenced by kmaOrange::Synonym::getHeadWord(), kmaOrange::Synonym::getOverlapCount(), kmaOrange::Synonym::getSynonymCountByIndex(), kmaOrange::Synonym::getWord(), kmaOrange::SynonymContainer::insertSynonym(), and kmaOrange::SynonymContainer::searchNgetInfoFromSynonymTrie().

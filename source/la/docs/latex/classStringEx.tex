@@ -1,0 +1,1081 @@
+\hypertarget{classStringEx}{
+\section{StringEx Class Reference}
+\label{classStringEx}\index{StringEx@{StringEx}}
+}
+{\tt \#include $<$stringex.h$>$}
+
+Inheritance diagram for StringEx::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classStringEx}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classStringEx_682cb42c740bb422cc430533b57a92cf}{StringEx} ()
+\item 
+\hyperlink{classStringEx_949af3bd05202d94d9550fc5da749aba}{StringEx} (size\_\-t sizebuf)
+\item 
+\hyperlink{classStringEx_ae67472656d518a9146209d12494cb1b}{StringEx} (const char $\ast$str)
+\item 
+\hyperlink{classStringEx_93e2a37d36fe9104558e448924fcb57d}{StringEx} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+\hyperlink{classStringEx_4f8c7c39cf9bdb89b0de4a23054bfa1d}{StringEx} (char $\ast$str, size\_\-t sizebuf)
+\item 
+\hyperlink{classStringEx_7647d27a1a03f22a23a7f3d863cf939b}{StringEx} (const \hyperlink{classStringEx}{StringEx} \&strex, size\_\-t sizebuf)
+\item 
+\hyperlink{classStringEx_61301e17f26551eba75f9f005544fc0f}{StringEx} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+\hyperlink{classStringEx_fb83e36bbf4afa26fc531e2c9fefa0f7}{StringEx} (char $\ast$str, const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+\hyperlink{classStringEx_5304827ec0bfe2e225031653a82256c2}{StringEx} (const \hyperlink{classStringEx}{StringEx} \&strex, char $\ast$str)
+\item 
+\hyperlink{classStringEx_c34d876aa1b6fa515deadeea548b6806}{StringEx} (char $\ast$str1, char $\ast$str2)
+\item 
+\hyperlink{classStringEx_c9a8ce33aa75cfb5fd0db69a66a074a4}{StringEx} (const string \&str)
+\item 
+\hyperlink{classStringEx_c8ae8071f10ebdec5dcd0991990bad55}{$\sim$StringEx} ()
+\item 
+char $\ast$ \hyperlink{classStringEx_9260ba2f0b6e36257f85037a61f6cc30}{getBuffer} (size\_\-t pos=0) const 
+\item 
+size\_\-t \hyperlink{classStringEx_ca8d43a55788bf20513aa829a75af7f9}{getLength} () const 
+\item 
+char $\ast$ \hyperlink{classStringEx_2b4c36bb82f085f585dd80f014aed462}{buffer} (size\_\-t pos=0) const 
+\item 
+size\_\-t \hyperlink{classStringEx_d377a20ec6e6ca28e8c470189903a87d}{length} () const 
+\item 
+size\_\-t \hyperlink{classStringEx_2705e22703e3754243608d8133c1b791}{getBufferSize} () const 
+\item 
+size\_\-t \hyperlink{classStringEx_eaf8859daeb95f1380c814740af5b5d4}{bufferSize} () const 
+\item 
+int \hyperlink{classStringEx_5e44f7dfc41db9f4ff1e25a353464ff0}{setBufferSize} (size\_\-t sizebuf)
+\item 
+int \hyperlink{classStringEx_0584545ceedd9c318a1c59bb0e346001}{setLength} (size\_\-t len)
+\item 
+const \hyperlink{classStringEx}{StringEx} \& \hyperlink{classStringEx_9bf02ac98235d7041562939b87512bac}{operator=} (const char $\ast$str)
+\item 
+const \hyperlink{classStringEx}{StringEx} \& \hyperlink{classStringEx_1071b3e23def59810d2a7d97a134cd72}{operator=} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+const \hyperlink{classStringEx}{StringEx} \& \hyperlink{classStringEx_e6556e9e33cf433bc5ce65c2cc709907}{operator=} (const char c)
+\item 
+bool \hyperlink{classStringEx_61b66936040c448bf70622d9790d0a9f}{isStrEqual} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{classStringEx_007fa6803dbc3544d17eaba7b8d56a07}{isStrEqual} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+const char \& \hyperlink{classStringEx_9d84497552f7c6adfd065bfb4f40f9c2}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t offset) const 
+\item 
+char \& \hyperlink{classStringEx_bb126ddaf548a3432f55c2dada139f64}{operator\mbox{[}$\,$\mbox{]}} (size\_\-t offset)
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_91f1a574ee859923b7e78523196aff40}{operator+} (const char $\ast$str) const 
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_3aa53b601611b0c5e6e38021cc85b95f}{operator+} (const \hyperlink{classStringEx}{StringEx} \&strex) const 
+\item 
+void \hyperlink{classStringEx_08601f0088a4c472e9485243e03fca16}{operator+=} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+void \hyperlink{classStringEx_0ca4d6a67738b3e442789ab2047742a1}{operator+=} (const char $\ast$str)
+\item 
+int \hyperlink{classStringEx_2f853993f378542f2ff7c15ad9c33c83}{startWith} (char $\ast$str) const 
+\item 
+int \hyperlink{classStringEx_06ae2efd90272ae17cfb1280ebcc4a87}{startWith} (\hyperlink{classStringEx}{StringEx} \&strex) const 
+\item 
+int \hyperlink{classStringEx_e0a38173d0b2b402a9cda6cbc362576f}{endWith} (char $\ast$str) const 
+\item 
+int \hyperlink{classStringEx_07349dc3b2f8579fc030d568e92799e3}{endWith} (\hyperlink{classStringEx}{StringEx} \&strex) const 
+\item 
+int \hyperlink{classStringEx_a8a5eaa3a07cd0878989763399ea63c8}{getNumberOfStr} (char $\ast$str)
+\item 
+int \hyperlink{classStringEx_e8543abc9cedc0bd34ff926a68b76058}{getNumberOfChar} (char ch)
+\item 
+int \hyperlink{classStringEx_a948cbadc89b04c5a794efa85409b6c8}{getIndex} (char ch)
+\item 
+int \hyperlink{classStringEx_b1238754fc86c1cb1103202bebb1d62b}{getIndex} (char $\ast$str)
+\item 
+int \hyperlink{classStringEx_706fdc80a0b878a9e273b22db649498e}{getIndex} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+int \hyperlink{classStringEx_36da8bd98e3f9c56570d1e5827c26ac4}{getIndex} (size\_\-t spos, char ch)
+\item 
+int \hyperlink{classStringEx_dce56d45993cbc35db4da5c7b3826886}{getIndex} (size\_\-t spos, char $\ast$str)
+\item 
+int \hyperlink{classStringEx_725cda468783d70187fea1829a77ae33}{getIndex} (size\_\-t spos, const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+int \hyperlink{classStringEx_85a03ab5f3b7c39a8895fe2c0abfd794}{getIndex2} (size\_\-t spos, char $\ast$chs)
+\item 
+int \hyperlink{classStringEx_35c910beac3d5410ca6d1b2d80ddb753}{getIndexEnd} (char ch)
+\item 
+int \hyperlink{classStringEx_413a4c5dd9733f92399d5b75eabfbf19}{getIndexEnd} (char $\ast$str)
+\item 
+int \hyperlink{classStringEx_10fce95cff1c083a94a8f705daab3e3d}{getIndexEnd} (const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+int \hyperlink{classStringEx_ab5c039e3571fd9d5d230ccd5e78c5bd}{getIndexEnd} (size\_\-t spos, char ch)
+\item 
+int \hyperlink{classStringEx_655d87c51488bec7cf2077301bfcab02}{getIndexEnd} (size\_\-t spos, char $\ast$str)
+\item 
+int \hyperlink{classStringEx_82f845f34f93c0976c65128787a13251}{getIndexEnd} (size\_\-t spos, const \hyperlink{classStringEx}{StringEx} \&strex)
+\item 
+int \hyperlink{classStringEx_abbdf798181433adcf54a4924e4ae566}{isPartiallyEqual} (char $\ast$pstr)
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_bd2c36be4fbacd796cd43ecc5ea0de57}{getSubString} (size\_\-t posA, size\_\-t posB) const 
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_8f2103c0eb6908f4d17e7aa5f8501887}{getSubString} (size\_\-t posA) const 
+\item 
+void \hyperlink{classStringEx_d9f3f0708b320587c5b7ec9ec473855e}{setSubString} (char $\ast$str, size\_\-t nCount)
+\item 
+int \hyperlink{classStringEx_104a561876d7b585b981951e99696874}{divideString} (\hyperlink{classStringEx}{StringEx} \&frontend, \hyperlink{classStringEx}{StringEx} \&backend, char delimiter)
+\item 
+int \hyperlink{classStringEx_22095ec14f3644b9ff326921bc7b65a1}{divideString} (\hyperlink{classStringEx}{StringEx} \&frontend, \hyperlink{classStringEx}{StringEx} \&backend, char $\ast$delimiter)
+\item 
+int \hyperlink{classStringEx_fbb3e74263c90c4d608923377c306b4a}{divideStringbyOneOfChars} (\hyperlink{classStringEx}{StringEx} \&frontend, \hyperlink{classStringEx}{StringEx} \&backend, char $\ast$delimiters)
+\item 
+int \hyperlink{classStringEx_bc9bd1b51ebefa56475a3d33ddca7550}{divideString2} (\hyperlink{classStringEx}{StringEx} \&frontend, \hyperlink{classStringEx}{StringEx} \&backend, char $\ast$delimiters)
+\item 
+void \hyperlink{classStringEx_a9416c29e6eaaa05c8831d4320019717}{trimLeft} ()
+\item 
+void \hyperlink{classStringEx_d5e480621a65dcbf6d5bee88a9c66509}{trimLeft} (char ch)
+\item 
+void \hyperlink{classStringEx_ca9136e18b9f519ab85b04181d11ddd3}{trimRight} ()
+\item 
+void \hyperlink{classStringEx_5bec13a31e3517290de6b15e2f9fe336}{trimRight} (char ch)
+\item 
+void \hyperlink{classStringEx_d36b21f97aac5288fa44243bcb9a696a}{trim} ()
+\item 
+void \hyperlink{classStringEx_48fbbe07c043f88eb2d2e00f9b860f4c}{trim} (char ch)
+\item 
+int \hyperlink{classStringEx_36d8239844aff03b54954f8e888fdf7b}{replaceString} (char $\ast$targetstr, char $\ast$str)
+\item 
+int \hyperlink{classStringEx_1dc160e24fe7a9eddb7e0ac5ac71a6ba}{replaceCharOneOfChars} (char $\ast$targetchars, char ch)
+\item 
+int \hyperlink{classStringEx_1ff835f987af94b21d5e0624039dfb62}{replaceStringFromAToB} (char $\ast$A, char $\ast$B, char $\ast$str, int isIncluded)
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_76f316d1d3db65232f5ad8224ab3db9c}{getStringBetweenAnB} (char $\ast$A, char $\ast$B, int isIncluded)
+\item 
+void \hyperlink{classStringEx_a8111c5edd12e94d7f6e470ccb4f0ba7}{toLowerCase} ()
+\item 
+void \hyperlink{classStringEx_fae06b05072e4fcd4e62ea9d2431336d}{toUpperCase} ()
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_b78db0441abdf6a0f5d57aaba69df789}{getValue} (char $\ast$attr, char $\ast$delimiter)
+\item 
+void \hyperlink{classStringEx_4fc92209cf4427f463558800800c3647}{initialize} ()
+\item 
+void \hyperlink{classStringEx_7d44674c98832f52ed546659d6309762}{empty} ()
+\item 
+int \hyperlink{classStringEx_88e19f0888814f720ef6b1bbec459ded}{isEmpty} () const 
+\item 
+int \hyperlink{classStringEx_621b56ed19f2d9de1fe6ecc7e39edc56}{bitOR} (size\_\-t pos, unsigned char operand)
+\item 
+int \hyperlink{classStringEx_be938bfb161e2ed249e485f0224d056a}{bitAND} (size\_\-t pos, unsigned char operand)
+\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classStringEx_89a13eb6dc9b0f923d3eab8b0d2dc841}{operator+} (const char $\ast$str, const \hyperlink{classStringEx}{StringEx} \&strex1)
+\item 
+bool \hyperlink{classStringEx_0352cabe898a856bb669a52b291f2b0c}{operator$>$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{classStringEx_8ad4eaa758cf41431e7ad34e253fda8e}{operator$<$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{classStringEx_50626126af7fa40dffff0b4011023fce}{operator$>$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{classStringEx_193dfbca89ee16ca8cf8d70e4203487b}{operator$<$} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{classStringEx_73912fae5fd55593d41c26b62a165e69}{operator==} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{classStringEx_529ca0692be82a0d7713aef9dc6b5034}{operator==} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+bool \hyperlink{classStringEx_be1be1e9825319fd3dc71dea82d42ad0}{operator!=} (const \hyperlink{classStringEx}{StringEx} \&strex1, const \hyperlink{classStringEx}{StringEx} \&strex2)
+\item 
+bool \hyperlink{classStringEx_5fd76bfce367d9e3f30b22169ffcb629}{operator!=} (const \hyperlink{classStringEx}{StringEx} \&strex1, const char $\ast$str)
+\item 
+ostream \& \hyperlink{classStringEx_d356a5f383f559309131d50ba6363d8a}{operator$<$$<$} (ostream \&sout, const \hyperlink{classStringEx}{StringEx} \&strex)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file stringex.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStringEx_682cb42c740bb422cc430533b57a92cf}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_682cb42c740bb422cc430533b57a92cf}
+
+
+
+
+Definition at line 15 of file stringex.h.
+
+Referenced by Text::operator+().\hypertarget{classStringEx_949af3bd05202d94d9550fc5da749aba}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (size\_\-t {\em sizebuf})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_949af3bd05202d94d9550fc5da749aba}
+
+
+
+
+Definition at line 19 of file stringex.h.\hypertarget{classStringEx_ae67472656d518a9146209d12494cb1b}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_ae67472656d518a9146209d12494cb1b}
+
+
+
+
+Definition at line 24 of file stringex.h.\hypertarget{classStringEx_93e2a37d36fe9104558e448924fcb57d}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_93e2a37d36fe9104558e448924fcb57d}
+
+
+
+
+Definition at line 28 of file stringex.h.\hypertarget{classStringEx_4f8c7c39cf9bdb89b0de4a23054bfa1d}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (char $\ast$ {\em str}, \/  size\_\-t {\em sizebuf})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_4f8c7c39cf9bdb89b0de4a23054bfa1d}
+
+
+
+
+Definition at line 32 of file stringex.h.\hypertarget{classStringEx_7647d27a1a03f22a23a7f3d863cf939b}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const {\bf StringEx} \& {\em strex}, \/  size\_\-t {\em sizebuf})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_7647d27a1a03f22a23a7f3d863cf939b}
+
+
+
+
+Definition at line 37 of file stringex.h.\hypertarget{classStringEx_61301e17f26551eba75f9f005544fc0f}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_61301e17f26551eba75f9f005544fc0f}
+
+
+
+
+Definition at line 42 of file stringex.h.\hypertarget{classStringEx_fb83e36bbf4afa26fc531e2c9fefa0f7}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (char $\ast$ {\em str}, \/  const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_fb83e36bbf4afa26fc531e2c9fefa0f7}
+
+
+
+
+Definition at line 47 of file stringex.h.\hypertarget{classStringEx_5304827ec0bfe2e225031653a82256c2}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const {\bf StringEx} \& {\em strex}, \/  char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_5304827ec0bfe2e225031653a82256c2}
+
+
+
+
+Definition at line 52 of file stringex.h.\hypertarget{classStringEx_c34d876aa1b6fa515deadeea548b6806}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (char $\ast$ {\em str1}, \/  char $\ast$ {\em str2})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_c34d876aa1b6fa515deadeea548b6806}
+
+
+
+
+Definition at line 57 of file stringex.h.\hypertarget{classStringEx_c9a8ce33aa75cfb5fd0db69a66a074a4}{
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\index{StringEx@{StringEx}!StringEx@{StringEx}}
+\subsubsection[{StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::StringEx (const string \& {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_c9a8ce33aa75cfb5fd0db69a66a074a4}
+
+
+
+
+Definition at line 62 of file stringex.h.\hypertarget{classStringEx_c8ae8071f10ebdec5dcd0991990bad55}{
+\index{StringEx@{StringEx}!$\sim$StringEx@{$\sim$StringEx}}
+\index{$\sim$StringEx@{$\sim$StringEx}!StringEx@{StringEx}}
+\subsubsection[{$\sim$StringEx}]{\setlength{\rightskip}{0pt plus 5cm}StringEx::$\sim$StringEx ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_c8ae8071f10ebdec5dcd0991990bad55}
+
+
+
+
+Definition at line 66 of file stringex.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classStringEx_be938bfb161e2ed249e485f0224d056a}{
+\index{StringEx@{StringEx}!bitAND@{bitAND}}
+\index{bitAND@{bitAND}!StringEx@{StringEx}}
+\subsubsection[{bitAND}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::bitAND (size\_\-t {\em pos}, \/  unsigned char {\em operand})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_be938bfb161e2ed249e485f0224d056a}
+
+
+
+
+Definition at line 773 of file stringex.h.\hypertarget{classStringEx_621b56ed19f2d9de1fe6ecc7e39edc56}{
+\index{StringEx@{StringEx}!bitOR@{bitOR}}
+\index{bitOR@{bitOR}!StringEx@{StringEx}}
+\subsubsection[{bitOR}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::bitOR (size\_\-t {\em pos}, \/  unsigned char {\em operand})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_621b56ed19f2d9de1fe6ecc7e39edc56}
+
+
+
+
+Definition at line 764 of file stringex.h.\hypertarget{classStringEx_2b4c36bb82f085f585dd80f014aed462}{
+\index{StringEx@{StringEx}!buffer@{buffer}}
+\index{buffer@{buffer}!StringEx@{StringEx}}
+\subsubsection[{buffer}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ StringEx::buffer (size\_\-t {\em pos} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_2b4c36bb82f085f585dd80f014aed462}
+
+
+
+
+Definition at line 80 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeHeadTail(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::canBeVE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-CHEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-HOMOPHONE(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::SynonymContainer::insertSynonym(), kmaOrange::Dictionary::loadKnowledge(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::StopWordContainer::loadStopWord(), kmaOrange::SynonymContainer::loadSynonym(), kmaOrange::Dictionary::makeKnowledge(), kmaOrange::Dictionary::makeMainTrieInfo(), Text::operator+=(), operator=(), Text::operator\mbox{[}$\,$\mbox{]}(), kmaOrange::DecomposeNNP::postProcessDcInfo(), kmaOrange::Dictionary::readCommonDictionary(), kmaOrange::Dictionary::readDivideInfo(), kmaOrange::Dictionary::readJosaEomiDictionary(), kmaOrange::Dictionary::readPostionInfo(), kmaOrange::DecomposeNNP::searchAllRegisteredN\_\-(), kmaOrange::AuxVerb::searchNgetInfoFromAvTrie(), kmaOrange::Dictionary::searchNgetInfoFromDivTrie(), kmaOrange::PreFinalEomi::searchNgetInfoFromEpTrie(), kmaOrange::Dictionary::searchNgetInfoFromJosaEomiTrie(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), kmaOrange::Dictionary::searchNgetInfoFromPosTrie(), kmaOrange::Dictionary::searchNgetInfoFromPreAnalTrie(), and kmaOrange::PredicativeSuffix::searchNgetInfoFromXsdTrie().\hypertarget{classStringEx_eaf8859daeb95f1380c814740af5b5d4}{
+\index{StringEx@{StringEx}!bufferSize@{bufferSize}}
+\index{bufferSize@{bufferSize}!StringEx@{StringEx}}
+\subsubsection[{bufferSize}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t StringEx::bufferSize () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_eaf8859daeb95f1380c814740af5b5d4}
+
+
+
+
+Definition at line 95 of file stringex.h.\hypertarget{classStringEx_22095ec14f3644b9ff326921bc7b65a1}{
+\index{StringEx@{StringEx}!divideString@{divideString}}
+\index{divideString@{divideString}!StringEx@{StringEx}}
+\subsubsection[{divideString}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::divideString ({\bf StringEx} \& {\em frontend}, \/  {\bf StringEx} \& {\em backend}, \/  char $\ast$ {\em delimiter})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_22095ec14f3644b9ff326921bc7b65a1}
+
+
+
+
+Definition at line 432 of file stringex.h.
+
+References getIndex(), and getSubString().\hypertarget{classStringEx_104a561876d7b585b981951e99696874}{
+\index{StringEx@{StringEx}!divideString@{divideString}}
+\index{divideString@{divideString}!StringEx@{StringEx}}
+\subsubsection[{divideString}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::divideString ({\bf StringEx} \& {\em frontend}, \/  {\bf StringEx} \& {\em backend}, \/  char {\em delimiter})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_104a561876d7b585b981951e99696874}
+
+
+
+
+Definition at line 414 of file stringex.h.
+
+References getIndex(), and getSubString().\hypertarget{classStringEx_bc9bd1b51ebefa56475a3d33ddca7550}{
+\index{StringEx@{StringEx}!divideString2@{divideString2}}
+\index{divideString2@{divideString2}!StringEx@{StringEx}}
+\subsubsection[{divideString2}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::divideString2 ({\bf StringEx} \& {\em frontend}, \/  {\bf StringEx} \& {\em backend}, \/  char $\ast$ {\em delimiters})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_bc9bd1b51ebefa56475a3d33ddca7550}
+
+
+
+
+Definition at line 468 of file stringex.h.
+
+References getIndex2(), and getSubString().\hypertarget{classStringEx_fbb3e74263c90c4d608923377c306b4a}{
+\index{StringEx@{StringEx}!divideStringbyOneOfChars@{divideStringbyOneOfChars}}
+\index{divideStringbyOneOfChars@{divideStringbyOneOfChars}!StringEx@{StringEx}}
+\subsubsection[{divideStringbyOneOfChars}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::divideStringbyOneOfChars ({\bf StringEx} \& {\em frontend}, \/  {\bf StringEx} \& {\em backend}, \/  char $\ast$ {\em delimiters})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_fbb3e74263c90c4d608923377c306b4a}
+
+
+
+
+Definition at line 450 of file stringex.h.
+
+References getIndex2(), and getSubString().\hypertarget{classStringEx_7d44674c98832f52ed546659d6309762}{
+\index{StringEx@{StringEx}!empty@{empty}}
+\index{empty@{empty}!StringEx@{StringEx}}
+\subsubsection[{empty}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::empty ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_7d44674c98832f52ed546659d6309762}
+
+
+
+
+Definition at line 749 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), and kmaOrange::MAnalyzer::checkNanalyzePreEomi().\hypertarget{classStringEx_07349dc3b2f8579fc030d568e92799e3}{
+\index{StringEx@{StringEx}!endWith@{endWith}}
+\index{endWith@{endWith}!StringEx@{StringEx}}
+\subsubsection[{endWith}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::endWith ({\bf StringEx} \& {\em strex}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_07349dc3b2f8579fc030d568e92799e3}
+
+
+
+
+Definition at line 224 of file stringex.h.
+
+References length().\hypertarget{classStringEx_e0a38173d0b2b402a9cda6cbc362576f}{
+\index{StringEx@{StringEx}!endWith@{endWith}}
+\index{endWith@{endWith}!StringEx@{StringEx}}
+\subsubsection[{endWith}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::endWith (char $\ast$ {\em str}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_e0a38173d0b2b402a9cda6cbc362576f}
+
+
+
+
+Definition at line 217 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeCopular(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::DecomposeNNP::getDecomposedInformation(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::StopWordContainer::loadStopWord(), kmaOrange::SynonymContainer::loadSynonym(), and kmaOrange::Dictionary::loadUserNoun().\hypertarget{classStringEx_9260ba2f0b6e36257f85037a61f6cc30}{
+\index{StringEx@{StringEx}!getBuffer@{getBuffer}}
+\index{getBuffer@{getBuffer}!StringEx@{StringEx}}
+\subsubsection[{getBuffer}]{\setlength{\rightskip}{0pt plus 5cm}char$\ast$ StringEx::getBuffer (size\_\-t {\em pos} = {\tt 0}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_9260ba2f0b6e36257f85037a61f6cc30}
+
+
+
+
+Definition at line 70 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::DecomposeNNP::generateCandidates(), kmaOrange::DecomposeNNP::getDecomposedInformation(), kmaOrange::DecomposeNNP::getQueryCandidates(), operator+(), Text::operator+(), operator$<$$<$(), Text::operator=(), kmaOrange::DecomposeNNP::postProcessDcInfo(), kmaOrange::DecomposeNNP::scoringPattern(), kmaOrange::StrStream::setInStream(), kmaOrange::StrStream::setOutStream(), and Text::Text().\hypertarget{classStringEx_2705e22703e3754243608d8133c1b791}{
+\index{StringEx@{StringEx}!getBufferSize@{getBufferSize}}
+\index{getBufferSize@{getBufferSize}!StringEx@{StringEx}}
+\subsubsection[{getBufferSize}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t StringEx::getBufferSize () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_2705e22703e3754243608d8133c1b791}
+
+
+
+
+Definition at line 90 of file stringex.h.
+
+Referenced by kmaOrange::StrStream::getLine().\hypertarget{classStringEx_725cda468783d70187fea1829a77ae33}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (size\_\-t {\em spos}, \/  const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_725cda468783d70187fea1829a77ae33}
+
+
+
+
+Definition at line 306 of file stringex.h.\hypertarget{classStringEx_dce56d45993cbc35db4da5c7b3826886}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (size\_\-t {\em spos}, \/  char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_dce56d45993cbc35db4da5c7b3826886}
+
+
+
+
+Definition at line 298 of file stringex.h.\hypertarget{classStringEx_36da8bd98e3f9c56570d1e5827c26ac4}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (size\_\-t {\em spos}, \/  char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_36da8bd98e3f9c56570d1e5827c26ac4}
+
+
+
+
+Definition at line 290 of file stringex.h.\hypertarget{classStringEx_706fdc80a0b878a9e273b22db649498e}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_706fdc80a0b878a9e273b22db649498e}
+
+
+
+
+Definition at line 282 of file stringex.h.\hypertarget{classStringEx_b1238754fc86c1cb1103202bebb1d62b}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_b1238754fc86c1cb1103202bebb1d62b}
+
+
+
+
+Definition at line 274 of file stringex.h.\hypertarget{classStringEx_a948cbadc89b04c5a794efa85409b6c8}{
+\index{StringEx@{StringEx}!getIndex@{getIndex}}
+\index{getIndex@{getIndex}!StringEx@{StringEx}}
+\subsubsection[{getIndex}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_a948cbadc89b04c5a794efa85409b6c8}
+
+
+
+
+Definition at line 266 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), divideString(), Text::divideStrings(), kmaOrange::DecomposeNNP::generateCandidates(), kmaOrange::DecomposeNNP::getDecomposedInformation(), kmaOrange::DecomposeNNP::getQueryCandidates(), Text::getStringBetweenAnB(), getStringBetweenAnB(), getValue(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::SynonymContainer::loadSynonym(), kmaOrange::DecomposeNNP::postProcessDcInfo(), kmaOrange::Dictionary::readJosaEomiDictionary(), replaceString(), replaceStringFromAToB(), kmaOrange::Eojul::setString(), and kmaOrange::MAnalyzer::tokenizeSentence().\hypertarget{classStringEx_85a03ab5f3b7c39a8895fe2c0abfd794}{
+\index{StringEx@{StringEx}!getIndex2@{getIndex2}}
+\index{getIndex2@{getIndex2}!StringEx@{StringEx}}
+\subsubsection[{getIndex2}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndex2 (size\_\-t {\em spos}, \/  char $\ast$ {\em chs})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_85a03ab5f3b7c39a8895fe2c0abfd794}
+
+
+
+
+Definition at line 314 of file stringex.h.
+
+Referenced by divideString2(), divideStringbyOneOfChars(), Text::divideStrings2(), and replaceCharOneOfChars().\hypertarget{classStringEx_82f845f34f93c0976c65128787a13251}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (size\_\-t {\em spos}, \/  const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_82f845f34f93c0976c65128787a13251}
+
+
+
+
+Definition at line 362 of file stringex.h.\hypertarget{classStringEx_655d87c51488bec7cf2077301bfcab02}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (size\_\-t {\em spos}, \/  char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_655d87c51488bec7cf2077301bfcab02}
+
+
+
+
+Definition at line 354 of file stringex.h.\hypertarget{classStringEx_ab5c039e3571fd9d5d230ccd5e78c5bd}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (size\_\-t {\em spos}, \/  char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_ab5c039e3571fd9d5d230ccd5e78c5bd}
+
+
+
+
+Definition at line 346 of file stringex.h.\hypertarget{classStringEx_10fce95cff1c083a94a8f705daab3e3d}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_10fce95cff1c083a94a8f705daab3e3d}
+
+
+
+
+Definition at line 338 of file stringex.h.\hypertarget{classStringEx_413a4c5dd9733f92399d5b75eabfbf19}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_413a4c5dd9733f92399d5b75eabfbf19}
+
+
+
+
+Definition at line 330 of file stringex.h.\hypertarget{classStringEx_35c910beac3d5410ca6d1b2d80ddb753}{
+\index{StringEx@{StringEx}!getIndexEnd@{getIndexEnd}}
+\index{getIndexEnd@{getIndexEnd}!StringEx@{StringEx}}
+\subsubsection[{getIndexEnd}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getIndexEnd (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_35c910beac3d5410ca6d1b2d80ddb753}
+
+
+
+
+Definition at line 322 of file stringex.h.\hypertarget{classStringEx_ca8d43a55788bf20513aa829a75af7f9}{
+\index{StringEx@{StringEx}!getLength@{getLength}}
+\index{getLength@{getLength}!StringEx@{StringEx}}
+\subsubsection[{getLength}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t StringEx::getLength () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_ca8d43a55788bf20513aa829a75af7f9}
+
+
+
+
+Definition at line 75 of file stringex.h.
+
+References length().
+
+Referenced by Text::divideStrings(), Text::divideStrings2(), kmaOrange::DecomposeNNP::getQueryCandidates(), and kmaOrange::DecomposeNNP::getSyllableLength().\hypertarget{classStringEx_e8543abc9cedc0bd34ff926a68b76058}{
+\index{StringEx@{StringEx}!getNumberOfChar@{getNumberOfChar}}
+\index{getNumberOfChar@{getNumberOfChar}!StringEx@{StringEx}}
+\subsubsection[{getNumberOfChar}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getNumberOfChar (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_e8543abc9cedc0bd34ff926a68b76058}
+
+
+
+
+Definition at line 250 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::DecomposeNNP::getDecomposedInformation(), and kmaOrange::DecomposeNNP::postProcessDcInfo().\hypertarget{classStringEx_a8a5eaa3a07cd0878989763399ea63c8}{
+\index{StringEx@{StringEx}!getNumberOfStr@{getNumberOfStr}}
+\index{getNumberOfStr@{getNumberOfStr}!StringEx@{StringEx}}
+\subsubsection[{getNumberOfStr}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::getNumberOfStr (char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_a8a5eaa3a07cd0878989763399ea63c8}
+
+
+
+
+Definition at line 231 of file stringex.h.
+
+Referenced by kmaOrange::DecomposeNNP::postProcessDcInfo().\hypertarget{classStringEx_76f316d1d3db65232f5ad8224ab3db9c}{
+\index{StringEx@{StringEx}!getStringBetweenAnB@{getStringBetweenAnB}}
+\index{getStringBetweenAnB@{getStringBetweenAnB}!StringEx@{StringEx}}
+\subsubsection[{getStringBetweenAnB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::getStringBetweenAnB (char $\ast$ {\em A}, \/  char $\ast$ {\em B}, \/  int {\em isIncluded})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_76f316d1d3db65232f5ad8224ab3db9c}
+
+
+
+
+Reimplemented in \hyperlink{classText_b23de14f2e2378e8c3c6c73d9ae28eef}{Text}.
+
+Definition at line 657 of file stringex.h.
+
+References getIndex(), and getSubString().\hypertarget{classStringEx_8f2103c0eb6908f4d17e7aa5f8501887}{
+\index{StringEx@{StringEx}!getSubString@{getSubString}}
+\index{getSubString@{getSubString}!StringEx@{StringEx}}
+\subsubsection[{getSubString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::getSubString (size\_\-t {\em posA}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_8f2103c0eb6908f4d17e7aa5f8501887}
+
+
+
+
+Definition at line 393 of file stringex.h.
+
+References length().\hypertarget{classStringEx_bd2c36be4fbacd796cd43ecc5ea0de57}{
+\index{StringEx@{StringEx}!getSubString@{getSubString}}
+\index{getSubString@{getSubString}!StringEx@{StringEx}}
+\subsubsection[{getSubString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::getSubString (size\_\-t {\em posA}, \/  size\_\-t {\em posB}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_bd2c36be4fbacd796cd43ecc5ea0de57}
+
+
+
+
+Definition at line 377 of file stringex.h.
+
+References length().
+
+Referenced by kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), kmaOrange::DecomposeNNP::decomposing(), divideString(), divideString2(), divideStringbyOneOfChars(), Text::divideStrings(), Text::divideStrings2(), kmaOrange::DecomposeNNP::generateCandidates(), kmaOrange::DecomposeNNP::generateSimpleWord(), kmaOrange::DecomposeNNP::getQueryCandidates(), Text::getStringBetweenAnB(), getStringBetweenAnB(), kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::DecomposeNNP::postProcessDcInfo(), kmaOrange::DecomposeNNP::printDivPattern(), kmaOrange::Dictionary::readJosaEomiDictionary(), and kmaOrange::DecomposeNNP::scoringPattern().\hypertarget{classStringEx_b78db0441abdf6a0f5d57aaba69df789}{
+\index{StringEx@{StringEx}!getValue@{getValue}}
+\index{getValue@{getValue}!StringEx@{StringEx}}
+\subsubsection[{getValue}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::getValue (char $\ast$ {\em attr}, \/  char $\ast$ {\em delimiter})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_b78db0441abdf6a0f5d57aaba69df789}
+
+
+
+
+Definition at line 706 of file stringex.h.
+
+References getIndex().\hypertarget{classStringEx_4fc92209cf4427f463558800800c3647}{
+\index{StringEx@{StringEx}!initialize@{initialize}}
+\index{initialize@{initialize}!StringEx@{StringEx}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::initialize ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_4fc92209cf4427f463558800800c3647}
+
+
+
+
+Definition at line 740 of file stringex.h.\hypertarget{classStringEx_88e19f0888814f720ef6b1bbec459ded}{
+\index{StringEx@{StringEx}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!StringEx@{StringEx}}
+\subsubsection[{isEmpty}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::isEmpty () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_88e19f0888814f720ef6b1bbec459ded}
+
+
+
+
+Definition at line 758 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::commonRunWithStream(), kmaOrange::DecomposeNNP::getDecomposedInformation(), kmaOrange::Dictionary::makeMainTrieInfo(), Text::operator+=(), kmaOrange::Dictionary::readCommonDictionary(), kmaOrange::MAnalyzer::runWithString(), trimLeft(), and trimRight().\hypertarget{classStringEx_abbdf798181433adcf54a4924e4ae566}{
+\index{StringEx@{StringEx}!isPartiallyEqual@{isPartiallyEqual}}
+\index{isPartiallyEqual@{isPartiallyEqual}!StringEx@{StringEx}}
+\subsubsection[{isPartiallyEqual}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::isPartiallyEqual (char $\ast$ {\em pstr})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_abbdf798181433adcf54a4924e4ae566}
+
+
+
+
+Definition at line 370 of file stringex.h.\hypertarget{classStringEx_007fa6803dbc3544d17eaba7b8d56a07}{
+\index{StringEx@{StringEx}!isStrEqual@{isStrEqual}}
+\index{isStrEqual@{isStrEqual}!StringEx@{StringEx}}
+\subsubsection[{isStrEqual}]{\setlength{\rightskip}{0pt plus 5cm}bool StringEx::isStrEqual (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_007fa6803dbc3544d17eaba7b8d56a07}
+
+
+
+
+Definition at line 147 of file stringex.h.\hypertarget{classStringEx_61b66936040c448bf70622d9790d0a9f}{
+\index{StringEx@{StringEx}!isStrEqual@{isStrEqual}}
+\index{isStrEqual@{isStrEqual}!StringEx@{StringEx}}
+\subsubsection[{isStrEqual}]{\setlength{\rightskip}{0pt plus 5cm}bool StringEx::isStrEqual (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_61b66936040c448bf70622d9790d0a9f}
+
+
+
+
+Definition at line 141 of file stringex.h.\hypertarget{classStringEx_d377a20ec6e6ca28e8c470189903a87d}{
+\index{StringEx@{StringEx}!length@{length}}
+\index{length@{length}!StringEx@{StringEx}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t StringEx::length () const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_d377a20ec6e6ca28e8c470189903a87d}
+
+
+
+
+Definition at line 85 of file stringex.h.
+
+Referenced by kmaOrange::DecomposeNNP::addNNP(), kmaOrange::MAnalyzer::analyzeDigitAlphabetWord(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::analyzeSubHangulWordforFL(), kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::checkNanalyzeCopular(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeN\_\-(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), endWith(), kmaOrange::DecomposeNNP::getDecomposedInformation(), getLength(), kmaOrange::DecomposeNNP::getQueryCandidates(), getSubString(), kmaOrange::MAnalyzer::isAlphabet(), kmaOrange::MAnalyzer::isDigit(), kmaOrange::Eojul::isDigit(), kmaOrange::SynonymContainer::loadSynonym(), kmaOrange::Dictionary::makeMainTrieInfo(), Text::operator\mbox{[}$\,$\mbox{]}(), kmaOrange::DecomposeNNP::postProcessDcInfo(), kmaOrange::Dictionary::readPostionInfo(), kmaOrange::AuxVerb::searchNgetInfoFromAvTrie(), kmaOrange::Dictionary::searchNgetInfoFromDivTrie(), kmaOrange::PreFinalEomi::searchNgetInfoFromEpTrie(), kmaOrange::Dictionary::searchNgetInfoFromJosaEomiTrie(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), kmaOrange::Dictionary::searchNgetInfoFromPosTrie(), kmaOrange::Dictionary::searchNgetInfoFromPreAnalTrie(), kmaOrange::PredicativeSuffix::searchNgetInfoFromXsdTrie(), startWith(), kmaOrange::MAnalyzer::tokenizeSentence(), and trimLeft().\hypertarget{classStringEx_3aa53b601611b0c5e6e38021cc85b95f}{
+\index{StringEx@{StringEx}!operator+@{operator+}}
+\index{operator+@{operator+}!StringEx@{StringEx}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::operator+ (const {\bf StringEx} \& {\em strex}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_3aa53b601611b0c5e6e38021cc85b95f}
+
+
+
+
+Definition at line 170 of file stringex.h.\hypertarget{classStringEx_91f1a574ee859923b7e78523196aff40}{
+\index{StringEx@{StringEx}!operator+@{operator+}}
+\index{operator+@{operator+}!StringEx@{StringEx}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} StringEx::operator+ (const char $\ast$ {\em str}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_91f1a574ee859923b7e78523196aff40}
+
+
+
+
+Definition at line 163 of file stringex.h.\hypertarget{classStringEx_0ca4d6a67738b3e442789ab2047742a1}{
+\index{StringEx@{StringEx}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!StringEx@{StringEx}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::operator+= (const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_0ca4d6a67738b3e442789ab2047742a1}
+
+
+
+
+Definition at line 189 of file stringex.h.\hypertarget{classStringEx_08601f0088a4c472e9485243e03fca16}{
+\index{StringEx@{StringEx}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!StringEx@{StringEx}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::operator+= (const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_08601f0088a4c472e9485243e03fca16}
+
+
+
+
+Reimplemented in \hyperlink{classText_326e20a30f0362bd9c84cb61a065e9d0}{Text}.
+
+Definition at line 184 of file stringex.h.\hypertarget{classStringEx_e6556e9e33cf433bc5ce65c2cc709907}{
+\index{StringEx@{StringEx}!operator=@{operator=}}
+\index{operator=@{operator=}!StringEx@{StringEx}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf StringEx}\& StringEx::operator= (const char {\em c})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_e6556e9e33cf433bc5ce65c2cc709907}
+
+
+
+
+Definition at line 130 of file stringex.h.\hypertarget{classStringEx_1071b3e23def59810d2a7d97a134cd72}{
+\index{StringEx@{StringEx}!operator=@{operator=}}
+\index{operator=@{operator=}!StringEx@{StringEx}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf StringEx}\& StringEx::operator= (const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_1071b3e23def59810d2a7d97a134cd72}
+
+
+
+
+Reimplemented in \hyperlink{classText_c5bed8a0fa6cc15e69fd3f3a6072e6ae}{Text}.
+
+Definition at line 123 of file stringex.h.
+
+References buffer().\hypertarget{classStringEx_9bf02ac98235d7041562939b87512bac}{
+\index{StringEx@{StringEx}!operator=@{operator=}}
+\index{operator=@{operator=}!StringEx@{StringEx}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf StringEx}\& StringEx::operator= (const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_9bf02ac98235d7041562939b87512bac}
+
+
+
+
+Definition at line 115 of file stringex.h.\hypertarget{classStringEx_bb126ddaf548a3432f55c2dada139f64}{
+\index{StringEx@{StringEx}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!StringEx@{StringEx}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}char\& StringEx::operator\mbox{[}$\,$\mbox{]} (size\_\-t {\em offset})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_bb126ddaf548a3432f55c2dada139f64}
+
+
+
+
+Reimplemented in \hyperlink{classText_bccce5d5b11116ac065b910ce8eefe17}{Text}.
+
+Definition at line 158 of file stringex.h.\hypertarget{classStringEx_9d84497552f7c6adfd065bfb4f40f9c2}{
+\index{StringEx@{StringEx}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!StringEx@{StringEx}}
+\subsubsection[{operator[]}]{\setlength{\rightskip}{0pt plus 5cm}const char\& StringEx::operator\mbox{[}$\,$\mbox{]} (size\_\-t {\em offset}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_9d84497552f7c6adfd065bfb4f40f9c2}
+
+
+
+
+Reimplemented in \hyperlink{classText_19b861315b5b50504740e3a843eba87b}{Text}.
+
+Definition at line 153 of file stringex.h.\hypertarget{classStringEx_1dc160e24fe7a9eddb7e0ac5ac71a6ba}{
+\index{StringEx@{StringEx}!replaceCharOneOfChars@{replaceCharOneOfChars}}
+\index{replaceCharOneOfChars@{replaceCharOneOfChars}!StringEx@{StringEx}}
+\subsubsection[{replaceCharOneOfChars}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::replaceCharOneOfChars (char $\ast$ {\em targetchars}, \/  char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_1dc160e24fe7a9eddb7e0ac5ac71a6ba}
+
+
+
+
+Definition at line 601 of file stringex.h.
+
+References getIndex2().\hypertarget{classStringEx_36d8239844aff03b54954f8e888fdf7b}{
+\index{StringEx@{StringEx}!replaceString@{replaceString}}
+\index{replaceString@{replaceString}!StringEx@{StringEx}}
+\subsubsection[{replaceString}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::replaceString (char $\ast$ {\em targetstr}, \/  char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_36d8239844aff03b54954f8e888fdf7b}
+
+
+
+
+Definition at line 578 of file stringex.h.
+
+References getIndex(), and replace().
+
+Referenced by kmaOrange::SynonymContainer::insertSynonym(), kmaOrange::SynonymContainer::loadSynonym(), kmaOrange::DecomposeNNP::postProcessDcInfo(), and kmaOrange::Logger::SetMessage().\hypertarget{classStringEx_1ff835f987af94b21d5e0624039dfb62}{
+\index{StringEx@{StringEx}!replaceStringFromAToB@{replaceStringFromAToB}}
+\index{replaceStringFromAToB@{replaceStringFromAToB}!StringEx@{StringEx}}
+\subsubsection[{replaceStringFromAToB}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::replaceStringFromAToB (char $\ast$ {\em A}, \/  char $\ast$ {\em B}, \/  char $\ast$ {\em str}, \/  int {\em isIncluded})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_1ff835f987af94b21d5e0624039dfb62}
+
+
+
+
+Definition at line 621 of file stringex.h.
+
+References getIndex(), and replace().\hypertarget{classStringEx_5e44f7dfc41db9f4ff1e25a353464ff0}{
+\index{StringEx@{StringEx}!setBufferSize@{setBufferSize}}
+\index{setBufferSize@{setBufferSize}!StringEx@{StringEx}}
+\subsubsection[{setBufferSize}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::setBufferSize (size\_\-t {\em sizebuf})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_5e44f7dfc41db9f4ff1e25a353464ff0}
+
+
+
+
+Definition at line 100 of file stringex.h.
+
+Referenced by kmaOrange::StrStream::getLine(), kmaOrange::Dictionary::readDivideInfo(), kmaOrange::Dictionary::readPostionInfo(), and kmaOrange::MAnalyzer::setDefault().\hypertarget{classStringEx_0584545ceedd9c318a1c59bb0e346001}{
+\index{StringEx@{StringEx}!setLength@{setLength}}
+\index{setLength@{setLength}!StringEx@{StringEx}}
+\subsubsection[{setLength}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::setLength (size\_\-t {\em len})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_0584545ceedd9c318a1c59bb0e346001}
+
+
+
+
+Definition at line 107 of file stringex.h.
+
+Referenced by kmaOrange::StrStream::getLine().\hypertarget{classStringEx_d9f3f0708b320587c5b7ec9ec473855e}{
+\index{StringEx@{StringEx}!setSubString@{setSubString}}
+\index{setSubString@{setSubString}!StringEx@{StringEx}}
+\subsubsection[{setSubString}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::setSubString (char $\ast$ {\em str}, \/  size\_\-t {\em nCount})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_d9f3f0708b320587c5b7ec9ec473855e}
+
+
+
+
+Definition at line 409 of file stringex.h.
+
+Referenced by kmaOrange::MAnalyzer::analyzeHeadTail(), and kmaOrange::MAnalyzer::checkNanalyzeCopular().\hypertarget{classStringEx_06ae2efd90272ae17cfb1280ebcc4a87}{
+\index{StringEx@{StringEx}!startWith@{startWith}}
+\index{startWith@{startWith}!StringEx@{StringEx}}
+\subsubsection[{startWith}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::startWith ({\bf StringEx} \& {\em strex}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_06ae2efd90272ae17cfb1280ebcc4a87}
+
+
+
+
+Definition at line 210 of file stringex.h.
+
+References length().\hypertarget{classStringEx_2f853993f378542f2ff7c15ad9c33c83}{
+\index{StringEx@{StringEx}!startWith@{startWith}}
+\index{startWith@{startWith}!StringEx@{StringEx}}
+\subsubsection[{startWith}]{\setlength{\rightskip}{0pt plus 5cm}int StringEx::startWith (char $\ast$ {\em str}) const\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_2f853993f378542f2ff7c15ad9c33c83}
+
+
+
+
+Definition at line 203 of file stringex.h.
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::StopWordContainer::loadStopWord(), kmaOrange::SynonymContainer::loadSynonym(), kmaOrange::Dictionary::readCommonDictionary(), and kmaOrange::Dictionary::readJosaEomiDictionary().\hypertarget{classStringEx_a8111c5edd12e94d7f6e470ccb4f0ba7}{
+\index{StringEx@{StringEx}!toLowerCase@{toLowerCase}}
+\index{toLowerCase@{toLowerCase}!StringEx@{StringEx}}
+\subsubsection[{toLowerCase}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::toLowerCase ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_a8111c5edd12e94d7f6e470ccb4f0ba7}
+
+
+
+
+Definition at line 686 of file stringex.h.
+
+Referenced by kmaOrange::SynonymContainer::loadSynonym().\hypertarget{classStringEx_fae06b05072e4fcd4e62ea9d2431336d}{
+\index{StringEx@{StringEx}!toUpperCase@{toUpperCase}}
+\index{toUpperCase@{toUpperCase}!StringEx@{StringEx}}
+\subsubsection[{toUpperCase}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::toUpperCase ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_fae06b05072e4fcd4e62ea9d2431336d}
+
+
+
+
+Definition at line 696 of file stringex.h.\hypertarget{classStringEx_48fbbe07c043f88eb2d2e00f9b860f4c}{
+\index{StringEx@{StringEx}!trim@{trim}}
+\index{trim@{trim}!StringEx@{StringEx}}
+\subsubsection[{trim}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trim (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_48fbbe07c043f88eb2d2e00f9b860f4c}
+
+
+
+
+Definition at line 572 of file stringex.h.
+
+References trimLeft(), and trimRight().\hypertarget{classStringEx_d36b21f97aac5288fa44243bcb9a696a}{
+\index{StringEx@{StringEx}!trim@{trim}}
+\index{trim@{trim}!StringEx@{StringEx}}
+\subsubsection[{trim}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trim ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_d36b21f97aac5288fa44243bcb9a696a}
+
+
+
+
+Definition at line 566 of file stringex.h.
+
+References trimLeft(), and trimRight().
+
+Referenced by kmaOrange::Dictionary::makeMainTrieInfo(), and kmaOrange::Dictionary::readCommonDictionary().\hypertarget{classStringEx_d5e480621a65dcbf6d5bee88a9c66509}{
+\index{StringEx@{StringEx}!trimLeft@{trimLeft}}
+\index{trimLeft@{trimLeft}!StringEx@{StringEx}}
+\subsubsection[{trimLeft}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trimLeft (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_d5e480621a65dcbf6d5bee88a9c66509}
+
+
+
+
+Definition at line 506 of file stringex.h.
+
+References isEmpty(), and length().\hypertarget{classStringEx_a9416c29e6eaaa05c8831d4320019717}{
+\index{StringEx@{StringEx}!trimLeft@{trimLeft}}
+\index{trimLeft@{trimLeft}!StringEx@{StringEx}}
+\subsubsection[{trimLeft}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trimLeft ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_a9416c29e6eaaa05c8831d4320019717}
+
+
+
+
+Definition at line 486 of file stringex.h.
+
+References isEmpty(), and length().
+
+Referenced by kmaOrange::Dictionary::readCommonDictionary(), and trim().\hypertarget{classStringEx_5bec13a31e3517290de6b15e2f9fe336}{
+\index{StringEx@{StringEx}!trimRight@{trimRight}}
+\index{trimRight@{trimRight}!StringEx@{StringEx}}
+\subsubsection[{trimRight}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trimRight (char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_5bec13a31e3517290de6b15e2f9fe336}
+
+
+
+
+Definition at line 546 of file stringex.h.
+
+References isEmpty().\hypertarget{classStringEx_ca9136e18b9f519ab85b04181d11ddd3}{
+\index{StringEx@{StringEx}!trimRight@{trimRight}}
+\index{trimRight@{trimRight}!StringEx@{StringEx}}
+\subsubsection[{trimRight}]{\setlength{\rightskip}{0pt plus 5cm}void StringEx::trimRight ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classStringEx_ca9136e18b9f519ab85b04181d11ddd3}
+
+
+
+
+Definition at line 526 of file stringex.h.
+
+References isEmpty().
+
+Referenced by kmaOrange::Dictionary::loadPreAnalysis(), kmaOrange::StopWordContainer::loadStopWord(), kmaOrange::SynonymContainer::loadSynonym(), and trim().
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classStringEx_5fd76bfce367d9e3f30b22169ffcb629}{
+\index{StringEx@{StringEx}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!StringEx@{StringEx}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool operator!= (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_5fd76bfce367d9e3f30b22169ffcb629}
+
+
+
+
+Definition at line 62 of file stringex.cpp.\hypertarget{classStringEx_be1be1e9825319fd3dc71dea82d42ad0}{
+\index{StringEx@{StringEx}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!StringEx@{StringEx}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool operator!= (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_be1be1e9825319fd3dc71dea82d42ad0}
+
+
+
+
+Definition at line 55 of file stringex.cpp.\hypertarget{classStringEx_89a13eb6dc9b0f923d3eab8b0d2dc841}{
+\index{StringEx@{StringEx}!operator+@{operator+}}
+\index{operator+@{operator+}!StringEx@{StringEx}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} operator+ (const char $\ast$ {\em str}, \/  const {\bf StringEx} \& {\em strex1})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_89a13eb6dc9b0f923d3eab8b0d2dc841}
+
+
+
+
+Definition at line 76 of file stringex.cpp.\hypertarget{classStringEx_193dfbca89ee16ca8cf8d70e4203487b}{
+\index{StringEx@{StringEx}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!StringEx@{StringEx}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_193dfbca89ee16ca8cf8d70e4203487b}
+
+
+
+
+Definition at line 34 of file stringex.cpp.\hypertarget{classStringEx_8ad4eaa758cf41431e7ad34e253fda8e}{
+\index{StringEx@{StringEx}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!StringEx@{StringEx}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$<$ (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_8ad4eaa758cf41431e7ad34e253fda8e}
+
+
+
+
+Definition at line 20 of file stringex.cpp.\hypertarget{classStringEx_d356a5f383f559309131d50ba6363d8a}{
+\index{StringEx@{StringEx}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!StringEx@{StringEx}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (ostream \& {\em sout}, \/  const {\bf StringEx} \& {\em strex})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_d356a5f383f559309131d50ba6363d8a}
+
+
+
+
+Definition at line 69 of file stringex.cpp.\hypertarget{classStringEx_529ca0692be82a0d7713aef9dc6b5034}{
+\index{StringEx@{StringEx}!operator==@{operator==}}
+\index{operator==@{operator==}!StringEx@{StringEx}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_529ca0692be82a0d7713aef9dc6b5034}
+
+
+
+
+Definition at line 48 of file stringex.cpp.\hypertarget{classStringEx_73912fae5fd55593d41c26b62a165e69}{
+\index{StringEx@{StringEx}!operator==@{operator==}}
+\index{operator==@{operator==}!StringEx@{StringEx}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool operator== (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_73912fae5fd55593d41c26b62a165e69}
+
+
+
+
+Definition at line 41 of file stringex.cpp.\hypertarget{classStringEx_50626126af7fa40dffff0b4011023fce}{
+\index{StringEx@{StringEx}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!StringEx@{StringEx}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$>$ (const {\bf StringEx} \& {\em strex1}, \/  const char $\ast$ {\em str})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_50626126af7fa40dffff0b4011023fce}
+
+
+
+
+Definition at line 27 of file stringex.cpp.\hypertarget{classStringEx_0352cabe898a856bb669a52b291f2b0c}{
+\index{StringEx@{StringEx}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!StringEx@{StringEx}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}bool operator$>$ (const {\bf StringEx} \& {\em strex1}, \/  const {\bf StringEx} \& {\em strex2})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classStringEx_0352cabe898a856bb669a52b291f2b0c}
+
+
+
+
+Definition at line 13 of file stringex.cpp.
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{stringex_8h}{stringex.h}\end{CompactItemize}

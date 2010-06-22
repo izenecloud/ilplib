@@ -1,0 +1,324 @@
+\hypertarget{classla__manager_1_1Term}{
+\section{la\_\-manager::Term Class Reference}
+\label{classla__manager_1_1Term}\index{la\_\-manager::Term@{la\_\-manager::Term}}
+}
+term information class \hyperlink{classla__manager_1_1Term}{Term} is the output unit of LA manager, This class record the basic information of a term  
+
+
+{\tt \#include $<$Term.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1Term_7f92bddd0d409bd0c9318264f75b9ce5}{Term} (const \hyperlink{classla__manager_1_1Term}{Term} \&term)
+\item 
+\hyperlink{classla__manager_1_1Term_49f7d019382b79db90b59acc1bedcb2e}{Term} (const UString str)
+\item 
+\hyperlink{classla__manager_1_1Term_0c8141cae425201896fefd48f1d5801e}{Term} ()
+\item 
+\hyperlink{classla__manager_1_1Term_92895b8a4abc28c7694ab188369ea5e7}{$\sim$Term} ()
+\item 
+void \hyperlink{classla__manager_1_1Term_b983fdd373e53addabc00c3a48a46df2}{clear} ()
+\item 
+void \hyperlink{classla__manager_1_1Term_6d2214c0b4855630660b34cf293ce333}{operator=} (const \hyperlink{classla__manager_1_1Term}{Term} \&term)
+\item 
+{\footnotesize template$<$class Archive $>$ }\\void \hyperlink{classla__manager_1_1Term_48b8e8e2c1aefacb9bdd5a026275df34}{serialize} (Archive \&ar, const unsigned int version)
+\item 
+string \hyperlink{classla__manager_1_1Term_8bc20da98085c9587bc868cb3c04dde0}{toString} ()
+\item 
+string \hyperlink{classla__manager_1_1Term_3b14e0d76b2a6519639a9003ebadb989}{textString} ()
+\item 
+int \hyperlink{classla__manager_1_1Term_fadc9c8437a99b79102bd8be1f53f337}{length} ()
+\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int \hyperlink{classla__manager_1_1Term_11a2e90f4d10c183640b072356fd6b38}{id}
+\begin{CompactList}\small\item\em $<$ delimiter \item\end{CompactList}\item 
+UString \hyperlink{classla__manager_1_1Term_49c41450545995b9be0e34e05da6fbd1}{text}
+\begin{CompactList}\small\item\em text data of the term \item\end{CompactList}\item 
+unsigned char \hyperlink{classla__manager_1_1Term_6964a3845f56be2ee2627be3ef6266e5}{type}
+\begin{CompactList}\small\item\em morpheme type of the term (Todo...) \item\end{CompactList}\item 
+unsigned int \hyperlink{classla__manager_1_1Term_8625d3cd801afc5b6c587e0c38d9e323}{wordOffset}
+\begin{CompactList}\small\item\em word offset of the term in original text \item\end{CompactList}\item 
+unsigned int \hyperlink{classla__manager_1_1Term_59772600e59694bd583af17cef1c0b03}{begin}
+\begin{CompactList}\small\item\em start character offset \item\end{CompactList}\item 
+unsigned int \hyperlink{classla__manager_1_1Term_12f5d18ba13ca84aa99dbbff04eba947}{end}
+\begin{CompactList}\small\item\em end character offset \item\end{CompactList}\item 
+string \hyperlink{classla__manager_1_1Term_a4fef1d69d4868c0cc7a35b58c61d4aa}{pos}
+\begin{CompactList}\small\item\em pos tag \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static const unsigned char \hyperlink{classla__manager_1_1Term_ec1b1555fbf13256b27fdb0903327704}{TERM\_\-TYPE\_\-ALLOW} = 0
+\item 
+static const unsigned char \hyperlink{classla__manager_1_1Term_f7e0c80b4fb0bb1f9b49730475ea55b6}{TERM\_\-TYPE\_\-DELIMITER} = 1
+\begin{CompactList}\small\item\em $<$ regular term \item\end{CompactList}\end{CompactItemize}
+\subsection*{Friends}
+\begin{CompactItemize}
+\item 
+class \hyperlink{classla__manager_1_1Term_c98d07dd8f7b70e16ccb9a01abf56b9c}{boost::serialization::access}
+\item 
+ostream \& \hyperlink{classla__manager_1_1Term_196eef2ccb3aef372d8c673c85d3bb02}{operator$<$$<$} (std::ostream \&out, const \hyperlink{classla__manager_1_1Term}{Term} \&term)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+term information class \hyperlink{classla__manager_1_1Term}{Term} is the output unit of LA manager, This class record the basic information of a term 
+
+Definition at line 26 of file Term.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1Term_7f92bddd0d409bd0c9318264f75b9ce5}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!Term@{Term}}
+\index{Term@{Term}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{Term}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::Term::Term (const {\bf Term} \& {\em term})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_7f92bddd0d409bd0c9318264f75b9ce5}
+
+
+
+
+Definition at line 40 of file Term.h.\hypertarget{classla__manager_1_1Term_49f7d019382b79db90b59acc1bedcb2e}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!Term@{Term}}
+\index{Term@{Term}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{Term}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::Term::Term (const UString {\em str})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_49f7d019382b79db90b59acc1bedcb2e}
+
+
+
+
+Definition at line 43 of file Term.h.\hypertarget{classla__manager_1_1Term_0c8141cae425201896fefd48f1d5801e}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!Term@{Term}}
+\index{Term@{Term}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{Term}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::Term::Term ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_0c8141cae425201896fefd48f1d5801e}
+
+
+
+
+Definition at line 46 of file Term.h.\hypertarget{classla__manager_1_1Term_92895b8a4abc28c7694ab188369ea5e7}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!$\sim$Term@{$\sim$Term}}
+\index{$\sim$Term@{$\sim$Term}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{$\sim$Term}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::Term::$\sim$Term ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_92895b8a4abc28c7694ab188369ea5e7}
+
+
+
+
+Definition at line 49 of file Term.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1Term_b983fdd373e53addabc00c3a48a46df2}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!clear@{clear}}
+\index{clear@{clear}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{clear}]{\setlength{\rightskip}{0pt plus 5cm}void la\_\-manager::Term::clear ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_b983fdd373e53addabc00c3a48a46df2}
+
+
+
+
+Definition at line 52 of file Term.h.
+
+References begin, end, pos, text, type, and wordOffset.
+
+Referenced by la\_\-manager::Tokenizer::tokenize().\hypertarget{classla__manager_1_1Term_fadc9c8437a99b79102bd8be1f53f337}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!length@{length}}
+\index{length@{length}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{length}]{\setlength{\rightskip}{0pt plus 5cm}int la\_\-manager::Term::length ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_fadc9c8437a99b79102bd8be1f53f337}
+
+
+
+
+Definition at line 118 of file Term.h.
+
+References text.
+
+Referenced by la\_\-manager::Tokenizer::setTermType().\hypertarget{classla__manager_1_1Term_6d2214c0b4855630660b34cf293ce333}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!operator=@{operator=}}
+\index{operator=@{operator=}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void la\_\-manager::Term::operator= (const {\bf Term} \& {\em term})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_6d2214c0b4855630660b34cf293ce333}
+
+
+
+
+Definition at line 63 of file Term.h.
+
+References begin, end, id, pos, text, type, and wordOffset.\hypertarget{classla__manager_1_1Term_48b8e8e2c1aefacb9bdd5a026275df34}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!serialize@{serialize}}
+\index{serialize@{serialize}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{serialize}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class Archive $>$ void la\_\-manager::Term::serialize (Archive \& {\em ar}, \/  const unsigned int {\em version})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_48b8e8e2c1aefacb9bdd5a026275df34}
+
+
+
+
+Definition at line 76 of file Term.h.
+
+References begin, end, id, pos, text, type, and wordOffset.\hypertarget{classla__manager_1_1Term_3b14e0d76b2a6519639a9003ebadb989}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!textString@{textString}}
+\index{textString@{textString}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{textString}]{\setlength{\rightskip}{0pt plus 5cm}string la\_\-manager::Term::textString ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_3b14e0d76b2a6519639a9003ebadb989}
+
+
+
+
+Definition at line 112 of file Term.h.
+
+References text.\hypertarget{classla__manager_1_1Term_8bc20da98085c9587bc868cb3c04dde0}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!toString@{toString}}
+\index{toString@{toString}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{toString}]{\setlength{\rightskip}{0pt plus 5cm}string la\_\-manager::Term::toString ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1Term_8bc20da98085c9587bc868cb3c04dde0}
+
+
+
+
+Definition at line 98 of file Term.h.
+
+References begin, end, pos, text, type, and wordOffset.
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classla__manager_1_1Term_c98d07dd8f7b70e16ccb9a01abf56b9c}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!boost::serialization::access@{boost::serialization::access}}
+\index{boost::serialization::access@{boost::serialization::access}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{boost::serialization::access}]{\setlength{\rightskip}{0pt plus 5cm}friend class boost::serialization::access\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classla__manager_1_1Term_c98d07dd8f7b70e16ccb9a01abf56b9c}
+
+
+
+
+Definition at line 74 of file Term.h.\hypertarget{classla__manager_1_1Term_196eef2ccb3aef372d8c673c85d3bb02}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{operator$<$$<$}]{\setlength{\rightskip}{0pt plus 5cm}ostream\& operator$<$$<$ (std::ostream \& {\em out}, \/  const {\bf Term} \& {\em term})\hspace{0.3cm}{\tt  \mbox{[}friend\mbox{]}}}}
+\label{classla__manager_1_1Term_196eef2ccb3aef372d8c673c85d3bb02}
+
+
+
+
+Definition at line 86 of file Term.h.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1Term_59772600e59694bd583af17cef1c0b03}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!begin@{begin}}
+\index{begin@{begin}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf la\_\-manager::Term::begin}}}
+\label{classla__manager_1_1Term_59772600e59694bd583af17cef1c0b03}
+
+
+start character offset 
+
+
+
+Definition at line 35 of file Term.h.
+
+Referenced by clear(), operator=(), serialize(), la\_\-manager::Tokenizer::tokenize(), and toString().\hypertarget{classla__manager_1_1Term_12f5d18ba13ca84aa99dbbff04eba947}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!end@{end}}
+\index{end@{end}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf la\_\-manager::Term::end}}}
+\label{classla__manager_1_1Term_12f5d18ba13ca84aa99dbbff04eba947}
+
+
+end character offset 
+
+
+
+Definition at line 36 of file Term.h.
+
+Referenced by la\_\-manager::NGramAnalyzer::analyze(), clear(), operator=(), serialize(), la\_\-manager::Tokenizer::tokenize(), and toString().\hypertarget{classla__manager_1_1Term_11a2e90f4d10c183640b072356fd6b38}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!id@{id}}
+\index{id@{id}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{id}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf la\_\-manager::Term::id}}}
+\label{classla__manager_1_1Term_11a2e90f4d10c183640b072356fd6b38}
+
+
+$<$ delimiter 
+
+identifier of the term 
+
+Definition at line 31 of file Term.h.
+
+Referenced by operator=(), and serialize().\hypertarget{classla__manager_1_1Term_a4fef1d69d4868c0cc7a35b58c61d4aa}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!pos@{pos}}
+\index{pos@{pos}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{pos}]{\setlength{\rightskip}{0pt plus 5cm}string {\bf la\_\-manager::Term::pos}}}
+\label{classla__manager_1_1Term_a4fef1d69d4868c0cc7a35b58c61d4aa}
+
+
+pos tag 
+
+
+
+Definition at line 38 of file Term.h.
+
+Referenced by clear(), operator=(), serialize(), and toString().\hypertarget{classla__manager_1_1Term_ec1b1555fbf13256b27fdb0903327704}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!TERM\_\-TYPE\_\-ALLOW@{TERM\_\-TYPE\_\-ALLOW}}
+\index{TERM\_\-TYPE\_\-ALLOW@{TERM\_\-TYPE\_\-ALLOW}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{TERM\_\-TYPE\_\-ALLOW}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf la\_\-manager::Term::TERM\_\-TYPE\_\-ALLOW} = 0\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1Term_ec1b1555fbf13256b27fdb0903327704}
+
+
+
+
+Definition at line 28 of file Term.h.
+
+Referenced by la\_\-manager::Tokenizer::setTermType().\hypertarget{classla__manager_1_1Term_f7e0c80b4fb0bb1f9b49730475ea55b6}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!TERM\_\-TYPE\_\-DELIMITER@{TERM\_\-TYPE\_\-DELIMITER}}
+\index{TERM\_\-TYPE\_\-DELIMITER@{TERM\_\-TYPE\_\-DELIMITER}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{TERM\_\-TYPE\_\-DELIMITER}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf la\_\-manager::Term::TERM\_\-TYPE\_\-DELIMITER} = 1\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classla__manager_1_1Term_f7e0c80b4fb0bb1f9b49730475ea55b6}
+
+
+$<$ regular term 
+
+
+
+Definition at line 29 of file Term.h.
+
+Referenced by la\_\-manager::Tokenizer::setTermType().\hypertarget{classla__manager_1_1Term_49c41450545995b9be0e34e05da6fbd1}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!text@{text}}
+\index{text@{text}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{text}]{\setlength{\rightskip}{0pt plus 5cm}UString {\bf la\_\-manager::Term::text}}}
+\label{classla__manager_1_1Term_49c41450545995b9be0e34e05da6fbd1}
+
+
+text data of the term 
+
+
+
+Definition at line 32 of file Term.h.
+
+Referenced by la\_\-manager::StemAnalyzer::analyze(), la\_\-manager::NGramAnalyzer::analyze(), clear(), length(), operator=(), serialize(), la\_\-manager::Tokenizer::setTermType(), textString(), la\_\-manager::Tokenizer::tokenize(), and toString().\hypertarget{classla__manager_1_1Term_6964a3845f56be2ee2627be3ef6266e5}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!type@{type}}
+\index{type@{type}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{type}]{\setlength{\rightskip}{0pt plus 5cm}unsigned char {\bf la\_\-manager::Term::type}}}
+\label{classla__manager_1_1Term_6964a3845f56be2ee2627be3ef6266e5}
+
+
+morpheme type of the term (Todo...) 
+
+
+
+Definition at line 33 of file Term.h.
+
+Referenced by clear(), operator=(), serialize(), la\_\-manager::Tokenizer::setTermType(), and toString().\hypertarget{classla__manager_1_1Term_8625d3cd801afc5b6c587e0c38d9e323}{
+\index{la\_\-manager::Term@{la\_\-manager::Term}!wordOffset@{wordOffset}}
+\index{wordOffset@{wordOffset}!la_manager::Term@{la\_\-manager::Term}}
+\subsubsection[{wordOffset}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf la\_\-manager::Term::wordOffset}}}
+\label{classla__manager_1_1Term_8625d3cd801afc5b6c587e0c38d9e323}
+
+
+word offset of the term in original text 
+
+
+
+Definition at line 34 of file Term.h.
+
+Referenced by clear(), operator=(), serialize(), la\_\-manager::Tokenizer::tokenize(), and toString().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{Term_8h}{Term.h}\end{CompactItemize}

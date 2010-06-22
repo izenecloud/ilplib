@@ -1,0 +1,376 @@
+\hypertarget{classkmaOrange_1_1SynonymContainer}{
+\section{kmaOrange::SynonymContainer Class Reference}
+\label{classkmaOrange_1_1SynonymContainer}\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+}
+a class has and manages the list of synonym lists.  
+
+
+{\tt \#include $<$Synonym.h$>$}
+
+Inheritance diagram for kmaOrange::SynonymContainer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classkmaOrange_1_1SynonymContainer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1SynonymContainer_d093f6fd12aa4a2ce0e15f6ef481a65a}{SynonymContainer} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1SynonymContainer}{SynonymContainer} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1SynonymContainer_f65be98a8ceaad2fc15d556721b79518}{$\sim$SynonymContainer} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1SynonymContainer}{SynonymContainer} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1SynonymContainer_2e4ae84b14cf54be1dca1af4525e0781}{createTrie} ()
+\begin{CompactList}\small\item\em This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1SynonymContainer_1d9f423be46ace7cad7a195ec33f7fac}{loadSynonym} (\hyperlink{classStringEx}{StringEx} pathDic=\char`\"{}./knowledge\char`\"{}, StringEx nameDic=\char`\"{}synonym.txt\char`\"{}, StringEx strID=\char`\"{}SYN\char`\"{})
+\begin{CompactList}\small\item\em This function loads contents of the synonym dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1SynonymContainer_8459ec6b5a2d9c1b5313db22be6b65e4}{loadSynonym} (const char $\ast$pathDic, const char $\ast$nameDic)
+\item 
+void \hyperlink{classkmaOrange_1_1SynonymContainer_01bb87b5ceba481163ea282a459694f5}{setSynonymDelimiter} (const char $\ast$delim)
+\begin{CompactList}\small\item\em This function sets the delimiter between synonym entries in a synonym list. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1SynonymContainer_7e23aea8d7bb9b468a870f7e31ff6893}{setWordDelimiter} (const char $\ast$delim)
+\begin{CompactList}\small\item\em This function sets the delimiter between words in a synonym entry. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1SynonymContainer_d17697e0744a34ea4d9ffe782e981cc4}{searchNgetInfoFromSynonymTrie} (const char $\ast$str, \hyperlink{classWK__Synonym}{WK\_\-Synonym} $\ast$pwks)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string and gets contents of this \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+vector$<$ \hyperlink{classkmaOrange_1_1EntryNInfo}{EntryNInfo} $>$ \hyperlink{classkmaOrange_1_1SynonymContainer_37f7dd0dc8be871b8f2bf23188bd3098}{\_\-synonymList}
+\begin{CompactList}\small\item\em the list of synonym lists. \item\end{CompactList}\item 
+vector$<$ vector$<$ int $>$ $>$ \hyperlink{classkmaOrange_1_1SynonymContainer_005dd18f743edb6e29f6441658a9d059}{\_\-infoList}
+\begin{CompactList}\small\item\em the list of synonym information. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classkmaOrange_1_1SynonymContainer_3f4902b3981d89207b1be2298b10fd7d}{insertSynonym} (\hyperlink{classkmaOrange_1_1EntryNInfo}{EntryNInfo} \&ei, int posHeadword, const char $\ast$tPos)
+\begin{CompactList}\small\item\em This function inserts loaded contents of the synonym dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} \hyperlink{classkmaOrange_1_1SynonymContainer_a018e277349ba2dc83623bd8b86dfcc0}{\_\-synonymTrie}
+\begin{CompactList}\small\item\em a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of the synonym dictionary. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1SynonymContainer_9a333e812f4d65777c358e96370c6d59}{\_\-synonymDelim}
+\begin{CompactList}\small\item\em the first delimiter between synonym entries in a synonym list. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1SynonymContainer_1d7f4e1537f92654087c85968f1f11ca}{\_\-wordDelim}
+\begin{CompactList}\small\item\em the first delimiter between words in a synonym entry. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1SynonymContainer_82b68d5f1bb2d6ee90c2823cc4e780a7}{\_\-ts}
+\begin{CompactList}\small\item\em the delimiter between synonym entries in a synonym list. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1SynonymContainer_88b0c5b78080af8bdfe304a60486515a}{\_\-tw}
+\begin{CompactList}\small\item\em the delimiter between words in a synonym entry. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class has and manages the list of synonym lists. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 166 of file Synonym.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1SynonymContainer_d093f6fd12aa4a2ce0e15f6ef481a65a}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!SynonymContainer@{SynonymContainer}}
+\index{SynonymContainer@{SynonymContainer}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{SynonymContainer}]{\setlength{\rightskip}{0pt plus 5cm}SynonymContainer::SynonymContainer ()}}
+\label{classkmaOrange_1_1SynonymContainer_d093f6fd12aa4a2ce0e15f6ef481a65a}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1SynonymContainer}{SynonymContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 13 of file Synonym.cpp.
+
+References \_\-synonymDelim, and \_\-wordDelim.\hypertarget{classkmaOrange_1_1SynonymContainer_f65be98a8ceaad2fc15d556721b79518}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!$\sim$SynonymContainer@{$\sim$SynonymContainer}}
+\index{$\sim$SynonymContainer@{$\sim$SynonymContainer}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{$\sim$SynonymContainer}]{\setlength{\rightskip}{0pt plus 5cm}SynonymContainer::$\sim$SynonymContainer ()}}
+\label{classkmaOrange_1_1SynonymContainer_f65be98a8ceaad2fc15d556721b79518}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1SynonymContainer}{SynonymContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 19 of file Synonym.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1SynonymContainer_2e4ae84b14cf54be1dca1af4525e0781}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!createTrie@{createTrie}}
+\index{createTrie@{createTrie}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{createTrie}]{\setlength{\rightskip}{0pt plus 5cm}int SynonymContainer::createTrie ()}}
+\label{classkmaOrange_1_1SynonymContainer_2e4ae84b14cf54be1dca1af4525e0781}
+
+
+This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 35 of file Synonym.cpp.
+
+References \_\-synonymTrie, kmaOrange::WK\_\-DaTrie::create(), and TRIE\_\-EXTEND\_\-SIZE.
+
+Referenced by loadSynonym().\hypertarget{classkmaOrange_1_1SynonymContainer_3f4902b3981d89207b1be2298b10fd7d}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!insertSynonym@{insertSynonym}}
+\index{insertSynonym@{insertSynonym}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{insertSynonym}]{\setlength{\rightskip}{0pt plus 5cm}int SynonymContainer::insertSynonym ({\bf EntryNInfo} \& {\em ei}, \/  int {\em posHeadword}, \/  const char $\ast$ {\em tPos})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_3f4902b3981d89207b1be2298b10fd7d}
+
+
+This function inserts loaded contents of the synonym dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ei}]a indirect referncing pointer of \hyperlink{classkmaOrange_1_1EntryNInfo}{EntryNInfo} object. \item[{\em posHeadword}]an integer - the position of a headword of the synonym list. \item[{\em tPos}]a pointer of a constant character - the string of the synonym list entry. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 1 - input string is a synonym.\par
+ 0 - input string is not a synonym. \end{Desc}
+
+
+Definition at line 47 of file Synonym.cpp.
+
+References \_\-infoList, \_\-synonymList, \_\-synonymTrie, \_\-wordDelim, StringEx::buffer(), kmaOrange::EntryNInfo::entry, kmaOrange::WK\_\-DaTrie\_\-Node::getData(), HEADWORD\_\-FLAG, kmaOrange::EntryNInfo::info, kmaOrange::WK\_\-DaTrie::insertKey(), OVERLAP\_\-FLAG, StringEx::replaceString(), and kmaOrange::WK\_\-DaTrie\_\-Node::setData().
+
+Referenced by loadSynonym().\hypertarget{classkmaOrange_1_1SynonymContainer_8459ec6b5a2d9c1b5313db22be6b65e4}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!loadSynonym@{loadSynonym}}
+\index{loadSynonym@{loadSynonym}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{loadSynonym}]{\setlength{\rightskip}{0pt plus 5cm}int kmaOrange::SynonymContainer::loadSynonym (const char $\ast$ {\em pathDic}, \/  const char $\ast$ {\em nameDic})\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_8459ec6b5a2d9c1b5313db22be6b65e4}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Implements \hyperlink{classWK__SynonymContainer_9e7ec0d46d3db686ef5b0d3b9719b96d}{WK\_\-SynonymContainer}.
+
+Definition at line 208 of file Synonym.h.
+
+References loadSynonym().
+
+Referenced by loadSynonym().\hypertarget{classkmaOrange_1_1SynonymContainer_1d9f423be46ace7cad7a195ec33f7fac}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!loadSynonym@{loadSynonym}}
+\index{loadSynonym@{loadSynonym}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{loadSynonym}]{\setlength{\rightskip}{0pt plus 5cm}int SynonymContainer::loadSynonym ({\bf StringEx} {\em pathDic} = {\tt \char`\"{}./knowledge\char`\"{}}, \/  {\bf StringEx} {\em nameDic} = {\tt \char`\"{}synonym.txt\char`\"{}}, \/  {\bf StringEx} {\em strID} = {\tt \char`\"{}SYN\char`\"{}})}}
+\label{classkmaOrange_1_1SynonymContainer_1d9f423be46ace7cad7a195ec33f7fac}
+
+
+This function loads contents of the synonym dictionary file into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pathDic}]a pointer of a constant charater - the path of the directory, which the synonym dictionary file is stored. \item[{\em nameDic}]a pointer of a constant charater - the name of the synonym dictionary file. \item[{\em strID}]the ID of the synonym dictionary. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 132 of file Synonym.cpp.
+
+References \_\-synonymDelim, \_\-synonymList, \_\-ts, \_\-tw, \_\-wordDelim, StringEx::buffer(), createTrie(), StringEx::endWith(), kmaOrange::EntryNInfo::entry, StringEx::getIndex(), HEADWORD\_\-FLAG, kmaOrange::EntryNInfo::info, insertSynonym(), StringEx::length(), StringEx::replaceString(), StringEx::startWith(), StringEx::toLowerCase(), and StringEx::trimRight().\hypertarget{classkmaOrange_1_1SynonymContainer_d17697e0744a34ea4d9ffe782e981cc4}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!searchNgetInfoFromSynonymTrie@{searchNgetInfoFromSynonymTrie}}
+\index{searchNgetInfoFromSynonymTrie@{searchNgetInfoFromSynonymTrie}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{searchNgetInfoFromSynonymTrie}]{\setlength{\rightskip}{0pt plus 5cm}int SynonymContainer::searchNgetInfoFromSynonymTrie (const char $\ast$ {\em str}, \/  {\bf WK\_\-Synonym} $\ast$ {\em pwks})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_d17697e0744a34ea4d9ffe782e981cc4}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string and gets contents of this \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em str}]a pointer of a constant charater - input string. \item[{\em pwks}]a pointer of a \hyperlink{classWK__Synonym}{WK\_\-Synonym} object - contents of this \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object are stored. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 1 - success.\par
+ 0 - fail. \end{Desc}
+
+
+Implements \hyperlink{classWK__SynonymContainer_cc44acd798ac38cb00ed4f6caeb6f2fe}{WK\_\-SynonymContainer}.
+
+Definition at line 306 of file Synonym.cpp.
+
+References \_\-infoList, \_\-synonymList, \_\-synonymTrie, kmaOrange::WK\_\-DaTrie::findNode(), kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::WK\_\-DaTrie\_\-Node::mpData, kmaOrange::WK\_\-DaTrie\_\-Node::mState, OVERLAP\_\-FLAG, kmaOrange::Synonym::setContainer(), kmaOrange::Synonym::setEntryNInfo(), kmaOrange::Synonym::setMoreLong(), kmaOrange::Synonym::setOverlapCount(), and kmaOrange::Synonym::setPosSynonymList().\hypertarget{classkmaOrange_1_1SynonymContainer_01bb87b5ceba481163ea282a459694f5}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!setSynonymDelimiter@{setSynonymDelimiter}}
+\index{setSynonymDelimiter@{setSynonymDelimiter}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{setSynonymDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}void SynonymContainer::setSynonymDelimiter (const char $\ast$ {\em delim})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_01bb87b5ceba481163ea282a459694f5}
+
+
+This function sets the delimiter between synonym entries in a synonym list. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em delim}]a pointer of a constant charater - the delimiter between synonym entries in a synonym list. \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classWK__SynonymContainer_7a2c0a7a7da0d37c1be8816b1c20c680}{WK\_\-SynonymContainer}.
+
+Definition at line 23 of file Synonym.cpp.
+
+References \_\-synonymDelim, and \_\-ts.\hypertarget{classkmaOrange_1_1SynonymContainer_7e23aea8d7bb9b468a870f7e31ff6893}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!setWordDelimiter@{setWordDelimiter}}
+\index{setWordDelimiter@{setWordDelimiter}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{setWordDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}void SynonymContainer::setWordDelimiter (const char $\ast$ {\em delim})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_7e23aea8d7bb9b468a870f7e31ff6893}
+
+
+This function sets the delimiter between words in a synonym entry. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em delim}]a pointer of a constant charater - the delimiter between words in a synonym entry. \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classWK__SynonymContainer_83e7c34dd30aad2478a58f324dcbd594}{WK\_\-SynonymContainer}.
+
+Definition at line 29 of file Synonym.cpp.
+
+References \_\-tw, and \_\-wordDelim.
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1SynonymContainer_005dd18f743edb6e29f6441658a9d059}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-infoList@{\_\-infoList}}
+\index{\_\-infoList@{\_\-infoList}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-infoList}]{\setlength{\rightskip}{0pt plus 5cm}vector$<$ vector$<$int$>$ $>$ {\bf kmaOrange::SynonymContainer::\_\-infoList}}}
+\label{classkmaOrange_1_1SynonymContainer_005dd18f743edb6e29f6441658a9d059}
+
+
+the list of synonym information. 
+
+
+
+Definition at line 262 of file Synonym.h.
+
+Referenced by kmaOrange::Synonym::getHeadWord(), kmaOrange::Synonym::getOverlapCount(), kmaOrange::Synonym::getSynonymCountByIndex(), kmaOrange::Synonym::getWord(), insertSynonym(), and searchNgetInfoFromSynonymTrie().\hypertarget{classkmaOrange_1_1SynonymContainer_9a333e812f4d65777c358e96370c6d59}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-synonymDelim@{\_\-synonymDelim}}
+\index{\_\-synonymDelim@{\_\-synonymDelim}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-synonymDelim}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::SynonymContainer::\_\-synonymDelim}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_9a333e812f4d65777c358e96370c6d59}
+
+
+the first delimiter between synonym entries in a synonym list. 
+
+
+
+Definition at line 255 of file Synonym.h.
+
+Referenced by loadSynonym(), setSynonymDelimiter(), and SynonymContainer().\hypertarget{classkmaOrange_1_1SynonymContainer_37f7dd0dc8be871b8f2bf23188bd3098}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-synonymList@{\_\-synonymList}}
+\index{\_\-synonymList@{\_\-synonymList}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-synonymList}]{\setlength{\rightskip}{0pt plus 5cm}vector$<${\bf EntryNInfo}$>$ {\bf kmaOrange::SynonymContainer::\_\-synonymList}}}
+\label{classkmaOrange_1_1SynonymContainer_37f7dd0dc8be871b8f2bf23188bd3098}
+
+
+the list of synonym lists. 
+
+
+
+Definition at line 261 of file Synonym.h.
+
+Referenced by kmaOrange::Synonym::getHeadWord(), kmaOrange::Synonym::getSynonymCountByIndex(), kmaOrange::Synonym::getWord(), insertSynonym(), loadSynonym(), and searchNgetInfoFromSynonymTrie().\hypertarget{classkmaOrange_1_1SynonymContainer_a018e277349ba2dc83623bd8b86dfcc0}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-synonymTrie@{\_\-synonymTrie}}
+\index{\_\-synonymTrie@{\_\-synonymTrie}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-synonymTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie} {\bf kmaOrange::SynonymContainer::\_\-synonymTrie}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_a018e277349ba2dc83623bd8b86dfcc0}
+
+
+a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of the synonym dictionary. 
+
+
+
+Definition at line 253 of file Synonym.h.
+
+Referenced by createTrie(), insertSynonym(), and searchNgetInfoFromSynonymTrie().\hypertarget{classkmaOrange_1_1SynonymContainer_82b68d5f1bb2d6ee90c2823cc4e780a7}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-ts@{\_\-ts}}
+\index{\_\-ts@{\_\-ts}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-ts}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::SynonymContainer::\_\-ts}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_82b68d5f1bb2d6ee90c2823cc4e780a7}
+
+
+the delimiter between synonym entries in a synonym list. 
+
+
+
+Definition at line 257 of file Synonym.h.
+
+Referenced by loadSynonym(), and setSynonymDelimiter().\hypertarget{classkmaOrange_1_1SynonymContainer_88b0c5b78080af8bdfe304a60486515a}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-tw@{\_\-tw}}
+\index{\_\-tw@{\_\-tw}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-tw}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::SynonymContainer::\_\-tw}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_88b0c5b78080af8bdfe304a60486515a}
+
+
+the delimiter between words in a synonym entry. 
+
+
+
+Definition at line 258 of file Synonym.h.
+
+Referenced by loadSynonym(), and setWordDelimiter().\hypertarget{classkmaOrange_1_1SynonymContainer_1d7f4e1537f92654087c85968f1f11ca}{
+\index{kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}!\_\-wordDelim@{\_\-wordDelim}}
+\index{\_\-wordDelim@{\_\-wordDelim}!kmaOrange::SynonymContainer@{kmaOrange::SynonymContainer}}
+\subsubsection[{\_\-wordDelim}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::SynonymContainer::\_\-wordDelim}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1SynonymContainer_1d7f4e1537f92654087c85968f1f11ca}
+
+
+the first delimiter between words in a synonym entry. 
+
+
+
+Definition at line 256 of file Synonym.h.
+
+Referenced by insertSynonym(), loadSynonym(), setWordDelimiter(), and SynonymContainer().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{Synonym_8h}{Synonym.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{Synonym_8cpp}{Synonym.cpp}\end{CompactItemize}

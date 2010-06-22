@@ -1,0 +1,1265 @@
+\hypertarget{classkmaOrange_1_1DecomposeNNP}{
+\section{kmaOrange::DecomposeNNP Class Reference}
+\label{classkmaOrange_1_1DecomposeNNP}\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+}
+This class manages to decompose a compound noun.  
+
+
+{\tt \#include $<$DecomposeNNP.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1DecomposeNNP_0e7751044f2f371e4e2d52305b1df885}{DecomposeNNP} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1DecomposeNNP}{DecomposeNNP} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1DecomposeNNP_fd801a3fe576ac889892f4ff9a128fae}{$\sim$DecomposeNNP} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1DecomposeNNP}{DecomposeNNP} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_159e946b4a53f52beedfc67f49575be8}{getQueryCandidates} (const \hyperlink{classStringEx}{StringEx} \&nnp)
+\begin{CompactList}\small\item\em This function gets only index words in elements of generated candidates. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_9810b0040ba2d9dd87787a34da77b709}{printQueries} ()
+\begin{CompactList}\small\item\em This function prints only index words in elements of generated candidates on screen. \item\end{CompactList}\item 
+char $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_7e9c2aeecb6e4cc70eeae730cb2177d9}{getDecomposedInformation} (const \hyperlink{classStringEx}{StringEx} \&nnp, int mode=0)
+\begin{CompactList}\small\item\em This function gets decomposed information for an input string. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_a4990f54943f6c1cd1f384a35f2ac30e}{getSyllableLength} (const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function gets the syllable length of an input string. \item\end{CompactList}\item 
+double \hyperlink{classkmaOrange_1_1DecomposeNNP_d88b5c609e13a0bfbe9ef4691230e907}{getWeight} (int index)
+\begin{CompactList}\small\item\em This function gets the weight score of each candidate. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_e7c40bf4c0ec99622d1b05a0a85846f0}{setDicionary} (\hyperlink{classkmaOrange_1_1Dictionary}{Dictionary} $\ast$dic)
+\begin{CompactList}\small\item\em This function sets the \hyperlink{classkmaOrange_1_1Dictionary}{Dictionary} object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Member Functions}
+\begin{CompactItemize}
+\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_399f293844af8ebb643019aad4c0cb58}{generateCandidates} (int num, int index, int cnt)
+\begin{CompactList}\small\item\em This function generates candidates of decomposing a compound noun. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_022860c17f32ba8672e4bbf317ec0a26}{initializeCnoun} ()
+\begin{CompactList}\small\item\em This function initializes several global variables and objects. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_0cf7547aa130387bc1dd44f58f24736a}{checkPattern} (int numofcandidates)
+\begin{CompactList}\small\item\em This function checks and removes overlapped candidates. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_a7256e3431ab3f0bfc53d13256772abb}{addQuery} (const \hyperlink{classStringEx}{StringEx} \&query)
+\begin{CompactList}\small\item\em This function adds a string in the list of idnex words. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_e8805ce9f4bc49826fe907f289c2c26b}{generateSimpleWord} (char $\ast$divpattern)
+\begin{CompactList}\small\item\em This function generates candidates using decomposing patterns in the NNP dictionary. \item\end{CompactList}\item 
+void \hyperlink{classkmaOrange_1_1DecomposeNNP_72aa0ac8c94380f510f15c284ba443fd}{printDivPattern} (char $\ast$divpattern)
+\begin{CompactList}\small\item\em This function prints candidates using decomposing patterns in the NNP dictionary on screen. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_9edd6655554b45098df4cb44c6e19114}{searchAllRegisteredN\_\-} ()
+\begin{CompactList}\small\item\em This function searches all noun class, which the partial string of input string is included in the system dictionaries. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_b2d4ea594f5d49741f1f8013c1d69043}{decomposing} (const \hyperlink{classStringEx}{StringEx} \&nnp)
+\begin{CompactList}\small\item\em This function calls various functions about decomposing a compound noun. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_68c657faba5b3d325e6ce9656ffbf0cb}{isDigit} (const char ch)
+\begin{CompactList}\small\item\em This function checks whether an input character is a digit or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_5dd06682b624df61965644f09799162e}{isXP} (const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function checks whether an input string is a prefix or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_39304b147bc24105d6a765bdc4023537}{isXSN} (const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function checks whether an input string is a suffix or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_e9a88ff658b2e5cf179b9ba12787b727}{isXSNXSN} (const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function checks whether an input string is a 2-syllables suffix or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_7cdae0916167158018e20761efa28980}{isCONJ} (const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function checks whether an input string is a conjunction or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_0eca8b2cad6b57cc5e408b43a3fa8679}{searchList} (char $\ast$$\ast$list, unsigned int numoflist, const \hyperlink{classStringEx}{StringEx} \&word)
+\begin{CompactList}\small\item\em This function searches a given list for an input string. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_a657add4b26e89968235a3d50c4eddae}{addTuple} (int num, int cnt, int pattern, char info)
+\begin{CompactList}\small\item\em This function adds an element in the list of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_bd388ca6794f1b22adcf52d81fb5df46}{addNNP} (int num, int cnt, int index, char info)
+\begin{CompactList}\small\item\em This function adds an entry of the NNP dictionary to the list of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_2619bf3bd96994b0d408671ce13b40b0}{getFreqofPattern} (int dcpattern)
+\begin{CompactList}\small\item\em This function gets the weight score of a decomposing pattern for the length of input string. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_d774f6680465f24b1f227afe216fbe62}{postProcessDcInfo} (int cnt, int tag, int len)
+\begin{CompactList}\small\item\em This function executes the post-process of decomposing a compound noun. \item\end{CompactList}\item 
+double \hyperlink{classkmaOrange_1_1DecomposeNNP_32693fa7fb94453e018351ddadb059c6}{scoringPattern} (struct \hyperlink{structkmaOrange_1_1compoundNoun}{compoundNoun} $\ast$dcpattern)
+\begin{CompactList}\small\item\em This function calculates the score of each candidate. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_537f6225fd8a676acfeb8a7f94f9334e}{MAX\_\-dcp}
+\begin{CompactList}\small\item\em the number of decomposing pattern in a compound noun. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_11f27fbb972d069831f7af8c5ea1086a}{numberofxpList}
+\begin{CompactList}\small\item\em the number of 1-syllable prefixes. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_4c14e6c850fb4387cc34296599b7f11e}{numberofxsnList}
+\begin{CompactList}\small\item\em the number of 1-syllable suffixes. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_3dea56e51202bb2892d9d5476a60e1f1}{numberofxsnxsnList}
+\begin{CompactList}\small\item\em the number of 2-syllables suffixes. \item\end{CompactList}\item 
+unsigned int \hyperlink{classkmaOrange_1_1DecomposeNNP_e038b5f641f5c18977cdd976e3a891e8}{numberofconjList}
+\begin{CompactList}\small\item\em the number of 1-syllable conjunction. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} \hyperlink{classkmaOrange_1_1DecomposeNNP_cb0835f4ac29d0310423f54b64c33e5f}{tupleN\_\-} \mbox{[}MAX\_\-CANDIDATE\mbox{]}
+\begin{CompactList}\small\item\em the list of the list of elements in a compound noun. \item\end{CompactList}\item 
+double \hyperlink{classkmaOrange_1_1DecomposeNNP_f6c150803a22ab57d186409da073ccea}{sumofweight} \mbox{[}MAX\_\-CANDIDATE\mbox{]}
+\begin{CompactList}\small\item\em the sum of weightScore in the list of elements in a compound noun. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_2da3367c23f4e54ab5377eec12800745}{weightlist} \mbox{[}MAX\_\-CANDIDATE\mbox{]}
+\begin{CompactList}\small\item\em the list of the index number, which the value of variable weightScore has more than critical value. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_8890d956d3e35a4eb23c3718dc1fbb61}{cntquery}
+\begin{CompactList}\small\item\em the number of index words in the list of elements in a compound noun. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_c76213c313b8eade5d906e68ed162d45}{\_\-flag}
+\begin{CompactList}\small\item\em this variable shows whether each starting index of elements in a compound noun is overlapped or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_a91212beb541de2c07725ae31988c30e}{\_\-total}
+\begin{CompactList}\small\item\em the number of the total list of decomposed elements in a compound noun. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_734183051a2d30811c54f22279b2fa64}{\_\-addedcnt}
+\begin{CompactList}\small\item\em this is a temporary variable for recursively decomposing a compound noun. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_2067ecec799fae888acde29af34eb948}{\_\-nnpflag}
+\begin{CompactList}\small\item\em this variable shows whether the list of elements in a compound noun includes entries of the NNP dictionary or not. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_632b777790d596277324ee336ee8a406}{\_\-nnplen}
+\begin{CompactList}\small\item\em this is a temporary variable to add a \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object and shows the length of an element. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1DecomposeNNP_b012373568fc712710d849d3da570d53}{\_\-mode}
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_63f55fbd1165c475ba2b715e9f9630be}{querycandidates} \mbox{[}(MAX\_\-CANDIDATE $\ast$MAX\_\-NOUN)\mbox{]}
+\begin{CompactList}\small\item\em the list of index words in the list of elements in a compound noun. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_ba5b1f122f078d8e7b9f6a324eab6ec0}{\_\-divpt}
+\begin{CompactList}\small\item\em the decomposing pattern of an entry in the NNP dictionary. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_a13b091e297bcd1ffaefa059d3706312}{strDcInfo}
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_6a53ba6d56964d532d41e80719eb1066}{tmpDcInfo}
+\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_8560eb5b300bb0ee99fa6ca686d05b7e}{addDcInfo}
+\begin{CompactList}\small\item\em this is a temporary \hyperlink{classStringEx}{StringEx} object for pre-process and post-process of decomposing a compound noun. \item\end{CompactList}\item 
+\hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_6e0f084a054d45ba571bd911a6760289}{\_\-nnp}
+\begin{CompactList}\small\item\em the original input string. \item\end{CompactList}\item 
+char \hyperlink{classkmaOrange_1_1DecomposeNNP_20b30e5152be0c58b29a7d369c5b9635}{DcInfo} \mbox{[}BUFFER\_\-SIZE\_\-DCINFO\mbox{]}
+\begin{CompactList}\small\item\em the information of entirely decomposed pattern for the input string. This information is forwarded to the analyzing module. \item\end{CompactList}\item 
+\hyperlink{classListEx}{ListEx}$<$ \hyperlink{classSearchInfo}{SearchInfo} $>$ \hyperlink{classkmaOrange_1_1DecomposeNNP_c6a0c1179315cedb8282033b0ba8d971}{\_\-allN\_\-List}
+\begin{CompactList}\small\item\em the list of all noun class, which the partial string of input string is included in the system dictionaries. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Dictionary}{Dictionary} $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_533480bdf3b9032a6e5bbe8d32c154f4}{\_\-pdic}
+\begin{CompactList}\small\item\em the object of system dictionaries. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Private Attributes}
+\begin{CompactItemize}
+\item 
+static struct \hyperlink{structkmaOrange_1_1decomposingPattern}{decomposingPattern} \hyperlink{classkmaOrange_1_1DecomposeNNP_59702d35b520eb185a2a029048a4127e}{dcp} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of decomposing pattern in a compound noun. \item\end{CompactList}\item 
+static char $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_b8225d6066c10bb66d14ec066111dfb6}{xpList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of 1-syllable prefixes. \item\end{CompactList}\item 
+static char $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_37cc31c7eb17d06a39c29872c36aef88}{xsnList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of 1-syllable suffixes. \item\end{CompactList}\item 
+static char $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_a031b8bc80cc244c2a1fbe7bb3b9c3e5}{xsnxsnList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of 2-syllables suffixes. \item\end{CompactList}\item 
+static char $\ast$ \hyperlink{classkmaOrange_1_1DecomposeNNP_cc837244a58a9cdcb39a5eeb6b3c6d0a}{conjList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of 1-syllable conjunction. \item\end{CompactList}\item 
+static \hyperlink{classStringEx}{StringEx} \hyperlink{classkmaOrange_1_1DecomposeNNP_0d30852ef67ed92b760d424b8680a791}{\_\-specialPattern} = \char`\"{}:12:21:1U2:2U1:U12:U21:U2Y1:I2U1:2UB1:2U2:U22:U4:\char`\"{}
+\begin{CompactList}\small\item\em the special decomposing pattern for post-process is stored. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class manages to decompose a compound noun. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 61 of file DecomposeNNP.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1DecomposeNNP_0e7751044f2f371e4e2d52305b1df885}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!DecomposeNNP@{DecomposeNNP}}
+\index{DecomposeNNP@{DecomposeNNP}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{DecomposeNNP}]{\setlength{\rightskip}{0pt plus 5cm}DecomposeNNP::DecomposeNNP ()}}
+\label{classkmaOrange_1_1DecomposeNNP_0e7751044f2f371e4e2d52305b1df885}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1DecomposeNNP}{DecomposeNNP} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 84 of file DecomposeNNP.cpp.
+
+References conjList, dcp, initializeCnoun(), MAX\_\-dcp, numberofconjList, numberofxpList, numberofxsnList, numberofxsnxsnList, xpList, xsnList, and xsnxsnList.\hypertarget{classkmaOrange_1_1DecomposeNNP_fd801a3fe576ac889892f4ff9a128fae}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!$\sim$DecomposeNNP@{$\sim$DecomposeNNP}}
+\index{$\sim$DecomposeNNP@{$\sim$DecomposeNNP}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{$\sim$DecomposeNNP}]{\setlength{\rightskip}{0pt plus 5cm}DecomposeNNP::$\sim$DecomposeNNP ()}}
+\label{classkmaOrange_1_1DecomposeNNP_fd801a3fe576ac889892f4ff9a128fae}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1DecomposeNNP}{DecomposeNNP} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 95 of file DecomposeNNP.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1DecomposeNNP_bd388ca6794f1b22adcf52d81fb5df46}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!addNNP@{addNNP}}
+\index{addNNP@{addNNP}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{addNNP}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::addNNP (int {\em num}, \/  int {\em cnt}, \/  int {\em index}, \/  char {\em info})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_bd388ca6794f1b22adcf52d81fb5df46}
+
+
+This function adds an entry of the NNP dictionary to the list of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num}]an integer - the index number of the tupleN\_\-, which is an array of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item[{\em cnt}]an integer - the index number of the cnoun in the \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item[{\em index}]an integer - the index number of the \_\-allN\_\-List, which is a list of \hyperlink{classSearchInfo}{SearchInfo} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 940 of file DecomposeNNP.cpp.
+
+References \_\-divpt, \_\-nnpflag, addTuple(), kmaOrange::NounsTuple::cnoun, kmaOrange::NounsTuple::index, isDigit(), StringEx::length(), tupleN\_\-, and kmaOrange::compoundNoun::weight.
+
+Referenced by generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_a7256e3431ab3f0bfc53d13256772abb}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!addQuery@{addQuery}}
+\index{addQuery@{addQuery}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{addQuery}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::addQuery (const {\bf StringEx} \& {\em query})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_a7256e3431ab3f0bfc53d13256772abb}
+
+
+This function adds a string in the list of idnex words. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em query}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - a string. \end{description}
+\end{Desc}
+
+
+Definition at line 765 of file DecomposeNNP.cpp.
+
+References cntquery, and querycandidates.
+
+Referenced by generateSimpleWord().\hypertarget{classkmaOrange_1_1DecomposeNNP_a657add4b26e89968235a3d50c4eddae}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!addTuple@{addTuple}}
+\index{addTuple@{addTuple}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{addTuple}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::addTuple (int {\em num}, \/  int {\em cnt}, \/  int {\em pattern}, \/  char {\em info})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_a657add4b26e89968235a3d50c4eddae}
+
+
+This function adds an element in the list of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num}]an integer - the index number of the tupleN\_\-, which is an array of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item[{\em cnt}]an integer - the index number of the cnoun in the \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item[{\em pattern}]an integer - the syllable length of an element. \item[{\em info}]a character - the information of an element in a compound noun. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 906 of file DecomposeNNP.cpp.
+
+References kmaOrange::NounsTuple::cnoun, kmaOrange::compoundNoun::info, kmaOrange::compoundNoun::pattern, tupleN\_\-, and kmaOrange::compoundNoun::weight.
+
+Referenced by addNNP(), and generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_0cf7547aa130387bc1dd44f58f24736a}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!checkPattern@{checkPattern}}
+\index{checkPattern@{checkPattern}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{checkPattern}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::checkPattern (int {\em numofcandidates})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_0cf7547aa130387bc1dd44f58f24736a}
+
+
+This function checks and removes overlapped candidates. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em numofcandidates}]an integer - the number of candidates. \end{description}
+\end{Desc}
+
+
+Definition at line 610 of file DecomposeNNP.cpp.
+
+References kmaOrange::NounsTuple::cnoun, MAX\_\-NOUN, kmaOrange::compoundNoun::pattern, sumofweight, and tupleN\_\-.
+
+Referenced by decomposing().\hypertarget{classkmaOrange_1_1DecomposeNNP_b2d4ea594f5d49741f1f8013c1d69043}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!decomposing@{decomposing}}
+\index{decomposing@{decomposing}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{decomposing}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::decomposing (const {\bf StringEx} \& {\em nnp})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_b2d4ea594f5d49741f1f8013c1d69043}
+
+
+This function calls various functions about decomposing a compound noun. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nnp}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of decomposed candidates, which is removed duplication. \end{Desc}
+
+
+Definition at line 774 of file DecomposeNNP.cpp.
+
+References \_\-addedcnt, \_\-flag, \_\-nnp, \_\-nnpflag, \_\-nnplen, \_\-pdic, \_\-total, checkPattern(), kmaOrange::NounsTuple::cnoun, generateCandidates(), StringEx::getSubString(), getSyllableLength(), kmaOrange::compoundNoun::info, isCONJ(), isXP(), MAX\_\-NOUN, SearchInfo::mti, NBI\_\-INDEPENDENT, NNb, NNg, NNi, Np, kmaOrange::compoundNoun::pattern, SearchInfo::pinfoNNB, scoringPattern(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), sumofweight, MainTrieInfo::tag, tupleN\_\-, kmaOrange::compoundNoun::weight, and kmaOrange::NounsTuple::weightScore.
+
+Referenced by getDecomposedInformation(), and getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_399f293844af8ebb643019aad4c0cb58}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!generateCandidates@{generateCandidates}}
+\index{generateCandidates@{generateCandidates}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{generateCandidates}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int DecomposeNNP::generateCandidates (int {\em num}, \/  int {\em index}, \/  int {\em cnt})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_399f293844af8ebb643019aad4c0cb58}
+
+
+This function generates candidates of decomposing a compound noun. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em num}]an integer - the index number of the tupleN\_\-, which is an array of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \item[{\em index}]an integer - the index number of the \_\-allN\_\-List, which is a list of \hyperlink{classSearchInfo}{SearchInfo} object. \item[{\em cnt}]an integer - the index number of the cnoun in the \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer - the number of the total list of decomposed elements in a compound noun. \end{Desc}
+
+
+Definition at line 977 of file DecomposeNNP.cpp.
+
+References \_\-addedcnt, \_\-allN\_\-List, \_\-divpt, \_\-flag, \_\-mode, \_\-nnp, \_\-nnpflag, \_\-nnplen, \_\-pdic, \_\-total, addNNP(), addTuple(), kmaOrange::NounsTuple::cnoun, kmaOrange::NounsTuple::cntElements, StringEx::getBuffer(), StringEx::getIndex(), StringEx::getSubString(), kmaOrange::NounsTuple::index, kmaOrange::compoundNoun::info, isXP(), isXSN(), isXSNXSN(), J\_\-, SearchJEInfo::jeti, MAX\_\-CANDIDATE, MAX\_\-NOUN, NNg, NNi, NNu, Np, kmaOrange::Dictionary::searchNgetInfoFromJosaEomiTrie(), JosaEomiTrieInfo::tag, tupleN\_\-, and kmaOrange::compoundNoun::weight.
+
+Referenced by decomposing().\hypertarget{classkmaOrange_1_1DecomposeNNP_e8805ce9f4bc49826fe907f289c2c26b}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!generateSimpleWord@{generateSimpleWord}}
+\index{generateSimpleWord@{generateSimpleWord}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{generateSimpleWord}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::generateSimpleWord (char $\ast$ {\em divpattern})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_e8805ce9f4bc49826fe907f289c2c26b}
+
+
+This function generates candidates using decomposing patterns in the NNP dictionary. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em divpattern}]a pointer of a character - a decomposing pattern. \end{description}
+\end{Desc}
+
+
+Definition at line 673 of file DecomposeNNP.cpp.
+
+References \_\-nnp, \_\-total, addQuery(), kmaOrange::NounsTuple::cnoun, StringEx::getSubString(), kmaOrange::compoundNoun::info, MAX\_\-NOUN, kmaOrange::compoundNoun::pattern, and tupleN\_\-.
+
+Referenced by getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_7e9c2aeecb6e4cc70eeae730cb2177d9}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!getDecomposedInformation@{getDecomposedInformation}}
+\index{getDecomposedInformation@{getDecomposedInformation}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{getDecomposedInformation}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ DecomposeNNP::getDecomposedInformation (const {\bf StringEx} \& {\em nnp}, \/  int {\em mode} = {\tt 0})}}
+\label{classkmaOrange_1_1DecomposeNNP_7e9c2aeecb6e4cc70eeae730cb2177d9}
+
+
+This function gets decomposed information for an input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nnp}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \item[{\em mode}]an integer - decomposing mode. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a character - the decomposed information. \end{Desc}
+
+
+Definition at line 177 of file DecomposeNNP.cpp.
+
+References \_\-divpt, \_\-mode, \_\-nnp, \_\-nnplen, \_\-pdic, BUFFER\_\-SIZE\_\-DCINFO, kmaOrange::NounsTuple::cnoun, CRITICAL\_\-VALUE, DcInfo, decomposing(), StringEx::endWith(), StringEx::getBuffer(), StringEx::getIndex(), StringEx::getNumberOfChar(), kmaOrange::compoundNoun::info, initializeCnoun(), isDigit(), StringEx::isEmpty(), isXSN(), StringEx::length(), MAX\_\-CANDIDATE, MAX\_\-NOUN, SearchInfo::mti, N\_\-, NBI\_\-DEPENDENT, NBI\_\-INDEPENDENT, NBI\_\-UNIT, NNb, NNg, NNp, NNu, Np, kmaOrange::compoundNoun::pattern, SearchInfo::pinfoNNB, SearchInfo::pinfoNNP, SearchInfo::pinfoNNU, postProcessDcInfo(), searchAllRegisteredN\_\-(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), MainTrieInfo::tag, tupleN\_\-, and weightlist.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul\_\-NNR().\hypertarget{classkmaOrange_1_1DecomposeNNP_2619bf3bd96994b0d408671ce13b40b0}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!getFreqofPattern@{getFreqofPattern}}
+\index{getFreqofPattern@{getFreqofPattern}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{getFreqofPattern}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::getFreqofPattern (int {\em dcpattern})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_2619bf3bd96994b0d408671ce13b40b0}
+
+
+This function gets the weight score of a decomposing pattern for the length of input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dcpattern}]an integer - the decomposing pattern for the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the weight score. \end{Desc}
+
+
+Definition at line 1577 of file DecomposeNNP.cpp.
+
+References dcp, MAX\_\-dcp, and kmaOrange::decomposingPattern::weight.
+
+Referenced by scoringPattern().\hypertarget{classkmaOrange_1_1DecomposeNNP_159e946b4a53f52beedfc67f49575be8}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!getQueryCandidates@{getQueryCandidates}}
+\index{getQueryCandidates@{getQueryCandidates}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{getQueryCandidates}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::getQueryCandidates (const {\bf StringEx} \& {\em nnp})}}
+\label{classkmaOrange_1_1DecomposeNNP_159e946b4a53f52beedfc67f49575be8}
+
+
+This function gets only index words in elements of generated candidates. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nnp}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of index words. \end{Desc}
+
+
+Definition at line 638 of file DecomposeNNP.cpp.
+
+References \_\-divpt, \_\-nnp, \_\-pdic, \_\-total, cntquery, decomposing(), generateSimpleWord(), StringEx::getBuffer(), StringEx::getIndex(), StringEx::getLength(), StringEx::getSubString(), initializeCnoun(), StringEx::length(), SearchInfo::mti, NNp, SearchInfo::pinfoNNP, printDivPattern(), printQueries(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), and MainTrieInfo::tag.\hypertarget{classkmaOrange_1_1DecomposeNNP_a4990f54943f6c1cd1f384a35f2ac30e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!getSyllableLength@{getSyllableLength}}
+\index{getSyllableLength@{getSyllableLength}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{getSyllableLength}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int DecomposeNNP::getSyllableLength (const {\bf StringEx} \& {\em word})}}
+\label{classkmaOrange_1_1DecomposeNNP_a4990f54943f6c1cd1f384a35f2ac30e}
+
+
+This function gets the syllable length of an input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an unsigned integer - the syllable length of an input string. \end{Desc}
+
+
+Definition at line 146 of file DecomposeNNP.cpp.
+
+References StringEx::getLength().
+
+Referenced by decomposing().\hypertarget{classkmaOrange_1_1DecomposeNNP_d88b5c609e13a0bfbe9ef4691230e907}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!getWeight@{getWeight}}
+\index{getWeight@{getWeight}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{getWeight}]{\setlength{\rightskip}{0pt plus 5cm}double DecomposeNNP::getWeight (int {\em index})}}
+\label{classkmaOrange_1_1DecomposeNNP_d88b5c609e13a0bfbe9ef4691230e907}
+
+
+This function gets the weight score of each candidate. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em index}]an integer - the index number of the tupleN\_\-, which is an array of \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a double - the weight score of each candidate. \end{Desc}
+
+
+Definition at line 171 of file DecomposeNNP.cpp.
+
+References tupleN\_\-, weightlist, and kmaOrange::NounsTuple::weightScore.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul\_\-NNR().\hypertarget{classkmaOrange_1_1DecomposeNNP_022860c17f32ba8672e4bbf317ec0a26}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!initializeCnoun@{initializeCnoun}}
+\index{initializeCnoun@{initializeCnoun}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{initializeCnoun}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::initializeCnoun ()\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_022860c17f32ba8672e4bbf317ec0a26}
+
+
+This function initializes several global variables and objects. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 99 of file DecomposeNNP.cpp.
+
+References cntquery, MAX\_\-CANDIDATE, sumofweight, tupleN\_\-, and weightlist.
+
+Referenced by DecomposeNNP(), getDecomposedInformation(), and getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_7cdae0916167158018e20761efa28980}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!isCONJ@{isCONJ}}
+\index{isCONJ@{isCONJ}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{isCONJ}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::isCONJ (const {\bf StringEx} \& {\em word})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_7cdae0916167158018e20761efa28980}
+
+
+This function checks whether an input string is a conjunction or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ -1 - not conjunction.\par
+ 1 - conjunction. \end{Desc}
+
+
+Definition at line 141 of file DecomposeNNP.cpp.
+
+References conjList, numberofconjList, and searchList().
+
+Referenced by decomposing().\hypertarget{classkmaOrange_1_1DecomposeNNP_68c657faba5b3d325e6ce9656ffbf0cb}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!isDigit@{isDigit}}
+\index{isDigit@{isDigit}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{isDigit}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::isDigit (const char {\em ch})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_68c657faba5b3d325e6ce9656ffbf0cb}
+
+
+This function checks whether an input character is a digit or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em ch}]a constant character - input character. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - not digit.\par
+ 1 - digit. \end{Desc}
+
+
+Definition at line 164 of file DecomposeNNP.cpp.
+
+Referenced by addNNP(), and getDecomposedInformation().\hypertarget{classkmaOrange_1_1DecomposeNNP_5dd06682b624df61965644f09799162e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!isXP@{isXP}}
+\index{isXP@{isXP}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{isXP}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::isXP (const {\bf StringEx} \& {\em word})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_5dd06682b624df61965644f09799162e}
+
+
+This function checks whether an input string is a prefix or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ -1 - not prefix.\par
+ 1 - prefix. \end{Desc}
+
+
+Definition at line 126 of file DecomposeNNP.cpp.
+
+References numberofxpList, searchList(), and xpList.
+
+Referenced by decomposing(), generateCandidates(), and postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_39304b147bc24105d6a765bdc4023537}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!isXSN@{isXSN}}
+\index{isXSN@{isXSN}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{isXSN}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::isXSN (const {\bf StringEx} \& {\em word})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_39304b147bc24105d6a765bdc4023537}
+
+
+This function checks whether an input string is a suffix or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ -1 - not suffix.\par
+ 1 - suffix. \end{Desc}
+
+
+Definition at line 131 of file DecomposeNNP.cpp.
+
+References numberofxsnList, searchList(), and xsnList.
+
+Referenced by generateCandidates(), getDecomposedInformation(), and postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_e9a88ff658b2e5cf179b9ba12787b727}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!isXSNXSN@{isXSNXSN}}
+\index{isXSNXSN@{isXSNXSN}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{isXSNXSN}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::isXSNXSN (const {\bf StringEx} \& {\em word})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_e9a88ff658b2e5cf179b9ba12787b727}
+
+
+This function checks whether an input string is a 2-syllables suffix or not. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ -1 - not 2-syllables suffix.\par
+ 1 - 2-syllables suffix. \end{Desc}
+
+
+Definition at line 136 of file DecomposeNNP.cpp.
+
+References numberofxsnxsnList, searchList(), and xsnxsnList.
+
+Referenced by generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_d774f6680465f24b1f227afe216fbe62}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!postProcessDcInfo@{postProcessDcInfo}}
+\index{postProcessDcInfo@{postProcessDcInfo}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{postProcessDcInfo}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::postProcessDcInfo (int {\em cnt}, \/  int {\em tag}, \/  int {\em len})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_d774f6680465f24b1f227afe216fbe62}
+
+
+This function executes the post-process of decomposing a compound noun. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em cnt}]an integer - the number of elements in the array DcInfo. \item[{\em tag}]an integer - the value of the POS tag for a entire input string. \item[{\em len}]an integer - the syllable length of a input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 429 of file DecomposeNNP.cpp.
+
+References \_\-mode, \_\-nnp, \_\-pdic, \_\-specialPattern, addDcInfo, StringEx::buffer(), DcInfo, StringEx::getBuffer(), StringEx::getIndex(), StringEx::getNumberOfChar(), StringEx::getNumberOfStr(), StringEx::getSubString(), isXP(), isXSN(), StringEx::length(), SearchInfo::mti, NNg, NNp, StringEx::replaceString(), kmaOrange::Dictionary::searchNgetInfoFromMainTrie(), strDcInfo, MainTrieInfo::tag, and tmpDcInfo.
+
+Referenced by getDecomposedInformation().\hypertarget{classkmaOrange_1_1DecomposeNNP_72aa0ac8c94380f510f15c284ba443fd}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!printDivPattern@{printDivPattern}}
+\index{printDivPattern@{printDivPattern}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{printDivPattern}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::printDivPattern (char $\ast$ {\em divpattern})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_72aa0ac8c94380f510f15c284ba443fd}
+
+
+This function prints candidates using decomposing patterns in the NNP dictionary on screen. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em divpattern}]a pointer of a character - a decomposing pattern. \end{description}
+\end{Desc}
+
+
+Definition at line 715 of file DecomposeNNP.cpp.
+
+References \_\-nnp, and StringEx::getSubString().
+
+Referenced by getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_9810b0040ba2d9dd87787a34da77b709}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!printQueries@{printQueries}}
+\index{printQueries@{printQueries}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{printQueries}]{\setlength{\rightskip}{0pt plus 5cm}void DecomposeNNP::printQueries ()}}
+\label{classkmaOrange_1_1DecomposeNNP_9810b0040ba2d9dd87787a34da77b709}
+
+
+This function prints only index words in elements of generated candidates on screen. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 758 of file DecomposeNNP.cpp.
+
+References cntquery, and querycandidates.
+
+Referenced by getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_32693fa7fb94453e018351ddadb059c6}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!scoringPattern@{scoringPattern}}
+\index{scoringPattern@{scoringPattern}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{scoringPattern}]{\setlength{\rightskip}{0pt plus 5cm}double DecomposeNNP::scoringPattern (struct {\bf compoundNoun} $\ast$ {\em dcpattern})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_32693fa7fb94453e018351ddadb059c6}
+
+
+This function calculates the score of each candidate. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dcpattern}]a pointer of struct \hyperlink{structkmaOrange_1_1compoundNoun}{compoundNoun} - the information list of generated candidates. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a double - the score of a candidate. \end{Desc}
+
+
+Definition at line 1593 of file DecomposeNNP.cpp.
+
+References \_\-nnp, \_\-pdic, DivideInfo::freq, PosInfo::freq\_\-first, PosInfo::freq\_\-last, PosInfo::freq\_\-middle, StringEx::getBuffer(), getFreqofPattern(), StringEx::getSubString(), MAX\_\-NOUN, kmaOrange::compoundNoun::pattern, kmaOrange::Dictionary::searchNgetInfoFromDivTrie(), and kmaOrange::Dictionary::searchNgetInfoFromPosTrie().
+
+Referenced by decomposing().\hypertarget{classkmaOrange_1_1DecomposeNNP_9edd6655554b45098df4cb44c6e19114}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!searchAllRegisteredN\_\-@{searchAllRegisteredN\_\-}}
+\index{searchAllRegisteredN\_\-@{searchAllRegisteredN\_\-}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{searchAllRegisteredN\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::searchAllRegisteredN\_\- ()\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_9edd6655554b45098df4cb44c6e19114}
+
+
+This function searches all noun class, which the partial string of input string is included in the system dictionaries. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em eojul}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer. \end{Desc}
+
+
+Definition at line 880 of file DecomposeNNP.cpp.
+
+References \_\-allN\_\-List, \_\-nnp, \_\-nnplen, \_\-pdic, StringEx::buffer(), and kmaOrange::Dictionary::searchNgetInfoFromMainTrie().
+
+Referenced by getDecomposedInformation().\hypertarget{classkmaOrange_1_1DecomposeNNP_0eca8b2cad6b57cc5e408b43a3fa8679}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!searchList@{searchList}}
+\index{searchList@{searchList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{searchList}]{\setlength{\rightskip}{0pt plus 5cm}int DecomposeNNP::searchList (char $\ast$$\ast$ {\em list}, \/  unsigned int {\em numoflist}, \/  const {\bf StringEx} \& {\em word})\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_0eca8b2cad6b57cc5e408b43a3fa8679}
+
+
+This function searches a given list for an input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-05 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em list}]a pointer of character pointer - given list. \item[{\em numoflist}]an unsigned integer - the number of elements in a given list \item[{\em word}]an indirect referncing pointer of a constant \hyperlink{classStringEx}{StringEx} object - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ -1 - not an element of given list.\par
+ 1 - an element of given list. \end{Desc}
+
+
+Definition at line 108 of file DecomposeNNP.cpp.
+
+Referenced by isCONJ(), isXP(), isXSN(), and isXSNXSN().\hypertarget{classkmaOrange_1_1DecomposeNNP_e7c40bf4c0ec99622d1b05a0a85846f0}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!setDicionary@{setDicionary}}
+\index{setDicionary@{setDicionary}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{setDicionary}]{\setlength{\rightskip}{0pt plus 5cm}void kmaOrange::DecomposeNNP::setDicionary ({\bf Dictionary} $\ast$ {\em dic})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_e7c40bf4c0ec99622d1b05a0a85846f0}
+
+
+This function sets the \hyperlink{classkmaOrange_1_1Dictionary}{Dictionary} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em dic}]a pointer of \hyperlink{classkmaOrange_1_1Dictionary}{Dictionary} object. \end{description}
+\end{Desc}
+
+
+Definition at line 356 of file DecomposeNNP.h.
+
+References \_\-pdic.
+
+Referenced by kmaOrange::MAnalyzer::setDefault(), and kmaOrange::MAnalyzer::setKnowledge().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1DecomposeNNP_734183051a2d30811c54f22279b2fa64}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-addedcnt@{\_\-addedcnt}}
+\index{\_\-addedcnt@{\_\-addedcnt}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-addedcnt}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-addedcnt}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_734183051a2d30811c54f22279b2fa64}
+
+
+this is a temporary variable for recursively decomposing a compound noun. 
+
+
+
+Definition at line 84 of file DecomposeNNP.h.
+
+Referenced by decomposing(), and generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_c6a0c1179315cedb8282033b0ba8d971}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-allN\_\-List@{\_\-allN\_\-List}}
+\index{\_\-allN\_\-List@{\_\-allN\_\-List}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-allN\_\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ListEx}$<${\bf SearchInfo}$>$ {\bf kmaOrange::DecomposeNNP::\_\-allN\_\-List}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_c6a0c1179315cedb8282033b0ba8d971}
+
+
+the list of all noun class, which the partial string of input string is included in the system dictionaries. 
+
+
+
+Definition at line 99 of file DecomposeNNP.h.
+
+Referenced by generateCandidates(), and searchAllRegisteredN\_\-().\hypertarget{classkmaOrange_1_1DecomposeNNP_ba5b1f122f078d8e7b9f6a324eab6ec0}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-divpt@{\_\-divpt}}
+\index{\_\-divpt@{\_\-divpt}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-divpt}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::\_\-divpt}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_ba5b1f122f078d8e7b9f6a324eab6ec0}
+
+
+the decomposing pattern of an entry in the NNP dictionary. 
+
+
+
+Definition at line 90 of file DecomposeNNP.h.
+
+Referenced by addNNP(), generateCandidates(), getDecomposedInformation(), and getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_c76213c313b8eade5d906e68ed162d45}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-flag@{\_\-flag}}
+\index{\_\-flag@{\_\-flag}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-flag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-flag}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_c76213c313b8eade5d906e68ed162d45}
+
+
+this variable shows whether each starting index of elements in a compound noun is overlapped or not. 
+
+
+
+Definition at line 82 of file DecomposeNNP.h.
+
+Referenced by decomposing(), and generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_b012373568fc712710d849d3da570d53}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-mode@{\_\-mode}}
+\index{\_\-mode@{\_\-mode}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-mode}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-mode}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_b012373568fc712710d849d3da570d53}
+
+
+
+
+Definition at line 87 of file DecomposeNNP.h.
+
+Referenced by generateCandidates(), getDecomposedInformation(), and postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_6e0f084a054d45ba571bd911a6760289}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-nnp@{\_\-nnp}}
+\index{\_\-nnp@{\_\-nnp}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-nnp}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::\_\-nnp}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_6e0f084a054d45ba571bd911a6760289}
+
+
+the original input string. 
+
+
+
+Definition at line 93 of file DecomposeNNP.h.
+
+Referenced by decomposing(), generateCandidates(), generateSimpleWord(), getDecomposedInformation(), getQueryCandidates(), postProcessDcInfo(), printDivPattern(), scoringPattern(), and searchAllRegisteredN\_\-().\hypertarget{classkmaOrange_1_1DecomposeNNP_2067ecec799fae888acde29af34eb948}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-nnpflag@{\_\-nnpflag}}
+\index{\_\-nnpflag@{\_\-nnpflag}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-nnpflag}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-nnpflag}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_2067ecec799fae888acde29af34eb948}
+
+
+this variable shows whether the list of elements in a compound noun includes entries of the NNP dictionary or not. 
+
+
+
+Definition at line 85 of file DecomposeNNP.h.
+
+Referenced by addNNP(), decomposing(), and generateCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_632b777790d596277324ee336ee8a406}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-nnplen@{\_\-nnplen}}
+\index{\_\-nnplen@{\_\-nnplen}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-nnplen}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-nnplen}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_632b777790d596277324ee336ee8a406}
+
+
+this is a temporary variable to add a \hyperlink{classkmaOrange_1_1NounsTuple}{NounsTuple} object and shows the length of an element. 
+
+
+
+Definition at line 86 of file DecomposeNNP.h.
+
+Referenced by decomposing(), generateCandidates(), getDecomposedInformation(), and searchAllRegisteredN\_\-().\hypertarget{classkmaOrange_1_1DecomposeNNP_533480bdf3b9032a6e5bbe8d32c154f4}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-pdic@{\_\-pdic}}
+\index{\_\-pdic@{\_\-pdic}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-pdic}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Dictionary}$\ast$ {\bf kmaOrange::DecomposeNNP::\_\-pdic}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_533480bdf3b9032a6e5bbe8d32c154f4}
+
+
+the object of system dictionaries. 
+
+
+
+Definition at line 100 of file DecomposeNNP.h.
+
+Referenced by decomposing(), generateCandidates(), getDecomposedInformation(), getQueryCandidates(), postProcessDcInfo(), scoringPattern(), searchAllRegisteredN\_\-(), and setDicionary().\hypertarget{classkmaOrange_1_1DecomposeNNP_0d30852ef67ed92b760d424b8680a791}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-specialPattern@{\_\-specialPattern}}
+\index{\_\-specialPattern@{\_\-specialPattern}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-specialPattern}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf DecomposeNNP::\_\-specialPattern} = \char`\"{}:12:21:1U2:2U1:U12:U21:U2Y1:I2U1:2UB1:2U2:U22:U4:\char`\"{}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_0d30852ef67ed92b760d424b8680a791}
+
+
+the special decomposing pattern for post-process is stored. 
+
+
+
+Definition at line 95 of file DecomposeNNP.h.
+
+Referenced by postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_a91212beb541de2c07725ae31988c30e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!\_\-total@{\_\-total}}
+\index{\_\-total@{\_\-total}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{\_\-total}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::\_\-total}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_a91212beb541de2c07725ae31988c30e}
+
+
+the number of the total list of decomposed elements in a compound noun. 
+
+
+
+Definition at line 83 of file DecomposeNNP.h.
+
+Referenced by decomposing(), generateCandidates(), generateSimpleWord(), and getQueryCandidates().\hypertarget{classkmaOrange_1_1DecomposeNNP_8560eb5b300bb0ee99fa6ca686d05b7e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!addDcInfo@{addDcInfo}}
+\index{addDcInfo@{addDcInfo}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{addDcInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::addDcInfo}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_8560eb5b300bb0ee99fa6ca686d05b7e}
+
+
+this is a temporary \hyperlink{classStringEx}{StringEx} object for pre-process and post-process of decomposing a compound noun. 
+
+
+
+Definition at line 92 of file DecomposeNNP.h.
+
+Referenced by postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_8890d956d3e35a4eb23c3718dc1fbb61}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!cntquery@{cntquery}}
+\index{cntquery@{cntquery}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{cntquery}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::cntquery}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_8890d956d3e35a4eb23c3718dc1fbb61}
+
+
+the number of index words in the list of elements in a compound noun. 
+
+
+
+Definition at line 81 of file DecomposeNNP.h.
+
+Referenced by addQuery(), getQueryCandidates(), initializeCnoun(), and printQueries().\hypertarget{classkmaOrange_1_1DecomposeNNP_cc837244a58a9cdcb39a5eeb6b3c6d0a}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!conjList@{conjList}}
+\index{conjList@{conjList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{conjList}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf DecomposeNNP::conjList}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_cc837244a58a9cdcb39a5eeb6b3c6d0a}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+        "과", "겸", "및", "와", "의", "혹"
+}
+\end{verbatim}
+\end{Code}
+the list of 1-syllable conjunction. 
+
+
+
+Definition at line 68 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isCONJ().\hypertarget{classkmaOrange_1_1DecomposeNNP_20b30e5152be0c58b29a7d369c5b9635}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!DcInfo@{DcInfo}}
+\index{DcInfo@{DcInfo}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{DcInfo}]{\setlength{\rightskip}{0pt plus 5cm}char {\bf kmaOrange::DecomposeNNP::DcInfo}\mbox{[}BUFFER\_\-SIZE\_\-DCINFO\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_20b30e5152be0c58b29a7d369c5b9635}
+
+
+the information of entirely decomposed pattern for the input string. This information is forwarded to the analyzing module. 
+
+
+
+Definition at line 97 of file DecomposeNNP.h.
+
+Referenced by getDecomposedInformation(), and postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_59702d35b520eb185a2a029048a4127e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!dcp@{dcp}}
+\index{dcp@{dcp}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{dcp}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf decomposingPattern} {\bf kmaOrange::DecomposeNNP::dcp}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static, read, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_59702d35b520eb185a2a029048a4127e}
+
+
+the list of decomposing pattern in a compound noun. 
+
+
+
+Definition at line 64 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and getFreqofPattern().\hypertarget{classkmaOrange_1_1DecomposeNNP_537f6225fd8a676acfeb8a7f94f9334e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!MAX\_\-dcp@{MAX\_\-dcp}}
+\index{MAX\_\-dcp@{MAX\_\-dcp}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{MAX\_\-dcp}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::DecomposeNNP::MAX\_\-dcp}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_537f6225fd8a676acfeb8a7f94f9334e}
+
+
+the number of decomposing pattern in a compound noun. 
+
+
+
+Definition at line 70 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and getFreqofPattern().\hypertarget{classkmaOrange_1_1DecomposeNNP_e038b5f641f5c18977cdd976e3a891e8}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!numberofconjList@{numberofconjList}}
+\index{numberofconjList@{numberofconjList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{numberofconjList}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::DecomposeNNP::numberofconjList}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_e038b5f641f5c18977cdd976e3a891e8}
+
+
+the number of 1-syllable conjunction. 
+
+
+
+Definition at line 74 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isCONJ().\hypertarget{classkmaOrange_1_1DecomposeNNP_11f27fbb972d069831f7af8c5ea1086a}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!numberofxpList@{numberofxpList}}
+\index{numberofxpList@{numberofxpList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{numberofxpList}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::DecomposeNNP::numberofxpList}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_11f27fbb972d069831f7af8c5ea1086a}
+
+
+the number of 1-syllable prefixes. 
+
+
+
+Definition at line 71 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXP().\hypertarget{classkmaOrange_1_1DecomposeNNP_4c14e6c850fb4387cc34296599b7f11e}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!numberofxsnList@{numberofxsnList}}
+\index{numberofxsnList@{numberofxsnList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{numberofxsnList}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::DecomposeNNP::numberofxsnList}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_4c14e6c850fb4387cc34296599b7f11e}
+
+
+the number of 1-syllable suffixes. 
+
+
+
+Definition at line 72 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXSN().\hypertarget{classkmaOrange_1_1DecomposeNNP_3dea56e51202bb2892d9d5476a60e1f1}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!numberofxsnxsnList@{numberofxsnxsnList}}
+\index{numberofxsnxsnList@{numberofxsnxsnList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{numberofxsnxsnList}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int {\bf kmaOrange::DecomposeNNP::numberofxsnxsnList}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_3dea56e51202bb2892d9d5476a60e1f1}
+
+
+the number of 2-syllables suffixes. 
+
+
+
+Definition at line 73 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXSNXSN().\hypertarget{classkmaOrange_1_1DecomposeNNP_63f55fbd1165c475ba2b715e9f9630be}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!querycandidates@{querycandidates}}
+\index{querycandidates@{querycandidates}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{querycandidates}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::querycandidates}\mbox{[}(MAX\_\-CANDIDATE $\ast$MAX\_\-NOUN)\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_63f55fbd1165c475ba2b715e9f9630be}
+
+
+the list of index words in the list of elements in a compound noun. 
+
+
+
+Definition at line 89 of file DecomposeNNP.h.
+
+Referenced by addQuery(), and printQueries().\hypertarget{classkmaOrange_1_1DecomposeNNP_a13b091e297bcd1ffaefa059d3706312}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!strDcInfo@{strDcInfo}}
+\index{strDcInfo@{strDcInfo}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{strDcInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::strDcInfo}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_a13b091e297bcd1ffaefa059d3706312}
+
+
+
+
+Definition at line 92 of file DecomposeNNP.h.
+
+Referenced by postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_f6c150803a22ab57d186409da073ccea}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!sumofweight@{sumofweight}}
+\index{sumofweight@{sumofweight}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{sumofweight}]{\setlength{\rightskip}{0pt plus 5cm}double {\bf kmaOrange::DecomposeNNP::sumofweight}\mbox{[}MAX\_\-CANDIDATE\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_f6c150803a22ab57d186409da073ccea}
+
+
+the sum of weightScore in the list of elements in a compound noun. 
+
+
+
+Definition at line 78 of file DecomposeNNP.h.
+
+Referenced by checkPattern(), decomposing(), and initializeCnoun().\hypertarget{classkmaOrange_1_1DecomposeNNP_6a53ba6d56964d532d41e80719eb1066}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!tmpDcInfo@{tmpDcInfo}}
+\index{tmpDcInfo@{tmpDcInfo}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{tmpDcInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf StringEx} {\bf kmaOrange::DecomposeNNP::tmpDcInfo}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_6a53ba6d56964d532d41e80719eb1066}
+
+
+
+
+Definition at line 92 of file DecomposeNNP.h.
+
+Referenced by postProcessDcInfo().\hypertarget{classkmaOrange_1_1DecomposeNNP_cb0835f4ac29d0310423f54b64c33e5f}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!tupleN\_\-@{tupleN\_\-}}
+\index{tupleN\_\-@{tupleN\_\-}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{tupleN\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf NounsTuple} {\bf kmaOrange::DecomposeNNP::tupleN\_\-}\mbox{[}MAX\_\-CANDIDATE\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_cb0835f4ac29d0310423f54b64c33e5f}
+
+
+the list of the list of elements in a compound noun. 
+
+
+
+Definition at line 76 of file DecomposeNNP.h.
+
+Referenced by addNNP(), addTuple(), checkPattern(), decomposing(), generateCandidates(), generateSimpleWord(), getDecomposedInformation(), getWeight(), and initializeCnoun().\hypertarget{classkmaOrange_1_1DecomposeNNP_2da3367c23f4e54ab5377eec12800745}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!weightlist@{weightlist}}
+\index{weightlist@{weightlist}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{weightlist}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf kmaOrange::DecomposeNNP::weightlist}\mbox{[}MAX\_\-CANDIDATE\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_2da3367c23f4e54ab5377eec12800745}
+
+
+the list of the index number, which the value of variable weightScore has more than critical value. 
+
+
+
+Definition at line 79 of file DecomposeNNP.h.
+
+Referenced by getDecomposedInformation(), getWeight(), and initializeCnoun().\hypertarget{classkmaOrange_1_1DecomposeNNP_b8225d6066c10bb66d14ec066111dfb6}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!xpList@{xpList}}
+\index{xpList@{xpList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{xpList}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf DecomposeNNP::xpList}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_b8225d6066c10bb66d14ec066111dfb6}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} { 
+        "가", "강", "고", "과", "군", "급", "냉", "뉴", "늦", "당", "대", "덧",
+        "뒷", "매", "맹", "명", "무", "미", "민", "반", "범", "부", "불", "비",
+        "새", "생", "선", "소", "신", "역", "재", "저", "전", "제", "주", "준",
+        "초", "총", "최", "친", "큰", "탈", "폐", "피", "한", "항", "헛", "후"
+}
+\end{verbatim}
+\end{Code}
+the list of 1-syllable prefixes. 
+
+
+
+Definition at line 65 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXP().\hypertarget{classkmaOrange_1_1DecomposeNNP_37cc31c7eb17d06a39c29872c36aef88}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!xsnList@{xsnList}}
+\index{xsnList@{xsnList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{xsnList}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf DecomposeNNP::xsnList}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_37cc31c7eb17d06a39c29872c36aef88}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} { 
+        "가", "각", "간", "감", "객", "경", "계", "고", "곡", "과", "관", "광",
+        "구", "국", "권", "금", "기", "께", "꾼", "네", "님", "단", "담", "당",
+        "대", "댁", "도", "들", "량", "령", "로", "론", "료", "류", "률", "리",
+        "모", "물", "미", "발", "배", "별", "보", "복", "부", "비", "뻘", "사",
+        "산", "상", "새", "생", "석", "선", "설", "성", "소", "수", "순", "술",
+        "시", "식", "실", "심", "씨", "씩", "안", "애", "액", "여", "옹", "욕",
+        "용", "원", "율", "인", "일", "자", "작", "장", "재", "적", "전", "점",
+        "정", "제", "족", "종", "증", "진", "질", "째", "쯤", "차", "책", "처",
+        "체", "측", "층", "치", "파", "품", "풍", "하", "학", "행", "형", "호",
+        "화", "회"
+}
+\end{verbatim}
+\end{Code}
+the list of 1-syllable suffixes. 
+
+
+
+Definition at line 66 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXSN().\hypertarget{classkmaOrange_1_1DecomposeNNP_a031b8bc80cc244c2a1fbe7bb3b9c3e5}{
+\index{kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}!xsnxsnList@{xsnxsnList}}
+\index{xsnxsnList@{xsnxsnList}!kmaOrange::DecomposeNNP@{kmaOrange::DecomposeNNP}}
+\subsubsection[{xsnxsnList}]{\setlength{\rightskip}{0pt plus 5cm}char $\ast$ {\bf DecomposeNNP::xsnxsnList}\hspace{0.3cm}{\tt  \mbox{[}static, private\mbox{]}}}}
+\label{classkmaOrange_1_1DecomposeNNP_a031b8bc80cc244c2a1fbe7bb3b9c3e5}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+        "가네", "가님", "가댁", "가들", "가율", "간씩", "간쯤", "경쯤", "계형",
+        "곡들", "곡법", "곡별", "곡순", "관님", "관들", "관별", "관실", "관풍",
+        "광님", "광들", "국단", "권당", "권료", "금들", "꾼들", "네들", "님께",
+        "님네", "님들", "님별", "님석", "님식", "님실", "님용", "님쯤", "님풍",
+        "님화", "단께", "단님", "단들", "단용", "단회", "담들", "담류", "담형",
+        "대별", "댁네", "댁님", "댁들", "도님", "도들", "들께", "들네", "들쯤",
+        "량들", "량별", "량제", "로들", "로별", "로용", "론적", "류들", "류용",
+        "률들", "률적", "문들", "문용", "물들", "물비", "물용", "배님", "배들",
+        "배형", "법들", "법별", "보님", "보들", "복들", "복풍", "비들", "비별",
+        "뻘들", "뻘쯤", "사들", "새들", "새별", "새용", "생들", "소들", "소별",
+        "소측", "수님", "수들", "수별", "순별", "술계", "술용", "실들", "실별",
+        "심들", "씨계", "씨네", "씨댁", "씨들", "씩들", "씩쯤", "애적", "여쯤",
+        "욕적", "원들", "인들", "자들", "자별", "작들", "장들", "장실", "재들",
+        "재별", "재풍", "전들", "전쯤", "점들", "점식", "점행", "점형", "제용",
+        "족계", "족들", "족설", "종들", "종화", "진님", "진들", "질법", "책님",
+        "책들", "체들", "체별", "체풍", "치들", "파들", "파용", "품들", "품별",
+        "품비", "품식", "품용", "학론", "형화", "회들", "회별", "회실"
+}
+\end{verbatim}
+\end{Code}
+the list of 2-syllables suffixes. 
+
+
+
+Definition at line 67 of file DecomposeNNP.h.
+
+Referenced by DecomposeNNP(), and isXSNXSN().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{DecomposeNNP_8h}{DecomposeNNP.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{DecomposeNNP_8cpp}{DecomposeNNP.cpp}\end{CompactItemize}

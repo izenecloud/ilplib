@@ -1,0 +1,83 @@
+\hypertarget{classla__manager_1_1Analyzer}{
+\section{la\_\-manager::Analyzer Class Reference}
+\label{classla__manager_1_1Analyzer}\index{la\_\-manager::Analyzer@{la\_\-manager::Analyzer}}
+}
+interface of \hyperlink{classla__manager_1_1Analyzer}{Analyzer} This class analyze terms according to the specific types of analyzer  
+
+
+{\tt \#include $<$Analyzer.h$>$}
+
+Inheritance diagram for la\_\-manager::Analyzer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.972222cm]{classla__manager_1_1Analyzer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual bool \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Input, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Output)=0
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+virtual bool \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&InOutPut)=0
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+virtual \hyperlink{classla__manager_1_1Analyzer_2dff111165f053298d3887806ef172ec}{$\sim$Analyzer} ()
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+interface of \hyperlink{classla__manager_1_1Analyzer}{Analyzer} This class analyze terms according to the specific types of analyzer 
+
+Definition at line 19 of file Analyzer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1Analyzer_2dff111165f053298d3887806ef172ec}{
+\index{la\_\-manager::Analyzer@{la\_\-manager::Analyzer}!$\sim$Analyzer@{$\sim$Analyzer}}
+\index{$\sim$Analyzer@{$\sim$Analyzer}!la_manager::Analyzer@{la\_\-manager::Analyzer}}
+\subsubsection[{$\sim$Analyzer}]{\setlength{\rightskip}{0pt plus 5cm}virtual la\_\-manager::Analyzer::$\sim$Analyzer ()\hspace{0.3cm}{\tt  \mbox{[}inline, virtual\mbox{]}}}}
+\label{classla__manager_1_1Analyzer_2dff111165f053298d3887806ef172ec}
+
+
+
+
+Definition at line 33 of file Analyzer.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{
+\index{la\_\-manager::Analyzer@{la\_\-manager::Analyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::Analyzer@{la\_\-manager::Analyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool la\_\-manager::Analyzer::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classla__manager_1_1LengthFilter_0b26aaa94ed79a49609fb92e25109831}{la\_\-manager::LengthFilter}, \hyperlink{classla__manager_1_1NGramAnalyzer_9774217127e1d89b57ff5aded31df290}{la\_\-manager::NGramAnalyzer}, \hyperlink{classla__manager_1_1EnglishNounFilter_a74c3ab1bb4af5b8e3f4693e4181c213}{la\_\-manager::EnglishNounFilter}, \hyperlink{classla__manager_1_1KoreanNounFilter_0ec4dcffc74feee2b7f72a2656c9c589}{la\_\-manager::KoreanNounFilter}, \hyperlink{classla__manager_1_1StemAnalyzer_a3ad462a3d098e7abfbab604b47d1f21}{la\_\-manager::StemAnalyzer}, and \hyperlink{classla__manager_1_1StopFilter_17b962063274fdae433e111a39d80f22}{la\_\-manager::StopFilter}.\hypertarget{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{
+\index{la\_\-manager::Analyzer@{la\_\-manager::Analyzer}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::Analyzer@{la\_\-manager::Analyzer}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}virtual bool la\_\-manager::Analyzer::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classla__manager_1_1LengthFilter_9a4d7237f42892d2ed54ab22d3411741}{la\_\-manager::LengthFilter}, \hyperlink{classla__manager_1_1NGramAnalyzer_09bdd966dba6ac9b3ef4858fd0b24699}{la\_\-manager::NGramAnalyzer}, \hyperlink{classla__manager_1_1EnglishNounFilter_8d45f1cdea331de42838fcf89de9c576}{la\_\-manager::EnglishNounFilter}, \hyperlink{classla__manager_1_1KoreanNounFilter_5722385ced3635d7d5f16cbc1db0f874}{la\_\-manager::KoreanNounFilter}, \hyperlink{classla__manager_1_1StemAnalyzer_bd1334a97df94c78f58a02a7af73d55a}{la\_\-manager::StemAnalyzer}, and \hyperlink{classla__manager_1_1StopFilter_455c6f7e8330c3684ffd548956fe7a16}{la\_\-manager::StopFilter}.
+
+Referenced by la\_\-manager::LAManager::analyze(), and main().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{Analyzer_8h}{Analyzer.h}\end{CompactItemize}

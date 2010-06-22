@@ -1,0 +1,288 @@
+\hypertarget{classkmaOrange_1_1PreFinalEomi}{
+\section{kmaOrange::PreFinalEomi Class Reference}
+\label{classkmaOrange_1_1PreFinalEomi}\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+}
+This class manages prefinal endings.  
+
+
+{\tt \#include $<$PreFinalEomi.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1PreFinalEomi_de1edac505a8ddb81a6de1b20c6bf338}{PreFinalEomi} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1PreFinalEomi}{PreFinalEomi} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1PreFinalEomi_1c821b7b617615e3849849509198d98e}{$\sim$PreFinalEomi} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1PreFinalEomi}{PreFinalEomi} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1PreFinalEomi_02183bcf01f69f0f246a9c6311df4447}{setEPList} ()
+\begin{CompactList}\small\item\em This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1PreFinalEomi_02b86bb7101056a9a006404beac50543}{setEPInfo} (\hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} \&epInfo, int pos)
+\begin{CompactList}\small\item\em This function sets contents of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1PreFinalEomi_cb448ebca8313831c9d6a91664165007}{searchNgetInfoFromEpTrie} (const \hyperlink{classStringEx}{StringEx} \&strex, \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \&infoBuffer, int len=0)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\item 
+int \hyperlink{classkmaOrange_1_1PreFinalEomi_1440ff5046195cb344bb104b2a52f48a}{searchNgetInfoFromEpTrie} (const char $\ast$str, \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \&infoBuffer, int len=0)
+\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} $\ast$ \hyperlink{classkmaOrange_1_1PreFinalEomi_500080ebc6f091895b0942cd3e8a3978}{searchNgetInfoFromEpTrie} (const \hyperlink{classStringEx}{StringEx} \&strex, int len=0)
+\begin{CompactList}\small\item\em This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} $\ast$ \hyperlink{classkmaOrange_1_1PreFinalEomi_cf038ba240b1357550799a6c1965eb95}{searchNgetInfoFromEpTrie} (const char $\ast$str, int len=0)
+\item 
+\hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} $\ast$ \hyperlink{classkmaOrange_1_1PreFinalEomi_1b0f2ee161c2e9196ab4170cd3cb6d58}{getEPInfo} (int pos)
+\begin{CompactList}\small\item\em This function gets contents of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} \hyperlink{classkmaOrange_1_1PreFinalEomi_9e5980dd69c616faaec5fb08880f75cf}{\_\-epTrie}
+\begin{CompactList}\small\item\em a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of prefinal endings. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} \hyperlink{classkmaOrange_1_1PreFinalEomi_a9ab313b35d695007b75dcc6ed704cba}{\_\-infoBuffer}
+\begin{CompactList}\small\item\em temporary buffer. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} \hyperlink{classkmaOrange_1_1PreFinalEomi_46182b8344e9473063fb358b92b9c621}{\_\-epInfoPoolList} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of information of prefinal endings. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class manages prefinal endings. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 38 of file PreFinalEomi.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1PreFinalEomi_de1edac505a8ddb81a6de1b20c6bf338}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!PreFinalEomi@{PreFinalEomi}}
+\index{PreFinalEomi@{PreFinalEomi}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{PreFinalEomi}]{\setlength{\rightskip}{0pt plus 5cm}PreFinalEomi::PreFinalEomi ()}}
+\label{classkmaOrange_1_1PreFinalEomi_de1edac505a8ddb81a6de1b20c6bf338}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1PreFinalEomi}{PreFinalEomi} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 55 of file PreFinalEomi.cpp.
+
+References setEPList().\hypertarget{classkmaOrange_1_1PreFinalEomi_1c821b7b617615e3849849509198d98e}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!$\sim$PreFinalEomi@{$\sim$PreFinalEomi}}
+\index{$\sim$PreFinalEomi@{$\sim$PreFinalEomi}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{$\sim$PreFinalEomi}]{\setlength{\rightskip}{0pt plus 5cm}PreFinalEomi::$\sim$PreFinalEomi ()}}
+\label{classkmaOrange_1_1PreFinalEomi_1c821b7b617615e3849849509198d98e}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1PreFinalEomi}{PreFinalEomi} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition at line 60 of file PreFinalEomi.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1PreFinalEomi_1b0f2ee161c2e9196ab4170cd3cb6d58}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!getEPInfo@{getEPInfo}}
+\index{getEPInfo@{getEPInfo}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{getEPInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EPInfo} $\ast$ PreFinalEomi::getEPInfo (int {\em pos})}}
+\label{classkmaOrange_1_1PreFinalEomi_1b0f2ee161c2e9196ab4170cd3cb6d58}
+
+
+This function gets contents of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]an integer - the index number of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure - contents of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure. \end{Desc}
+
+
+Definition at line 64 of file PreFinalEomi.cpp.
+
+References \_\-epInfoPoolList.\hypertarget{classkmaOrange_1_1PreFinalEomi_cf038ba240b1357550799a6c1965eb95}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}}
+\index{searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{searchNgetInfoFromEpTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} $\ast$ PreFinalEomi::searchNgetInfoFromEpTrie (const char $\ast$ {\em str}, \/  int {\em len} = {\tt 0})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classkmaOrange_1_1PreFinalEomi_cf038ba240b1357550799a6c1965eb95}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 179 of file PreFinalEomi.cpp.
+
+References \_\-epTrie, \_\-infoBuffer, kmaOrange::InfoBuffer::\_\-posBuffer, kmaOrange::InfoBuffer::appendInfo(), kmaOrange::WK\_\-DaTrie::findNode(), kmaOrange::WK\_\-DaTrie\_\-Node::getData(), and kmaOrange::WK\_\-DaTrie\_\-Node::mpData.\hypertarget{classkmaOrange_1_1PreFinalEomi_500080ebc6f091895b0942cd3e8a3978}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}}
+\index{searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{searchNgetInfoFromEpTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} $\ast$ PreFinalEomi::searchNgetInfoFromEpTrie (const {\bf StringEx} \& {\em strex}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1PreFinalEomi_500080ebc6f091895b0942cd3e8a3978}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referncing pointer of \hyperlink{classStringEx}{StringEx} object - input string. \item[{\em len}]an integer - the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object - temporary storage. \end{Desc}
+
+
+Definition at line 174 of file PreFinalEomi.cpp.
+
+References StringEx::buffer(), StringEx::length(), and searchNgetInfoFromEpTrie().\hypertarget{classkmaOrange_1_1PreFinalEomi_1440ff5046195cb344bb104b2a52f48a}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}}
+\index{searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{searchNgetInfoFromEpTrie}]{\setlength{\rightskip}{0pt plus 5cm}int PreFinalEomi::searchNgetInfoFromEpTrie (const char $\ast$ {\em str}, \/  {\bf InfoBuffer} \& {\em infoBuffer}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1PreFinalEomi_1440ff5046195cb344bb104b2a52f48a}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 131 of file PreFinalEomi.cpp.
+
+References \_\-epTrie, kmaOrange::InfoBuffer::appendInfo(), kmaOrange::WK\_\-DaTrie::findNode(), kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::InfoBuffer::initialize(), and kmaOrange::WK\_\-DaTrie\_\-Node::mpData.\hypertarget{classkmaOrange_1_1PreFinalEomi_cb448ebca8313831c9d6a91664165007}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}}
+\index{searchNgetInfoFromEpTrie@{searchNgetInfoFromEpTrie}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{searchNgetInfoFromEpTrie}]{\setlength{\rightskip}{0pt plus 5cm}int PreFinalEomi::searchNgetInfoFromEpTrie (const {\bf StringEx} \& {\em strex}, \/  {\bf InfoBuffer} \& {\em infoBuffer}, \/  int {\em len} = {\tt 0})}}
+\label{classkmaOrange_1_1PreFinalEomi_cb448ebca8313831c9d6a91664165007}
+
+
+This function searches a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object for input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strex}]an indirect referncing pointer of \hyperlink{classStringEx}{StringEx} object - input string. \item[{\em infoBuffer}]an indirect referncing pointer of \hyperlink{classkmaOrange_1_1InfoBuffer}{InfoBuffer} object - temporary storage. \item[{\em len}]an integer - the length of input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 126 of file PreFinalEomi.cpp.
+
+References StringEx::buffer(), and StringEx::length().
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzePreEomi(), and searchNgetInfoFromEpTrie().\hypertarget{classkmaOrange_1_1PreFinalEomi_02b86bb7101056a9a006404beac50543}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!setEPInfo@{setEPInfo}}
+\index{setEPInfo@{setEPInfo}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{setEPInfo}]{\setlength{\rightskip}{0pt plus 5cm}int PreFinalEomi::setEPInfo ({\bf EPInfo} \& {\em epInfo}, \/  int {\em pos})}}
+\label{classkmaOrange_1_1PreFinalEomi_02b86bb7101056a9a006404beac50543}
+
+
+This function sets contents of static array \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure into a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em epInfo}]an indirect referncing pointer of \hyperlink{structkmaOrange_1_1EPInfo}{EPInfo} structure - the list of prefinal endings and these information. \item[{\em pos}]an integer - the index number of the list of prefinal endings and these information. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 89 of file PreFinalEomi.cpp.
+
+References \_\-epTrie, kmaOrange::WK\_\-DaTrie\_\-Node::getData(), kmaOrange::WK\_\-DaTrie::insertKey(), kmaOrange::WK\_\-DaTrie\_\-Node::setData(), and kmaOrange::EPInfo::transForm.
+
+Referenced by setEPList().\hypertarget{classkmaOrange_1_1PreFinalEomi_02183bcf01f69f0f246a9c6311df4447}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!setEPList@{setEPList}}
+\index{setEPList@{setEPList}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{setEPList}]{\setlength{\rightskip}{0pt plus 5cm}int PreFinalEomi::setEPList ()}}
+\label{classkmaOrange_1_1PreFinalEomi_02183bcf01f69f0f246a9c6311df4447}
+
+
+This function creates and initializes a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-07 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Definition at line 69 of file PreFinalEomi.cpp.
+
+References \_\-epInfoPoolList, \_\-epTrie, kmaOrange::WK\_\-DaTrie::create(), and setEPInfo().
+
+Referenced by PreFinalEomi().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1PreFinalEomi_46182b8344e9473063fb358b92b9c621}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!\_\-epInfoPoolList@{\_\-epInfoPoolList}}
+\index{\_\-epInfoPoolList@{\_\-epInfoPoolList}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{\_\-epInfoPoolList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EPInfo} {\bf kmaOrange::PreFinalEomi::\_\-epInfoPoolList}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1PreFinalEomi_46182b8344e9473063fb358b92b9c621}
+
+
+the list of information of prefinal endings. 
+
+
+
+Definition at line 42 of file PreFinalEomi.h.
+
+Referenced by getEPInfo(), and setEPList().\hypertarget{classkmaOrange_1_1PreFinalEomi_9e5980dd69c616faaec5fb08880f75cf}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!\_\-epTrie@{\_\-epTrie}}
+\index{\_\-epTrie@{\_\-epTrie}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{\_\-epTrie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-DaTrie} {\bf kmaOrange::PreFinalEomi::\_\-epTrie}}}
+\label{classkmaOrange_1_1PreFinalEomi_9e5980dd69c616faaec5fb08880f75cf}
+
+
+a \hyperlink{classkmaOrange_1_1WK__DaTrie}{WK\_\-DaTrie} object of prefinal endings. 
+
+
+
+Definition at line 41 of file PreFinalEomi.h.
+
+Referenced by searchNgetInfoFromEpTrie(), setEPInfo(), and setEPList().\hypertarget{classkmaOrange_1_1PreFinalEomi_a9ab313b35d695007b75dcc6ed704cba}{
+\index{kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}!\_\-infoBuffer@{\_\-infoBuffer}}
+\index{\_\-infoBuffer@{\_\-infoBuffer}!kmaOrange::PreFinalEomi@{kmaOrange::PreFinalEomi}}
+\subsubsection[{\_\-infoBuffer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf InfoBuffer} {\bf kmaOrange::PreFinalEomi::\_\-infoBuffer}}}
+\label{classkmaOrange_1_1PreFinalEomi_a9ab313b35d695007b75dcc6ed704cba}
+
+
+temporary buffer. 
+
+
+
+Definition at line 44 of file PreFinalEomi.h.
+
+Referenced by searchNgetInfoFromEpTrie().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{PreFinalEomi_8h}{PreFinalEomi.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{PreFinalEomi_8cpp}{PreFinalEomi.cpp}\end{CompactItemize}

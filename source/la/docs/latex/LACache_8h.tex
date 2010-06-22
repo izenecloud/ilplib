@@ -1,0 +1,63 @@
+\hypertarget{LACache_8h}{
+\section{/disk/workspace-cpp/la-manager/include/LACache.h File Reference}
+\label{LACache_8h}\index{/disk/workspace-cpp/la-manager/include/LACache.h@{/disk/workspace-cpp/la-manager/include/LACache.h}}
+}
+header file of LACache  
+
+
+{\tt \#include $<$cache/MLRUCache.h$>$}\par
+{\tt \#include $<$Term.h$>$}\par
+\subsection*{Namespaces}
+\begin{CompactItemize}
+\item 
+namespace \hyperlink{namespacela__manager}{la\_\-manager}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{LACache_8h_338db5f85e3169b456409171d5a29e7a}{\_\-LA\_\-Cache\_\-}
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef izenelib::am::LinearHashTable$<$ wiselib::UString, wiselib::UString $>$ \hyperlink{namespacela__manager_b2561f2d031fc493a284cdce3afdd8fb}{la\_\-manager::StringHash}
+\item 
+typedef izenelib::am::LinearHashTable$<$ wiselib::UString, TermList $>$ \hyperlink{namespacela__manager_606b1224bbc6a202c407abf718ad3835}{la\_\-manager::TermListHash}
+\item 
+typedef izenelib::cache::MLRUCache$<$ wiselib::UString, wiselib::UString, StringHash, izenelib::util::ReadWriteLock $>$ \hyperlink{namespacela__manager_8a93c4bd160d94957812fb620225a17e}{la\_\-manager::MLRUCacheString}
+\item 
+typedef izenelib::cache::MLRUCache$<$ wiselib::UString, TermList, TermListHash, izenelib::util::ReadWriteLock $>$ \hyperlink{namespacela__manager_2ae131a60e2247f3f26c245dac7d0c56}{la\_\-manager::MLRUCacheTermList}
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+const unsigned int \hyperlink{namespacela__manager_a750d488a0f8a7f20ba3a0adf64b44c4}{la\_\-manager::LA\_\-CACHE\_\-SIZE} = 2000000
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+header file of LACache 
+
+\begin{Desc}
+\item[Author:]JunHui \end{Desc}
+\begin{Desc}
+\item[Date:]2008-11-04\end{Desc}
+\begin{itemize}
+\item Log\begin{itemize}
+\item 2009.04.23 Change the type of cache \end{itemize}
+\end{itemize}
+
+
+Definition in file \hyperlink{LACache_8h-source}{LACache.h}.
+
+\subsection{Define Documentation}
+\hypertarget{LACache_8h_338db5f85e3169b456409171d5a29e7a}{
+\index{LACache.h@{LACache.h}!\_\-LA\_\-Cache\_\-@{\_\-LA\_\-Cache\_\-}}
+\index{\_\-LA\_\-Cache\_\-@{\_\-LA\_\-Cache\_\-}!LACache.h@{LACache.h}}
+\subsubsection[{\_\-LA\_\-Cache\_\-}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-LA\_\-Cache\_\-}}
+\label{LACache_8h_338db5f85e3169b456409171d5a29e7a}
+
+
+
+
+Definition at line 10 of file LACache.h.

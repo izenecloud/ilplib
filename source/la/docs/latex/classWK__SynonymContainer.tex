@@ -1,0 +1,170 @@
+\hypertarget{classWK__SynonymContainer}{
+\section{WK\_\-SynonymContainer Class Reference}
+\label{classWK__SynonymContainer}\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}}
+}
+a class has and manages the list of synonym lists.  
+
+
+{\tt \#include $<$wk\_\-synonym.h$>$}
+
+Inheritance diagram for WK\_\-SynonymContainer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classWK__SynonymContainer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual \hyperlink{classWK__SynonymContainer_2f305b796f70e83c8589656b3a5bf36a}{$\sim$WK\_\-SynonymContainer} ()
+\item 
+virtual int \hyperlink{classWK__SynonymContainer_9e7ec0d46d3db686ef5b0d3b9719b96d}{loadSynonym} (const char $\ast$pathDic=\char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}, const char $\ast$nameDic=\char`\"{}synonym.txt\char`\"{})=0
+\begin{CompactList}\small\item\em This function loads contents of the synonym dictionary file into a \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} object. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__SynonymContainer_7a2c0a7a7da0d37c1be8816b1c20c680}{setSynonymDelimiter} (const char $\ast$delim)=0
+\begin{CompactList}\small\item\em This function sets the delimiter between synonym entries in a synonym list. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__SynonymContainer_83e7c34dd30aad2478a58f324dcbd594}{setWordDelimiter} (const char $\ast$delim)=0
+\begin{CompactList}\small\item\em This function sets the delimiter between words in a synonym entry. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__SynonymContainer_cc44acd798ac38cb00ed4f6caeb6f2fe}{searchNgetInfoFromSynonymTrie} (const char $\ast$str, \hyperlink{classWK__Synonym}{WK\_\-Synonym} $\ast$pwks)=0
+\begin{CompactList}\small\item\em This function searches a WK\_\-DaTrie object for input string and gets contents of this WK\_\-DaTrie object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} $\ast$ \hyperlink{classWK__SynonymContainer_fa754cbf496ae4419d3c145ca8e7513d}{createObject} (void)
+\begin{CompactList}\small\item\em This function creates a \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class has and manages the list of synonym lists. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 90 of file wk\_\-synonym.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWK__SynonymContainer_2f305b796f70e83c8589656b3a5bf36a}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!$\sim$WK\_\-SynonymContainer@{$\sim$WK\_\-SynonymContainer}}
+\index{$\sim$WK\_\-SynonymContainer@{$\sim$WK\_\-SynonymContainer}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{$\sim$WK\_\-SynonymContainer}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-SynonymContainer::$\sim$WK\_\-SynonymContainer ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classWK__SynonymContainer_2f305b796f70e83c8589656b3a5bf36a}
+
+
+
+
+Definition at line 22 of file wk\_\-synonym.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classWK__SynonymContainer_fa754cbf496ae4419d3c145ca8e7513d}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-SynonymContainer} $\ast$ WK\_\-SynonymContainer::createObject (void)\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__SynonymContainer_fa754cbf496ae4419d3c145ca8e7513d}
+
+
+This function creates a \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} object. \end{Desc}
+
+
+Definition at line 26 of file wk\_\-synonym.cpp.\hypertarget{classWK__SynonymContainer_9e7ec0d46d3db686ef5b0d3b9719b96d}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!loadSynonym@{loadSynonym}}
+\index{loadSynonym@{loadSynonym}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{loadSynonym}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-SynonymContainer::loadSynonym (const char $\ast$ {\em pathDic} = {\tt \char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}}, \/  const char $\ast$ {\em nameDic} = {\tt \char`\"{}synonym.txt\char`\"{}})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__SynonymContainer_9e7ec0d46d3db686ef5b0d3b9719b96d}
+
+
+This function loads contents of the synonym dictionary file into a \hyperlink{classWK__SynonymContainer}{WK\_\-SynonymContainer} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pathDic}]a pointer of a constant charater - the path of the directory, which the synonym dictionary file is stored. \item[{\em nameDic}]a pointer of a constant charater - the name of the synonym dictionary file. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1SynonymContainer_8459ec6b5a2d9c1b5313db22be6b65e4}{kmaOrange::SynonymContainer}.\hypertarget{classWK__SynonymContainer_cc44acd798ac38cb00ed4f6caeb6f2fe}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!searchNgetInfoFromSynonymTrie@{searchNgetInfoFromSynonymTrie}}
+\index{searchNgetInfoFromSynonymTrie@{searchNgetInfoFromSynonymTrie}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{searchNgetInfoFromSynonymTrie}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-SynonymContainer::searchNgetInfoFromSynonymTrie (const char $\ast$ {\em str}, \/  {\bf WK\_\-Synonym} $\ast$ {\em pwks})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__SynonymContainer_cc44acd798ac38cb00ed4f6caeb6f2fe}
+
+
+This function searches a WK\_\-DaTrie object for input string and gets contents of this WK\_\-DaTrie object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em str}]a pointer of a constant charater - input string. \item[{\em pwks}]a pointer of a \hyperlink{classWK__Synonym}{WK\_\-Synonym} object - contents of this WK\_\-DaTrie object are stored. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 1 - input string is a synonym.\par
+ 0 - input string is not a synonym. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1SynonymContainer_d17697e0744a34ea4d9ffe782e981cc4}{kmaOrange::SynonymContainer}.\hypertarget{classWK__SynonymContainer_7a2c0a7a7da0d37c1be8816b1c20c680}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!setSynonymDelimiter@{setSynonymDelimiter}}
+\index{setSynonymDelimiter@{setSynonymDelimiter}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{setSynonymDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-SynonymContainer::setSynonymDelimiter (const char $\ast$ {\em delim})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__SynonymContainer_7a2c0a7a7da0d37c1be8816b1c20c680}
+
+
+This function sets the delimiter between synonym entries in a synonym list. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em delim}]a pointer of a constant charater - the delimiter between synonym entries in a synonym list. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1SynonymContainer_01bb87b5ceba481163ea282a459694f5}{kmaOrange::SynonymContainer}.\hypertarget{classWK__SynonymContainer_83e7c34dd30aad2478a58f324dcbd594}{
+\index{WK\_\-SynonymContainer@{WK\_\-SynonymContainer}!setWordDelimiter@{setWordDelimiter}}
+\index{setWordDelimiter@{setWordDelimiter}!WK_SynonymContainer@{WK\_\-SynonymContainer}}
+\subsubsection[{setWordDelimiter}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-SynonymContainer::setWordDelimiter (const char $\ast$ {\em delim})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__SynonymContainer_83e7c34dd30aad2478a58f324dcbd594}
+
+
+This function sets the delimiter between words in a synonym entry. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em delim}]a pointer of a constant charater - the delimiter between words in a synonym entry. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1SynonymContainer_7e23aea8d7bb9b468a870f7e31ff6893}{kmaOrange::SynonymContainer}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{wk__synonym_8h}{wk\_\-synonym.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{wk__synonym_8cpp}{wk\_\-synonym.cpp}\end{CompactItemize}

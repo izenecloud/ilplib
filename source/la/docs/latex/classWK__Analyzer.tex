@@ -1,0 +1,385 @@
+\hypertarget{classWK__Analyzer}{
+\section{WK\_\-Analyzer Class Reference}
+\label{classWK__Analyzer}\index{WK\_\-Analyzer@{WK\_\-Analyzer}}
+}
+a class for KMA execution.  
+
+
+{\tt \#include $<$wk\_\-analyzer.h$>$}
+
+Inheritance diagram for WK\_\-Analyzer::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classWK__Analyzer}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual \hyperlink{classWK__Analyzer_ef4b10cb9dd4554a77284179042a8384}{$\sim$WK\_\-Analyzer} ()
+\item 
+virtual void \hyperlink{classWK__Analyzer_fd2f8d851743bcab677133c6a8b28d29}{setKnowledge} (\hyperlink{classWK__Knowledge}{WK\_\-Knowledge} $\ast$pKnowledge)=0
+\begin{CompactList}\small\item\em This function sets a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__Analyzer_4c3350ac19c02b41670a3a96351fb684}{setEojul} (\hyperlink{classWK__Eojul}{WK\_\-Eojul} $\ast$pEojul)=0
+\begin{CompactList}\small\item\em This function sets a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__Analyzer_9f5685835cc61f22bee056e6bdfa002d}{setOption} (int nOption, int nValue)=0
+\begin{CompactList}\small\item\em This function sets Korean morphological analyzing options. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__Analyzer_679d58347c2630d002c5c57c549f9b83}{setExOption} (int nOption)=0
+\begin{CompactList}\small\item\em This function sets execution options. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_98f004c5f30d8fbe68a477c12666c4a6}{runWithEojul} (void)=0
+\begin{CompactList}\small\item\em This function executes Korean morphological analysis based on a word. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_bb5e8ce81e579f6a33e12a03a3f35a51}{runWithString} (char $\ast$strLine, char $\ast$strNameOutFile)=0
+\begin{CompactList}\small\item\em This function executes Korean morphological analysis based on a sentence. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_8ac79b5e3342c0fa1adc587ba48472d6}{runWithString} (char $\ast$strLine)=0
+\item 
+virtual int \hyperlink{classWK__Analyzer_a5e90adc6d240fcee91c41cf61bcfb16}{runWithStream} (char $\ast$strNameInFile, char $\ast$strNameOutFile)=0
+\begin{CompactList}\small\item\em This function executes Korean morphological analysis based on a file. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_baf49aac1b32b7517c51c8cae3cf88b2}{runWithStream} (char $\ast$strNameInFile)=0
+\item 
+virtual int \hyperlink{classWK__Analyzer_558f318419f56ffefaa2ac6027e2c12a}{runWithStream} ()=0
+\item 
+virtual \hyperlink{classWK__Eojul}{WK\_\-Eojul} $\ast$ \hyperlink{classWK__Analyzer_719d5064f2d397eff535805c37c8a251}{getEojulInSentence} (int nPos)=0
+\begin{CompactList}\small\item\em This function gets a Eojul object for a word in a sentence. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_54e8115a1881d8fb0ed559b960b705c8}{getEojulCountInSentence} (void)=0
+\begin{CompactList}\small\item\em This function gets the number of words in a sentence. \item\end{CompactList}\item 
+virtual void \hyperlink{classWK__Analyzer_da45001afbdf5c6edd922d80abfd22e7}{makePreAnalysisDic} (void)=0
+\begin{CompactList}\small\item\em This function makes the pre-analysis dictionary file in the system dictionary. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Analyzer_89f47ebc012b22c7762677a12877bc37}{getEojulOffsetInSentence} (int nPos)=0
+\item 
+virtual void \hyperlink{classWK__Analyzer_4f71176a5b7359b73631bad1c506be21}{tagging} (void)=0
+\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} $\ast$ \hyperlink{classWK__Analyzer_3c9feae7eb43ef3363dcc6a6166c5dc3}{createObject} (\hyperlink{classWK__Knowledge}{WK\_\-Knowledge} $\ast$pKnowledge, \hyperlink{classWK__Eojul}{WK\_\-Eojul} $\ast$pEojul)
+\begin{CompactList}\small\item\em This function creates a \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} object. \item\end{CompactList}\item 
+static \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} $\ast$ \hyperlink{classWK__Analyzer_19eb8ec6afe38fae9f713e97a7b2b1a3}{createObject} (\hyperlink{classWK__Knowledge}{WK\_\-Knowledge} $\ast$pKnowledge)
+\item 
+static \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} $\ast$ \hyperlink{classWK__Analyzer_d9f2c2827683633f99176501680699ae}{createObject} (const char $\ast$path)
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class for KMA execution. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 38 of file wk\_\-analyzer.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWK__Analyzer_ef4b10cb9dd4554a77284179042a8384}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!$\sim$WK\_\-Analyzer@{$\sim$WK\_\-Analyzer}}
+\index{$\sim$WK\_\-Analyzer@{$\sim$WK\_\-Analyzer}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{$\sim$WK\_\-Analyzer}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-Analyzer::$\sim$WK\_\-Analyzer ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classWK__Analyzer_ef4b10cb9dd4554a77284179042a8384}
+
+
+
+
+Definition at line 29 of file wk\_\-analyzer.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classWK__Analyzer_d9f2c2827683633f99176501680699ae}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Analyzer} $\ast$ WK\_\-Analyzer::createObject (const char $\ast$ {\em path})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__Analyzer_d9f2c2827683633f99176501680699ae}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 14 of file wk\_\-analyzer.cpp.\hypertarget{classWK__Analyzer_19eb8ec6afe38fae9f713e97a7b2b1a3}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Analyzer} $\ast$ WK\_\-Analyzer::createObject ({\bf WK\_\-Knowledge} $\ast$ {\em pKnowledge})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__Analyzer_19eb8ec6afe38fae9f713e97a7b2b1a3}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Definition at line 19 of file wk\_\-analyzer.cpp.\hypertarget{classWK__Analyzer_3c9feae7eb43ef3363dcc6a6166c5dc3}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Analyzer} $\ast$ WK\_\-Analyzer::createObject ({\bf WK\_\-Knowledge} $\ast$ {\em pKnowledge}, \/  {\bf WK\_\-Eojul} $\ast$ {\em pEojul})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__Analyzer_3c9feae7eb43ef3363dcc6a6166c5dc3}
+
+
+This function creates a \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} object. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pKnowledge}]a pointer of a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item[{\em pEojul}]a pointer of a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a \hyperlink{classWK__Analyzer}{WK\_\-Analyzer} object. \end{Desc}
+
+
+Definition at line 24 of file wk\_\-analyzer.cpp.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Analyzer_54e8115a1881d8fb0ed559b960b705c8}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!getEojulCountInSentence@{getEojulCountInSentence}}
+\index{getEojulCountInSentence@{getEojulCountInSentence}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{getEojulCountInSentence}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Analyzer::getEojulCountInSentence (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_54e8115a1881d8fb0ed559b960b705c8}
+
+
+This function gets the number of words in a sentence. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer - the number of words in a sentence. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_30edc86f54845667d82a941d7ba189ed}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_719d5064f2d397eff535805c37c8a251}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!getEojulInSentence@{getEojulInSentence}}
+\index{getEojulInSentence@{getEojulInSentence}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{getEojulInSentence}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf WK\_\-Eojul}$\ast$ WK\_\-Analyzer::getEojulInSentence (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_719d5064f2d397eff535805c37c8a251}
+
+
+This function gets a Eojul object for a word in a sentence. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]an integer - the index number of a word in a sentence. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_c2ea56d963f7cffd60d44671497e69a4}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_89f47ebc012b22c7762677a12877bc37}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!getEojulOffsetInSentence@{getEojulOffsetInSentence}}
+\index{getEojulOffsetInSentence@{getEojulOffsetInSentence}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{getEojulOffsetInSentence}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Analyzer::getEojulOffsetInSentence (int {\em nPos})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_89f47ebc012b22c7762677a12877bc37}
+
+
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_e7716138f50d32a2b5b77d7fe3de9810}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_da45001afbdf5c6edd922d80abfd22e7}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!makePreAnalysisDic@{makePreAnalysisDic}}
+\index{makePreAnalysisDic@{makePreAnalysisDic}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{makePreAnalysisDic}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::makePreAnalysisDic (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_da45001afbdf5c6edd922d80abfd22e7}
+
+
+This function makes the pre-analysis dictionary file in the system dictionary. 
+
+\begin{Desc}
+\item[Date:]2009-01-07 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_af19bcf0278806c078ad0497cff9ba41}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_98f004c5f30d8fbe68a477c12666c4a6}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithEojul@{runWithEojul}}
+\index{runWithEojul@{runWithEojul}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithEojul}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Analyzer::runWithEojul (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_98f004c5f30d8fbe68a477c12666c4a6}
+
+
+This function executes Korean morphological analysis based on a word. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_eff1127145ad2c8fb8e3e575d8ad1984}{kmaOrange::MAnalyzer}.
+
+Referenced by la\_\-manager::KoreanNounFilter::analyze().\hypertarget{classWK__Analyzer_558f318419f56ffefaa2ac6027e2c12a}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithStream@{runWithStream}}
+\index{runWithStream@{runWithStream}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithStream}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-Analyzer::runWithStream ()\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_558f318419f56ffefaa2ac6027e2c12a}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_906a4e70c747d3856b28e8c09fdb6a21}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_baf49aac1b32b7517c51c8cae3cf88b2}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithStream@{runWithStream}}
+\index{runWithStream@{runWithStream}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithStream}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-Analyzer::runWithStream (char $\ast$ {\em strNameInFile})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_baf49aac1b32b7517c51c8cae3cf88b2}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_6ca0018302292c83398c0c63d86616c3}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_a5e90adc6d240fcee91c41cf61bcfb16}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithStream@{runWithStream}}
+\index{runWithStream@{runWithStream}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithStream}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Analyzer::runWithStream (char $\ast$ {\em strNameInFile}, \/  char $\ast$ {\em strNameOutFile})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_a5e90adc6d240fcee91c41cf61bcfb16}
+
+
+This function executes Korean morphological analysis based on a file. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strNameInFile}]a pointer of a character - input file. \item[{\em strNameOutFile}]a pointer of a character - output file. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_246431a781ca9b42177f91a0856e89d2}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_8ac79b5e3342c0fa1adc587ba48472d6}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithString@{runWithString}}
+\index{runWithString@{runWithString}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithString}]{\setlength{\rightskip}{0pt plus 5cm}int WK\_\-Analyzer::runWithString (char $\ast$ {\em strLine})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_8ac79b5e3342c0fa1adc587ba48472d6}
+
+
+This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. 
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_ac3d886b94e80e65cfc220a79c2589e2}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_bb5e8ce81e579f6a33e12a03a3f35a51}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!runWithString@{runWithString}}
+\index{runWithString@{runWithString}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{runWithString}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Analyzer::runWithString (char $\ast$ {\em strLine}, \/  char $\ast$ {\em strNameOutFile})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_bb5e8ce81e579f6a33e12a03a3f35a51}
+
+
+This function executes Korean morphological analysis based on a sentence. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strLine}]a pointer of a character - input string. \item[{\em strNameOutFile}]a pointer of a character - the name of the output file. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_c2286f99d2907066767a0b4c42d959a1}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_4c3350ac19c02b41670a3a96351fb684}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!setEojul@{setEojul}}
+\index{setEojul@{setEojul}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{setEojul}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::setEojul ({\bf WK\_\-Eojul} $\ast$ {\em pEojul})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_4c3350ac19c02b41670a3a96351fb684}
+
+
+This function sets a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pEojul}]a pointer of a \hyperlink{classWK__Eojul}{WK\_\-Eojul} object. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_cfd70b959b6942cfe6deb47e082aefb6}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_679d58347c2630d002c5c57c549f9b83}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!setExOption@{setExOption}}
+\index{setExOption@{setExOption}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{setExOption}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::setExOption (int {\em nOption})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_679d58347c2630d002c5c57c549f9b83}
+
+
+This function sets execution options. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nOption}]an integer - a kind of execution options. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_397cc49de40ecf29b60d38f51654acf6}{kmaOrange::MAnalyzer}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Analyzer_fd2f8d851743bcab677133c6a8b28d29}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!setKnowledge@{setKnowledge}}
+\index{setKnowledge@{setKnowledge}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{setKnowledge}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::setKnowledge ({\bf WK\_\-Knowledge} $\ast$ {\em pKnowledge})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_fd2f8d851743bcab677133c6a8b28d29}
+
+
+This function sets a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pKnowledge}]a pointer of a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_9874ebbac3f7c114600f26763533382b}{kmaOrange::MAnalyzer}.\hypertarget{classWK__Analyzer_9f5685835cc61f22bee056e6bdfa002d}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!setOption@{setOption}}
+\index{setOption@{setOption}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{setOption}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::setOption (int {\em nOption}, \/  int {\em nValue})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_9f5685835cc61f22bee056e6bdfa002d}
+
+
+This function sets Korean morphological analyzing options. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nOption}]an integer - a kind of analyzing options. \item[{\em nValue}]an integer - the value of a variable nOption. \end{description}
+\end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_6dcb62242e1437fe84fcc3dc05d9ca49}{kmaOrange::MAnalyzer}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Analyzer_4f71176a5b7359b73631bad1c506be21}{
+\index{WK\_\-Analyzer@{WK\_\-Analyzer}!tagging@{tagging}}
+\index{tagging@{tagging}!WK_Analyzer@{WK\_\-Analyzer}}
+\subsubsection[{tagging}]{\setlength{\rightskip}{0pt plus 5cm}virtual void WK\_\-Analyzer::tagging (void)\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Analyzer_4f71176a5b7359b73631bad1c506be21}
+
+
+
+
+Implemented in \hyperlink{classkmaOrange_1_1MAnalyzer_bfaa2e57bc40b4a60264aee49c467f53}{kmaOrange::MAnalyzer}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{wk__analyzer_8h}{wk\_\-analyzer.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{wk__analyzer_8cpp}{wk\_\-analyzer.cpp}\end{CompactItemize}

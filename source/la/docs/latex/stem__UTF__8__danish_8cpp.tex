@@ -1,0 +1,704 @@
+\hypertarget{stem__UTF__8__danish_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-danish.cpp File Reference}
+\label{stem__UTF__8__danish_8cpp}\index{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-danish.cpp@{/disk/workspace-cpp/la-manager/source/stem/stem\_\-UTF\_\-8\_\-danish.cpp}}
+}
+{\tt \#include $<$stem/header.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+int \hyperlink{stem__UTF__8__danish_8cpp_771e0c2c84605b097e1bc04d60aea1e7}{danish\_\-UTF\_\-8\_\-stem} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__danish_8cpp_7607df3477071f5d145e98c1f59631e9}{r\_\-undouble} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__danish_8cpp_2b03dbd9e0098d9c5dae708b3e158679}{r\_\-other\_\-suffix} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__danish_8cpp_30f46baa2493a0e1b286c08af7b0ce71}{r\_\-consonant\_\-pair} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__danish_8cpp_3fea879b8b1a08ccf5ad89f2e6881a04}{r\_\-main\_\-suffix} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+static int \hyperlink{stem__UTF__8__danish_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}{r\_\-mark\_\-regions} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+struct \hyperlink{structSN__env}{SN\_\-env} $\ast$ \hyperlink{stem__UTF__8__danish_8cpp_98e3efe5860cf05b610fa897ff130d68}{danish\_\-UTF\_\-8\_\-create\_\-env} (void)
+\item 
+void \hyperlink{stem__UTF__8__danish_8cpp_464b5fef5630c911a4ace07d8b3e9efd}{danish\_\-UTF\_\-8\_\-close\_\-env} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_716c868efc5dc03449395d63c9e09067}{s\_\-0\_\-0} \mbox{[}3\mbox{]} = \{ 'h', 'e', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_5cf8f7f34ff2d4760e5ff75b46b53971}{s\_\-0\_\-1} \mbox{[}5\mbox{]} = \{ 'e', 't', 'h', 'e', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_036df8daa87ecdc7e3442aea5654ed37}{s\_\-0\_\-2} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_c3491684569ab7d723eb38210bdf8de2}{s\_\-0\_\-3} \mbox{[}1\mbox{]} = \{ 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_fe78c72233bebe424c29b49024ef2528}{s\_\-0\_\-4} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'd', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_4c3d97b1a2e6de9c94f9ec898084f2e3}{s\_\-0\_\-5} \mbox{[}4\mbox{]} = \{ 'e', 'n', 'd', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_c5776c087b177078fe78604ecb2e431e}{s\_\-0\_\-6} \mbox{[}6\mbox{]} = \{ 'e', 'r', 'e', 'n', 'd', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_d790a633aa375cb44e254b77dd361644}{s\_\-0\_\-7} \mbox{[}3\mbox{]} = \{ 'e', 'n', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_c95056116f5dbb5ac05e902425040b55}{s\_\-0\_\-8} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'n', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_980871b0fcec3d547df4c8ceda38f9d8}{s\_\-0\_\-9} \mbox{[}3\mbox{]} = \{ 'e', 'r', 'e' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_dfa1621407cad0470493b06208d7809e}{s\_\-0\_\-10} \mbox{[}2\mbox{]} = \{ 'e', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_53c22eaa91da403570d4b1848dc462a8}{s\_\-0\_\-11} \mbox{[}5\mbox{]} = \{ 'h', 'e', 'd', 'e', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_35235e452ff8f019425fd74036f8e898}{s\_\-0\_\-12} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'n' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_1bde882ea02a398fc77bf73f04f5eb57}{s\_\-0\_\-13} \mbox{[}2\mbox{]} = \{ 'e', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_267a17adb56ea452060c46adc281f6ec}{s\_\-0\_\-14} \mbox{[}5\mbox{]} = \{ 'h', 'e', 'd', 'e', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_080aec17727781f947fc1281f4fe0835}{s\_\-0\_\-15} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'r' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_81ff7778e0ebcf6f43673f3c3ff8e779}{s\_\-0\_\-16} \mbox{[}1\mbox{]} = \{ 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_6db92056ec904cfe51464b6842c40188}{s\_\-0\_\-17} \mbox{[}4\mbox{]} = \{ 'h', 'e', 'd', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_7905950c3f729525d7c6b92335e57088}{s\_\-0\_\-18} \mbox{[}2\mbox{]} = \{ 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_77ec062bcc53c44e1c2af9455815b9a2}{s\_\-0\_\-19} \mbox{[}5\mbox{]} = \{ 'e', 'n', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_20c74c1a592d5820ead67d3ff5b55fca}{s\_\-0\_\-20} \mbox{[}7\mbox{]} = \{ 'e', 'r', 'e', 'n', 'd', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_fd9fd703d0fa58195f1cb32da1276614}{s\_\-0\_\-21} \mbox{[}4\mbox{]} = \{ 'e', 'n', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_a82c91e0f3a0fbc80c6dd8425aba9330}{s\_\-0\_\-22} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'n', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_7a6fa9768e476d7a4425f0e53caeb962}{s\_\-0\_\-23} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_00c59a5f972a5a956ba08b4a96f1ffde}{s\_\-0\_\-24} \mbox{[}3\mbox{]} = \{ 'e', 'n', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_caf27fbad042dabf8a34c3e3011b1ba6}{s\_\-0\_\-25} \mbox{[}6\mbox{]} = \{ 'h', 'e', 'd', 'e', 'n', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_dcaf463edef87073f09b4cd782573d3c}{s\_\-0\_\-26} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'n', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_7dea3bcc1b882c595ab70ef9163711e6}{s\_\-0\_\-27} \mbox{[}3\mbox{]} = \{ 'e', 'r', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_871621c84f2b59801c74d7b3e0ca6776}{s\_\-0\_\-28} \mbox{[}3\mbox{]} = \{ 'e', 't', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_8f1cfe0990f35c26998491206124d1db}{s\_\-0\_\-29} \mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 't', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_600fed4396ca9dfa07a033bba51ee00b}{s\_\-0\_\-30} \mbox{[}2\mbox{]} = \{ 'e', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_3bf7f1ac2944a8480f2941bf31f9fbd9}{s\_\-0\_\-31} \mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 't' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__danish_8cpp_409fde827bf44ef8f95a2c92b2e45933}{a\_\-0} \mbox{[}32\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_4523d0902a92d625f03c30c5c1074960}{s\_\-1\_\-0} \mbox{[}2\mbox{]} = \{ 'g', 'd' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_70dfd76528f2e88574fe9f1f96fa231b}{s\_\-1\_\-1} \mbox{[}2\mbox{]} = \{ 'd', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_25f62dccebd15f951b6904ba906baf27}{s\_\-1\_\-2} \mbox{[}2\mbox{]} = \{ 'g', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_4175209f14f1c00de4d5369876e247e5}{s\_\-1\_\-3} \mbox{[}2\mbox{]} = \{ 'k', 't' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__danish_8cpp_0dc1cd6d986e3f4c8f33c4d545b6bb46}{a\_\-1} \mbox{[}4\mbox{]}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{s\_\-2\_\-0} \mbox{[}2\mbox{]} = \{ 'i', 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_4432fb8d84ac966dd45ba3c023e1e355}{s\_\-2\_\-1} \mbox{[}3\mbox{]} = \{ 'l', 'i', 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_50e850915e3f9351b85df2c9eb2de26a}{s\_\-2\_\-2} \mbox{[}4\mbox{]} = \{ 'e', 'l', 'i', 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_3699511a74365c37bc72b66e80ec3143}{s\_\-2\_\-3} \mbox{[}3\mbox{]} = \{ 'e', 'l', 's' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_6888d3fc9f9e0bc6ae9a0aa10a1fa253}{s\_\-2\_\-4} \mbox{[}5\mbox{]} = \{ 'l', 0xC3, 0xB8, 's', 't' \}
+\item 
+static struct \hyperlink{structamong}{among} \hyperlink{stem__UTF__8__danish_8cpp_a144bdbc2629fc5e60d0b3ab98ccabdc}{a\_\-2} \mbox{[}5\mbox{]}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__danish_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}{g\_\-v} \mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128 \}
+\item 
+static const unsigned char \hyperlink{stem__UTF__8__danish_8cpp_eefe55244eedff8ce201bf88d7128c21}{g\_\-s\_\-ending} \mbox{[}$\,$\mbox{]} = \{ 239, 254, 42, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16 \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{s\_\-0} \mbox{[}$\,$\mbox{]} = \{ 's', 't' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{s\_\-1} \mbox{[}$\,$\mbox{]} = \{ 'i', 'g' \}
+\item 
+static const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} \hyperlink{stem__UTF__8__danish_8cpp_05655860330cc397ec496b569962c207}{s\_\-2} \mbox{[}$\,$\mbox{]} = \{ 'l', 0xC3, 0xB8, 's' \}
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{stem__UTF__8__danish_8cpp_464b5fef5630c911a4ace07d8b3e9efd}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!danish\_\-UTF\_\-8\_\-close\_\-env@{danish\_\-UTF\_\-8\_\-close\_\-env}}
+\index{danish\_\-UTF\_\-8\_\-close\_\-env@{danish\_\-UTF\_\-8\_\-close\_\-env}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{danish\_\-UTF\_\-8\_\-close\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void danish\_\-UTF\_\-8\_\-close\_\-env (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__danish_8cpp_464b5fef5630c911a4ace07d8b3e9efd}
+
+
+
+
+Definition at line 339 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-close\_\-env().\hypertarget{stem__UTF__8__danish_8cpp_98e3efe5860cf05b610fa897ff130d68}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!danish\_\-UTF\_\-8\_\-create\_\-env@{danish\_\-UTF\_\-8\_\-create\_\-env}}
+\index{danish\_\-UTF\_\-8\_\-create\_\-env@{danish\_\-UTF\_\-8\_\-create\_\-env}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{danish\_\-UTF\_\-8\_\-create\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf SN\_\-env} $\ast$ danish\_\-UTF\_\-8\_\-create\_\-env (void)\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_98e3efe5860cf05b610fa897ff130d68}
+
+
+
+
+Definition at line 337 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-create\_\-env().\hypertarget{stem__UTF__8__danish_8cpp_771e0c2c84605b097e1bc04d60aea1e7}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!danish\_\-UTF\_\-8\_\-stem@{danish\_\-UTF\_\-8\_\-stem}}
+\index{danish\_\-UTF\_\-8\_\-stem@{danish\_\-UTF\_\-8\_\-stem}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{danish\_\-UTF\_\-8\_\-stem}]{\setlength{\rightskip}{0pt plus 5cm}int danish\_\-UTF\_\-8\_\-stem (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{stem__UTF__8__danish_8cpp_771e0c2c84605b097e1bc04d60aea1e7}
+
+
+
+
+Definition at line 290 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, SN\_\-env::lb, r\_\-consonant\_\-pair(), r\_\-main\_\-suffix(), r\_\-mark\_\-regions(), r\_\-other\_\-suffix(), and r\_\-undouble().\hypertarget{stem__UTF__8__danish_8cpp_30f46baa2493a0e1b286c08af7b0ce71}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!r\_\-consonant\_\-pair@{r\_\-consonant\_\-pair}}
+\index{r\_\-consonant\_\-pair@{r\_\-consonant\_\-pair}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{r\_\-consonant\_\-pair}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-consonant\_\-pair (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_30f46baa2493a0e1b286c08af7b0ce71}
+
+
+
+
+Definition at line 192 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among\_\-b(), SN\_\-env::I, SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, skip\_\-utf8(), and slice\_\-del().
+
+Referenced by danish\_\-UTF\_\-8\_\-stem(), norwegian\_\-UTF\_\-8\_\-stem(), r\_\-other\_\-suffix(), and swedish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__danish_8cpp_3fea879b8b1a08ccf5ad89f2e6881a04}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!r\_\-main\_\-suffix@{r\_\-main\_\-suffix}}
+\index{r\_\-main\_\-suffix@{r\_\-main\_\-suffix}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{r\_\-main\_\-suffix}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-main\_\-suffix (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_3fea879b8b1a08ccf5ad89f2e6881a04}
+
+
+
+
+Definition at line 160 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, find\_\-among\_\-b(), g\_\-s\_\-ending, SN\_\-env::I, in\_\-grouping\_\-b\_\-U(), SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, and slice\_\-del().
+
+Referenced by danish\_\-UTF\_\-8\_\-stem(), norwegian\_\-UTF\_\-8\_\-stem(), and swedish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__danish_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!r\_\-mark\_\-regions@{r\_\-mark\_\-regions}}
+\index{r\_\-mark\_\-regions@{r\_\-mark\_\-regions}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{r\_\-mark\_\-regions}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-mark\_\-regions (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_bccc2a2679ed7a9104bc58a16ccbc611}
+
+
+
+
+Definition at line 136 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::c, g\_\-v, SN\_\-env::I, in\_\-grouping\_\-U(), SN\_\-env::l, out\_\-grouping\_\-U(), SN\_\-env::p, and skip\_\-utf8().
+
+Referenced by danish\_\-UTF\_\-8\_\-stem(), dutch\_\-UTF\_\-8\_\-stem(), english\_\-UTF\_\-8\_\-stem(), finnish\_\-UTF\_\-8\_\-stem(), french\_\-UTF\_\-8\_\-stem(), german\_\-UTF\_\-8\_\-stem(), hungarian\_\-UTF\_\-8\_\-stem(), italian\_\-UTF\_\-8\_\-stem(), norwegian\_\-UTF\_\-8\_\-stem(), portuguese\_\-UTF\_\-8\_\-stem(), romanian\_\-UTF\_\-8\_\-stem(), russian\_\-UTF\_\-8\_\-stem(), spanish\_\-UTF\_\-8\_\-stem(), and swedish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__danish_8cpp_2b03dbd9e0098d9c5dae708b3e158679}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!r\_\-other\_\-suffix@{r\_\-other\_\-suffix}}
+\index{r\_\-other\_\-suffix@{r\_\-other\_\-suffix}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{r\_\-other\_\-suffix}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-other\_\-suffix (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_2b03dbd9e0098d9c5dae708b3e158679}
+
+
+
+
+Definition at line 219 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, eq\_\-s\_\-b(), find\_\-among\_\-b(), SN\_\-env::I, SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, SN\_\-env::p, r\_\-consonant\_\-pair(), s\_\-0, s\_\-1, s\_\-2, slice\_\-del(), and slice\_\-from\_\-s().
+
+Referenced by danish\_\-UTF\_\-8\_\-stem(), norwegian\_\-UTF\_\-8\_\-stem(), and swedish\_\-UTF\_\-8\_\-stem().\hypertarget{stem__UTF__8__danish_8cpp_7607df3477071f5d145e98c1f59631e9}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!r\_\-undouble@{r\_\-undouble}}
+\index{r\_\-undouble@{r\_\-undouble}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{r\_\-undouble}]{\setlength{\rightskip}{0pt plus 5cm}static int r\_\-undouble (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_7607df3477071f5d145e98c1f59631e9}
+
+
+
+
+Definition at line 269 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+References SN\_\-env::bra, SN\_\-env::c, eq\_\-v\_\-b(), g\_\-v, SN\_\-env::I, SN\_\-env::ket, SN\_\-env::l, SN\_\-env::lb, out\_\-grouping\_\-b\_\-U(), SN\_\-env::S, slice\_\-del(), and slice\_\-to().
+
+Referenced by danish\_\-UTF\_\-8\_\-stem(), r\_\-e\_\-ending(), r\_\-en\_\-ending(), r\_\-factive(), r\_\-instrum(), and r\_\-standard\_\-suffix().
+
+\subsection{Variable Documentation}
+\hypertarget{stem__UTF__8__danish_8cpp_409fde827bf44ef8f95a2c92b2e45933}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!a\_\-0@{a\_\-0}}
+\index{a\_\-0@{a\_\-0}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{a\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-0}\mbox{[}32\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_409fde827bf44ef8f95a2c92b2e45933}
+
+
+
+
+Definition at line 64 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_0dc1cd6d986e3f4c8f33c4d545b6bb46}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!a\_\-1@{a\_\-1}}
+\index{a\_\-1@{a\_\-1}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{a\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-1}\mbox{[}4\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_0dc1cd6d986e3f4c8f33c4d545b6bb46}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_1_0, -1, -1, 0},
+ { 2, s_1_1, -1, -1, 0},
+ { 2, s_1_2, -1, -1, 0},
+ { 2, s_1_3, -1, -1, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 105 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_a144bdbc2629fc5e60d0b3ab98ccabdc}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!a\_\-2@{a\_\-2}}
+\index{a\_\-2@{a\_\-2}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{a\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf among} {\bf a\_\-2}\mbox{[}5\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_a144bdbc2629fc5e60d0b3ab98ccabdc}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim}
+{
+ { 2, s_2_0, -1, 1, 0},
+ { 3, s_2_1, 0, 1, 0},
+ { 4, s_2_2, 1, 1, 0},
+ { 3, s_2_3, -1, 1, 0},
+ { 5, s_2_4, -1, 2, 0}
+}
+\end{verbatim}
+\end{Code}
+
+
+Definition at line 119 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_eefe55244eedff8ce201bf88d7128c21}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!g\_\-s\_\-ending@{g\_\-s\_\-ending}}
+\index{g\_\-s\_\-ending@{g\_\-s\_\-ending}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{g\_\-s\_\-ending}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-s\_\-ending}\mbox{[}$\,$\mbox{]} = \{ 239, 254, 42, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_eefe55244eedff8ce201bf88d7128c21}
+
+
+
+
+Definition at line 130 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+Referenced by r\_\-main\_\-suffix(), and r\_\-standard\_\-suffix().\hypertarget{stem__UTF__8__danish_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!g\_\-v@{g\_\-v}}
+\index{g\_\-v@{g\_\-v}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{g\_\-v}]{\setlength{\rightskip}{0pt plus 5cm}const unsigned char {\bf g\_\-v}\mbox{[}$\,$\mbox{]} = \{ 17, 65, 16, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 48, 0, 128 \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_ec923b2b45d0f8f61ac4a6098d08ec92}
+
+
+
+
+Definition at line 128 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+Referenced by r\_\-e\_\-ending(), r\_\-en\_\-ending(), r\_\-i\_\-verb\_\-suffix(), r\_\-main\_\-suffix(), r\_\-mark\_\-regions(), r\_\-prelude(), r\_\-shortv(), r\_\-standard\_\-suffix(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-Step\_\-1c(), r\_\-un\_\-accent(), r\_\-undouble(), and r\_\-verb\_\-suffix().\hypertarget{stem__UTF__8__danish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0@{s\_\-0}}
+\index{s\_\-0@{s\_\-0}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0}\mbox{[}$\,$\mbox{]} = \{ 's', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_fe14f0598f9d8c17116566c4f3397dcd}
+
+
+
+
+Definition at line 132 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony(), r\_\-main\_\-suffix(), r\_\-other\_\-suffix(), r\_\-perfective\_\-gerund(), r\_\-possessive(), r\_\-postlude(), r\_\-prelude(), and r\_\-v\_\-ending().\hypertarget{stem__UTF__8__danish_8cpp_716c868efc5dc03449395d63c9e09067}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-0@{s\_\-0\_\-0}}
+\index{s\_\-0\_\-0@{s\_\-0\_\-0}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-0}\mbox{[}3\mbox{]} = \{ 'h', 'e', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_716c868efc5dc03449395d63c9e09067}
+
+
+
+
+Definition at line 31 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_5cf8f7f34ff2d4760e5ff75b46b53971}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-1@{s\_\-0\_\-1}}
+\index{s\_\-0\_\-1@{s\_\-0\_\-1}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-1}\mbox{[}5\mbox{]} = \{ 'e', 't', 'h', 'e', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_5cf8f7f34ff2d4760e5ff75b46b53971}
+
+
+
+
+Definition at line 32 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_dfa1621407cad0470493b06208d7809e}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-10@{s\_\-0\_\-10}}
+\index{s\_\-0\_\-10@{s\_\-0\_\-10}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-10}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-10}\mbox{[}2\mbox{]} = \{ 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_dfa1621407cad0470493b06208d7809e}
+
+
+
+
+Definition at line 41 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_53c22eaa91da403570d4b1848dc462a8}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-11@{s\_\-0\_\-11}}
+\index{s\_\-0\_\-11@{s\_\-0\_\-11}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-11}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-11}\mbox{[}5\mbox{]} = \{ 'h', 'e', 'd', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_53c22eaa91da403570d4b1848dc462a8}
+
+
+
+
+Definition at line 42 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_35235e452ff8f019425fd74036f8e898}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-12@{s\_\-0\_\-12}}
+\index{s\_\-0\_\-12@{s\_\-0\_\-12}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-12}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-12}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'n' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_35235e452ff8f019425fd74036f8e898}
+
+
+
+
+Definition at line 43 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_1bde882ea02a398fc77bf73f04f5eb57}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-13@{s\_\-0\_\-13}}
+\index{s\_\-0\_\-13@{s\_\-0\_\-13}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-13}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-13}\mbox{[}2\mbox{]} = \{ 'e', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_1bde882ea02a398fc77bf73f04f5eb57}
+
+
+
+
+Definition at line 44 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_267a17adb56ea452060c46adc281f6ec}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-14@{s\_\-0\_\-14}}
+\index{s\_\-0\_\-14@{s\_\-0\_\-14}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-14}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-14}\mbox{[}5\mbox{]} = \{ 'h', 'e', 'd', 'e', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_267a17adb56ea452060c46adc281f6ec}
+
+
+
+
+Definition at line 45 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_080aec17727781f947fc1281f4fe0835}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-15@{s\_\-0\_\-15}}
+\index{s\_\-0\_\-15@{s\_\-0\_\-15}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-15}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-15}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'r' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_080aec17727781f947fc1281f4fe0835}
+
+
+
+
+Definition at line 46 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_81ff7778e0ebcf6f43673f3c3ff8e779}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-16@{s\_\-0\_\-16}}
+\index{s\_\-0\_\-16@{s\_\-0\_\-16}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-16}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-16}\mbox{[}1\mbox{]} = \{ 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_81ff7778e0ebcf6f43673f3c3ff8e779}
+
+
+
+
+Definition at line 47 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_6db92056ec904cfe51464b6842c40188}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-17@{s\_\-0\_\-17}}
+\index{s\_\-0\_\-17@{s\_\-0\_\-17}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-17}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-17}\mbox{[}4\mbox{]} = \{ 'h', 'e', 'd', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_6db92056ec904cfe51464b6842c40188}
+
+
+
+
+Definition at line 48 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_7905950c3f729525d7c6b92335e57088}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-18@{s\_\-0\_\-18}}
+\index{s\_\-0\_\-18@{s\_\-0\_\-18}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-18}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-18}\mbox{[}2\mbox{]} = \{ 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_7905950c3f729525d7c6b92335e57088}
+
+
+
+
+Definition at line 49 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_77ec062bcc53c44e1c2af9455815b9a2}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-19@{s\_\-0\_\-19}}
+\index{s\_\-0\_\-19@{s\_\-0\_\-19}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-19}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-19}\mbox{[}5\mbox{]} = \{ 'e', 'n', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_77ec062bcc53c44e1c2af9455815b9a2}
+
+
+
+
+Definition at line 50 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_036df8daa87ecdc7e3442aea5654ed37}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-2@{s\_\-0\_\-2}}
+\index{s\_\-0\_\-2@{s\_\-0\_\-2}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-2}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_036df8daa87ecdc7e3442aea5654ed37}
+
+
+
+
+Definition at line 33 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_20c74c1a592d5820ead67d3ff5b55fca}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-20@{s\_\-0\_\-20}}
+\index{s\_\-0\_\-20@{s\_\-0\_\-20}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-20}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-20}\mbox{[}7\mbox{]} = \{ 'e', 'r', 'e', 'n', 'd', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_20c74c1a592d5820ead67d3ff5b55fca}
+
+
+
+
+Definition at line 51 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_fd9fd703d0fa58195f1cb32da1276614}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-21@{s\_\-0\_\-21}}
+\index{s\_\-0\_\-21@{s\_\-0\_\-21}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-21}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-21}\mbox{[}4\mbox{]} = \{ 'e', 'n', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_fd9fd703d0fa58195f1cb32da1276614}
+
+
+
+
+Definition at line 52 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_a82c91e0f3a0fbc80c6dd8425aba9330}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-22@{s\_\-0\_\-22}}
+\index{s\_\-0\_\-22@{s\_\-0\_\-22}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-22}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-22}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'n', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_a82c91e0f3a0fbc80c6dd8425aba9330}
+
+
+
+
+Definition at line 53 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_7a6fa9768e476d7a4425f0e53caeb962}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-23@{s\_\-0\_\-23}}
+\index{s\_\-0\_\-23@{s\_\-0\_\-23}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-23}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-23}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_7a6fa9768e476d7a4425f0e53caeb962}
+
+
+
+
+Definition at line 54 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_00c59a5f972a5a956ba08b4a96f1ffde}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-24@{s\_\-0\_\-24}}
+\index{s\_\-0\_\-24@{s\_\-0\_\-24}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-24}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-24}\mbox{[}3\mbox{]} = \{ 'e', 'n', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_00c59a5f972a5a956ba08b4a96f1ffde}
+
+
+
+
+Definition at line 55 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_caf27fbad042dabf8a34c3e3011b1ba6}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-25@{s\_\-0\_\-25}}
+\index{s\_\-0\_\-25@{s\_\-0\_\-25}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-25}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-25}\mbox{[}6\mbox{]} = \{ 'h', 'e', 'd', 'e', 'n', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_caf27fbad042dabf8a34c3e3011b1ba6}
+
+
+
+
+Definition at line 56 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_dcaf463edef87073f09b4cd782573d3c}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-26@{s\_\-0\_\-26}}
+\index{s\_\-0\_\-26@{s\_\-0\_\-26}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-26}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-26}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'n', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_dcaf463edef87073f09b4cd782573d3c}
+
+
+
+
+Definition at line 57 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_7dea3bcc1b882c595ab70ef9163711e6}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-27@{s\_\-0\_\-27}}
+\index{s\_\-0\_\-27@{s\_\-0\_\-27}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-27}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-27}\mbox{[}3\mbox{]} = \{ 'e', 'r', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_7dea3bcc1b882c595ab70ef9163711e6}
+
+
+
+
+Definition at line 58 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_871621c84f2b59801c74d7b3e0ca6776}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-28@{s\_\-0\_\-28}}
+\index{s\_\-0\_\-28@{s\_\-0\_\-28}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-28}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-28}\mbox{[}3\mbox{]} = \{ 'e', 't', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_871621c84f2b59801c74d7b3e0ca6776}
+
+
+
+
+Definition at line 59 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_8f1cfe0990f35c26998491206124d1db}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-29@{s\_\-0\_\-29}}
+\index{s\_\-0\_\-29@{s\_\-0\_\-29}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-29}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-29}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 't', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_8f1cfe0990f35c26998491206124d1db}
+
+
+
+
+Definition at line 60 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_c3491684569ab7d723eb38210bdf8de2}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-3@{s\_\-0\_\-3}}
+\index{s\_\-0\_\-3@{s\_\-0\_\-3}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-3}\mbox{[}1\mbox{]} = \{ 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_c3491684569ab7d723eb38210bdf8de2}
+
+
+
+
+Definition at line 34 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_600fed4396ca9dfa07a033bba51ee00b}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-30@{s\_\-0\_\-30}}
+\index{s\_\-0\_\-30@{s\_\-0\_\-30}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-30}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-30}\mbox{[}2\mbox{]} = \{ 'e', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_600fed4396ca9dfa07a033bba51ee00b}
+
+
+
+
+Definition at line 61 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_3bf7f1ac2944a8480f2941bf31f9fbd9}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-31@{s\_\-0\_\-31}}
+\index{s\_\-0\_\-31@{s\_\-0\_\-31}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-31}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-31}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'e', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_3bf7f1ac2944a8480f2941bf31f9fbd9}
+
+
+
+
+Definition at line 62 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_fe78c72233bebe424c29b49024ef2528}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-4@{s\_\-0\_\-4}}
+\index{s\_\-0\_\-4@{s\_\-0\_\-4}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-4}\mbox{[}5\mbox{]} = \{ 'e', 'r', 'e', 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_fe78c72233bebe424c29b49024ef2528}
+
+
+
+
+Definition at line 35 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_4c3d97b1a2e6de9c94f9ec898084f2e3}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-5@{s\_\-0\_\-5}}
+\index{s\_\-0\_\-5@{s\_\-0\_\-5}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-5}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-5}\mbox{[}4\mbox{]} = \{ 'e', 'n', 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_4c3d97b1a2e6de9c94f9ec898084f2e3}
+
+
+
+
+Definition at line 36 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_c5776c087b177078fe78604ecb2e431e}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-6@{s\_\-0\_\-6}}
+\index{s\_\-0\_\-6@{s\_\-0\_\-6}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-6}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-6}\mbox{[}6\mbox{]} = \{ 'e', 'r', 'e', 'n', 'd', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_c5776c087b177078fe78604ecb2e431e}
+
+
+
+
+Definition at line 37 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_d790a633aa375cb44e254b77dd361644}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-7@{s\_\-0\_\-7}}
+\index{s\_\-0\_\-7@{s\_\-0\_\-7}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-7}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-7}\mbox{[}3\mbox{]} = \{ 'e', 'n', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_d790a633aa375cb44e254b77dd361644}
+
+
+
+
+Definition at line 38 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_c95056116f5dbb5ac05e902425040b55}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-8@{s\_\-0\_\-8}}
+\index{s\_\-0\_\-8@{s\_\-0\_\-8}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-8}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-8}\mbox{[}4\mbox{]} = \{ 'e', 'r', 'n', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_c95056116f5dbb5ac05e902425040b55}
+
+
+
+
+Definition at line 39 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_980871b0fcec3d547df4c8ceda38f9d8}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-0\_\-9@{s\_\-0\_\-9}}
+\index{s\_\-0\_\-9@{s\_\-0\_\-9}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-0\_\-9}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-0\_\-9}\mbox{[}3\mbox{]} = \{ 'e', 'r', 'e' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_980871b0fcec3d547df4c8ceda38f9d8}
+
+
+
+
+Definition at line 40 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-1@{s\_\-1}}
+\index{s\_\-1@{s\_\-1}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1}\mbox{[}$\,$\mbox{]} = \{ 'i', 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_ac80d4eaad8b684f587a7e8101a53ced}
+
+
+
+
+Definition at line 133 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+Referenced by r\_\-check\_\-vowel\_\-harmony(), r\_\-main\_\-suffix(), r\_\-other\_\-suffix(), r\_\-perfective\_\-gerund(), r\_\-possessive(), r\_\-postlude(), r\_\-prelude(), and r\_\-v\_\-ending().\hypertarget{stem__UTF__8__danish_8cpp_4523d0902a92d625f03c30c5c1074960}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-1\_\-0@{s\_\-1\_\-0}}
+\index{s\_\-1\_\-0@{s\_\-1\_\-0}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-1\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-0}\mbox{[}2\mbox{]} = \{ 'g', 'd' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_4523d0902a92d625f03c30c5c1074960}
+
+
+
+
+Definition at line 100 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_70dfd76528f2e88574fe9f1f96fa231b}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-1\_\-1@{s\_\-1\_\-1}}
+\index{s\_\-1\_\-1@{s\_\-1\_\-1}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-1\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-1}\mbox{[}2\mbox{]} = \{ 'd', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_70dfd76528f2e88574fe9f1f96fa231b}
+
+
+
+
+Definition at line 101 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_25f62dccebd15f951b6904ba906baf27}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-1\_\-2@{s\_\-1\_\-2}}
+\index{s\_\-1\_\-2@{s\_\-1\_\-2}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-1\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-2}\mbox{[}2\mbox{]} = \{ 'g', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_25f62dccebd15f951b6904ba906baf27}
+
+
+
+
+Definition at line 102 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_4175209f14f1c00de4d5369876e247e5}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-1\_\-3@{s\_\-1\_\-3}}
+\index{s\_\-1\_\-3@{s\_\-1\_\-3}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-1\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-1\_\-3}\mbox{[}2\mbox{]} = \{ 'k', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_4175209f14f1c00de4d5369876e247e5}
+
+
+
+
+Definition at line 103 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_05655860330cc397ec496b569962c207}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2@{s\_\-2}}
+\index{s\_\-2@{s\_\-2}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2}\mbox{[}$\,$\mbox{]} = \{ 'l', 0xC3, 0xB8, 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_05655860330cc397ec496b569962c207}
+
+
+
+
+Definition at line 134 of file stem\_\-UTF\_\-8\_\-danish.cpp.
+
+Referenced by r\_\-adjectival(), r\_\-case\_\-special(), r\_\-check\_\-vowel\_\-harmony(), r\_\-other\_\-suffix(), r\_\-possessive(), r\_\-postlude(), and r\_\-prelude().\hypertarget{stem__UTF__8__danish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2\_\-0@{s\_\-2\_\-0}}
+\index{s\_\-2\_\-0@{s\_\-2\_\-0}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2\_\-0}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-0}\mbox{[}2\mbox{]} = \{ 'i', 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_3eca3bc96c17cfdb82886b6865d06c6e}
+
+
+
+
+Definition at line 113 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_4432fb8d84ac966dd45ba3c023e1e355}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2\_\-1@{s\_\-2\_\-1}}
+\index{s\_\-2\_\-1@{s\_\-2\_\-1}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2\_\-1}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-1}\mbox{[}3\mbox{]} = \{ 'l', 'i', 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_4432fb8d84ac966dd45ba3c023e1e355}
+
+
+
+
+Definition at line 114 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_50e850915e3f9351b85df2c9eb2de26a}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2\_\-2@{s\_\-2\_\-2}}
+\index{s\_\-2\_\-2@{s\_\-2\_\-2}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2\_\-2}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-2}\mbox{[}4\mbox{]} = \{ 'e', 'l', 'i', 'g' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_50e850915e3f9351b85df2c9eb2de26a}
+
+
+
+
+Definition at line 115 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_3699511a74365c37bc72b66e80ec3143}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2\_\-3@{s\_\-2\_\-3}}
+\index{s\_\-2\_\-3@{s\_\-2\_\-3}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2\_\-3}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-3}\mbox{[}3\mbox{]} = \{ 'e', 'l', 's' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_3699511a74365c37bc72b66e80ec3143}
+
+
+
+
+Definition at line 116 of file stem\_\-UTF\_\-8\_\-danish.cpp.\hypertarget{stem__UTF__8__danish_8cpp_6888d3fc9f9e0bc6ae9a0aa10a1fa253}{
+\index{stem\_\-UTF\_\-8\_\-danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}!s\_\-2\_\-4@{s\_\-2\_\-4}}
+\index{s\_\-2\_\-4@{s\_\-2\_\-4}!stem_UTF_8_danish.cpp@{stem\_\-UTF\_\-8\_\-danish.cpp}}
+\subsubsection[{s\_\-2\_\-4}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf symbol} {\bf s\_\-2\_\-4}\mbox{[}5\mbox{]} = \{ 'l', 0xC3, 0xB8, 's', 't' \}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{stem__UTF__8__danish_8cpp_6888d3fc9f9e0bc6ae9a0aa10a1fa253}
+
+
+
+
+Definition at line 117 of file stem\_\-UTF\_\-8\_\-danish.cpp.

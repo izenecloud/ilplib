@@ -1,0 +1,130 @@
+\hypertarget{classla__manager_1_1LengthFilter}{
+\section{la\_\-manager::LengthFilter Class Reference}
+\label{classla__manager_1_1LengthFilter}\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}}
+}
+{\tt \#include $<$LengthFilter.h$>$}
+
+Inheritance diagram for la\_\-manager::LengthFilter::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classla__manager_1_1LengthFilter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1LengthFilter_eec14982208a4aba759f923bb65fc6e9}{LengthFilter} (int min=2, int max=100)
+\item 
+\hyperlink{classla__manager_1_1LengthFilter_3afc736224fe2ae9025ae1153eac6b51}{$\sim$LengthFilter} ()
+\item 
+bool \hyperlink{classla__manager_1_1LengthFilter_9a4d7237f42892d2ed54ab22d3411741}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Input, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Output)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1LengthFilter_0b26aaa94ed79a49609fb92e25109831}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&InOutput)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+int \hyperlink{classla__manager_1_1LengthFilter_e780693a4bf6ef4d416b9cbe500d8e3b}{minLength\_\-}
+\item 
+int \hyperlink{classla__manager_1_1LengthFilter_1084f2cadc0a1ddf0143e52adc56200a}{maxLength\_\-}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file LengthFilter.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1LengthFilter_eec14982208a4aba759f923bb65fc6e9}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!LengthFilter@{LengthFilter}}
+\index{LengthFilter@{LengthFilter}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{LengthFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::LengthFilter::LengthFilter (int {\em min} = {\tt 2}, \/  int {\em max} = {\tt 100})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_eec14982208a4aba759f923bb65fc6e9}
+
+
+
+
+Definition at line 19 of file LengthFilter.h.\hypertarget{classla__manager_1_1LengthFilter_3afc736224fe2ae9025ae1153eac6b51}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!$\sim$LengthFilter@{$\sim$LengthFilter}}
+\index{$\sim$LengthFilter@{$\sim$LengthFilter}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{$\sim$LengthFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::LengthFilter::$\sim$LengthFilter ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_3afc736224fe2ae9025ae1153eac6b51}
+
+
+
+
+Definition at line 21 of file LengthFilter.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1LengthFilter_0b26aaa94ed79a49609fb92e25109831}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::LengthFilter::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_0b26aaa94ed79a49609fb92e25109831}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{la\_\-manager::Analyzer}.
+
+Definition at line 22 of file LengthFilter.cpp.
+
+References maxLength\_\-, and minLength\_\-.\hypertarget{classla__manager_1_1LengthFilter_9a4d7237f42892d2ed54ab22d3411741}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::LengthFilter::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_9a4d7237f42892d2ed54ab22d3411741}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{la\_\-manager::Analyzer}.
+
+Definition at line 12 of file LengthFilter.cpp.
+
+References maxLength\_\-, and minLength\_\-.
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1LengthFilter_1084f2cadc0a1ddf0143e52adc56200a}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!maxLength\_\-@{maxLength\_\-}}
+\index{maxLength\_\-@{maxLength\_\-}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{maxLength\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LengthFilter::maxLength\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_1084f2cadc0a1ddf0143e52adc56200a}
+
+
+
+
+Definition at line 17 of file LengthFilter.h.
+
+Referenced by analyze().\hypertarget{classla__manager_1_1LengthFilter_e780693a4bf6ef4d416b9cbe500d8e3b}{
+\index{la\_\-manager::LengthFilter@{la\_\-manager::LengthFilter}!minLength\_\-@{minLength\_\-}}
+\index{minLength\_\-@{minLength\_\-}!la_manager::LengthFilter@{la\_\-manager::LengthFilter}}
+\subsubsection[{minLength\_\-}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf la\_\-manager::LengthFilter::minLength\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1LengthFilter_e780693a4bf6ef4d416b9cbe500d8e3b}
+
+
+
+
+Definition at line 16 of file LengthFilter.h.
+
+Referenced by analyze().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{LengthFilter_8h}{LengthFilter.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{LengthFilter_8cpp}{LengthFilter.cpp}\end{CompactItemize}

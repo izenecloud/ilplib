@@ -1,0 +1,81 @@
+\hypertarget{infoclass_8h}{
+\section{/disk/workspace-cpp/la-manager/include/kma/infoclass.h File Reference}
+\label{infoclass_8h}\index{/disk/workspace-cpp/la-manager/include/kma/infoclass.h@{/disk/workspace-cpp/la-manager/include/kma/infoclass.h}}
+}
+various classes(data structures) for Korean morphological analysis are defined in this file.  
+
+
+{\tt \#include $<$vector$>$}\par
+{\tt \#include \char`\"{}listex.h\char`\"{}}\par
+{\tt \#include \char`\"{}stringex.h\char`\"{}}\par
+{\tt \#include \char`\"{}Eojul.h\char`\"{}}\par
+{\tt \#include \char`\"{}tagNinfo.h\char`\"{}}\par
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+class \hyperlink{classDivideInfo}{DivideInfo}
+\begin{CompactList}\small\item\em a class has information to calculate scores of compound nouns. \item\end{CompactList}\item 
+class \hyperlink{classPosInfo}{PosInfo}
+\begin{CompactList}\small\item\em a class has information to calculate scores of compound nouns. \item\end{CompactList}\item 
+class \hyperlink{classMainTrieInfo}{MainTrieInfo}
+\begin{CompactList}\small\item\em a class has additional information of the main trie( including NNG, NNB, NNP, NP, NNI, VV, VA, IC, MA, MM dictionaries ). \item\end{CompactList}\item 
+class \hyperlink{classSearchInfo}{SearchInfo}
+\begin{CompactList}\small\item\em a class has information of a lexical morpheme. \item\end{CompactList}\item 
+class \hyperlink{classJEInfo}{JEInfo}
+\begin{CompactList}\small\item\em a class has information of a grammatical morpheme( a postposition or an ending ). \item\end{CompactList}\item 
+class \hyperlink{classJosaEomiTrieInfo}{JosaEomiTrieInfo}
+\begin{CompactList}\small\item\em a class has information for making grammatical morphemes( postpositions or endings ) trie. \item\end{CompactList}\item 
+class \hyperlink{classSearchJEInfo}{SearchJEInfo}
+\begin{CompactList}\small\item\em a class has position information for a grammatical morpheme( a postposition or an ending ) in a word. \item\end{CompactList}\item 
+class \hyperlink{classOnsetJosaEomiInfo}{OnsetJosaEomiInfo}
+\begin{CompactList}\small\item\em a class has information for endings('��','��','��','��'). \item\end{CompactList}\item 
+class \hyperlink{classSentence}{Sentence}
+\begin{CompactList}\small\item\em a class about a sentence. \item\end{CompactList}\item 
+class \hyperlink{classHeadTailInfo}{HeadTailInfo}
+\begin{CompactList}\small\item\em a class has information for haed and tail part of a word. \item\end{CompactList}\item 
+class \hyperlink{classTailInfo}{TailInfo}
+\begin{CompactList}\small\item\em a class has a postposition information for guessing a word( unknown noun + postposition ). \item\end{CompactList}\item 
+class \hyperlink{classGuessCandidate}{GuessCandidate}
+\end{CompactItemize}
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{infoclass_8h_edb5673f49eb0ba2071a0492e067448d}{TAILINFO\_\-MAX}~10
+\item 
+\#define \hyperlink{infoclass_8h_52ef6b15780afbf93eaa7ae136cf44ae}{LIST\_\-MAX}~20
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+various classes(data structures) for Korean morphological analysis are defined in this file. 
+
+\begin{Desc}
+\item[Date:]2008-10-31 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \& HeeGeun Park \end{Desc}
+
+
+Definition in file \hyperlink{infoclass_8h-source}{infoclass.h}.
+
+\subsection{Define Documentation}
+\hypertarget{infoclass_8h_52ef6b15780afbf93eaa7ae136cf44ae}{
+\index{infoclass.h@{infoclass.h}!LIST\_\-MAX@{LIST\_\-MAX}}
+\index{LIST\_\-MAX@{LIST\_\-MAX}!infoclass.h@{infoclass.h}}
+\subsubsection[{LIST\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define LIST\_\-MAX~20}}
+\label{infoclass_8h_52ef6b15780afbf93eaa7ae136cf44ae}
+
+
+the maximum number of guessable lists in a word. 
+
+Definition at line 204 of file infoclass.h.
+
+Referenced by GuessCandidate::addAuxVerb(), GuessCandidate::addNJ(), GuessCandidate::addNVC(), GuessCandidate::addNXSD(), GuessCandidate::getCurrentAV(), and GuessCandidate::getCurrentNXSD().\hypertarget{infoclass_8h_edb5673f49eb0ba2071a0492e067448d}{
+\index{infoclass.h@{infoclass.h}!TAILINFO\_\-MAX@{TAILINFO\_\-MAX}}
+\index{TAILINFO\_\-MAX@{TAILINFO\_\-MAX}!infoclass.h@{infoclass.h}}
+\subsubsection[{TAILINFO\_\-MAX}]{\setlength{\rightskip}{0pt plus 5cm}\#define TAILINFO\_\-MAX~10}}
+\label{infoclass_8h_edb5673f49eb0ba2071a0492e067448d}
+
+
+the maximum number of grammatical morphemes in a word. 
+
+Definition at line 185 of file infoclass.h.

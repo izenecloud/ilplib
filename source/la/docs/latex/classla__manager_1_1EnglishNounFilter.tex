@@ -1,0 +1,122 @@
+\hypertarget{classla__manager_1_1EnglishNounFilter}{
+\section{la\_\-manager::EnglishNounFilter Class Reference}
+\label{classla__manager_1_1EnglishNounFilter}\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+}
+todo  
+
+
+{\tt \#include $<$NounFilter.h$>$}
+
+Inheritance diagram for la\_\-manager::EnglishNounFilter::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classla__manager_1_1EnglishNounFilter}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1EnglishNounFilter_1ad97483125324eb139981b1c02bbb20}{EnglishNounFilter} (string modelPath=\char`\"{}../resource/enpos\_\-models\char`\"{})
+\item 
+\hyperlink{classla__manager_1_1EnglishNounFilter_11cbedc0463e0616bdcb1e7168a5d2bd}{$\sim$EnglishNounFilter} ()
+\item 
+bool \hyperlink{classla__manager_1_1EnglishNounFilter_8d45f1cdea331de42838fcf89de9c576}{analyze} (const \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Input, \hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&Output)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\item 
+bool \hyperlink{classla__manager_1_1EnglishNounFilter_a74c3ab1bb4af5b8e3f4693e4181c213}{analyze} (\hyperlink{namespacela__manager_06c0aab93982ee3ebc3ef9d0419e619a}{TermList} \&InOutPut)
+\begin{CompactList}\small\item\em analyze interface \item\end{CompactList}\end{CompactItemize}
+\subsection*{Private Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classla__manager_1_1POSTaggerEnglish}{POSTaggerEnglish} \hyperlink{classla__manager_1_1EnglishNounFilter_d612ad131bb8a08e35fc92ff0c01930b}{tagger\_\-}
+\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+todo 
+
+Definition at line 26 of file NounFilter.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classla__manager_1_1EnglishNounFilter_1ad97483125324eb139981b1c02bbb20}{
+\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}!EnglishNounFilter@{EnglishNounFilter}}
+\index{EnglishNounFilter@{EnglishNounFilter}!la_manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+\subsubsection[{EnglishNounFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::EnglishNounFilter::EnglishNounFilter (string {\em modelPath} = {\tt \char`\"{}../resource/enpos\_\-models\char`\"{}})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1EnglishNounFilter_1ad97483125324eb139981b1c02bbb20}
+
+
+
+
+Definition at line 29 of file NounFilter.h.\hypertarget{classla__manager_1_1EnglishNounFilter_11cbedc0463e0616bdcb1e7168a5d2bd}{
+\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}!$\sim$EnglishNounFilter@{$\sim$EnglishNounFilter}}
+\index{$\sim$EnglishNounFilter@{$\sim$EnglishNounFilter}!la_manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+\subsubsection[{$\sim$EnglishNounFilter}]{\setlength{\rightskip}{0pt plus 5cm}la\_\-manager::EnglishNounFilter::$\sim$EnglishNounFilter ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classla__manager_1_1EnglishNounFilter_11cbedc0463e0616bdcb1e7168a5d2bd}
+
+
+
+
+Definition at line 30 of file NounFilter.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classla__manager_1_1EnglishNounFilter_a74c3ab1bb4af5b8e3f4693e4181c213}{
+\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::EnglishNounFilter::analyze ({\bf TermList} \& {\em InOutPut})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1EnglishNounFilter_a74c3ab1bb4af5b8e3f4693e4181c213}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em InOutPut}]input (also output) term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_23414b773ec2070957e9aa3d6a7d8b78}{la\_\-manager::Analyzer}.
+
+Definition at line 29 of file NounFilter.cpp.
+
+References la\_\-manager::POSTaggerEnglish::tag(), and tagger\_\-.\hypertarget{classla__manager_1_1EnglishNounFilter_8d45f1cdea331de42838fcf89de9c576}{
+\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}!analyze@{analyze}}
+\index{analyze@{analyze}!la_manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+\subsubsection[{analyze}]{\setlength{\rightskip}{0pt plus 5cm}bool la\_\-manager::EnglishNounFilter::analyze (const {\bf TermList} \& {\em Input}, \/  {\bf TermList} \& {\em Output})\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classla__manager_1_1EnglishNounFilter_8d45f1cdea331de42838fcf89de9c576}
+
+
+analyze interface 
+
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em Input}]input term list \item[{\em output}]output term list This class analyze input terms and generate the output \end{description}
+\end{Desc}
+
+
+Implements \hyperlink{classla__manager_1_1Analyzer_a096ba4b2faeaa0f3938d7b826ab1c78}{la\_\-manager::Analyzer}.
+
+Definition at line 12 of file NounFilter.cpp.
+
+References la\_\-manager::POSTaggerEnglish::tag(), and tagger\_\-.
+
+Referenced by main().
+
+\subsection{Member Data Documentation}
+\hypertarget{classla__manager_1_1EnglishNounFilter_d612ad131bb8a08e35fc92ff0c01930b}{
+\index{la\_\-manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}!tagger\_\-@{tagger\_\-}}
+\index{tagger\_\-@{tagger\_\-}!la_manager::EnglishNounFilter@{la\_\-manager::EnglishNounFilter}}
+\subsubsection[{tagger\_\-}]{\setlength{\rightskip}{0pt plus 5cm}{\bf POSTaggerEnglish} {\bf la\_\-manager::EnglishNounFilter::tagger\_\-}\hspace{0.3cm}{\tt  \mbox{[}private\mbox{]}}}}
+\label{classla__manager_1_1EnglishNounFilter_d612ad131bb8a08e35fc92ff0c01930b}
+
+
+
+
+Definition at line 27 of file NounFilter.h.
+
+Referenced by analyze().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/\hyperlink{NounFilter_8h}{NounFilter.h}\item 
+/disk/workspace-cpp/la-manager/source/\hyperlink{NounFilter_8cpp}{NounFilter.cpp}\end{CompactItemize}

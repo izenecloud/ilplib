@@ -1,0 +1,460 @@
+\hypertarget{utilities_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/stem/utilities.cpp File Reference}
+\label{utilities_8cpp}\index{/disk/workspace-cpp/la-manager/source/stem/utilities.cpp@{/disk/workspace-cpp/la-manager/source/stem/utilities.cpp}}
+}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$stdlib.h$>$}\par
+{\tt \#include $<$string.h$>$}\par
+{\tt \#include $<$stem/header.h$>$}\par
+\subsection*{Defines}
+\begin{CompactItemize}
+\item 
+\#define \hyperlink{utilities_8cpp_78335172926539148c3cd3cce128399e}{unless}(C)~if(!(C))
+\item 
+\#define \hyperlink{utilities_8cpp_24b6ce12efa0d5ace6b2869080b3ea12}{CREATE\_\-SIZE}~1
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$ \hyperlink{utilities_8cpp_991ac1f3a7f4f19804ca70702f2abf61}{create\_\-s} (void)
+\item 
+void \hyperlink{utilities_8cpp_8d41a1259e2b9ff0e9a30421f52c5f10}{lose\_\-s} (\hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+int \hyperlink{utilities_8cpp_ac6b3a3c9ecbf21c35f0c6d1bdb101a3}{skip\_\-utf8} (const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p, int c, int lb, int l, int n)
+\item 
+static int \hyperlink{utilities_8cpp_98e3eb3a70ebb6f3fc3d961834054071}{get\_\-utf8} (const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p, int c, int l, int $\ast$slot)
+\item 
+static int \hyperlink{utilities_8cpp_eb2b4bc3caa25f8b14ae1da9a1521f62}{get\_\-b\_\-utf8} (const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p, int c, int lb, int $\ast$slot)
+\item 
+int \hyperlink{utilities_8cpp_337c0b8f3930c84946f979996641507f}{in\_\-grouping\_\-U} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_aeb5765e10168ed76c59c3e3899c4340}{in\_\-grouping\_\-b\_\-U} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_17a58c99adeadb4aa7efb2658c2acd42}{out\_\-grouping\_\-U} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_c4e8652c89abf0849138d3871ff78fa7}{out\_\-grouping\_\-b\_\-U} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_5929339458a61d69301d4f0c936b66c0}{in\_\-grouping} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_db5eb2db7527d1715f3b8003e38a4f4f}{in\_\-grouping\_\-b} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_bcf5b7c6bff1af01fc5a055388550a30}{out\_\-grouping} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_9c5d68c395074dcb871501e7e36b576c}{out\_\-grouping\_\-b} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const unsigned char $\ast$s, int min, int max, int repeat)
+\item 
+int \hyperlink{utilities_8cpp_6d6ad465e94fd1b36545a0471b52be95}{eq\_\-s} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int s\_\-size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s)
+\item 
+int \hyperlink{utilities_8cpp_b0b5d0cd47d261abc23be553e91f3762}{eq\_\-s\_\-b} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int s\_\-size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s)
+\item 
+int \hyperlink{utilities_8cpp_871bea9600dd4b980eaa5aa04a6284f9}{eq\_\-v} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+int \hyperlink{utilities_8cpp_50a5bed45e8578a81d3c3c8f90dc06a3}{eq\_\-v\_\-b} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+int \hyperlink{utilities_8cpp_d60310b21751c03cc82b77c834a985f7}{find\_\-among} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const struct \hyperlink{structamong}{among} $\ast$v, int v\_\-size)
+\item 
+int \hyperlink{utilities_8cpp_172cc1104b4a5c488418a855d61220b5}{find\_\-among\_\-b} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const struct \hyperlink{structamong}{among} $\ast$v, int v\_\-size)
+\item 
+static \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$ \hyperlink{utilities_8cpp_44ee297a8de11f41e7c4ecef08b96b6f}{increase\_\-size} (\hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p, int n)
+\item 
+int \hyperlink{utilities_8cpp_7d300758158d5c36a48d36be8001a26c}{replace\_\-s} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int c\_\-bra, int c\_\-ket, int s\_\-size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s, int $\ast$adjptr)
+\item 
+static int \hyperlink{utilities_8cpp_2b8824dbbb1efc6ea6465bd34af9e2b5}{slice\_\-check} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+int \hyperlink{utilities_8cpp_db121c60d7601d7dcfa5a990fd1ac435}{slice\_\-from\_\-s} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int s\_\-size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s)
+\item 
+int \hyperlink{utilities_8cpp_d49226469fc85443bd84846594b91342}{slice\_\-from\_\-v} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+int \hyperlink{utilities_8cpp_2feffd19b0a018bb50de037e8752bde4}{slice\_\-del} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z)
+\item 
+int \hyperlink{utilities_8cpp_2ada1f3077ee2d36e762ce90bb612114}{insert\_\-s} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int bra, int ket, int s\_\-size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s)
+\item 
+int \hyperlink{utilities_8cpp_0831eca451c97ef148ed483f65f58042}{insert\_\-v} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int bra, int ket, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+\hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$ \hyperlink{utilities_8cpp_832422120f23a2344d0e3bcc20ebbca3}{slice\_\-to} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\item 
+\hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$ \hyperlink{utilities_8cpp_5159e1ae0459c3afff181351039bbe0b}{assign\_\-to} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$p)
+\end{CompactItemize}
+
+
+\subsection{Define Documentation}
+\hypertarget{utilities_8cpp_24b6ce12efa0d5ace6b2869080b3ea12}{
+\index{utilities.cpp@{utilities.cpp}!CREATE\_\-SIZE@{CREATE\_\-SIZE}}
+\index{CREATE\_\-SIZE@{CREATE\_\-SIZE}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{CREATE\_\-SIZE}]{\setlength{\rightskip}{0pt plus 5cm}\#define CREATE\_\-SIZE~1}}
+\label{utilities_8cpp_24b6ce12efa0d5ace6b2869080b3ea12}
+
+
+
+
+Definition at line 10 of file utilities.cpp.
+
+Referenced by create\_\-s().\hypertarget{utilities_8cpp_78335172926539148c3cd3cce128399e}{
+\index{utilities.cpp@{utilities.cpp}!unless@{unless}}
+\index{unless@{unless}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{unless}]{\setlength{\rightskip}{0pt plus 5cm}\#define unless(C)~if(!(C))}}
+\label{utilities_8cpp_78335172926539148c3cd3cce128399e}
+
+
+
+
+Definition at line 8 of file utilities.cpp.
+
+Referenced by in\_\-grouping\_\-b\_\-U(), in\_\-grouping\_\-U(), out\_\-grouping(), out\_\-grouping\_\-b(), out\_\-grouping\_\-b\_\-U(), out\_\-grouping\_\-U(), and replace\_\-s().
+
+\subsection{Function Documentation}
+\hypertarget{utilities_8cpp_5159e1ae0459c3afff181351039bbe0b}{
+\index{utilities.cpp@{utilities.cpp}!assign\_\-to@{assign\_\-to}}
+\index{assign\_\-to@{assign\_\-to}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{assign\_\-to}]{\setlength{\rightskip}{0pt plus 5cm}{\bf symbol}$\ast$ assign\_\-to (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_5159e1ae0459c3afff181351039bbe0b}
+
+
+
+
+Definition at line 446 of file utilities.cpp.
+
+References CAPACITY, increase\_\-size(), SN\_\-env::l, SN\_\-env::p, and SET\_\-SIZE.\hypertarget{utilities_8cpp_991ac1f3a7f4f19804ca70702f2abf61}{
+\index{utilities.cpp@{utilities.cpp}!create\_\-s@{create\_\-s}}
+\index{create\_\-s@{create\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{create\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}{\bf symbol}$\ast$ create\_\-s (void)}}
+\label{utilities_8cpp_991ac1f3a7f4f19804ca70702f2abf61}
+
+
+
+
+Definition at line 12 of file utilities.cpp.
+
+References CAPACITY, CREATE\_\-SIZE, HEAD, SN\_\-env::p, and SET\_\-SIZE.
+
+Referenced by replace\_\-s(), and SN\_\-create\_\-env().\hypertarget{utilities_8cpp_6d6ad465e94fd1b36545a0471b52be95}{
+\index{utilities.cpp@{utilities.cpp}!eq\_\-s@{eq\_\-s}}
+\index{eq\_\-s@{eq\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{eq\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}int eq\_\-s (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em s\_\-size}, \/  const {\bf symbol} $\ast$ {\em s})}}
+\label{utilities_8cpp_6d6ad465e94fd1b36545a0471b52be95}
+
+
+
+
+Definition at line 194 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, and SN\_\-env::p.
+
+Referenced by eq\_\-v(), r\_\-is\_\-reserved\_\-word(), r\_\-postlude(), and r\_\-prelude().\hypertarget{utilities_8cpp_b0b5d0cd47d261abc23be553e91f3762}{
+\index{utilities.cpp@{utilities.cpp}!eq\_\-s\_\-b@{eq\_\-s\_\-b}}
+\index{eq\_\-s\_\-b@{eq\_\-s\_\-b}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{eq\_\-s\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}int eq\_\-s\_\-b (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em s\_\-size}, \/  const {\bf symbol} $\ast$ {\em s})}}
+\label{utilities_8cpp_b0b5d0cd47d261abc23be553e91f3762}
+
+
+
+
+Definition at line 199 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::lb, and SN\_\-env::p.
+
+Referenced by eq\_\-v\_\-b(), french\_\-UTF\_\-8\_\-stem(), portuguese\_\-UTF\_\-8\_\-stem(), r\_\-adjectival(), r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g(), r\_\-attached\_\-pronoun(), r\_\-case\_\-ending(), r\_\-check\_\-vowel\_\-harmony(), r\_\-e\_\-ending(), r\_\-en\_\-ending(), r\_\-main\_\-suffix(), r\_\-mark\_\-ki(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant(), r\_\-mark\_\-yken(), r\_\-other\_\-endings(), r\_\-other\_\-suffix(), r\_\-perfective\_\-gerund(), r\_\-possessive(), r\_\-residual\_\-form(), r\_\-residual\_\-suffix(), r\_\-standard\_\-suffix(), r\_\-step\_\-0(), r\_\-Step\_\-1c(), r\_\-Step\_\-2(), r\_\-Step\_\-4(), r\_\-Step\_\-5(), r\_\-t\_\-plural(), r\_\-tidy(), r\_\-tidy\_\-up(), r\_\-un\_\-accent(), r\_\-verb(), r\_\-verb\_\-suffix(), r\_\-VI(), r\_\-vowel\_\-suffix(), r\_\-y\_\-verb\_\-suffix(), and russian\_\-UTF\_\-8\_\-stem().\hypertarget{utilities_8cpp_871bea9600dd4b980eaa5aa04a6284f9}{
+\index{utilities.cpp@{utilities.cpp}!eq\_\-v@{eq\_\-v}}
+\index{eq\_\-v@{eq\_\-v}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{eq\_\-v}]{\setlength{\rightskip}{0pt plus 5cm}int eq\_\-v (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_871bea9600dd4b980eaa5aa04a6284f9}
+
+
+
+
+Definition at line 204 of file utilities.cpp.
+
+References eq\_\-s(), and SIZE.\hypertarget{utilities_8cpp_50a5bed45e8578a81d3c3c8f90dc06a3}{
+\index{utilities.cpp@{utilities.cpp}!eq\_\-v\_\-b@{eq\_\-v\_\-b}}
+\index{eq\_\-v\_\-b@{eq\_\-v\_\-b}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{eq\_\-v\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}int eq\_\-v\_\-b (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_50a5bed45e8578a81d3c3c8f90dc06a3}
+
+
+
+
+Definition at line 208 of file utilities.cpp.
+
+References eq\_\-s\_\-b(), and SIZE.
+
+Referenced by r\_\-tidy(), and r\_\-undouble().\hypertarget{utilities_8cpp_d60310b21751c03cc82b77c834a985f7}{
+\index{utilities.cpp@{utilities.cpp}!find\_\-among@{find\_\-among}}
+\index{find\_\-among@{find\_\-among}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{find\_\-among}]{\setlength{\rightskip}{0pt plus 5cm}int find\_\-among (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const struct {\bf among} $\ast$ {\em v}, \/  int {\em v\_\-size})}}
+\label{utilities_8cpp_d60310b21751c03cc82b77c834a985f7}
+
+
+
+
+Definition at line 212 of file utilities.cpp.
+
+References SN\_\-env::c, among::function, SN\_\-env::l, SN\_\-env::p, among::result, among::s, among::s\_\-size, and among::substring\_\-i.
+
+Referenced by r\_\-exception1(), r\_\-mark\_\-regions(), r\_\-postlude(), and r\_\-prelude().\hypertarget{utilities_8cpp_172cc1104b4a5c488418a855d61220b5}{
+\index{utilities.cpp@{utilities.cpp}!find\_\-among\_\-b@{find\_\-among\_\-b}}
+\index{find\_\-among\_\-b@{find\_\-among\_\-b}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{find\_\-among\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}int find\_\-among\_\-b (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const struct {\bf among} $\ast$ {\em v}, \/  int {\em v\_\-size})}}
+\label{utilities_8cpp_172cc1104b4a5c488418a855d61220b5}
+
+
+
+
+Definition at line 272 of file utilities.cpp.
+
+References SN\_\-env::c, among::function, SN\_\-env::lb, SN\_\-env::p, among::result, among::s, among::s\_\-size, and among::substring\_\-i.
+
+Referenced by r\_\-adjectival(), r\_\-adjective(), r\_\-attached\_\-pronoun(), r\_\-case(), r\_\-case\_\-ending(), r\_\-case\_\-other(), r\_\-case\_\-special(), r\_\-combo\_\-suffix(), r\_\-consonant\_\-pair(), r\_\-derivational(), r\_\-double(), r\_\-exception2(), r\_\-factive(), r\_\-i\_\-plural(), r\_\-i\_\-verb\_\-suffix(), r\_\-instrum(), r\_\-LONG(), r\_\-main\_\-suffix(), r\_\-mark\_\-cAsInA(), r\_\-mark\_\-DA(), r\_\-mark\_\-DAn(), r\_\-mark\_\-DUr(), r\_\-mark\_\-lAr(), r\_\-mark\_\-lArI(), r\_\-mark\_\-nA(), r\_\-mark\_\-ncA(), r\_\-mark\_\-ndA(), r\_\-mark\_\-ndAn(), r\_\-mark\_\-nU(), r\_\-mark\_\-nUn(), r\_\-mark\_\-nUz(), r\_\-mark\_\-possessives(), r\_\-mark\_\-sUn(), r\_\-mark\_\-sUnUz(), r\_\-mark\_\-yA(), r\_\-mark\_\-yDU(), r\_\-mark\_\-ylA(), r\_\-mark\_\-ymUs\_\-(), r\_\-mark\_\-ysA(), r\_\-mark\_\-yUm(), r\_\-mark\_\-yUz(), r\_\-noun(), r\_\-other\_\-endings(), r\_\-other\_\-suffix(), r\_\-owned(), r\_\-particle\_\-etc(), r\_\-perfective\_\-gerund(), r\_\-plur\_\-owner(), r\_\-plural(), r\_\-possessive(), r\_\-post\_\-process\_\-last\_\-consonants(), r\_\-reflexive(), r\_\-residual\_\-form(), r\_\-residual\_\-suffix(), r\_\-sing\_\-owner(), r\_\-standard\_\-suffix(), r\_\-step\_\-0(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-Step\_\-2(), r\_\-Step\_\-3(), r\_\-Step\_\-4(), r\_\-Step\_\-5(), r\_\-t\_\-plural(), r\_\-tidy\_\-up(), r\_\-un\_\-double(), r\_\-undouble(), r\_\-v\_\-ending(), r\_\-verb(), r\_\-verb\_\-suffix(), r\_\-vowel\_\-suffix(), and r\_\-y\_\-verb\_\-suffix().\hypertarget{utilities_8cpp_eb2b4bc3caa25f8b14ae1da9a1521f62}{
+\index{utilities.cpp@{utilities.cpp}!get\_\-b\_\-utf8@{get\_\-b\_\-utf8}}
+\index{get\_\-b\_\-utf8@{get\_\-b\_\-utf8}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{get\_\-b\_\-utf8}]{\setlength{\rightskip}{0pt plus 5cm}static int get\_\-b\_\-utf8 (const {\bf symbol} $\ast$ {\em p}, \/  int {\em c}, \/  int {\em lb}, \/  int $\ast$ {\em slot})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{utilities_8cpp_eb2b4bc3caa25f8b14ae1da9a1521f62}
+
+
+
+
+Definition at line 82 of file utilities.cpp.
+
+Referenced by in\_\-grouping\_\-b\_\-U(), and out\_\-grouping\_\-b\_\-U().\hypertarget{utilities_8cpp_98e3eb3a70ebb6f3fc3d961834054071}{
+\index{utilities.cpp@{utilities.cpp}!get\_\-utf8@{get\_\-utf8}}
+\index{get\_\-utf8@{get\_\-utf8}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{get\_\-utf8}]{\setlength{\rightskip}{0pt plus 5cm}static int get\_\-utf8 (const {\bf symbol} $\ast$ {\em p}, \/  int {\em c}, \/  int {\em l}, \/  int $\ast$ {\em slot})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{utilities_8cpp_98e3eb3a70ebb6f3fc3d961834054071}
+
+
+
+
+Definition at line 68 of file utilities.cpp.
+
+Referenced by in\_\-grouping\_\-U(), and out\_\-grouping\_\-U().\hypertarget{utilities_8cpp_5929339458a61d69301d4f0c936b66c0}{
+\index{utilities.cpp@{utilities.cpp}!in\_\-grouping@{in\_\-grouping}}
+\index{in\_\-grouping@{in\_\-grouping}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{in\_\-grouping}]{\setlength{\rightskip}{0pt plus 5cm}int in\_\-grouping (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_5929339458a61d69301d4f0c936b66c0}
+
+
+
+
+Definition at line 146 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, and SN\_\-env::p.\hypertarget{utilities_8cpp_db5eb2db7527d1715f3b8003e38a4f4f}{
+\index{utilities.cpp@{utilities.cpp}!in\_\-grouping\_\-b@{in\_\-grouping\_\-b}}
+\index{in\_\-grouping\_\-b@{in\_\-grouping\_\-b}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{in\_\-grouping\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}int in\_\-grouping\_\-b (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_db5eb2db7527d1715f3b8003e38a4f4f}
+
+
+
+
+Definition at line 158 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::lb, and SN\_\-env::p.\hypertarget{utilities_8cpp_aeb5765e10168ed76c59c3e3899c4340}{
+\index{utilities.cpp@{utilities.cpp}!in\_\-grouping\_\-b\_\-U@{in\_\-grouping\_\-b\_\-U}}
+\index{in\_\-grouping\_\-b\_\-U@{in\_\-grouping\_\-b\_\-U}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{in\_\-grouping\_\-b\_\-U}]{\setlength{\rightskip}{0pt plus 5cm}int in\_\-grouping\_\-b\_\-U (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_aeb5765e10168ed76c59c3e3899c4340}
+
+
+
+
+Definition at line 108 of file utilities.cpp.
+
+References SN\_\-env::c, get\_\-b\_\-utf8(), SN\_\-env::lb, SN\_\-env::p, and unless.
+
+Referenced by r\_\-case\_\-ending(), r\_\-main\_\-suffix(), r\_\-mark\_\-sU(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant(), r\_\-mark\_\-yU(), r\_\-particle\_\-etc(), r\_\-shortv(), r\_\-standard\_\-suffix(), r\_\-Step\_\-2(), r\_\-t\_\-plural(), r\_\-tidy(), r\_\-VI(), and r\_\-vowel\_\-suffix().\hypertarget{utilities_8cpp_337c0b8f3930c84946f979996641507f}{
+\index{utilities.cpp@{utilities.cpp}!in\_\-grouping\_\-U@{in\_\-grouping\_\-U}}
+\index{in\_\-grouping\_\-U@{in\_\-grouping\_\-U}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{in\_\-grouping\_\-U}]{\setlength{\rightskip}{0pt plus 5cm}int in\_\-grouping\_\-U (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_337c0b8f3930c84946f979996641507f}
+
+
+
+
+Definition at line 96 of file utilities.cpp.
+
+References SN\_\-env::c, get\_\-utf8(), SN\_\-env::l, SN\_\-env::p, and unless.
+
+Referenced by r\_\-mark\_\-regions(), and r\_\-prelude().\hypertarget{utilities_8cpp_44ee297a8de11f41e7c4ecef08b96b6f}{
+\index{utilities.cpp@{utilities.cpp}!increase\_\-size@{increase\_\-size}}
+\index{increase\_\-size@{increase\_\-size}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{increase\_\-size}]{\setlength{\rightskip}{0pt plus 5cm}static {\bf symbol}$\ast$ increase\_\-size ({\bf symbol} $\ast$ {\em p}, \/  int {\em n})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{utilities_8cpp_44ee297a8de11f41e7c4ecef08b96b6f}
+
+
+
+
+Definition at line 329 of file utilities.cpp.
+
+References CAPACITY, HEAD, and lose\_\-s().
+
+Referenced by assign\_\-to(), replace\_\-s(), and slice\_\-to().\hypertarget{utilities_8cpp_2ada1f3077ee2d36e762ce90bb612114}{
+\index{utilities.cpp@{utilities.cpp}!insert\_\-s@{insert\_\-s}}
+\index{insert\_\-s@{insert\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{insert\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}int insert\_\-s (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em bra}, \/  int {\em ket}, \/  int {\em s\_\-size}, \/  const {\bf symbol} $\ast$ {\em s})}}
+\label{utilities_8cpp_2ada1f3077ee2d36e762ce90bb612114}
+
+
+
+
+Definition at line 410 of file utilities.cpp.
+
+References SN\_\-env::bra, SN\_\-env::ket, and replace\_\-s().
+
+Referenced by r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g(), and r\_\-Step\_\-1b().\hypertarget{utilities_8cpp_0831eca451c97ef148ed483f65f58042}{
+\index{utilities.cpp@{utilities.cpp}!insert\_\-v@{insert\_\-v}}
+\index{insert\_\-v@{insert\_\-v}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{insert\_\-v}]{\setlength{\rightskip}{0pt plus 5cm}int insert\_\-v (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em bra}, \/  int {\em ket}, \/  const {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_0831eca451c97ef148ed483f65f58042}
+
+
+
+
+Definition at line 419 of file utilities.cpp.
+
+References SN\_\-env::bra, SN\_\-env::ket, replace\_\-s(), and SIZE.\hypertarget{utilities_8cpp_8d41a1259e2b9ff0e9a30421f52c5f10}{
+\index{utilities.cpp@{utilities.cpp}!lose\_\-s@{lose\_\-s}}
+\index{lose\_\-s@{lose\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{lose\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}void lose\_\-s ({\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_8d41a1259e2b9ff0e9a30421f52c5f10}
+
+
+
+
+Definition at line 22 of file utilities.cpp.
+
+References HEAD.
+
+Referenced by increase\_\-size(), slice\_\-to(), and SN\_\-close\_\-env().\hypertarget{utilities_8cpp_bcf5b7c6bff1af01fc5a055388550a30}{
+\index{utilities.cpp@{utilities.cpp}!out\_\-grouping@{out\_\-grouping}}
+\index{out\_\-grouping@{out\_\-grouping}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{out\_\-grouping}]{\setlength{\rightskip}{0pt plus 5cm}int out\_\-grouping (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_bcf5b7c6bff1af01fc5a055388550a30}
+
+
+
+
+Definition at line 170 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, SN\_\-env::p, and unless.\hypertarget{utilities_8cpp_9c5d68c395074dcb871501e7e36b576c}{
+\index{utilities.cpp@{utilities.cpp}!out\_\-grouping\_\-b@{out\_\-grouping\_\-b}}
+\index{out\_\-grouping\_\-b@{out\_\-grouping\_\-b}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{out\_\-grouping\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}int out\_\-grouping\_\-b (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_9c5d68c395074dcb871501e7e36b576c}
+
+
+
+
+Definition at line 182 of file utilities.cpp.
+
+References SN\_\-env::c, SN\_\-env::lb, SN\_\-env::p, and unless.\hypertarget{utilities_8cpp_c4e8652c89abf0849138d3871ff78fa7}{
+\index{utilities.cpp@{utilities.cpp}!out\_\-grouping\_\-b\_\-U@{out\_\-grouping\_\-b\_\-U}}
+\index{out\_\-grouping\_\-b\_\-U@{out\_\-grouping\_\-b\_\-U}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{out\_\-grouping\_\-b\_\-U}]{\setlength{\rightskip}{0pt plus 5cm}int out\_\-grouping\_\-b\_\-U (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_c4e8652c89abf0849138d3871ff78fa7}
+
+
+
+
+Definition at line 132 of file utilities.cpp.
+
+References SN\_\-env::c, get\_\-b\_\-utf8(), SN\_\-env::lb, SN\_\-env::p, and unless.
+
+Referenced by r\_\-append\_\-U\_\-to\_\-stems\_\-ending\_\-with\_\-d\_\-or\_\-g(), r\_\-case\_\-ending(), r\_\-check\_\-vowel\_\-harmony(), r\_\-e\_\-ending(), r\_\-en\_\-ending(), r\_\-i\_\-verb\_\-suffix(), r\_\-main\_\-suffix(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel(), r\_\-residual\_\-suffix(), r\_\-shortv(), r\_\-standard\_\-suffix(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-Step\_\-1c(), r\_\-tidy(), r\_\-un\_\-accent(), r\_\-undouble(), and r\_\-verb\_\-suffix().\hypertarget{utilities_8cpp_17a58c99adeadb4aa7efb2658c2acd42}{
+\index{utilities.cpp@{utilities.cpp}!out\_\-grouping\_\-U@{out\_\-grouping\_\-U}}
+\index{out\_\-grouping\_\-U@{out\_\-grouping\_\-U}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{out\_\-grouping\_\-U}]{\setlength{\rightskip}{0pt plus 5cm}int out\_\-grouping\_\-U (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const unsigned char $\ast$ {\em s}, \/  int {\em min}, \/  int {\em max}, \/  int {\em repeat})}}
+\label{utilities_8cpp_17a58c99adeadb4aa7efb2658c2acd42}
+
+
+
+
+Definition at line 120 of file utilities.cpp.
+
+References SN\_\-env::c, get\_\-utf8(), SN\_\-env::l, SN\_\-env::p, and unless.
+
+Referenced by r\_\-mark\_\-regions(), and r\_\-more\_\-than\_\-one\_\-syllable\_\-word().\hypertarget{utilities_8cpp_7d300758158d5c36a48d36be8001a26c}{
+\index{utilities.cpp@{utilities.cpp}!replace\_\-s@{replace\_\-s}}
+\index{replace\_\-s@{replace\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{replace\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}int replace\_\-s (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em c\_\-bra}, \/  int {\em c\_\-ket}, \/  int {\em s\_\-size}, \/  const {\bf symbol} $\ast$ {\em s}, \/  int $\ast$ {\em adjptr})}}
+\label{utilities_8cpp_7d300758158d5c36a48d36be8001a26c}
+
+
+
+
+Definition at line 348 of file utilities.cpp.
+
+References SN\_\-env::c, CAPACITY, create\_\-s(), increase\_\-size(), SN\_\-env::l, SN\_\-env::p, SET\_\-SIZE, SIZE, and unless.
+
+Referenced by insert\_\-s(), insert\_\-v(), slice\_\-from\_\-s(), and SN\_\-set\_\-current().\hypertarget{utilities_8cpp_ac6b3a3c9ecbf21c35f0c6d1bdb101a3}{
+\index{utilities.cpp@{utilities.cpp}!skip\_\-utf8@{skip\_\-utf8}}
+\index{skip\_\-utf8@{skip\_\-utf8}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{skip\_\-utf8}]{\setlength{\rightskip}{0pt plus 5cm}int skip\_\-utf8 (const {\bf symbol} $\ast$ {\em p}, \/  int {\em c}, \/  int {\em lb}, \/  int {\em l}, \/  int {\em n})}}
+\label{utilities_8cpp_ac6b3a3c9ecbf21c35f0c6d1bdb101a3}
+
+
+
+
+Definition at line 35 of file utilities.cpp.
+
+Referenced by english\_\-UTF\_\-8\_\-stem(), r\_\-case\_\-ending(), r\_\-consonant\_\-pair(), r\_\-is\_\-reserved\_\-word(), r\_\-mark\_\-regions(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-n\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-s\_\-consonant(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-U\_\-vowel(), r\_\-mark\_\-suffix\_\-with\_\-optional\_\-y\_\-consonant(), r\_\-postlude(), r\_\-prelude(), r\_\-standard\_\-suffix(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-tidy(), r\_\-un\_\-double(), and r\_\-undouble().\hypertarget{utilities_8cpp_2b8824dbbb1efc6ea6465bd34af9e2b5}{
+\index{utilities.cpp@{utilities.cpp}!slice\_\-check@{slice\_\-check}}
+\index{slice\_\-check@{slice\_\-check}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{slice\_\-check}]{\setlength{\rightskip}{0pt plus 5cm}static int slice\_\-check (struct {\bf SN\_\-env} $\ast$ {\em z})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{utilities_8cpp_2b8824dbbb1efc6ea6465bd34af9e2b5}
+
+
+
+
+Definition at line 380 of file utilities.cpp.
+
+References SN\_\-env::bra, debug(), SN\_\-env::ket, SN\_\-env::l, SN\_\-env::p, and SIZE.
+
+Referenced by slice\_\-from\_\-s(), and slice\_\-to().\hypertarget{utilities_8cpp_2feffd19b0a018bb50de037e8752bde4}{
+\index{utilities.cpp@{utilities.cpp}!slice\_\-del@{slice\_\-del}}
+\index{slice\_\-del@{slice\_\-del}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{slice\_\-del}]{\setlength{\rightskip}{0pt plus 5cm}int slice\_\-del (struct {\bf SN\_\-env} $\ast$ {\em z})}}
+\label{utilities_8cpp_2feffd19b0a018bb50de037e8752bde4}
+
+
+
+
+Definition at line 406 of file utilities.cpp.
+
+References slice\_\-from\_\-s().
+
+Referenced by portuguese\_\-UTF\_\-8\_\-stem(), r\_\-adjectival(), r\_\-adjective(), r\_\-attached\_\-pronoun(), r\_\-case(), r\_\-case\_\-ending(), r\_\-case\_\-other(), r\_\-consonant\_\-pair(), r\_\-derivational(), r\_\-e\_\-ending(), r\_\-en\_\-ending(), r\_\-factive(), r\_\-i\_\-plural(), r\_\-i\_\-verb\_\-suffix(), r\_\-instrum(), r\_\-main\_\-suffix(), r\_\-noun(), r\_\-other\_\-endings(), r\_\-other\_\-suffix(), r\_\-owned(), r\_\-particle\_\-etc(), r\_\-perfective\_\-gerund(), r\_\-plur\_\-owner(), r\_\-plural(), r\_\-possessive(), r\_\-prelude(), r\_\-reflexive(), r\_\-residual\_\-form(), r\_\-residual\_\-suffix(), r\_\-sing\_\-owner(), r\_\-standard\_\-suffix(), r\_\-stem\_\-nominal\_\-verb\_\-suffixes(), r\_\-stem\_\-noun\_\-suffixes(), r\_\-stem\_\-suffix\_\-chain\_\-before\_\-ki(), r\_\-step\_\-0(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-Step\_\-2(), r\_\-Step\_\-3(), r\_\-Step\_\-4(), r\_\-Step\_\-5(), r\_\-t\_\-plural(), r\_\-tidy(), r\_\-tidy\_\-up(), r\_\-un\_\-double(), r\_\-undouble(), r\_\-verb(), r\_\-verb\_\-suffix(), r\_\-vowel\_\-suffix(), r\_\-y\_\-verb\_\-suffix(), and russian\_\-UTF\_\-8\_\-stem().\hypertarget{utilities_8cpp_db121c60d7601d7dcfa5a990fd1ac435}{
+\index{utilities.cpp@{utilities.cpp}!slice\_\-from\_\-s@{slice\_\-from\_\-s}}
+\index{slice\_\-from\_\-s@{slice\_\-from\_\-s}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{slice\_\-from\_\-s}]{\setlength{\rightskip}{0pt plus 5cm}int slice\_\-from\_\-s (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em s\_\-size}, \/  const {\bf symbol} $\ast$ {\em s})}}
+\label{utilities_8cpp_db121c60d7601d7dcfa5a990fd1ac435}
+
+
+
+
+Definition at line 397 of file utilities.cpp.
+
+References SN\_\-env::bra, SN\_\-env::ket, replace\_\-s(), and slice\_\-check().
+
+Referenced by french\_\-UTF\_\-8\_\-stem(), r\_\-attached\_\-pronoun(), r\_\-case\_\-other(), r\_\-case\_\-special(), r\_\-combo\_\-suffix(), r\_\-exception1(), r\_\-main\_\-suffix(), r\_\-other\_\-suffix(), r\_\-owned(), r\_\-plur\_\-owner(), r\_\-plural(), r\_\-possessive(), r\_\-post\_\-process\_\-last\_\-consonants(), r\_\-postlude(), r\_\-prelude(), r\_\-residual\_\-form(), r\_\-residual\_\-suffix(), r\_\-sing\_\-owner(), r\_\-standard\_\-suffix(), r\_\-step\_\-0(), r\_\-Step\_\-1a(), r\_\-Step\_\-1b(), r\_\-Step\_\-1c(), r\_\-Step\_\-2(), r\_\-Step\_\-3(), r\_\-un\_\-accent(), r\_\-v\_\-ending(), slice\_\-del(), and slice\_\-from\_\-v().\hypertarget{utilities_8cpp_d49226469fc85443bd84846594b91342}{
+\index{utilities.cpp@{utilities.cpp}!slice\_\-from\_\-v@{slice\_\-from\_\-v}}
+\index{slice\_\-from\_\-v@{slice\_\-from\_\-v}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{slice\_\-from\_\-v}]{\setlength{\rightskip}{0pt plus 5cm}int slice\_\-from\_\-v (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  const {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_d49226469fc85443bd84846594b91342}
+
+
+
+
+Definition at line 402 of file utilities.cpp.
+
+References SIZE, and slice\_\-from\_\-s().\hypertarget{utilities_8cpp_832422120f23a2344d0e3bcc20ebbca3}{
+\index{utilities.cpp@{utilities.cpp}!slice\_\-to@{slice\_\-to}}
+\index{slice\_\-to@{slice\_\-to}!utilities.cpp@{utilities.cpp}}
+\subsubsection[{slice\_\-to}]{\setlength{\rightskip}{0pt plus 5cm}{\bf symbol}$\ast$ slice\_\-to (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  {\bf symbol} $\ast$ {\em p})}}
+\label{utilities_8cpp_832422120f23a2344d0e3bcc20ebbca3}
+
+
+
+
+Definition at line 428 of file utilities.cpp.
+
+References SN\_\-env::bra, CAPACITY, increase\_\-size(), SN\_\-env::ket, lose\_\-s(), SN\_\-env::p, SET\_\-SIZE, and slice\_\-check().
+
+Referenced by r\_\-tidy(), and r\_\-undouble().

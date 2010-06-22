@@ -1,0 +1,82 @@
+\hypertarget{postag_8cpp}{
+\section{/disk/workspace-cpp/la-manager/source/pos/postag.cpp File Reference}
+\label{postag_8cpp}\index{/disk/workspace-cpp/la-manager/source/pos/postag.cpp@{/disk/workspace-cpp/la-manager/source/pos/postag.cpp}}
+}
+{\tt \#include $<$stdio.h$>$}\par
+{\tt \#include $<$fstream$>$}\par
+{\tt \#include $<$map$>$}\par
+{\tt \#include $<$list$>$}\par
+{\tt \#include $<$iostream$>$}\par
+{\tt \#include $<$sstream$>$}\par
+{\tt \#include $<$cmath$>$}\par
+{\tt \#include $<$set$>$}\par
+{\tt \#include $<$pos/maxent.h$>$}\par
+{\tt \#include $<$pos/common.h$>$}\par
+{\tt \#include $<$pos/bidir.h$>$}\par
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+string \hyperlink{postag_8cpp_270a8da6d7ebe746a10026544bc8f6fb}{normalize} (const string \&s)
+\item 
+void \hyperlink{postag_8cpp_b5f9becee2d8bc428254c4a7a161dd38}{viterbi} (\hyperlink{classstd_1_1vector}{vector}$<$ \hyperlink{structToken}{Token} $>$ \&vt, const \hyperlink{classME__Model}{ME\_\-Model} \&me)
+\item 
+string \hyperlink{postag_8cpp_5df7457ec48a6cbeb2469cda76045de2}{postag} (const string \&s, const \hyperlink{classME__Model}{ME\_\-Model} \&me)
+\end{CompactItemize}
+\subsection*{Variables}
+\begin{CompactItemize}
+\item 
+const double \hyperlink{postag_8cpp_555e7b79b9e1fddaa92e6c1f67b1e97e}{BEAM\_\-WIDTH} = 3.0
+\end{CompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{postag_8cpp_270a8da6d7ebe746a10026544bc8f6fb}{
+\index{postag.cpp@{postag.cpp}!normalize@{normalize}}
+\index{normalize@{normalize}!postag.cpp@{postag.cpp}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}string normalize (const string \& {\em s})}}
+\label{postag_8cpp_270a8da6d7ebe746a10026544bc8f6fb}
+
+
+
+
+Definition at line 22 of file postag.cpp.
+
+Referenced by mesample().\hypertarget{postag_8cpp_5df7457ec48a6cbeb2469cda76045de2}{
+\index{postag.cpp@{postag.cpp}!postag@{postag}}
+\index{postag@{postag}!postag.cpp@{postag.cpp}}
+\subsubsection[{postag}]{\setlength{\rightskip}{0pt plus 5cm}string postag (const string \& {\em s}, \/  const {\bf ME\_\-Model} \& {\em me})}}
+\label{postag_8cpp_5df7457ec48a6cbeb2469cda76045de2}
+
+
+
+
+Definition at line 102 of file postag.cpp.
+
+References tokenize(), and viterbi().\hypertarget{postag_8cpp_b5f9becee2d8bc428254c4a7a161dd38}{
+\index{postag.cpp@{postag.cpp}!viterbi@{viterbi}}
+\index{viterbi@{viterbi}!postag.cpp@{postag.cpp}}
+\subsubsection[{viterbi}]{\setlength{\rightskip}{0pt plus 5cm}void viterbi ({\bf vector}$<$ {\bf Token} $>$ \& {\em vt}, \/  const {\bf ME\_\-Model} \& {\em me})}}
+\label{postag_8cpp_b5f9becee2d8bc428254c4a7a161dd38}
+
+
+
+
+Definition at line 32 of file postag.cpp.
+
+References BEAM\_\-WIDTH, ME\_\-Model::classify(), ME\_\-Model::get\_\-class\_\-label(), mesample(), and ME\_\-Model::num\_\-classes().
+
+Referenced by postag().
+
+\subsection{Variable Documentation}
+\hypertarget{postag_8cpp_555e7b79b9e1fddaa92e6c1f67b1e97e}{
+\index{postag.cpp@{postag.cpp}!BEAM\_\-WIDTH@{BEAM\_\-WIDTH}}
+\index{BEAM\_\-WIDTH@{BEAM\_\-WIDTH}!postag.cpp@{postag.cpp}}
+\subsubsection[{BEAM\_\-WIDTH}]{\setlength{\rightskip}{0pt plus 5cm}const double {\bf BEAM\_\-WIDTH} = 3.0}}
+\label{postag_8cpp_555e7b79b9e1fddaa92e6c1f67b1e97e}
+
+
+
+
+Definition at line 18 of file postag.cpp.
+
+Referenced by viterbi().

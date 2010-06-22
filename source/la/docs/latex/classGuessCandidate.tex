@@ -1,0 +1,396 @@
+\hypertarget{classGuessCandidate}{
+\section{GuessCandidate Class Reference}
+\label{classGuessCandidate}\index{GuessCandidate@{GuessCandidate}}
+}
+{\tt \#include $<$infoclass.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classGuessCandidate_e70b08d1594bbee7a858bd3daa3e56cf}{GuessCandidate} ()
+\item 
+void \hyperlink{classGuessCandidate_a5b6783e92b61856af930a78f8b1c15e}{initialize} ()
+\begin{CompactList}\small\item\em This function initializes a \hyperlink{classGuessCandidate}{GuessCandidate} object. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_82efa1e3539398ef8c2d0e59540bbcb8}{addNJ} (unsigned int nPos, \hyperlink{classJEInfo}{JEInfo} \&jeInfo)
+\begin{CompactList}\small\item\em This function adds contents to the \_\-njList. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_c013dcabd5da13af7a93a8c037349b25}{addNVC} (\hyperlink{classHeadTailInfo}{HeadTailInfo} $\ast$hti, int depth, unsigned int info)
+\begin{CompactList}\small\item\em This function adds contents to the \_\-nvcList. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_e2eaac995e76c7f4477fd487eb0147b9}{addNXSD} (\hyperlink{classHeadTailInfo}{HeadTailInfo} $\ast$hti, int depth, unsigned int info)
+\begin{CompactList}\small\item\em This function adds contents to the \_\-nxsdList. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} $\ast$ \hyperlink{classGuessCandidate_afe6b140e724f2bc31805c6b78f42978}{getCurrentNXSD} ()
+\begin{CompactList}\small\item\em This function gets currently added contents to the \_\-nxsdList. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_bec22d1a1868988a906fd07c7083e927}{closeNXSD} ()
+\begin{CompactList}\small\item\em This function add 1 to the \_\-nxsdCount. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_5da582496746546080413e951e3078f3}{addAuxVerb} (\hyperlink{classHeadTailInfo}{HeadTailInfo} $\ast$hti, int depth)
+\begin{CompactList}\small\item\em This function adds contents to the \_\-avList. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} $\ast$ \hyperlink{classGuessCandidate_e63d62596168193e824ffb43275ab0a5}{getCurrentAV} ()
+\begin{CompactList}\small\item\em This function gets currently added contents to the \_\-avList. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} $\ast$ \hyperlink{classGuessCandidate_f82fa6bc098f9833dc45ebd539aa53fe}{getLastAV} ()
+\begin{CompactList}\small\item\em This function gets the last contents in the \_\-avList. \item\end{CompactList}\item 
+void \hyperlink{classGuessCandidate_025f96e44f9a728833e5f2c102155dea}{closeAV} ()
+\begin{CompactList}\small\item\em This function add 1 to the \_\-avCount. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Public Attributes}
+\begin{CompactItemize}
+\item 
+\hyperlink{classTailInfo}{TailInfo} \hyperlink{classGuessCandidate_2622d5a2c762087031cbe91489bb49cd}{\_\-njList} \mbox{[}LIST\_\-MAX\mbox{]}
+\begin{CompactList}\small\item\em the list of words, which are able to guess with \char`\"{}noun + postposition\char`\"{}. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} \hyperlink{classGuessCandidate_03874c97800c94410000fabce43caa7b}{\_\-nvcList} \mbox{[}LIST\_\-MAX\mbox{]}
+\begin{CompactList}\small\item\em the list of words, which are able to guess with \char`\"{}noun + copula\char`\"{}. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} \hyperlink{classGuessCandidate_8eb000c2b7f13f2f2330346bdee6e652}{\_\-nxsdList} \mbox{[}LIST\_\-MAX\mbox{]}
+\begin{CompactList}\small\item\em the list of words, which are able to guess with \char`\"{}noun + predicative suffix\char`\"{}. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1Eojul}{Eojul} \hyperlink{classGuessCandidate_4eed8fd03e0f6d778e0ad6858dec266a}{\_\-avList} \mbox{[}LIST\_\-MAX\mbox{]}
+\begin{CompactList}\small\item\em the list of words, which are able to guess with \char`\"{}auxiliary verb\char`\"{}. \item\end{CompactList}\item 
+int \hyperlink{classGuessCandidate_049a1704663dcfc0a4584c15f088500f}{\_\-njCount}
+\begin{CompactList}\small\item\em the number of the word list, which are able to guess with \char`\"{}noun + postposition\char`\"{}. \item\end{CompactList}\item 
+int \hyperlink{classGuessCandidate_ab107dd9132f2ffd4293bef3f504eee5}{\_\-nvcCount}
+\begin{CompactList}\small\item\em the number of the word list, which are able to guess with \char`\"{}noun + copula\char`\"{}. \item\end{CompactList}\item 
+int \hyperlink{classGuessCandidate_d55bb019c674eac31e008aabd991cf09}{\_\-nxsdCount}
+\begin{CompactList}\small\item\em the number of the word list, which are able to guess with \char`\"{}noun + predicative suffix\char`\"{}. \item\end{CompactList}\item 
+int \hyperlink{classGuessCandidate_3a7ad0eae4852041514cbd517ea5920d}{\_\-avCount}
+\begin{CompactList}\small\item\em the number of the word list, which are able to guess with \char`\"{}auxiliary verb\char`\"{}. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 206 of file infoclass.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classGuessCandidate_e70b08d1594bbee7a858bd3daa3e56cf}{
+\index{GuessCandidate@{GuessCandidate}!GuessCandidate@{GuessCandidate}}
+\index{GuessCandidate@{GuessCandidate}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{GuessCandidate}]{\setlength{\rightskip}{0pt plus 5cm}GuessCandidate::GuessCandidate ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_e70b08d1594bbee7a858bd3daa3e56cf}
+
+
+
+
+Definition at line 219 of file infoclass.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classGuessCandidate_5da582496746546080413e951e3078f3}{
+\index{GuessCandidate@{GuessCandidate}!addAuxVerb@{addAuxVerb}}
+\index{addAuxVerb@{addAuxVerb}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{addAuxVerb}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::addAuxVerb ({\bf HeadTailInfo} $\ast$ {\em hti}, \/  int {\em depth})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_5da582496746546080413e951e3078f3}
+
+
+This function adds contents to the \_\-avList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hti}]the information for haed and tail part of a word. \item[{\em depth}]the index of the \hyperlink{classHeadTailInfo}{HeadTailInfo} lists. \end{description}
+\end{Desc}
+
+
+Definition at line 357 of file infoclass.h.
+
+References \_\-avCount, \_\-avList, kmaOrange::Eojul::close(), kmaOrange::Eojul::increaseAnalysisResults(), LIST\_\-MAX, kmaOrange::Eojul::setEojulAndInfo(), and HeadTailInfo::tagTail.\hypertarget{classGuessCandidate_82efa1e3539398ef8c2d0e59540bbcb8}{
+\index{GuessCandidate@{GuessCandidate}!addNJ@{addNJ}}
+\index{addNJ@{addNJ}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{addNJ}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::addNJ (unsigned int {\em nPos}, \/  {\bf JEInfo} \& {\em jeInfo})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_82efa1e3539398ef8c2d0e59540bbcb8}
+
+
+This function adds contents to the \_\-njList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em nPos}]the starting position of a postposition in a word. \item[{\em jeInfo}]the information of a grammatical morpheme, which don't have a coda as the first syllable. \end{description}
+\end{Desc}
+
+
+Definition at line 248 of file infoclass.h.
+
+References \_\-njCount, \_\-njList, TailInfo::jeInfo, LIST\_\-MAX, and TailInfo::nPos.
+
+Referenced by kmaOrange::MAnalyzer::analyzeHeadTail().\hypertarget{classGuessCandidate_c013dcabd5da13af7a93a8c037349b25}{
+\index{GuessCandidate@{GuessCandidate}!addNVC@{addNVC}}
+\index{addNVC@{addNVC}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{addNVC}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::addNVC ({\bf HeadTailInfo} $\ast$ {\em hti}, \/  int {\em depth}, \/  unsigned int {\em info})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_c013dcabd5da13af7a93a8c037349b25}
+
+
+This function adds contents to the \_\-nvcList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hti}]the information for haed and tail part of a word. \item[{\em depth}]the index of the \hyperlink{classHeadTailInfo}{HeadTailInfo} lists. \item[{\em info}]the information of contents in a word. \end{description}
+\end{Desc}
+
+
+Definition at line 266 of file infoclass.h.
+
+References \_\-nvcCount, \_\-nvcList, kmaOrange::Eojul::append(), kmaOrange::Eojul::close(), EI\_\-AUXVERB, getLastAV(), kmaOrange::Eojul::increaseAnalysisResults(), LIST\_\-MAX, kmaOrange::Eojul::setEojulAndInfo(), and HeadTailInfo::tagTail.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), and kmaOrange::MAnalyzer::checkNanalyzeCopular().\hypertarget{classGuessCandidate_e2eaac995e76c7f4477fd487eb0147b9}{
+\index{GuessCandidate@{GuessCandidate}!addNXSD@{addNXSD}}
+\index{addNXSD@{addNXSD}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{addNXSD}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::addNXSD ({\bf HeadTailInfo} $\ast$ {\em hti}, \/  int {\em depth}, \/  unsigned int {\em info})\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_e2eaac995e76c7f4477fd487eb0147b9}
+
+
+This function adds contents to the \_\-nxsdList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em hti}]the information for haed and tail part of a word. \item[{\em depth}]the index of the \hyperlink{classHeadTailInfo}{HeadTailInfo} lists. \item[{\em info}]the information of contents in a word. \end{description}
+\end{Desc}
+
+
+Definition at line 298 of file infoclass.h.
+
+References \_\-nxsdCount, \_\-nxsdList, kmaOrange::Eojul::append(), kmaOrange::Eojul::close(), EI\_\-AUXVERB, getLastAV(), kmaOrange::Eojul::increaseAnalysisResults(), LIST\_\-MAX, kmaOrange::Eojul::setEojulAndInfo(), and HeadTailInfo::tagTail.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), and kmaOrange::MAnalyzer::checkNanalyzeXSDecliable().\hypertarget{classGuessCandidate_025f96e44f9a728833e5f2c102155dea}{
+\index{GuessCandidate@{GuessCandidate}!closeAV@{closeAV}}
+\index{closeAV@{closeAV}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{closeAV}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::closeAV ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_025f96e44f9a728833e5f2c102155dea}
+
+
+This function add 1 to the \_\-avCount. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 412 of file infoclass.h.
+
+References \_\-avCount.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), and kmaOrange::MAnalyzer::checkNanalyzeXSDecliable().\hypertarget{classGuessCandidate_bec22d1a1868988a906fd07c7083e927}{
+\index{GuessCandidate@{GuessCandidate}!closeNXSD@{closeNXSD}}
+\index{closeNXSD@{closeNXSD}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{closeNXSD}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::closeNXSD ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_bec22d1a1868988a906fd07c7083e927}
+
+
+This function add 1 to the \_\-nxsdCount. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 345 of file infoclass.h.
+
+References \_\-nxsdCount.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), and kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH().\hypertarget{classGuessCandidate_e63d62596168193e824ffb43275ab0a5}{
+\index{GuessCandidate@{GuessCandidate}!getCurrentAV@{getCurrentAV}}
+\index{getCurrentAV@{getCurrentAV}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{getCurrentAV}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul}$\ast$ GuessCandidate::getCurrentAV ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_e63d62596168193e824ffb43275ab0a5}
+
+
+This function gets currently added contents to the \_\-avList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of Eojul object. \end{Desc}
+
+
+Definition at line 377 of file infoclass.h.
+
+References \_\-avCount, \_\-avList, and LIST\_\-MAX.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), and kmaOrange::MAnalyzer::checkNanalyzeXSDecliable().\hypertarget{classGuessCandidate_afe6b140e724f2bc31805c6b78f42978}{
+\index{GuessCandidate@{GuessCandidate}!getCurrentNXSD@{getCurrentNXSD}}
+\index{getCurrentNXSD@{getCurrentNXSD}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{getCurrentNXSD}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul}$\ast$ GuessCandidate::getCurrentNXSD ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_afe6b140e724f2bc31805c6b78f42978}
+
+
+This function gets currently added contents to the \_\-nxsdList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of Eojul object. \end{Desc}
+
+
+Definition at line 328 of file infoclass.h.
+
+References \_\-nxsdCount, \_\-nxsdList, and LIST\_\-MAX.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), and kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH().\hypertarget{classGuessCandidate_f82fa6bc098f9833dc45ebd539aa53fe}{
+\index{GuessCandidate@{GuessCandidate}!getLastAV@{getLastAV}}
+\index{getLastAV@{getLastAV}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{getLastAV}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul}$\ast$ GuessCandidate::getLastAV ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_f82fa6bc098f9833dc45ebd539aa53fe}
+
+
+This function gets the last contents in the \_\-avList. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of Eojul object. \end{Desc}
+
+
+Definition at line 395 of file infoclass.h.
+
+References \_\-avCount, and \_\-avList.
+
+Referenced by addNVC(), and addNXSD().\hypertarget{classGuessCandidate_a5b6783e92b61856af930a78f8b1c15e}{
+\index{GuessCandidate@{GuessCandidate}!initialize@{initialize}}
+\index{initialize@{initialize}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{initialize}]{\setlength{\rightskip}{0pt plus 5cm}void GuessCandidate::initialize ()\hspace{0.3cm}{\tt  \mbox{[}inline\mbox{]}}}}
+\label{classGuessCandidate_a5b6783e92b61856af930a78f8b1c15e}
+
+
+This function initializes a \hyperlink{classGuessCandidate}{GuessCandidate} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-03 \end{Desc}
+\begin{Desc}
+\item[Author:]YoungMin Ahn \end{Desc}
+
+
+Definition at line 226 of file infoclass.h.
+
+References \_\-avCount, \_\-avList, \_\-njCount, \_\-nvcCount, \_\-nvcList, \_\-nxsdCount, and \_\-nxsdList.
+
+Referenced by kmaOrange::MAnalyzer::analyzeEojul().
+
+\subsection{Member Data Documentation}
+\hypertarget{classGuessCandidate_3a7ad0eae4852041514cbd517ea5920d}{
+\index{GuessCandidate@{GuessCandidate}!\_\-avCount@{\_\-avCount}}
+\index{\_\-avCount@{\_\-avCount}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-avCount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf GuessCandidate::\_\-avCount}}}
+\label{classGuessCandidate_3a7ad0eae4852041514cbd517ea5920d}
+
+
+the number of the word list, which are able to guess with \char`\"{}auxiliary verb\char`\"{}. 
+
+
+
+Definition at line 217 of file infoclass.h.
+
+Referenced by addAuxVerb(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), closeAV(), getCurrentAV(), getLastAV(), and initialize().\hypertarget{classGuessCandidate_4eed8fd03e0f6d778e0ad6858dec266a}{
+\index{GuessCandidate@{GuessCandidate}!\_\-avList@{\_\-avList}}
+\index{\_\-avList@{\_\-avList}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-avList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul} {\bf GuessCandidate::\_\-avList}\mbox{[}LIST\_\-MAX\mbox{]}}}
+\label{classGuessCandidate_4eed8fd03e0f6d778e0ad6858dec266a}
+
+
+the list of words, which are able to guess with \char`\"{}auxiliary verb\char`\"{}. 
+
+
+
+Definition at line 212 of file infoclass.h.
+
+Referenced by addAuxVerb(), kmaOrange::MAnalyzer::analyzeEojul\_\-AuxVerb(), getCurrentAV(), getLastAV(), and initialize().\hypertarget{classGuessCandidate_049a1704663dcfc0a4584c15f088500f}{
+\index{GuessCandidate@{GuessCandidate}!\_\-njCount@{\_\-njCount}}
+\index{\_\-njCount@{\_\-njCount}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-njCount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf GuessCandidate::\_\-njCount}}}
+\label{classGuessCandidate_049a1704663dcfc0a4584c15f088500f}
+
+
+the number of the word list, which are able to guess with \char`\"{}noun + postposition\char`\"{}. 
+
+
+
+Definition at line 214 of file infoclass.h.
+
+Referenced by addNJ(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), and initialize().\hypertarget{classGuessCandidate_2622d5a2c762087031cbe91489bb49cd}{
+\index{GuessCandidate@{GuessCandidate}!\_\-njList@{\_\-njList}}
+\index{\_\-njList@{\_\-njList}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-njList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf TailInfo} {\bf GuessCandidate::\_\-njList}\mbox{[}LIST\_\-MAX\mbox{]}}}
+\label{classGuessCandidate_2622d5a2c762087031cbe91489bb49cd}
+
+
+the list of words, which are able to guess with \char`\"{}noun + postposition\char`\"{}. 
+
+
+
+Definition at line 209 of file infoclass.h.
+
+Referenced by addNJ(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), and kmaOrange::MAnalyzer::analyzeEojul\_\-NNR().\hypertarget{classGuessCandidate_ab107dd9132f2ffd4293bef3f504eee5}{
+\index{GuessCandidate@{GuessCandidate}!\_\-nvcCount@{\_\-nvcCount}}
+\index{\_\-nvcCount@{\_\-nvcCount}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-nvcCount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf GuessCandidate::\_\-nvcCount}}}
+\label{classGuessCandidate_ab107dd9132f2ffd4293bef3f504eee5}
+
+
+the number of the word list, which are able to guess with \char`\"{}noun + copula\char`\"{}. 
+
+
+
+Definition at line 215 of file infoclass.h.
+
+Referenced by addNVC(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NJ(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::checkNanalyzeCopular(), and initialize().\hypertarget{classGuessCandidate_03874c97800c94410000fabce43caa7b}{
+\index{GuessCandidate@{GuessCandidate}!\_\-nvcList@{\_\-nvcList}}
+\index{\_\-nvcList@{\_\-nvcList}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-nvcList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul} {\bf GuessCandidate::\_\-nvcList}\mbox{[}LIST\_\-MAX\mbox{]}}}
+\label{classGuessCandidate_03874c97800c94410000fabce43caa7b}
+
+
+the list of words, which are able to guess with \char`\"{}noun + copula\char`\"{}. 
+
+
+
+Definition at line 210 of file infoclass.h.
+
+Referenced by addNVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NVC(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), and initialize().\hypertarget{classGuessCandidate_d55bb019c674eac31e008aabd991cf09}{
+\index{GuessCandidate@{GuessCandidate}!\_\-nxsdCount@{\_\-nxsdCount}}
+\index{\_\-nxsdCount@{\_\-nxsdCount}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-nxsdCount}]{\setlength{\rightskip}{0pt plus 5cm}int {\bf GuessCandidate::\_\-nxsdCount}}}
+\label{classGuessCandidate_d55bb019c674eac31e008aabd991cf09}
+
+
+the number of the word list, which are able to guess with \char`\"{}noun + predicative suffix\char`\"{}. 
+
+
+
+Definition at line 216 of file infoclass.h.
+
+Referenced by addNXSD(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), closeNXSD(), getCurrentNXSD(), and initialize().\hypertarget{classGuessCandidate_8eb000c2b7f13f2f2330346bdee6e652}{
+\index{GuessCandidate@{GuessCandidate}!\_\-nxsdList@{\_\-nxsdList}}
+\index{\_\-nxsdList@{\_\-nxsdList}!GuessCandidate@{GuessCandidate}}
+\subsubsection[{\_\-nxsdList}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Eojul} {\bf GuessCandidate::\_\-nxsdList}\mbox{[}LIST\_\-MAX\mbox{]}}}
+\label{classGuessCandidate_8eb000c2b7f13f2f2330346bdee6e652}
+
+
+the list of words, which are able to guess with \char`\"{}noun + predicative suffix\char`\"{}. 
+
+
+
+Definition at line 211 of file infoclass.h.
+
+Referenced by addNXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-Guess\_\-NXSD(), kmaOrange::MAnalyzer::analyzeEojul\_\-NNR(), getCurrentNXSD(), and initialize().
+
+The documentation for this class was generated from the following file:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{infoclass_8h}{infoclass.h}\end{CompactItemize}

@@ -1,0 +1,222 @@
+\hypertarget{classkmaOrange_1_1ExCP949}{
+\section{kmaOrange::ExCP949 Class Reference}
+\label{classkmaOrange_1_1ExCP949}\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+}
+This class manages information of each syllable for KMA.  
+
+
+{\tt \#include $<$ExtendedCP949.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+\hyperlink{classkmaOrange_1_1ExCP949_1ed1dd58587eef4c1561c1689efdfedd}{ExCP949} ()
+\begin{CompactList}\small\item\em This function is a constructor of \hyperlink{classkmaOrange_1_1ExCP949}{ExCP949} object. \item\end{CompactList}\item 
+\hyperlink{classkmaOrange_1_1ExCP949_10256a72aecc859bd7572082ba5059fa}{$\sim$ExCP949} ()
+\begin{CompactList}\small\item\em This function is a destructor of \hyperlink{classkmaOrange_1_1ExCP949}{ExCP949} object. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} $\ast$ \hyperlink{classkmaOrange_1_1ExCP949_bec82a4143b93be47cadd1ce7e259c2c}{getInfoEnd} (char $\ast$strs)
+\begin{CompactList}\small\item\em This function gets the information in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} for the last syllable of input string. \item\end{CompactList}\item 
+static \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} $\ast$ \hyperlink{classkmaOrange_1_1ExCP949_2e89cf267a9f3c61e97a7c015f2891b7}{getInfo} (char $\ast$strs)
+\begin{CompactList}\small\item\em This function gets the information in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} for the first syllable of input string. \item\end{CompactList}\item 
+static \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} $\ast$ \hyperlink{classkmaOrange_1_1ExCP949_338fb0a3df2e8ea4ae62655e32040dda}{getInfo} (short int pos)
+\begin{CompactList}\small\item\em This function gets the information of given index number in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Attributes}
+\begin{CompactItemize}
+\item 
+static \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} \hyperlink{classkmaOrange_1_1ExCP949_c314ba60fe83622b74f43e1b1611b2ae}{SIT} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}, which has information of each syllable. \item\end{CompactList}\item 
+static \hyperlink{structkmaOrange_1_1PositionInfo}{PositionInfo} \hyperlink{classkmaOrange_1_1ExCP949_64c74c62aff0c87c7bbdf5bc270c2024}{PT} \mbox{[}$\,$\mbox{]}
+\begin{CompactList}\small\item\em the list of structure \hyperlink{structkmaOrange_1_1PositionInfo}{PositionInfo}, which has information for the hash operation. \item\end{CompactList}\item 
+static short int \hyperlink{classkmaOrange_1_1ExCP949_2bfe3d86204e992f440de9770e8aeec6}{MAX\_\-SIT} = sizeof( \hyperlink{classkmaOrange_1_1ExCP949_c314ba60fe83622b74f43e1b1611b2ae}{SIT} ) / sizeof( struct \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} )
+\begin{CompactList}\small\item\em the number of elements in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+This class manages information of each syllable for KMA. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 117 of file ExtendedCP949.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classkmaOrange_1_1ExCP949_1ed1dd58587eef4c1561c1689efdfedd}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!ExCP949@{ExCP949}}
+\index{ExCP949@{ExCP949}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{ExCP949}]{\setlength{\rightskip}{0pt plus 5cm}ExCP949::ExCP949 ()}}
+\label{classkmaOrange_1_1ExCP949_1ed1dd58587eef4c1561c1689efdfedd}
+
+
+This function is a constructor of \hyperlink{classkmaOrange_1_1ExCP949}{ExCP949} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 12118 of file ExtendedCP949.cpp.\hypertarget{classkmaOrange_1_1ExCP949_10256a72aecc859bd7572082ba5059fa}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!$\sim$ExCP949@{$\sim$ExCP949}}
+\index{$\sim$ExCP949@{$\sim$ExCP949}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{$\sim$ExCP949}]{\setlength{\rightskip}{0pt plus 5cm}ExCP949::$\sim$ExCP949 ()}}
+\label{classkmaOrange_1_1ExCP949_10256a72aecc859bd7572082ba5059fa}
+
+
+This function is a destructor of \hyperlink{classkmaOrange_1_1ExCP949}{ExCP949} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 12122 of file ExtendedCP949.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classkmaOrange_1_1ExCP949_338fb0a3df2e8ea4ae62655e32040dda}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{getInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SyllableInfo} $\ast$ ExCP949::getInfo (short int {\em pos})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_338fb0a3df2e8ea4ae62655e32040dda}
+
+
+This function gets the information of given index number in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pos}]a short integer - given index number. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. \end{Desc}
+
+
+Definition at line 12158 of file ExtendedCP949.cpp.
+
+References MAX\_\-SIT, and SIT.\hypertarget{classkmaOrange_1_1ExCP949_2e89cf267a9f3c61e97a7c015f2891b7}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!getInfo@{getInfo}}
+\index{getInfo@{getInfo}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{getInfo}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SyllableInfo} $\ast$ ExCP949::getInfo (char $\ast$ {\em strs})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_2e89cf267a9f3c61e97a7c015f2891b7}
+
+
+This function gets the information in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} for the first syllable of input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strs}]a pointer of a character - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. \end{Desc}
+
+
+Definition at line 12144 of file ExtendedCP949.cpp.
+
+References MAX\_\-SIT, PT, SIT, and kmaOrange::PositionInfo::startIndex.
+
+Referenced by kmaOrange::MAnalyzer::analyzeSubHangulWordforSN(), kmaOrange::MAnalyzer::canBeVE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), and kmaOrange::AuxVerb::searchNgetInfoFromAvTrie().\hypertarget{classkmaOrange_1_1ExCP949_bec82a4143b93be47cadd1ce7e259c2c}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!getInfoEnd@{getInfoEnd}}
+\index{getInfoEnd@{getInfoEnd}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{getInfoEnd}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SyllableInfo} $\ast$ ExCP949::getInfoEnd (char $\ast$ {\em strs})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_bec82a4143b93be47cadd1ce7e259c2c}
+
+
+This function gets the information in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo} for the last syllable of input string. 
+
+\begin{Desc}
+\item[Date:]2008-11-06 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em strs}]a pointer of a character - input string. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of a structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. \end{Desc}
+
+
+Definition at line 12126 of file ExtendedCP949.cpp.
+
+References MAX\_\-SIT, PT, SIT, and kmaOrange::PositionInfo::startIndex.
+
+Referenced by kmaOrange::MAnalyzer::analyzeDeclinableWord(), kmaOrange::MAnalyzer::analyzeEojul(), kmaOrange::MAnalyzer::analyzeHeadTail(), kmaOrange::MAnalyzer::analyzeSimpleWord(), kmaOrange::MAnalyzer::canBeVE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-CHEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-KEH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeCopular(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), and kmaOrange::MAnalyzer::checkNanalyzeXSDecliable().
+
+\subsection{Member Data Documentation}
+\hypertarget{classkmaOrange_1_1ExCP949_2bfe3d86204e992f440de9770e8aeec6}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!MAX\_\-SIT@{MAX\_\-SIT}}
+\index{MAX\_\-SIT@{MAX\_\-SIT}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{MAX\_\-SIT}]{\setlength{\rightskip}{0pt plus 5cm}short int {\bf ExCP949::MAX\_\-SIT} = sizeof( {\bf SIT} ) / sizeof( struct {\bf SyllableInfo} )\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_2bfe3d86204e992f440de9770e8aeec6}
+
+
+the number of elements in the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}. 
+
+
+
+Definition at line 122 of file ExtendedCP949.h.
+
+Referenced by getInfo(), and getInfoEnd().\hypertarget{classkmaOrange_1_1ExCP949_64c74c62aff0c87c7bbdf5bc270c2024}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!PT@{PT}}
+\index{PT@{PT}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{PT}]{\setlength{\rightskip}{0pt plus 5cm}{\bf PositionInfo} {\bf ExCP949::PT}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_64c74c62aff0c87c7bbdf5bc270c2024}
+
+
+\textbf{Initial value:}
+
+\begin{Code}\begin{verbatim} {
+
+        { 0, DIV1 },    { 190,DIV1 },   { 380,DIV1 },   { 570,DIV1 },   { 760,DIV1 },   { 950,DIV1 },   { 1140,DIV1 },  { 1330,DIV1 },
+        { 1520,DIV1 },  { 1710,DIV1 },  { 1900,DIV1 },  { 2090,DIV1 },  { 2280,DIV1 },  { 2470,DIV1 },  { 2660,DIV1 },  { 2850,DIV1 },
+        { 3040,DIV1 },  { 3230,DIV1 },  { 3420,DIV1 },  { 3610,DIV1 },  { 3800,DIV1 },  { 3990,DIV1 },  { 4180,DIV1 },  { 4370,DIV1 },
+        { 4560,DIV1 },  { 4750,DIV1 },  { 4940,DIV1 },  { 5130,DIV1 },  { 5320,DIV1 },  { 5510,DIV1 },  { 5700,DIV1 },  { 5890,DIV1 },
+        { 6080,DIV1 },  { 6176,DIV1 },  { 6272,DIV1 },  { 6368,DIV1 },  { 6464,DIV1 },  { 6560,DIV1 },  { 6656,DIV1 },  { 6752,DIV1 },
+        { 6848,DIV1 },  { 6944,DIV1 },  { 7040,DIV1 },  { 7136,DIV1 },  { 7232,DIV1 },  { 7328,DIV1 },  { 7424,DIV1 },  { 7520,DIV1 },
+        { 7710,DIV1 },  { 7900,DIV1 },  { 8090,DIV1 },  { 8280,DIV1 },  { 8470,DIV1 },  { 8660,DIV1 },  { 8850,DIV1 },  { 9040,DIV1 },
+        { 9230,DIV1 },  { 9420,DIV1 },  { 9610,DIV1 },  { 9800,DIV1 },  { 9990,DIV1 },  { 10180,DIV1 }, { 10370,DIV1 }, { 10560,DIV1 },
+        { 10750,DIV1 }, { 10940,DIV1 }, { 11130,DIV1 }, { 11320,DIV1 }, { 11510,DIV1 }, { 11700,DIV1 }, { 11890,DIV2 }, { 11984,DIV2 }
+
+}
+\end{verbatim}
+\end{Code}
+the list of structure \hyperlink{structkmaOrange_1_1PositionInfo}{PositionInfo}, which has information for the hash operation. 
+
+
+
+Definition at line 121 of file ExtendedCP949.h.
+
+Referenced by getInfo(), and getInfoEnd().\hypertarget{classkmaOrange_1_1ExCP949_c314ba60fe83622b74f43e1b1611b2ae}{
+\index{kmaOrange::ExCP949@{kmaOrange::ExCP949}!SIT@{SIT}}
+\index{SIT@{SIT}!kmaOrange::ExCP949@{kmaOrange::ExCP949}}
+\subsubsection[{SIT}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SyllableInfo} {\bf kmaOrange::ExCP949::SIT}\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classkmaOrange_1_1ExCP949_c314ba60fe83622b74f43e1b1611b2ae}
+
+
+the list of structure \hyperlink{structkmaOrange_1_1SyllableInfo}{SyllableInfo}, which has information of each syllable. 
+
+
+
+Definition at line 120 of file ExtendedCP949.h.
+
+Referenced by kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAE(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-WAHWOH(), kmaOrange::MAnalyzer::checkNanalyzeContraction\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-hlL(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-OO(), kmaOrange::MAnalyzer::checkNanalyzeElision\_\-UH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-BIUP(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-DIGT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-HIUNG(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUH(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-RUR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-SIOT(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-UR(), kmaOrange::MAnalyzer::checkNanalyzeIrregularConjugation\_\-YUR(), kmaOrange::MAnalyzer::checkNanalyzePreEomi(), kmaOrange::MAnalyzer::checkNanalyzeV\_\-(), kmaOrange::MAnalyzer::checkNanalyzeXSDecliable(), getInfo(), and getInfoEnd().
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{ExtendedCP949_8h}{ExtendedCP949.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{ExtendedCP949_8cpp}{ExtendedCP949.cpp}\end{CompactItemize}

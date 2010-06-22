@@ -1,0 +1,78 @@
+\hypertarget{api_8h}{
+\section{/disk/workspace-cpp/la-manager/include/stem/api.h File Reference}
+\label{api_8h}\index{/disk/workspace-cpp/la-manager/include/stem/api.h@{/disk/workspace-cpp/la-manager/include/stem/api.h}}
+}
+\subsection*{Classes}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structSN__env}{SN\_\-env}
+\end{CompactItemize}
+\subsection*{Typedefs}
+\begin{CompactItemize}
+\item 
+typedef unsigned char \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol}
+\end{CompactItemize}
+\subsection*{Functions}
+\begin{CompactItemize}
+\item 
+struct \hyperlink{structSN__env}{SN\_\-env} $\ast$ \hyperlink{api_8h_06055a169ba8359f09fec75d72caa868}{SN\_\-create\_\-env} (int S\_\-size, int I\_\-size, int B\_\-size)
+\item 
+void \hyperlink{api_8h_345a90ab2f4a857c3c25ee8f3afbe7fa}{SN\_\-close\_\-env} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int S\_\-size)
+\item 
+int \hyperlink{api_8h_30c48f0cad77f5e33b8981f0d2222291}{SN\_\-set\_\-current} (struct \hyperlink{structSN__env}{SN\_\-env} $\ast$z, int size, const \hyperlink{api_8h_04438e24473719aaf288c57833717164}{symbol} $\ast$s)
+\end{CompactItemize}
+
+
+\subsection{Typedef Documentation}
+\hypertarget{api_8h_04438e24473719aaf288c57833717164}{
+\index{api.h@{api.h}!symbol@{symbol}}
+\index{symbol@{symbol}!api.h@{api.h}}
+\subsubsection[{symbol}]{\setlength{\rightskip}{0pt plus 5cm}typedef unsigned char {\bf symbol}}}
+\label{api_8h_04438e24473719aaf288c57833717164}
+
+
+
+
+Definition at line 7 of file api.h.
+
+\subsection{Function Documentation}
+\hypertarget{api_8h_345a90ab2f4a857c3c25ee8f3afbe7fa}{
+\index{api.h@{api.h}!SN\_\-close\_\-env@{SN\_\-close\_\-env}}
+\index{SN\_\-close\_\-env@{SN\_\-close\_\-env}!api.h@{api.h}}
+\subsubsection[{SN\_\-close\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}void SN\_\-close\_\-env (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em S\_\-size})}}
+\label{api_8h_345a90ab2f4a857c3c25ee8f3afbe7fa}
+
+
+
+
+Definition at line 45 of file api.cpp.
+
+References SN\_\-env::B, SN\_\-env::I, lose\_\-s(), SN\_\-env::p, and SN\_\-env::S.
+
+Referenced by danish\_\-UTF\_\-8\_\-close\_\-env(), dutch\_\-UTF\_\-8\_\-close\_\-env(), english\_\-UTF\_\-8\_\-close\_\-env(), finnish\_\-UTF\_\-8\_\-close\_\-env(), french\_\-UTF\_\-8\_\-close\_\-env(), german\_\-UTF\_\-8\_\-close\_\-env(), hungarian\_\-UTF\_\-8\_\-close\_\-env(), italian\_\-UTF\_\-8\_\-close\_\-env(), norwegian\_\-UTF\_\-8\_\-close\_\-env(), portuguese\_\-UTF\_\-8\_\-close\_\-env(), romanian\_\-UTF\_\-8\_\-close\_\-env(), russian\_\-UTF\_\-8\_\-close\_\-env(), SN\_\-create\_\-env(), spanish\_\-UTF\_\-8\_\-close\_\-env(), swedish\_\-UTF\_\-8\_\-close\_\-env(), and turkish\_\-UTF\_\-8\_\-close\_\-env().\hypertarget{api_8h_06055a169ba8359f09fec75d72caa868}{
+\index{api.h@{api.h}!SN\_\-create\_\-env@{SN\_\-create\_\-env}}
+\index{SN\_\-create\_\-env@{SN\_\-create\_\-env}!api.h@{api.h}}
+\subsubsection[{SN\_\-create\_\-env}]{\setlength{\rightskip}{0pt plus 5cm}struct {\bf SN\_\-env}$\ast$ SN\_\-create\_\-env (int {\em S\_\-size}, \/  int {\em I\_\-size}, \/  int {\em B\_\-size})\hspace{0.3cm}{\tt  \mbox{[}read\mbox{]}}}}
+\label{api_8h_06055a169ba8359f09fec75d72caa868}
+
+
+
+
+Definition at line 8 of file api.cpp.
+
+References SN\_\-env::B, create\_\-s(), SN\_\-env::I, SN\_\-env::p, SN\_\-env::S, and SN\_\-close\_\-env().
+
+Referenced by danish\_\-UTF\_\-8\_\-create\_\-env(), dutch\_\-UTF\_\-8\_\-create\_\-env(), english\_\-UTF\_\-8\_\-create\_\-env(), finnish\_\-UTF\_\-8\_\-create\_\-env(), french\_\-UTF\_\-8\_\-create\_\-env(), german\_\-UTF\_\-8\_\-create\_\-env(), hungarian\_\-UTF\_\-8\_\-create\_\-env(), italian\_\-UTF\_\-8\_\-create\_\-env(), norwegian\_\-UTF\_\-8\_\-create\_\-env(), portuguese\_\-UTF\_\-8\_\-create\_\-env(), romanian\_\-UTF\_\-8\_\-create\_\-env(), russian\_\-UTF\_\-8\_\-create\_\-env(), spanish\_\-UTF\_\-8\_\-create\_\-env(), swedish\_\-UTF\_\-8\_\-create\_\-env(), and turkish\_\-UTF\_\-8\_\-create\_\-env().\hypertarget{api_8h_30c48f0cad77f5e33b8981f0d2222291}{
+\index{api.h@{api.h}!SN\_\-set\_\-current@{SN\_\-set\_\-current}}
+\index{SN\_\-set\_\-current@{SN\_\-set\_\-current}!api.h@{api.h}}
+\subsubsection[{SN\_\-set\_\-current}]{\setlength{\rightskip}{0pt plus 5cm}int SN\_\-set\_\-current (struct {\bf SN\_\-env} $\ast$ {\em z}, \/  int {\em size}, \/  const {\bf symbol} $\ast$ {\em s})}}
+\label{api_8h_30c48f0cad77f5e33b8981f0d2222291}
+
+
+
+
+Definition at line 63 of file api.cpp.
+
+References SN\_\-env::c, SN\_\-env::l, and replace\_\-s().
+
+Referenced by la\_\-manager::stem::Stemmer::stem().

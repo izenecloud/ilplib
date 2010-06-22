@@ -1,0 +1,193 @@
+\hypertarget{classWK__Knowledge}{
+\section{WK\_\-Knowledge Class Reference}
+\label{classWK__Knowledge}\index{WK\_\-Knowledge@{WK\_\-Knowledge}}
+}
+a class for KMA system dictionary.  
+
+
+{\tt \#include $<$wk\_\-knowledge.h$>$}
+
+Inheritance diagram for WK\_\-Knowledge::\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2cm]{classWK__Knowledge}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{CompactItemize}
+\item 
+virtual \hyperlink{classWK__Knowledge_fc9a3d81b7755e64aba7ba4d48494457}{$\sim$WK\_\-Knowledge} ()
+\item 
+virtual int \hyperlink{classWK__Knowledge_0d5580699f2b12ebee77e72ac95d45d2}{loadKnowledge} (const char $\ast$pPath, bool hasKnowlege=true)=0
+\begin{CompactList}\small\item\em This function loads contents of the system dictionaries and the statistical data into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Knowledge_08574e4818e76b18fb58c4b4eec1d6aa}{loadUserNoun} (const char $\ast$pPath=\char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}, const char $\ast$pName=\char`\"{}user.dic\char`\"{}, bool isOverWriting=true)=0
+\begin{CompactList}\small\item\em This function loads contents of the user-noun dictionary file into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Knowledge_9c8847731efad49fa0e4385325e2d4b7}{loadPreAnalysis} (const char $\ast$pPath=\char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}, const char $\ast$pName=\char`\"{}preanal.dic\char`\"{}, bool isOverWriting=true)=0
+\begin{CompactList}\small\item\em This function loads contents of the pre-analysis dictionary file into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item\end{CompactList}\item 
+virtual int \hyperlink{classWK__Knowledge_0ad630181c1519d316d2d2cdf28a270e}{makeKnowledge} (const char $\ast$pSrcPath, const char $\ast$pTgtPath)=0
+\begin{CompactList}\small\item\em This function makes the binary system dictionary file. \item\end{CompactList}\end{CompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{CompactItemize}
+\item 
+static \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} $\ast$ \hyperlink{classWK__Knowledge_63c8fd907321f33da86df178f2c6e839}{createObject} (bool willLoadByDefaultPath=false)
+\begin{CompactList}\small\item\em This function creates a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \item\end{CompactList}\end{CompactItemize}
+
+
+\subsection{Detailed Description}
+a class for KMA system dictionary. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+
+
+Definition at line 15 of file wk\_\-knowledge.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classWK__Knowledge_fc9a3d81b7755e64aba7ba4d48494457}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!$\sim$WK\_\-Knowledge@{$\sim$WK\_\-Knowledge}}
+\index{$\sim$WK\_\-Knowledge@{$\sim$WK\_\-Knowledge}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{$\sim$WK\_\-Knowledge}]{\setlength{\rightskip}{0pt plus 5cm}WK\_\-Knowledge::$\sim$WK\_\-Knowledge ()\hspace{0.3cm}{\tt  \mbox{[}virtual\mbox{]}}}}
+\label{classWK__Knowledge_fc9a3d81b7755e64aba7ba4d48494457}
+
+
+
+
+Definition at line 13 of file wk\_\-knowledge.cpp.
+
+\subsection{Member Function Documentation}
+\hypertarget{classWK__Knowledge_63c8fd907321f33da86df178f2c6e839}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!createObject@{createObject}}
+\index{createObject@{createObject}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{createObject}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WK\_\-Knowledge} $\ast$ WK\_\-Knowledge::createObject (bool {\em willLoadByDefaultPath} = {\tt false})\hspace{0.3cm}{\tt  \mbox{[}static\mbox{]}}}}
+\label{classWK__Knowledge_63c8fd907321f33da86df178f2c6e839}
+
+
+This function creates a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em willLoadByDefaultPath}]a boolean. \par
+ true - it loads the knowledge using the default path. \par
+ false - it loads the knowledge using the \hyperlink{classWK__Knowledge_0d5580699f2b12ebee77e72ac95d45d2}{loadKnowledge()} method. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]a pointer of \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. \end{Desc}
+
+
+Definition at line 17 of file wk\_\-knowledge.cpp.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Knowledge_0d5580699f2b12ebee77e72ac95d45d2}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!loadKnowledge@{loadKnowledge}}
+\index{loadKnowledge@{loadKnowledge}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{loadKnowledge}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Knowledge::loadKnowledge (const char $\ast$ {\em pPath}, \/  bool {\em hasKnowlege} = {\tt true})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Knowledge_0d5580699f2b12ebee77e72ac95d45d2}
+
+
+This function loads contents of the system dictionaries and the statistical data into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pPath}]a pointer of a constant charater - the path of the directory, which the system dictionaries and the statistical data files are stored. \item[{\em hasKnowlege}]a boolean - It loads the system dictionary using the \char`\"{}wko.klg\char`\"{} file, which is a binary system dictionary file, whether or not. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Dictionary_22a1dd6af0f8698ff758de165ba5b613}{kmaOrange::Dictionary}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Knowledge_9c8847731efad49fa0e4385325e2d4b7}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!loadPreAnalysis@{loadPreAnalysis}}
+\index{loadPreAnalysis@{loadPreAnalysis}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{loadPreAnalysis}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Knowledge::loadPreAnalysis (const char $\ast$ {\em pPath} = {\tt \char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}}, \/  const char $\ast$ {\em pName} = {\tt \char`\"{}preanal.dic\char`\"{}}, \/  bool {\em isOverWriting} = {\tt true})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Knowledge_9c8847731efad49fa0e4385325e2d4b7}
+
+
+This function loads contents of the pre-analysis dictionary file into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pPath}]a pointer of a constant charater - the path of the directory, which the pre-analysis dictionary file is stored. \item[{\em pName}]a pointer of a constant charater - the name of the pre-analysis dictionary file. \item[{\em isOverWriting}]a boolean - It overwrites a word in the pre-analysys dictionary, which is a same word in the system dictionary, whether or not. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Dictionary_8a78b756e3a98be8ded1f5a38b5bd4ae}{kmaOrange::Dictionary}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Knowledge_08574e4818e76b18fb58c4b4eec1d6aa}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!loadUserNoun@{loadUserNoun}}
+\index{loadUserNoun@{loadUserNoun}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{loadUserNoun}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Knowledge::loadUserNoun (const char $\ast$ {\em pPath} = {\tt \char`\"{}/disk/workspace-cpp/kma/resource/dic\char`\"{}}, \/  const char $\ast$ {\em pName} = {\tt \char`\"{}user.dic\char`\"{}}, \/  bool {\em isOverWriting} = {\tt true})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Knowledge_08574e4818e76b18fb58c4b4eec1d6aa}
+
+
+This function loads contents of the user-noun dictionary file into a \hyperlink{classWK__Knowledge}{WK\_\-Knowledge} object. 
+
+\begin{Desc}
+\item[Date:]2008-11-04 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pPath}]a pointer of a constant charater - the path of the directory, which the user-noun dictionary file is stored. \item[{\em pName}]a pointer of a constant charater - the name of the user-noun dictionary file. \item[{\em isOverWriting}]a boolean - It overwrites a word in the user-noun dictioanry, which is a same word in the system dictionary, whether or not. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Dictionary_c0b9ddb423ad674ff15a77ee9663a641}{kmaOrange::Dictionary}.
+
+Referenced by la\_\-manager::KoreanNounFilter::KoreanNounFilter().\hypertarget{classWK__Knowledge_0ad630181c1519d316d2d2cdf28a270e}{
+\index{WK\_\-Knowledge@{WK\_\-Knowledge}!makeKnowledge@{makeKnowledge}}
+\index{makeKnowledge@{makeKnowledge}!WK_Knowledge@{WK\_\-Knowledge}}
+\subsubsection[{makeKnowledge}]{\setlength{\rightskip}{0pt plus 5cm}virtual int WK\_\-Knowledge::makeKnowledge (const char $\ast$ {\em pSrcPath}, \/  const char $\ast$ {\em pTgtPath})\hspace{0.3cm}{\tt  \mbox{[}pure virtual\mbox{]}}}}
+\label{classWK__Knowledge_0ad630181c1519d316d2d2cdf28a270e}
+
+
+This function makes the binary system dictionary file. 
+
+\begin{Desc}
+\item[Date:]2009-01-07 \end{Desc}
+\begin{Desc}
+\item[Author:]HeeGeun Park \end{Desc}
+\begin{Desc}
+\item[Parameters:]
+\begin{description}
+\item[{\em pSrcPath}]a pointer of a constant charater - the path of the source files. \item[{\em pTgtPath}]a pointer of a constant charater - the path of the target file. \end{description}
+\end{Desc}
+\begin{Desc}
+\item[Returns:]an integer.\par
+ 0 - fail.\par
+ 1 - success. \end{Desc}
+
+
+Implemented in \hyperlink{classkmaOrange_1_1Dictionary_3f754de6a90c39753b6620f089be7b85}{kmaOrange::Dictionary}.
+
+The documentation for this class was generated from the following files:\begin{CompactItemize}
+\item 
+/disk/workspace-cpp/la-manager/include/kma/\hyperlink{wk__knowledge_8h}{wk\_\-knowledge.h}\item 
+/disk/workspace-cpp/la-manager/source/kma/\hyperlink{wk__knowledge_8cpp}{wk\_\-knowledge.cpp}\end{CompactItemize}

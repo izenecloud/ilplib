@@ -7,9 +7,9 @@
 #ifndef _LA_STEMANALYZER_H_
 #define _LA_STEMANALYZER_H_
 
-#include <Term.h>
-#include <Analyzer.h>
-#include <stem/Stemmer.h>
+#include <la/Term.h>
+#include <la/Analyzer.h>
+#include <la/stem/Stemmer.h>
 
 
 

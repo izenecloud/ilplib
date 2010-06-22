@@ -7,7 +7,7 @@
 #define _LA_STEMMER_H_
 
 #include <string>
-#include <stem/api.h>
+#include <la/stem/api.h>
 
 //using namespace std;
 

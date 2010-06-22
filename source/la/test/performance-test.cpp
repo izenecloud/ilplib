@@ -14,7 +14,7 @@
 
 #include "test_def.h"
 
-#include <LA.h>
+#include <la/LA.h>
 
 #include <wiselib/profiler/ProfilerGroup.h>
 

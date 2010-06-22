@@ -7,7 +7,7 @@
 
 #ifndef BIDIR_H_
 #define BIDIR_H_
-#include <pos/common.h>
+#include <la/pos/common.h>
 
 //using namespace std;
 namespace la

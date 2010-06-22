@@ -9,7 +9,7 @@
 #ifndef KOREANLANGUAGEACTION_H_
 #define KOREANLANGUAGEACTION_H_
 
-#include "CommonLanguageAnalyzer.h"
+#include "la/CommonLanguageAnalyzer.h"
 
 #include <wk_eojul.h>
 #include <wk_analyzer.h>

@@ -6,7 +6,7 @@
  *  Separated the EnglishLanguageAction from the KoreanLanguageAction. The two were in the same file.
  */
 #ifdef USE_WISEKMA
-#include "KoreanLanguageAction.h"
+#include "la/KoreanLanguageAction.h"
 
 namespace la
 {

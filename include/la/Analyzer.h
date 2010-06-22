@@ -12,7 +12,7 @@
 
 #include <Term.h>
 
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 
 #include <list>
 

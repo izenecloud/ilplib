@@ -13,8 +13,8 @@
 #include <iostream>
 #include <fstream>
 #include <map>
-#include <LA.h>
-#include <wrapper/TermVector.h>
+#include <la/LA.h>
+#include <la/wrapper/TermVector.h>
 
 using namespace std;
 using namespace boost::filesystem;

@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-#include <PlainDictionary.h>
-#include <UpdateDictThread.h>
+#include <la/PlainDictionary.h>
+#include <la/UpdateDictThread.h>
 
 using namespace la;
 using namespace wiselib;

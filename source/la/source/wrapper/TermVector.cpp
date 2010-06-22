@@ -5,7 +5,7 @@
  *      Author: zhjay
  */
 
-#include <wrapper/TermVector.h>
+#include <la/wrapper/TermVector.h>
 
 using namespace std;
 

@@ -7,7 +7,7 @@
  *  from the file.
  */
 
-#include "PlainDictionary.h"
+#include "la/PlainDictionary.h"
 
 #include <fstream>
 

@@ -1,7 +1,7 @@
 
 /* This file was generated automatically by the Snowball to ANSI C compiler */
 
-#include <stem/header.h>
+#include <la/stem/header.h>
 
 
 #ifdef __cplusplus

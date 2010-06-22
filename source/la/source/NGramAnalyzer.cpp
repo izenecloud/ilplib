@@ -5,7 +5,7 @@
  *      Author: zhjay
  */
 
-#include <NGramAnalyzer.h>
+#include <la/NGramAnalyzer.h>
 
 #include <math.h>
 

@@ -9,8 +9,8 @@
 #ifndef MULTILANGUAGEANALYZER_H_
 #define MULTILANGUAGEANALYZER_H_
 
-#include <Analyzer.h>
-#include <stem/Stemmer.h>
+#include <la/Analyzer.h>
+#include <la/stem/Stemmer.h>
 
 #include <boost/shared_ptr.hpp>
 

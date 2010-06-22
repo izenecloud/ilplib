@@ -5,7 +5,7 @@
  *      Author: zhjay
  */
 
-#include <StemAnalyzer.h>
+#include <la/StemAnalyzer.h>
 
 using namespace wiselib;
 using namespace la::stem;

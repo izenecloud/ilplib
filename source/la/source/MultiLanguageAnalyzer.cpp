@@ -6,7 +6,7 @@
  * @author vernkin
  */
 
-#include "MultiLanguageAnalyzer.h"
+#include "la/MultiLanguageAnalyzer.h"
 
 #include <iostream>
 using namespace std;

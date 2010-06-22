@@ -15,9 +15,9 @@
 
 
 #include <util/ThreadModel.h>
-#include <wiselib/ustring/vector_string.hpp>
+#include <util/ustring/vector_string.hpp>
 
-#include <UpdatableDict.h>
+#include <la/UpdatableDict.h>
 #include <iostream>
 
 #define USE_STD_MAP

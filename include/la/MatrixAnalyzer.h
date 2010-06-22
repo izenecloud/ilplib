@@ -10,7 +10,7 @@
 #define _LA_MATRIX_ANALYZER_H_
 
 
-#include <Analyzer.h>
+#include <la/Analyzer.h>
 
 #include <list>
 

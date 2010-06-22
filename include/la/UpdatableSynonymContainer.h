@@ -9,7 +9,7 @@
 #ifndef UPDATABLESYNONYMCONTAINER_H_
 #define UPDATABLESYNONYMCONTAINER_H_
 
-#include <UpdatableDict.h>
+#include <la/UpdatableDict.h>
 
 #include <am/vsynonym/VSynonym.h>
 

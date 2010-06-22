@@ -6,7 +6,7 @@
  */
 #include "test_def.h"
 
-#include <Tokenizer.h>
+#include <la/Tokenizer.h>
 using namespace la;
 using namespace wiselib;
 using namespace std;

@@ -8,7 +8,7 @@
 #ifndef _LA_TOKENIZER_H_
 #define _LA_TOKENIZER_H_
 
-#include <Term.h>
+#include <la/Term.h>
 //#include <LACache.h>
 
 #define TWO_BYPE_MAX 65535

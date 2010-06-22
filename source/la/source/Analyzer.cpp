@@ -5,7 +5,7 @@
  * @date    2010.02.24
  */
 
-#include <Analyzer.h>
+#include <la/Analyzer.h>
 
 namespace la
 {

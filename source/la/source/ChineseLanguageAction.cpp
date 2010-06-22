@@ -6,7 +6,7 @@
  *  LanguageAction for Chinese language.
  */
 #ifdef USE_IZENECMA
-#include "ChineseLanguageAction.h"
+#include "la/ChineseLanguageAction.h"
 
 #include <cma_factory.h>
 #include <iostream>

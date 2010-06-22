@@ -6,9 +6,9 @@
  */
 #include "test_def.h"
 
-#include <StemAnalyzer.h>
-#include <Tokenizer.h>
-#include <stem/Stemmer.h>
+#include <la/StemAnalyzer.h>
+#include <la/Tokenizer.h>
+#include <la/stem/Stemmer.h>
 #include <ctime>
 using namespace la;
 using namespace wiselib;

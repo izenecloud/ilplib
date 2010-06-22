@@ -9,15 +9,15 @@
 #ifndef COMMONLANGUAGEANALYZER_H_
 #define COMMONLANGUAGEANALYZER_H_
 
-#include <Analyzer.h>
-#include <SingletonDictionary.h>
-#include <UpdatableSynonymContainer.h>
-#include <UpdateDictThread.h>
+#include <la/Analyzer.h>
+#include <la/SingletonDictionary.h>
+#include <la/UpdatableSynonymContainer.h>
+#include <la/UpdateDictThread.h>
 #include <am/vsynonym/VSynonym.h>
 
-#include <stem/Stemmer.h>
+#include <la/stem/Stemmer.h>
 
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 
 #define _CLA_INSERT_INDEX_USTR( term_it, termList, text, wordOffset, pos, morpheme ) \
     term_it = termList.insert( termList.end(), globalNewTerm_ ); \

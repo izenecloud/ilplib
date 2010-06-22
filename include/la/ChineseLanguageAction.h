@@ -10,7 +10,7 @@
 #ifndef CHINESELANGUAGEACTION_H_
 #define CHINESELANGUAGEACTION_H_
 
-#include "CommonLanguageAnalyzer.h"
+#include "la/CommonLanguageAnalyzer.h"
 
 #include <analyzer.h>
 #include <knowledge.h>

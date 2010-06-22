@@ -9,7 +9,7 @@
 #ifndef ENGLISHUTIL_H_
 #define ENGLISHUTIL_H_
 
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 
 
 namespace la

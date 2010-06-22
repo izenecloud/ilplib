@@ -6,8 +6,8 @@
 
 #include "test_def.h"
 
-#include <LA.h>
-#include <UpdateDictThread.h>
+#include <la/LA.h>
+#include <la/UpdateDictThread.h>
 
 using namespace la;
 using namespace wiselib;

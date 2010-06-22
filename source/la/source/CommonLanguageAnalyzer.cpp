@@ -8,20 +8,20 @@
 //#define SF1_TIME_CHECK
 #include <wiselib/profiler/ProfilerGroup.h>
 
-#include <CommonLanguageAnalyzer.h>
-#include <EnglishUtil.h>
-#include <UpdateDictThread.h>
+#include <la/CommonLanguageAnalyzer.h>
+#include <la/EnglishUtil.h>
+#include <la/UpdateDictThread.h>
 
 //KMA headers
 #ifdef USE_WISEKMA
-    #include <KoreanLanguageAction.h>
+    #include <la/KoreanLanguageAction.h>
     using namespace kmaOrange;
 #endif
 //end KMA headers
 
 //CMA headers
 #ifdef USE_IZENECMA
-    #include <ChineseLanguageAction.h>
+    #include <la/ChineseLanguageAction.h>
 #endif
 
 using namespace wiselib;

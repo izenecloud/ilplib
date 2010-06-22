@@ -1,4 +1,4 @@
-#include <SynonymAnalyzer.h>
+#include <la/SynonymAnalyzer.h>
 
 using namespace std;
 

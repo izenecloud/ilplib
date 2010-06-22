@@ -13,8 +13,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-#include <UpdatableDict.h>
-#include <PlainDictionary.h>
+#include <la/UpdatableDict.h>
+#include <la/PlainDictionary.h>
 #include <map>
 #include <util/ThreadModel.h>
 

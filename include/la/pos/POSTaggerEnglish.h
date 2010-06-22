@@ -9,11 +9,11 @@
 #define _LA_POSTAGGERENGLISH_H_
 
 #include <boost/lexical_cast.hpp>
-#include <pos/maxent.h>
-#include <pos/common.h>
-#include <pos/bidir.h>
-#include <Term.h>
-#include <Singleton.h>
+#include <la/pos/maxent.h>
+#include <la/pos/common.h>
+#include <la/pos/bidir.h>
+#include <la/Term.h>
+#include <la/Singleton.h>
 
 
 

@@ -6,7 +6,7 @@
  *  Thread to update dictionary from time to time
  */
 
-#include <UpdateDictThread.h>
+#include <la/UpdateDictThread.h>
 
 // for getLastModifiedTime
 #include <sys/stat.h>

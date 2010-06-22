@@ -6,7 +6,7 @@
  *  Separated the EnglishAnalyzer from the KoreanAanlyzer. The two were in the same file.
  */
 
-#include <EnglishAnalyzer.h>
+#include <la/EnglishAnalyzer.h>
 
 using namespace wiselib;
 using namespace std;

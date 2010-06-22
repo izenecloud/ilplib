@@ -1,20 +1,20 @@
-#include <stem/Stemmer.h>
+#include <la/stem/Stemmer.h>
 
-#include <stem/stem_UTF_8_danish.h>
-#include <stem/stem_UTF_8_dutch.h>
-#include <stem/stem_UTF_8_english.h>
-#include <stem/stem_UTF_8_finnish.h>
-#include <stem/stem_UTF_8_french.h>
-#include <stem/stem_UTF_8_german.h>
-#include <stem/stem_UTF_8_hungarian.h>
-#include <stem/stem_UTF_8_italian.h>
-#include <stem/stem_UTF_8_norwegian.h>
-#include <stem/stem_UTF_8_portuguese.h>
-#include <stem/stem_UTF_8_romanian.h>
-#include <stem/stem_UTF_8_russian.h>
-#include <stem/stem_UTF_8_spanish.h>
-#include <stem/stem_UTF_8_swedish.h>
-#include <stem/stem_UTF_8_turkish.h>
+#include <la/stem/stem_UTF_8_danish.h>
+#include <la/stem/stem_UTF_8_dutch.h>
+#include <la/stem/stem_UTF_8_english.h>
+#include <la/stem/stem_UTF_8_finnish.h>
+#include <la/stem/stem_UTF_8_french.h>
+#include <la/stem/stem_UTF_8_german.h>
+#include <la/stem/stem_UTF_8_hungarian.h>
+#include <la/stem/stem_UTF_8_italian.h>
+#include <la/stem/stem_UTF_8_norwegian.h>
+#include <la/stem/stem_UTF_8_portuguese.h>
+#include <la/stem/stem_UTF_8_romanian.h>
+#include <la/stem/stem_UTF_8_russian.h>
+#include <la/stem/stem_UTF_8_spanish.h>
+#include <la/stem/stem_UTF_8_swedish.h>
+#include <la/stem/stem_UTF_8_turkish.h>
 
 
 using namespace std;

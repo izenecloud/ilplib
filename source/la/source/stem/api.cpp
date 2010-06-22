@@ -1,4 +1,4 @@
-#include <stem/header.h>
+#include <la/stem/header.h>
 
 #include <stdlib.h> /* for calloc, free */
 

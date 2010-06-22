@@ -10,8 +10,8 @@
 #ifndef _LA_ENGLISH_ANALYZER_H_
 #define  _LA_ENGLISH_ANALYZER_H_
 
-#include <Analyzer.h>
-#include <pos/POSTaggerEnglish.h>
+#include <la/Analyzer.h>
+#include <la/pos/POSTaggerEnglish.h>
 
 namespace la
 {

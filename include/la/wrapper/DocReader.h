@@ -8,7 +8,7 @@
 #ifndef _LA_DOCREADER_H_
 #define _LA_DOCREADER_H_
 
-#include <wrapper/FileIO.h>
+#include <la/wrapper/FileIO.h>
 #include <iostream>
 
 

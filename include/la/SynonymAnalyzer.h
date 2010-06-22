@@ -9,7 +9,7 @@
 #ifndef _LA_SYNONYM_ANALYZER_H_
 #define _LA_SYNONYM_ANALYZER_H_
 
-#include <Analyzer.h>
+#include <la/Analyzer.h>
 
 #include <am/vsynonym/VSynonym.h>
 

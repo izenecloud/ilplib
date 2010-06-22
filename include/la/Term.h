@@ -11,7 +11,7 @@
 #define _LA_TERM_H_
 
 
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 
 #include <boost/serialization/access.hpp>
 

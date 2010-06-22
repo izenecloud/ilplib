@@ -8,7 +8,7 @@
 #ifndef _LA_NGRAM_ANALYZER_H_
 #define _LA_NGRAM_ANALYZER_H_
 
-#include <Analyzer.h>
+#include <la/Analyzer.h>
 
 namespace la 
 {

@@ -5,8 +5,8 @@
  *      Author: zhjay
  */
 
-#include <LA.h>
-#include <EnglishUtil.h>
+#include <la/LA.h>
+#include <la/EnglishUtil.h>
 
 using namespace la::stem;
 using namespace wiselib;

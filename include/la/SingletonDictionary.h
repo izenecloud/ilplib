@@ -8,14 +8,14 @@
 #ifndef _LA_DICTIONARY_H_
 #define _LA_DICTIONARY_H_
 
-#include <Singleton.h>
+#include <la/Singleton.h>
 
 #ifdef USE_WISEKMA
     #include <wk_knowledge.h>
     #include <wk_stopword.h>
 #endif
 
-#include <wiselib/ustring/UString.h>
+#include <util/ustring/UString.h>
 #include <set>
 #include <fstream>
 

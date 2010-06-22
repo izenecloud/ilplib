@@ -7,7 +7,7 @@
 
 #include <string>
 #include <vector>
-#include <pos/maxent.h>
+#include <la/pos/maxent.h>
 
 namespace la
 {

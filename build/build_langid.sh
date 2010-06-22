@@ -39,7 +39,7 @@ then
     cd $BUILD_PATH
 
     echo "generating Makefiles for GCC"
-    cmake -G "Unix Makefiles" -DCMAKE_COMPILER_IS_GNUCXX=1 -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_LANGID_DEBUG_PRINT=1 ../../source/langid
+    cmake -G "Unix Makefiles" -DCMAKE_COMPILER_IS_GNUCXX=1 -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_LANGID_DEBUG_PRINT=1 ../../source
     make all
 else
     echo "usage: $0 [debug|release|profile|clean]"

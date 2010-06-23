@@ -5,5 +5,5 @@ FILE( GLOB_RECURSE SOURCE
   #"pos/*.cpp"
   )
 
-ADD_LIBRARY(la ${SOURCE})
+ADD_LIBRARY(la SHARED ${SOURCE})
 TARGET_LINK_LIBRARIES(la ${wisekma_LIBRARIES} ${izenecma_LIBRARIES} ${izenelib_LIBRARIES})

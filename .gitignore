@@ -4,6 +4,8 @@
 .\#*
 /*
 /build
+/Debug
+/Release
 !/build/build.sh
 !/bin
 !/lib

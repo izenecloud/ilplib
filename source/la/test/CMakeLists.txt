@@ -6,13 +6,9 @@ IF( USE_IZENECMA )
     ADD_DEFINITIONS( -DIZENECMA=$(IZENECMA) )
 ENDIF( USE_IZENECMA )
 
-LINK_DIRECTORIES (${izenecma_LIBRARY_DIRS} ${wisekma_LIBRARY_DIRS})
+set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin/la)
 
-INCLUDE_DIRECTORIES( 
-    ${lalib_SOURCE_DIR}/include/stem
-    )
-
-set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+include_directories(".")
 
 add_executable(t_Tokenizer t_Tokenizer.cpp)
 add_executable(t_StemAnalyzer t_StemAnalyzer.cpp)
@@ -30,24 +26,21 @@ SET_TARGET_PROPERTIES(
 target_link_libraries( t_StemAnalyzer
 	la
 	${wiselib_LIBRARIES}
-	${izenelib_procmeminfo_LIBRARY}
-	${wisekma_LIBRARIES}
+	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	)
 
 target_link_libraries(t_Tokenizer
 	la
 	${wiselib_LIBRARIES}
-	${izenelib_procmeminfo_LIBRARY}
-	${wisekma_LIBRARIES}
+	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	) 
 
 target_link_libraries( t_LA
 	la
 	${wiselib_LIBRARIES}
-	${izenelib_procmeminfo_LIBRARY}
-	${wisekma_LIBRARIES}
+	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	${Boost_SERIALIZATION_LIBRARY}
 	)
@@ -55,15 +48,13 @@ target_link_libraries( t_LA
 target_link_libraries( performance-test
 	la
 	${wisekma_LIBRARIES}
-	${wiselib_LIBRARIES}
-	${izenelib_procmeminfo_LIBRARY}
+	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	)
 
 target_link_libraries( t_DynamicDict
 	la
-	${wiselib_LIBRARIES}
-	${izenelib_procmeminfo_LIBRARY}
+	${izenelib_LIBRARIES}
 	${wisekma_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	${Boost_SERIALIZATION_LIBRARY}

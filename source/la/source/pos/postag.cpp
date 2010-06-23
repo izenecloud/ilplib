@@ -10,9 +10,9 @@
 #include <sstream>
 #include <cmath>
 #include <set>
-#include <pos/maxent.h>
-#include <pos/common.h>
-#include <pos/bidir.h>
+#include <la/pos/maxent.h>
+#include <la/pos/common.h>
+#include <la/pos/bidir.h>
 using namespace std;
 
 namespace la

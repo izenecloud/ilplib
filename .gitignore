@@ -3,8 +3,9 @@
 \#*
 .\#*
 /*
+/build
+!/build/build.sh
 !/bin
-!/build
 !/lib
 !/conf
 !/lib

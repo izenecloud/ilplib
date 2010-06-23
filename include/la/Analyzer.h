@@ -10,7 +10,7 @@
 #ifndef _LA_ANALYZER_H_
 #define _LA_ANALYZER_H_
 
-#include <Term.h>
+#include <la/Term.h>
 
 #include <util/ustring/UString.h>
 

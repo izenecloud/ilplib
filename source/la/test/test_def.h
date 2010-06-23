@@ -2,7 +2,7 @@
 #ifndef _LA_TEST_DEF_H_
 #define _LA_TEST_DEF_H_
 
-#include <Term.h>
+#include <la/Term.h>
 #include <util/ustring/UString.h>
 #include <stdlib.h>
 #include <iostream>

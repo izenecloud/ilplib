@@ -2,7 +2,7 @@
  * $Id: maxent.cpp,v 1.15 2005/04/27 11:22:27 tsuruoka Exp $
  */
 
-#include <pos/maxent.h>
+#include <la/pos/maxent.h>
 #include <cmath>
 #include <cstdio>
 

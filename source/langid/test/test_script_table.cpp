@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
             ++countVec[type];
 
-#if LANGID_DEBUG_PRINT
+#ifdef LANGID_DEBUG_PRINT
             string propStr;
             if(table.propertyToStr(type, propStr))
             {

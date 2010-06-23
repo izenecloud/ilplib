@@ -1,4 +1,4 @@
-#include <pos/POSTaggerEnglish.h>
+#include <la/pos/POSTaggerEnglish.h>
 
 namespace la
 {

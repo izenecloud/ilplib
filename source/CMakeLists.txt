@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 2.6)
 
+project(ILPLIB)
+
 #set(CMAKE_VERBOSE_MAKEFILE on)
 
 # In CMake, compiler flags can be grouped in Configurations
@@ -31,7 +33,30 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
   MARK_AS_ADVANCED(CMAKE_CXX_FLAGS_DEBUGFULL CMAKE_CXX_FLAGS_PROFILE)
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 
-project(ILPLIB)
+##################################################
+# Find extra cmake modules dirs
+#
+# You can clone all modules from izenesoft.com:/git/cmake.git.
+# 
+# Copy it to your install dir or change the variable
+# EXTRA_CMAKE_MODULES_DIRS.
+#
+IF(IS_DIRECTORY "${CMAKE_INSTALL_PREFIX}/cmake")
+  SET(EXTRA_CMAKE_MODULES_DIRS ${EXTRA_CMAKE_MODULES_DIRS} "${CMAKE_INSTALL_PREFIX}/cmake")
+ENDIF(IS_DIRECTORY "${CMAKE_INSTALL_PREFIX}/cmake")
+SET(ENV_EXTRA_CMAKE_MODULES_DIRS $ENV{EXTRA_CMAKE_MODULES_DIRS})
+IF(ENV_EXTRA_CMAKE_MODULES_DIRS)
+  SET(EXTRA_CMAKE_MODULES_DIRS ${EXTRA_CMAKE_MODULES_DIRS} ${ENV_EXTRA_CMAKE_MODULES_DIRS})
+ENDIF(ENV_EXTRA_CMAKE_MODULES_DIRS)
+IF(IS_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake")
+  SET(EXTRA_CMAKE_MODULES_DIRS ${EXTRA_CMAKE_MODULES_DIRS} "${CMAKE_SOURCE_DIR}/cmake")
+ENDIF(IS_DIRECTORY "${CMAKE_SOURCE_DIR}/cmake")
+IF(NOT EXTRA_CMAKE_MODULES_DIRS)
+  MESSAGE(FATAL_ERROR
+    "Cannot find EXTRA_CMAKE_MODULES_DIRS.
+Please clone it from izenesoft.com:/git/cmake.git. Then set EXTRA_CMAKE_MODULES_DIRS (-DEXTRA_CMAKE_MODULES_DIRS=/path/to/cmake)to path of the cloned repository. You also can copy the cloned cmakedirectory to ${CMAKE_INSTALL_PREFIX} or ${CMAKE_SOURCE_DIR}")
+ENDIF(NOT EXTRA_CMAKE_MODULES_DIRS)
+SET(CMAKE_MODULE_PATH ${EXTRA_CMAKE_MODULES_DIRS})
 
 IF (CMAKE_COMPILER_IS_GNUCXX)
 add_definitions("-Wall -Wno-deprecated")

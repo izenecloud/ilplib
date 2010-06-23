@@ -3,10 +3,8 @@
 \#*
 .\#*
 /*
-/build
 /Debug
 /Release
-!/build/build.sh
 !/bin
 !/lib
 !/conf
@@ -17,3 +15,4 @@
 !/include
 !/.gitignore
 !/db
+!/build/build.sh

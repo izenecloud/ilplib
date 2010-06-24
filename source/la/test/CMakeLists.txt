@@ -16,6 +16,15 @@ add_executable(t_LA t_LA.cpp)
 add_executable(performance-test performance-test.cpp) 
 add_executable(t_DynamicDict t_DynamicDict.cpp) 
 
+set(libs
+	la
+	${izenelib_LIBRARIES}
+	${Boost_THREAD_LIBRARY}
+	${Boost_SERIALIZATION_LIBRARY}
+    ${izenecma_LIBRARIES}
+    ${wisekma_LIBRARIES}
+)
+
 SET_TARGET_PROPERTIES(
     performance-test
 
@@ -24,39 +33,22 @@ SET_TARGET_PROPERTIES(
 	)
 
 target_link_libraries( t_StemAnalyzer
-	la
-	${wiselib_LIBRARIES}
-	${izenelib_LIBRARIES}
-	${Boost_THREAD_LIBRARY}
+	${libs}
 	)
 
 target_link_libraries(t_Tokenizer
-	la
-	${wiselib_LIBRARIES}
-	${izenelib_LIBRARIES}
-	${Boost_THREAD_LIBRARY}
+	${libs}
 	) 
 
 target_link_libraries( t_LA
-	la
-	${wiselib_LIBRARIES}
-	${izenelib_LIBRARIES}
-	${Boost_THREAD_LIBRARY}
-	${Boost_SERIALIZATION_LIBRARY}
+	${libs}
 	)
 
 target_link_libraries( performance-test
-	la
-	${wisekma_LIBRARIES}
-	${izenelib_LIBRARIES}
-	${Boost_THREAD_LIBRARY}
+	${libs}
 	)
 
 target_link_libraries( t_DynamicDict
-	la
-	${izenelib_LIBRARIES}
-	${wisekma_LIBRARIES}
-	${Boost_THREAD_LIBRARY}
-	${Boost_SERIALIZATION_LIBRARY}
+	${libs}
 	)
 

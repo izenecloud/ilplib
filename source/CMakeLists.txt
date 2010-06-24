@@ -89,3 +89,4 @@ include_directories(../include)
 
 add_subdirectory(langid)
 add_subdirectory(la)
+add_subdirectory(question-answering)

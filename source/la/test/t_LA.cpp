@@ -326,7 +326,7 @@ int main( int argc, char * argv[] )
         cout << "3. SECOND TERMS " << endl;
         printTermList( second );
         cout << endl;
-
+/*
         shared_ptr<LA::PunctsType> puncts;
         puncts.reset( new LA::PunctsType );
         (*puncts)[(UCS2Char)','] = true;
@@ -341,7 +341,7 @@ int main( int argc, char * argv[] )
         printTermList( termList );
         cout << "Query string: "; toExpandedString( termList ).displayStringValue( UString::UTF_8 ); cout << endl;
         cout << endl;
-
+*/
     }
 
 

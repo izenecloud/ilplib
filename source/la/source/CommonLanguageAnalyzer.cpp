@@ -180,7 +180,7 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::~CommonLanguageAnalyzer()
     delete pSynonymResult_;
     delete pStemmer_;
 }
-
+//#define DEBUG_CLA
 
 template <class LanguageAction, class BasicSentence>
 int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
@@ -277,13 +277,16 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                 }
 
 #ifdef DEBUG_CLA
-                cout<<"To add index Synonym: " << bIndexSynonym_ << endl;
+                cout<<"To add index Synonym: " << bIndexSynonym_ << ", tempList size: "
+                    << tempList.size() << endl;
 #endif
-                if( bIndexSynonym_)
+                if( bIndexSynonym_ )
                 {
-
                     // search synonyms with lower cases
                     addSynonym( lowerLexicon, wOffset, tempList );
+#ifdef DEBUG_CLA
+                cout<<"After index Synonym tempList size: " << tempList.size() << endl;
+#endif
                 }
 
                 //this needs to be set so it includes the POS types that are needed
@@ -312,7 +315,8 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                         }
 
 #ifdef DEBUG_CLA
-                        cout<<"To extract English Stemming: " << bExtractEngStem_ << endl;
+                        cout<<"To extract English Stemming: " << bExtractEngStem_ << ", tempList size: "
+                                << tempList.size() << endl;
 #endif
 
                         if( bExtractEngStem_ )
@@ -326,19 +330,28 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                                 _CLA_INSERT_INDEX_STR( term_it, tempList, stem_term, wOffset, pos, morpheme );
                             }
                         }
+#ifdef DEBUG_CLA
+                        cout<<"After isFL size: " << tempList.size() << endl;
+#endif
                     }
+
+#ifdef DEBUG_CLA
+                cout<<"After pE->isIndexWord(i, j) tempList size: " << tempList.size() << endl;
+#endif
 
                 } // end if ( pE->isIndexWord(i, j) )
             } // for morpheme list items
 
 #ifdef DEBUG_CLA
-            cout<<"To Generate Compound Noun: " << bGenCompNoun_ << endl;
+            cout<<"To Generate Compound Noun: " << bGenCompNoun_ << ", tempList size: "
+                    << tempList.size() << endl;
 #endif
             // generate compund nouns
             if( bGenCompNoun_ )
                 generateCompundNouns( pE, inputstr, i, count, it->wordOffset_, tempList );
 #ifdef DEBUG_CLA
-            cout<<"To Combine Special Char: " << bSpecialChars_ << endl;
+            cout<<"To Combine Special Char: " << bSpecialChars_ << ", tempList size: "
+                    << tempList.size() << endl;
 #endif
             if( bSpecialChars_ )
                 combineSpecialChar( pE, i, count, tempList );
@@ -346,21 +359,34 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
         } // end for( int i = 0; i < listSize; ++i )
 
 #ifdef DEBUG_CLA
-        cout<<"To Extract Chinese: " << bExtractChinese_ << endl;
+        cout<<"To Extract Chinese: " << bExtractChinese_ << ", tempList size: "
+            << tempList.size() << endl;
 #endif
         if( bExtractChinese_ )
         {
             addChineseTerm( inputstr.c_str(), it->wordOffset_, tempList );
         }
 
+#ifdef DEBUG_CLA
+        cout<<"After one inoutput list loop tempList size: " << tempList.size() << endl;
+#endif
+
         if( !tempList.empty() )
         {
+            /*for( TermList::iterator itr = tempList.begin(); itr != tempList.end(); ++itr )
+            {
+                output.push_back( *itr );
+            }
+            */
             output.splice( output.end(), tempList );
+#ifdef DEBUG_CLA
+            cout<<"After one inoutput loop output.splice output size: " << output.size() << endl;
+#endif
         }
 
     } // end: for inoutput list
 #ifdef DEBUG_CLA
-    cout<<" Exit analyze_index " << endl;
+    cout<<" Exit analyze_index. Output Size: " << output.size() << "." << endl;
 #endif
 
     return localOffset;
@@ -690,8 +716,11 @@ void CommonLanguageAnalyzer<LanguageAction, BasicSentence>::addSynonym(
             }
 
             {
-                //UString tu( synonym, encode_ );
-                //cout << "SYNONYM: "; tu.displayStringValue( UString::UTF_8 ); cout << endl;
+#ifdef DEBUG_CLA
+                UString tu( synonym, encode_ );
+                cout << "SYNONYM: (" << tu.length() << ") ";
+                tu.displayStringValue( UString::UTF_8 ); cout << endl;
+#endif
             }
 
             BasicSentence* pEsyn = lat_->getSynBasicSentence( synonym );
@@ -718,6 +747,10 @@ void CommonLanguageAnalyzer<LanguageAction, BasicSentence>::addSynonym(
     {
         // TODO
     }
+
+#ifdef DEBUG_CLA
+    cout << "addSynonym output size: " << tlist.size() << "." << endl;
+#endif
 }
 
 template <class LanguageAction, class BasicSentence>

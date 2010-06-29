@@ -326,6 +326,11 @@ int main( int argc, char * argv[] )
         cout << "3. SECOND TERMS " << endl;
         printTermList( second );
         cout << endl;
+
+
+        cout << "------------- Combine SPECIAL TERMS and SECOND TERMS -----------------" << endl;
+        appendPlaceHolder( second, special );
+        printTermList( second );
 /*
         shared_ptr<LA::PunctsType> puncts;
         puncts.reset( new LA::PunctsType );

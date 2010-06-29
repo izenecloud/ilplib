@@ -15,6 +15,7 @@ add_executable(t_StemAnalyzer t_StemAnalyzer.cpp)
 add_executable(t_LA t_LA.cpp)
 add_executable(performance-test performance-test.cpp) 
 add_executable(t_DynamicDict t_DynamicDict.cpp) 
+add_executable(t_UnigramAnalyzer t_UnigramAnalyzer.cpp) 
 
 set(libs
 	la
@@ -49,6 +50,10 @@ target_link_libraries( performance-test
 	)
 
 target_link_libraries( t_DynamicDict
+	${libs}
+	)
+
+target_link_libraries( t_UnigramAnalyzer
 	${libs}
 	)
 

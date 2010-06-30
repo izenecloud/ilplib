@@ -147,6 +147,8 @@ namespace la
 
     void sortByWordOffset( TermList & termList );
 
+    void appendPlaceHolder( TermList & termList, TermList & placeHolder );
+
 }
 
 #endif /* _LA_TERM_H_ */

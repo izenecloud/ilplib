@@ -61,10 +61,7 @@ namespace la
         public:
             typedef rde::hash_map<izenelib::util::UCS2Char, bool> PunctsType;
 
-            LA() :
-                TERM_LENGTH_THRESHOLD_(128),
-                bCaseSensitive_( false )
-            { }
+            LA();
 
             void setTokenizerConfig( const TokenizeConfig & tokenConfig )
             {

@@ -164,8 +164,8 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::CommonLanguageAnalyzer(
     setVerbAdjStems();
     setExtractChinese();
     setExtractEngStem();
-    setIndexSynonym();
-    setSearchSynonym();
+    setIndexSynonym(false);
+    setSearchSynonym(true);
     setCaseSensitive(false);
     bSpecialChars_ = false;
 

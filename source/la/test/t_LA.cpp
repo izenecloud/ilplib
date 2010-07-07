@@ -229,7 +229,7 @@ int main( int argc, char * argv[] )
             analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
+            //(static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
             break;
         }
 #endif

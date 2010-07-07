@@ -211,6 +211,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
         if( analyzePrime )
         {
             prime_it = output.insert( output.end(), *it );
+            prime_it->wordOffset_ += localOffset;
             primeCnt_++;
         }
 
@@ -445,6 +446,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_search(
         if( retFlag & ANALYZE_PRIME_ )
         {
             prime_it = output.insert( output.end(), *it );
+            prime_it->wordOffset_ += localOffset;
             prime_it->stats_ = makeStatBit( Term::OR_BIT, level++ );
         }
 
@@ -660,6 +662,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_search(
             if( !(retFlag & ANALYZE_PRIME_) )
             {
                 prime_it = output.insert( output.end(), *it );
+                prime_it->wordOffset_ += localOffset;
                 prime_it->stats_ = makeStatBit( Term::AND_BIT, level );
             }
         }

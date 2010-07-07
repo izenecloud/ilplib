@@ -8,6 +8,8 @@
 #include <la/LA.h>
 #include <la/EnglishUtil.h>
 
+#include <map>
+
 using namespace la::stem;
 using namespace izenelib::util;
 using namespace std;
@@ -17,6 +19,44 @@ namespace la
 
     const string RES_PUNCT = "RP";
     const Term newTerm;
+
+    const UString OP_USTR( " |!(){}[]^\"", UString::UTF_8 );
+    const UString BACK_SLASH( "\\", UString::UTF_8 );
+
+    map< UString, UString > OP_REP_MAP;
+
+    void replaceSpecialChar( const UString& in, UString& ret )
+    {
+        map< UString, UString >::iterator itr;
+        for( size_t i = 0; i < in.length(); ++i )
+        {
+            UString key = in.substr( i, 1 );
+            itr = OP_REP_MAP.find( key );
+            if( itr == OP_REP_MAP.end() )
+            {
+                ret += key;
+            }
+            else
+            {
+                ret += itr->second;
+            }
+        }
+    }
+
+    LA::LA() :
+        TERM_LENGTH_THRESHOLD_(128),
+        bCaseSensitive_( false )
+    {
+        if( OP_REP_MAP.empty() == true )
+        {
+            for( size_t i = 0; i < OP_USTR.length(); ++i )
+            {
+                UString key = OP_USTR.substr( i, 1 );
+                OP_REP_MAP[ key ] = BACK_SLASH;
+                OP_REP_MAP[ key ] += key;
+            }
+        }
+    }
 
     void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
     {
@@ -206,7 +246,10 @@ namespace la
                     }
                 }
             }
-            output += it->text_;
+
+            UString replacedText;
+            replaceSpecialChar( it->text_, replacedText );
+            output += replacedText;
 
             prevLevel = level;
             prevOffset = it->wordOffset_;

@@ -138,6 +138,7 @@ int main( int argc, char * argv[] )
     TokenizeConfig config;
     config.addUnites("=");
     config.addAllows("-");
+    config.addAllows("|");
     //config.addAllows(",，");
 
     la.setTokenizerConfig( config );
@@ -159,7 +160,7 @@ int main( int argc, char * argv[] )
             static_cast<NKoreanAnalyzer*>(analyzer.get())->setSearchSynonym( true );
             //(static_cast<KoreanAnalyzer*>(analyzer.get()))->setGenerateCompNoun(true);
             //(static_cast<KoreanAnalyzer*>(analyzer.get()))->setExtractChinese(true);
-            //(static_cast<KoreanAnalyzer*>(analyzer.get()))->setSpecialChars("-");
+            (static_cast<NKoreanAnalyzer*>(analyzer.get()))->setSpecialChars("|");
             break;
 #endif
         case MULTI:
@@ -228,7 +229,7 @@ int main( int argc, char * argv[] )
             analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
+            //(static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
             break;
         }
 #endif

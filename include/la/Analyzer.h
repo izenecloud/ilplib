@@ -115,16 +115,11 @@ namespace la
             }
 
 
-            int analyze_index( const TermList & input, TermList & output )
-            {
-                return analyze_index( input, output, retFlag_idx_ );
-            }
+            int analyze_index( const TermList & input, TermList & output );
 
-            int analyze_search( const TermList & input, TermList & output )
-            {
-                return analyze_search( input, output, retFlag_sch_ );
-            }
+            int analyze_search( const TermList & input, TermList & output );
 
+        protected:
             virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0;}
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
 
@@ -134,6 +129,11 @@ namespace la
     // NON-MEMBER FUNCTION
     
     void makeString( const TermList & input, izenelib::util::UString & outputString );
+
+    /**
+     * Remove redundant spaces in the input string
+     */
+    void removeRedundantSpaces( izenelib::util::UString& input, izenelib::util::UString& output );
 }
 
 #endif /* _LA_ANALYZER_H_ */

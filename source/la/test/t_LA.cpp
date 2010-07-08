@@ -224,12 +224,13 @@ int main( int argc, char * argv[] )
         {
         	typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
             cout << "ANALYSIS: [CMA]"  << endl;
-            analyzer.reset( new NChineseAnalyzer( CMA_KNOWLEDGE ) );
+            analyzer.reset( new NChineseAnalyzer( CMA_KNOWLEDGE, false ) );
             analyzer.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
             analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
+            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setAnalysisType( 3 );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
-            //(static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
+            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
             break;
         }
 #endif
@@ -286,8 +287,10 @@ int main( int argc, char * argv[] )
 
     while( true )
     {
-        izenelib::util::UString query = showMenu();
-
+        izenelib::util::UString queryRaw = showMenu();
+        izenelib::util::UString query;
+        la::removeRedundantSpaces( queryRaw, query );
+        cout << "Refined Query: "; query.displayStringValue( izenelib::util::UString::UTF_8, cout ); cout << endl;
         /*
         //cout << " Tokenizing only" << endl;
         cout << "@@-------------- process( query, termlist ) ---------------" << endl;

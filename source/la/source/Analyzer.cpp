@@ -30,7 +30,7 @@ namespace la
     {
         using namespace izenelib::util;
 
-        bool lastIsASCII = false;
+        bool lastIsCn = false; // last is Chinese Character
         bool coverSpace = false; // whether traverse space last time
 
         size_t len = input.length();
@@ -48,11 +48,11 @@ namespace la
                 continue;
             }
 
-            bool curIsASCII = ( curChar < asciiUpBound );
+            bool curIsCn = UString::isThisChineseChar( curChar );
 
             if( coverSpace == true )
             {
-                if( curIsASCII == true && lastIsASCII == true )
+                if( curIsCn == false || lastIsCn == false )
                 {
                     output += SPACE_USTR;
                 }
@@ -60,7 +60,7 @@ namespace la
             }
 
             output += curChar;
-            lastIsASCII = curIsASCII;
+            lastIsCn = curIsCn;
         }
     }
 }

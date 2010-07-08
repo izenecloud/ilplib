@@ -133,7 +133,10 @@ namespace la
     /**
      * Remove redundant spaces in the input string
      */
-    void removeRedundantSpaces( izenelib::util::UString& input, izenelib::util::UString& output );
+    void removeRedundantSpaces(
+            const izenelib::util::UString& input,
+            izenelib::util::UString& output
+            );
 }
 
 #endif /* _LA_ANALYZER_H_ */

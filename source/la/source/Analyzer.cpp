@@ -26,7 +26,10 @@ namespace la
         return analyze_search( input, output, retFlag_sch_ );
     }
 
-    void removeRedundantSpaces( izenelib::util::UString& input, izenelib::util::UString& output )
+    void removeRedundantSpaces(
+            const izenelib::util::UString& input,
+            izenelib::util::UString& output
+            )
     {
         using namespace izenelib::util;
 
@@ -35,8 +38,6 @@ namespace la
 
         size_t len = input.length();
         output.clear();
-
-        unsigned int asciiUpBound = (unsigned int)0xFF;
 
         for( size_t i = 0; i < len; ++i )
         {

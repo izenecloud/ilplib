@@ -32,12 +32,12 @@ namespace la
             )
     {
         using namespace izenelib::util;
+        UString tmpOutput;
 
         bool lastIsCn = false; // last is Chinese Character
         bool coverSpace = false; // whether traverse space last time
 
         size_t len = input.length();
-        output.clear();
 
         for( size_t i = 0; i < len; ++i )
         {
@@ -55,13 +55,19 @@ namespace la
             {
                 if( curIsCn == false || lastIsCn == false )
                 {
-                    output += SPACE_USTR;
+                    tmpOutput += SPACE_USTR;
                 }
                 coverSpace = false;
             }
 
-            output += curChar;
+            tmpOutput += curChar;
             lastIsCn = curIsCn;
         }
+        output.swap( tmpOutput );
+    }
+
+    void removeRedundantSpaces( izenelib::util::UString& output)
+    {
+        removeRedundantSpaces( output, output );
     }
 }

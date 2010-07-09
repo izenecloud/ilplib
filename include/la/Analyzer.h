@@ -82,7 +82,7 @@ namespace la
              */
             virtual void setCaseSensitive( bool flag = true )
             {
-            	bCaseSensitive_ = flag;
+                bCaseSensitive_ = flag;
             }
 
             /**
@@ -137,6 +137,8 @@ namespace la
             const izenelib::util::UString& input,
             izenelib::util::UString& output
             );
+
+    void removeRedundantSpaces( izenelib::util::UString& output );
 }
 
 #endif /* _LA_ANALYZER_H_ */

@@ -165,8 +165,6 @@ namespace la
     izenelib::util::UString toExpandedString( const TermList & termList );
             //friend void makeString( const TermList & input, izenelib::util::UString & outputString );
 
-            
-
 }
 
 #endif /* _LA_H_ */

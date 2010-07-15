@@ -1,5 +1,14 @@
 SET( LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/../lib" )
 
+FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util)
+
+IF(izenelib_FOUND)
+    MESSAGE(STATUS "izenelib:")
+    MESSAGE(STATUS "  header: ${izenelib_INCLUDE_DIRS}")
+ELSE(izenelib_FOUND)
+    MESSAGE(STATUS "izenelib: not found")
+ENDIF(izenelib_FOUND)
+
 IF(ENABLE_TEST)
   ENABLE_TESTING()
 ENDIF(ENABLE_TEST)

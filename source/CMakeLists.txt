@@ -66,7 +66,6 @@ ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 SET(Boost_ADDITIONAL_VERSIONS 1.39 1.39.0 1.38 1.38.0 1.37 1.37.0)
 FIND_PACKAGE(Boost 1.36 COMPONENTS
     program_options thread serialization filesystem system)
-FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util)
     
 IF(Boost_FOUND)
     MESSAGE(STATUS "BOOST:")
@@ -77,13 +76,6 @@ IF(Boost_FOUND)
 ELSE(Boost_FOUND)
     MESSAGE(STATUS "BOOST: not found")
 ENDIF(Boost_FOUND)
-
-IF(izenelib_FOUND)
-    MESSAGE(STATUS "izenelib:")
-    MESSAGE(STATUS "  header: ${izenelib_INCLUDE_DIRS}")
-ELSE(izenelib_FOUND)
-    MESSAGE(STATUS "izenelib: not found")
-ENDIF(izenelib_FOUND)
 
 include_directories(../include)
 

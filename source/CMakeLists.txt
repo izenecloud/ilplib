@@ -2,6 +2,26 @@ cmake_minimum_required(VERSION 2.6)
 
 project(ILPLIB)
 
+# Check the mode
+IF( NOT MODE )
+    MESSAGE( STATUS "Set Default Mode to ALL")
+    SET( MODE "ALL")
+ENDIF( NOT MODE )
+STRING(TOUPPER ${MODE} UPPER_MODE)
+IF( ${UPPER_MODE} STREQUAL "ALL" )
+    SET( USE_LANGID TRUE )
+    SET( USE_LA TRUE )
+    SET( USE_QA TRUE )
+    MESSAGE( STATUS "ALL mode: include langid, la and qa.")
+ELSEIF( ${UPPER_MODE} STREQUAL "LANGID" )
+    SET( USE_LANGID TRUE )
+    SET( USE_LA FALSE )
+    SET( USE_QA FALSE )
+    MESSAGE( STATUS "LANGID mode: include langid.")
+ELSE( ${UPPER_MODE} STREQUAL "ALL" )
+    MESSAGE( FATAL_ERROR "Invalid parameter mode: ${MODE}, should be one of LANGID or ALL")
+ENDIF( ${UPPER_MODE} STREQUAL "ALL" )
+
 #set(CMAKE_VERBOSE_MAKEFILE on)
 
 # In CMake, compiler flags can be grouped in Configurations
@@ -33,6 +53,7 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
   MARK_AS_ADVANCED(CMAKE_CXX_FLAGS_DEBUGFULL CMAKE_CXX_FLAGS_PROFILE)
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 
+IF( USE_LA OR USE_QA )
 ##################################################
 # Find extra cmake modules dirs
 #
@@ -57,16 +78,17 @@ IF(NOT EXTRA_CMAKE_MODULES_DIRS)
 Please clone it from izenesoft.com:/git/cmake.git. Then set EXTRA_CMAKE_MODULES_DIRS (-DEXTRA_CMAKE_MODULES_DIRS=/path/to/cmake)to path of the cloned repository. You also can copy the cloned cmakedirectory to ${CMAKE_INSTALL_PREFIX} or ${CMAKE_SOURCE_DIR}")
 ENDIF(NOT EXTRA_CMAKE_MODULES_DIRS)
 SET(CMAKE_MODULE_PATH ${EXTRA_CMAKE_MODULES_DIRS})
+ENDIF( USE_LA OR USE_QA )
 
 IF (CMAKE_COMPILER_IS_GNUCXX)
 add_definitions("-Wall -Wno-deprecated")
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 
+
 # Boost package
 SET(Boost_ADDITIONAL_VERSIONS 1.39 1.39.0 1.38 1.38.0 1.37 1.37.0)
 FIND_PACKAGE(Boost 1.36 COMPONENTS
     program_options thread serialization filesystem system)
-FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util)
     
 IF(Boost_FOUND)
     MESSAGE(STATUS "BOOST:")
@@ -78,15 +100,25 @@ ELSE(Boost_FOUND)
     MESSAGE(STATUS "BOOST: not found")
 ENDIF(Boost_FOUND)
 
+IF( USE_LA OR USE_QA )
+FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util)
+
 IF(izenelib_FOUND)
     MESSAGE(STATUS "izenelib:")
     MESSAGE(STATUS "  header: ${izenelib_INCLUDE_DIRS}")
 ELSE(izenelib_FOUND)
     MESSAGE(STATUS "izenelib: not found")
 ENDIF(izenelib_FOUND)
+ENDIF( USE_LA OR USE_QA )
 
 include_directories(../include)
 
-add_subdirectory(langid)
-add_subdirectory(la)
-add_subdirectory(question-answering)
+IF( USE_LANGID )
+    add_subdirectory(langid)
+ENDIF( USE_LANGID )
+IF( USE_LA )
+    add_subdirectory(la)
+ENDIF( USE_LA )
+IF( USE_QA )
+    add_subdirectory(question-answering)
+ENDIF( USE_QA )

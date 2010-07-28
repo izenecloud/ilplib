@@ -23,7 +23,7 @@
 #include <list>
 #include <iostream>
 #include <fstream>
-
+#include <ctime>
 
 using namespace std;
 using namespace la;
@@ -166,6 +166,21 @@ CREATE_PROFILER ( pro3, "LA", "Analyzing text : process(UString, TermList, TermL
 
     // #1 ------------- bool process( const UString &, TermList & ); -------------
     cout << "1. bool process( const UString &, TermList & );" << endl;
+
+    clock_t etime = clock();
+    while( !ss.eof() )
+    {
+        string line;
+        getline( ss, line );
+        UString ustr;
+        ustr.assign( line, FILE_ENCODING );
+        TermList llist;
+        la.process_index( ustr, llist );
+    }
+
+    double dif = (double)(clock() - etime) / CLOCKS_PER_SEC;
+    cout << "stream analysis time: " << dif << endl;
+ /*
     i=0;
     {
         while( !ss.eof() )
@@ -199,6 +214,8 @@ STOP_PROFILER( pro1 );
             i++;
         }
     }
+    */
+
     cout << "number of terms: " << prim_total << endl << endl;
 
     ss.clear();

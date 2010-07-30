@@ -21,6 +21,7 @@ set(libs
 	la
 	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
 	${Boost_SERIALIZATION_LIBRARY}
     ${izenecma_LIBRARIES}
     ${wisekma_LIBRARIES}

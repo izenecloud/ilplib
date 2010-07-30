@@ -58,6 +58,30 @@ namespace la
         }
     }
 
+    void LA::process( UStringHashFunctor* hash,
+            const izenelib::util::UString & inputString,
+            TermIdList & outList )
+    {
+        outList.clear();
+
+        /// TODO why there is an assignment?
+        izenelib::util::UString uinputstr = inputString;
+        if( !bCaseSensitive_ )
+            uinputstr.toLowerString();
+
+        TermList tokenList;
+        tokenizer_.tokenize( uinputstr, tokenList );
+
+        if( analyzer_.get() != NULL ) {
+            analyzer_->analyze( hash, tokenList, outList );
+        }
+        else
+        {
+            /// TODO
+            /// tokenizer_.tokenize( uinputstr, outList );
+        }
+    }
+
     void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
     {
         outList.clear();
@@ -106,8 +130,8 @@ namespace la
 
     void LA::process_index(
             const izenelib::util::UString& inputString,
-            TermList & specialTermList, 
-            TermList & primaryTermList, 
+            TermList & specialTermList,
+            TermList & primaryTermList,
             TermList & outList
             )
     {
@@ -142,8 +166,8 @@ namespace la
 
     void LA::process_search(
             const izenelib::util::UString& inputString,
-            TermList & specialTermList, 
-            TermList & primaryTermList, 
+            TermList & specialTermList,
+            TermList & primaryTermList,
             TermList & outList
             )
     {
@@ -221,7 +245,7 @@ namespace la
                     output += LBRACKET;
                     baseLevel = level;
                 }
-                else 
+                else
                 {
                     if( prevLevel < level )
                     {
@@ -231,7 +255,7 @@ namespace la
                             output += OR_CHAR;
                         output += LBRACKET;
                     }
-                    else 
+                    else
                     {
                         if( prevLevel > level )
                             output += RBRACKET;
@@ -274,119 +298,6 @@ namespace la
             }
             it++;
         }
-    }
-
-    void LA::process_MIA( const izenelib::util::UString& inputString, TermList & outList,
-            shared_ptr<PunctsType>& puncts, bool isIndex)
-    {
-        // if the special punctuations are empty
-        if( puncts->empty() )
-        {
-            if( isIndex )
-            {
-                process_index( inputString, outList );
-                return;
-            }
-            else
-            {
-                process_search( inputString, outList );
-                return;
-            }
-        }
-
-        // carry out normal analyze_XXXX
-        TermList primaryTermList;
-        outList.clear();
-
-        if( bCaseSensitive_ )
-            tokenizer_.tokenize(inputString, primaryTermList, primaryTermList );
-        else
-        {
-            izenelib::util::UString uinputstr = inputString;
-            uinputstr.toLowerString();
-            tokenizer_.tokenize(uinputstr, primaryTermList, primaryTermList );
-        }
-
-        if( analyzer_.get() != NULL )
-        {
-            if( isIndex )
-                analyzer_->analyze_index( primaryTermList, outList);
-            else
-                analyzer_->analyze_search( primaryTermList, outList);
-        }
-
-        lengthFilter( outList );
-
-        // ignore the unused punctuations
-        TermList::iterator itr = outList.begin();
-        // temporal iterator
-        TermList::iterator itr2;
-        unsigned int offset = 0;
-        while( itr != outList.end() )
-        {
-            if ( isAllPunctuations( itr->text_ ) )
-            {
-                UString& ustr = itr->text_;
-                int len = static_cast<int>(ustr.length());
-                if( len == 1 )
-                {
-                    if( puncts->find( ustr[0] ) == puncts->end() )
-                    {
-                        itr = outList.erase( itr );
-                        continue;
-                    }
-                    else
-                        itr->pos_ = RES_PUNCT;
-                }
-                else if( len > 1 )
-                {
-                    // if beginIdx < 0, all the punctuations should be removed
-                    int beginIdx = -1;
-                    itr->wordOffset_ += offset;
-                    itr2 = itr;
-                    ++itr2;
-                    int newAdded = 0;
-                    for( int i = 0; i < len; ++i )
-                    {
-                        if( puncts->find( ustr[i] ) == puncts->end() )
-                            continue;
-                        if( beginIdx < 0 )
-                        {
-                            beginIdx = i;
-                            continue;
-                        }
-
-                        itr2 = outList.insert( itr2, newTerm );
-                        itr2->text_ = ustr.substr( i, 1 );
-                        itr2->pos_ = RES_PUNCT;
-                        itr2->wordOffset_ = itr->wordOffset_ + i;
-                        ++newAdded;
-                    }
-
-                    if( beginIdx < 0 )
-                    {
-                        itr = outList.erase( itr );
-                        offset += len - 1;
-                        continue;
-                    }
-                    else
-                    {
-                        itr->text_ = ustr.substr( beginIdx, 1 );
-                        itr->pos_ = RES_PUNCT;
-                        itr->wordOffset_ += beginIdx;
-                        offset += len - 1;
-                        itr = itr2;
-                        if( newAdded > 0 )
-                            ++itr;
-                        continue;
-                    }
-                } // end else if
-            }
-
-            itr->wordOffset_ += offset;
-            ++itr;
-        }
-
     }
 
     void LA::removeStopwords( TermList & termList,

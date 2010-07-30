@@ -294,6 +294,47 @@ int MultiLanguageAnalyzer::analyze_search( const TermList & input, TermList & ou
     return 0;
 }
 
+
+int MultiLanguageAnalyzer::analyze( UStringHashFunctor * hash,
+        const TermList & input, TermIdList & output, unsigned char retFlag )
+{
+    unsigned int listOffset = 0;
+    for( TermList::const_iterator itr = input.begin(); itr != input.end(); ++itr )
+    {
+        const UString& ustr = itr->text_;
+        size_t size = ustr.length();
+        if( size == 0 )
+            continue;
+
+        Language lang = CHINESE;
+        ProcessMode mode = modes_[CHINESE];
+        switch(mode) {
+            case CHARACTER_PM:
+            {
+                for( size_t i = 0; i < size; ++i )
+                {
+                    output.push_back(TermId());
+                    (*hash)( ustr.substr( i, 1), output.back().termid_);
+                    output.back().wordOffset_ = itr->wordOffset_ + listOffset;
+                    if((i + 1) < size )
+                        ++listOffset;
+                }
+                break;
+            }
+            case MA_PM:
+            {
+                TermList input;
+                TermList::iterator termItr = input.insert( input.end(), newTerm_ );
+                termItr->text_ = ustr;
+                termItr->wordOffset_ = itr->wordOffset_ + listOffset;
+                listOffset += analyzers_[lang]->analyze( hash, input, output );
+                ++listOffset;
+                break;
+            }
+        }
+    }
+}
+
 void MultiLanguageAnalyzer::printMLA()
 {
     cout<<"MLA, default Analyzer: " << defAnalyzer_.get() << endl;

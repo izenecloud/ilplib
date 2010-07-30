@@ -16,18 +16,18 @@
 
 #include <list>
 
-namespace la 
+namespace la
 {
 
     ///
     /// \brief interface of Analyzer
     /// This class analyze terms according to the specific types of analyzer
     ///
-    class Analyzer 
+    class Analyzer
     {
         protected:
-            
-            /// @details 
+
+            /// @details
             /// 00 - don't process, 01 - primary terms, 10 - secondaray terms, 11 - all terms
             unsigned char retFlag_idx_;
             unsigned char retFlag_sch_;
@@ -46,7 +46,7 @@ namespace la
 
         public:
             Analyzer()
-                : retFlag_idx_( ANALYZE_ALL_ ),
+                : retFlag_idx_( ANALYZE_SECOND_ ),
                 retFlag_sch_( ANALYZE_SECOND_ ),
                 bCaseSensitive_( false ),
                 bContainLower_( true )
@@ -114,20 +114,23 @@ namespace la
                 return bContainLower_;
             }
 
+            int analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output);
 
             int analyze_index( const TermList & input, TermList & output );
 
             int analyze_search( const TermList & input, TermList & output );
 
         protected:
-            virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0;}
+
+            virtual int analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag ) { return 0; }
+            virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
 
 
     };
 
     // NON-MEMBER FUNCTION
-    
+
     void makeString( const TermList & input, izenelib::util::UString & outputString );
 
     /**

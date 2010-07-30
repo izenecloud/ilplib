@@ -43,12 +43,12 @@
 namespace la
 {
     /**
-     * @brief   LA class combines the Tokenizer and Analyzer to get analyzed results 
+     * @brief   LA class combines the Tokenizer and Analyzer to get analyzed results
      *          of a given text
      * @details
      *  Text -> [Tokenizer] -> tokens -> [Analyze] -> terms
      */
-    class LA 
+    class LA
     {
 
         private:
@@ -57,7 +57,7 @@ namespace la
 
             unsigned int            TERM_LENGTH_THRESHOLD_;   // TODO: what is the maximum limit?
             bool                    bCaseSensitive_; // Whether is case sensitive
-            
+
         public:
             typedef rde::hash_map<izenelib::util::UCS2Char, bool> PunctsType;
 
@@ -90,11 +90,14 @@ namespace la
                 }
             }
 
+            void process( UStringHashFunctor* hash,
+                    const izenelib::util::UString & inputString,
+                    TermIdList & outList );
 
             void process_index( const izenelib::util::UString & inputString, TermList & outList );
+
             void process_search( const izenelib::util::UString & inputString, TermList & outList );
 
-            
             /// @param inputString      input string
             /// @param rawTerms         raw term list
             /// @param primaryTerms     primary term list
@@ -102,41 +105,17 @@ namespace la
             /// @param index            calls process_index() if true, process_search() if false
             void process_index(
                     const izenelib::util::UString& inputString,
-                    TermList & specialTermList, 
-                    TermList & primaryTermList, 
+                    TermList & specialTermList,
+                    TermList & primaryTermList,
                     TermList & outList
                     );
 
             void process_search(
                     const izenelib::util::UString& inputString,
-                    TermList & specialTermList, 
-                    TermList & primaryTermList, 
+                    TermList & specialTermList,
+                    TermList & primaryTermList,
                     TermList & outList
                     );
-
-            /**
-             * Process index analyzing for MIA
-             */
-            void process_MIA_index(
-                    const izenelib::util::UString& inputString,
-                    TermList & outList,
-                    shared_ptr<PunctsType>& puncts
-                    )
-            {
-                process_MIA( inputString, outList, puncts, true );
-            }
-
-            /**
-             * Process search analyzing for MIA
-             */
-            void process_MIA_search(
-                    const izenelib::util::UString& inputString,
-                    TermList & outList,
-                    shared_ptr<PunctsType>& puncts
-                    )
-            {
-                process_MIA( inputString, outList, puncts, false );
-            }
 
             /**
              * Remove Stop Words in the termList
@@ -149,21 +128,13 @@ namespace la
                     );
 
         private:
-            // TODO: A quick fix, and not a good way to do filtering. it's too slow. 
+            // TODO: A quick fix, and not a good way to do filtering. it's too slow.
             // Considering to apply filtering in Analyzers
             void lengthFilter( TermList & termList );
 
-            void process_MIA(
-                    const izenelib::util::UString& inputString,
-                    TermList & outList,
-                    shared_ptr<PunctsType>& puncts,
-                    bool isIndex
-                    );
     };
 
-
     izenelib::util::UString toExpandedString( const TermList & termList );
-            //friend void makeString( const TermList & input, izenelib::util::UString & outputString );
 
 }
 

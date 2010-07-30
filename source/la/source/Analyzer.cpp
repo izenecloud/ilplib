@@ -16,6 +16,10 @@ namespace la
 
     const UString SPACE_USTR(" ", UString::UTF_8 );
 
+    int Analyzer::analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output) {
+        return analyze(hash, input, output, retFlag_idx_);
+    }
+
     int Analyzer::analyze_index( const TermList & input, TermList & output )
     {
         return analyze_index( input, output, retFlag_idx_ );

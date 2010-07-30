@@ -73,7 +73,7 @@ namespace la
             {
                 setExtractEngStem( true );
                 lat_->setIndexMode();
-                
+
                 mode_ = INDEXING;
             }
             void setLabelMode()
@@ -87,6 +87,7 @@ namespace la
                 mode_ = LABELING;
             }
 
+            virtual int analyze( UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag );
             virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
 
@@ -350,8 +351,6 @@ namespace la
             /// @brief Don't modify data in globalNewTerm_
             const Term globalNewTerm_;
     };
-
-
 
 
 }

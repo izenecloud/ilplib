@@ -183,6 +183,95 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::~CommonLanguageAnalyzer()
 //#define DEBUG_CLA
 
 template <class LanguageAction, class BasicSentence>
+int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze(
+        UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag )
+{
+    if( retFlag == 0 )
+        return 0;
+
+    // update the synonym if necessary
+    if( bIndexSynonym_ )
+        pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+
+    bool analyzePrime = (retFlag & ANALYZE_PRIME_) != 0;
+    bool analyzeSecond = (retFlag & ANALYZE_SECOND_) != 0;
+
+    int localOffset = 0;
+
+    for ( TermList::const_iterator it = input.begin(); it != input.end();  ++it )
+    {
+        string inputstr;
+        it->text_.convertString( inputstr, encode_ );
+
+        if( !analyzeSecond )
+            continue;
+//#ifdef DEBUG_CLA
+//        cout<<"input stream is "<<inputstr<<endl;
+//#endif
+        BasicSentence* pE = lat_->getBasicSentence( inputstr.c_str() );
+//#ifdef DEBUG_CLA
+//        cout<<"end get basic sentence "<<endl;
+//#endif
+        int listSize = pE->getListSize();
+        int bestIdx = 0;//pE->getOneBestIndex(); FIXME the one best index maybe not correct
+        for ( int i = 0; i < listSize; ++i )
+        {
+            bool isBestIndex = ( i == bestIdx );
+            int count = pE->getCount( i );
+            for ( int j = 0; j < count; j++ )
+            {
+                // if bCaseSensitive_ is true, lexicon is original string
+                const char * lexicon = pE->getLexicon( i, j );
+                int morpheme = pE->getPOS(i,j);
+
+                if( strlen(lexicon) == 0 )
+                    continue;
+
+                // ustring for lexicon and lowerLexicon
+                UString lexiconUStr;
+                UString lowerLexiconUStr;
+                // if bCaseSensitive_ is false, lowerLexicon is equals lexicon
+                string lowerLexiconStr;
+                const char * lowerLexicon = NULL;
+
+                // decide the offset
+                int wOffset = it->wordOffset_;
+                if( bSharedWordOffset_ == false )
+                {
+                    if( isBestIndex && j > 0 )
+                    {
+                        ++localOffset;
+                    }
+                    wOffset += localOffset;
+                }
+
+                /// TODO major cost, about 10%
+                lexiconUStr.assign( lexicon, encode_ );
+                if ( pE->isIndexWord(i, j) )
+                {
+//                    string pos = pE->getStrPOS(i,j);
+//
+//                    if( analyzePrime && count == 1 )
+//                    {
+//                        prime_it->pos_ = pos;
+//                        prime_it->morpheme_ = morpheme;
+//                    }
+//                    else
+                    {
+                        secCnt_++;
+                        output.push_back(TermId());
+                        (*hash)(lexiconUStr, output.back().termid_);
+                        output.back().wordOffset_ = wOffset;
+                    }
+                }
+            }
+        }
+    } // end: for inoutput list
+
+    return localOffset;
+}
+
+template <class LanguageAction, class BasicSentence>
 int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
         const TermList & input, TermList & output, unsigned char retFlag )
 {
@@ -257,6 +346,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                     wOffset += localOffset;
                 }
 
+                /// TODO major cost, about 10%
                 lexiconUStr.assign( lexicon, encode_ );
                 bool isFL = (morpheme & flMorp_) == flMorp_;
                 #ifdef DEBUG_CLA
@@ -303,6 +393,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze_index(
                     else
                     {
                         secCnt_++;
+                        /// TODO major cost about 10%
                         _CLA_INSERT_INDEX_USTR( term_it, tempList, lexiconUStr, wOffset, pos, morpheme );
                     }
 

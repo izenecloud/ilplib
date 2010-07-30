@@ -39,9 +39,8 @@ namespace la
         return out;
     }
 
-
     //-------------------------------- NAMESPACE METHODS -----------------------------
-    
+
     std::ostream & operator<<( std::ostream & out,  TermList& termList )
     {
         TermList::iterator it = termList.begin();
@@ -106,5 +105,14 @@ namespace la
 
         }
     }
+
+    std::ostream & operator<<( std::ostream & out, const TermId & termid )
+    {
+        out << "woffset=" 	<< termid.wordOffset_			    << "\t";
+        out << "\ttermid =[" 	<< termid.termid_	                << "]";
+        return out;
+    }
+
+    UStringHashFunctor::~UStringHashFunctor(){}
 
 }

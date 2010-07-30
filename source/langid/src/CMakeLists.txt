@@ -16,6 +16,10 @@ set(objs_langid
 )
 
 add_library(langid STATIC ${objs_langid})
+INSTALL(TARGETS langid
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+  )
 
 add_executable(langid_create_profile langid_create_profile.cpp)
 target_link_libraries(langid_create_profile ${LIBS_LANGID} ${LIBS_BOOST})

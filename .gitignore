@@ -16,3 +16,4 @@
 !/.gitignore
 !/db
 !/build/build.sh
+/include/ilplib-version.h

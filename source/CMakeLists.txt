@@ -112,6 +112,7 @@ ENDIF(izenelib_FOUND)
 ENDIF( USE_LA OR USE_QA )
 
 include_directories(../include)
+INSTALL(DIRECTORY ../include/ DESTINATION include)
 
 IF( USE_LANGID )
     add_subdirectory(langid)
@@ -122,3 +123,16 @@ ENDIF( USE_LA )
 IF( USE_QA )
     add_subdirectory(question-answering)
 ENDIF( USE_QA )
+
+
+##################################################
+# CPack
+#####
+INCLUDE(UseCPack)
+CONFIGURE_FILE(
+  "ilplib-version.h.cmake"
+  "${CMAKE_SOURCE_DIR}/../include/ilplib-version.h"
+  @ONLY
+  )
+SET(CPACK_DEBIAN_PACKAGE_DEPENDS
+  "libboost-dev, libc6-dev, izenelib, icma")

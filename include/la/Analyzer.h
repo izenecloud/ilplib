@@ -114,7 +114,7 @@ namespace la
                 return bContainLower_;
             }
 
-            int analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output);
+            int analyze(izenelib::ir::idmanager::IDManager* idm, const TermList & input, TermIdList & output);
 
             int analyze_index( const TermList & input, TermList & output );
 
@@ -122,7 +122,7 @@ namespace la
 
         protected:
 
-            virtual int analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag ) { return 0; }
+            virtual int analyze(izenelib::ir::idmanager::IDManager* idm, const TermList & input, TermIdList & output, unsigned char retFlag ) { return 0; }
             virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
 

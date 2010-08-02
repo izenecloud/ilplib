@@ -190,7 +190,7 @@ namespace la
                 return idManager_->getTermIdByTermString(key, value);
             }
 
-        private:
+        //private:
             IDManagerType* idManager_;
     };
 

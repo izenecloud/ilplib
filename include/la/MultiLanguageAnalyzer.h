@@ -78,7 +78,7 @@ public:
 
     virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
     virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
-    virtual int analyze( UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag );
+    virtual int analyze( izenelib::ir::idmanager::IDManager* idm, const TermList & input, TermIdList & output, unsigned char retFlag );
 
     /**
      * @brief Whether enable case-sensitive search, this method only

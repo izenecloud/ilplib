@@ -90,7 +90,7 @@ namespace la
                 }
             }
 
-            void process( UStringHashFunctor* hash,
+            void process( izenelib::ir::idmanager::IDManager* idm,
                     const izenelib::util::UString & inputString,
                     TermIdList & outList );
 

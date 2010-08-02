@@ -12,6 +12,7 @@
 using namespace std;
 using izenelib::util::UString;
 using izenelib::util::UCS2Char;
+using namespace izenelib::ir::idmanager;
 
 namespace la
 {
@@ -295,7 +296,7 @@ int MultiLanguageAnalyzer::analyze_search( const TermList & input, TermList & ou
 }
 
 
-int MultiLanguageAnalyzer::analyze( UStringHashFunctor * hash,
+int MultiLanguageAnalyzer::analyze( IDManager* idm,
         const TermList & input, TermIdList & output, unsigned char retFlag )
 {
     unsigned int listOffset = 0;
@@ -314,7 +315,7 @@ int MultiLanguageAnalyzer::analyze( UStringHashFunctor * hash,
                 for( size_t i = 0; i < size; ++i )
                 {
                     output.push_back(TermId());
-                    (*hash)( ustr.substr( i, 1), output.back().termid_);
+                    idm->getTermIdByTermString( ustr.substr( i, 1), output.back().termid_);
                     output.back().wordOffset_ = itr->wordOffset_ + listOffset;
                     if((i + 1) < size )
                         ++listOffset;
@@ -327,7 +328,7 @@ int MultiLanguageAnalyzer::analyze( UStringHashFunctor * hash,
                 TermList::iterator termItr = input.insert( input.end(), newTerm_ );
                 termItr->text_ = ustr;
                 termItr->wordOffset_ = itr->wordOffset_ + listOffset;
-                listOffset += analyzers_[lang]->analyze( hash, input, output );
+                listOffset += analyzers_[lang]->analyze( idm, input, output );
                 ++listOffset;
                 break;
             }

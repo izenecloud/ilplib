@@ -7,6 +7,8 @@
 
 #include <la/Analyzer.h>
 
+using namespace izenelib::ir::idmanager;
+
 namespace la
 {
     const unsigned char Analyzer::ANALYZE_NONE_ = 0x00;
@@ -16,8 +18,8 @@ namespace la
 
     const UString SPACE_USTR(" ", UString::UTF_8 );
 
-    int Analyzer::analyze(UStringHashFunctor * hash, const TermList & input, TermIdList & output) {
-        return analyze(hash, input, output, retFlag_idx_);
+    int Analyzer::analyze(IDManager* idm, const TermList & input, TermIdList & output) {
+        return analyze(idm, input, output, retFlag_idx_);
     }
 
     int Analyzer::analyze_index( const TermList & input, TermList & output )

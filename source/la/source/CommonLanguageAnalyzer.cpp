@@ -25,6 +25,7 @@
 #endif
 
 using namespace izenelib::util;
+using namespace izenelib::ir::idmanager;
 using namespace std;
 
 namespace la
@@ -184,7 +185,7 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::~CommonLanguageAnalyzer()
 
 template <class LanguageAction, class BasicSentence>
 int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze(
-        UStringHashFunctor * hash, const TermList & input, TermIdList & output, unsigned char retFlag )
+        IDManager* idm, const TermList & input, TermIdList & output, unsigned char retFlag )
 {
     if( retFlag == 0 )
         return 0;
@@ -260,7 +261,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze(
                     {
                         secCnt_++;
                         output.push_back(TermId());
-                        (*hash)(lexiconUStr, output.back().termid_);
+                        idm->getTermIdByTermString(lexiconUStr, output.back().termid_);
                         output.back().wordOffset_ = wOffset;
                     }
                 }

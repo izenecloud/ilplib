@@ -12,6 +12,7 @@
 
 using namespace la::stem;
 using namespace izenelib::util;
+using namespace izenelib::ir::idmanager;
 using namespace std;
 
 namespace la
@@ -58,7 +59,7 @@ namespace la
         }
     }
 
-    void LA::process( UStringHashFunctor* hash,
+    void LA::process( IDManager* idm,
             const izenelib::util::UString & inputString,
             TermIdList & outList )
     {
@@ -73,7 +74,7 @@ namespace la
         tokenizer_.tokenize( uinputstr, tokenList );
 
         if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( hash, tokenList, outList );
+            analyzer_->analyze( idm, tokenList, outList );
         }
         else
         {

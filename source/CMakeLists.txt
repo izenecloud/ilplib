@@ -113,6 +113,7 @@ ENDIF( USE_LA OR USE_QA )
 
 include_directories(../include)
 INSTALL(DIRECTORY ../include/ DESTINATION include)
+INSTALL(DIRECTORY ../db/langid/ DESTINATION db/langid)
 
 IF( USE_LANGID )
     add_subdirectory(langid)

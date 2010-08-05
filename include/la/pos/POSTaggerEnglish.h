@@ -13,7 +13,7 @@
 #include <la/pos/common.h>
 #include <la/pos/bidir.h>
 #include <la/Term.h>
-#include <la/Singleton.h>
+#include <la/common/Singleton.h>
 
 
 
@@ -36,8 +36,8 @@ namespace la
         public:
             void tag(TermList & input);
 
-            // TEMPORARY. If the EnglishAnalyzer class will not be expanded to something more than a tagger, 
-            // then it should be Filter 
+            // TEMPORARY. If the EnglishAnalyzer class will not be expanded to something more than a tagger,
+            // then it should be Filter
             void tag(const TermList & input, TermList & output );
 
             void tag( Term & term );

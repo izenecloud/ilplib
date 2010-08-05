@@ -6,7 +6,7 @@
  */
 #include "test_def.h"
 
-#include <la/Tokenizer.h>
+#include <la/tokenizer/Tokenizer.h>
 using namespace la;
 using namespace izenelib::util;
 using namespace std;
@@ -47,7 +47,7 @@ int main( int argc, char * argv[] )
         specialChars = argv[1];
         cout<<"Special Chars is \""<<specialChars<<"\""<<endl;
     }
-    
+
     Tokenizer tokenizerAllow;
     Tokenizer tokenizerDivide;
     Tokenizer tokenizerUnite;

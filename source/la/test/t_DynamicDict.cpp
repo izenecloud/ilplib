@@ -8,8 +8,8 @@
 
 #include <iostream>
 
-#include <la/PlainDictionary.h>
-#include <la/UpdateDictThread.h>
+#include <la/dict/PlainDictionary.h>
+#include <la/dict/UpdateDictThread.h>
 
 using namespace la;
 using namespace izenelib::util;

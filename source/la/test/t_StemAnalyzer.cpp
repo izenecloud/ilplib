@@ -6,8 +6,8 @@
  */
 #include "test_def.h"
 
-#include <la/StemAnalyzer.h>
-#include <la/Tokenizer.h>
+#include <la/analyzer/StemAnalyzer.h>
+#include <la/tokenizer/Tokenizer.h>
 #include <la/stem/Stemmer.h>
 #include <ctime>
 using namespace la;

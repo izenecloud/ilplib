@@ -14,31 +14,31 @@
 #ifndef _LA_H_
 #define _LA_H_
 
-#include <la/stem/Stemmer.h>
-#include <vector>
 #include <la/Term.h>
-#include <la/Analyzer.h>
-#include <la/Tokenizer.h>
-#include <la/EnglishAnalyzer.h>
-#include <la/StemAnalyzer.h>
-#include <la/NGramAnalyzer.h>
-#include <la/MatrixAnalyzer.h>
-#include <la/PlainDictionary.h>
+#include <la/tokenizer/Tokenizer.h>
+#include <la/stem/Stemmer.h>
+
+#include <la/analyzer/Analyzer.h>
+#include <la/analyzer/EnglishAnalyzer.h>
+#include <la/analyzer/StemAnalyzer.h>
+#include <la/analyzer/NGramAnalyzer.h>
+#include <la/analyzer/MatrixAnalyzer.h>
+#include <la/analyzer/MultiLanguageAnalyzer.h>
+#ifdef USE_WISEKMA
+    #include <la/analyzer/KoreanLanguageAction.h>
+#endif
+#ifdef USE_IZENECMA
+	#include <la/analyzer/ChineseLanguageAction.h>
+#endif
+#include <la/analyzer/CommonLanguageAnalyzer.h>
+
+#include <la/dict/PlainDictionary.h>
 
 #include <boost/smart_ptr.hpp>
 #include <boost/shared_ptr.hpp>
 #include <3rdparty/am/rde_hashmap/hash_map.h>
 
-#include <la/MultiLanguageAnalyzer.h>
-#include <la/CommonLanguageAnalyzer.h>
-
-#ifdef USE_WISEKMA
-    #include <la/KoreanLanguageAction.h>
-#endif
-
-#ifdef USE_IZENECMA
-	#include <la/ChineseLanguageAction.h>
-#endif
+#include <vector>
 
 namespace la
 {

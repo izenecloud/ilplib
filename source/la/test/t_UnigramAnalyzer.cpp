@@ -6,8 +6,8 @@
  */
 #include "test_def.h"
 
-#include <la/NGramAnalyzer.h>
-#include <la/Tokenizer.h>
+#include <la/analyzer/NGramAnalyzer.h>
+#include <la/tokenizer/Tokenizer.h>
 #include <ctime>
 using namespace la;
 using namespace izenelib::util;

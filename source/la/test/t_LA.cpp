@@ -1,5 +1,5 @@
 /**
- * @brief   Test code for LA library. 
+ * @brief   Test code for LA library.
  * @author  MyungHyun Lee (Kent)
  * @date    Aug 21, 2009
  */
@@ -7,23 +7,23 @@
 #include "test_def.h"
 
 #include <la/LA.h>
-#include <la/UpdateDictThread.h>
+#include <la/dict/UpdateDictThread.h>
 
 using namespace la;
 using namespace izenelib::util;
 using namespace std;
 
-enum ANALYSIS { 
+enum ANALYSIS {
 #ifdef USE_WISEKMA
-    KMA, 
+    KMA,
 #endif
 #ifdef USE_IZENECMA
-    CMA, 
+    CMA,
 #endif
     MULTI, // multi-language
     EMA,
-    TOKEN, 
-    NGRAM, 
+    TOKEN,
+    NGRAM,
     MATRIX,
     INIT };
 
@@ -275,14 +275,14 @@ int main( int argc, char * argv[] )
     UpdateDictThread::staticUDT.setCheckInterval(2);
     cout<<"Start Global Update thread: "<<UpdateDictThread::staticUDT.start()<<endl;
 
-    TermList::iterator it; 
+    TermList::iterator it;
     TermList termList;      // list of all the terms
     UString exp;
     TermList special;
     TermList prim;
     TermList second;
     set<UString> restrictList;
-    
+
 
 
     while( true )

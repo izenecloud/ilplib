@@ -6,7 +6,7 @@
  */
 
 #include <la/LA.h>
-#include <la/EnglishUtil.h>
+#include <la/util/EnglishUtil.h>
 
 #include <map>
 
@@ -65,16 +65,13 @@ namespace la
     {
         outList.clear();
 
-        /// TODO why there is an assignment?
-        izenelib::util::UString uinputstr = inputString;
-        if( !bCaseSensitive_ )
-            uinputstr.toLowerString();
-
-        TermList tokenList;
-        tokenizer_.tokenize( uinputstr, tokenList );
+//        TermList tokenList;
+//        tokenizer_.tokenize( inputString, tokenList );
 
         if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( idm, tokenList, outList );
+//            for(TermList::iterator it = tokenList.begin(); it !=tokenList.end(); it++ ) {
+                analyzer_->analyze( idm, inputString, outList );
+//            }
         }
         else
         {
@@ -160,7 +157,7 @@ namespace la
         else
         {
             lengthFilter( primaryTermList );
-            outList.splice( outList.end(), primaryTermList );
+//            outList.splice( outList.end(), primaryTermList );
         }
 
     }
@@ -197,7 +194,7 @@ namespace la
         else
         {
             lengthFilter( primaryTermList );
-            outList.splice( outList.end(), primaryTermList );
+//            outList.splice( outList.end(), primaryTermList );
         }
     }
 

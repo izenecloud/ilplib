@@ -53,14 +53,14 @@ namespace la
 
     void sortByWordOffset( TermList & termList )
     {
-        termList.sort(wordOffset_sorter);
+//        termList.sort(wordOffset_sorter);
     }
 
     void appendPlaceHolder( TermList & termList, TermList & placeHolder )
     {
         if( termList.empty() == true )
         {
-            termList.splice( termList.end(), placeHolder );
+//            termList.splice( termList.end(), placeHolder );
             return;
         }
 
@@ -101,7 +101,7 @@ namespace la
                 ++phItr2;
             }
 
-            termList.splice( termList.end(), placeHolder, phItr, placeHolder.end() );
+//            termList.splice( termList.end(), placeHolder, phItr, placeHolder.end() );
 
         }
     }

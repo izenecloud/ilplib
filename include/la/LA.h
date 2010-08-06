@@ -14,9 +14,10 @@
 #ifndef _LA_H_
 #define _LA_H_
 
-#include <la/Term.h>
+#include <la/common/Term.h>
 #include <la/tokenizer/Tokenizer.h>
 #include <la/stem/Stemmer.h>
+#include <la/util/UStringUtil.h>
 
 #include <la/analyzer/Analyzer.h>
 #include <la/analyzer/EnglishAnalyzer.h>

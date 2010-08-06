@@ -8,7 +8,7 @@
 #ifndef _LA_TOKENIZER_H_
 #define _LA_TOKENIZER_H_
 
-#include <la/Term.h>
+#include <la/common/Term.h>
 //#include <LACache.h>
 
 #define TWO_BYPE_MAX 65535
@@ -108,7 +108,7 @@ namespace la
     /// \brief interface of Tokenizer
     /// This class tokenize the input string according to defined char type table
     ///
-    class Tokenizer 
+    class Tokenizer
     {
         CharTypeTable table_; ///< char type table
 

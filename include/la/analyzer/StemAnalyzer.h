@@ -7,10 +7,8 @@
 #ifndef _LA_STEMANALYZER_H_
 #define _LA_STEMANALYZER_H_
 
-#include <la/Term.h>
 #include <la/analyzer/Analyzer.h>
 #include <la/stem/Stemmer.h>
-
 
 
 namespace la

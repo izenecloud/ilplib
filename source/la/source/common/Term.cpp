@@ -4,7 +4,7 @@
  *  Created on: 2009-6-17
  *      Author: zhjay
  */
-#include <la/Term.h>
+#include <la/common/Term.h>
 
 namespace la
 {

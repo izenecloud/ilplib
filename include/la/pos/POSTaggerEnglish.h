@@ -12,7 +12,7 @@
 #include <la/pos/maxent.h>
 #include <la/pos/common.h>
 #include <la/pos/bidir.h>
-#include <la/Term.h>
+#include <la/common/Term.h>
 #include <la/common/Singleton.h>
 
 

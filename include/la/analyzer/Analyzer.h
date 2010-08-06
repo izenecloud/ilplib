@@ -10,11 +10,9 @@
 #ifndef _LA_ANALYZER_H_
 #define _LA_ANALYZER_H_
 
-#include <la/Term.h>
+#include <la/common/Term.h>
 
 #include <util/ustring/UString.h>
-
-#include <list>
 
 namespace la
 {
@@ -142,20 +140,6 @@ namespace la
 
 
     };
-
-    // NON-MEMBER FUNCTION
-
-    void makeString( const TermList & input, izenelib::util::UString & outputString );
-
-    /**
-     * Remove redundant spaces in the input string
-     */
-    void removeRedundantSpaces(
-            const izenelib::util::UString& input,
-            izenelib::util::UString& output
-            );
-
-    void removeRedundantSpaces( izenelib::util::UString& output );
 }
 
 #endif /* _LA_ANALYZER_H_ */

@@ -8,6 +8,8 @@
 #include <la/LA.h>
 #include <la/util/EnglishUtil.h>
 
+#include <util/ustring/UString.h>
+
 #include <map>
 
 using namespace la::stem;

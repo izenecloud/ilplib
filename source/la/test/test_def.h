@@ -2,7 +2,7 @@
 #ifndef _LA_TEST_DEF_H_
 #define _LA_TEST_DEF_H_
 
-#include <la/Term.h>
+#include <la/common/Term.h>
 #include <util/ustring/UString.h>
 #include <stdlib.h>
 #include <iostream>
@@ -56,7 +56,7 @@ inline void downcase( std::string & str )
     }
 }
 
-int parseTruth( const std::string & str ) 
+int parseTruth( const std::string & str )
 {
     std::string tmp;
     for( size_t i = 0; i < str.length(); i++ )

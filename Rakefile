@@ -25,9 +25,3 @@ require "izenesoft/tasks"
 task :default => :cmake
 
 IZENESOFT::CMake.new
-
-IZENESOFT::GITClean.new
-
-task :env do
-  sh "/usr/bin/env"
-end

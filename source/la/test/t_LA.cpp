@@ -153,14 +153,14 @@ int main( int argc, char * argv[] )
             typedef CommonLanguageAnalyzer<la::KoreanLanguageAction, kmaOrange::WK_Eojul> NKoreanAnalyzer;
         	cout << "ANALYSIS: [korean(KMA)]:"  << endl;
         	analyzer.reset( new NKoreanAnalyzer( getKmaKnowledgePath() ) );
-            static_cast<NKoreanAnalyzer*>(analyzer.get())->setGenerateCompNoun( true );
-            static_cast<NKoreanAnalyzer*>(analyzer.get())->setExtractChinese( true );
-            static_cast<NKoreanAnalyzer*>(analyzer.get())->setRetFlag_search( Analyzer::ANALYZE_ALL_ );
-            static_cast<NKoreanAnalyzer*>(analyzer.get())->setIndexSynonym( true );
-            static_cast<NKoreanAnalyzer*>(analyzer.get())->setSearchSynonym( true );
+//            static_cast<NKoreanAnalyzer*>(analyzer.get())->setGenerateCompNoun( true );
+//            static_cast<NKoreanAnalyzer*>(analyzer.get())->setExtractChinese( true );
+//            static_cast<NKoreanAnalyzer*>(analyzer.get())->setRetFlag_search( Analyzer::ANALYZE_ALL_ );
+//            static_cast<NKoreanAnalyzer*>(analyzer.get())->setIndexSynonym( true );
+//            static_cast<NKoreanAnalyzer*>(analyzer.get())->setSearchSynonym( true );
             //(static_cast<KoreanAnalyzer*>(analyzer.get()))->setGenerateCompNoun(true);
             //(static_cast<KoreanAnalyzer*>(analyzer.get()))->setExtractChinese(true);
-            (static_cast<NKoreanAnalyzer*>(analyzer.get()))->setSpecialChars("|");
+//            (static_cast<NKoreanAnalyzer*>(analyzer.get()))->setSpecialChars("|");
             break;
 #endif
         case MULTI:
@@ -183,10 +183,10 @@ int main( int argc, char * argv[] )
                 shared_ptr<Analyzer> cnSPtr;
                 cnSPtr.reset( new NChineseAnalyzer( CMA_KNOWLEDGE, false ) );
                 (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setAnalysisType( 2 );
-                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
-                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
+//                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
+//                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
+//                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
+//                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
                 (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
                 static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setAnalyzer(
                         MultiLanguageAnalyzer::CHINESE, cnSPtr );
@@ -204,10 +204,10 @@ int main( int argc, char * argv[] )
                 typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
                 shared_ptr<Analyzer> cnSPtr;
                 cnSPtr.reset( new NChineseAnalyzer( CMA_KNOWLEDGE ) );
-                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
-                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
+//                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
+//                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
+//                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
+//                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
                 (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
                 static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setDefaultAnalyzer( cnSPtr );
     #else
@@ -225,11 +225,11 @@ int main( int argc, char * argv[] )
         	typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
             cout << "ANALYSIS: [CMA]"  << endl;
             analyzer.reset( new NChineseAnalyzer( CMA_KNOWLEDGE, false ) );
-            analyzer.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
-            analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
+//            analyzer.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
+//            analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setAnalysisType( 3 );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
+//            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
+//            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
             (static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
             break;
         }

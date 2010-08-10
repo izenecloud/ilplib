@@ -173,28 +173,34 @@ namespace la
             }
     };
 
-    class UStringHashFunctor {
+    class TermIdList : public std::deque<TermId>
+    {
         public:
-            virtual ~UStringHashFunctor() = 0;
-            virtual bool operator()(const izenelib::util::UString& key, unsigned int& value) = 0;
-    };
 
-    template<typename IDManagerType>
-    class IDManagerUStringHashFunctor : public UStringHashFunctor {
-        public:
-            IDManagerUStringHashFunctor(IDManagerType* idManager) : idManager_(idManager){}
-            ~IDManagerUStringHashFunctor(){}
-
-            bool operator()(const izenelib::util::UString& key, unsigned int& value)
-            {
-                return idManager_->getTermIdByTermString(key, value);
+            inline void add( const unsigned int termid, const unsigned int offset ) {
+                push_back(globalTemporary_);
+                back().termid_ = termid;
+                back().wordOffset_ = offset;
             }
 
-        //private:
-            IDManagerType* idManager_;
-    };
+            template<typename IDManagerType>
+            inline void add( IDManagerType* idm, const Term & term, const unsigned int offset ) {
+                push_back(globalTemporary_);
+                idm->getTermIdByTermString(term.text_, back().termid_);
+                back().wordOffset_ = offset;
+            }
 
-    typedef std::deque<TermId> TermIdList;
+            template<typename IDManagerType>
+            inline void add( IDManagerType* idm, const char* termStr, const size_t termLen, const unsigned int offset ) {
+                push_back(globalTemporary_);
+                idm->getTermIdByTermString(termStr, termLen, back().termid_);
+                back().wordOffset_ = offset;
+            }
+
+        private:
+
+            static TermId globalTemporary_;
+    };
 
 }
 

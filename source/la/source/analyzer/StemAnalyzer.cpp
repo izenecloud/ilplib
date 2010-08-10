@@ -77,22 +77,22 @@ namespace la
 
         for( it = input.begin(); it != input.end(); it++ )
         {
-            if( retFlag_idx_ & ANALYZE_PRIME_ )
-            {
-                term_it = output.insert( output.end(), *it );
-            }
-            if( (retFlag_idx_ & ANALYZE_SECOND_) == 0 )
-                continue;
-
-
-            it->text_.convertString( inputstr, UString::CP949 );
-            stemmer_.stem( inputstr, stem );
-
-            if( !(retFlag_idx_ & ANALYZE_PRIME_) || inputstr != stem )
-            {
-                term_it = output.insert( output.end(), *it );
-                term_it->text_.assign( stem, UString::CP949 );
-            }
+//            if( retFlag_idx_ & ANALYZE_PRIME_ )
+//            {
+//                term_it = output.insert( output.end(), *it );
+//            }
+//            if( (retFlag_idx_ & ANALYZE_SECOND_) == 0 )
+//                continue;
+//
+//
+//            it->text_.convertString( inputstr, UString::CP949 );
+//            stemmer_.stem( inputstr, stem );
+//
+//            if( !(retFlag_idx_ & ANALYZE_PRIME_) || inputstr != stem )
+//            {
+//                term_it = output.insert( output.end(), *it );
+//                term_it->text_.assign( stem, UString::CP949 );
+//            }
         }
         return 0;
     }
@@ -108,25 +108,25 @@ namespace la
 
         for( it = input.begin(); it != input.end(); it++ )
         {
-            if( retFlag_sch_ & ANALYZE_PRIME_ )
-            {
-                term_it = output.insert( output.end(), *it );
-                term_it->stats_ = makeStatBit( Term::OR_BIT, level++ );
-            }
-            if( (retFlag_sch_ & ANALYZE_SECOND_) == 0 )
-                continue;
-
-
-            it->text_.convertString( inputstr, UString::CP949 );
-            stemmer_.stem( inputstr, stem );
-
-            if( !(retFlag_sch_ & ANALYZE_PRIME_) || inputstr != stem )
-            {
-                term_it = output.insert( output.end(), newTerm );
-
-                term_it->text_.assign( stem, UString::CP949 );
-                term_it->stats_ = makeStatBit( Term::AND_BIT, level );
-            }
+//            if( retFlag_sch_ & ANALYZE_PRIME_ )
+//            {
+//                term_it = output.insert( output.end(), *it );
+//                term_it->stats_ = makeStatBit( Term::OR_BIT, level++ );
+//            }
+//            if( (retFlag_sch_ & ANALYZE_SECOND_) == 0 )
+//                continue;
+//
+//
+//            it->text_.convertString( inputstr, UString::CP949 );
+//            stemmer_.stem( inputstr, stem );
+//
+//            if( !(retFlag_sch_ & ANALYZE_PRIME_) || inputstr != stem )
+//            {
+//                term_it = output.insert( output.end(), newTerm );
+//
+//                term_it->text_.assign( stem, UString::CP949 );
+//                term_it->stats_ = makeStatBit( Term::AND_BIT, level );
+//            }
         }
         return 0;
     }

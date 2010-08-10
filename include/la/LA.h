@@ -51,16 +51,10 @@ namespace la
      */
     class LA
     {
-
-        private:
-            Tokenizer               tokenizer_;
-            shared_ptr<Analyzer>    analyzer_;
-
-            unsigned int            TERM_LENGTH_THRESHOLD_;   // TODO: what is the maximum limit?
-            bool                    bCaseSensitive_; // Whether is case sensitive
-
         public:
+
             typedef rde::hash_map<izenelib::util::UCS2Char, bool> PunctsType;
+
 
             LA();
 
@@ -129,6 +123,13 @@ namespace la
                     );
 
         private:
+
+            Tokenizer               tokenizer_;
+            shared_ptr<Analyzer>    analyzer_;
+
+            unsigned int            TERM_LENGTH_THRESHOLD_;   // TODO: what is the maximum limit?
+            bool                    bCaseSensitive_; // Whether is case sensitive
+
             // TODO: A quick fix, and not a good way to do filtering. it's too slow.
             // Considering to apply filtering in Analyzers
             void lengthFilter( TermList & termList );

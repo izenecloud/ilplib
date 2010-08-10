@@ -18,7 +18,7 @@ int main(){
 	Tokenizer tokenizer;
 
 	Analyzer* analyzer = new NGramAnalyzer(1, 1, 2194967296);
-	analyzer->setRetFlag_index(Analyzer::ANALYZE_SECOND_);
+//	analyzer->setRetFlag_index(Analyzer::ANALYZE_SECOND_);
 
     UString ustr("今晚十点 荷兰 对 斯洛伐克", UString::UTF_8);
     TermList tlist;

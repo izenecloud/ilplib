@@ -113,6 +113,6 @@ namespace la
         return out;
     }
 
-    UStringHashFunctor::~UStringHashFunctor(){}
+    TermId TermIdList::globalTemporary_;
 
 }

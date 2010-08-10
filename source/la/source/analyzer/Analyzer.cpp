@@ -17,17 +17,17 @@ namespace la
     const unsigned char Analyzer::ANALYZE_ALL_  = 0x03;
 
     int Analyzer::analyze(IDManager* idm, const Term & input, TermIdList & output) {
-        return analyze(idm, input, output, retFlag_idx_);
+        return analyze(idm, input, output, Analyzer::second );
     }
 
     int Analyzer::analyze_index( const TermList & input, TermList & output )
     {
-        return analyze_index( input, output, retFlag_idx_ );
+        return analyze_index( input, output, Analyzer::second );
     }
 
     int Analyzer::analyze_search( const TermList & input, TermList & output )
     {
-        return analyze_search( input, output, retFlag_sch_ );
+        return analyze_search( input, output, Analyzer::second );
     }
 
 }

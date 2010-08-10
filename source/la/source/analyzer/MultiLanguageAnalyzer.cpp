@@ -300,7 +300,7 @@ int MultiLanguageAnalyzer::analyze_search( const TermList & input, TermList & ou
 }
 
 
-int MultiLanguageAnalyzer::analyze( IDManager* idm, const Term & input, TermIdList & output, unsigned char retFlag )
+int MultiLanguageAnalyzer::analyze( IDManager* idm, const Term & input, TermIdList & output, analyzermode flags )
 {
     Language lang = CHINESE;
     ProcessMode mode = modes_[CHINESE];
@@ -329,7 +329,7 @@ int MultiLanguageAnalyzer::analyze( IDManager* idm, const Term & input, TermIdLi
     }
     case MA_PM:
     {
-        analyzers_[lang]->analyze( idm, input, output );
+        analyzers_[lang]->analyze( idm, input, output);
         break;
     }
     }

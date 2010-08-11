@@ -17,6 +17,15 @@
 namespace la
 {
 
+    #define DECLARE_ANALYZER_METHOD(IDManagerType) \
+    virtual int analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) \
+    { \
+        analyze<IDManagerType>(idm, input,output, mode); \
+    }
+
+    #define DECLARE_ANALYZER_METHODS \
+    DECLARE_ANALYZER_METHOD(izenelib::ir::idmanager::IDManager)
+
     ///
     /// \brief interface of Analyzer
     /// This class analyze terms according to the specific types of analyzer

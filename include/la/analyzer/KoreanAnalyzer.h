@@ -116,8 +116,6 @@ protected:
 
 private:
 
-    int scMorp_; // For KMA, it is kmaOrange::SC, special character
-
     // ---- RELATED TO "specialchar" IN LAMANAGER
     /// @brief  Whether to handle special characters.
     /// Adjacent alphabets, numeric characters, and special characters will be concatenated.

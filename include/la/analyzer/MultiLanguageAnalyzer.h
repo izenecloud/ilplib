@@ -53,6 +53,8 @@ public:
      */
     virtual ~MultiLanguageAnalyzer();
 
+    DECLARE_ANALYZER_METHODS
+
     /**
      * Set the Analyzer for specific language type
      * @param lang the specific language, see MultiLanguageAnalyzer::Language
@@ -76,9 +78,10 @@ public:
      */
     bool setProcessMode( MultiLanguageAnalyzer::Language lang, MultiLanguageAnalyzer::ProcessMode mode );
 
+
     virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
     virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
-    virtual int analyze( izenelib::ir::idmanager::IDManager* idm, const Term & input, TermIdList & output, analyzermode mode );
+
 
     /**
      * @brief Whether enable case-sensitive search, this method only
@@ -105,12 +108,50 @@ public:
     }
 
 private:
+
     inline Language getCharType( izenelib::util::UCS2Char ucs2Char );
 
     inline void invokeMA( const izenelib::util::UString& ustr, TermList & output, bool isIndex, Language lang,
             unsigned int woffset, unsigned int &listOffset, bool isEnd );
 
     inline void performAnalyze( const TermList & input, TermList & output, bool isIndex );
+
+    template<typename IDManagerType>
+    int analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags )
+    {
+        Language lang = CHINESE;
+        ProcessMode mode = modes_[CHINESE];
+        switch(mode)
+        {
+        case CHARACTER_PM:
+        {
+            unsigned int listOffset = 0;
+
+            const UString& ustr = input.text_;
+            size_t size = ustr.length();
+            if( size == 0 )
+                return 0;
+
+
+            for( size_t i = 0; i < size; ++i )
+            {
+                output.push_back(TermId());
+                ustr.substr( i, 1);
+    //            idm->getTermIdByTermString( ustr.substr( i, 1), output.back().termid_);
+                output.back().wordOffset_ = input.wordOffset_ + listOffset;
+                if((i + 1) < size )
+                    ++listOffset;
+            }
+            break;
+        }
+        case MA_PM:
+        {
+            analyzers_[lang]->analyze( idm, input, output);
+            break;
+        }
+        }
+        return 0;
+    }
 
     void printMLA();
 

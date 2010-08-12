@@ -25,13 +25,8 @@
 #include <la/analyzer/NGramAnalyzer.h>
 #include <la/analyzer/MatrixAnalyzer.h>
 #include <la/analyzer/MultiLanguageAnalyzer.h>
-#ifdef USE_WISEKMA
-    #include <la/analyzer/KoreanLanguageAction.h>
-#endif
-#ifdef USE_IZENECMA
-	#include <la/analyzer/ChineseLanguageAction.h>
-#endif
-#include <la/analyzer/CommonLanguageAnalyzer.h>
+#include <la/analyzer/ChineseAnalyzer.h>
+#include <la/analyzer/KoreanAnalyzer.h>
 
 #include <la/dict/PlainDictionary.h>
 

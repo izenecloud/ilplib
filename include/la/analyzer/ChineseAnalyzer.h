@@ -2,58 +2,75 @@
 #define _CHINESE_ANALYZER_H_
 
 #include <la/analyzer/CommonLanguageAnalyzer.h>
-#include <la/analyzer/ChineseLanguageAction.h>
+
+#include <cma_factory.h>
+#include <knowledge.h>
+#include <sentence.h>
+#include <analyzer.h>
 
 namespace la
 {
-    class ChineseAnalyzer : public CommonLanguageAnalyzer<cma::Analyzer, cma::Sentence>
+
+class ChineseAnalyzer : public CommonLanguageAnalyzer<cma::Analyzer, cma::Sentence>
+{
+public:
+
+    ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true );
+
+    ~ChineseAnalyzer();
+
+    inline cma::Sentence* invokeMA( const char* input );
+
+    inline void setIndexMode();
+
+    inline void setLabelMode();
+
+    /**
+     * @brief   Set the analysis approach type, only for iCMA
+     */
+    inline void setAnalysisType( unsigned int type = 2 )
     {
-    public:
+        pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
+    }
 
-        inline void setIndexMode()
-        {
-            if( pA_ == NULL )
-            {
-                throw std::logic_error( "ChineseAnalyzer::setIndexMode() is call with pA_ NULL" );
-            }
-            resetAnalyzer();
-
-            //pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, 1 );
-
-            vector<string> posList;
-            addDefaultPOSList(posList);
-
-            // unknown
-            posList.push_back("un");
-
-            pA_->setIndexPOSList(posList);
-        }
-
-        inline void setLabelMode()
-        {
-            if( pA_ == NULL )
-            {
-                throw std::logic_error( "ChineseAnalyzer::setLabelMode() is call with pA_ NULL" );
-            }
-            resetAnalyzer();
-
-            //pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, 1 );
-
-            // to index all the POS
-            pA_->resetIndexPOSList( true );
-        }
-
-        /**
-         * @brief   Set the analysis approach type, only for iCMA
-         */
-        inline void setAnalysisType( unsigned int type = 2 )
-        {
-            pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
-        }
+    inline void setNBest( unsigned int num=2 )
+    {
+        pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, num );
+    }
 
 
+//    inline bool isScFlSn( int morp )
+//    {
+//        return morp == flMorp_ || morp == snMorp_;
+//    }
+//
+//    inline bool isAcceptedNoun( int morp )
+//    {
+//        if( morp < 0 || morp >= posSize_ )
+//            return false;
+//        return acceptedNouns_[ morp ];
+//    }
 
-    };
+protected:
+
+    inline void resetAnalyzer();
+    /**
+     * Invoked by the last step of the constructor
+     */
+    inline void initAcceptedNouns();
+
+    inline void addDefaultPOSList( vector<string>& posList );
+
+private:
+
+    int snMorp_;
+
+    int posSize_;
+
+    bool* acceptedNouns_;
+
+};
+
 }
 
 #endif

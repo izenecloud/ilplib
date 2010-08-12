@@ -2,7 +2,10 @@
 #define _KOREAN_ANALYZER_H_
 
 #include <la/analyzer/CommonLanguageAnalyzer.h>
-#include <la/analyzer/KoreanLanguageAction.h>
+
+#include <wk_eojul.h>
+#include <wk_analyzer.h>
+#include <wk_pos.h>
 
 
 #define _CLA_INSERT_INDEX_USTR( term_it, termList, text, wordOffset, pos, morpheme ) \
@@ -21,11 +24,151 @@
 
 namespace la
 {
-class KoreanAnalyzer : public CommonLanguageAnalyzer<KoreanLanguageAction, kmaOrange::WK_Eojul>
+
+class KoreanAnalyzer : public CommonLanguageAnalyzer<kmaOrange::WK_Analyzer, kmaOrange::WK_Eojul>
 {
 
 public:
 
+    KoreanAnalyzer( const std::string knowledgePath, bool loadModel = true )
+        : CommonLanguageAnalyzer<kmaOrange::WK_Analyzer, kmaOrange::WK_Eojul>(knowledgePath, loadModel)
+    {
+        // 1. INIT INSTANCES
+        kmaOrange::WK_Knowledge* pK = KMAKnowledge::getInstance(knowledgePath.c_str()).pKnowledge_;
+        if( pK == NULL )
+        {
+            string msg = "Failed to load KMA knowledge: ";
+            msg += knowledgePath;
+            throw std::logic_error( msg );
+        }
+        pS_ = kmaOrange::WK_Eojul::createObject();
+        if( pS_ == NULL )
+        {
+            //TODO: CATCH ALL EXCEPTIONS
+        }
+        pA_ = kmaOrange::WK_Analyzer::createObject( pK, pS_ );
+        if( pA_ == NULL )
+        {
+        }
+
+        flMorp_ = kmaOrange::FL;
+        flPOS_ = "FL";
+
+        nniMorp_ = kmaOrange::NNI;
+        nniPOS_ = "NNI";
+
+        nnpMorp_ = kmaOrange::NNP;
+        nnpPOS_ = "NNP";
+
+        encode_ = UString::CP949;
+
+        bSharedWordOffset_ = true;
+
+    //
+    //    setGenerateCompNoun();
+    //    setNBest();
+    //    setLowDigitBound();
+    //    setCombineBoundNoun();
+    //    setVerbAdjStems();
+    //    setExtractChinese();
+    //    setExtractEngStem();
+    //    setIndexSynonym(false);
+    //    setSearchSynonym(true);
+        setCaseSensitive(false);
+    //    bSpecialChars_ = false;
+
+        setIndexMode(); // Index mode is set by default
+    }
+
+    ~KoreanAnalyzer() {}
+
+    inline kmaOrange::WK_Eojul* invokeMA( const char* input )
+    {
+        pS_->initialize();
+        pS_->setString( input );
+        pA_->runWithEojul();
+        return pS_;
+    }
+
+    inline void setIndexMode()
+    {
+        if( pA_ == NULL )
+        {
+            throw std::logic_error( "KoreanAnalyzer::setIndexMode() is call with pA_ NULL" );
+        }
+        //resetAnalyzer();
+        pA_->setExOption( kmaOrange::COMPOSEAFFIX );
+
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1 );
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1 );
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1 );
+        pA_->setOption( kmaOrange::WKO_OPTION_N_BEST, 2 );
+
+    }
+
+    inline void setLabelMode()
+    {
+        if( pA_ == NULL )
+        {
+            throw std::logic_error( "KoreanAnalyzer::setLabelMode() is call with pA_ NULL" );
+        }
+        //resetAnalyzer();
+        pA_->setExOption( kmaOrange::COMPOSEAFFIX );
+
+        /*
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1 );
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_VERB_STEMS, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADNOMINAL, 1);
+        */
+        pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, 1);
+
+        // LOG: changed option setting for label mode to test Korean TG Label generation
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_NUM, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_VERB_STEMS, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADNOMINAL, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADVERB, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_INTERJECTION, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1);
+
+    }
+
+    inline void setNBest( unsigned int num=2 )
+    {
+        pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, num);
+    }
+
+    /**
+     * @brief  Sets the lower bound digit limit of the numbers extracted
+     */
+    inline void setLowDigitBound( unsigned int num=1 )
+    {
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_NUM, num );
+    }
+    /**
+     * @brief   Whether to combine number dependent noun to extracted term
+     */
+    inline void setCombineBoundNoun( bool flag=false )
+    {
+        pA_->setOption(kmaOrange::WKO_OPTION_COMBINE_BOUND_NOUN, (flag) ? 1 : 0);
+    }
+
+    /**
+     * @brief   Whether or not to extract stem terms of verb and adj words
+     */
+    inline void setVerbAdjStems( bool flag=false )
+    {
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_VERB_STEMS, (flag) ? 1 : 0);
+    }
+
+    inline void setCaseSensitive( bool flag = true )
+    {
+        int val = flag ? 1 : 0;
+        pA_->setOption( kmaOrange::WKO_OPTION_CASE_SENSITIVE, val );
+    }
 
     /**
      * @brief   Sets whether to generate compound noun with two adjacent extracted nouns
@@ -35,15 +178,6 @@ public:
     {
         bGenCompNoun_ = flag;
     }
-
-    /**
-     * @brief   Whether to combine number dependent noun to extracted term
-     */
-    inline void setCombineBoundNoun( bool flag=false )
-    {
-        lat_->setCombineBoundNoun( flag );
-    }
-
 
     // --- SPECIALCHAR ---
 
@@ -74,7 +208,22 @@ public:
         }
     }
 
+//    int sTagSetNoun_  = (NNG|NFG|NNB|NNP|NNU|NNR|NP|NU|NNI|NNC|NFU); //(N_|UW);
+//
+//    const int SC_FL_SN_TAGS = (SC|FL|SN);
+//
+//    inline bool isScFlSn( int morp )
+//    {
+//        return morp & SC_FL_SN_TAGS == morp;
+//    }
+//
+
+
 protected:
+
+    inline bool isScFlSn( int morp );
+
+    inline bool isAcceptedNoun( int morp );
 
 
     inline void combineSpecialChar( kmaOrange::WK_Eojul * pE, int i, int count, TermList& termList )
@@ -115,6 +264,8 @@ protected:
         TermList & tlist );
 
 private:
+
+    int scMorp_;
 
     // ---- RELATED TO "specialchar" IN LAMANAGER
     /// @brief  Whether to handle special characters.

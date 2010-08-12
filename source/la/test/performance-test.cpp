@@ -1,4 +1,4 @@
-/** 
+/**
  * @file performance-test.cpp
  * @brief A test code for LAManager class.\n
  * @author MyungHyun (Kent)Lee
@@ -84,8 +84,7 @@ int main( int argc, char * argv[] )
 #ifdef USE_WISEKMA
     else if( strcmp(argv[2], "all") == 0 )
     {
-        typedef CommonLanguageAnalyzer<la::KoreanLanguageAction, kmaOrange::WK_Eojul> NKoreanAnalyzer;
-        analyzer.reset( new NKoreanAnalyzer( getKmaKnowledgePath() ) );
+        analyzer.reset( new KoreanAnalyzer( getKmaKnowledgePath() ) );
         //analyzer.reset( new KoreanAnalyzer(getKmaKnowledgePath()) );
     }
 #endif
@@ -95,8 +94,7 @@ int main( int argc, char * argv[] )
 #ifdef USE_IZENECMA
     else if( strcmp(argv[2], "cma") == 0 )
     {
-    	typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
-    	analyzer.reset( new NChineseAnalyzer( CMA_KNOWLEDGE ) );
+    	analyzer.reset( new ChineseAnalyzer( CMA_KNOWLEDGE ) );
     }
 #endif
     else
@@ -142,7 +140,7 @@ int main( int argc, char * argv[] )
     ifstream fin( argv[1] );
     stringstream ss;
     string buf;
-    unsigned int i=0; 
+    unsigned int i=0;
 
 
     cout << "loading documents..." << endl;
@@ -202,7 +200,7 @@ STOP_PROFILER( pro1 );
             if( bCheckEmpty )
             {
                 TermList::iterator it = termList.begin();
-                for( ; it != termList.end(); it++ ) 
+                for( ; it != termList.end(); it++ )
                 {
                     if( it->text_.length() == 0 )
                     {
@@ -224,7 +222,7 @@ STOP_PROFILER( pro1 );
     /*
     // #2 ------------- bool process( const UString &, UString &, TermList & ); -------------
     cout << "2. bool process( const UString &, UString &, TermList & );" << endl << endl;
-    i=0; 
+    i=0;
     prim_total = 0;
     termList.clear();
     {
@@ -257,7 +255,7 @@ STOP_PROFILER( pro2 );
     /*
     // #3 ------------- bool process( const UString &, TermList &, TermList &, TermList & ); -------------
     cout << "3. bool process( const UString &, TermList &, TermList &, TermList & );" << endl << endl;
-    i=0; 
+    i=0;
     prim_total = 0;
     termList.clear();
     {

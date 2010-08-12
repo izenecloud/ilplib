@@ -22,44 +22,35 @@
 namespace la
 {
 
-template <class LanguageAction, class BasicSentence>
+template <typename MAAnalyzerType, typename MASentenceType>
 class CommonLanguageAnalyzer : public Analyzer
 {
 public:
+
+    enum mode {indexmode, labelmode};
 
     CommonLanguageAnalyzer( const std::string knowledgePath, bool loadModel = true );
 
     virtual ~CommonLanguageAnalyzer();
 
+    virtual MASentenceType* invokeMA( const char* sentence ) = 0;
+
+    virtual void setIndexMode() = 0;
+
+    virtual void setLabelMode() = 0;
+
+    virtual void setNBest(unsigned int nbest = 2) {};
+
+    virtual void setCaseSensitive(bool casesensitive = true, bool containlower = true)
+    {
+        bCaseSensitive_ = casesensitive;
+        bContainLower_ = containlower;
+    };
+
+//    /// Set token_,
+//    virtual bool nextToken();
+
     DECLARE_ANALYZER_METHODS
-
-    void setIndexMode()
-    {
-        lat_->setIndexMode();
-    }
-
-    void setLabelMode()
-    {
-        lat_->setLabelMode();
-    }
-
-    /**
-     * @brief   Set the analysis approach type, only for iCMA
-     */
-    inline void setAnalysisType( unsigned int type = 2 )
-    {
-        lat_->setAnalysisType( type );
-    }
-
-    /**
-     * @brief Whether enable case-sensitive search
-     * @param flag default value is true
-     */
-    virtual void setCaseSensitive( bool flag = true )
-    {
-        bCaseSensitive_ = flag;
-        lat_->setCaseSensitive( flag );
-    }
 
 protected:
 
@@ -71,8 +62,6 @@ protected:
 
 protected:
 
-    LanguageAction*                       lat_;
-
     izenelib::am::VSynonymContainer*      pSynonymContainer_;
     izenelib::am::VSynonym*               pSynonymResult_;
     shared_ptr<UpdatableSynonymContainer> uscSPtr_;
@@ -81,6 +70,16 @@ protected:
 
     char * ustring_convert_buffer1_;
     char * ustring_convert_buffer_;
+
+    /** MA specific data, you must initiailize them in initializeMA */
+    MAAnalyzerType *                      pA_;
+    MASentenceType *                      pS_;
+
+    char * token_;
+    int len_;
+    int morpheme_;
+    bool fl_;
+
 
     int flMorp_;
     std::string flPOS_;
@@ -91,38 +90,25 @@ protected:
     int nnpMorp_;
     std::string nnpPOS_;
 
-    int scMorp_;
-
-
     izenelib::util::UString::EncodingType encode_;
 
-    /** In the same token, whether each Morpheme shared the same word offset */
     bool bSharedWordOffset_;
+
+    bool bCaseSensitive_;
+
+    bool bContainLower_;
 };
 
 
-template <class LanguageAction, class BasicSentence>
-CommonLanguageAnalyzer<LanguageAction, BasicSentence>::~CommonLanguageAnalyzer()
-{
-    delete lat_;
-    delete pSynonymContainer_;
-    delete pSynonymResult_;
-    delete pStemmer_;
-
-    delete ustring_convert_buffer_;
-    delete ustring_convert_buffer1_;
-}
-//#define DEBUG_CLA
-
-
-template <class LanguageAction, class BasicSentence>
-CommonLanguageAnalyzer<LanguageAction, BasicSentence>::CommonLanguageAnalyzer(
+template <typename MAAnalyzerType, typename MASentenceType>
+CommonLanguageAnalyzer<MAAnalyzerType, MASentenceType>::CommonLanguageAnalyzer(
     const std::string pKnowledgePath, bool loadModel )
     : Analyzer(),
-    lat_( NULL ),
     pSynonymContainer_( NULL ),
     pSynonymResult_( NULL ),
-    pStemmer_( NULL )
+    pStemmer_( NULL ),
+    pA_( NULL ),
+    pS_( NULL )
 {
     // ( if possible) remove tailing path separator in the knowledgePath
     string knowledgePath = pKnowledgePath;
@@ -132,18 +118,6 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::CommonLanguageAnalyzer(
         if( klpLastChar == '/' || klpLastChar == '\\' )
             knowledgePath = knowledgePath.substr( 0, knowledgePath.length() - 1 );
     }
-
-    // 0. INIT Language-Independent constant variable
-    lat_ = new LanguageAction( knowledgePath, loadModel );
-    flMorp_ = lat_->getFLMorp();
-    flPOS_ = lat_->getFLPOS();
-    nniMorp_ = lat_->getNNIMorp();
-    nniPOS_ = lat_->getNNIPOS();
-    nnpMorp_ = lat_->getNNPMorp();
-    nnpPOS_ = lat_->getNNPPOS();
-//    scMorp_ = lat_->getSCMorp();
-    encode_ = lat_->getEncodeType();
-    bSharedWordOffset_ = lat_->isSharedWordOffset();
 
     pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
     if( pSynonymContainer_ == NULL )
@@ -171,31 +145,27 @@ CommonLanguageAnalyzer<LanguageAction, BasicSentence>::CommonLanguageAnalyzer(
     pStemmer_ = new stem::Stemmer();
     pStemmer_->init(stem::STEM_LANG_ENGLISH);
 
-
     ustring_convert_buffer_ = new char[4096];
     ustring_convert_buffer1_ = new char[4096*4];
-
-    // 2. SET DEFAULT SETTINGS
-
-//
-//    setGenerateCompNoun();
-//    setNBest();
-//    setLowDigitBound();
-//    setCombineBoundNoun();
-//    setVerbAdjStems();
-//    setExtractChinese();
-//    setExtractEngStem();
-//    setIndexSynonym(false);
-//    setSearchSynonym(true);
-    setCaseSensitive(false);
-//    bSpecialChars_ = false;
-
-    setIndexMode(); // Index mode is set by default
 }
 
-template <class LanguageAction, class BasicSentence>
+template <typename MAAnalyzerType, typename MASentenceType>
+CommonLanguageAnalyzer<MAAnalyzerType, MASentenceType>::~CommonLanguageAnalyzer()
+{
+    delete pA_;
+    delete pS_;
+
+    delete pSynonymContainer_;
+    delete pSynonymResult_;
+    delete pStemmer_;
+
+    delete ustring_convert_buffer_;
+    delete ustring_convert_buffer1_;
+}
+
+template <typename MAAnalyzerType, typename MASentenceType>
 template <typename IDManagerType>
-int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze(
+int CommonLanguageAnalyzer<MAAnalyzerType, MASentenceType>::analyze(
     IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags)
 {
     // prime terms is meaningless to Chinese
@@ -210,7 +180,7 @@ int CommonLanguageAnalyzer<LanguageAction, BasicSentence>::analyze(
     {
         int localOffset = 0;
         input.text_.convertString(encode_, ustring_convert_buffer1_, 4096*4);
-        BasicSentence* pE = lat_->getBasicSentence(ustring_convert_buffer1_);
+        MASentenceType* pE = invokeMA(ustring_convert_buffer1_);
 
         int listSize = pE->getListSize();
         int bestIdx = 0;//pE->getOneBestIndex(); FIXME the one best index maybe not correct

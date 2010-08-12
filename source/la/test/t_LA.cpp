@@ -150,9 +150,8 @@ int main( int argc, char * argv[] )
     {
 #ifdef USE_WISEKMA
     case KMA:
-            typedef CommonLanguageAnalyzer<la::KoreanLanguageAction, kmaOrange::WK_Eojul> NKoreanAnalyzer;
         	cout << "ANALYSIS: [korean(KMA)]:"  << endl;
-        	analyzer.reset( new NKoreanAnalyzer( getKmaKnowledgePath() ) );
+        	analyzer.reset( new KoreanAnalyzer( getKmaKnowledgePath() ) );
 //            static_cast<NKoreanAnalyzer*>(analyzer.get())->setGenerateCompNoun( true );
 //            static_cast<NKoreanAnalyzer*>(analyzer.get())->setExtractChinese( true );
 //            static_cast<NKoreanAnalyzer*>(analyzer.get())->setRetFlag_search( Analyzer::ANALYZE_ALL_ );
@@ -173,21 +172,19 @@ int main( int argc, char * argv[] )
             //    MultiLanguageAnalyzer::ENGLISH, MultiLanguageAnalyzer::STRING_PM );
 
 #ifdef USE_WISEKMA
-            typedef CommonLanguageAnalyzer<la::KoreanLanguageAction, kmaOrange::WK_Eojul> NKoreanAnalyzer;
             shared_ptr<Analyzer> krSPtr;
-            krSPtr.reset( new NKoreanAnalyzer( getKmaKnowledgePath() ) );
+            krSPtr.reset( new KoreanAnalyzer( getKmaKnowledgePath() ) );
             static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setDefaultAnalyzer( krSPtr );
             //(static_cast<NKoreanAnalyzer*>(krSPtr.get()))->setSpecialChars(".");
         #ifdef USE_IZENECMA
-                typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
                 shared_ptr<Analyzer> cnSPtr;
-                cnSPtr.reset( new NChineseAnalyzer( CMA_KNOWLEDGE, false ) );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setAnalysisType( 2 );
+                cnSPtr.reset( new ChineseAnalyzer( CMA_KNOWLEDGE, false ) );
+                (static_cast<ChineseAnalyzer*>(cnSPtr.get()))->setAnalysisType( 2 );
 //                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
 //                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
 //                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
 //                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
+                (static_cast<ChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
                 static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setAnalyzer(
                         MultiLanguageAnalyzer::CHINESE, cnSPtr );
                 static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setProcessMode(
@@ -201,14 +198,13 @@ int main( int argc, char * argv[] )
     #endif
 #else
     #ifdef USE_IZENECMA
-                typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
                 shared_ptr<Analyzer> cnSPtr;
-                cnSPtr.reset( new NChineseAnalyzer( CMA_KNOWLEDGE ) );
+                cnSPtr.reset( new ChineseAnalyzer( CMA_KNOWLEDGE ) );
 //                cnSPtr.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
 //                cnSPtr.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
 //                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setGenerateCompNoun( false );
 //                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setExtractChinese( false );
-                (static_cast<NChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
+                (static_cast<ChineseAnalyzer*>(cnSPtr.get()))->setLabelMode();
                 static_cast<MultiLanguageAnalyzer*>(analyzer.get())->setDefaultAnalyzer( cnSPtr );
     #else
                 cerr<<"[Error]At least assign one MA"<<endl;
@@ -222,15 +218,14 @@ int main( int argc, char * argv[] )
 #ifdef USE_IZENECMA
         case CMA:
         {
-        	typedef CommonLanguageAnalyzer<la::ChineseLanguageAction, cma::Sentence> NChineseAnalyzer;
             cout << "ANALYSIS: [CMA]"  << endl;
-            analyzer.reset( new NChineseAnalyzer( CMA_KNOWLEDGE, false ) );
+            analyzer.reset( new ChineseAnalyzer( CMA_KNOWLEDGE, false ) );
 //            analyzer.get()->setRetFlag_index( Analyzer::ANALYZE_SECOND_ );
 //            analyzer.get()->setRetFlag_search( Analyzer::ANALYZE_SECOND_ );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setAnalysisType( 3 );
+            (static_cast<ChineseAnalyzer*>(analyzer.get()))->setAnalysisType( 3 );
 //            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setGenerateCompNoun( false );
 //            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setExtractChinese( false );
-            (static_cast<NChineseAnalyzer*>(analyzer.get()))->setLabelMode();
+            (static_cast<ChineseAnalyzer*>(analyzer.get()))->setLabelMode();
             break;
         }
 #endif

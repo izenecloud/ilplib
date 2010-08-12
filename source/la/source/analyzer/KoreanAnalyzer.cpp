@@ -6,6 +6,18 @@ namespace la
 {
 
 
+    bool KoreanAnalyzer::isScFlSn( int morp )
+    {
+        static int SC_FL_SN_TAGS = (SC|FL|SN);
+        return morp & SC_FL_SN_TAGS == morp;
+    }
+
+
+    bool KoreanAnalyzer::isAcceptedNoun( int morp )
+    {
+        static int sTagSetNoun = (NNG|NFG|NNB|NNP|NNU|NNR|NP|NU|NNI|NNC|NFU); //(N_|UW);
+        return (morp & sTagSetNoun ) == morp;
+    }
 
 
 void KoreanAnalyzer::generateCompundNouns(
@@ -22,12 +34,12 @@ void KoreanAnalyzer::generateCompundNouns(
 
         pos = pE->getPOS(i,j);
 
-        if( lat_->isAcceptedNoun( pos ) )
+        if( isAcceptedNoun( pos ) )
         {
             for( int k = j+1; k <count; k++ )
             {
                 pos = pE->getPOS(i,k);
-                if( lat_->isAcceptedNoun( pos ) )
+                if( isAcceptedNoun( pos ) )
                 {
                     string tstr( lexicon );
                     tstr.append( pE->getLexicon(i,k) );
@@ -67,7 +79,7 @@ int KoreanAnalyzer::getSpecialCharsString(
             {
                 for (pi = counti - 1; pi >= 0; pi--)
                 {
-                    if( !lat_->isScFlSn( pEojul->getPOS(listi, pi) ) )
+                    if( isScFlSn( pEojul->getPOS(listi, pi) ) )
                     {
                         break;
                     }
@@ -81,7 +93,7 @@ int KoreanAnalyzer::getSpecialCharsString(
             {
                 for (ni = counti + 1; ni < morphCount; ni++)
                 {
-                    if( !lat_->isScFlSn( pEojul->getPOS(listi, pi) ) )
+                    if( isScFlSn( pEojul->getPOS(listi, pi) ) )
                     {
                         break;
                     }

@@ -41,6 +41,8 @@ public:
 
     virtual void setNBest(unsigned int nbest = 2) {};
 
+    virtual void setAnalysisType( unsigned int type = 2 ) {};
+
     virtual void setCaseSensitive(bool casesensitive = true, bool containlower = true)
     {
         bCaseSensitive_ = casesensitive;

@@ -17,7 +17,9 @@ namespace la
 {
 
 ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true )
-    : CommonLanguageAnalyzer<cma::Analyzer, cma::Sentence>(knowledgePath, loadModel),
+    : CommonLanguageAnalyzer(knowledgePath, loadModel),
+      pA_(NULL),
+      pS_(NULL),
       acceptedNouns_(NULL)
 {
     cma::CMA_Factory* factory = cma::CMA_Factory::instance();
@@ -57,15 +59,9 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
 
 ChineseAnalyzer::~ChineseAnalyzer()
 {
+    delete pA_;
+    delete pS_;
     delete acceptedNouns_;
-}
-
-
-cma::Sentence* ChineseAnalyzer::invokeMA( const char* input )
-{
-    pS_->setString( input );
-    pA_->runWithSentence( *pS_ );
-    return pS_;
 }
 
 void ChineseAnalyzer::setIndexMode()

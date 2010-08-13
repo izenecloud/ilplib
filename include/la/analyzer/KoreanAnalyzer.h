@@ -25,13 +25,15 @@
 namespace la
 {
 
-class KoreanAnalyzer : public CommonLanguageAnalyzer<kmaOrange::WK_Analyzer, kmaOrange::WK_Eojul>
+class KoreanAnalyzer : public CommonLanguageAnalyzer
 {
 
 public:
 
     KoreanAnalyzer( const std::string knowledgePath, bool loadModel = true )
-        : CommonLanguageAnalyzer<kmaOrange::WK_Analyzer, kmaOrange::WK_Eojul>(knowledgePath, loadModel)
+        : CommonLanguageAnalyzer(knowledgePath, loadModel),
+              pA_(NULL),
+      pS_(NULL)
     {
         // 1. INIT INSTANCES
         kmaOrange::WK_Knowledge* pK = KMAKnowledge::getInstance(knowledgePath.c_str()).pKnowledge_;
@@ -80,7 +82,11 @@ public:
         setIndexMode(); // Index mode is set by default
     }
 
-    ~KoreanAnalyzer() {}
+    ~KoreanAnalyzer()
+    {
+        delete pA_;
+        delete pS_;
+    }
 
     inline kmaOrange::WK_Eojul* invokeMA( const char* input )
     {
@@ -221,6 +227,15 @@ public:
 
 protected:
 
+    /// Parse given input
+    void parse(const char* sentence, int initoffset) {};
+
+    /// Fill token_, len_, offset_, morpheme_
+    bool nextToken() {return false;}
+
+    /// whether morpheme_ indicates foreign language
+    bool isFL() {return false;}
+
     inline bool isScFlSn( int morp );
 
     inline bool isAcceptedNoun( int morp );
@@ -264,6 +279,19 @@ protected:
         TermList & tlist );
 
 private:
+
+    kmaOrange::WK_Analyzer * pA_;
+
+    kmaOrange::WK_Eojul * pS_;
+
+    int flMorp_;
+    std::string flPOS_;
+
+    int nniMorp_;
+    std::string nniPOS_;
+
+    int nnpMorp_;
+    std::string nnpPOS_;
 
     int scMorp_;
 

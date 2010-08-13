@@ -8,28 +8,162 @@
 ////#define SF1_TIME_CHECK
 //#include <util/profiler/ProfilerGroup.h>
 //
-//#include <la/analyzer/CommonLanguageAnalyzer.h>
+#include <la/analyzer/CommonLanguageAnalyzer.h>
 //#include <la/util/EnglishUtil.h>
 //#include <la/dict/UpdateDictThread.h>
-//
-////KMA headers
-//#ifdef USE_WISEKMA
-//#include <la/analyzer/KoreanLanguageAction.h>
-//using namespace kmaOrange;
-//#endif
-////end KMA headers
-//
-////CMA headers
-//#ifdef USE_IZENECMA
-//#include <la/analyzer/ChineseLanguageAction.h>
-//#endif
 //
 //using namespace izenelib::util;
 //using namespace izenelib::ir::idmanager;
 //using namespace std;
 //
-//namespace la
-//{
+namespace la
+{
+
+    CommonLanguageAnalyzer::CommonLanguageAnalyzer(
+        const std::string pKnowledgePath, bool loadModel )
+        : Analyzer(),
+        pSynonymContainer_( NULL ),
+        pSynonymResult_( NULL ),
+        pStemmer_( NULL ),
+        ustring_convert_buffer_(NULL),
+        ustring_convert_buffer1_(NULL)
+    {
+        // ( if possible) remove tailing path separator in the knowledgePath
+        string knowledgePath = pKnowledgePath;
+        if( knowledgePath.length() > 0 )
+        {
+            char klpLastChar = knowledgePath[ knowledgePath.length() - 1 ];
+            if( klpLastChar == '/' || klpLastChar == '\\' )
+                knowledgePath = knowledgePath.substr( 0, knowledgePath.length() - 1 );
+        }
+
+        pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
+        if( pSynonymContainer_ == NULL )
+        {
+        }
+        pSynonymResult_ = izenelib::am::VSynonym::createObject();
+        if( pSynonymResult_ == NULL )
+        {
+        }
+
+        string synonymPath = knowledgePath + "/synonym.txt";
+        pSynonymContainer_->setSynonymDelimiter(" ");
+        pSynonymContainer_->setWordDelimiter("_");
+        if( pSynonymContainer_->loadSynonym( synonymPath.c_str() ) != 1 )
+        {
+            string msg = "Failed to load synonym dictionary from path: ";
+            msg += knowledgePath;
+            throw std::logic_error( msg );
+        }
+
+        // set updatable Synonym Dictionary
+        uscSPtr_.reset( new UpdatableSynonymContainer( pSynonymContainer_, synonymPath ) );
+        UpdateDictThread::staticUDT.addRelatedDict( synonymPath.c_str(), uscSPtr_ );
+
+        pStemmer_ = new stem::Stemmer();
+        pStemmer_->init(stem::STEM_LANG_ENGLISH);
+
+        ustring_convert_buffer_ = new char[4096];
+        ustring_convert_buffer1_ = new char[4096*4];
+    }
+
+
+    CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
+    {
+        delete pSynonymContainer_;
+        delete pSynonymResult_;
+        delete pStemmer_;
+
+        delete ustring_convert_buffer_;
+        delete ustring_convert_buffer1_;
+    }
+
+
+template <typename IDManagerType>
+int CommonLanguageAnalyzer::analyze(
+    IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags)
+{
+    // prime terms is meaningless to Chinese
+    if( flags & prime )
+    {
+        output.push_back(TermId());
+        idm->getTermIdByTermString(input.text_, output.back().termid_);
+        output.back().wordOffset_ = input.wordOffset_;
+    }
+
+    if( flags & second)
+    {
+        input.text_.convertString(encode_, ustring_convert_buffer1_, 4096*4);
+        parse(ustring_convert_buffer1_, input.wordOffset_);
+
+        while( nextToken() ) {
+            if( len() == 0 )
+                continue;
+
+            if( needIndex() ) {
+                    char* termUstr = ustring_convert_buffer_;
+                    size_t termUstrLen = sizeof(UString::CharT) * UString::toUcs2(encode_, token(), len(),
+                                         (UString::CharT*)ustring_convert_buffer_, 4096/sizeof(UString::CharT));
+                    char* synonymUstr = termUstr;
+
+                    // foreign language, e.g. English
+                    if( isFL() )
+                    {
+                        char* lowercaseTermUstr = termUstr;
+                        bool lowercaseIsDifferent = false;
+                        /// TODO implement to_lower
+                        /// UString::to_lower(ustring_convert_buffer, lower_ustring_buffer);
+                        /// lowercaseTermUstr = lower_ustring_buffer;
+
+                        if(bCaseSensitive_)
+                        {
+                            output.add(idm, termUstr, termUstrLen, offset() );
+                            if(bContainLower_ & lowercaseIsDifferent)
+                            {
+                                output.add(idm, lowercaseTermUstr, termUstrLen, offset());
+                            }
+                        }
+                        else
+                        {
+                            output.add(idm, lowercaseTermUstr, termUstrLen, offset());
+                        }
+
+                        if(flags & stemming )
+                        {
+                            string stem_term;
+                            pStemmer_->stem( lowercaseTermUstr, stem_term );
+                            if( strcmp(stem_term.c_str(), lowercaseTermUstr) != 0 )
+                            {
+                                output.add(idm, stem_term.c_str(), stem_term.size(), offset());
+                            }
+                        }
+
+                        synonymUstr = lowercaseTermUstr;
+                    }
+                    else
+                    {
+                        output.add(idm, termUstr, termUstrLen, offset());
+                    }
+
+                    if(flags & synonym )
+                    {
+                        pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+                        pSynonymContainer_->searchNgetSynonym( synonymUstr, pSynonymResult_ );
+                        char * synonym = pSynonymResult_->getHeadWord(0);
+                        if( synonym )
+                        {
+                            output.add(idm, synonym, strlen(synonym), offset());
+                        }
+                    }
+            }
+        }
+        return offset();
+    }
+
+    return 1;
+}
+
+}
 //
 //static char ustring_convert_buffer1[4096*4];
 //

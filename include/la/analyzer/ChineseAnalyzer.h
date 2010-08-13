@@ -18,11 +18,9 @@ public:
 
     ~ChineseAnalyzer();
 
-    inline cma::Sentence* invokeMA( const char* input );
+    void setIndexMode();
 
-    inline void setIndexMode();
-
-    inline void setLabelMode();
+    void setLabelMode();
 
     /**
      * @brief   Set the analysis approach type, only for iCMA
@@ -37,28 +35,7 @@ public:
         pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, num );
     }
 
-
-//    inline bool isScFlSn( int morp )
-//    {
-//        return morp == flMorp_ || morp == snMorp_;
-//    }
-//
-//    inline bool isAcceptedNoun( int morp )
-//    {
-//        if( morp < 0 || morp >= posSize_ )
-//            return false;
-//        return acceptedNouns_[ morp ];
-//    }
-
 protected:
-
-    inline void resetAnalyzer();
-    /**
-     * Invoked by the last step of the constructor
-     */
-    inline void initAcceptedNouns();
-
-    inline void addDefaultPOSList( vector<string>& posList );
 
     /// Parse given input
     inline void parse(const char* sentence, int sentenceOffset)
@@ -117,6 +94,12 @@ protected:
 
 private:
 
+    inline void resetAnalyzer();
+
+    inline void addDefaultPOSList( vector<string>& posList );
+
+private:
+
     cma::Analyzer * pA_;
 
     cma::Sentence * pS_;
@@ -139,11 +122,6 @@ private:
     std::string nnpPOS_;
 
     int snMorp_;
-
-    int posSize_;
-
-    bool* acceptedNouns_;
-
 };
 
 }

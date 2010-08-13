@@ -90,8 +90,6 @@ protected:
 
     izenelib::util::UString::EncodingType encode_;
 
-    bool bSharedWordOffset_;
-
     bool bCaseSensitive_;
 
     bool bContainLower_;

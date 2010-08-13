@@ -299,6 +299,43 @@ int MultiLanguageAnalyzer::analyze_search( const TermList & input, TermList & ou
     return 0;
 }
 
+    template<typename IDManagerType>
+    int MultiLanguageAnalyzer::analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags )
+    {
+        Language lang = CHINESE;
+        ProcessMode mode = modes_[CHINESE];
+        switch(mode)
+        {
+        case CHARACTER_PM:
+        {
+            unsigned int listOffset = 0;
+
+            const UString& ustr = input.text_;
+            size_t size = ustr.length();
+            if( size == 0 )
+                return 0;
+
+
+            for( size_t i = 0; i < size; ++i )
+            {
+                output.push_back(TermId());
+                ustr.substr( i, 1);
+    //            idm->getTermIdByTermString( ustr.substr( i, 1), output.back().termid_);
+                output.back().wordOffset_ = input.wordOffset_ + listOffset;
+                if((i + 1) < size )
+                    ++listOffset;
+            }
+            break;
+        }
+        case MA_PM:
+        {
+            analyzers_[lang]->analyze( idm, input, output);
+            break;
+        }
+        }
+        return 0;
+    }
+
 void MultiLanguageAnalyzer::printMLA()
 {
     cout<<"MLA, default Analyzer: " << defAnalyzer_.get() << endl;

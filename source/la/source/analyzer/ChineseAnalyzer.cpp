@@ -19,8 +19,7 @@ namespace la
 ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true )
     : CommonLanguageAnalyzer(knowledgePath, loadModel),
       pA_(NULL),
-      pS_(NULL),
-      acceptedNouns_(NULL)
+      pS_(NULL)
 {
     cma::CMA_Factory* factory = cma::CMA_Factory::instance();
 
@@ -36,8 +35,6 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
 
     pS_ = new cma::Sentence();
 
-    initAcceptedNouns();
-
     flMorp_ = pA_->getCodeFromStr( CHINESE_FL );
     flPOS_ = CHINESE_FL;
 
@@ -49,8 +46,6 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
 
     encode_ = UString::UTF_8;
 
-    bSharedWordOffset_ = false;
-
     setCaseSensitive(false);
     //    bSpecialChars_ = false;
 
@@ -61,7 +56,6 @@ ChineseAnalyzer::~ChineseAnalyzer()
 {
     delete pA_;
     delete pS_;
-    delete acceptedNouns_;
 }
 
 void ChineseAnalyzer::setIndexMode()
@@ -101,30 +95,6 @@ void ChineseAnalyzer::resetAnalyzer()
 {
     //pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, 1 );
     pA_->resetIndexPOSList( false );
-}
-
-void ChineseAnalyzer::initAcceptedNouns()
-{
-    if( acceptedNouns_ != 0 )
-        delete[] acceptedNouns_;
-    posSize_ = pA_->getPOSTagSetSize();
-
-    acceptedNouns_ = new bool[ posSize_ ];
-    // default all is false
-    memset( acceptedNouns_, 0x0, sizeof(bool) * posSize_);
-
-    string acceptedList[] = {"N", "NR", "NS", "NT", "NZ"};
-    int size = sizeof(acceptedList) / sizeof(std::string);
-
-    for(int i=0; i<size; ++i)
-    {
-        int morp = pA_->getCodeFromStr( acceptedList[i] );
-        if( morp < 0 || morp >= posSize_)
-            std::cerr << "[Warning][ChineseLanguageAction]Can't find POS for " <<
-                      acceptedList[i] << ", ret pos Morpheme is " << morp << std::endl;
-        else
-            acceptedNouns_[ morp ] = true;
-    }
 }
 
 void ChineseAnalyzer::addDefaultPOSList( vector<string>& posList )

@@ -6,55 +6,34 @@ IF( USE_IZENECMA )
     ADD_DEFINITIONS( -DIZENECMA=$(IZENECMA) )
 ENDIF( USE_IZENECMA )
 
-set (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin/la)
+SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin)
 
-include_directories(".")
+INCLUDE_DIRECTORIES(".")
 
-add_executable(t_Tokenizer t_Tokenizer.cpp)
-add_executable(t_StemAnalyzer t_StemAnalyzer.cpp)
-add_executable(t_LA t_LA.cpp)
-add_executable(performance-test performance-test.cpp) 
-add_executable(t_DynamicDict t_DynamicDict.cpp) 
-add_executable(t_UnigramAnalyzer t_UnigramAnalyzer.cpp) 
+SET(Boost_USE_STATIC_LIBS OFF)
+FIND_PACKAGE(Boost ${Boost_FIND_VERSION}
+  COMPONENTS unit_test_framework)
 
-set(libs
+IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
+  INCLUDE_DIRECTORIES(
+    ${Boost_INCLUDE_DIRS}
+  )
+
+  add_executable(t_LA
+	Runner.cpp
+	t_ChineseAnalyzer.cpp)
+
+  set(libs
 	la
-	${izenelib_LIBRARIES}
 	${Boost_THREAD_LIBRARY}
 	${Boost_SYSTEM_LIBRARY}
 	${Boost_SERIALIZATION_LIBRARY}
-    ${izenecma_LIBRARIES}
-    ${wisekma_LIBRARIES}
-)
+	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+	${izenelib_LIBRARIES}
+	${izenecma_LIBRARIES}
+	${wisekma_LIBRARIES}
+  )
 
-SET_TARGET_PROPERTIES(
-    performance-test
-
-    PROPERTIES
-	COMPILE_DEFINITIONS "SF1_TIME_CHECK"
-	)
-
-target_link_libraries( t_StemAnalyzer
-	${libs}
-	)
-
-target_link_libraries(t_Tokenizer
-	${libs}
-	) 
-
-target_link_libraries( t_LA
-	${libs}
-	)
-
-target_link_libraries( performance-test
-	${libs}
-	)
-
-target_link_libraries( t_DynamicDict
-	${libs}
-	)
-
-target_link_libraries( t_UnigramAnalyzer
-	${libs}
-	)
+  target_link_libraries(t_LA ${libs})
+ENDIF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 

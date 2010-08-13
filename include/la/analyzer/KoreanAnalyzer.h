@@ -318,6 +318,7 @@ private:
     /// Default: false
     bool            bExtractChinese_;     //H
 
+bool bSharedWordOffset_;
 
     Term globalNewTerm_;
 

@@ -4,6 +4,9 @@
 // Foreign Language is Chinese POS
 #define CHINESE_FL "NX"
 
+// Special character is Chinese POS
+#define CHINESE_SC "W"
+
 // compound noun in Chinese POS
 #define CHINESE_NNP "N"
 
@@ -36,13 +39,8 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
     pS_ = new cma::Sentence();
 
     flMorp_ = pA_->getCodeFromStr( CHINESE_FL );
-    flPOS_ = CHINESE_FL;
 
-    nniMorp_ = pA_->getCodeFromStr( CHINESE_NNI );
-    nniPOS_ = CHINESE_NNI;
-
-    nnpMorp_ = pA_->getCodeFromStr( CHINESE_NNP );
-    nnpPOS_ = CHINESE_NNP;
+    scMorp_ = pA_->getCodeFromStr( CHINESE_SC );
 
     encode_ = UString::UTF_8;
 

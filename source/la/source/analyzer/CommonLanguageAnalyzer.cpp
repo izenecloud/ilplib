@@ -112,6 +112,11 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, analyzermode flags,
             if( len() == 0 )
                 continue;
 
+            if(isSpecialChar()) {
+                func( data, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset());
+                continue;
+            }
+
             if( needIndex() )
             {
                 UString::CharT* termUstr = output_ustring_buffer_;
@@ -158,8 +163,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, analyzermode flags,
                     if(bExtractSynonym_) {
                         synonymInput = lowercaseTerm;
                     }
-                }
-                else
+                } else
                 {
                     func( data, termUstr, termUstrLen, offset());
                 }

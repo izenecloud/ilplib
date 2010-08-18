@@ -67,6 +67,9 @@ protected:
     /// whether morpheme_ indicates foreign language
     virtual bool isFL() = 0;
 
+    /// whether morpheme_ indicates special character, e.g. punctuations
+    virtual bool isSpecialChar() = 0;
+
     inline const char* token()
     {
         return token_;

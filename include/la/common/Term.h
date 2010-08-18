@@ -106,6 +106,7 @@ namespace la
 
     void appendPlaceHolder( TermList & termList, TermList & placeHolder );
 
+    extern UString PLACE_HOLDER;
 
     class TermId
     {

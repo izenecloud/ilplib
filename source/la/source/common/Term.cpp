@@ -8,6 +8,9 @@
 
 namespace la
 {
+
+    UString PLACE_HOLDER("<PH>", UString::UTF_8);
+
     //-------------------------------- CLASS MEMBER METHODS -----------------------------
 
 

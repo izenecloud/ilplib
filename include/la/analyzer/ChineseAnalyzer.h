@@ -92,10 +92,14 @@ protected:
         return true;
     }
 
-    /// whether morpheme_ indicates foreign language
     inline bool isFL()
     {
-        return (morpheme_ & flMorp_) == flMorp_;
+        return morpheme_ == flMorp_;
+    }
+
+    inline bool isSpecialChar()
+    {
+        return morpheme_ == scMorp_;
     }
 
 private:
@@ -119,15 +123,8 @@ private:
     int lexiconIndex_;
 
     int flMorp_;
-    std::string flPOS_;
 
-    int nniMorp_;
-    std::string nniPOS_;
-
-    int nnpMorp_;
-    std::string nnpPOS_;
-
-    int snMorp_;
+    int scMorp_;
 };
 
 }

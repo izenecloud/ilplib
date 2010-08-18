@@ -18,10 +18,16 @@ namespace la
 {
 
     #define DECLARE_ANALYZER_METHOD(IDManagerType) \
-    virtual int analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) \
+    virtual int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) { return 0; }; \
+
+    #define IMPLEMENT_ANALYZER_METHOD(IDManagerType) \
+    virtual int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) \
     { \
-        return analyze<IDManagerType>(idm, input,output, mode); \
+        return analyze_<IDManagerType>(idm, input,output, mode); \
     }
+
+    #define IMPLEMENT_ANALYZER_METHODS \
+    IMPLEMENT_ANALYZER_METHOD(izenelib::ir::idmanager::IDManager)
 
     #define DECLARE_ANALYZER_METHODS \
     DECLARE_ANALYZER_METHOD(izenelib::ir::idmanager::IDManager)
@@ -99,7 +105,21 @@ namespace la
                 return bContainLower_;
             }
 
-            int analyze(izenelib::ir::idmanager::IDManager* idm, const Term & input, TermIdList & output);
+            virtual int analyze(const Term & input, TermList & output)
+            {
+                return analyze_(input, output, Analyzer::second);
+            }
+
+            int analyze(izenelib::ir::idmanager::IDManager* idm, const Term & input, TermIdList & output)
+            {
+                return analyze_(idm, input, output, Analyzer::second );
+            }
+
+//            template<typename IDManagerType>
+//            int analyze(IDManagerType* idm, const Term & input, TermIdList & output)
+//            {
+//                return analyze_(idm, input, output, Analyzer::second );
+//            }
 
             int analyze_index( const TermList & input, TermList & output );
 
@@ -113,7 +133,10 @@ namespace la
             /// @brief Whether contain lower form of English
             bool bContainLower_;
 
-            virtual int analyze(izenelib::ir::idmanager::IDManager* idm, const Term & input, TermIdList & output, analyzermode retFlag ) { std::cout << "sss" << endl;return 0; }
+            DECLARE_ANALYZER_METHODS
+
+            virtual int analyze_(const Term & input, TermList & output, analyzermode flags) {return  0;}
+
             virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
 

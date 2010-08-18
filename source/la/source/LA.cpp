@@ -207,82 +207,81 @@ namespace la
             UString ustr;
             return ustr;
         }
-
-        izenelib::util::UCS2Char SPACE = 32;
-        izenelib::util::UCS2Char LBRACKET = 40;
-        izenelib::util::UCS2Char RBRACKET = 41;
-        izenelib::util::UCS2Char OR_CHAR = 124;
-
-        TermList::const_iterator it;
-        unsigned int prevOffset = 0;
-        unsigned char baseLevel = 0;
-        unsigned char prevLevel = 0;
-        unsigned char prevAndOr = 0;
-
-        unsigned char andOrBit = 0, level = 0;
+//
+//        izenelib::util::UCS2Char SPACE = 32;
+//        izenelib::util::UCS2Char LBRACKET = 40;
+//        izenelib::util::UCS2Char RBRACKET = 41;
+//        izenelib::util::UCS2Char OR_CHAR = 124;
+//
+//        TermList::const_iterator it;
+//        unsigned int prevOffset = 0;
+//        unsigned char baseLevel = 0;
+//        unsigned char prevLevel = 0;
+//        unsigned char prevAndOr = 0;
+//
+//        unsigned char andOrBit = 0, level = 0;
         izenelib::util::UString output;
-
-        for( it = termList.begin(); it != termList.end(); it++ )
-        {
-            readStatBit( it->stats_, andOrBit, level );
-
-            if( it == termList.begin() )
-            {
-                output += LBRACKET;
-                baseLevel = level;
-            }
-            else
-            {
-
-                if( prevOffset < it->wordOffset_ )
-                {
-                    for( int i = prevLevel; i >= baseLevel; i-- )
-                        output += RBRACKET;
-                    //if( prevLevel > level )
-                    //output += RBRACKET;
-                    //output += RBRACKET;
-                    output += SPACE;
-                    output += LBRACKET;
-                    baseLevel = level;
-                }
-                else
-                {
-                    if( prevLevel < level )
-                    {
-                        if( prevAndOr == Term::AND_BIT )
-                            output += SPACE;
-                        else if( prevAndOr == Term::OR_BIT )
-                            output += OR_CHAR;
-                        output += LBRACKET;
-                    }
-                    else
-                    {
-                        if( prevLevel > level )
-                            output += RBRACKET;
-                        if( andOrBit == Term::AND_BIT )
-                        {
-                            output += SPACE;
-                        }
-                        else if( andOrBit == Term::OR_BIT )
-                        {
-                            output += OR_CHAR;
-                        }
-                    }
-                }
-            }
-
-            UString replacedText;
-            replaceSpecialChar( it->text_, replacedText );
-            output += replacedText;
-
-            prevLevel = level;
-            prevOffset = it->wordOffset_;
-            prevAndOr = andOrBit;
-
-            //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
-        }
-        for( int i = prevLevel; i >= baseLevel; i-- )
-            output += RBRACKET;
+//
+//        for( it = termList.begin(); it != termList.end(); it++ )
+//        {
+//
+//            if( it == termList.begin() )
+//            {
+//                output += LBRACKET;
+//                baseLevel = level;
+//            }
+//            else
+//            {
+//
+//                if( prevOffset < it->wordOffset_ )
+//                {
+//                    for( int i = prevLevel; i >= baseLevel; i-- )
+//                        output += RBRACKET;
+//                    //if( prevLevel > level )
+//                    //output += RBRACKET;
+//                    //output += RBRACKET;
+//                    output += SPACE;
+//                    output += LBRACKET;
+//                    baseLevel = level;
+//                }
+//                else
+//                {
+//                    if( prevLevel < level )
+//                    {
+//                        if( prevAndOr == Term::AND_BIT )
+//                            output += SPACE;
+//                        else if( prevAndOr == Term::OR_BIT )
+//                            output += OR_CHAR;
+//                        output += LBRACKET;
+//                    }
+//                    else
+//                    {
+//                        if( prevLevel > level )
+//                            output += RBRACKET;
+//                        if( andOrBit == Term::AND_BIT )
+//                        {
+//                            output += SPACE;
+//                        }
+//                        else if( andOrBit == Term::OR_BIT )
+//                        {
+//                            output += OR_CHAR;
+//                        }
+//                    }
+//                }
+//            }
+//
+//            UString replacedText;
+//            replaceSpecialChar( it->text_, replacedText );
+//            output += replacedText;
+//
+//            prevLevel = level;
+//            prevOffset = it->wordOffset_;
+//            prevAndOr = andOrBit;
+//
+//            //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
+//        }
+//        for( int i = prevLevel; i >= baseLevel; i-- )
+//            output += RBRACKET;
 
         return output;
     }

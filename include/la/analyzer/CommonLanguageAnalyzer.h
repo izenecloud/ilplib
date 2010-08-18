@@ -26,15 +26,13 @@ class CommonLanguageAnalyzer : public Analyzer
 {
 public:
 
-    enum mode {indexmode, labelmode} ;
-
     CommonLanguageAnalyzer( const std::string knowledgePath, bool loadModel = true );
 
     ~CommonLanguageAnalyzer();
 
-    virtual void setIndexMode() = 0;
+    virtual void setIndexMode() {};
 
-    virtual void setLabelMode() = 0;
+    virtual void setLabelMode() {};
 
     virtual void setNBest(unsigned int nbest = 2) {};
 
@@ -46,7 +44,17 @@ public:
         bContainLower_ = containlower;
     };
 
-    DECLARE_ANALYZER_METHODS
+    virtual inline void setExtractEngStem( bool extractEngStem = true )
+    {
+        bExtractEngStem_ = extractEngStem;
+    }
+
+    virtual inline void setExtractSynonym( bool extractSynonym = true)
+    {
+        bExtractSynonym_ = extractSynonym;
+    }
+
+    void setSynonymUpdateInterval(unsigned int seconds);
 
 protected:
 
@@ -59,17 +67,49 @@ protected:
     /// whether morpheme_ indicates foreign language
     virtual bool isFL() = 0;
 
-    inline const char* token() { return token_; }
-    inline int len() { return len_; }
-    inline int morpheme() { return morpheme_; }
-    inline int offset() { return offset_; }
-    bool needIndex() { return needIndex_; }
+    inline const char* token()
+    {
+        return token_;
+    }
+    inline int len()
+    {
+        return len_;
+    }
+    inline int morpheme()
+    {
+        return morpheme_;
+    }
+    inline int offset()
+    {
+        return offset_;
+    }
+    bool needIndex()
+    {
+        return needIndex_;
+    }
+
+protected:
+
+    IMPLEMENT_ANALYZER_METHODS
+
+    int analyze_(const Term & input,
+                 TermList & output,
+                 analyzermode flags);
 
     template <typename IDManagerType>
-    int analyze(IDManagerType* idm,
-            const Term & input,
-            TermIdList & output,
-            analyzermode flags);
+    int analyze_(IDManagerType* idm,
+                 const Term & input,
+                 TermIdList & output,
+                 analyzermode flags);
+
+    typedef void (*HookType) ( void* data, const UString::CharT* text, const size_t len, const int offset );
+
+    template<typename IDManagerType>
+    static void appendTermIdList( void* data, const UString::CharT* text, const size_t len, const int offset );
+
+    static void appendTermList( void* data, const UString::CharT* text, const size_t len, const int offset );
+
+    int analyze_impl( const Term& input, analyzermode flags, void* data, HookType func );
 
 protected:
 
@@ -79,8 +119,15 @@ protected:
 
     stem::Stemmer *                     pStemmer_;
 
-    char * ustring_convert_buffer1_;
-    char * ustring_convert_buffer_;
+    static const size_t input_string_buffer_size_ = 4096*3;
+    char * input_string_buffer_;
+    char * input_lowercase_string_buffer_;
+
+    static const size_t output_ustring_buffer_size_ = 4096;
+    UString::CharT * output_ustring_buffer_;
+    UString::CharT * output_lowercase_ustring_buffer_;
+    UString::CharT * output_synonym_ustring_buffer_;
+    UString::CharT * output_stemming_ustring_buffer_;
 
     const char * token_;
     int len_;
@@ -93,6 +140,10 @@ protected:
     bool bCaseSensitive_;
 
     bool bContainLower_;
+
+    bool bExtractEngStem_;
+
+    bool bExtractSynonym_;
 };
 
 }

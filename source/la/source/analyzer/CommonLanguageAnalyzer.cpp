@@ -19,148 +19,205 @@
 namespace la
 {
 
-    CommonLanguageAnalyzer::CommonLanguageAnalyzer(
-        const std::string pKnowledgePath, bool loadModel )
-        : Analyzer(),
-        pSynonymContainer_( NULL ),
-        pSynonymResult_( NULL ),
-        pStemmer_( NULL ),
-        ustring_convert_buffer_(NULL),
-        ustring_convert_buffer1_(NULL)
+CommonLanguageAnalyzer::CommonLanguageAnalyzer(
+    const std::string pKnowledgePath, bool loadModel )
+    : Analyzer(),
+    pSynonymContainer_( NULL ),
+    pSynonymResult_( NULL ),
+    pStemmer_( NULL ),
+    bCaseSensitive_(false),
+    bContainLower_(false),
+    bExtractEngStem_(false),
+    bExtractSynonym_(false)
+{
+    // ( if possible) remove tailing path separator in the knowledgePath
+    string knowledgePath = pKnowledgePath;
+    if( knowledgePath.length() > 0 )
     {
-        // ( if possible) remove tailing path separator in the knowledgePath
-        string knowledgePath = pKnowledgePath;
-        if( knowledgePath.length() > 0 )
-        {
-            char klpLastChar = knowledgePath[ knowledgePath.length() - 1 ];
-            if( klpLastChar == '/' || klpLastChar == '\\' )
-                knowledgePath = knowledgePath.substr( 0, knowledgePath.length() - 1 );
-        }
-
-        pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
-        if( pSynonymContainer_ == NULL )
-        {
-        }
-        pSynonymResult_ = izenelib::am::VSynonym::createObject();
-        if( pSynonymResult_ == NULL )
-        {
-        }
-
-        string synonymPath = knowledgePath + "/synonym.txt";
-        pSynonymContainer_->setSynonymDelimiter(" ");
-        pSynonymContainer_->setWordDelimiter("_");
-        if( pSynonymContainer_->loadSynonym( synonymPath.c_str() ) != 1 )
-        {
-            string msg = "Failed to load synonym dictionary from path: ";
-            msg += knowledgePath;
-            throw std::logic_error( msg );
-        }
-
-        // set updatable Synonym Dictionary
-        uscSPtr_.reset( new UpdatableSynonymContainer( pSynonymContainer_, synonymPath ) );
-        UpdateDictThread::staticUDT.addRelatedDict( synonymPath.c_str(), uscSPtr_ );
-
-        pStemmer_ = new stem::Stemmer();
-        pStemmer_->init(stem::STEM_LANG_ENGLISH);
-
-        ustring_convert_buffer_ = new char[4096];
-        ustring_convert_buffer1_ = new char[4096*4];
+        char klpLastChar = knowledgePath[ knowledgePath.length() - 1 ];
+        if( klpLastChar == '/' || klpLastChar == '\\' )
+            knowledgePath = knowledgePath.substr( 0, knowledgePath.length() - 1 );
     }
 
-
-    CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
+    pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
+    if( pSynonymContainer_ == NULL )
     {
-        delete pSynonymContainer_;
-        delete pSynonymResult_;
-        delete pStemmer_;
-
-        delete ustring_convert_buffer_;
-        delete ustring_convert_buffer1_;
+    }
+    pSynonymResult_ = izenelib::am::VSynonym::createObject();
+    if( pSynonymResult_ == NULL )
+    {
     }
 
+    string synonymPath = knowledgePath + "/synonym.txt";
+    pSynonymContainer_->setSynonymDelimiter(" ");
+    pSynonymContainer_->setWordDelimiter("_");
+    if( pSynonymContainer_->loadSynonym( synonymPath.c_str() ) != 1 )
+    {
+        string msg = "Failed to load synonym dictionary from path: ";
+        msg += knowledgePath;
+        throw std::logic_error( msg );
+    }
 
-template <typename IDManagerType>
-int CommonLanguageAnalyzer::analyze(
-    IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags)
+    // set updatable Synonym Dictionary
+    uscSPtr_.reset( new UpdatableSynonymContainer( pSynonymContainer_, synonymPath ) );
+    UpdateDictThread::staticUDT.addRelatedDict( synonymPath.c_str(), uscSPtr_ );
+
+    pStemmer_ = new stem::Stemmer();
+    pStemmer_->init(stem::STEM_LANG_ENGLISH);
+
+    input_string_buffer_ = new char[input_string_buffer_size_];
+    input_lowercase_string_buffer_ = new char[input_string_buffer_size_];
+    output_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+    output_lowercase_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+    output_synonym_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+    output_stemming_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+}
+
+void CommonLanguageAnalyzer::setSynonymUpdateInterval(unsigned int seconds)
+{
+    UpdateDictThread::staticUDT.setCheckInterval(seconds);
+    if( !UpdateDictThread::staticUDT.isStarted() )
+        UpdateDictThread::staticUDT.start();
+}
+
+CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
+{
+    delete pSynonymContainer_;
+    delete pSynonymResult_;
+    delete pStemmer_;
+
+    delete input_string_buffer_;
+    delete input_lowercase_string_buffer_;
+    delete output_ustring_buffer_;
+    delete output_lowercase_ustring_buffer_;
+    delete output_synonym_ustring_buffer_;
+    delete output_stemming_ustring_buffer_;
+}
+
+int CommonLanguageAnalyzer::analyze_impl( const Term& input, analyzermode flags, void* data, HookType func )
 {
     // prime terms is meaningless to Chinese
     if( flags & prime )
     {
-        output.push_back(TermId());
-        idm->getTermIdByTermString(input.text_, output.back().termid_);
-        output.back().wordOffset_ = input.wordOffset_;
+        func( data, input.text_.c_str(), input.text_.length(), input.wordOffset_ );
     }
 
     if( flags & second)
     {
-        input.text_.convertString(encode_, ustring_convert_buffer1_, 4096*4);
-        parse(ustring_convert_buffer1_, input.wordOffset_);
+        input.text_.convertString(encode_, input_string_buffer_, input_string_buffer_size_);
+        parse(input_string_buffer_, input.wordOffset_);
 
-        while( nextToken() ) {
+        while( nextToken() )
+        {
             if( len() == 0 )
                 continue;
 
-            if( needIndex() ) {
-                    char* termUstr = ustring_convert_buffer_;
-                    size_t termUstrLen = sizeof(UString::CharT) * UString::toUcs2(encode_, token(), len(),
-                                         (UString::CharT*)ustring_convert_buffer_, 4096/sizeof(UString::CharT));
-                    char* synonymUstr = termUstr;
+            if( needIndex() )
+            {
+                UString::CharT* termUstr = output_ustring_buffer_;
+                size_t termUstrLen = UString::toUcs2(encode_, token(), len(), output_ustring_buffer_, output_ustring_buffer_size_);
+                const char* synonymInput = token();
 
-                    // foreign language, e.g. English
-                    if( isFL() )
+                // foreign language, e.g. English
+                if( isFL() )
+                {
+                    UString::CharT* lowercaseTermUstr = output_lowercase_ustring_buffer_;
+                    bool lowercaseIsDifferent = UString::toLowerString(termUstr, termUstrLen,
+                                output_lowercase_ustring_buffer_, output_ustring_buffer_size_);
+
+                    char* lowercaseTerm = input_lowercase_string_buffer_;
+                    UString::convertString(encode_, lowercaseTermUstr, termUstrLen, input_lowercase_string_buffer_, input_string_buffer_size_);
+
+                    if(bCaseSensitive_)
                     {
-                        char* lowercaseTermUstr = termUstr;
-                        bool lowercaseIsDifferent = false;
-                        /// TODO implement to_lower
-                        /// UString::to_lower(ustring_convert_buffer, lower_ustring_buffer);
-                        /// lowercaseTermUstr = lower_ustring_buffer;
-
-                        if(bCaseSensitive_)
+                        func( data,  termUstr, termUstrLen, offset() );
+                        if(bContainLower_ & lowercaseIsDifferent)
                         {
-                            output.add(idm, termUstr, termUstrLen, offset() );
-                            if(bContainLower_ & lowercaseIsDifferent)
-                            {
-                                output.add(idm, lowercaseTermUstr, termUstrLen, offset());
-                            }
+                            func( data, lowercaseTermUstr, termUstrLen, offset());
                         }
-                        else
-                        {
-                            output.add(idm, lowercaseTermUstr, termUstrLen, offset());
-                        }
-
-                        if(flags & stemming )
-                        {
-                            string stem_term;
-                            pStemmer_->stem( lowercaseTermUstr, stem_term );
-                            if( strcmp(stem_term.c_str(), lowercaseTermUstr) != 0 )
-                            {
-                                output.add(idm, stem_term.c_str(), stem_term.size(), offset());
-                            }
-                        }
-
-                        synonymUstr = lowercaseTermUstr;
                     }
                     else
                     {
-                        output.add(idm, termUstr, termUstrLen, offset());
+                        func( data, lowercaseTermUstr, termUstrLen, offset());
                     }
 
-                    if(flags & synonym )
+                    if(bExtractEngStem_)
                     {
-                        pSynonymContainer_ = uscSPtr_->getSynonymContainer();
-                        pSynonymContainer_->searchNgetSynonym( synonymUstr, pSynonymResult_ );
-                        char * synonym = pSynonymResult_->getHeadWord(0);
-                        if( synonym )
+                        /// TODO: write a UCS2 based stemmer
+                        string stem_term;
+                        pStemmer_->stem( lowercaseTerm, stem_term );
+                        if( strcmp(stem_term.c_str(), lowercaseTerm) != 0 )
                         {
-                            output.add(idm, synonym, strlen(synonym), offset());
+                            UString::CharT* stemmingTermUstr = output_stemming_ustring_buffer_;
+                            size_t stemmingTermUstrSize = UString::toUcs2(encode_, stem_term.c_str(), stem_term.size(),
+                                    output_stemming_ustring_buffer_, output_ustring_buffer_size_);
+                            func( data, stemmingTermUstr, stemmingTermUstrSize, offset());
                         }
                     }
+
+                    if(bExtractSynonym_) {
+                        synonymInput = lowercaseTerm;
+                    }
+                }
+                else
+                {
+                    func( data, termUstr, termUstrLen, offset());
+                }
+
+                if(bExtractSynonym_)
+                {
+                    pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+                    pSynonymContainer_->searchNgetSynonym( synonymInput, pSynonymResult_ );
+                    char * synonymResult = pSynonymResult_->getHeadWord(0);
+                    if( synonymResult )
+                    {
+                        //cout << synonymInput << "--<>" << synonymResult << "," <<  pSynonymResult_->getHeadWord(1) << endl;
+                        size_t synonymResultLen = strlen(synonymResult);
+                        if(synonymResultLen <= output_ustring_buffer_size_) {
+                            UString::CharT * synonymResultUstr = output_synonym_ustring_buffer_;
+                            size_t synonymResultUstrLen = UString::toUcs2(encode_, synonymResult, synonymResultLen,
+                                    output_synonym_ustring_buffer_, output_ustring_buffer_size_);
+                            func( data, synonymResultUstr, synonymResultUstrLen, offset());
+                        }
+                    }
+                }
             }
         }
         return offset();
     }
 
     return 1;
+}
+
+template<typename IDManagerType>
+void CommonLanguageAnalyzer::appendTermIdList( void* data,
+    const UString::CharT* text, const size_t len, const int offset )
+{
+    TermIdList * output = ((std::pair<TermIdList*, IDManagerType*>* ) data)->first;
+    IDManagerType * idm = ((std::pair<TermIdList*, IDManagerType*>* ) data)->second;
+
+    output->add(idm, text, len, offset);
+}
+
+void CommonLanguageAnalyzer::appendTermList( void* data,
+    const UString::CharT* text, const size_t len, const int offset )
+{
+    TermList * output = (TermList *) data;
+    output->add( UString(text, len), offset );
+}
+
+
+int CommonLanguageAnalyzer::analyze_( const Term & input, TermList & output, analyzermode flags)
+{
+    return analyze_impl(input, flags, &output, &CommonLanguageAnalyzer::appendTermList);
+}
+
+template <typename IDManagerType>
+int CommonLanguageAnalyzer::analyze_(
+    IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags)
+{
+    pair<TermIdList*, IDManagerType*> env = make_pair(&output, idm);
+    return analyze_impl(input, flags, &env, &CommonLanguageAnalyzer::appendTermIdList<IDManagerType>);
 }
 
 }

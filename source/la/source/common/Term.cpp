@@ -8,9 +8,6 @@
 
 namespace la
 {
-    const unsigned char Term::OR_BIT = 1;
-    const unsigned char Term::AND_BIT = 0;
-
     //-------------------------------- CLASS MEMBER METHODS -----------------------------
 
 
@@ -19,10 +16,7 @@ namespace la
         std::string tmp;
         text_.convertString(tmp, izenelib::util::UString::UTF_8);
         std::stringstream ss;
-        ss << "pos=" 		<< pos_ 		            << "\t";
-        ss << "morpheme=" 	<< bitset<32>(morpheme_) 	<< "\t";
         ss << "woffset=" 	<< wordOffset_			    << "\t";
-        ss << "stats=" 	    << bitset<8>(stats_)  		<< "\t";
         ss << "\ttext=[" 	<< tmp			            << "]";
         return ss.str();
     }
@@ -31,10 +25,7 @@ namespace la
     {
         std::string tmp;
         term.text_.convertString(tmp, izenelib::util::UString::UTF_8);
-        out << "pos=" 		<< term.pos_ 		            << "\t";
-        out << "morpheme=" 	<< bitset<32>(term.morpheme_) 	<< "\t";
         out << "woffset=" 	<< term.wordOffset_			    << "\t";
-        out << "stats=" 	<< bitset<8>(term.stats_)  		<< "\t";
         out << "\ttext=[" 	<< tmp			                << "]";
         return out;
     }
@@ -100,9 +91,7 @@ namespace la
                 ++bgOff;
                 ++phItr2;
             }
-
 //            termList.splice( termList.end(), placeHolder, phItr, placeHolder.end() );
-
         }
     }
 
@@ -112,6 +101,8 @@ namespace la
         out << "\ttermid =[" 	<< termid.termid_	                << "]";
         return out;
     }
+
+    Term TermList::globalTemporary_;
 
     TermId TermIdList::globalTemporary_;
 

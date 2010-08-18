@@ -253,7 +253,7 @@ protected:
             {
                 if( (k = getSpecialCharsString(pE, i, j, specialStr)) >= 0 )
                 {
-                    _CLA_INSERT_INDEX_STR( term_it, termList, specialStr, k, nniPOS_, nniMorp_ );
+//                    _CLA_INSERT_INDEX_STR( term_it, termList, specialStr, k, nniPOS_, nniMorp_ );
                     j = k;
                 }
             }

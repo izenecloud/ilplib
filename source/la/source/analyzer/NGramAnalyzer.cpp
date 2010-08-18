@@ -52,7 +52,7 @@ namespace la
             if( retFlag & ANALYZE_PRIME_ )
             {
                 term_it = tempList.insert( tempList.end(), *it );
-                term_it->stats_ = makeStatBit( Term::OR_BIT, level );
+//                term_it->stats_ = makeStatBit( Term::OR_BIT, level );
             }
             level++;
 
@@ -81,7 +81,7 @@ namespace la
                         for(int start = 0; start <= len - ngram ; start++)
                         {
                             term_it = tempList.insert( tempList.end(), newTerm );
-                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
+//                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
                             term_it->wordOffset_ = it->wordOffset_;
 
                             term_it->text_   = it->text_.substr(start, ngram);
@@ -101,7 +101,7 @@ namespace la
                                 if( (curType & apartFlag_) == 0 || ngram >= (typeEnd-typeStart) )
                                 {
                                     term_it = tempList.insert( tempList.end(), newTerm );
-                                    term_it->stats_ = makeStatBit( Term::AND_BIT, level);
+//                                    term_it->stats_ = makeStatBit( Term::AND_BIT, level);
                                     term_it->wordOffset_ = it->wordOffset_;
 
                                     term_it->text_ = it->text_.substr(typeStart, typeEnd-typeStart);
@@ -114,7 +114,7 @@ namespace la
                                         for(substart = typeStart; substart <= typeEnd - ngram; substart++)
                                         {
                                             term_it = tempList.insert( tempList.end(), newTerm );
-                                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
+//                                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
                                             term_it->wordOffset_ = it->wordOffset_;
 
                                             term_it->text_ = it->text_.substr(substart, ngram);
@@ -136,7 +136,7 @@ namespace la
                         if( (curType & apartFlag_) == 0 || ngram >= (typeEnd-typeStart) )
                         {
                             term_it = tempList.insert( tempList.end(), newTerm );
-                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
+//                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
 
                             term_it->wordOffset_ = it->wordOffset_;
                             term_it->text_ = it->text_.substr(typeStart, len-typeStart);
@@ -149,7 +149,7 @@ namespace la
                             for(substart = typeStart; substart <= len - ngram; substart++)
                             {
                                 term_it = tempList.insert( tempList.end(), newTerm );
-                                term_it->stats_ = makeStatBit( Term::AND_BIT, level);
+//                                term_it->stats_ = makeStatBit( Term::AND_BIT, level);
                                 term_it->wordOffset_ = it->wordOffset_;
 
                                 term_it->text_ = it->text_.substr(substart, ngram);
@@ -175,7 +175,7 @@ namespace la
                 if( (retFlag & ANALYZE_PRIME_ ) == 0 )
                 {
                     term_it = tempList.insert( tempList.end(), *it );
-                    term_it->stats_ = makeStatBit( Term::AND_BIT, level );
+//                    term_it->stats_ = makeStatBit( Term::AND_BIT, level );
                 }
             }
 
@@ -183,11 +183,11 @@ namespace la
 
             if( tempList.empty() == false )
             {
-                output.splice( output.end(), tempList );
+//                output.splice( output.end(), tempList );
             }
             else if( tempList.size() == 1 )
             {
-                tempList.begin()->stats_ = makeStatBit( Term::AND_BIT, level );
+//                tempList.begin()->stats_ = makeStatBit( Term::AND_BIT, level );
             }
         }
         return 0;

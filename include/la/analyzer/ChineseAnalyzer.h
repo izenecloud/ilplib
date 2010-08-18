@@ -14,6 +14,12 @@ namespace la
 class ChineseAnalyzer : public CommonLanguageAnalyzer {
 public:
 
+    enum ChineseAnalysisType{
+        maximum_entropy = 1,
+        maximum_match = 2,
+        minimum_match = 3,
+    };
+
     ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true );
 
     ~ChineseAnalyzer();
@@ -25,7 +31,7 @@ public:
     /**
      * @brief   Set the analysis approach type, only for iCMA
      */
-    inline void setAnalysisType( unsigned int type = 2 )
+    inline void setAnalysisType( ChineseAnalysisType type )
     {
         pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
     }

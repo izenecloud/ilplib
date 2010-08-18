@@ -18,10 +18,10 @@ std::ostream & printTerm( const la::Term & term, std::ostream & out=cout )
     std::string tmp;
     term.text_.convertString(tmp, IO_ENCODING );
     out << "len=" 		    << (term.text_.length()) 	    << "\t";
-    out << "pos=" 		    << term.pos_ 		            << "\t";
-    out << "morpheme=" 		<< bitset<32>(term.morpheme_) 	<< "\t";
+//    out << "pos=" 		    << term.pos_ 		            << "\t";
+//    out << "morpheme=" 		<< bitset<32>(term.morpheme_) 	<< "\t";
     out << "woffset=" 	    << term.wordOffset_			    << "\t";
-    out << "stats=" 	    << bitset<8>(term.stats_)  		<< "\t";
+//    out << "stats=" 	    << bitset<8>(term.stats_)  		<< "\t";
     out << "\ttext=[" 		<< tmp			                << "]";
     out << std::endl;
     return out;

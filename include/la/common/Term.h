@@ -27,60 +27,27 @@
 namespace la
 {
 
-    ///
-    /// \brief term information class
-    /// Term is the output unit of LA manager, This class record the basic information of a term
-    ///
     class Term
     {
         public:
 
-            // aligned the variables in size order
-            izenelib::util::UString    text_;          ///< text data of the term
-            std::string         pos_;           ///< pos tag
-            unsigned int        wordOffset_;    ///< word offset of the term in original text
-            int                 morpheme_;      ///< morpheme informations (for korean)
+            izenelib::util::UString    text_;
 
-            /// @brief  Saves the information of the extraction
-            /// @details
-            ///  1: and(0)/or(1) term
-            ///  2-8: represents level in an integer value
-            ///  ONLY USED IN SEARCH RELATED METHODS
-            unsigned char       stats_;
-
-            /// @brief  stop bit
-            ///  ONLY USED IN INDEX RELATED METHODS
-            unsigned char       stopBit_;     //TODO: DEFAULT VALUE??
-
-
-            static const unsigned char OR_BIT;
-            static const unsigned char AND_BIT;
+            unsigned int        wordOffset_;
 
         public:
 
-            Term()
-                :   pos_("?")
-                    ,wordOffset_(0)
-                    ,morpheme_(0)
-                    ,stats_(0)
-            {}
+            Term() : wordOffset_(0) {}
 
             Term(const izenelib::util::UString & str)
-                :   text_(str),
-                    pos_("?")
-                    ,wordOffset_(0)
-                    ,morpheme_(0)
-                    ,stats_(0)
-            {}
+                : text_(str), wordOffset_(0) {}
 
-            ~Term()
-            {}
+            ~Term() {}
 
             void clear()
-            { text_.clear();
-                pos_ = "?";
+            {
+                text_.clear();
                 wordOffset_ = 0;
-                morpheme_ = 0;
             }
 
 
@@ -109,37 +76,24 @@ namespace la
             {
                 ar& text_;
                 ar& wordOffset_;
-                ar& pos_;
-                ar& morpheme_;
             }
 
     };
 
-    inline unsigned char makeStatBit( unsigned char andOrBit, unsigned char level  )
+    class TermList : public  std::deque<Term>
     {
-        unsigned char temp = 0;
+        public:
 
-        andOrBit &= 0x01;
-        andOrBit = andOrBit << 7;
-        level &= 0x7F;
+            inline void add( const UString & ustr, const unsigned int offset ) {
+                push_back(globalTemporary_);
+                back().text_ = ustr;
+                back().wordOffset_ = offset;
+            }
 
-        temp |= andOrBit;
-        temp |= level;
+        private:
 
-        return temp;
-    }
-
-    inline void readStatBit( const unsigned char & stat, unsigned char & andOrBit, unsigned char & level )
-    {
-        andOrBit = (stat & 0x80);
-        andOrBit = andOrBit >> 7;
-
-        level = (stat & 0x7F);
-
-        return;
-    }
-
-    typedef std::list<Term> TermList;
+            static Term globalTemporary_;
+    };
 
     std::ostream & operator<<( std::ostream & out, TermList & termList );
 
@@ -184,14 +138,14 @@ namespace la
             }
 
             template<typename IDManagerType>
-            inline void add( IDManagerType* idm, const Term & term, const unsigned int offset ) {
+            inline void add( IDManagerType* idm, const Term & term) {
                 push_back(globalTemporary_);
                 idm->getTermIdByTermString(term.text_, back().termid_);
-                back().wordOffset_ = offset;
+                back().wordOffset_ = term.wordOffset_;
             }
 
             template<typename IDManagerType>
-            inline void add( IDManagerType* idm, const char* termStr, const size_t termLen, const unsigned int offset ) {
+            inline void add( IDManagerType* idm, const UString::CharT* termStr, const size_t termLen, const unsigned int offset ) {
                 push_back(globalTemporary_);
                 idm->getTermIdByTermString(termStr, termLen, back().termid_);
                 back().wordOffset_ = offset;

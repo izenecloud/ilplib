@@ -169,7 +169,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
             termItr = output.insert( output.end(), newTerm_ );
             termItr->text_ = ustr;
             termItr->wordOffset_ = offset;
-            termItr->pos_ = pos;
+//            termItr->pos_ = pos;
 
             izenelib::util::UString lowerUstr = ustr;
             // if it is not case sensitive, it has been in lower case
@@ -182,7 +182,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
                     termItr = output.insert( output.end(), newTerm_ );
                     termItr->text_ = lowerUstr;
                     termItr->wordOffset_ = offset;
-                    termItr->pos_ = pos;
+//                    termItr->pos_ = pos;
                 }
             }
 
@@ -197,7 +197,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
                     termItr = output.insert( output.end(), newTerm_ );
                     termItr->text_.assign( stemstr, izenelib::util::UString::UTF_8 );
                     termItr->wordOffset_ = offset;
-                    termItr->pos_ = pos;
+//                    termItr->pos_ = pos;
                 }
             }
         }
@@ -206,7 +206,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
             termItr = output.insert( output.end(), newTerm_ );
             termItr->text_ = ustr;
             termItr->wordOffset_ = woffset + listOffset;
-            termItr->pos_ = LANG_STRING_NAME[ lang ];
+//            termItr->pos_ = LANG_STRING_NAME[ lang ];
         }
 
         if( !isEnd )
@@ -221,7 +221,7 @@ void MultiLanguageAnalyzer::invokeMA( const UString& ustr, TermList & output, bo
             termItr = output.insert( output.end(), newTerm_ );
             termItr->text_ = ustr.substr( i, 1);
             termItr->wordOffset_ = woffset + listOffset;
-            termItr->pos_ = LANG_CHAR_NAME[ lang ];
+//            termItr->pos_ = LANG_CHAR_NAME[ lang ];
             if( !isEnd || (i + 1) < size )
                 ++listOffset;
         }
@@ -300,7 +300,7 @@ int MultiLanguageAnalyzer::analyze_search( const TermList & input, TermList & ou
 }
 
     template<typename IDManagerType>
-    int MultiLanguageAnalyzer::analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags )
+    int MultiLanguageAnalyzer::analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags )
     {
         Language lang = CHINESE;
         ProcessMode mode = modes_[CHINESE];

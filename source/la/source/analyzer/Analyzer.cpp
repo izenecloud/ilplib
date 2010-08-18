@@ -16,7 +16,8 @@ namespace la
     const unsigned char Analyzer::ANALYZE_SECOND_   = 0x02;
     const unsigned char Analyzer::ANALYZE_ALL_  = 0x03;
 
-    int Analyzer::analyze(IDManager* idm, const Term & input, TermIdList & output) {
+    template<typename IDManagerType>
+    int analyze(IDManagerType* idm, const Term & input, TermIdList & output) {
         return analyze(idm, input, output, Analyzer::second );
     }
 

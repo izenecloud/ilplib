@@ -53,7 +53,7 @@ public:
      */
     virtual ~MultiLanguageAnalyzer();
 
-    DECLARE_ANALYZER_METHODS
+    IMPLEMENT_ANALYZER_METHODS
 
     /**
      * Set the Analyzer for specific language type
@@ -107,6 +107,11 @@ public:
         bExtractEngStem_ = flag;
     }
 
+protected:
+
+    template<typename IDManagerType>
+    int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags );
+
 private:
 
     inline Language getCharType( izenelib::util::UCS2Char ucs2Char );
@@ -115,9 +120,6 @@ private:
             unsigned int woffset, unsigned int &listOffset, bool isEnd );
 
     inline void performAnalyze( const TermList & input, TermList & output, bool isIndex );
-
-    template<typename IDManagerType>
-    int analyze( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags );
 
     void printMLA();
 

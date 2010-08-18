@@ -47,8 +47,8 @@ void KoreanAnalyzer::generateCompundNouns(
                     if( tstr == inputstr )
                         continue;
 
-                    _CLA_INSERT_INDEX_STR( term_it, termList, tstr,
-                                           wordOffset, nnpPOS_, nnpMorp_ );
+//                    _CLA_INSERT_INDEX_STR( term_it, termList, tstr,
+//                                           wordOffset, nnpPOS_, nnpMorp_ );
                 }
             }
         }
@@ -171,7 +171,7 @@ void KoreanAnalyzer::addChineseTerm(
         {
             strncpy(hanja_term, pTerm + sb, eb-sb+1);
             hanja_term[eb-sb+1] = 0;
-            _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
+//            _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
 
             sb = -1;
             eb = -1;
@@ -183,7 +183,7 @@ void KoreanAnalyzer::addChineseTerm(
     {
         strncpy(hanja_term, pTerm + sb, eb-sb+1);
         hanja_term[eb-sb+1] = 0;
-        _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
+//        _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
 
         sb = -1;
         eb = -1;

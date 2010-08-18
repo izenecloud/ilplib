@@ -5,7 +5,7 @@ using namespace std;
 namespace la
 {
 
-    const unsigned char defLogicOp = Term::OR_BIT;
+//    const unsigned char defLogicOp = Term::OR_BIT;
 
     MatrixAnalyzer::MatrixAnalyzer( bool prefix, bool suffix )
         : bPrefix_(prefix), bSuffix_(suffix)
@@ -69,7 +69,7 @@ namespace la
         for( it = input.begin(); it != input.end(); it++ )
         {
             term_it = output.insert( output.end(), *it );
-            term_it->stats_ = makeStatBit( defLogicOp, level );
+//            term_it->stats_ = makeStatBit( defLogicOp, level );
 
             if( (retFlag & ANALYZE_SECOND_) == 0 )
                 continue;
@@ -83,7 +83,7 @@ namespace la
                     term_it = output.insert( output.end(), *it );
 
                     term_it->text_   = it->text_.substr(0, preLength);
-                    term_it->stats_ = makeStatBit( defLogicOp, level );
+//                    term_it->stats_ = makeStatBit( defLogicOp, level );
                 }
             }
 
@@ -94,7 +94,7 @@ namespace la
                     term_it = output.insert( output.end(), *it );
 
                     term_it->text_   = it->text_.substr(start, length-start);
-                    term_it->stats_ = makeStatBit( defLogicOp, level );
+//                    term_it->stats_ = makeStatBit( defLogicOp, level );
                 }
             }
         }

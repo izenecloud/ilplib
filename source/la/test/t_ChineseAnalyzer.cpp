@@ -94,6 +94,15 @@ public:
             }
         }
 
+        void print() {
+            TermList::iterator it = termList.begin();
+            for(; it!=termList.end(); it++ ) {
+                std::string printable;
+                it->text_.convertString(printable, UString::UTF_8);
+                cout << printable << endl;
+            }
+        }
+
         KnowledgeDir knowledge;
         ChineseAnalyzer analyzer;
         IDManager idm;
@@ -224,30 +233,21 @@ BOOST_AUTO_TEST_CASE(test_synonym)
     analyzer.setExtractSynonym(true);
     analyzer.setSynonymUpdateInterval(1);
 
-    knowledge.appendFile("synonym.txt", "unit 单元\n");
     knowledge.appendFile("synonym.txt", "单元 unit\n");
-
-
     boost::this_thread::sleep( boost::posix_time::seconds(2) ); // wait for updating synonym dict
 
-    const string sstr("测试使用Boost Unit Tests 单元");
+    const string sstr("测试使用Boost Unit Tests");
     const UString ustr(sstr, UString::UTF_8);
     analyzer.analyze(Term(ustr), termList);
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
-            TermList::iterator it = termList.begin();
-            for(; it!=termList.end(); it++ ) {
-                std::string printable;
-                it->text_.convertString(printable, UString::UTF_8);
-                cout << printable << endl;
-            }
-//    BOOST_CHECK_EQUAL(termList.size(), 6U);
-//    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-//    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-//    BOOST_CHECK_EQUAL( termList[2].text_, UString("boost", UString::UTF_8) );
-//    BOOST_CHECK_EQUAL( termList[3].text_, UString("unit", UString::UTF_8) );
-//    BOOST_CHECK_EQUAL( termList[4].text_, UString("单元", UString::UTF_8) );
-//    BOOST_CHECK_EQUAL( termList[5].text_, UString("tests", UString::UTF_8) );
+    BOOST_CHECK_EQUAL(termList.size(), 6U);
+    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[2].text_, UString("boost", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[3].text_, UString("unit", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[4].text_, UString("单元", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[5].text_, UString("tests", UString::UTF_8) );
 
     regularTests();
 }

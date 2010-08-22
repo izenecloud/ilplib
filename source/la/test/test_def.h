@@ -1,106 +1,9 @@
-
 #ifndef _LA_TEST_DEF_H_
 #define _LA_TEST_DEF_H_
 
-#include <la/common/Term.h>
-#include <util/ustring/UString.h>
-#include <stdlib.h>
-#include <iostream>
+#include <boost/filesystem.hpp>
 
-
-izenelib::util::UString::EncodingType IO_ENCODING = izenelib::util::UString::UTF_8;
-izenelib::util::UString::EncodingType FILE_ENCODING = izenelib::util::UString::UTF_8;
-
-const unsigned int BUFFER = 1024;
-
-std::ostream & printTerm( const la::Term & term, std::ostream & out=cout )
-{
-    std::string tmp;
-    term.text_.convertString(tmp, IO_ENCODING );
-    out << "len=" 		    << (term.text_.length()) 	    << "\t";
-//    out << "pos=" 		    << term.pos_ 		            << "\t";
-//    out << "morpheme=" 		<< bitset<32>(term.morpheme_) 	<< "\t";
-    out << "woffset=" 	    << term.wordOffset_			    << "\t";
-//    out << "stats=" 	    << bitset<8>(term.stats_)  		<< "\t";
-    out << "\ttext=[" 		<< tmp			                << "]";
-    out << std::endl;
-    return out;
-}
-std::ostream & printTermList( const la::TermList & termList, std::ostream & out=cout )
-{
-    la::TermList::const_iterator it;
-    for( it = termList.begin(); it != termList.end(); it++ )
-    {
-        printTerm( *it, out );
-    }
-    return out;
-}
-
-izenelib::util::UString showMenu()
-{
-    std::cout << "Enter a text. (buffer size is: " << BUFFER << ")" << std::endl;
-
-    char buf[BUFFER];
-    std::cin.getline( buf, 1024 );
-
-    izenelib::util::UString query( buf, IO_ENCODING );
-
-    return query;
-}
-
-inline void downcase( std::string & str )
-{
-    for(size_t i = 0; i < str.length(); i++ )
-    {
-        str[i] = tolower( str[i] );
-    }
-}
-
-int parseTruth( const std::string & str )
-{
-    std::string tmp;
-    for( size_t i = 0; i < str.length(); i++ )
-    {
-        tmp.push_back( std::tolower(str[i]) );
-    }
-
-    if( tmp.compare("y") == 0 || tmp.compare("yes") ==  0 )
-        return 1;
-    else if( tmp.compare("n") == 0 || tmp.compare("no") ==  0 )
-        return -1;
-    else
-        return 0;
-}
-
-string getKmaKnowledgePath()
-{
-    char * p = getenv("WISEKMA");
-    if( p != NULL )
-    {
-        string str(p);
-        str.append("/knowledge");
-        return str;
-    }
-    else
-    {
-        throw logic_error( "cannot find \"knowledge\" under WISEKMA(environment variable)." );
-    }
-}
-
-string getCmaKnowledgePath()
-{
-    char * p = getenv("IZENECMA");
-    if( p != NULL )
-    {
-        string str(p);
-        str.append("/db/icwb/utf8");
-        return str;
-    }
-    else
-    {
-        throw logic_error( "cannot find db/icwb/utf under IZENECMA(environment variable)." );
-    }
-}
+using namespace boost::filesystem;
 
 #define TO_STRING_(x) #x "/knowledge"
 #define TO_STRING(x) TO_STRING_(x)
@@ -110,6 +13,47 @@ string getCmaKnowledgePath()
 #define TO_CMA_STRING(x) TO_CMA_STRING_(x)
 #define CMA_KNOWLEDGE TO_CMA_STRING(IZENECMA)
 
+class KnowledgeDir {
+public:
+    KnowledgeDir(const path & orig, const path & tmp)
+    : origdir_(orig), tmpdir_(current_path()/tmp)
+    {
+        remove_all(tmpdir_);
+        create_directories(tmpdir_);
+        directory_iterator end_itr; // default construction yields past-the-end
+        for ( directory_iterator itr( origdir_ ); itr != end_itr; ++itr )
+        {
+            if(!is_directory(itr->status()) ) {
+                  copy_file(itr->path(), tmpdir_/itr->leaf());
+            }
+        }
+    }
 
+    ~KnowledgeDir()
+    {
+        path parent = tmpdir_.parent_path();
+        while(current_path() != parent) {
+            tmpdir_ = parent;
+            parent = parent.parent_path();
+        }
+        remove_all(tmpdir_);
+    }
+
+    string getDir()
+    {
+        return tmpdir_.string();
+    }
+
+    void appendFile(const string& filename, const string& content)
+    {
+        ofstream of( (tmpdir_/filename).string().c_str(), ios_base::app);
+        of << content;
+        of.close();
+    }
+
+private:
+    path origdir_;
+    path tmpdir_;
+};
 
 #endif  //_LA_TEST_DEF_H_

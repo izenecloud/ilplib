@@ -21,7 +21,8 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 
   add_executable(t_LA
 	Runner.cpp
-	t_ChineseAnalyzer.cpp)
+#	t_ChineseAnalyzer.cpp
+	t_KoreanAnalyzer.cpp)
 
   set(libs
 	la

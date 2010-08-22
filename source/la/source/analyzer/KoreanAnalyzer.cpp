@@ -5,191 +5,90 @@ using namespace kmaOrange;
 namespace la
 {
 
-
-    bool KoreanAnalyzer::isScFlSn( int morp )
+    KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
+        : CommonLanguageAnalyzer(knowledgePath, loadModel),
+        pA_(NULL)
+//        pS_(NULL)
     {
-        static int SC_FL_SN_TAGS = (SC|FL|SN);
-        return morp & SC_FL_SN_TAGS == morp;
-    }
-
-
-    bool KoreanAnalyzer::isAcceptedNoun( int morp )
-    {
-        static int sTagSetNoun = (NNG|NFG|NNB|NNP|NNU|NNR|NP|NU|NNI|NNC|NFU); //(N_|UW);
-        return (morp & sTagSetNoun ) == morp;
-    }
-
-
-void KoreanAnalyzer::generateCompundNouns(
-        WK_Eojul * pE, const string& inputstr, int i, int count,
-        unsigned int wordOffset, TermList& termList )
-{
-    unsigned int pos = 0;
-    TermList::iterator term_it;
-    for ( int j = 0; j < count; j++ )
-    {
-        const char* lexicon = pE->getLexicon( i, j );
-        if( strlen(lexicon) == 0 )
-            continue;
-
-        pos = pE->getPOS(i,j);
-
-        if( isAcceptedNoun( pos ) )
+        // 1. INIT INSTANCES
+        kmaOrange::WK_Knowledge* pK = KMAKnowledge::getInstance(knowledgePath.c_str()).pKnowledge_;
+        if( pK == NULL )
         {
-            for( int k = j+1; k <count; k++ )
-            {
-                pos = pE->getPOS(i,k);
-                if( isAcceptedNoun( pos ) )
-                {
-                    string tstr( lexicon );
-                    tstr.append( pE->getLexicon(i,k) );
-
-                    if( tstr == inputstr )
-                        continue;
-
-//                    _CLA_INSERT_INDEX_STR( term_it, termList, tstr,
-//                                           wordOffset, nnpPOS_, nnpMorp_ );
-                }
-            }
+            string msg = "Failed to load KMA knowledge: ";
+            msg += knowledgePath;
+            throw std::logic_error( msg );
         }
-    }
-}
-
-int KoreanAnalyzer::getSpecialCharsString(
-    WK_Eojul * pEojul,
-    int listi, int counti,
-    string & specialStr )
-{
-    const char *tmpStr;
-    int  tmpLen, morphCount;
-
-    tmpStr     = pEojul->getLexicon(listi, counti);
-    tmpLen     = strlen(tmpStr);
-    morphCount = pEojul->getCount(listi);
-
-    for (int z = 0; z < tmpLen; z++)
-    {
-        if (!(tmpStr[z] & 0x80) && specialCharTable_[(unsigned char)tmpStr[z]])
+//        pS_ = kmaOrange::WK_Eojul::createObject();
+//        if( pS_ == NULL )
+//        {
+//            //TODO: CATCH ALL EXCEPTIONS
+//        }
+//        pA_ = kmaOrange::WK_Analyzer::createObject( pK, pS_ );
+        pA_ = kmaOrange::WK_Analyzer::createObject( pK );
+        if( pA_ == NULL )
         {
-            int pi, ni;
-
-            // find start index
-            if (counti <= 0) pi = 0;
-            else
-            {
-                for (pi = counti - 1; pi >= 0; pi--)
-                {
-                    if( isScFlSn( pEojul->getPOS(listi, pi) ) )
-                    {
-                        break;
-                    }
-                }
-                pi++;
-            }
-
-            // find end index
-            if (counti >= (morphCount-1)) ni = morphCount-1;
-            else
-            {
-                for (ni = counti + 1; ni < morphCount; ni++)
-                {
-                    if( isScFlSn( pEojul->getPOS(listi, pi) ) )
-                    {
-                        break;
-                    }
-                }
-                ni--;
-            }
-
-            // validation
-            if (pi == ni) return -1;
-
-            // make term
-            specialStr = pEojul->getLexicon(listi, pi);
-            //strcpy(pSCString, pEojul->getLexicon(listi, pi));
-            for (z = pi + 1; z <= ni; z++)
-            {
-                //strcat(pSCString, pEojul->getLexicon(listi, z));
-                specialStr.append(pEojul->getLexicon(listi, z));
-            }
-            return ni;
-        }
-    }
-    return -1;
-}
-
-void KoreanAnalyzer::addChineseTerm(
-    const char * pTerm,
-    const unsigned int wordOffset,
-    TermList & tlist )
-{
-    TermList::iterator term_it;
-
-    // for string
-    const char* h   = pTerm;
-    int   len = strlen(pTerm);
-    int   sb = -1, eb = -1;
-
-    // for check hanja
-    unsigned char hb, lb;
-
-    // for other term
-    //char hanja_term[1024+1];
-    char * hanja_term = new char[len+1];
-    if( hanja_term == NULL )
-        return;
-
-    memset( hanja_term, 0, len+1 );
-
-    int i;
-
-    for (i = 0; i < len; i++, h++)
-    {
-        if (*h & 0x80)
-        {
-            hb = (unsigned char)*h;
-            h++;
-            i++;
-
-            if (!*h) break;
-
-            lb = (unsigned char)*h;
-
-            // is hanja(Chinese)?
-            if ((hb >= 0xCA && hb <= 0xFD) && (lb >= 0xA1 && lb <= 0xFE))
-            {
-                if (sb == -1) sb = i-1;
-                eb = i;
-
-                // check next char
-                continue;
-            }
         }
 
-        // Chinese character check condition
-        if (sb >= 0 && (eb > sb))
-        {
-            strncpy(hanja_term, pTerm + sb, eb-sb+1);
-            hanja_term[eb-sb+1] = 0;
-//            _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
+        encode_ = UString::CP949;
 
-            sb = -1;
-            eb = -1;
-        }
+        setNBest();
+        setLowDigitBound();
+        setVerbAdjStems();
+        setCaseSensitive(false);
+
+        setIndexMode(); // Index mode is set by default
     }
 
-    // Chinese character check condition
-    if (sb >= 0 && (eb > sb))
+    KoreanAnalyzer::~KoreanAnalyzer()
     {
-        strncpy(hanja_term, pTerm + sb, eb-sb+1);
-        hanja_term[eb-sb+1] = 0;
-//        _CLA_INSERT_INDEX_STR( term_it, tlist, hanja_term, wordOffset, flPOS_, flMorp_ );
-
-        sb = -1;
-        eb = -1;
+        delete pA_;
+//        delete pS_;
     }
 
-    delete[] hanja_term;
-}
+    void KoreanAnalyzer::setIndexMode()
+    {
+        if( pA_ == NULL )
+        {
+            throw std::logic_error( "KoreanAnalyzer::setIndexMode() is call with pA_ NULL" );
+        }
+        //resetAnalyzer();
+        //pA_->setExOption( kmaOrange::COMPOSEAFFIX );
+        pA_->setExOption( kmaOrange::DOCUMENT );
+
+        pA_->setOption( kmaOrange::WKO_OPTION_N_BEST, 2 );
+
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1 );
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1 );
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1 );
+    }
+
+    void KoreanAnalyzer::setLabelMode()
+    {
+        if( pA_ == NULL )
+        {
+            throw std::logic_error( "KoreanAnalyzer::setLabelMode() is call with pA_ NULL" );
+        }
+        //resetAnalyzer();
+        // pA_->setExOption( kmaOrange::COMPOSEAFFIX );
+        pA_->setExOption( kmaOrange::DOCUMENT );
+
+        /*
+        pA_->setOption( kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1 );
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_VERB_STEMS, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADNOMINAL, 1);
+        */
+        pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, 1);
+        // LOG: changed option setting for label mode to test Korean TG Label generation
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ALPHA, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_NUM, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_VERB_STEMS, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADNOMINAL, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_ADVERB, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_INTERJECTION, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_UNKNOWN, 1);
+        pA_->setOption(kmaOrange::WKO_OPTION_EXTRACT_BOUND_NOUN, 1);
+    }
 
 }

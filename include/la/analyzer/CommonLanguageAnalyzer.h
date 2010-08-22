@@ -30,26 +30,18 @@ public:
 
     ~CommonLanguageAnalyzer();
 
-    virtual void setIndexMode() {};
-
-    virtual void setLabelMode() {};
-
-    virtual void setNBest(unsigned int nbest = 2) {};
-
-    virtual void setAnalysisType( unsigned int type = 2 ) {};
-
     virtual void setCaseSensitive(bool casesensitive = true, bool containlower = true)
     {
         bCaseSensitive_ = casesensitive;
         bContainLower_ = containlower;
     };
 
-    virtual inline void setExtractEngStem( bool extractEngStem = true )
+    virtual void setExtractEngStem( bool extractEngStem = true )
     {
         bExtractEngStem_ = extractEngStem;
     }
 
-    virtual inline void setExtractSynonym( bool extractSynonym = true)
+    virtual void setExtractSynonym( bool extractSynonym = true)
     {
         bExtractSynonym_ = extractSynonym;
     }
@@ -86,9 +78,17 @@ protected:
     {
         return offset_;
     }
-    bool needIndex()
+    inline bool needIndex()
     {
         return needIndex_;
+    }
+    inline void resetToken()
+    {
+        token_ = NULL;
+        len_ = 0;
+        morpheme_ = 0;
+        offset_ = 0;
+        needIndex_ = false;
     }
 
 protected:
@@ -112,7 +112,7 @@ protected:
 
     static void appendTermList( void* data, const UString::CharT* text, const size_t len, const int offset );
 
-    int analyze_impl( const Term& input, analyzermode flags, void* data, HookType func );
+    virtual int analyze_impl( const Term& input, analyzermode flags, void* data, HookType func );
 
 protected:
 
@@ -135,7 +135,7 @@ protected:
     const char * token_;
     int len_;
     int offset_;
-    int morpheme_;
+    unsigned int morpheme_;
     bool needIndex_;
 
     izenelib::util::UString::EncodingType encode_;

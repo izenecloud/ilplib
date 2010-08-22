@@ -28,22 +28,18 @@ public:
 
     void setLabelMode();
 
-    /**
-     * @brief   Set the analysis approach type, only for iCMA
-     */
-    inline void setAnalysisType( ChineseAnalysisType type )
+    void setAnalysisType( ChineseAnalysisType type )
     {
         pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
     }
 
-    inline void setNBest( unsigned int num=2 )
+    void setNBest( unsigned int num=2 )
     {
         pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, num );
     }
 
 protected:
 
-    /// Parse given input
     inline void parse(const char* sentence, int sentenceOffset)
     {
         pS_->setString( sentence );
@@ -55,22 +51,13 @@ protected:
         listIndex_ = 0;
         lexiconIndex_ = 0;
 
-        token_ = NULL;
-        len_ = 0;
-        morpheme_ = 0;
-        offset_ = 0;
-        needIndex_ = false;
+        resetToken();
     }
 
-    /// Fill token_, len_, morpheme_
     inline bool nextToken()
     {
         if(listIndex_ == pS_->getListSize()) {
-            token_ = NULL;
-            len_ = 0;
-            morpheme_ = 0;
-            offset_ = 0;
-            needIndex_ = false;
+            resetToken();
             return false;
         }
 
@@ -87,6 +74,7 @@ protected:
             ++ listIndex_;
             lexiconIndex_ = 0;
             localOffset_ = 0;
+            if(listIndex_ == pS_->getListSize()) break;
         }
 
         return true;
@@ -122,9 +110,9 @@ private:
 
     int lexiconIndex_;
 
-    int flMorp_;
+    unsigned int flMorp_;
 
-    int scMorp_;
+    unsigned int scMorp_;
 };
 
 }

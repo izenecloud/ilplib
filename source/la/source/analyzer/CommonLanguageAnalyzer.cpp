@@ -9,7 +9,7 @@
 //#include <util/profiler/ProfilerGroup.h>
 //
 #include <la/analyzer/CommonLanguageAnalyzer.h>
-//#include <la/util/EnglishUtil.h>
+#include <la/util/UStringUtil.h>
 //#include <la/dict/UpdateDictThread.h>
 //
 //using namespace izenelib::util;
@@ -96,106 +96,109 @@ CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
 
 int CommonLanguageAnalyzer::analyze_impl( const Term& input, analyzermode flags, void* data, HookType func )
 {
-    // prime terms is meaningless to Chinese
-    if( flags & prime )
-    {
-        func( data, input.text_.c_str(), input.text_.length(), input.wordOffset_ );
-    }
 
-    if( flags & second)
-    {
-        input.text_.convertString(encode_, input_string_buffer_, input_string_buffer_size_);
-        parse(input_string_buffer_, input.wordOffset_);
+    input.text_.convertString(encode_, input_string_buffer_, input_string_buffer_size_);
+    parse(input_string_buffer_, input.wordOffset_);
 
-        while( nextToken() )
+    while( nextToken() )
+    {
+        if( len() == 0 )
+            continue;
+
+//            {
+//            UString foo(token(), encode_);
+//            string bar;
+//            foo.convertString(bar, UString::UTF_8);
+//            cout << "(" << bar << ") --<> " << needIndex() << "  " << hex << morpheme() << dec << endl;
+//            }
+        if( needIndex() )
         {
-            if( len() == 0 )
-                continue;
-
-            if(isSpecialChar()) {
+            if(isSpecialChar())
+            {
                 func( data, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset());
                 continue;
             }
 
-            if( needIndex() )
+            UString::CharT* termUstr = output_ustring_buffer_;
+            size_t termUstrLen = UString::toUcs2(encode_, token(), len(), output_ustring_buffer_, output_ustring_buffer_size_);
+            const char* synonymInput = token();
+
+            // foreign language, e.g. English
+            if( isFL() )
             {
-                UString::CharT* termUstr = output_ustring_buffer_;
-                size_t termUstrLen = UString::toUcs2(encode_, token(), len(), output_ustring_buffer_, output_ustring_buffer_size_);
-                const char* synonymInput = token();
+                UString::CharT* lowercaseTermUstr = output_lowercase_ustring_buffer_;
+                bool lowercaseIsDifferent = UString::toLowerString(termUstr, termUstrLen,
+                                            output_lowercase_ustring_buffer_, output_ustring_buffer_size_);
 
-                // foreign language, e.g. English
-                if( isFL() )
+                char* lowercaseTerm = input_lowercase_string_buffer_;
+                UString::convertString(encode_, lowercaseTermUstr, termUstrLen, input_lowercase_string_buffer_, input_string_buffer_size_);
+
+                if(bCaseSensitive_)
                 {
-                    UString::CharT* lowercaseTermUstr = output_lowercase_ustring_buffer_;
-                    bool lowercaseIsDifferent = UString::toLowerString(termUstr, termUstrLen,
-                                output_lowercase_ustring_buffer_, output_ustring_buffer_size_);
-
-                    char* lowercaseTerm = input_lowercase_string_buffer_;
-                    UString::convertString(encode_, lowercaseTermUstr, termUstrLen, input_lowercase_string_buffer_, input_string_buffer_size_);
-
-                    if(bCaseSensitive_)
-                    {
-                        func( data,  termUstr, termUstrLen, offset() );
-                        if(bContainLower_ & lowercaseIsDifferent)
-                        {
-                            func( data, lowercaseTermUstr, termUstrLen, offset());
-                        }
-                    }
-                    else
+                    func( data,  termUstr, termUstrLen, offset() );
+                    if(bContainLower_ & lowercaseIsDifferent)
                     {
                         func( data, lowercaseTermUstr, termUstrLen, offset());
                     }
-
-                    if(bExtractEngStem_)
-                    {
-                        /// TODO: write a UCS2 based stemmer
-                        string stem_term;
-                        pStemmer_->stem( lowercaseTerm, stem_term );
-                        if( strcmp(stem_term.c_str(), lowercaseTerm) != 0 )
-                        {
-                            UString::CharT* stemmingTermUstr = output_stemming_ustring_buffer_;
-                            size_t stemmingTermUstrSize = UString::toUcs2(encode_, stem_term.c_str(), stem_term.size(),
-                                    output_stemming_ustring_buffer_, output_ustring_buffer_size_);
-                            func( data, stemmingTermUstr, stemmingTermUstrSize, offset());
-                        }
-                    }
-
-                    if(bExtractSynonym_) {
-                        synonymInput = lowercaseTerm;
-                    }
-                } else
+                }
+                else
                 {
-                    func( data, termUstr, termUstrLen, offset());
+                    func( data, lowercaseTermUstr, termUstrLen, offset());
+                }
+
+                if(bExtractEngStem_)
+                {
+                    /// TODO: write a UCS2 based stemmer
+                    string stem_term;
+                    pStemmer_->stem( lowercaseTerm, stem_term );
+                    if( strcmp(stem_term.c_str(), lowercaseTerm) != 0 )
+                    {
+                        UString::CharT* stemmingTermUstr = output_stemming_ustring_buffer_;
+                        size_t stemmingTermUstrSize = UString::toUcs2(encode_, stem_term.c_str(), stem_term.size(),
+                                                      output_stemming_ustring_buffer_, output_ustring_buffer_size_);
+                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset());
+                    }
                 }
 
                 if(bExtractSynonym_)
                 {
-                    pSynonymContainer_ = uscSPtr_->getSynonymContainer();
-                    pSynonymContainer_->searchNgetSynonym( synonymInput, pSynonymResult_ );
-                    char * synonymResult = pSynonymResult_->getHeadWord(0);
-                    if( synonymResult )
+                    synonymInput = lowercaseTerm;
+                }
+            }
+            else
+            {
+                func( data, termUstr, termUstrLen, offset());
+            }
+
+            if(bExtractSynonym_)
+            {
+                pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+                pSynonymContainer_->searchNgetSynonym( synonymInput, pSynonymResult_ );
+                char * synonymResult = pSynonymResult_->getHeadWord(0);
+                if( synonymResult )
+                {
+                    cout << to_utf8(synonymInput,encode_) << "--<>" <<
+                         to_utf8(synonymResult, encode_) << "," <<
+                         to_utf8(pSynonymResult_->getHeadWord(1), encode_) << "," << endl;
+
+                    size_t synonymResultLen = strlen(synonymResult);
+                    if(synonymResultLen <= output_ustring_buffer_size_)
                     {
-                        //cout << synonymInput << "--<>" << synonymResult << "," <<  pSynonymResult_->getHeadWord(1) << endl;
-                        size_t synonymResultLen = strlen(synonymResult);
-                        if(synonymResultLen <= output_ustring_buffer_size_) {
-                            UString::CharT * synonymResultUstr = output_synonym_ustring_buffer_;
-                            size_t synonymResultUstrLen = UString::toUcs2(encode_, synonymResult, synonymResultLen,
-                                    output_synonym_ustring_buffer_, output_ustring_buffer_size_);
-                            func( data, synonymResultUstr, synonymResultUstrLen, offset());
-                        }
+                        UString::CharT * synonymResultUstr = output_synonym_ustring_buffer_;
+                        size_t synonymResultUstrLen = UString::toUcs2(encode_, synonymResult, synonymResultLen,
+                                                      output_synonym_ustring_buffer_, output_ustring_buffer_size_);
+                        func( data, synonymResultUstr, synonymResultUstrLen, offset());
                     }
                 }
             }
         }
-        return offset();
     }
-
-    return 1;
+    return offset();
 }
 
 template<typename IDManagerType>
 void CommonLanguageAnalyzer::appendTermIdList( void* data,
-    const UString::CharT* text, const size_t len, const int offset )
+        const UString::CharT* text, const size_t len, const int offset )
 {
     TermIdList * output = ((std::pair<TermIdList*, IDManagerType*>* ) data)->first;
     IDManagerType * idm = ((std::pair<TermIdList*, IDManagerType*>* ) data)->second;
@@ -204,7 +207,7 @@ void CommonLanguageAnalyzer::appendTermIdList( void* data,
 }
 
 void CommonLanguageAnalyzer::appendTermList( void* data,
-    const UString::CharT* text, const size_t len, const int offset )
+        const UString::CharT* text, const size_t len, const int offset )
 {
     TermList * output = (TermList *) data;
     output->add( UString(text, len), offset );

@@ -19,7 +19,7 @@
 namespace la
 {
 
-ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true )
+ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel)
     : CommonLanguageAnalyzer(knowledgePath, loadModel),
       pA_(NULL),
       pS_(NULL)
@@ -45,7 +45,6 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
     encode_ = UString::UTF_8;
 
     setCaseSensitive(false);
-    //    bSpecialChars_ = false;
 
     setIndexMode(); // Index mode is set by default
 }

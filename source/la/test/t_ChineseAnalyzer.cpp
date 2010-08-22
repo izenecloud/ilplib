@@ -2,7 +2,6 @@
 #include <fstream>
 
 #include <boost/test/unit_test.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/thread/thread.hpp>
 
 #include <ir/id_manager/IDManager.h>
@@ -16,52 +15,13 @@ using namespace la;
 using namespace std;
 using namespace izenelib::util;
 using namespace izenelib::ir::idmanager;
-using namespace boost::filesystem;
 
-class KnowledgeDir {
-public:
-    KnowledgeDir(const string & encoding, const path & orig, const path & tmp)
-    : encoding_(encoding), origdir_(orig), tmpdir_(tmp)
-    {
-        remove_all(tmpdir_);
-        create_directories(tmpdir_/encoding);
-        directory_iterator end_itr; // default construction yields past-the-end
-        for ( directory_iterator itr( origdir_ ); itr != end_itr; ++itr )
-        {
-            if(!is_directory(itr->status()) ) {
-                  copy_file(itr->path(), tmpdir_/encoding/itr->leaf());
-            }
-        }
-    }
-
-    ~KnowledgeDir()
-    {
-        remove_all(tmpdir_);
-    }
-
-    string getDir()
-    {
-        return (tmpdir_/encoding_).string();
-    }
-
-    void appendFile(const string& filename, const string& content)
-    {
-        ofstream of( (tmpdir_/encoding_/filename).string().c_str(), ios_base::app);
-        of << content;
-        of.close();
-    }
-
-private:
-    string encoding_;
-    path origdir_;
-    path tmpdir_;
-};
+static KnowledgeDir cmaKnowledgeDir(CMA_KNOWLEDGE, path("cma_knowledge")/"utf8");
 
 class ChineseAnalyzerFixture {
 public:
         ChineseAnalyzerFixture() :
-            knowledge("utf8", CMA_KNOWLEDGE, current_path()/"cma_knowledge"),
-            analyzer(knowledge.getDir()),
+            analyzer(cmaKnowledgeDir.getDir()),
             idm("ChineseAnalyzerTest")
         {
             analyzer.setLabelMode();
@@ -103,7 +63,6 @@ public:
             }
         }
 
-        KnowledgeDir knowledge;
         ChineseAnalyzer analyzer;
         IDManager idm;
         TermList termList;
@@ -222,7 +181,7 @@ BOOST_AUTO_TEST_CASE(test_synonym)
     analyzer.setExtractSynonym(true);
     analyzer.setSynonymUpdateInterval(1);
 
-    knowledge.appendFile("synonym.txt", "单元 unit\n");
+    cmaKnowledgeDir.appendFile("synonym.txt", "单元 unit\n");
     boost::this_thread::sleep( boost::posix_time::seconds(2) ); // wait for updating synonym dict
 
     const string sstr("测试使用Boost Unit Tests");

@@ -1,10 +1,13 @@
 #ifndef _LA_USTRING_UTIL_H_
 #define _LA_USTRING_UTIL_H_
 
+#include <string>
 #include <util/ustring/UString.h>
 
 namespace la
 {
+    std::string to_utf8(std::string input, izenelib::util::UString::EncodingType encode);
+
     /**
      * Remove redundant spaces in the input string
      */

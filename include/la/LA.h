@@ -20,11 +20,12 @@
 #include <la/util/UStringUtil.h>
 
 #include <la/analyzer/Analyzer.h>
-#include <la/analyzer/EnglishAnalyzer.h>
 #include <la/analyzer/StemAnalyzer.h>
 #include <la/analyzer/NGramAnalyzer.h>
 #include <la/analyzer/MatrixAnalyzer.h>
+#include <la/analyzer/CharAnalyzer.h>
 #include <la/analyzer/MultiLanguageAnalyzer.h>
+#include <la/analyzer/EnglishAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>
 #include <la/analyzer/KoreanAnalyzer.h>
 

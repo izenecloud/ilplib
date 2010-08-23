@@ -1,9 +1,6 @@
 /**
- * @file    CommonLanguageAnalyzer.h
- * @author  Kent, Vernkin
- * @date    Nov 23, 2009
- * @details
- *  Common Language Analyzer for Chinese/Japanese/Korean.
+ * @author Wei Cao
+ * @date
  */
 
 #ifndef COMMONLANGUAGEANALYZER_H_

@@ -208,11 +208,12 @@ BOOST_AUTO_TEST_CASE(test_stemming)
 
 BOOST_AUTO_TEST_CASE(test_synonym)
 {
+    analyzer.setExtractEngStem(true);
     analyzer.setExtractSynonym(true);
-    analyzer.setSynonymUpdateInterval(1);
+    analyzer.setSynonymUpdateInterval(100);
 
-    kmaKnowledgeDir.appendFile("synonym.txt", "윈도 windows\n");
-    boost::this_thread::sleep( boost::posix_time::seconds(2) ); // wait for updating synonym dict
+//    kmaKnowledgeDir.appendFile("synonym.txt", "윈도 windows\n");
+//    boost::this_thread::sleep( boost::posix_time::seconds(2) ); // wait for updating synonym dict
 
     const string sstr("윈도7 Windows7");
     const UString ustr(sstr, UString::UTF_8);

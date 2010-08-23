@@ -17,7 +17,6 @@ namespace la
     const CharType SPACE_CHR = 2;        /// < space term
     const CharType UNITE_CHR = 3;        /// < united term
 
-
     CharTypeTable::CharTypeTable( bool useDefDelim )
     {
         memset(charTypeTable_, 0, TWO_BYPE_MAX);
@@ -79,255 +78,293 @@ namespace la
         table_.setConfig(conf);
     }
 
-
-    bool Tokenizer::tokenize(const UString & inputString, TermList & specialTerms, TermList& primTerms )
+    void Tokenizer::tokenize(const UString & input)
     {
+        input_ = (UString*)&input;
+        input_cursor_ = 0;
+    }
 
-        specialTerms.clear();
-        primTerms.clear();
-
-        size_t len = inputString.length();
-        if(len == 0)
-            return false;
-
-        Term t;
-        TermList::iterator it;
-
-        unsigned int wordOff = 0, charOff = 0;
-
-        UCS2Char curChar;
-        CharType curType;
-        //CharType curType, preType;
-
-
-        for( charOff = 0 ; charOff < len ; )//charOff++ )   // charOff is always incremented inside
-        {
-            curType = table_.getType( inputString.at(charOff) );
-
-            if( curType == ALLOW_CHR || curType == UNITE_CHR )
-            {
-                it = primTerms.insert( primTerms.end(), t );
-
-                do
-                {
-                    curChar = inputString.at( charOff );
-                    curType = table_.getType( curChar );
-
-                    if( curType == ALLOW_CHR )
-                    {
-                        it->text_ += curChar;
-                    }
-                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
-                    {
-                        break;
-                    }
-
-                    charOff++;
-                }
-                while( charOff < len );
-
-                if( it->text_.length() == 0 )
-                {
-                    primTerms.erase( it );
-                    continue;
-                    //charOff--;
-                }
-
-                it->wordOffset_ = wordOff++;
-
-                //charOff--;
-            }
-            else if( curType == DELIMITER_CHR )
-            {
-
-                it = specialTerms.insert( specialTerms.end(), t );
-
-                do
-                {
-                    curChar = inputString.at(charOff);
-                    curType = table_.getType( curChar );
-
-                    if( curType == DELIMITER_CHR )
-                        it->text_ += curChar;
-                    else
-                        break;
-                    charOff++;
-                }
-                while( charOff < len );
-
-
-                it->wordOffset_ = wordOff++;
-
-                //charOff--;
-            }
-            else
-                charOff++;
+    bool Tokenizer::nextToken()
+    {
+        while( input_cursor_ < input_->length() && table_.getType(input_->at(input_cursor_)) == SPACE_CHR)  {
+//            cout << input_cursor_ << "," << (char)input_->at(input_cursor_) << "," << (int)table_.getType(input_->at(input_cursor_)) << endl;
+            input_cursor_ ++;
         }
+        if(input_cursor_ == input_->length()) return false;
 
-        return true;
+        output_buffer_cursor_ = 0;
+
+        output_buffer_[output_buffer_cursor_++] = input_->at(input_cursor_);
+        if(table_.getType(input_->at(input_cursor_)) == DELIMITER_CHR) {
+           ++ input_cursor_;
+           isDelimiter_ = true;
+           return true;
+        } else {
+            ++ input_cursor_;
+            isDelimiter_ = false;
+
+            while(input_cursor_ < input_->length()) {
+                CharType curType = table_.getType(input_->at(input_cursor_));
+                if( curType==SPACE_CHR || curType==DELIMITER_CHR) {
+                    return true;
+                } else if(curType==ALLOW_CHR) {
+                    output_buffer_[output_buffer_cursor_++] = input_->at(input_cursor_++);
+                } else {
+                    ++ input_cursor_;
+                }
+            }
+            return true;
+        }
     }
 
 
-    bool Tokenizer::tokenize(const UString & inputString, TermList & primTerms)
-    {
-
-        primTerms.clear();
-        size_t len = inputString.length();
-        if(len == 0)
-            return false;
-
-        Term t;
-        TermList::iterator it;
-
-        unsigned int wordOff = 0, charOff = 0;
-
-        UCS2Char curChar;
-        CharType curType;
-        //CharType curType, preType;
-
-
-        for( charOff = 0 ; charOff < len ; ) //charOff++ )
-        {
-            curType = table_.getType( inputString.at(charOff) );
-
-            if( curType == ALLOW_CHR || curType == UNITE_CHR )
-            {
-
-                it = primTerms.insert( primTerms.end(), t );
-                //it->begin_ = charOff;
-
-                do
-                {
-                    curChar = inputString.at( charOff );
-                    curType = table_.getType( curChar );
-
-                    if( curType == ALLOW_CHR )
-                    {
-                        it->text_ += curChar;
-                    }
-                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
-                    {
-                        break;
-                    }
-
-                    charOff++;
-                }
-                while( charOff < len );
-
-                if( it->text_.length() == 0 )
-                {
-                    primTerms.erase( it );
-                    continue;
-                    //charOff--;
-                }
-
-                it->wordOffset_ = wordOff++;
-
-
-                //charOff--;
-            }
-            else if( curType == DELIMITER_CHR )
-            {
-                if( ( (charOff +1) < len ) && table_.getType( inputString.at(charOff+1) ) != DELIMITER_CHR )
-                {
-                    wordOff++;
-                }
-                charOff++;
-            }
-            else
-                charOff++;
-
-        }
-
-        return true;
-    }
-
-	bool Tokenizer::tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms)
-    {
-        rawTerms.clear();
-
-        size_t len = inputString.length();
-        if(len == 0)
-            return false;
-
-        Term t;
-        TermList::iterator it;
-
-        unsigned int wordOff = 0, charOff = 0;
-
-        UCS2Char curChar;
-        CharType curType;
-        //CharType curType, preType;
-
-
-        for( charOff = 0 ; charOff < len ; )//charOff++ )
-        {
-            curType = table_.getType( inputString.at(charOff) );
-
-            if( curType == ALLOW_CHR || curType == UNITE_CHR )
-            {
-                it = rawTerms.insert( rawTerms.end(), t );
-                //it->begin_ = charOff;
-
-                do
-                {
-                    curChar = inputString.at( charOff );
-                    curType = table_.getType( curChar );
-
-                    if( curType == ALLOW_CHR )
-                    {
-                        it->text_ += curChar;
-                    }
-                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
-                    {
-                        break;
-                    }
-
-                    charOff++;
-                }
-                while( charOff < len );
-
-                if( it->text_.length() == 0 )
-                {
-                    rawTerms.erase( it );
-                    continue;
-                    //charOff--;
-                }
-
-                it->wordOffset_ = wordOff++;
-
-                //charOff--;
-            }
-            else if( curType == DELIMITER_CHR )
-            {
-
-                it = rawTerms.insert( rawTerms.end(), t );
-
-                do
-                {
-                    curChar = inputString.at(charOff);
-                    curType = table_.getType( curChar );
-                    if( curType == DELIMITER_CHR )
-                        it->text_ += curChar;
-                    else
-                        break;
-                    charOff++;
-                }
-                while( charOff < len );
-
-
-                it->wordOffset_ = wordOff++;
-
-                //charOff--;
-            }
-            else
-            {   // SPACE_CHR  nothing to do
-                charOff++;
-            }
-
-        }
-
-        return true;
-    }
+//    bool Tokenizer::tokenize(const UString & inputString, TermList & specialTerms, TermList& primTerms )
+//    {
+//        specialTerms.clear();
+//        primTerms.clear();
+//
+//        size_t len = inputString.length();
+//        if(len == 0)
+//            return false;
+//
+//        Term t;
+//        TermList::iterator it;
+//
+//        unsigned int wordOff = 0, charOff = 0;
+//
+//        UCS2Char curChar;
+//        CharType curType;
+//        //CharType curType, preType;
+//
+//
+//        for( charOff = 0 ; charOff < len ; )//charOff++ )   // charOff is always incremented inside
+//        {
+//            curType = table_.getType( inputString.at(charOff) );
+//
+//            if( curType == ALLOW_CHR || curType == UNITE_CHR )
+//            {
+//                it = primTerms.insert( primTerms.end(), t );
+//
+//                do
+//                {
+//                    curChar = inputString.at( charOff );
+//                    curType = table_.getType( curChar );
+//
+//                    if( curType == ALLOW_CHR )
+//                    {
+//                        it->text_ += curChar;
+//                    }
+//                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
+//                    {
+//                        break;
+//                    }
+//
+//                    charOff++;
+//                }
+//                while( charOff < len );
+//
+//                if( it->text_.length() == 0 )
+//                {
+//                    primTerms.erase( it );
+//                    continue;
+//                    //charOff--;
+//                }
+//
+//                it->wordOffset_ = wordOff++;
+//
+//                //charOff--;
+//            }
+//            else if( curType == DELIMITER_CHR )
+//            {
+//
+//                it = specialTerms.insert( specialTerms.end(), t );
+//
+//                do
+//                {
+//                    curChar = inputString.at(charOff);
+//                    curType = table_.getType( curChar );
+//
+//                    if( curType == DELIMITER_CHR )
+//                        it->text_ += curChar;
+//                    else
+//                        break;
+//                    charOff++;
+//                }
+//                while( charOff < len );
+//
+//
+//                it->wordOffset_ = wordOff++;
+//
+//                //charOff--;
+//            }
+//            else
+//                charOff++;
+//        }
+//
+//        return true;
+//    }
+//
+//
+//    bool Tokenizer::tokenize(const UString & inputString, TermList & primTerms)
+//    {
+//
+//        primTerms.clear();
+//        size_t len = inputString.length();
+//        if(len == 0)
+//            return false;
+//
+//        Term t;
+//        TermList::iterator it;
+//
+//        unsigned int wordOff = 0, charOff = 0;
+//
+//        UCS2Char curChar;
+//        CharType curType;
+//        //CharType curType, preType;
+//
+//
+//        for( charOff = 0 ; charOff < len ; ) //charOff++ )
+//        {
+//            curType = table_.getType( inputString.at(charOff) );
+//
+//            if( curType == ALLOW_CHR || curType == UNITE_CHR )
+//            {
+//
+//                it = primTerms.insert( primTerms.end(), t );
+//                //it->begin_ = charOff;
+//
+//                do
+//                {
+//                    curChar = inputString.at( charOff );
+//                    curType = table_.getType( curChar );
+//
+//                    if( curType == ALLOW_CHR )
+//                    {
+//                        it->text_ += curChar;
+//                    }
+//                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
+//                    {
+//                        break;
+//                    }
+//
+//                    charOff++;
+//                }
+//                while( charOff < len );
+//
+//                if( it->text_.length() == 0 )
+//                {
+//                    primTerms.erase( it );
+//                    continue;
+//                    //charOff--;
+//                }
+//
+//                it->wordOffset_ = wordOff++;
+//
+//
+//                //charOff--;
+//            }
+//            else if( curType == DELIMITER_CHR )
+//            {
+//                if( ( (charOff +1) < len ) && table_.getType( inputString.at(charOff+1) ) != DELIMITER_CHR )
+//                {
+//                    wordOff++;
+//                }
+//                charOff++;
+//            }
+//            else
+//                charOff++;
+//
+//        }
+//
+//        return true;
+//    }
+//
+//	bool Tokenizer::tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms)
+//    {
+//        rawTerms.clear();
+//
+//        size_t len = inputString.length();
+//        if(len == 0)
+//            return false;
+//
+//        Term t;
+//        TermList::iterator it;
+//
+//        unsigned int wordOff = 0, charOff = 0;
+//
+//        UCS2Char curChar;
+//        CharType curType;
+//        //CharType curType, preType;
+//
+//
+//        for( charOff = 0 ; charOff < len ; )//charOff++ )
+//        {
+//            curType = table_.getType( inputString.at(charOff) );
+//
+//            if( curType == ALLOW_CHR || curType == UNITE_CHR )
+//            {
+//                it = rawTerms.insert( rawTerms.end(), t );
+//                //it->begin_ = charOff;
+//
+//                do
+//                {
+//                    curChar = inputString.at( charOff );
+//                    curType = table_.getType( curChar );
+//
+//                    if( curType == ALLOW_CHR )
+//                    {
+//                        it->text_ += curChar;
+//                    }
+//                    else if( curType == SPACE_CHR || curType == DELIMITER_CHR )
+//                    {
+//                        break;
+//                    }
+//
+//                    charOff++;
+//                }
+//                while( charOff < len );
+//
+//                if( it->text_.length() == 0 )
+//                {
+//                    rawTerms.erase( it );
+//                    continue;
+//                    //charOff--;
+//                }
+//
+//                it->wordOffset_ = wordOff++;
+//
+//                //charOff--;
+//            }
+//            else if( curType == DELIMITER_CHR )
+//            {
+//
+//                it = rawTerms.insert( rawTerms.end(), t );
+//
+//                do
+//                {
+//                    curChar = inputString.at(charOff);
+//                    curType = table_.getType( curChar );
+//                    if( curType == DELIMITER_CHR )
+//                        it->text_ += curChar;
+//                    else
+//                        break;
+//                    charOff++;
+//                }
+//                while( charOff < len );
+//
+//
+//                it->wordOffset_ = wordOff++;
+//
+//                //charOff--;
+//            }
+//            else
+//            {   // SPACE_CHR  nothing to do
+//                charOff++;
+//            }
+//
+//        }
+//
+//        return true;
+//    }
 
 }

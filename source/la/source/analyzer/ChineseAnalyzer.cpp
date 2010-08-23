@@ -20,9 +20,8 @@ namespace la
 {
 
 ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel)
-    : CommonLanguageAnalyzer(knowledgePath, loadModel),
-      pA_(NULL),
-      pS_(NULL)
+    : CommonLanguageAnalyzer(knowledgePath+"/synonym.txt", UString::UTF_8),
+      pA_(NULL), pS_(NULL)
 {
     cma::CMA_Factory* factory = cma::CMA_Factory::instance();
 
@@ -42,17 +41,22 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
 
     scMorp_ = pA_->getCodeFromStr( CHINESE_SC );
 
-    encode_ = UString::UTF_8;
-
     setCaseSensitive(false);
 
     setIndexMode(); // Index mode is set by default
+
+    input_string_buffer_ = new char[input_string_buffer_size_];
+    output_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+
 }
 
 ChineseAnalyzer::~ChineseAnalyzer()
 {
     delete pA_;
     delete pS_;
+
+    delete input_string_buffer_;
+    delete output_ustring_buffer_;
 }
 
 void ChineseAnalyzer::setIndexMode()

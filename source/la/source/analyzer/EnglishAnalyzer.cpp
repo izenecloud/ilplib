@@ -13,18 +13,4 @@ using namespace std;
 
 namespace la
 {
-    int EnglishAnalyzer::analyze_index( const TermList & input, TermList & output, unsigned char retFlag )
-    {
-        //TODO:
-        return 0;
-    }
-
-    int EnglishAnalyzer::analyze_search( const TermList & input, TermList & output, unsigned char retFlag )
-    {
-        //TODO:
-        return 0;
-    }
-
-
-
 }

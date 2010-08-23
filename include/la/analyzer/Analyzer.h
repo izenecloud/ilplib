@@ -7,141 +7,99 @@
  *  2009.08.02 - Adding new interfaces
  */
 
+/**
+ * @brief   Embed IDManager in LA to accelerate the speed of indexing,
+ *          Merging different interfaces into one.
+ * @author  Wei
+ * @date    2010.08.23
+ */
+
 #ifndef _LA_ANALYZER_H_
 #define _LA_ANALYZER_H_
 
 #include <la/common/Term.h>
+#include <la/tokenizer/Tokenizer.h>
 
 #include <util/ustring/UString.h>
 
 namespace la
 {
 
-    #define DECLARE_ANALYZER_METHOD(IDManagerType) \
-    virtual int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) { return 0; }; \
+///
+/// \brief interface of Analyzer
+/// This class analyze terms according to the specific types of analyzer
+///
+class Analyzer
+{
+public:
+    typedef int analyzermode;
 
-    #define IMPLEMENT_ANALYZER_METHOD(IDManagerType) \
-    virtual int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode mode ) \
-    { \
-        return analyze_<IDManagerType>(idm, input,output, mode); \
+    enum
+    {
+        prime = 0x0001,
+        second = 0x0002,
+        synonym = 0x0004,
+        stemming = 0x0008,
+        specialchar = 0x0010,
+        casesensitive = 0x0100,
+        containlower = 0x0100,
+        nbest = 0x1000
+    };
+
+    static const unsigned char ANALYZE_NONE_;
+    static const unsigned char ANALYZE_PRIME_;
+    static const unsigned char ANALYZE_SECOND_;
+    static const unsigned char ANALYZE_ALL_;
+
+public:
+
+    Analyzer() {}
+
+    virtual ~Analyzer() {}
+
+    void setTokenizerConfig( const TokenizeConfig & tokenConfig )
+    {
+        tokenizer_.setConfig( tokenConfig );
     }
 
-    #define IMPLEMENT_ANALYZER_METHODS \
-    IMPLEMENT_ANALYZER_METHOD(izenelib::ir::idmanager::IDManager)
-
-    #define DECLARE_ANALYZER_METHODS \
-    DECLARE_ANALYZER_METHOD(izenelib::ir::idmanager::IDManager)
-
-    ///
-    /// \brief interface of Analyzer
-    /// This class analyze terms according to the specific types of analyzer
-    ///
-    class Analyzer
+    int analyze(const Term & input, TermList & output)
     {
-        public:
-            typedef int analyzermode;
+        return analyze_impl(input, &output, &Analyzer::appendTermList);
+    }
 
-            enum {
-                prime = 0x0001,
-                second = 0x0002,
-                synonym = 0x0004,
-                stemming = 0x0008,
-                specialchar = 0x0010,
-                casesensitive = 0x0100,
-                containlower = 0x0100,
-                nbest = 0x1000
-            };
+    template <typename IDManagerType>
+    int analyze( IDManagerType* idm, const Term & input, TermIdList & output)
+    {
+        pair<TermIdList*, IDManagerType*> env = make_pair(&output, idm);
+        return analyze_impl(input, &env, &Analyzer::appendTermIdList<IDManagerType>);
+    }
 
-            static const unsigned char ANALYZE_NONE_;
-            static const unsigned char ANALYZE_PRIME_;
-            static const unsigned char ANALYZE_SECOND_;
-            static const unsigned char ANALYZE_ALL_;
+protected:
 
-        public:
-            Analyzer() :
-                bCaseSensitive_( false ),
-                bContainLower_( true )
-            {}
+    typedef void (*HookType) ( void* data, const UString::CharT* text, const size_t len, const int offset );
 
-            virtual ~Analyzer(){}
+    template<typename IDManagerType>
+    static void appendTermIdList( void* data, const UString::CharT* text, const size_t len, const int offset )
+    {
+        TermIdList * output = ((std::pair<TermIdList*, IDManagerType*>* ) data)->first;
+        IDManagerType * idm = ((std::pair<TermIdList*, IDManagerType*>* ) data)->second;
 
-            /**
-             * @brief Whether enable case-sensitive search, this method only
-             * set the caseSensitive flag. The children class can overwirte
-             * this method.
-             * @param flag default value is true
-             */
-            virtual void setCaseSensitive( bool flag = true )
-            {
-                bCaseSensitive_ = flag;
-            }
+        output->add(idm, text, len, offset);
+    }
 
-            /**
-             * @brief get whether the Analyzer is case sensitive
-             * @return the "case sensitive" setting of this unit
-             */
-            bool getCaseSensitive()
-            {
-                return bCaseSensitive_;
-            }
+    static void appendTermList( void* data, const UString::CharT* text, const size_t len, const int offset )
+    {
+        TermList * output = (TermList *) data;
+        output->add( UString(text, len), offset );
+    }
 
-            /**
-             * @brief Whether contain lower form of English
-             * set the containLower flag. The children class can overwirte
-             * this method.
-             * @param flag default value is true
-             */
-            virtual void setContainLower( bool flag = true )
-            {
-                bContainLower_ = flag;
-            }
+    virtual int analyze_impl( const Term& input, void* data, HookType func ) = 0;
 
-            /**
-             * @brief get whether the Analyzer is case sensitive
-             * @return the "case sensitive" setting of this unit
-             */
-            bool getContainLower()
-            {
-                return bContainLower_;
-            }
+protected:
 
-            virtual int analyze(const Term & input, TermList & output)
-            {
-                return analyze_(input, output, Analyzer::second);
-            }
+    Tokenizer tokenizer_;
 
-            int analyze(izenelib::ir::idmanager::IDManager* idm, const Term & input, TermIdList & output)
-            {
-                return analyze_(idm, input, output, Analyzer::second );
-            }
-
-//            template<typename IDManagerType>
-//            int analyze(IDManagerType* idm, const Term & input, TermIdList & output)
-//            {
-//                return analyze_(idm, input, output, Analyzer::second );
-//            }
-
-            int analyze_index( const TermList & input, TermList & output );
-
-            int analyze_search( const TermList & input, TermList & output );
-
-        protected:
-
-            /// @brief Whether enable case-sensitive search
-            bool bCaseSensitive_;
-
-            /// @brief Whether contain lower form of English
-            bool bContainLower_;
-
-            DECLARE_ANALYZER_METHODS
-
-            virtual int analyze_(const Term & input, TermList & output, analyzermode flags) {return  0;}
-
-            virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
-            virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag ){ return 0; }
-
-
-    };
+};
 }
 
 #endif /* _LA_ANALYZER_H_ */

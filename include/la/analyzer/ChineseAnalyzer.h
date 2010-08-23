@@ -40,12 +40,13 @@ public:
 
 protected:
 
-    inline void parse(const char* sentence, int sentenceOffset)
+    inline void parse(const UString & input)
     {
-        pS_->setString( sentence );
+        input.convertString(izenelib::util::UString::UTF_8,
+            input_string_buffer_, input_string_buffer_size_);
+        pS_->setString( input_string_buffer_ );
         pA_->runWithSentence( *pS_ );
 
-        sentenceOffset_ = sentenceOffset;
         localOffset_ = 0;
 
         listIndex_ = 0;
@@ -61,10 +62,16 @@ protected:
             return false;
         }
 
-        token_ = pS_->getLexicon(listIndex_, lexiconIndex_);
-        len_ = strlen(token_);
+        nativeToken_ = pS_->getLexicon(listIndex_, lexiconIndex_);
+        nativeTokenLen_ = strlen(nativeToken_);
+
+        token_ = output_ustring_buffer_;
+        len_ = UString::toUcs2(izenelib::util::UString::UTF_8,
+            nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                output_ustring_buffer_size_);
+
         morpheme_ = pS_->getPOS(listIndex_, lexiconIndex_);
-        offset_ = sentenceOffset_ + localOffset_;
+        offset_ = localOffset_;
         needIndex_ = pS_->isIndexWord(listIndex_, lexiconIndex_);
 
         ++ localOffset_;
@@ -102,13 +109,19 @@ private:
 
     cma::Sentence * pS_;
 
-    int sentenceOffset_;
+    static const size_t input_string_buffer_size_ = 4096*3;
+    char * input_string_buffer_;
+
+    static const size_t output_ustring_buffer_size_ = 4096;
+    UString::CharT * output_ustring_buffer_;
 
     int localOffset_;
 
     int listIndex_;
 
     int lexiconIndex_;
+
+    unsigned int morpheme_;
 
     unsigned int flMorp_;
 

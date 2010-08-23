@@ -81,124 +81,124 @@ namespace la
             /// tokenizer_.tokenize( uinputstr, outList );
         }
     }
-
-    void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
-    {
-        outList.clear();
-
-        izenelib::util::UString uinputstr = inputString;
-        if( !bCaseSensitive_ )
-            uinputstr.toLowerString();
-
-        if( analyzer_.get() != NULL )
-        {
-            TermList tokenList;
-            tokenizer_.tokenize( uinputstr, tokenList );
-
-            analyzer_->analyze_index( tokenList, outList );
-        }
-        else
-        {
-            tokenizer_.tokenize( uinputstr, outList );
-        }
-
-        lengthFilter( outList );
-    }
-
-    void LA::process_search( const izenelib::util::UString & inputString, TermList & outList )
-    {
-        outList.clear();
-
-        izenelib::util::UString uinputstr = inputString;
-        if( !bCaseSensitive_ )
-            uinputstr.toLowerString();
-
-
-        if( analyzer_.get() != NULL )
-        {
-            TermList tokenList;
-            tokenizer_.tokenize( uinputstr, tokenList );
-
-            analyzer_->analyze_search( tokenList, outList );
-        }
-        else
-        {
-            tokenizer_.tokenize( uinputstr, outList );
-        }
-        lengthFilter( outList );
-    }
-
-    void LA::process_index(
-            const izenelib::util::UString& inputString,
-            TermList & specialTermList,
-            TermList & primaryTermList,
-            TermList & outList
-            )
-    {
-        specialTermList.clear();
-        primaryTermList.clear();
-        outList.clear();
-
-        if( bCaseSensitive_ )
-            tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
-        else
-        {
-            izenelib::util::UString uinputstr = inputString;
-            uinputstr.toLowerString();
-            tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
-        }
-
-        lengthFilter( specialTermList );
-
-        if( analyzer_.get() != NULL )
-        {
-            analyzer_->analyze_index( primaryTermList, outList );
-            lengthFilter( primaryTermList );
-            lengthFilter( outList );
-        }
-        else
-        {
-            lengthFilter( primaryTermList );
-//            outList.splice( outList.end(), primaryTermList );
-        }
-
-    }
-
-    void LA::process_search(
-            const izenelib::util::UString& inputString,
-            TermList & specialTermList,
-            TermList & primaryTermList,
-            TermList & outList
-            )
-    {
-        specialTermList.clear();
-        primaryTermList.clear();
-        outList.clear();
-
-        if( bCaseSensitive_ )
-            tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
-        else
-        {
-            izenelib::util::UString uinputstr = inputString;
-            uinputstr.toLowerString();
-            tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
-        }
-
-
-        lengthFilter( specialTermList );
-
-        if( analyzer_.get() != NULL )
-        {
-            analyzer_->analyze_search( primaryTermList, outList );
-            lengthFilter( primaryTermList );
-            lengthFilter( outList );
-        }
-        else
-        {
-            lengthFilter( primaryTermList );
-//            outList.splice( outList.end(), primaryTermList );
-        }
-    }
+//
+//    void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
+//    {
+//        outList.clear();
+//
+//        izenelib::util::UString uinputstr = inputString;
+//        if( !bCaseSensitive_ )
+//            uinputstr.toLowerString();
+//
+//        if( analyzer_.get() != NULL )
+//        {
+//            TermList tokenList;
+//            tokenizer_.tokenize( uinputstr, tokenList );
+//
+//            analyzer_->analyze_index( tokenList, outList );
+//        }
+//        else
+//        {
+//            tokenizer_.tokenize( uinputstr, outList );
+//        }
+//
+//        lengthFilter( outList );
+//    }
+//
+//    void LA::process_search( const izenelib::util::UString & inputString, TermList & outList )
+//    {
+//        outList.clear();
+//
+//        izenelib::util::UString uinputstr = inputString;
+//        if( !bCaseSensitive_ )
+//            uinputstr.toLowerString();
+//
+//
+//        if( analyzer_.get() != NULL )
+//        {
+//            TermList tokenList;
+//            tokenizer_.tokenize( uinputstr, tokenList );
+//
+//            analyzer_->analyze_search( tokenList, outList );
+//        }
+//        else
+//        {
+//            tokenizer_.tokenize( uinputstr, outList );
+//        }
+//        lengthFilter( outList );
+//    }
+//
+//    void LA::process_index(
+//            const izenelib::util::UString& inputString,
+//            TermList & specialTermList,
+//            TermList & primaryTermList,
+//            TermList & outList
+//            )
+//    {
+//        specialTermList.clear();
+//        primaryTermList.clear();
+//        outList.clear();
+//
+//        if( bCaseSensitive_ )
+//            tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
+//        else
+//        {
+//            izenelib::util::UString uinputstr = inputString;
+//            uinputstr.toLowerString();
+//            tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
+//        }
+//
+//        lengthFilter( specialTermList );
+//
+//        if( analyzer_.get() != NULL )
+//        {
+//            analyzer_->analyze_index( primaryTermList, outList );
+//            lengthFilter( primaryTermList );
+//            lengthFilter( outList );
+//        }
+//        else
+//        {
+//            lengthFilter( primaryTermList );
+////            outList.splice( outList.end(), primaryTermList );
+//        }
+//
+//    }
+//
+//    void LA::process_search(
+//            const izenelib::util::UString& inputString,
+//            TermList & specialTermList,
+//            TermList & primaryTermList,
+//            TermList & outList
+//            )
+//    {
+//        specialTermList.clear();
+//        primaryTermList.clear();
+//        outList.clear();
+//
+//        if( bCaseSensitive_ )
+//            tokenizer_.tokenize(inputString, specialTermList, primaryTermList );
+//        else
+//        {
+//            izenelib::util::UString uinputstr = inputString;
+//            uinputstr.toLowerString();
+//            tokenizer_.tokenize(uinputstr, specialTermList, primaryTermList );
+//        }
+//
+//
+//        lengthFilter( specialTermList );
+//
+//        if( analyzer_.get() != NULL )
+//        {
+//            analyzer_->analyze_search( primaryTermList, outList );
+//            lengthFilter( primaryTermList );
+//            lengthFilter( outList );
+//        }
+//        else
+//        {
+//            lengthFilter( primaryTermList );
+////            outList.splice( outList.end(), primaryTermList );
+//        }
+//    }
 
     izenelib::util::UString toExpandedString( const TermList & termList )
     {

@@ -10,33 +10,61 @@
 #ifndef _LA_ENGLISH_ANALYZER_H_
 #define  _LA_ENGLISH_ANALYZER_H_
 
-#include <la/analyzer/Analyzer.h>
-#include <la/pos/POSTaggerEnglish.h>
+#include <la/analyzer/CommonLanguageAnalyzer.h>
 
 namespace la
 {
-    class EnglishAnalyzer : public Analyzer
+class EnglishAnalyzer : public CommonLanguageAnalyzer
+{
+public:
+
+    EnglishAnalyzer() : CommonLanguageAnalyzer()
     {
-        private:
-            POSTaggerEnglish* tagger_;
+    }
 
-        public:
-            EnglishAnalyzer( std::string modelPath )
-            {
-                tagger_ = &POSTaggerEnglish::getInstance(new std::string(modelPath));
-            }
-            EnglishAnalyzer()
-            {
-                tagger_ = &POSTaggerEnglish::getInstance();
-            }
-            ~EnglishAnalyzer()
-            {}
+    ~EnglishAnalyzer()
+    {
+    }
 
+protected:
 
-            virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
-            virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
+    virtual inline void parse(const UString & input)
+    {
+        tokenizer_.tokenize(input);
+        localOffset_ = 0;
+        resetToken();
+    }
 
-    };
+    virtual inline bool nextToken()
+    {
+        if (tokenizer_.nextToken() ) {
+            token_ = tokenizer_.getToken();
+            len_ = tokenizer_.getLength();
+            offset_ = localOffset_;
+            localOffset_ ++;
+            needIndex_ = true;
+            return true;
+        } else {
+            resetToken();
+            return false;
+        }
+    }
+
+    inline bool isFL()
+    {
+        return true;
+    }
+
+    inline bool isSpecialChar()
+    {
+        return tokenizer_.isDelimiter();
+    }
+
+private:
+
+    int localOffset_;
+
+};
 }
 
 

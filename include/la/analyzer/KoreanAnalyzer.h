@@ -61,14 +61,14 @@ public:
 
 protected:
 
-    void parse(const char* sentence, int sentenceOffset)
+    void parse(const UString & input)
     {
+        input.convertString(izenelib::util::UString::CP949,
+                            input_string_buffer_, input_string_buffer_size_);
 //        pS_->initialize();
 //        pS_->setString( sentence );
 //        pA_->runWithEojul();
-        pA_->runWithString((char*)sentence);
-
-        sentenceOffset_ = sentenceOffset;
+        pA_->runWithString(input_string_buffer_);
 
         eojul_ = NULL;
         eojulIndex_ = 0;
@@ -110,8 +110,12 @@ protected:
         if(!eojul_)
         {
             eojul_ = pA_->getEojulInSentence(eojulIndex_);
-            token_ = eojul_->getString();
-            len_ = strlen(token_);
+            nativeToken_ = eojul_->getString();
+            nativeTokenLen_ = strlen(nativeToken_);
+            token_ = output_ustring_buffer_;
+            len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                    output_ustring_buffer_size_);
 
             if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
             {
@@ -121,15 +125,20 @@ protected:
             {
                 morpheme_ = 0;
             }
-            offset_ = sentenceOffset_ + eojulIndex_;
+            offset_ = eojulIndex_;
             needIndex_ = true;
         }
         else
         {
 
-            token_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
-            len_ = strlen(token_);
+            nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
+            nativeTokenLen_ = strlen(nativeToken_);
             morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
+            token_ = output_ustring_buffer_;
+            len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                    output_ustring_buffer_size_);
+
             //needIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
             needIndex_ = ((morpheme_&kmaOrange::N_) ||
                           (morpheme_==kmaOrange::FL) ||
@@ -174,7 +183,11 @@ private:
 
 //    kmaOrange::WK_Eojul * pS_;
 
-    int sentenceOffset_;
+    static const size_t input_string_buffer_size_ = 4096*3;
+    char * input_string_buffer_;
+
+    static const size_t output_ustring_buffer_size_ = 4096;
+    UString::CharT * output_ustring_buffer_;
 
     kmaOrange::WK_Eojul * eojul_;
 
@@ -183,6 +196,9 @@ private:
     int listIndex_;
 
     int lexiconIndex_;
+
+    unsigned int morpheme_;
+
 };
 }
 

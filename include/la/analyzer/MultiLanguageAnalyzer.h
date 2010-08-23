@@ -14,16 +14,13 @@
 
 #include <boost/shared_ptr.hpp>
 
-
-//#define DEBUG_MLA
-
 namespace la
 {
 
 /**
  * @brief process several language at the same time
  */
-class MultiLanguageAnalyzer: public la::Analyzer
+class MultiLanguageAnalyzer: public Analyzer
 {
 public:
     enum Language
@@ -53,8 +50,6 @@ public:
      */
     virtual ~MultiLanguageAnalyzer();
 
-    IMPLEMENT_ANALYZER_METHODS
-
     /**
      * Set the Analyzer for specific language type
      * @param lang the specific language, see MultiLanguageAnalyzer::Language
@@ -78,26 +73,26 @@ public:
      */
     bool setProcessMode( MultiLanguageAnalyzer::Language lang, MultiLanguageAnalyzer::ProcessMode mode );
 
+//
+//    virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
+//    virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
 
-    virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
-    virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
-
-
-    /**
-     * @brief Whether enable case-sensitive search, this method only
-     * set the caseSensitive flag. The children class can overwirte
-     * this method.
-     * @param flag default value is true
-     */
-    virtual void setCaseSensitive( bool flag );
-
-    /**
-     * @brief Whether contain lower form of English
-     * set the containLower flag. The children class can overwirte
-     * this method.
-     * @param flag default value is true
-     */
-    virtual void setContainLower( bool flag );
+//
+//    /**
+//     * @brief Whether enable case-sensitive search, this method only
+//     * set the caseSensitive flag. The children class can overwirte
+//     * this method.
+//     * @param flag default value is true
+//     */
+//    virtual void setCaseSensitive( bool flag );
+//
+//    /**
+//     * @brief Whether contain lower form of English
+//     * set the containLower flag. The children class can overwirte
+//     * this method.
+//     * @param flag default value is true
+//     */
+//    virtual void setContainLower( bool flag );
 
     /**
      * @brief   Whether or not to extract English stems.
@@ -109,17 +104,16 @@ public:
 
 protected:
 
-    template<typename IDManagerType>
-    int analyze_( IDManagerType* idm, const Term & input, TermIdList & output, analyzermode flags );
+//    virtual int analyze_impl( const Term& input, void* data, HookType func );
 
 private:
 
     inline Language getCharType( izenelib::util::UCS2Char ucs2Char );
 
-    inline void invokeMA( const izenelib::util::UString& ustr, TermList & output, bool isIndex, Language lang,
-            unsigned int woffset, unsigned int &listOffset, bool isEnd );
-
-    inline void performAnalyze( const TermList & input, TermList & output, bool isIndex );
+//    inline void invokeMA( const izenelib::util::UString& ustr, TermList & output, bool isIndex, Language lang,
+//            unsigned int woffset, unsigned int &listOffset, bool isEnd );
+//
+//    inline void performAnalyze( const TermList & input, TermList & output, bool isIndex );
 
     void printMLA();
 

@@ -26,7 +26,10 @@ class CommonLanguageAnalyzer : public Analyzer
 {
 public:
 
-    CommonLanguageAnalyzer( const std::string knowledgePath, bool loadModel = true );
+    CommonLanguageAnalyzer();
+
+    CommonLanguageAnalyzer( const std::string & synonymDictPath,
+        UString::EncodingType synonymEncode );
 
     ~CommonLanguageAnalyzer();
 
@@ -51,9 +54,9 @@ public:
 protected:
 
     /// Parse given input
-    virtual void parse(const char* sentence, int initoffset) = 0;
+    virtual void parse(const UString & input ) = 0;
 
-    /// Fill token_, len_, offset_, morpheme_
+    /// Fill token_, len_, offset_
     virtual bool nextToken() = 0;
 
     /// whether morpheme_ indicates foreign language
@@ -62,7 +65,7 @@ protected:
     /// whether morpheme_ indicates special character, e.g. punctuations
     virtual bool isSpecialChar() = 0;
 
-    inline const char* token()
+    inline const UString::CharT* token()
     {
         return token_;
     }
@@ -70,9 +73,13 @@ protected:
     {
         return len_;
     }
-    inline int morpheme()
+    inline const char* nativeToken()
     {
-        return morpheme_;
+        return nativeToken_;
+    }
+    inline size_t nativeTokenLen()
+    {
+        return nativeTokenLen_;
     }
     inline int offset()
     {
@@ -86,59 +93,39 @@ protected:
     {
         token_ = NULL;
         len_ = 0;
-        morpheme_ = 0;
+        nativeToken_ = NULL;
+        nativeTokenLen_ = 0;
         offset_ = 0;
         needIndex_ = false;
     }
 
 protected:
 
-    IMPLEMENT_ANALYZER_METHODS
-
-    int analyze_(const Term & input,
-                 TermList & output,
-                 analyzermode flags);
-
-    template <typename IDManagerType>
-    int analyze_(IDManagerType* idm,
-                 const Term & input,
-                 TermIdList & output,
-                 analyzermode flags);
-
-    typedef void (*HookType) ( void* data, const UString::CharT* text, const size_t len, const int offset );
-
-    template<typename IDManagerType>
-    static void appendTermIdList( void* data, const UString::CharT* text, const size_t len, const int offset );
-
-    static void appendTermList( void* data, const UString::CharT* text, const size_t len, const int offset );
-
-    virtual int analyze_impl( const Term& input, analyzermode flags, void* data, HookType func );
+    virtual int analyze_impl( const Term& input, void* data, HookType func );
 
 protected:
 
     izenelib::am::VSynonymContainer*      pSynonymContainer_;
     izenelib::am::VSynonym*               pSynonymResult_;
+    izenelib::util::UString::EncodingType synonymEncode_;
     shared_ptr<UpdatableSynonymContainer> uscSPtr_;
 
     stem::Stemmer *                     pStemmer_;
 
-    static const size_t input_string_buffer_size_ = 4096*3;
-    char * input_string_buffer_;
-    char * input_lowercase_string_buffer_;
+    static const size_t string_buffer_size_ = 4096*3;
+    char * lowercase_string_buffer_;
 
-    static const size_t output_ustring_buffer_size_ = 4096;
-    UString::CharT * output_ustring_buffer_;
-    UString::CharT * output_lowercase_ustring_buffer_;
-    UString::CharT * output_synonym_ustring_buffer_;
-    UString::CharT * output_stemming_ustring_buffer_;
+    static const size_t ustring_buffer_size_ = 4096;
+    UString::CharT * lowercase_ustring_buffer_;
+    UString::CharT * synonym_ustring_buffer_;
+    UString::CharT * stemming_ustring_buffer_;
 
-    const char * token_;
-    int len_;
+    const UString::CharT * token_;
+    size_t len_;
+    const char * nativeToken_;
+    size_t nativeTokenLen_;
     int offset_;
-    unsigned int morpheme_;
     bool needIndex_;
-
-    izenelib::util::UString::EncodingType encode_;
 
     bool bCaseSensitive_;
 

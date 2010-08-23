@@ -16,12 +16,7 @@ BOOST_AUTO_TEST_CASE(test_normal)
     CharAnalyzer analyzer;
     TermList termList;
     analyzer.analyze(UString("互联网(the Internet)中国 2010。", UString::UTF_8), termList);
-            TermList::iterator it = termList.begin();
-            for(; it!=termList.end(); it++ ) {
-                std::string printable;
-                it->text_.convertString(printable, UString::UTF_8);
-                cout << printable << endl;
-            }
+
     BOOST_CHECK_EQUAL(termList.size(), 11U);
     BOOST_CHECK_EQUAL( termList[0].text_, UString("互", UString::UTF_8) );
     BOOST_CHECK_EQUAL( termList[1].text_, UString("联", UString::UTF_8) );

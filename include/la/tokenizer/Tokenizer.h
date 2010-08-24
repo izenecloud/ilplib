@@ -1,8 +1,13 @@
-/*
+/**
  * Tokenizer.h
  *
  *  Created on: 2009-6-10
  *      Author: Huajie Zhang
+ */
+
+/**
+ * @brief Rewrite Tokenizer using nextToken() methods
+ * @author Wei
  */
 
 #ifndef _LA_TOKENIZER_H_

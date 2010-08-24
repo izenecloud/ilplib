@@ -1,3 +1,7 @@
+/**
+ * @author Wei
+ */
+
 #include <iostream>
 #include <fstream>
 

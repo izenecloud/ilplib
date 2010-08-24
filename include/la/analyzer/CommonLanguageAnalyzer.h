@@ -1,6 +1,14 @@
 /**
- * @author Wei Cao
- * @date
+ * @file    CommonLanguageAnalyzer.cpp
+ * @author  Kent, Vernkin
+ * @date    Nov 23, 2009
+ * @details
+ *  Common Language Analyzer for Chinese/Japanese/Korean.
+ */
+
+/**
+ * @brief Rewrite CLA using new interfaces.
+ * @author Wei
  */
 
 #ifndef COMMONLANGUAGEANALYZER_H_

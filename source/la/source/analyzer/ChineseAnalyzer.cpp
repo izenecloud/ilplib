@@ -1,3 +1,7 @@
+/**
+ * @author Wei
+ */
+
 #include <la/analyzer/ChineseAnalyzer.h>
 
 

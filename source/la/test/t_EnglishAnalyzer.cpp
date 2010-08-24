@@ -1,3 +1,7 @@
+/**
+ * @author Wei
+ */
+
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 

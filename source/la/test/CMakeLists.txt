@@ -22,10 +22,11 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
   add_executable(t_LA
 	Runner.cpp
 #	t_Tokenizer.cpp
-	t_CharAnalyzer.cpp
+#	t_CharAnalyzer.cpp
 #	t_EnglishAnalyzer.cpp
 #	t_ChineseAnalyzer.cpp
 #	t_KoreanAnalyzer.cpp
+	t_MultiLanguageAnalyzer.cpp
 	)
 
   set(libs

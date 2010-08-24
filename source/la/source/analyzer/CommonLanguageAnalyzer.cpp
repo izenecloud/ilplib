@@ -5,6 +5,12 @@
  * @details
  *  Common Language Analyzer for Chinese/Japanese/Korean.
  */
+
+/**
+ * @brief Rewrite CLA using new interfaces.
+ * @author Wei
+ */
+
 ////#define SF1_TIME_CHECK
 //#include <util/profiler/ProfilerGroup.h>
 //

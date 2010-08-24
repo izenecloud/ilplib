@@ -25,6 +25,8 @@
 namespace la
 {
 
+class MultiLanguageAnalyzer;
+
 ///
 /// \brief interface of Analyzer
 /// This class analyze terms according to the specific types of analyzer
@@ -75,6 +77,8 @@ public:
     }
 
 protected:
+
+    friend class MultiLanguageAnalyzer;
 
     typedef void (*HookType) ( void* data, const UString::CharT* text, const size_t len, const int offset );
 

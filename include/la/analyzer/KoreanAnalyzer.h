@@ -1,3 +1,7 @@
+/**
+ * @author Wei
+ */
+
 #ifndef _KOREAN_ANALYZER_H_
 #define _KOREAN_ANALYZER_H_
 

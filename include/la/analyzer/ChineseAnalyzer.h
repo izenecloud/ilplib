@@ -1,3 +1,7 @@
+/**
+ * @author Wei
+ */
+
 #ifndef _CHINESE_ANALYZER_H_
 #define _CHINESE_ANALYZER_H_
 

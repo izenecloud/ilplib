@@ -1,8 +1,13 @@
-/*
+/**
  * Tokenizer.cpp
  *
  *  Created on: 2009-6-10
  *      Author: Huajie Zhang
+ */
+
+/**
+ * @brief Rewrite Tokenizer using nextToken() methods
+ * @author Wei
  */
 
 #include <la/tokenizer/Tokenizer.h>

@@ -70,9 +70,9 @@ namespace la
         {
             term_it = output.insert( output.end(), *it );
 //            term_it->stats_ = makeStatBit( defLogicOp, level );
-
-            if( (retFlag & ANALYZE_SECOND_) == 0 )
-                continue;
+//
+//            if( (retFlag & ANALYZE_SECOND_) == 0 )
+//                continue;
 
 
             length = it->text_.length();

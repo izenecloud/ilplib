@@ -33,25 +33,6 @@ class MultiLanguageAnalyzer;
 ///
 class Analyzer
 {
-public:
-    typedef int analyzermode;
-
-    enum
-    {
-        prime = 0x0001,
-        second = 0x0002,
-        synonym = 0x0004,
-        stemming = 0x0008,
-        specialchar = 0x0010,
-        casesensitive = 0x0100,
-        containlower = 0x0100,
-        nbest = 0x1000
-    };
-
-    static const unsigned char ANALYZE_NONE_;
-    static const unsigned char ANALYZE_PRIME_;
-    static const unsigned char ANALYZE_SECOND_;
-    static const unsigned char ANALYZE_ALL_;
 
 public:
 

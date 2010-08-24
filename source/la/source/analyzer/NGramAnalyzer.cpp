@@ -47,28 +47,28 @@ namespace la
         {
             len = it->text_.length();
 
-
-            // add original term according to option
-            if( retFlag & ANALYZE_PRIME_ )
-            {
-                term_it = tempList.insert( tempList.end(), *it );
-//                term_it->stats_ = makeStatBit( Term::OR_BIT, level );
-            }
+//
+//            // add original term according to option
+//            if( retFlag & ANALYZE_PRIME_ )
+//            {
+//                term_it = tempList.insert( tempList.end(), *it );
+////                term_it->stats_ = makeStatBit( Term::OR_BIT, level );
+//            }
             level++;
 
-            if( retFlag & ANALYZE_SECOND_ )
-            {
+//            if( retFlag & ANALYZE_SECOND_ )
+//            {
                 if( minGram_ <= len )
                 {
                     ngram = minGram_;
                     max_gram = min(len, maxGram_);
                 }
-                else if( retFlag & ANALYZE_PRIME_ )
-                {
-                    //no need to do anything
-                    ngram = 1;
-                    max_gram = 0;
-                }
+//                else if( retFlag & ANALYZE_PRIME_ )
+//                {
+//                    //no need to do anything
+//                    ngram = 1;
+//                    max_gram = 0;
+//                }
                 else
                 {
                     ngram = max_gram = len;
@@ -128,10 +128,10 @@ namespace la
                                 curType = getCharTypeBit( it->text_[typeStart] );
                             }
                         }
-
-                        // it will duplicate the analyze_prime term
-                        if( typeStart == 0 && (retFlag & ANALYZE_PRIME_) && ngram == len )
-                            break;
+//
+//                        // it will duplicate the analyze_prime term
+//                        if( typeStart == 0 && (retFlag & ANALYZE_PRIME_) && ngram == len )
+//                            break;
 
                         if( (curType & apartFlag_) == 0 || ngram >= (typeEnd-typeStart) )
                         {
@@ -169,15 +169,15 @@ namespace la
                     tempList.begin()->stats_ = makeStatBit( Term::OR_BIT, level-1 );
                 }
                 */
-            }
-            else
-            {
-                if( (retFlag & ANALYZE_PRIME_ ) == 0 )
-                {
-                    term_it = tempList.insert( tempList.end(), *it );
-//                    term_it->stats_ = makeStatBit( Term::AND_BIT, level );
-                }
-            }
+//            }
+//            else
+//            {
+//                if( (retFlag & ANALYZE_PRIME_ ) == 0 )
+//                {
+//                    term_it = tempList.insert( tempList.end(), *it );
+////                    term_it->stats_ = makeStatBit( Term::AND_BIT, level );
+//                }
+//            }
 
             level--;
 

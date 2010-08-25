@@ -13,6 +13,7 @@
 
 #include <util/ustring/UString.h>
 #include <ir/id_manager/IDManager.h>
+#include <ir/index_manager/index/LAInput.h>
 
 #include <boost/serialization/access.hpp>
 #include <boost/function.hpp>
@@ -23,7 +24,7 @@
 #include <deque>
 #include <bitset>
 
-
+using namespace izenelib::ir::indexmanager;
 namespace la
 {
 
@@ -110,54 +111,6 @@ namespace la
 
     extern UString PLACE_HOLDER;
 
-    class TermId
-    {
-        public:
-
-            unsigned int     termid_;
-            unsigned int     wordOffset_;
-
-            friend std::ostream & operator<<( std::ostream & out, const TermId & term );
-
-        private:
-
-            friend class boost::serialization::access;
-            template<class Archive>
-            void serialize(Archive& ar, const unsigned int version)
-            {
-                ar& termid_;
-                ar& wordOffset_;
-            }
-    };
-
-    class TermIdList : public std::deque<TermId>
-    {
-        public:
-
-            inline void add( const unsigned int termid, const unsigned int offset ) {
-                push_back(globalTemporary_);
-                back().termid_ = termid;
-                back().wordOffset_ = offset;
-            }
-
-            template<typename IDManagerType>
-            inline void add( IDManagerType* idm, const Term & term) {
-                push_back(globalTemporary_);
-                idm->getTermIdByTermString(term.text_, back().termid_);
-                back().wordOffset_ = term.wordOffset_;
-            }
-
-            template<typename IDManagerType>
-            inline void add( IDManagerType* idm, const UString::CharT* termStr, const size_t termLen, const unsigned int offset ) {
-                push_back(globalTemporary_);
-                idm->getTermIdByTermString(termStr, termLen, back().termid_);
-                back().wordOffset_ = offset;
-            }
-
-        private:
-
-            static TermId globalTemporary_;
-    };
 
 }
 

@@ -107,6 +107,4 @@ namespace la
 
     Term TermList::globalTemporary_;
 
-    TermId TermIdList::globalTemporary_;
-
 }

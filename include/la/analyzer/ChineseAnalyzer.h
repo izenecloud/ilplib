@@ -49,7 +49,9 @@ protected:
         // Since cma accept a whole article as input,
         // it maybe extraordinary long sometimes.
         if(input_string_buffer_size_ < input.length()*3+1) {
-            input_string_buffer_size_ *= 2;
+            while(input_string_buffer_size_ < input.length()*3+1) {
+                input_string_buffer_size_ *= 2;
+            }
             delete input_string_buffer_;
             input_string_buffer_ = new char[input_string_buffer_size_];
         }

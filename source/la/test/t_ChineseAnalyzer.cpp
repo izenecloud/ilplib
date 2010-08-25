@@ -225,4 +225,16 @@ BOOST_AUTO_TEST_CASE(test_specialchar)
     regularTests();
 }
 
+BOOST_AUTO_TEST_CASE(test_stopwords)
+{
+    const string sstr("双方合作后，将保持独立的搜索和广告业务");
+    const UString ustr(sstr, UString::UTF_8);
+    analyzer.analyze(Term(ustr), termList);
+    analyzer.analyze(&idm, Term(ustr), termIdList);
+
+    print();
+
+    regularTests();
+}
+
 BOOST_AUTO_TEST_SUITE_END()

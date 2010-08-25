@@ -161,21 +161,23 @@ public:
         return isDelimiter_;
     }
 
-//    /// \brief tokenize the input text, output two term lists: raw term list and primary term list
-//    /// \param inputString input text string
-//    /// \param rawTerms the output raw term list
-//    /// \param primTerms the output primary term list
-//    bool tokenize(const izenelib::util::UString & inputString, TermList & specialTerms, TermList& primTerms );
-//
-//    /// \brief tokenize the input text, remove the space chars, output raw term list
-//    /// \param inputString input text string
-//    /// \param rawTerms the output raw term list
-//    bool tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms);
-//
-//    /// \brief tokenize the input text, output two term lists: raw term list and primary term list
-//    /// \param inputString input text string
-//    /// \param primTerms the output primary term list
-//    bool tokenize(const izenelib::util::UString & inputString, TermList & primTerms);
+    /// TODO: rewrite following methods
+
+    /// \brief tokenize the input text, output two term lists: raw term list and primary term list
+    /// \param inputString input text string
+    /// \param rawTerms the output raw term list
+    /// \param primTerms the output primary term list
+    bool tokenize(const izenelib::util::UString & inputString, TermList & specialTerms, TermList& primTerms );
+
+    /// \brief tokenize the input text, remove the space chars, output raw term list
+    /// \param inputString input text string
+    /// \param rawTerms the output raw term list
+    bool tokenizeWhite(const izenelib::util::UString& inputString, TermList& rawTerms);
+
+    /// \brief tokenize the input text, output two term lists: raw term list and primary term list
+    /// \param inputString input text string
+    /// \param primTerms the output primary term list
+    bool tokenize(const izenelib::util::UString & inputString, TermList & primTerms);
 
 private:
 

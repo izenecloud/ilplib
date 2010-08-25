@@ -25,7 +25,7 @@ namespace la
 
 ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadModel)
     : CommonLanguageAnalyzer(knowledgePath+"/synonym.txt", UString::UTF_8),
-      pA_(NULL), pS_(NULL)
+      pA_(NULL), pS_(NULL), input_string_buffer_size_(4096*4)
 {
     cma::CMA_Factory* factory = cma::CMA_Factory::instance();
 

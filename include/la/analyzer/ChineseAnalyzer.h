@@ -46,6 +46,14 @@ protected:
 
     inline void parse(const UString & input)
     {
+        // Since cma accept a whole article as input,
+        // it maybe extraordinary long sometimes.
+        if(input_string_buffer_size_ < input.length()*3+1) {
+            input_string_buffer_size_ *= 2;
+            delete input_string_buffer_;
+            input_string_buffer_ = new char[input_string_buffer_size_];
+        }
+
         input.convertString(izenelib::util::UString::UTF_8,
             input_string_buffer_, input_string_buffer_size_);
         pS_->setString( input_string_buffer_ );
@@ -113,7 +121,7 @@ private:
 
     cma::Sentence * pS_;
 
-    static const size_t input_string_buffer_size_ = 4096*3;
+    size_t input_string_buffer_size_;
     char * input_string_buffer_;
 
     static const size_t output_ustring_buffer_size_ = 4096;

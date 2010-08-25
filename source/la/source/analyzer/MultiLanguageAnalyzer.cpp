@@ -72,9 +72,9 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType( UCS2Char ucs
 MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const UString & input )
 {
     static const size_t SampleCount = 10;
-    if(input.size() < SampleCount)
+    if(input.length() < SampleCount)
     {
-        for(size_t i = 0; i< SampleCount; i++ )
+        for(size_t i = 0; i< input.length(); i++ )
         {
             if(UString::isThisLanguageChar(input.at(i)))
             {
@@ -90,8 +90,8 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
 
     for( size_t i = 0; i < SampleCount; i++ )
     {
-        size_t index = i*input.size()/SampleCount;
-        while(index<input.size() && !UString::isThisLanguageChar(input.at(index)))
+        size_t index = i*input.length()/SampleCount;
+        while(index<input.length()-1 && !UString::isThisLanguageChar(input.at(index)))
             index ++;
         if(UString::isThisLanguageChar(input.at(index)))
         {
@@ -103,7 +103,6 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
         }
     }
     return ENGLISH;
-
 }
 
 int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )

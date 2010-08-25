@@ -46,9 +46,7 @@ namespace la
         }
     }
 
-    LA::LA() :
-        TERM_LENGTH_THRESHOLD_(128),
-        bCaseSensitive_( false )
+    LA::LA()
     {
         if( OP_REP_MAP.empty() == true )
         {
@@ -61,26 +59,6 @@ namespace la
         }
     }
 
-    void LA::process( IDManager* idm,
-            const izenelib::util::UString & inputString,
-            TermIdList & outList )
-    {
-        outList.clear();
-
-//        TermList tokenList;
-//        tokenizer_.tokenize( inputString, tokenList );
-
-        if( analyzer_.get() != NULL ) {
-//            for(TermList::iterator it = tokenList.begin(); it !=tokenList.end(); it++ ) {
-                analyzer_->analyze( idm, inputString, outList );
-//            }
-        }
-        else
-        {
-            /// TODO
-            /// tokenizer_.tokenize( uinputstr, outList );
-        }
-    }
 //
 //    void LA::process_index( const izenelib::util::UString & inputString, TermList & outList )
 //    {
@@ -284,19 +262,6 @@ namespace la
 //            output += RBRACKET;
 
         return output;
-    }
-
-    void LA::lengthFilter( TermList & termList )
-    {
-        TermList::iterator it = termList.begin();
-        while( it != termList.end() )
-        {
-            if( it->text_.length() > TERM_LENGTH_THRESHOLD_ )
-            {
-                it->text_.resize(TERM_LENGTH_THRESHOLD_);
-            }
-            it++;
-        }
     }
 
     void LA::removeStopwords( TermList & termList,

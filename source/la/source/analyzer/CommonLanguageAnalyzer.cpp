@@ -108,11 +108,12 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
     {
         if( len() == 0 )
             continue;
-
+//
 //            {
-//            string foo;
-//            token().convertString(foo, UString::UTF_8);
-//            cout << "(" << foo << ") --<> " << needIndex() << "  " << dec << endl;
+//            UString foo(token(), len());
+//            string bar;
+//            foo.convertString(bar, UString::UTF_8);
+//            cout << "(" << bar << ") --<> " << needIndex() << "," << offset() << endl;
 //            }
         if( needIndex() )
         {

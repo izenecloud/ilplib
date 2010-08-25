@@ -82,6 +82,9 @@ namespace la
             {
                 apartFlag_ = flag;
             }
+        protected:
+
+            int analyze_impl( const Term& input, void* data, HookType func ) {return 0;}
 
 
         private:

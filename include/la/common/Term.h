@@ -33,14 +33,16 @@ namespace la
 
             izenelib::util::UString    text_;
 
+            std::string         pos_;
+
             unsigned int        wordOffset_;
 
         public:
 
-            Term() : wordOffset_(0) {}
+            Term() : pos_("@"), wordOffset_(0) {}
 
             Term(const izenelib::util::UString & str)
-                : text_(str), wordOffset_(0) {}
+                : text_(str), pos_("@"), wordOffset_(0) {}
 
             ~Term() {}
 

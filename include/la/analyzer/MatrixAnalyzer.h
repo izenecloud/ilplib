@@ -29,6 +29,9 @@ namespace la
 
             virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
             virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
+        protected:
+
+            int analyze_impl( const Term& input, void* data, HookType func ) {return 0;}
 
     };
 

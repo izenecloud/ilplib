@@ -38,10 +38,10 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer()
     pStemmer_ = new stem::Stemmer();
     pStemmer_->init(stem::STEM_LANG_ENGLISH);
 
-    lowercase_string_buffer_ = new char[string_buffer_size_];
-    lowercase_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
-    synonym_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
-    stemming_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
+    lowercase_string_buffer_ = new char[term_string_buffer_limit_];
+    lowercase_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
+    synonym_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
+    stemming_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 }
 
 CommonLanguageAnalyzer::CommonLanguageAnalyzer(
@@ -75,10 +75,10 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     pStemmer_ = new stem::Stemmer();
     pStemmer_->init(stem::STEM_LANG_ENGLISH);
 
-    lowercase_string_buffer_ = new char[string_buffer_size_];
-    lowercase_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
-    synonym_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
-    stemming_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
+    lowercase_string_buffer_ = new char[term_string_buffer_limit_];
+    lowercase_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
+    synonym_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
+    stemming_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 }
 
 void CommonLanguageAnalyzer::setSynonymUpdateInterval(unsigned int seconds)
@@ -134,10 +134,10 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             {
                 UString::CharT* lowercaseTermUstr = lowercase_ustring_buffer_;
                 bool lowercaseIsDifferent = UString::toLowerString(token(), len(),
-                                            lowercase_ustring_buffer_, ustring_buffer_size_);
+                                            lowercase_ustring_buffer_, term_ustring_buffer_limit_);
 
                 char* lowercaseTerm = lowercase_string_buffer_;
-                UString::convertString(UString::UTF_8, lowercaseTermUstr, len(), lowercase_string_buffer_, string_buffer_size_);
+                UString::convertString(UString::UTF_8, lowercaseTermUstr, len(), lowercase_string_buffer_, term_string_buffer_limit_);
 
                 if(bCaseSensitive_)
                 {
@@ -161,7 +161,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     {
                         UString::CharT* stemmingTermUstr = stemming_ustring_buffer_;
                         size_t stemmingTermUstrSize = UString::toUcs2(UString::UTF_8,
-                                stem_term.c_str(), stem_term.size(), stemming_ustring_buffer_, ustring_buffer_size_);
+                                stem_term.c_str(), stem_term.size(), stemming_ustring_buffer_, term_ustring_buffer_limit_);
                         func( data, stemmingTermUstr, stemmingTermUstrSize, offset(), NULL, Term::OR, level()+1);
                     }
                 }
@@ -187,11 +187,11 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 //                    cout << to_utf8(synonymInput,encode_) << "--<>" <<
 //                         to_utf8(synonymResult, encode_) << "," << endl;
                     size_t synonymResultLen = strlen(synonymResult);
-                    if(synonymResultLen <= ustring_buffer_size_)
+                    if(synonymResultLen <= term_ustring_buffer_limit_)
                     {
                         UString::CharT * synonymResultUstr = synonym_ustring_buffer_;
                         size_t synonymResultUstrLen = UString::toUcs2(synonymEncode_,
-                                synonymResult, synonymResultLen, synonym_ustring_buffer_, ustring_buffer_size_);
+                                synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
                         func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1);
                     }
                 }

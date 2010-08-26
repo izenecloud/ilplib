@@ -99,6 +99,9 @@ namespace la
 
         output_buffer_cursor_ = 0;
 
+        if(output_buffer_cursor_>=output_buffer_size_) {
+            grow_output_buffer();
+        }
         output_buffer_[output_buffer_cursor_++] = input_->at(input_cursor_);
         if(table_.getType(input_->at(input_cursor_)) == DELIMITER_CHR) {
            ++ input_cursor_;
@@ -113,6 +116,9 @@ namespace la
                 if( curType==SPACE_CHR || curType==DELIMITER_CHR) {
                     return true;
                 } else if(curType==ALLOW_CHR) {
+                    if(output_buffer_cursor_>=output_buffer_size_) {
+                        grow_output_buffer();
+                    }
                     output_buffer_[output_buffer_cursor_++] = input_->at(input_cursor_++);
                 } else {
                     ++ input_cursor_;
@@ -122,6 +128,14 @@ namespace la
         }
     }
 
+    bool Tokenizer::grow_output_buffer()
+    {
+        UString::CharT* new_output_buffer = new UString::CharT[output_buffer_size_*2];
+        memcpy(new_output_buffer, output_buffer_, output_buffer_size_*sizeof(UString::CharT));
+        output_buffer_ = new_output_buffer;
+        output_buffer_size_ *= 2;
+        return true;
+    }
 
     bool Tokenizer::tokenize(const UString & inputString, TermList & specialTerms, TermList& primTerms )
     {

@@ -67,8 +67,10 @@ protected:
 
     void parse(const UString & input)
     {
-        if(input_string_buffer_size_ < input.length()*3+1) {
-            while(input_string_buffer_size_ < input.length()*3+1) {
+        if(input_string_buffer_size_ < input.length()*3+1)
+        {
+            while(input_string_buffer_size_ < input.length()*3+1)
+            {
                 input_string_buffer_size_ *= 2;
             }
             delete input_string_buffer_;
@@ -84,7 +86,7 @@ protected:
         eojul_ = NULL;
         eojulIndex_ = 0;
         listIndex_ = 0;
-        lexiconIndex_ = 0;
+        lexiconIndex_ = -1;
 
         resetToken();
     }
@@ -112,74 +114,65 @@ protected:
 //
 //        return true;
 
-        if(eojulIndex_ == pA_->getEojulCountInSentence() )
+        while(doNext())
         {
-            resetToken();
-            return false;
-        }
-
-        if(!eojul_)
-        {
-            eojul_ = pA_->getEojulInSentence(eojulIndex_);
-            nativeToken_ = eojul_->getString();
-            nativeTokenLen_ = strlen(nativeToken_);
-            token_ = output_ustring_buffer_;
-            len_ = UString::toUcs2(izenelib::util::UString::CP949,
-                nativeToken_, nativeTokenLen_, output_ustring_buffer_,
-                    output_ustring_buffer_size_);
-
-            if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
+            if(!eojul_)
             {
-                morpheme_ = eojul_->getPOS(0, 0);
+                eojul_ = pA_->getEojulInSentence(eojulIndex_);
+
+                nativeToken_ = eojul_->getString();
+                nativeTokenLen_ = strlen(nativeToken_);
+                if(nativeTokenLen_>term_ustring_buffer_limit_)
+                {
+                    continue;
+                }
+
+                token_ = output_ustring_buffer_;
+                len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                                       nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                                       term_ustring_buffer_limit_);
+
+                if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
+                {
+                    morpheme_ = eojul_->getPOS(0, 0);
+                }
+                else
+                {
+                    morpheme_ = 0;
+                }
+                offset_ = eojulIndex_;
+                level_ = 0;
+                isIndex_ = true;
+                isRaw_ = true;
+                return true;
             }
             else
             {
-                morpheme_ = 0;
-            }
-            offset_ = eojulIndex_;
-            level_ = 0;
-            isIndex_ = true;
-            isRaw_ = true;
-        }
-        else
-        {
+                nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
+                nativeTokenLen_ = strlen(nativeToken_);
+                if(nativeTokenLen_>term_ustring_buffer_limit_)
+                {
+                    continue;
+                }
 
-            nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
-            nativeTokenLen_ = strlen(nativeToken_);
-            morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
-            token_ = output_ustring_buffer_;
-            len_ = UString::toUcs2(izenelib::util::UString::CP949,
-                nativeToken_, nativeTokenLen_, output_ustring_buffer_,
-                    output_ustring_buffer_size_);
+                morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
+                token_ = output_ustring_buffer_;
+                len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                                       nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                                       term_ustring_buffer_limit_);
 
-            level_ = 1;
-            //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
-            isIndex_ = ((morpheme_&kmaOrange::N_) ||
-                          (morpheme_==kmaOrange::FL) ||
-                          (morpheme_==kmaOrange::SN) ||
-                          (morpheme_==kmaOrange::SC) );
-            isRaw_ = false;
-            ++ lexiconIndex_;
-            if(lexiconIndex_ == eojul_->getCount(listIndex_))
-            {
-                lexiconIndex_ = 0;
-                ++ listIndex_;
+                level_ = 1;
+                //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
+                isIndex_ = ((morpheme_&kmaOrange::N_) ||
+                            (morpheme_==kmaOrange::FL) ||
+                            (morpheme_==kmaOrange::SN) ||
+                            (morpheme_==kmaOrange::SC) );
+                isRaw_ = false;
+                return true;
             }
         }
-
-        // Check the new dividuation of the eojul to see whether we need to skip it.
-        while(listIndex_ < eojul_->getListSize() && eojul_->getCount(listIndex_) == 1 )
-        {
-            ++ listIndex_;
-        }
-        if(listIndex_ == eojul_->getListSize())
-        {
-            listIndex_ = 0;
-
-            ++ eojulIndex_;
-            eojul_ = NULL;
-        }
-        return true;
+        resetToken();
+        return false;
     }
 
     inline bool isAlpha()
@@ -194,6 +187,43 @@ protected:
 
 private:
 
+
+    bool doNext()
+    {
+        if(eojulIndex_ == pA_->getEojulCountInSentence() )
+        {
+            return false;
+        }
+        if(eojul_)
+        {
+            ++ lexiconIndex_;
+            if(lexiconIndex_ == eojul_->getCount(listIndex_))
+            {
+                lexiconIndex_ = 0;
+                ++ listIndex_;
+            }
+            // Check the new dividuation of the eojul to see whether we need to skip it.
+            while(listIndex_ < eojul_->getListSize() && eojul_->getCount(listIndex_) == 1 )
+            {
+                ++ listIndex_;
+            }
+            if(listIndex_ == eojul_->getListSize())
+            {
+                lexiconIndex_ = -1;
+                listIndex_ = 0;
+                ++ eojulIndex_;
+                eojul_ = NULL;
+                if(eojulIndex_ == pA_->getEojulCountInSentence() )
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+private:
+
     kmaOrange::WK_Analyzer * pA_;
 
 //    kmaOrange::WK_Eojul * pS_;
@@ -201,7 +231,6 @@ private:
     size_t input_string_buffer_size_;
     char * input_string_buffer_;
 
-    static const size_t output_ustring_buffer_size_ = 4096;
     UString::CharT * output_ustring_buffer_;
 
     kmaOrange::WK_Eojul * eojul_;

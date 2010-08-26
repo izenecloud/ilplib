@@ -38,7 +38,7 @@ KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
     setIndexMode(); // Index mode is set by default
 
     input_string_buffer_ = new char[input_string_buffer_size_];
-    output_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+    output_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 }
 
 KoreanAnalyzer::~KoreanAnalyzer()

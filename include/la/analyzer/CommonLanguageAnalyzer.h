@@ -132,10 +132,10 @@ protected:
 
     stem::Stemmer *                     pStemmer_;
 
-    static const size_t string_buffer_size_ = 4096*3;
-    char * lowercase_string_buffer_;
+    static const size_t term_ustring_buffer_limit_ = 4096;
+    static const size_t term_string_buffer_limit_ = 4096*3;
 
-    static const size_t ustring_buffer_size_ = 4096;
+    char * lowercase_string_buffer_;
     UString::CharT * lowercase_ustring_buffer_;
     UString::CharT * synonym_ustring_buffer_;
     UString::CharT * stemming_ustring_buffer_;

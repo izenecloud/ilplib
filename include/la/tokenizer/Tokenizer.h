@@ -181,6 +181,10 @@ public:
 
 private:
 
+    bool grow_output_buffer();
+
+private:
+
     CharTypeTable table_;
 
     izenelib::util::UString * input_;

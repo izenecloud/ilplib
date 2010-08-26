@@ -50,7 +50,7 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
     setIndexMode(); // Index mode is set by default
 
     input_string_buffer_ = new char[input_string_buffer_size_];
-    output_ustring_buffer_ = new UString::CharT[output_ustring_buffer_size_];
+    output_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 
 }
 

@@ -130,6 +130,7 @@ ENDIF( USE_QA )
 ##################################################
 # CPack
 #####
+IF( USE_LA OR USE_QA )
 INCLUDE(UseCPack)
 CONFIGURE_FILE(
   "ilplib-version.h.cmake"
@@ -138,3 +139,4 @@ CONFIGURE_FILE(
   )
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS
   "libboost-dev, libc6-dev, izenelib, icma")
+ENDIF( USE_LA OR USE_QA )

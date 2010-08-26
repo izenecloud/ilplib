@@ -14,10 +14,6 @@
 
 using namespace std;
 
-#ifndef LANGID_DEBUG_PRINT
-    #define LANGID_DEBUG_PRINT 1
-#endif
-
 NS_ILPLIB_LANGID_BEGIN
 
 EncodingAnalyzer::EncodingAnalyzer(const ProfileModel& profileModel)

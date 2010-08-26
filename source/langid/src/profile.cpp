@@ -18,10 +18,6 @@
 
 using namespace std;
 
-#ifndef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 1
-#endif
-
 #define LANGID_DEBUG_PRINT_LOAD 0
 #define LANGID_DEBUG_PRINT_NGRAM_SEQUENCE 0
 #define LANGID_DEBUG_PRINT_CHAR_READ 0

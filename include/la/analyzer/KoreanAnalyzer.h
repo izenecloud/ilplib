@@ -67,6 +67,13 @@ protected:
 
     void parse(const UString & input)
     {
+        if(input_string_buffer_size_ < input.length()*3+1) {
+            while(input_string_buffer_size_ < input.length()*3+1) {
+                input_string_buffer_size_ *= 2;
+            }
+            delete input_string_buffer_;
+            input_string_buffer_ = new char[input_string_buffer_size_];
+        }
         input.convertString(izenelib::util::UString::CP949,
                             input_string_buffer_, input_string_buffer_size_);
 //        pS_->initialize();
@@ -191,7 +198,7 @@ private:
 
 //    kmaOrange::WK_Eojul * pS_;
 
-    static const size_t input_string_buffer_size_ = 4096*3;
+    size_t input_string_buffer_size_;
     char * input_string_buffer_;
 
     static const size_t output_ustring_buffer_size_ = 4096;

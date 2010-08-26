@@ -82,7 +82,7 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
                 if(lang == CHINESE) return CHINESE;
                 if(lang == KOREAN) return KOREAN;
                 if(lang == JAPANESE) return JAPANESE;
-                if(lang == OTHER) return OTHER;
+                //if(lang == OTHER) return OTHER;
             }
         }
         return ENGLISH;
@@ -99,7 +99,7 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
             if(lang == CHINESE) return CHINESE;
             if(lang == KOREAN) return KOREAN;
             if(lang == JAPANESE) return JAPANESE;
-            if(lang == OTHER) return OTHER;
+            //if(lang == OTHER) return OTHER;
         }
     }
     return ENGLISH;

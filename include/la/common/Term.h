@@ -71,17 +71,17 @@ public:
         stats_ = ((andOrBit&0x01)<<7)|((unsigned char)(level)&0x7F);
     }
 
-    inline void getStats( unsigned char & andOrBit, unsigned int & level)
+    inline void getStats( unsigned char & andOrBit, unsigned int & level) const
     {
         andOrBit = (stats_ & 0x80) >> 7;
         level = (unsigned int)(stats_ & 0x7F);
     }
 
-    inline unsigned char getAndOrBit() {
+    inline unsigned char getAndOrBit() const {
         return (stats_ & 0x80) >> 7;
     }
 
-    inline unsigned int getLevel() {
+    inline unsigned int getLevel() const {
         return (unsigned int)(stats_ & 0x7F);
     }
 

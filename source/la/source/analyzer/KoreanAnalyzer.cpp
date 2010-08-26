@@ -11,7 +11,7 @@ namespace la
 
 KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
     : CommonLanguageAnalyzer(knowledgePath+"/synonym.txt", UString::CP949),
-    pA_(NULL)
+    pA_(NULL), input_string_buffer_size_(4096*4)
 //        pS_(NULL)
 {
     // 1. INIT INSTANCES

@@ -35,4 +35,5 @@ BOOST_AUTO_TEST_CASE(test_normal)
     BOOST_CHECK_EQUAL( termList[10].text_, PLACE_HOLDER );
 }
 
+
 BOOST_AUTO_TEST_SUITE_END()

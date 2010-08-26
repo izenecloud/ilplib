@@ -36,7 +36,7 @@ class Analyzer
 
 public:
 
-    Analyzer() {}
+    Analyzer() : bExtractSpecialChar_(true), bConvertToPlaceHolder_(true) {}
 
     virtual ~Analyzer() {}
 
@@ -45,16 +45,23 @@ public:
         tokenizer_.setConfig( tokenConfig );
     }
 
+    void setExtractSpecialChar(bool extractSpecialChar, bool convertToPlaceHolder = true)
+    {
+        bExtractSpecialChar_ = extractSpecialChar;
+        bConvertToPlaceHolder_ = convertToPlaceHolder;
+    }
+
     int analyze(const Term & input, TermList & output)
     {
-        return analyze_impl(input, &output, &Analyzer::appendTermList);
+        void* array[2] = {&output, this};
+        return analyze_impl(input, &array, &Analyzer::appendTermList);
     }
 
     template <typename IDManagerType>
     int analyze( IDManagerType* idm, const Term & input, TermIdList & output)
     {
-        pair<TermIdList*, IDManagerType*> env = make_pair(&output, idm);
-        return analyze_impl(input, &env, &Analyzer::appendTermIdList<IDManagerType>);
+        void* array[3] = {&output, idm, this};
+        return analyze_impl(input, &array, &Analyzer::appendTermIdList<IDManagerType>);
     }
 
 protected:
@@ -68,7 +75,8 @@ protected:
         const unsigned int offset,
         const char * pos,
         const unsigned char andOrBit,
-        const unsigned int level );
+        const unsigned int level,
+        const bool isSpecialChar );
 
     template<typename IDManagerType>
     static void appendTermIdList(
@@ -78,12 +86,21 @@ protected:
         const unsigned int offset,
         const char * pos,
         const unsigned char andOrBit,
-        const unsigned int level )
+        const unsigned int level,
+        const bool isSpecialChar )
     {
-        TermIdList * output = ((std::pair<TermIdList*, IDManagerType*>* ) data)->first;
-        IDManagerType * idm = ((std::pair<TermIdList*, IDManagerType*>* ) data)->second;
+        void** parameters = (void**)data;
+        TermIdList * output = (TermIdList*) parameters[0];
+        IDManagerType * idm = (IDManagerType*) parameters[1];
+        Analyzer * analyzer = (Analyzer*) parameters[2];
 
-        output->add(idm, text, len, offset);
+        if(isSpecialChar && !analyzer->bExtractSpecialChar_)
+            return;
+        if(isSpecialChar && analyzer->bConvertToPlaceHolder_) {
+            output->add(idm, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset);
+        } else {
+            output->add(idm, text, len, offset);
+        }
     }
 
     static void appendTermList(
@@ -93,10 +110,20 @@ protected:
         const unsigned int offset,
         const char * pos,
         const unsigned char andOrBit,
-        const unsigned int level)
+        const unsigned int level,
+        const bool isSpecialChar )
     {
-        TermList * output = (TermList *) data;
-        output->add( text, len, offset, pos, andOrBit, level );
+        void** parameters = (void**)data;
+        TermList * output = (TermList*) parameters[0];
+        Analyzer * analyzer = (Analyzer*) parameters[1];
+
+        if(isSpecialChar && !analyzer->bExtractSpecialChar_)
+            return;
+        if(isSpecialChar && analyzer->bConvertToPlaceHolder_) {
+            output->add(PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset, pos, andOrBit, level );
+        } else {
+            output->add( text, len, offset, pos, andOrBit, level );
+        }
     }
 
     virtual int analyze_impl( const Term& input, void* data, HookType func ) = 0;
@@ -104,6 +131,14 @@ protected:
 protected:
 
     Tokenizer tokenizer_;
+
+    /// Whether including speical characters (e.g. puncutations) in the result.
+    bool bExtractSpecialChar_;
+
+    /// Whether converting speical characters (e.g. puncutations) into a particular place holder
+    /// symbol in the result.
+    /// Be effect only when bExtractSpecialChar_ is set.
+    bool bConvertToPlaceHolder_;
 
 };
 }

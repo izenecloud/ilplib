@@ -46,7 +46,7 @@ int CharAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
         {
             if(digitOrAlpha)
             {
-                func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0);
+                func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0, false);
                 digitOrAlpha = false;
             }
 
@@ -54,19 +54,15 @@ int CharAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
             {
                 continue;
             }
-            else if(UString::isThisPunctuationChar(ch))
-            {
-                func(data, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset++, NULL, Term::AND , 0);
-            }
             else
             {
-                func(data, input.text_.c_str()+i, 1, offset++, NULL, Term::AND , 0);
+                func(data, input.text_.c_str()+i, 1, offset++, NULL, Term::AND , 0, UString::isThisPunctuationChar(ch));
             }
         }
     }
     if(digitOrAlpha)
     {
-        func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0);
+        func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0, false);
     }
     return 0;
 };

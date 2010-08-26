@@ -24,6 +24,7 @@
 #include <la/analyzer/NGramAnalyzer.h>
 #include <la/analyzer/MatrixAnalyzer.h>
 #include <la/analyzer/CharAnalyzer.h>
+#include <la/analyzer/TokenAnalyzer.h>
 #include <la/analyzer/MultiLanguageAnalyzer.h>
 #include <la/analyzer/EnglishAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>

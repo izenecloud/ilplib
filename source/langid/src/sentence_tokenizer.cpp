@@ -14,12 +14,9 @@
 #include <cassert>
 #include <cstring>
 
-using namespace std;
+#define LANGID_DEBUG_PRINT 0
 
-#ifdef LANGID_DEBUG_PRINT
-    #undef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 0
-#endif
+using namespace std;
 
 namespace
 {

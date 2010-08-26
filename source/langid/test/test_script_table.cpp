@@ -20,12 +20,10 @@
 #include <cstdlib>
 #include <cassert>
 
+#define LANGID_DEBUG_PRINT 0
+
 using namespace std;
 using namespace ilplib::langid;
-
-#ifndef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 1
-#endif
 
 /**
  * Main function.
@@ -74,7 +72,7 @@ int main(int argc, char* argv[])
 
             ++countVec[type];
 
-#ifdef LANGID_DEBUG_PRINT
+#if LANGID_DEBUG_PRINT
             string propStr;
             if(table.propertyToStr(type, propStr))
             {

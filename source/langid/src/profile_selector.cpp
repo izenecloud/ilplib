@@ -15,10 +15,6 @@
 
 using namespace std;
 
-#ifndef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 0
-#endif
-
 #define LANGID_DEBUG_PRINT_LOAD 0
 #define LANGID_DEBUG_PRINT_SELECT 0
 

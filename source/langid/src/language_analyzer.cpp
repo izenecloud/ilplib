@@ -21,10 +21,6 @@
 
 using namespace std;
 
-#ifndef LANGID_DEBUG_PRINT
-    #define LANGID_DEBUG_PRINT 1
-#endif
-
 #define LANGID_DEBUG_PRINT_SENTENCE 0
 #define LANGID_DEBUG_PRINT_COUNT_STRING 0
 #define LANGID_DEBUG_PRINT_COUNT_FILE 0

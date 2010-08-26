@@ -23,10 +23,6 @@
 using namespace std;
 using namespace ilplib::langid;
 
-#ifndef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 1
-#endif
-
 /**
  * Main function.
  */

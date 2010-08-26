@@ -33,10 +33,7 @@
  * \date Dec 25, 2009
  */
 
-#include "langid/language_id.h"
-#include "langid/factory.h"
-#include "langid/knowledge.h"
-#include "langid/analyzer.h"
+#include "langid/langid.h"
 
 #include <iostream>
 #include <fstream>
@@ -49,10 +46,6 @@ namespace po = boost::program_options;
 
 using namespace std;
 using namespace ilplib::langid;
-
-#ifndef LANGID_DEBUG_PRINT
-	#define LANGID_DEBUG_PRINT 1
-#endif
 
 namespace
 {

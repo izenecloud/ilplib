@@ -130,7 +130,9 @@ protected:
                 morpheme_ = 0;
             }
             offset_ = eojulIndex_;
-            needIndex_ = true;
+            level_ = 0;
+            isIndex_ = true;
+            isRaw_ = true;
         }
         else
         {
@@ -143,11 +145,13 @@ protected:
                 nativeToken_, nativeTokenLen_, output_ustring_buffer_,
                     output_ustring_buffer_size_);
 
-            //needIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
-            needIndex_ = ((morpheme_&kmaOrange::N_) ||
+            level_ = 1;
+            //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
+            isIndex_ = ((morpheme_&kmaOrange::N_) ||
                           (morpheme_==kmaOrange::FL) ||
                           (morpheme_==kmaOrange::SN) ||
                           (morpheme_==kmaOrange::SC) );
+            isRaw_ = false;
             ++ lexiconIndex_;
             if(lexiconIndex_ == eojul_->getCount(listIndex_))
             {
@@ -171,7 +175,7 @@ protected:
         return true;
     }
 
-    inline bool isFL()
+    inline bool isAlpha()
     {
         return morpheme_ == kmaOrange::FL;
     }

@@ -61,10 +61,24 @@ protected:
 
     friend class MultiLanguageAnalyzer;
 
-    typedef void (*HookType) ( void* data, const UString::CharT* text, const size_t len, const int offset );
+    typedef void (*HookType) (
+        void* data,
+        const UString::CharT* text,
+        const size_t len,
+        const unsigned int offset,
+        const char * pos,
+        const unsigned char andOrBit,
+        const unsigned int level );
 
     template<typename IDManagerType>
-    static void appendTermIdList( void* data, const UString::CharT* text, const size_t len, const int offset )
+    static void appendTermIdList(
+        void* data,
+        const UString::CharT* text,
+        const size_t len,
+        const unsigned int offset,
+        const char * pos,
+        const unsigned char andOrBit,
+        const unsigned int level )
     {
         TermIdList * output = ((std::pair<TermIdList*, IDManagerType*>* ) data)->first;
         IDManagerType * idm = ((std::pair<TermIdList*, IDManagerType*>* ) data)->second;
@@ -72,10 +86,17 @@ protected:
         output->add(idm, text, len, offset);
     }
 
-    static void appendTermList( void* data, const UString::CharT* text, const size_t len, const int offset )
+    static void appendTermList(
+        void* data,
+        const UString::CharT* text,
+        const size_t len,
+        const unsigned int offset,
+        const char * pos,
+        const unsigned char andOrBit,
+        const unsigned int level)
     {
         TermList * output = (TermList *) data;
-        output->add( UString(text, len), offset );
+        output->add( text, len, offset, pos, andOrBit, level );
     }
 
     virtual int analyze_impl( const Term& input, void* data, HookType func ) = 0;

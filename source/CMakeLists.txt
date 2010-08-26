@@ -44,8 +44,8 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
   # Select flags.
   SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g")
   # Disable assertion macros in RELEASE
-  SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -DNDEBUG")
-  #SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -g")
+  #SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -DNDEBUG")
+  SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -g")
   SET(CMAKE_CXX_FLAGS_DEBUG          "-g -O2 -fno-reorder-blocks -fno-schedule-insns -fno-inline")
   SET(CMAKE_CXX_FLAGS_DEBUGFULL      "-g3 -fno-inline -DIZS_DEBUG" CACHE STRING "Debugfull build type")
   SET(CMAKE_CXX_FLAGS_PROFILE        "-pg -O2 -DNDEBUG")

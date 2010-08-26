@@ -5,6 +5,12 @@ using namespace std;
 
 namespace la
 {
+    std::string to_utf8(izenelib::util::UString input)
+    {
+        string str;
+        input.convertString(str, UString::UTF_8);
+        return str;
+    }
 
     std::string to_utf8(std::string input, izenelib::util::UString::EncodingType encode)
     {

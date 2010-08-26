@@ -45,6 +45,14 @@ public:
           }
         }
 
+        inline void check(const Term & term, const string & text, const size_t offset, const unsigned andOrBit, unsigned int level )
+        {
+            BOOST_CHECK_EQUAL( term.text_, UString(text, UString::UTF_8) );
+            BOOST_CHECK_EQUAL( term.wordOffset_, offset);
+            BOOST_CHECK_EQUAL( term.getAndOrBit(), andOrBit);
+            BOOST_CHECK_EQUAL( term.getLevel(), level);
+        }
+
         void regularTests() {
             BOOST_CHECK_EQUAL(termList.size(), termIdList.size());
 

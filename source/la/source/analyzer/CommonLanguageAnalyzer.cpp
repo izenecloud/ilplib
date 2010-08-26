@@ -108,25 +108,29 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
     {
         if( len() == 0 )
             continue;
-//
+
 //            {
 //            UString foo(token(), len());
 //            string bar;
 //            foo.convertString(bar, UString::UTF_8);
-//            cout << "(" << bar << ") --<> " << needIndex() << "," << offset() << endl;
+//            cout << "(" << bar << ") --<> " << isIndex() << "," << offset() << "," << isRaw() << "," << level() << endl;
 //            }
-        if( needIndex() )
+        if( isIndex() )
         {
             if(isSpecialChar())
             {
-                func( data, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset());
+                func( data, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset(), NULL, Term::AND, level());
                 continue;
             }
-
+            if(isRaw())
+            {
+                func( data, token(), len(), offset(), pos(), Term::OR, level());
+                continue;
+            }
             const char* synonymInput = NULL;
 
             // foreign language, e.g. English
-            if( isFL() )
+            if( isAlpha() )
             {
                 UString::CharT* lowercaseTermUstr = lowercase_ustring_buffer_;
                 bool lowercaseIsDifferent = UString::toLowerString(token(), len(),
@@ -137,15 +141,15 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 
                 if(bCaseSensitive_)
                 {
-                    func( data,  token(), len(), offset() );
+                    func( data,  token(), len(), offset(), NULL, Term::AND, level());
                     if(bContainLower_ & lowercaseIsDifferent)
                     {
-                        func( data, lowercaseTermUstr, len(), offset());
+                        func( data, lowercaseTermUstr, len(), offset(), NULL, Term::OR, level()+1);
                     }
                 }
                 else
                 {
-                    func( data, lowercaseTermUstr, len(), offset());
+                    func( data, lowercaseTermUstr, len(), offset(), NULL, Term::AND, level());
                 }
 
                 if(bExtractEngStem_)
@@ -158,7 +162,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                         UString::CharT* stemmingTermUstr = stemming_ustring_buffer_;
                         size_t stemmingTermUstrSize = UString::toUcs2(UString::UTF_8,
                                 stem_term.c_str(), stem_term.size(), stemming_ustring_buffer_, ustring_buffer_size_);
-                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset());
+                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset(), NULL, Term::OR, level()+1);
                     }
                 }
 
@@ -169,7 +173,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             }
             else
             {
-                func( data, token(), len(), offset());
+                func( data, token(), len(), offset(), pos(), Term::AND, level());
                 synonymInput = nativeToken();
             }
 
@@ -188,7 +192,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                         UString::CharT * synonymResultUstr = synonym_ustring_buffer_;
                         size_t synonymResultUstrLen = UString::toUcs2(synonymEncode_,
                                 synonymResult, synonymResultLen, synonym_ustring_buffer_, ustring_buffer_size_);
-                        func( data, synonymResultUstr, synonymResultUstrLen, offset());
+                        func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1);
                     }
                 }
             }

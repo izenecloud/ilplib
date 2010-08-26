@@ -86,7 +86,7 @@ protected:
 
         morpheme_ = pS_->getPOS(listIndex_, lexiconIndex_);
         offset_ = localOffset_;
-        needIndex_ = pS_->isIndexWord(listIndex_, lexiconIndex_);
+        isIndex_ = pS_->isIndexWord(listIndex_, lexiconIndex_);
 
         ++ localOffset_;
         ++ lexiconIndex_;
@@ -101,7 +101,7 @@ protected:
         return true;
     }
 
-    inline bool isFL()
+    inline bool isAlpha()
     {
         return morpheme_ == flMorp_;
     }

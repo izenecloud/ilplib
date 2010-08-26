@@ -7,7 +7,7 @@
  */
 
 /**
- * @brief Rewrite CLA using new interfaces.
+ * @brief Rewrite CLA using new interfaces. Add English.
  * @author Wei
  */
 
@@ -65,7 +65,7 @@ protected:
     virtual bool nextToken() = 0;
 
     /// whether morpheme_ indicates foreign language
-    virtual bool isFL() = 0;
+    virtual bool isAlpha() = 0;
 
     /// whether morpheme_ indicates special character, e.g. punctuations
     virtual bool isSpecialChar() = 0;
@@ -90,9 +90,21 @@ protected:
     {
         return offset_;
     }
-    inline bool needIndex()
+    inline const char* pos()
     {
-        return needIndex_;
+        return pos_;
+    }
+    inline int level()
+    {
+        return level_;
+    }
+    inline bool isIndex()
+    {
+        return isIndex_;
+    }
+    inline bool isRaw()
+    {
+        return isRaw_;
     }
     inline void resetToken()
     {
@@ -101,7 +113,10 @@ protected:
         nativeToken_ = NULL;
         nativeTokenLen_ = 0;
         offset_ = 0;
-        needIndex_ = false;
+        pos_ = NULL;
+        level_ = 0;
+        isIndex_ = false;
+        isRaw_ = false;
     }
 
 protected:
@@ -130,7 +145,10 @@ protected:
     const char * nativeToken_;
     size_t nativeTokenLen_;
     int offset_;
-    bool needIndex_;
+    const char* pos_;
+    int level_;
+    bool isIndex_;
+    bool isRaw_;
 
     bool bCaseSensitive_;
 

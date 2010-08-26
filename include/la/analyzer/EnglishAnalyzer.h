@@ -42,7 +42,7 @@ protected:
             len_ = tokenizer_.getLength();
             offset_ = localOffset_;
             localOffset_ ++;
-            needIndex_ = true;
+            isIndex_ = true;
             return true;
         } else {
             resetToken();
@@ -50,7 +50,7 @@ protected:
         }
     }
 
-    inline bool isFL()
+    inline bool isAlpha()
     {
         return true;
     }

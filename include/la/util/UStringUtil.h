@@ -6,6 +6,8 @@
 
 namespace la
 {
+    std::string to_utf8(izenelib::util::UString input);
+
     std::string to_utf8(std::string input, izenelib::util::UString::EncodingType encode);
 
     /**

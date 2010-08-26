@@ -33,10 +33,7 @@
  * \date Dec 25, 2009
  */
 
-#include "langid/language_id.h"
-#include "langid/factory.h"
-#include "langid/knowledge.h"
-#include "langid/analyzer.h"
+#include "langid/langid.h"
 
 #include <iostream>
 #include <fstream>

@@ -91,17 +91,11 @@ BOOST_AUTO_TEST_CASE(test_normal)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 5U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("互", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[0].wordOffset_, 0U);
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("互联", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].wordOffset_, 0U);
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("联", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].wordOffset_, 1U);
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("联网", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].wordOffset_, 1U);
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("网", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].wordOffset_, 2U);
-
+    check(termList[0], "互", 0U, Term::AND, 0U);
+    check(termList[1], "互联", 1U, Term::AND, 0U);
+    check(termList[2], "联", 2U, Term::AND, 0U);
+    check(termList[3], "联网", 3U, Term::AND, 0U);
+    check(termList[4], "网", 4U, Term::AND, 0U);
     regularTests();
 }
 
@@ -114,12 +108,11 @@ BOOST_AUTO_TEST_CASE(test_english)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 5U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("tests", UString::UTF_8) );
-
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "使用", 1U, Term::AND, 0U);
+    check(termList[2], "boost", 2U, Term::AND, 0U);
+    check(termList[3], "unit", 3U, Term::AND, 0U);
+    check(termList[4], "tests", 4U, Term::AND, 0U);
     regularTests();
 }
 
@@ -134,11 +127,11 @@ BOOST_AUTO_TEST_CASE(test_casesensitive)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 5U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("Boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("Unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("Tests", UString::UTF_8) );
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "使用", 1U, Term::AND, 0U);
+    check(termList[2], "Boost", 2U, Term::AND, 0U);
+    check(termList[3], "Unit", 3U, Term::AND, 0U);
+    check(termList[4], "Tests", 4U, Term::AND, 0U);
 
     regularTests();
 }
@@ -154,15 +147,14 @@ BOOST_AUTO_TEST_CASE(test_casesensitive_with_lower)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 8U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("Boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("Unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[5].text_, UString("unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[6].text_, UString("Tests", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[7].text_, UString("tests", UString::UTF_8) );
-
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "使用", 1U, Term::AND, 0U);
+    check(termList[2], "Boost", 2U, Term::AND, 0U);
+    check(termList[3], "boost", 2U, Term::OR, 1U);
+    check(termList[4], "Unit", 3U, Term::AND, 0U);
+    check(termList[5], "unit", 3U, Term::OR, 1U);
+    check(termList[6], "Tests", 4U, Term::AND, 0U);
+    check(termList[7], "tests", 4U, Term::OR, 1U);
     regularTests();
 }
 
@@ -177,13 +169,12 @@ BOOST_AUTO_TEST_CASE(test_stemming)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 6U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("tests", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[5].text_, UString("test", UString::UTF_8) );
-
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "使用", 1U, Term::AND, 0U);
+    check(termList[2], "boost", 2U, Term::AND, 0U);
+    check(termList[3], "unit", 3U, Term::AND, 0U);
+    check(termList[4], "tests", 4U, Term::AND, 0U);
+    check(termList[5], "test", 4U, Term::OR, 1U);
     regularTests();
 }
 
@@ -202,12 +193,12 @@ BOOST_AUTO_TEST_CASE(test_synonym)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 6U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, UString("unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("单元", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[5].text_, UString("tests", UString::UTF_8) );
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "使用", 1U, Term::AND, 0U);
+    check(termList[2], "boost", 2U, Term::AND, 0U);
+    check(termList[3], "unit", 3U, Term::AND, 0U);
+    check(termList[4], "单元", 3U, Term::OR, 1U);
+    check(termList[5], "tests", 4U, Term::AND, 0U);
 
     regularTests();
 }
@@ -220,29 +211,28 @@ BOOST_AUTO_TEST_CASE(test_specialchar)
     analyzer.analyze(&idm, Term(ustr), termIdList);
 
     BOOST_CHECK_EQUAL(termList.size(), 9U);
-    BOOST_CHECK_EQUAL( termList[0].text_, UString("测试", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[1].text_, la::PLACE_HOLDER );
-    BOOST_CHECK_EQUAL( termList[2].text_, UString("使用", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[3].text_, la::PLACE_HOLDER );
-    BOOST_CHECK_EQUAL( termList[4].text_, UString("boost", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[5].text_, UString("unit", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[6].text_, UString("tests", UString::UTF_8) );
-    BOOST_CHECK_EQUAL( termList[7].text_, la::PLACE_HOLDER );
-    BOOST_CHECK_EQUAL( termList[8].text_, la::PLACE_HOLDER );
-
+    check(termList[0], "测试", 0U, Term::AND, 0U);
+    check(termList[1], "<PH>", 1U, Term::AND, 0U);
+    check(termList[2], "使用", 2U, Term::AND, 0U);
+    check(termList[3], "<PH>", 3U, Term::AND, 0U);
+    check(termList[4], "boost", 4U, Term::AND, 0U);
+    check(termList[5], "unit", 5U, Term::AND, 0U);
+    check(termList[6], "tests", 6U, Term::AND, 0U);
+    check(termList[7], "<PH>", 7U, Term::AND, 0U);
+    check(termList[8], "<PH>", 8U, Term::AND, 0U);
     regularTests();
 }
 
-BOOST_AUTO_TEST_CASE(test_stopwords)
-{
-    const string sstr("双方合作后，将保持独立的搜索和广告业务");
-    const UString ustr(sstr, UString::UTF_8);
-    analyzer.analyze(Term(ustr), termList);
-    analyzer.analyze(&idm, Term(ustr), termIdList);
-
-    print();
-
-    regularTests();
-}
+//BOOST_AUTO_TEST_CASE(test_stopwords)
+//{
+//    const string sstr("双方合作后，将保持独立的搜索和广告业务");
+//    const UString ustr(sstr, UString::UTF_8);
+//    analyzer.analyze(Term(ustr), termList);
+//    analyzer.analyze(&idm, Term(ustr), termIdList);
+//
+//    print();
+//
+//    regularTests();
+//}
 
 BOOST_AUTO_TEST_SUITE_END()

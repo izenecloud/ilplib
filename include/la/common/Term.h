@@ -37,6 +37,7 @@ public:
 
     static const char* ChinesePOS;
     static const char* KoreanPOS;
+    static const char* KoreanEojulPOS;
     static const char* DigitPOS;
     static const char* EnglishPOS;
     static const char* SpecialCharPOS;
@@ -58,10 +59,10 @@ public:
 
 public:
 
-    Term() : wordOffset_(0), pos_("?"), stats_(0) {}
+    Term() : wordOffset_(0), pos_(OtherPOS), stats_(0) {}
 
     Term(const izenelib::util::UString & str)
-        : text_(str), wordOffset_(0), pos_("?"), stats_(0) {}
+        : text_(str), wordOffset_(0), pos_(OtherPOS), stats_(0) {}
 
     ~Term() {}
 
@@ -69,7 +70,7 @@ public:
     {
         text_.clear();
         wordOffset_ = 0;
-        pos_ = "?";
+        pos_ = OtherPOS;
         stats_ = 0;
     }
 

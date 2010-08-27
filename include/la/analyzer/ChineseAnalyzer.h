@@ -88,15 +88,7 @@ protected:
                                    term_ustring_buffer_limit_);
 
             morpheme_ = pS_->getPOS(listIndex_, lexiconIndex_);
-
-            if(morpheme_ == flMorp_) {
-                pos_ = Term::EnglishPOS;
-            } else if(morpheme_ == scMorp_) {
-                pos_ = Term::SpecialCharPOS;
-            } else {
-                pos_ = Term::ChinesePOS;
-            }
-
+            pos_ = pS_->getStrPOS(listIndex_, lexiconIndex_);
             offset_ = localOffset_;
             isIndex_ = pS_->isIndexWord(listIndex_, lexiconIndex_);
             return true;

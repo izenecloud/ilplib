@@ -140,7 +140,7 @@ protected:
                 else
                 {
                     morpheme_ = 0;
-                    pos_ = NULL;
+                    pos_ = Term::KoreanEojulPOS;
                 }
                 offset_ = eojulIndex_;
                 level_ = 0;

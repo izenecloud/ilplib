@@ -32,7 +32,7 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 	)
 
   set(libs
-	la
+	ilplib
 	${Boost_THREAD_LIBRARY}
 	${Boost_SYSTEM_LIBRARY}
 	${Boost_FILESYSTEM_LIBRARY}
@@ -41,8 +41,8 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 	${izenelib_LIBRARIES}
 	${izenecma_LIBRARIES}
 	${wisekma_LIBRARIES}
-  )
+ )
 
-  target_link_libraries(t_LA ${libs})
+  target_link_libraries(t_LA ${LIBS})
 ENDIF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 

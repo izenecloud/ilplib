@@ -1,4 +1,5 @@
-
+#ifndef STEM_API_H_
+#define STEM_API_H_
 
 #ifdef __cplusplus
 extern "C" {
@@ -34,3 +35,4 @@ extern "C" {
 
 #endif
 
+#endif // STEM_API_H_

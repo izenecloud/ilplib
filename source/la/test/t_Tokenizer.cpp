@@ -4,7 +4,9 @@
 
 #include <boost/test/unit_test.hpp>
 
-#include <la/tokenizer/Tokenizer.h>
+//#include <la/tokenizer/Tokenizer.h>
+#include <ilplib.hpp>
+
 
 using namespace la;
 using namespace std;

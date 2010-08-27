@@ -5,8 +5,8 @@
 #include <boost/test/unit_test.hpp>
 #include <util/ustring/UString.h>
 
-#include <la/analyzer/TokenAnalyzer.h>
-
+//#include <la/analyzer/TokenAnalyzer.h>
+#include <ilplib.hpp>
 #include "test_def.h"
 
 using namespace la;

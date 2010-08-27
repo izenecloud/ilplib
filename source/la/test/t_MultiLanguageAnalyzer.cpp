@@ -4,11 +4,14 @@
 
 #include <boost/test/unit_test.hpp>
 #include <util/ustring/UString.h>
-
+/**
 #include <la/analyzer/MultiLanguageAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>
 #include <la/analyzer/KoreanAnalyzer.h>
 #include <la/analyzer/EnglishAnalyzer.h>
+*/
+
+#include <ilplib.hpp>
 
 #include "test_def.h"
 

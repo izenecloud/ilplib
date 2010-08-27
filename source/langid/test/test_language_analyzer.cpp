@@ -38,7 +38,8 @@
 
 #include "language_analyzer.h"
 #include "script_table.h"
-#include "langid/knowledge.h"
+#include <ilplib.hpp>
+//#include "langid/knowledge.h"
 
 #include <iostream>
 #include <fstream>
@@ -503,7 +504,7 @@ int main(int argc, char* argv[])
 
         cout << endl;
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
         cerr << "error: " << e.what() << "\n";
         exit(1);

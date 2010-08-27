@@ -8,7 +8,7 @@ using namespace sbd;
 
 void print(vector<Token>& tokens)
 {
-	for (int i=0; i<tokens.size(); ++i)
+	for (size_t i=0; i<tokens.size(); ++i)
 	{
 		cout << tokens[i].tok << ", ";
 		cout << tokens[i].type << ", ";
@@ -23,7 +23,7 @@ void print(vector<Token>& tokens)
 
 void print(vector<string>& sents)
 {
-	for (int i=0; i<sents.size(); ++i)
+	for (size_t i=0; i<sents.size(); ++i)
 	{
 		cout << "[" <<  i << "]"  << sents[i] << endl;
 	}

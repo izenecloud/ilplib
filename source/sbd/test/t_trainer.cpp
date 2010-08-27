@@ -15,7 +15,7 @@ int main()
 	vector<Token> tokens;
 	trainer.tokenize(text, tokens);
 	trainer.train(tokens);
-	int abbrev_size =  trainer.params.abbrev_types.size();
+//	int abbrev_size =  trainer.params.abbrev_types.size();
 	for (set<string>::const_iterator it = trainer.params.abbrev_types.begin();
 		it!=trainer.params.abbrev_types.end(); ++it)
 		cout << *it << endl;

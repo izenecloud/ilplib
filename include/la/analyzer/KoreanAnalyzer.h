@@ -34,7 +34,7 @@ public:
         CommonLanguageAnalyzer::setCaseSensitive(casesensitive, containlower);
     }
 
-    inline void setNBest( unsigned int num=2 )
+    inline void setNBest( unsigned int num=1 )
     {
         pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, num);
     }

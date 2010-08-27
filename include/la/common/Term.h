@@ -39,6 +39,7 @@ public:
     static const char* KoreanPOS;
     static const char* DigitPOS;
     static const char* EnglishPOS;
+    static const char* SpecialCharPOS;
     static const char* OtherPOS;
 
     izenelib::util::UString    text_;

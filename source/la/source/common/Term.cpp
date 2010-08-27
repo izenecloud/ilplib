@@ -16,6 +16,7 @@ namespace la
     const char* Term::KoreanPOS = "?";
     const char* Term::EnglishPOS = "F";
     const char* Term::DigitPOS = "S";
+    const char* Term::SpecialCharPOS = "SC";
     const char* Term::OtherPOS = "@";
 
     UString PLACE_HOLDER("<PH>", UString::UTF_8);

@@ -78,7 +78,7 @@ int CharAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
         }
         else if(UString::isThisPunctuationChar(ch))
         {
-            func(data, input.text_.c_str()+i, 1, offset++, Term::OtherPOS, Term::AND , 0, true);
+            func(data, input.text_.c_str()+i, 1, offset++, Term::SpecialCharPOS, Term::AND , 0, true);
         }
         else if(UString::isThisChineseChar(ch))
         {

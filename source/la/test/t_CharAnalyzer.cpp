@@ -23,16 +23,27 @@ BOOST_AUTO_TEST_CASE(test_normal)
 
     BOOST_CHECK_EQUAL(termList.size(), 11U);
     BOOST_CHECK_EQUAL( termList[0].text_, UString("互", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[0].pos_, Term::ChinesePOS );
     BOOST_CHECK_EQUAL( termList[1].text_, UString("联", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[1].pos_, Term::ChinesePOS );
     BOOST_CHECK_EQUAL( termList[2].text_, UString("网", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[2].pos_, Term::ChinesePOS );
     BOOST_CHECK_EQUAL( termList[3].text_, PLACE_HOLDER );
+    BOOST_CHECK_EQUAL( termList[3].pos_, Term::SpecialCharPOS );
     BOOST_CHECK_EQUAL( termList[4].text_, UString("the", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[4].pos_, Term::EnglishPOS );
     BOOST_CHECK_EQUAL( termList[5].text_, UString("Internet", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[5].pos_, Term::EnglishPOS );
     BOOST_CHECK_EQUAL( termList[6].text_, PLACE_HOLDER );
+    BOOST_CHECK_EQUAL( termList[6].pos_, Term::SpecialCharPOS );
     BOOST_CHECK_EQUAL( termList[7].text_, UString("中", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[7].pos_, Term::ChinesePOS );
     BOOST_CHECK_EQUAL( termList[8].text_, UString("国", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[8].pos_, Term::ChinesePOS );
     BOOST_CHECK_EQUAL( termList[9].text_, UString("2010", UString::UTF_8) );
+    BOOST_CHECK_EQUAL( termList[9].pos_, Term::DigitPOS );
     BOOST_CHECK_EQUAL( termList[10].text_, PLACE_HOLDER );
+    BOOST_CHECK_EQUAL( termList[10].pos_, Term::SpecialCharPOS );
 }
 
 

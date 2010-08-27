@@ -119,7 +119,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
         {
             if(isSpecialChar())
             {
-                func( data, token(), len(), offset(), NULL, Term::AND, level(), true);
+                func( data, token(), len(), offset(), Term::SpecialCharPOS, Term::AND, level(), true);
                 continue;
             }
             if(isRaw())

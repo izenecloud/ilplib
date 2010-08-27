@@ -141,15 +141,15 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 
                 if(bCaseSensitive_)
                 {
-                    func( data,  token(), len(), offset(), NULL, Term::AND, level(), false);
+                    func( data,  token(), len(), offset(), Term::EnglishPOS, Term::AND, level(), false);
                     if(bContainLower_ & lowercaseIsDifferent)
                     {
-                        func( data, lowercaseTermUstr, len(), offset(), NULL, Term::OR, level()+1, false);
+                        func( data, lowercaseTermUstr, len(), offset(), Term::EnglishPOS, Term::OR, level()+1, false);
                     }
                 }
                 else
                 {
-                    func( data, lowercaseTermUstr, len(), offset(), NULL, Term::AND, level(), false);
+                    func( data, lowercaseTermUstr, len(), offset(), Term::EnglishPOS, Term::AND, level(), false);
                 }
 
                 if(bExtractEngStem_)
@@ -162,7 +162,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                         UString::CharT* stemmingTermUstr = stemming_ustring_buffer_;
                         size_t stemmingTermUstrSize = UString::toUcs2(UString::UTF_8,
                                 stem_term.c_str(), stem_term.size(), stemming_ustring_buffer_, term_ustring_buffer_limit_);
-                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset(), NULL, Term::OR, level()+1, false);
+                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset(), Term::EnglishPOS, Term::OR, level()+1, false);
                     }
                 }
 

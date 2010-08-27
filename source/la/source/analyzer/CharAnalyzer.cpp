@@ -26,43 +26,80 @@ int CharAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
 {
     int offset = 0;
 
-    bool digitOrAlpha = false;
+    bool digit = false;
+    bool alpha = false;
     int begin = 0;
     int end = 0;
     for( size_t i = 0; i < input.text_.length(); ++i )
     {
         UString::CharT ch = input.text_.at(i);
 
-        if(UString::isThisDigitChar(ch) || UString::isThisAlphaChar(ch))
+        if(UString::isThisDigitChar(ch))
         {
-            if(!digitOrAlpha)
+            if(!digit)
             {
                 begin = i;
-                digitOrAlpha = true;
+                digit = true;
             }
             end = i;
+            continue;
         }
         else
         {
-            if(digitOrAlpha)
+            if(digit)
             {
-                func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0, false);
-                digitOrAlpha = false;
-            }
-
-            if(UString::isThisSpaceChar(ch))
-            {
-                continue;
-            }
-            else
-            {
-                func(data, input.text_.c_str()+i, 1, offset++, NULL, Term::AND , 0, UString::isThisPunctuationChar(ch));
+                func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::DigitPOS, Term::AND , 0, false);
+                digit = false;
             }
         }
+
+        if(UString::isThisAlphaChar(ch))
+        {
+            if(!alpha)
+            {
+                begin = i;
+                alpha = true;
+            }
+            end = i;
+            continue;
+        }
+        else
+        {
+            if(alpha)
+            {
+                func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+                alpha = false;
+            }
+        }
+
+        if(UString::isThisSpaceChar(ch))
+        {
+            continue;
+        }
+        else if(UString::isThisPunctuationChar(ch))
+        {
+            func(data, input.text_.c_str()+i, 1, offset++, Term::OtherPOS, Term::AND , 0, true);
+        }
+        else if(UString::isThisChineseChar(ch))
+        {
+            func(data, input.text_.c_str()+i, 1, offset++, Term::ChinesePOS, Term::AND , 0, false);
+        }
+        else if(UString::isThisKoreanChar(ch))
+        {
+            func(data, input.text_.c_str()+i, 1, offset++, Term::KoreanPOS, Term::AND , 0, false);
+        }
+        else
+        {
+            func(data, input.text_.c_str()+i, 1, offset++, Term::OtherPOS, Term::AND , 0, false);
+        }
     }
-    if(digitOrAlpha)
+    if(digit)
     {
-        func(data, input.text_.c_str()+begin, end-begin+1, offset++, NULL, Term::AND , 0, false);
+        func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::DigitPOS, Term::AND , 0, false);
+    }
+    if(alpha)
+    {
+        func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
     }
     return 0;
 };

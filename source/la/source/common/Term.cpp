@@ -10,8 +10,13 @@
 namespace la
 {
     const unsigned char Term::AND = 0;
-
     const unsigned char Term::OR = 1;
+
+    const char* Term::ChinesePOS = "C";
+    const char* Term::KoreanPOS = "?";
+    const char* Term::EnglishPOS = "F";
+    const char* Term::DigitPOS = "S";
+    const char* Term::OtherPOS = "@";
 
     UString PLACE_HOLDER("<PH>", UString::UTF_8);
 

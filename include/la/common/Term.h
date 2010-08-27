@@ -35,6 +35,12 @@ public:
     static const unsigned char OR;
     static const unsigned char AND;
 
+    static const char* ChinesePOS;
+    static const char* KoreanPOS;
+    static const char* DigitPOS;
+    static const char* EnglishPOS;
+    static const char* OtherPOS;
+
     izenelib::util::UString    text_;
 
     unsigned int        wordOffset_;

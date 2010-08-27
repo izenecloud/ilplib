@@ -135,10 +135,12 @@ protected:
                 if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
                 {
                     morpheme_ = eojul_->getPOS(0, 0);
+                    pos_ = eojul_->getStrPOS(0,0);
                 }
                 else
                 {
                     morpheme_ = 0;
+                    pos_ = NULL;
                 }
                 offset_ = eojulIndex_;
                 level_ = 0;
@@ -156,6 +158,7 @@ protected:
                 }
 
                 morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
+                pos_ = eojul_->getStrPOS(listIndex_, lexiconIndex_);
                 token_ = output_ustring_buffer_;
                 len_ = UString::toUcs2(izenelib::util::UString::CP949,
                                        nativeToken_, nativeTokenLen_, output_ustring_buffer_,

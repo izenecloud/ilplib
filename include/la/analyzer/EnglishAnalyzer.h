@@ -43,6 +43,7 @@ protected:
             offset_ = localOffset_;
             localOffset_ ++;
             isIndex_ = true;
+            pos_ = Term::EnglishPOS;
             return true;
         } else {
             resetToken();

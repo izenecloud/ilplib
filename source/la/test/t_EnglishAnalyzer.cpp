@@ -5,7 +5,8 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 
-#include <la/analyzer/EnglishAnalyzer.h>
+//#include <la/analyzer/EnglishAnalyzer.h>
+#include <ilplib.hpp>
 
 using namespace la;
 using namespace std;

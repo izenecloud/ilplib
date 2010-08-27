@@ -5,7 +5,8 @@
 #include <boost/test/unit_test.hpp>
 #include <util/ustring/UString.h>
 
-#include <la/analyzer/CharAnalyzer.h>
+//#include <la/analyzer/CharAnalyzer.h>
+#include <ilplib.hpp>
 
 #include "test_def.h"
 

@@ -34,12 +34,12 @@ public:
 
     void setLabelMode();
 
-    void setAnalysisType( ChineseAnalysisType type )
+    inline void setAnalysisType( ChineseAnalysisType type )
     {
         pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
     }
 
-    void setNBest( unsigned int num=2 )
+    inline  void setNBest( unsigned int num=2 )
     {
         pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, num );
     }

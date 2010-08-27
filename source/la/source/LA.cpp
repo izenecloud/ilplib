@@ -74,16 +74,17 @@ namespace la
 
         TermList::const_iterator it;
         unsigned int prevOffset = 0;
-        unsigned int baseLevel = 0;
-        unsigned int prevLevel = 0;
+        int baseLevel = 0;
+        int prevLevel = 0;
         unsigned char prevAndOr = 0;
 
         unsigned char andOrBit = 0;
-        unsigned int level = 0;
+        int level = 0;
         izenelib::util::UString output;
 
         for( it = termList.begin(); it != termList.end(); it++ )
         {
+            cout << "for term " << *it << endl;
             andOrBit = it->getAndOrBit();
             level = it->getLevel();
 
@@ -97,7 +98,7 @@ namespace la
 
                 if( prevOffset < it->wordOffset_ )
                 {
-                    for( unsigned int i = prevLevel; i >= baseLevel; i-- )
+                    for( int i = prevLevel; i >= baseLevel; i-- )
                         output += RBRACKET;
                     //if( prevLevel > level )
                     //output += RBRACKET;
@@ -142,7 +143,8 @@ namespace la
 
             //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
         }
-        for( unsigned int i = prevLevel; i >= baseLevel; i-- )
+
+        for( int i = prevLevel; i >= baseLevel; i-- )
             output += RBRACKET;
 
         return output;

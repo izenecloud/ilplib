@@ -23,20 +23,20 @@ public:
 
     ~KoreanAnalyzer();
 
-    virtual void setIndexMode();
+    void setIndexMode();
 
-    virtual void setLabelMode();
-
-    virtual void setNBest( unsigned int num=2 )
-    {
-        pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, num);
-    }
+    void setLabelMode();
 
     virtual void setCaseSensitive(bool casesensitive = true, bool containlower = true)
     {
         int val = casesensitive ? 1 : 0;
         pA_->setOption( kmaOrange::WKO_OPTION_CASE_SENSITIVE, val );
         CommonLanguageAnalyzer::setCaseSensitive(casesensitive, containlower);
+    }
+
+    inline void setNBest( unsigned int num=2 )
+    {
+        pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, num);
     }
 
     /**

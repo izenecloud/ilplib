@@ -1,10 +1,10 @@
-#IF( USE_WISEKMA )
-#    ADD_DEFINITIONS( -DWISEKMA=$(WISEKMA) )
-#ENDIF( USE_WISEKMA )
+IF( USE_WISEKMA )
+    ADD_DEFINITIONS( -DWISEKMA=$(WISEKMA) )
+ENDIF( USE_WISEKMA )
 
-#IF( USE_IZENECMA )
-#    ADD_DEFINITIONS( -DIZENECMA=$(IZENECMA) )
-#ENDIF( USE_IZENECMA )
+IF( USE_IZENECMA )
+    ADD_DEFINITIONS( -DIZENECMA=$(IZENECMA) )
+ENDIF( USE_IZENECMA )
 
 #SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin)
 
@@ -21,14 +21,14 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 
   add_executable(t_LA
 	Runner.cpp
-	t_Tokenizer.cpp
-	t_Analyzer.cpp
-	t_CharAnalyzer.cpp
-	t_TokenAnalyzer.cpp
-	t_EnglishAnalyzer.cpp
-	t_ChineseAnalyzer.cpp
+#	t_Tokenizer.cpp
+#	t_Analyzer.cpp
+#	t_CharAnalyzer.cpp
+#	t_TokenAnalyzer.cpp
+#	t_EnglishAnalyzer.cpp
+#	t_ChineseAnalyzer.cpp
 	t_KoreanAnalyzer.cpp
-	t_MultiLanguageAnalyzer.cpp
+#	t_MultiLanguageAnalyzer.cpp
 	)
 
   set(la_libs

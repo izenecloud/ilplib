@@ -30,6 +30,7 @@ KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
 //        pA_ = kmaOrange::WK_Analyzer::createObject( pK, pS_ );
     pA_ = kmaOrange::WK_Analyzer::createObject( pK );
 
+    setAnalyzePrime();
     setNBest();
     setLowDigitBound();
     setVerbAdjStems();

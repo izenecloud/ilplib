@@ -34,7 +34,12 @@ public:
         CommonLanguageAnalyzer::setCaseSensitive(casesensitive, containlower);
     }
 
-    inline void setNBest( unsigned int num=1 )
+    inline void setAnalyzePrime(bool bAnalyzePrime = true)
+    {
+        bAnalyzePrime_ = bAnalyzePrime;
+    }
+
+    inline void setNBest( unsigned int num=2 )
     {
         pA_->setOption(kmaOrange::WKO_OPTION_N_BEST, num);
     }
@@ -119,60 +124,63 @@ protected:
             if(!eojul_)
             {
                 eojul_ = pA_->getEojulInSentence(eojulIndex_);
-
-                nativeToken_ = eojul_->getString();
-                nativeTokenLen_ = strlen(nativeToken_);
-                if(nativeTokenLen_>term_ustring_buffer_limit_)
-                {
-                    continue;
-                }
-
-                token_ = output_ustring_buffer_;
-                len_ = UString::toUcs2(izenelib::util::UString::CP949,
-                                       nativeToken_, nativeTokenLen_, output_ustring_buffer_,
-                                       term_ustring_buffer_limit_);
-
-                if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
-                {
-                    morpheme_ = eojul_->getPOS(0, 0);
-                    pos_ = eojul_->getStrPOS(0,0);
-                }
-                else
-                {
-                    morpheme_ = 0;
-                    pos_ = Term::KoreanEojulPOS;
-                }
                 offset_ = eojulIndex_;
-                level_ = 0;
-                isIndex_ = true;
-                isRaw_ = true;
-                return true;
-            }
-            else
-            {
-                nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
-                nativeTokenLen_ = strlen(nativeToken_);
-                if(nativeTokenLen_>term_ustring_buffer_limit_)
+
+                if(bAnalyzePrime_)
                 {
-                    continue;
+                    nativeToken_ = eojul_->getString();
+                    nativeTokenLen_ = strlen(nativeToken_);
+                    if(nativeTokenLen_>term_ustring_buffer_limit_)
+                    {
+                        continue;
+                    }
+
+                    token_ = output_ustring_buffer_;
+                    len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                                           nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                                           term_ustring_buffer_limit_);
+
+                    if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
+                    {
+                        morpheme_ = eojul_->getPOS(0, 0);
+                        pos_ = eojul_->getStrPOS(0,0);
+                    }
+                    else
+                    {
+                        morpheme_ = 0;
+                        pos_ = Term::KoreanEojulPOS;
+                    }
+                    level_ = 0;
+                    isIndex_ = true;
+                    isRaw_ = true;
+                    return true;
                 }
 
-                morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
-                pos_ = eojul_->getStrPOS(listIndex_, lexiconIndex_);
-                token_ = output_ustring_buffer_;
-                len_ = UString::toUcs2(izenelib::util::UString::CP949,
-                                       nativeToken_, nativeTokenLen_, output_ustring_buffer_,
-                                       term_ustring_buffer_limit_);
-
-                level_ = 1;
-                //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
-                isIndex_ = ((morpheme_&kmaOrange::N_) ||
-                            (morpheme_==kmaOrange::FL) ||
-                            (morpheme_==kmaOrange::SN) ||
-                            (morpheme_==kmaOrange::SC) );
-                isRaw_ = false;
-                return true;
+                continue;
             }
+
+            nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
+            nativeTokenLen_ = strlen(nativeToken_);
+            if(nativeTokenLen_>term_ustring_buffer_limit_)
+            {
+                continue;
+            }
+
+            morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
+            pos_ = eojul_->getStrPOS(listIndex_, lexiconIndex_);
+            token_ = output_ustring_buffer_;
+            len_ = UString::toUcs2(izenelib::util::UString::CP949,
+                                   nativeToken_, nativeTokenLen_, output_ustring_buffer_,
+                                   term_ustring_buffer_limit_);
+
+            level_ = bAnalyzePrime_ ? 1 : 0;
+            //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
+            isIndex_ = ((morpheme_&kmaOrange::N_) ||
+                        (morpheme_==kmaOrange::FL) ||
+                        (morpheme_==kmaOrange::SN) ||
+                        (morpheme_==kmaOrange::SC) );
+            isRaw_ = false;
+            return true;
         }
         resetToken();
         return false;
@@ -245,6 +253,8 @@ private:
     int lexiconIndex_;
 
     unsigned int morpheme_;
+
+    bool bAnalyzePrime_;
 
 };
 }

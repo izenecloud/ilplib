@@ -45,15 +45,14 @@ public:
           }
         }
 
-        inline void check(const Term & term, const string & text, const string& pos,
-            const size_t offset, const unsigned andOrBit, unsigned int level )
-        {
-            BOOST_CHECK_EQUAL( term.text_, UString(text, UString::UTF_8) );
-            BOOST_CHECK_EQUAL( term.pos_, pos);
-            BOOST_CHECK_EQUAL( term.wordOffset_, offset);
-            BOOST_CHECK_EQUAL( term.getAndOrBit(), andOrBit);
-            BOOST_CHECK_EQUAL( term.getLevel(), level);
-        }
+        #define check(term, text, pos, offset, andOrBit, level ) \
+        { \
+            BOOST_CHECK_EQUAL( term.text_, UString(text, UString::UTF_8) ); \
+            BOOST_CHECK_EQUAL( term.pos_, pos); \
+            BOOST_CHECK_EQUAL( term.wordOffset_, offset); \
+            BOOST_CHECK_EQUAL( term.getAndOrBit(), andOrBit); \
+            BOOST_CHECK_EQUAL( term.getLevel(), level); \
+        } \
 
         void regularTests() {
             BOOST_CHECK_EQUAL(termList.size(), termIdList.size());
@@ -104,6 +103,25 @@ BOOST_AUTO_TEST_CASE(test_normal)
 
     regularTests();
 }
+
+BOOST_AUTO_TEST_CASE(test_noprime)
+{
+    analyzer.setAnalyzePrime(false);
+
+    const string sstr("멀티터치스크린 기술인");
+    const UString ustr(sstr, UString::UTF_8);
+    analyzer.analyze(Term(ustr), termList);
+    analyzer.analyze(&idm, Term(ustr), termIdList);
+
+    BOOST_CHECK_EQUAL(termList.size(), 4U);
+    check(termList[0], "멀티", "NFG", 0U, Term::AND, 0U);
+    check(termList[1], "터치", "NFG", 0U, Term::AND, 0U);
+    check(termList[2], "스크린", "NFG", 0U, Term::AND, 0U);
+    check(termList[3], "기술", "NNG", 1U, Term::AND, 0U);
+
+    regularTests();
+}
+
 
 BOOST_AUTO_TEST_CASE(test_english)
 {

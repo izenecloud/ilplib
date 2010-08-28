@@ -11,8 +11,7 @@ namespace la
 
 KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
     : CommonLanguageAnalyzer(knowledgePath+"/synonym.txt", UString::CP949),
-    pA_(NULL), input_string_buffer_size_(4096*4)
-//        pS_(NULL)
+    pA_(NULL), pS_(NULL), input_string_buffer_size_(4096*4)
 {
     // 1. INIT INSTANCES
     kmaOrange::WK_Knowledge* pK = KMAKnowledge::getInstance(knowledgePath.c_str()).pKnowledge_;
@@ -22,13 +21,13 @@ KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
         msg += knowledgePath;
         throw std::logic_error( msg );
     }
-//        pS_ = kmaOrange::WK_Eojul::createObject();
-//        if( pS_ == NULL )
-//        {
-//            //TODO: CATCH ALL EXCEPTIONS
-//        }
-//        pA_ = kmaOrange::WK_Analyzer::createObject( pK, pS_ );
-    pA_ = kmaOrange::WK_Analyzer::createObject( pK );
+    pS_ = kmaOrange::WK_Eojul::createObject();
+    if( pS_ == NULL )
+    {
+        //TODO: CATCH ALL EXCEPTIONS
+    }
+    pA_ = kmaOrange::WK_Analyzer::createObject( pK, pS_ );
+//    pA_ = kmaOrange::WK_Analyzer::createObject( pK );
 
     setAnalyzePrime();
     setNBest();
@@ -45,7 +44,7 @@ KoreanAnalyzer::KoreanAnalyzer( const std::string knowledgePath, bool loadModel)
 KoreanAnalyzer::~KoreanAnalyzer()
 {
     delete pA_;
-//        delete pS_;
+    delete pS_;
     delete input_string_buffer_;
     delete output_ustring_buffer_;
 }

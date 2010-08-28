@@ -72,28 +72,38 @@ protected:
 
     void parse(const UString & input)
     {
-        if(input_string_buffer_size_ < input.length()*3+1)
-        {
-            while(input_string_buffer_size_ < input.length()*3+1)
-            {
-                input_string_buffer_size_ *= 2;
-            }
-            delete input_string_buffer_;
-            input_string_buffer_ = new char[input_string_buffer_size_];
-        }
-        input.convertString(izenelib::util::UString::CP949,
-                            input_string_buffer_, input_string_buffer_size_);
-//        pS_->initialize();
-//        pS_->setString( sentence );
-//        pA_->runWithEojul();
-        pA_->runWithString(input_string_buffer_);
-
-        eojul_ = NULL;
+        tokenizer_.tokenize(input);
+        hasNextToken_ = tokenizer_.nextToken();
         eojulIndex_ = 0;
+        eojulInitialized_ = false;
+
         listIndex_ = 0;
         lexiconIndex_ = -1;
 
         resetToken();
+
+//        if(input_string_buffer_size_ < input.length()*3+1)
+//        {
+//            while(input_string_buffer_size_ < input.length()*3+1)
+//            {
+//                input_string_buffer_size_ *= 2;
+//            }
+//            delete input_string_buffer_;
+//            input_string_buffer_ = new char[input_string_buffer_size_];
+//        }
+//        input.convertString(izenelib::util::UString::CP949,
+//                            input_string_buffer_, input_string_buffer_size_);
+////        pS_->initialize();
+////        pS_->setString( sentence );
+////        pA_->runWithEojul();
+//        pA_->runWithString(input_string_buffer_);
+//
+//        eojul_ = NULL;
+//        eojulIndex_ = 0;
+//        listIndex_ = 0;
+//        lexiconIndex_ = -1;
+//
+//        resetToken();
     }
 
     bool nextToken()
@@ -121,14 +131,30 @@ protected:
 
         while(doNext())
         {
-            if(!eojul_)
+            if(!eojulInitialized_)
             {
-                eojul_ = pA_->getEojulInSentence(eojulIndex_);
+                if(input_string_buffer_size_ < tokenizer_.getLength()*3+1)
+                {
+                    while(input_string_buffer_size_ < tokenizer_.getLength()*3+1)
+                    {
+                        input_string_buffer_size_ *= 2;
+                    }
+                    delete input_string_buffer_;
+                    input_string_buffer_ = new char[input_string_buffer_size_];
+                }
+                UString::convertString(izenelib::util::UString::CP949,
+                                    tokenizer_.getToken(), tokenizer_.getLength(),
+                                    input_string_buffer_, input_string_buffer_size_);
+
+                pS_->initialize();
+                pS_->setString( input_string_buffer_ );
+                pA_->runWithEojul();
+                eojulInitialized_ = true;
                 offset_ = eojulIndex_;
 
                 if(bAnalyzePrime_)
                 {
-                    nativeToken_ = eojul_->getString();
+                    nativeToken_ = pS_->getString();
                     nativeTokenLen_ = strlen(nativeToken_);
                     if(nativeTokenLen_>term_ustring_buffer_limit_)
                     {
@@ -140,10 +166,10 @@ protected:
                                            nativeToken_, nativeTokenLen_, output_ustring_buffer_,
                                            term_ustring_buffer_limit_);
 
-                    if(eojul_->getListSize()==1 && eojul_->getCount(0)==1)
+                    if(pS_->getListSize()==1 && pS_->getCount(0)==1)
                     {
-                        morpheme_ = eojul_->getPOS(0, 0);
-                        pos_ = eojul_->getStrPOS(0,0);
+                        morpheme_ = pS_->getPOS(0, 0);
+                        pos_ = pS_->getStrPOS(0,0);
                     }
                     else
                     {
@@ -159,26 +185,26 @@ protected:
                 continue;
             }
 
-            nativeToken_ = eojul_->getLexicon(listIndex_, lexiconIndex_);
+            nativeToken_ = pS_->getLexicon(listIndex_, lexiconIndex_);
             nativeTokenLen_ = strlen(nativeToken_);
             if(nativeTokenLen_>term_ustring_buffer_limit_)
             {
                 continue;
             }
 
-            morpheme_ = eojul_->getPOS(listIndex_, lexiconIndex_);
-            pos_ = eojul_->getStrPOS(listIndex_, lexiconIndex_);
+            morpheme_ = pS_->getPOS(listIndex_, lexiconIndex_);
+            pos_ = pS_->getStrPOS(listIndex_, lexiconIndex_);
             token_ = output_ustring_buffer_;
             len_ = UString::toUcs2(izenelib::util::UString::CP949,
                                    nativeToken_, nativeTokenLen_, output_ustring_buffer_,
                                    term_ustring_buffer_limit_);
 
             level_ = bAnalyzePrime_ ? 1 : 0;
-            //isIndex_ = eojul_->isIndexWord(listIndex_, lexiconIndex_);
-            isIndex_ = ((morpheme_&kmaOrange::N_) ||
-                        (morpheme_==kmaOrange::FL) ||
-                        (morpheme_==kmaOrange::SN) ||
-                        (morpheme_==kmaOrange::SC) );
+            isIndex_ = pS_->isIndexWord(listIndex_, lexiconIndex_);
+//            isIndex_ = ((morpheme_&kmaOrange::N_) ||
+//                        (morpheme_==kmaOrange::FL) ||
+//                        (morpheme_==kmaOrange::SN) ||
+//                        (morpheme_==kmaOrange::SC) );
             isRaw_ = false;
             return true;
         }
@@ -201,30 +227,34 @@ private:
 
     bool doNext()
     {
-        if(eojulIndex_ == pA_->getEojulCountInSentence() )
+        if( !hasNextToken_ )
         {
             return false;
         }
-        if(eojul_)
+        if(eojulInitialized_)
         {
             ++ lexiconIndex_;
-            if(lexiconIndex_ == eojul_->getCount(listIndex_))
+            if(lexiconIndex_ == pS_->getCount(listIndex_))
             {
                 lexiconIndex_ = 0;
                 ++ listIndex_;
             }
-            // Check the new dividuation of the eojul to see whether we need to skip it.
-            while(listIndex_ < eojul_->getListSize() && eojul_->getCount(listIndex_) == 1 )
-            {
-                ++ listIndex_;
+
+            if(bAnalyzePrime_) {
+                // Check the new dividuation of the eojul to see whether we need to skip it.
+                while(listIndex_ < pS_->getListSize() && pS_->getCount(listIndex_) == 1 )
+                {
+                    ++ listIndex_;
+                }
             }
-            if(listIndex_ == eojul_->getListSize())
+            if(listIndex_ == pS_->getListSize())
             {
                 lexiconIndex_ = -1;
                 listIndex_ = 0;
                 ++ eojulIndex_;
-                eojul_ = NULL;
-                if(eojulIndex_ == pA_->getEojulCountInSentence() )
+                eojulInitialized_ = false;
+                hasNextToken_ = tokenizer_.nextToken();
+                if(!hasNextToken_ )
                 {
                     return false;
                 }
@@ -237,7 +267,7 @@ private:
 
     kmaOrange::WK_Analyzer * pA_;
 
-//    kmaOrange::WK_Eojul * pS_;
+    kmaOrange::WK_Eojul * pS_;
 
     size_t input_string_buffer_size_;
     char * input_string_buffer_;
@@ -246,7 +276,11 @@ private:
 
     kmaOrange::WK_Eojul * eojul_;
 
+    bool hasNextToken_;
+
     int eojulIndex_;
+
+    bool eojulInitialized_;
 
     int listIndex_;
 

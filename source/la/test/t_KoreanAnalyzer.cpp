@@ -122,6 +122,40 @@ BOOST_AUTO_TEST_CASE(test_noprime)
     regularTests();
 }
 
+BOOST_AUTO_TEST_CASE(test_basic)
+{
+    analyzer.setAnalyzePrime(false);
+
+    const string sstr("등이");
+    const UString ustr(sstr, UString::UTF_8);
+    analyzer.analyze(Term(ustr), termList);
+    analyzer.analyze(&idm, Term(ustr), termIdList);
+
+
+    BOOST_CHECK_EQUAL(termList.size(), 1U);
+    check(termList[0], "등", "NNB", 0U, Term::AND, 0U);
+
+    regularTests();
+}
+
+
+BOOST_AUTO_TEST_CASE(test_nbest)
+{
+    analyzer.setAnalyzePrime(false);
+
+    const string sstr("멀티터치스크린 기술인");
+    const UString ustr(sstr, UString::UTF_8);
+    analyzer.analyze(Term(ustr), termList);
+    analyzer.analyze(&idm, Term(ustr), termIdList);
+
+    BOOST_CHECK_EQUAL(termList.size(), 4U);
+    check(termList[0], "멀티", "NFG", 0U, Term::AND, 0U);
+    check(termList[1], "터치", "NFG", 0U, Term::AND, 0U);
+    check(termList[2], "스크린", "NFG", 0U, Term::AND, 0U);
+    check(termList[3], "기술", "NNG", 1U, Term::AND, 0U);
+
+    regularTests();
+}
 
 BOOST_AUTO_TEST_CASE(test_english)
 {
@@ -134,7 +168,7 @@ BOOST_AUTO_TEST_CASE(test_english)
     check(termList[0], "윈도7", Term::KoreanEojulPOS, 0U, Term::OR, 0U);
     check(termList[1], "윈도", "NFG", 0U, Term::AND, 1U);
     check(termList[2], "7", "SN", 0U, Term::AND, 1U);
-    check(termList[3], "Windows7", Term::KoreanEojulPOS, 1U, Term::OR, 0U);
+    check(termList[3], "windows7", Term::KoreanEojulPOS, 1U, Term::OR, 0U);
     check(termList[4], "windows", Term::EnglishPOS, 1U, Term::AND, 1U);
     check(termList[5], "7", "SN", 1U, Term::AND, 1U);
 
@@ -197,7 +231,7 @@ BOOST_AUTO_TEST_CASE(test_stemming)
     check(termList[0], "윈도7", Term::KoreanEojulPOS, 0U, Term::OR, 0U);
     check(termList[1], "윈도", "NFG", 0U, Term::AND, 1U);
     check(termList[2], "7", Term::DigitPOS, 0U, Term::AND, 1U);
-    check(termList[3], "Windows7", Term::KoreanEojulPOS , 1U, Term::OR, 0U);
+    check(termList[3], "windows7", Term::KoreanEojulPOS , 1U, Term::OR, 0U);
     check(termList[4], "windows", Term::EnglishPOS, 1U, Term::AND, 1U);
     check(termList[5], "window", Term::EnglishPOS, 1U, Term::OR, 2U);
     check(termList[6], "7", Term::DigitPOS, 1U, Term::AND, 1U);
@@ -248,7 +282,7 @@ BOOST_AUTO_TEST_CASE(test_specialchar)
     check(termList[4], "<PH>", Term::SpecialCharPOS, 2U, Term::AND, 0U);
     check(termList[5], "<PH>", Term::SpecialCharPOS, 3U, Term::AND, 0U);
     check(termList[6], "<PH>", Term::SpecialCharPOS, 4U, Term::AND, 0U);
-    check(termList[7], "Windows7", Term::KoreanEojulPOS, 5U, Term::OR, 0U);
+    check(termList[7], "windows7", Term::KoreanEojulPOS, 5U, Term::OR, 0U);
     check(termList[8], "windows", Term::EnglishPOS, 5U, Term::AND, 1U);
     check(termList[9], "7", Term::DigitPOS, 5U, Term::AND, 1U);
     check(termList[10], "<PH>", Term::SpecialCharPOS, 6U, Term::AND, 0U);

@@ -14,7 +14,7 @@ namespace la
 
     const char* Term::ChinesePOS = "C";
     const char* Term::KoreanPOS = "?";
-    const char* Term::KoreanEojulPOS = "KE";
+    const char* Term::KoreanEojulPOS = "?";
     const char* Term::EnglishPOS = "F";
     const char* Term::DigitPOS = "SN";
     const char* Term::SpecialCharPOS = "SC";

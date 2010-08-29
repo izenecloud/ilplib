@@ -210,7 +210,7 @@ BOOST_AUTO_TEST_CASE(test_casesensitive_with_lower)
     check(termList[1], "윈도", "NFG", 0U, Term::AND, 1U);
     check(termList[2], "7", Term::DigitPOS , 0U, Term::AND, 1U);
     check(termList[3], "Windows7", Term::KoreanEojulPOS, 1U, Term::OR, 0U);
-    check(termList[4], "Windows", Term::EnglishPOS, 1U, Term::AND, 1U);
+    check(termList[4], "Windows", Term::EnglishPOS, 1U, Term::OR, 2U);
     check(termList[5], "windows", Term::EnglishPOS, 1U, Term::OR, 2U);
     check(termList[6], "7", Term::DigitPOS, 1U, Term::AND, 1U);
 
@@ -232,7 +232,7 @@ BOOST_AUTO_TEST_CASE(test_stemming)
     check(termList[1], "윈도", "NFG", 0U, Term::AND, 1U);
     check(termList[2], "7", Term::DigitPOS, 0U, Term::AND, 1U);
     check(termList[3], "windows7", Term::KoreanEojulPOS , 1U, Term::OR, 0U);
-    check(termList[4], "windows", Term::EnglishPOS, 1U, Term::AND, 1U);
+    check(termList[4], "windows", Term::EnglishPOS, 1U, Term::OR, 2U);
     check(termList[5], "window", Term::EnglishPOS, 1U, Term::OR, 2U);
     check(termList[6], "7", Term::DigitPOS, 1U, Term::AND, 1U);
 

@@ -149,11 +149,11 @@ BOOST_AUTO_TEST_CASE(test_casesensitive_with_lower)
     BOOST_CHECK_EQUAL(termList.size(), 8U);
     check(termList[0], "测试", 0U, Term::AND, 0U);
     check(termList[1], "使用", 1U, Term::AND, 0U);
-    check(termList[2], "Boost", 2U, Term::AND, 0U);
+    check(termList[2], "Boost", 2U, Term::OR, 1U);
     check(termList[3], "boost", 2U, Term::OR, 1U);
-    check(termList[4], "Unit", 3U, Term::AND, 0U);
+    check(termList[4], "Unit", 3U, Term::OR, 1U);
     check(termList[5], "unit", 3U, Term::OR, 1U);
-    check(termList[6], "Tests", 4U, Term::AND, 0U);
+    check(termList[6], "Tests", 4U, Term::OR, 1U);
     check(termList[7], "tests", 4U, Term::OR, 1U);
     regularTests();
 }
@@ -173,7 +173,7 @@ BOOST_AUTO_TEST_CASE(test_stemming)
     check(termList[1], "使用", 1U, Term::AND, 0U);
     check(termList[2], "boost", 2U, Term::AND, 0U);
     check(termList[3], "unit", 3U, Term::AND, 0U);
-    check(termList[4], "tests", 4U, Term::AND, 0U);
+    check(termList[4], "tests", 4U, Term::OR, 1U);
     check(termList[5], "test", 4U, Term::OR, 1U);
     regularTests();
 }
@@ -196,7 +196,7 @@ BOOST_AUTO_TEST_CASE(test_synonym)
     check(termList[0], "测试", 0U, Term::AND, 0U);
     check(termList[1], "使用", 1U, Term::AND, 0U);
     check(termList[2], "boost", 2U, Term::AND, 0U);
-    check(termList[3], "unit", 3U, Term::AND, 0U);
+    check(termList[3], "unit", 3U, Term::OR, 1U);
     check(termList[4], "单元", 3U, Term::OR, 1U);
     check(termList[5], "tests", 4U, Term::AND, 0U);
 

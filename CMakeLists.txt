@@ -136,6 +136,24 @@ ELSE( USE_IZENECMA )
   SET( izenecma_LIBRARY_DIRS "" )
 ENDIF( USE_IZENECMA )
 
+FIND_PACKAGE(TokyoCabinet 1.4.29 REQUIRED)
+IF(TokyoCabinet_FOUND)
+    MESSAGE(STATUS "TokyoCabine:")
+    MESSAGE(STATUS "  header: ${TokyoCabinet_INCLUDE_DIRS}")
+    MESSAGE(STATUS "  version: ${TokyoCabinet_VERSION}")
+    include_directories(${TokyoCabinet_INCLUDE_DIRS})
+ELSE(TokyoCabinet_FOUND)
+    MESSAGE(STATUS "TokyoCabinet: not found")
+ENDIF(TokyoCabinet_FOUND)
+
+FIND_PACKAGE(Glog REQUIRED)
+IF(Glog_FOUND)
+    MESSAGE(STATUS "Google-glog:")
+    MESSAGE(STATUS "  header: ${Glog_INCLUDE_DIRS}")
+    include_directories(${Glog_INCLUDE_DIRS})
+ELSE(Glog_FOUND)
+    MESSAGE(STATUS "Google-glog: not found")
+ENDIF(Glog_FOUND)
 
 include_directories(
   ${PROJECT_SOURCE_DIR}/include

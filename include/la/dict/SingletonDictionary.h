@@ -20,8 +20,7 @@
 #include <fstream>
 
 #ifdef USE_IZENECMA
-	#include <knowledge.h>
-	#include <cma_factory.h>
+	#include <icma/icma.h>
 #endif
 
 namespace la

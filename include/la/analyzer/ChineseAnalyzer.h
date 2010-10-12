@@ -7,10 +7,7 @@
 
 #include <la/analyzer/CommonLanguageAnalyzer.h>
 
-#include <cma_factory.h>
-#include <knowledge.h>
-#include <sentence.h>
-#include <analyzer.h>
+#include <icma/icma.h>
 
 namespace la
 {

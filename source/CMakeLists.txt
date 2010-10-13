@@ -24,7 +24,7 @@ ADD_SUBDIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/la/test")
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin/sbd)
 ADD_SUBDIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/sbd/test")
 
-
+ADD_SUBDIRECTORY("${CMAKE_CURRENT_SOURCE_DIR}/bin")
 
 #add_executable(langid_create_profile "${CMAKE_CURRENT_SOURCE_DIR}/langid/test/langid_create_profile.cpp")
 #target_link_libraries(langid_create_profile ${LIBS})

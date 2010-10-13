@@ -70,7 +70,6 @@ ENDIF( USE_WISEKMA )
 ENDIF(VERBOSE)
 
 add_subdirectory(source)
-
 #IF(ENABLE_TEST)
   ADD_SUBDIRECTORY(test)
 #ENDIF(ENABLE_TEST)

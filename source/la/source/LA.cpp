@@ -84,7 +84,7 @@ namespace la
 
         for( it = termList.begin(); it != termList.end(); it++ )
         {
-            cout << "for term " << *it << endl;
+            //cout << "for term " << *it << endl;
             andOrBit = it->getAndOrBit();
             level = it->getLevel();
 

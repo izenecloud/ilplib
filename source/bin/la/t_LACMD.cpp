@@ -182,6 +182,11 @@ int main( int argc, char** argv )
             cout << "-------------- process( query, termList ) ---------------" << endl;
             la.process( ustr, termList );
             printTermList( termList );
+
+            cout << "-------------- toExpandedString ---------------" << endl;
+            UString exp = toExpandedString(termList);
+            exp.displayStringInfo(UString::UTF_8, cout);
+            cout << endl;
         }
 
     } while( true );

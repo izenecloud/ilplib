@@ -97,7 +97,10 @@ protected:
         if(isSpecialChar && !analyzer->bExtractSpecialChar_)
             return;
         if(isSpecialChar && analyzer->bConvertToPlaceHolder_) {
-            output->add(idm, PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset);
+            unsigned int termId;
+            idm->getTermIdByTermString(PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), termId);
+            if( output->empty() == true || output->back().termid_ != termId )
+                output->add(termId, offset);
         } else {
             output->add(idm, text, len, offset);
         }
@@ -119,9 +122,13 @@ protected:
 
         if(isSpecialChar && !analyzer->bExtractSpecialChar_)
             return;
-        if(isSpecialChar && analyzer->bConvertToPlaceHolder_) {
-            output->add(PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset, pos, andOrBit, level );
-        } else {
+        if(isSpecialChar && analyzer->bConvertToPlaceHolder_)
+        {
+            if( output->empty() == true || output->back().text_.compare(PLACE_HOLDER) != 0)
+                output->add(PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), offset, pos, andOrBit, level );
+        }
+        else
+        {
             output->add( text, len, offset, pos, andOrBit, level );
         }
     }

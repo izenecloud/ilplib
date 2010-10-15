@@ -160,6 +160,7 @@ int CharAnalyzer::separate_all(  const Term& input, void* data, HookType func )
             func(data, input.text_.c_str()+i, 1, offset++, Term::OtherPOS, Term::AND , 0, false);
         }
     }
+    return 0;
 }
 
 }

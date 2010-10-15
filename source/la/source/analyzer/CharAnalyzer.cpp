@@ -38,6 +38,11 @@ int CharAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
         {
             if(!digit)
             {
+                if(alpha)
+                {
+                    func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+                    alpha = false;
+                }
                 begin = i;
                 digit = true;
             }

@@ -97,13 +97,45 @@ int main( int argc, char** argv )
 
     if( type == "char" )
     {
-        analyzer.reset( new CharAnalyzer );
+        cout << "CharAnalyzer Addition Params: [all | none]" << endl;
+        CharAnalyzer* ana = new CharAnalyzer;
+        for( int i = 2; i < argc; ++i )
+        {
+            string arg = argv[i];
+            if( arg == "all" )
+                ana->setSeparateAll(true);
+            else if( arg == "none" )
+                ana->setSeparateAll(false);
+            else
+                cerr << "Invalid Parameter: " << arg << endl;
+        }
+
+        analyzer.reset( ana );
     }
     else if( type == "cn" )
     {
+        cout << "ChineseAnalyzer Addition Params: [max | min | mmm] [label | index]" << endl;
         ChineseAnalyzer* ana = new ChineseAnalyzer( getCmaKnowledgePath() );
         ana->setLabelMode();
         ana->setAnalysisType(ChineseAnalyzer::minimum_match);
+
+        for( int i = 2; i < argc; ++i )
+        {
+            string arg = argv[i];
+            if( arg == "max" )
+                ana->setAnalysisType(ChineseAnalyzer::maximum_match);
+            else if( arg == "min" )
+                ana->setAnalysisType(ChineseAnalyzer::minimum_match);
+            else if( arg == "mmm" )
+                ana->setAnalysisType(ChineseAnalyzer::maximum_entropy);
+            else if( arg == "label" )
+                ana->setLabelMode();
+            else if( arg == "index" )
+                ana->setIndexMode();
+            else
+                cerr << "Invalid Parameter: " << arg << endl;
+        }
+
         analyzer.reset( ana );
     }
     else if( type == "en" )
@@ -112,8 +144,19 @@ int main( int argc, char** argv )
     }
     else if( type == "kr" )
     {
+        cout << "KoreanAnalyzer Addition Params: [label | index]" << endl;
         KoreanAnalyzer* ana = new KoreanAnalyzer( getKmaKnowledgePath() );
         ana->setLabelMode();
+        for( int i = 2; i < argc; ++i )
+        {
+            string arg = argv[i];
+            if( arg == "label" )
+                ana->setLabelMode();
+            else if( arg == "index" )
+                ana->setIndexMode();
+            else
+                cerr << "Invalid Parameter: " << arg << endl;
+        }
         analyzer.reset( ana );
     }
     else if( type == "multi" )

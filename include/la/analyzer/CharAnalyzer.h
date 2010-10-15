@@ -21,10 +21,31 @@ public:
 
     ~CharAnalyzer();
 
+    /**
+     * Whether separate all flag. It true, digits
+     * and letter are separated. Default is true.
+     * \param flag new status to set
+     */
+    void setSeparateAll( bool flag = true );
+
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );
 
+private:
+
+    /**
+     * Letters and Digits are NOT separated
+     */
+    int separate_part( const Term& input, void* data, HookType func );
+
+    /**
+     * Letters and Digits are separated
+     */
+    int separate_all( const Term& input, void* data, HookType func );
+
+private:
+    bool isSeparateAll;
 };
 
 }

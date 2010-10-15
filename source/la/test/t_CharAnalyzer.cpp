@@ -19,6 +19,7 @@ BOOST_AUTO_TEST_SUITE( CharAnalyzerTest )
 BOOST_AUTO_TEST_CASE(test_normal)
 {
     CharAnalyzer analyzer;
+    analyzer.setSeparateAll( false );
     TermList termList;
     analyzer.analyze(UString("互联网(the Internet)中国 2010。", UString::UTF_8), termList);
 

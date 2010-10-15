@@ -62,6 +62,8 @@ protected:
         pS_->setString( input_string_buffer_ );
         pA_->runWithSentence( *pS_ );
 
+        incrementedWordOffsetB_ = pS_->isIncrementedWordOffset();
+
         listIndex_ = 0;
         lexiconIndex_ = -1;
         localOffset_ = -1;
@@ -113,16 +115,26 @@ private:
             return false;
         }
 
-        ++ localOffset_;
         ++ lexiconIndex_;
 
-        while(lexiconIndex_ == pS_->getCount(listIndex_))
+        if( lexiconIndex_ == pS_->getCount(listIndex_) )
         {
-            ++ listIndex_;
-            lexiconIndex_ = 0;
-            localOffset_ = 0;
-            if(listIndex_ == pS_->getListSize()) return false;
+            do {
+                ++ listIndex_;
+                lexiconIndex_ = 0;
+                localOffset_ = 0;
+                if(listIndex_ == pS_->getListSize()) return false;
+            } while( lexiconIndex_ == pS_->getCount(listIndex_) );
         }
+        else if( incrementedWordOffsetB_ == true )
+        {
+            ++ localOffset_;
+        }
+        else
+        {
+            localOffset_ = pS_->getOffset( listIndex_, lexiconIndex_ );
+        }
+
         return true;
     }
 
@@ -152,6 +164,11 @@ private:
     unsigned int flMorp_;
 
     unsigned int scMorp_;
+
+    /**
+     * Whether the word offset in this sentence is simply incremented
+     */
+    bool incrementedWordOffsetB_;
 };
 
 }

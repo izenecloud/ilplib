@@ -56,7 +56,7 @@ void testTokenizer()
 
 void printUsage()
 {
-    cout << "Usage: ./t_LA [tok | char | cn | en | kr | multi | ngram | matrix | token(token analyzer)]" << endl;
+    cout << "Usage: ./t_LA [tok | char | cn | en | kr | multi | ngram | matrix | token(token analyzer) | none(empty analyzer)]" << endl;
 }
 
 boost::shared_ptr<Analyzer> getCMAAnalyzer()
@@ -203,6 +203,10 @@ int main( int argc, char** argv )
     else if( type == "token" )
     {
         analyzer.reset( new TokenAnalyzer );
+    }
+    else if( type == "none" )
+    {
+        // do nothing
     }
     else
     {

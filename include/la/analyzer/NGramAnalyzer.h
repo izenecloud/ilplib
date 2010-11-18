@@ -55,10 +55,6 @@ namespace la
 
             ~NGramAnalyzer(){}
 
-            virtual int analyze_index( const TermList & input, TermList & output, unsigned char retFlag );
-            virtual int analyze_search( const TermList & input, TermList & output, unsigned char retFlag );
-
-
             void setMinMaxGram( int min, int max )
             {
                 if( min < 1 || max < 1 )
@@ -84,7 +80,7 @@ namespace la
             }
         protected:
 
-            int analyze_impl( const Term& input, void* data, HookType func ) {return 0;}
+            int analyze_impl( const Term& input, void* data, HookType func );
 
 
         private:

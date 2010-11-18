@@ -182,7 +182,7 @@ int main( int argc, char** argv )
     }
     else if( type == "ngram" )
     {
-        cout << "NGramAnalyzer Addition Params: min max" << endl;
+        cout << "NGramAnalyzer Addition Params: min max flag" << endl;
         int min = 2;
         int max = 3;
         if( argc > 2 )
@@ -193,8 +193,13 @@ int main( int argc, char** argv )
             min = 2;
         if( max < min )
             max = min + 1;
-        cout << "[NGramAnalyzer] min = " << min << ", max = " << max << endl;
-        analyzer.reset( new NGramAnalyzer( 2, 3, 1024000) );
+        unsigned int apartFlag = 0;
+        if( argc > 4 )
+            apartFlag = (unsigned int)atoi( argv[4] );
+
+        cout << "[NGramAnalyzer] min = " << min << ", max = " << max << ", apartFlag = "
+                << hex << apartFlag << endl;
+        analyzer.reset( new NGramAnalyzer( 2, 3, 1024000, apartFlag ) );
     }
     else if( type == "matrix" )
     {

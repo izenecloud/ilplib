@@ -23,173 +23,73 @@ namespace la
     const unsigned int NGramAnalyzer::NGRAM_APART_NUMERIC_     = 0x04;
     const unsigned int NGramAnalyzer::NGRAM_APART_OTHER_       = 0x08;
 
-    int NGramAnalyzer::analyze_index( const TermList & input, TermList & output, unsigned char retFlag )
-    {
-        // the two work in the same way
-        return analyze_search( input, output, retFlag );
-    }
 
-    int NGramAnalyzer::analyze_search( const TermList & input, TermList & output, unsigned char retFlag )
+    int NGramAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
     {
-        int len = 0, ngram = 0, max_gram = 0;
+        int ngram = 0, max_gram = 0;
         unsigned int insertCnt = 0;
+        unsigned char level = 0;
 
-        unsigned char       level = 0;
-        Term                newTerm;
-        TermList::iterator  term_it;
-        TermList            tempList;
+        int len = input.text_.length();
+        if( len == 0 )
+            return 0;
 
-        unsigned char   curType = 0x00;
-        int typeStart = 0, typeEnd = 0, substart = 0;
-
-        TermList::const_iterator it;
-        for( it = input.begin(); it != input.end(); it++ )
+        // decide proper minGram and maxGram
+        if( minGram_ <= len )
         {
-            len = it->text_.length();
+            ngram = minGram_;
+            max_gram = min(len, maxGram_);
+        }
+        else
+        {
+            ngram = max_gram = len;
+        }
 
-//
-//            // add original term according to option
-//            if( retFlag & ANALYZE_PRIME_ )
-//            {
-//                term_it = tempList.insert( tempList.end(), *it );
-////                term_it->stats_ = makeStatBit( Term::OR_BIT, level );
-//            }
-            level++;
-
-//            if( retFlag & ANALYZE_SECOND_ )
-//            {
-                if( minGram_ <= len )
+        for( ; ngram <= max_gram; ++ngram )
+        {
+            if( apartFlag_ == 0 )
+            {
+                for( int start = 0; start <= len - ngram ; ++start )
                 {
-                    ngram = minGram_;
-                    max_gram = min(len, maxGram_);
+                    func(data, input.text_.c_str() + start, ngram, input.wordOffset_, Term::OtherPOS, Term::AND, level, false);
+                    if( maxNo_ > 0 && ++insertCnt >= maxNo_ )
+                        return 0;
                 }
-//                else if( retFlag & ANALYZE_PRIME_ )
-//                {
-//                    //no need to do anything
-//                    ngram = 1;
-//                    max_gram = 0;
-//                }
-                else
+            }
+            else
+            {
+                int typeStart = 0;
+                unsigned char curType = getCharTypeBit( input.text_[0] );
+
+                for( int typeEnd = 1; ; ++typeEnd )
                 {
-                    ngram = max_gram = len;
-                }
-
-                for(; ngram <= max_gram; ngram++)
-                {
-                    if( apartFlag_ == 0 )
+                    if( typeEnd == len || curType != getCharTypeBit(input.text_[typeEnd]) )
                     {
-                        for(int start = 0; start <= len - ngram ; start++)
-                        {
-                            term_it = tempList.insert( tempList.end(), newTerm );
-//                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
-                            term_it->wordOffset_ = it->wordOffset_;
-
-                            term_it->text_   = it->text_.substr(start, ngram);
-                            if( ++insertCnt == maxNo_ )
-                                return 0;
-                        }
-                    }
-                    else
-                    {
-                        typeStart = 0;
-
-                        curType = getCharTypeBit( it->text_[0] );
-                        for(typeEnd = 1; typeEnd < len; typeEnd++)
-                        {
-                            if( curType != getCharTypeBit(it->text_[typeEnd]) )
-                            {
-                                if( (curType & apartFlag_) == 0 || ngram >= (typeEnd-typeStart) )
-                                {
-                                    term_it = tempList.insert( tempList.end(), newTerm );
-//                                    term_it->stats_ = makeStatBit( Term::AND_BIT, level);
-                                    term_it->wordOffset_ = it->wordOffset_;
-
-                                    term_it->text_ = it->text_.substr(typeStart, typeEnd-typeStart);
-
-                                    if( ++insertCnt == maxNo_ )
-                                        return 0;
-                                }
-                                else
-                                {
-                                        for(substart = typeStart; substart <= typeEnd - ngram; substart++)
-                                        {
-                                            term_it = tempList.insert( tempList.end(), newTerm );
-//                                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
-                                            term_it->wordOffset_ = it->wordOffset_;
-
-                                            term_it->text_ = it->text_.substr(substart, ngram);
-
-                                            if( ++insertCnt == maxNo_ )
-                                                return 0;
-                                        }
-                                }
-
-                                typeStart = typeEnd;
-                                curType = getCharTypeBit( it->text_[typeStart] );
-                            }
-                        }
-//
-//                        // it will duplicate the analyze_prime term
-//                        if( typeStart == 0 && (retFlag & ANALYZE_PRIME_) && ngram == len )
-//                            break;
-
                         if( (curType & apartFlag_) == 0 || ngram >= (typeEnd-typeStart) )
                         {
-                            term_it = tempList.insert( tempList.end(), newTerm );
-//                            term_it->stats_ = makeStatBit( Term::AND_BIT, level);
-
-                            term_it->wordOffset_ = it->wordOffset_;
-                            term_it->text_ = it->text_.substr(typeStart, len-typeStart);
-
-                            if( ++insertCnt == maxNo_ )
+                            func(data, input.text_.c_str() + typeStart, typeEnd-typeStart, input.wordOffset_, Term::OtherPOS, Term::AND, level, false);
+                            if( maxNo_ > 0 && ++insertCnt >= maxNo_ )
                                 return 0;
                         }
                         else
                         {
-                            for(substart = typeStart; substart <= len - ngram; substart++)
+                            for( int substart = typeStart; substart <= typeEnd - ngram; ++substart )
                             {
-                                term_it = tempList.insert( tempList.end(), newTerm );
-//                                term_it->stats_ = makeStatBit( Term::AND_BIT, level);
-                                term_it->wordOffset_ = it->wordOffset_;
-
-                                term_it->text_ = it->text_.substr(substart, ngram);
-
-                                if( ++insertCnt == maxNo_ )
+                                func(data, input.text_.c_str() + substart, ngram, input.wordOffset_, Term::OtherPOS, Term::AND, level, false);
+                                if( maxNo_ > 0 && ++insertCnt == maxNo_ )
                                     return 0;
                             }
                         }
+
+                        if( typeEnd == len )
+                            break;
+                        typeStart = typeEnd;
+                        curType = getCharTypeBit( input.text_[typeStart] );
                     }
                 }
-                /*
-                if( (retFlag & ANALYZE_PRIME_) && maxGram_ == len )
-                {
-                    term_it = tempList.end();
-                    term_it--;
-                    tempList.splice( tempList.begin(), tempList, term_it );
-                    tempList.begin()->stats_ = makeStatBit( Term::OR_BIT, level-1 );
-                }
-                */
-//            }
-//            else
-//            {
-//                if( (retFlag & ANALYZE_PRIME_ ) == 0 )
-//                {
-//                    term_it = tempList.insert( tempList.end(), *it );
-////                    term_it->stats_ = makeStatBit( Term::AND_BIT, level );
-//                }
-//            }
-
-            level--;
-
-            if( tempList.empty() == false )
-            {
-//                output.splice( output.end(), tempList );
             }
-            else if( tempList.size() == 1 )
-            {
-//                tempList.begin()->stats_ = makeStatBit( Term::AND_BIT, level );
-            }
-        }
+        } // end for( ; ngram <= max_gram; ++ngram )
+
         return 0;
     }
 

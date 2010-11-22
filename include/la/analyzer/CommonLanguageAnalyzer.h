@@ -119,6 +119,11 @@ protected:
         isRaw_ = false;
     }
 
+    inline bool isChinese()
+    {
+        return bChinese_;
+    }
+
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );
@@ -157,6 +162,8 @@ protected:
     bool bExtractEngStem_;
 
     bool bExtractSynonym_;
+
+    bool bChinese_;
 };
 
 }

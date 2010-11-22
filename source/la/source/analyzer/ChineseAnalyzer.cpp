@@ -27,6 +27,7 @@ ChineseAnalyzer::ChineseAnalyzer( const std::string knowledgePath, bool loadMode
     : CommonLanguageAnalyzer(knowledgePath+"/synonym.txt", UString::UTF_8),
       pA_(NULL), pS_(NULL), input_string_buffer_size_(4096*4)
 {
+    bChinese_ = true;
     cma::CMA_Factory* factory = cma::CMA_Factory::instance();
 
     pA_ = factory->createAnalyzer();

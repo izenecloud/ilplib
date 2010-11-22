@@ -33,7 +33,8 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer()
     bCaseSensitive_(false),
     bContainLower_(false),
     bExtractEngStem_(false),
-    bExtractSynonym_(false)
+    bExtractSynonym_(false),
+    bChinese_(false)
 {
     pStemmer_ = new stem::Stemmer();
     pStemmer_->init(stem::STEM_LANG_ENGLISH);
@@ -55,7 +56,8 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     bCaseSensitive_(false),
     bContainLower_(false),
     bExtractEngStem_(false),
-    bExtractSynonym_(false)
+    bExtractSynonym_(false),
+    bChinese_(false)
 {
     pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
     pSynonymContainer_->setSynonymDelimiter(" ");
@@ -104,17 +106,29 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 {
     parse(input.text_);
 
+    unsigned char topAndOrBit = Term::AND;
+    int lastWordOffset = -1;
+
     while( nextToken() )
     {
         if( len() == 0 )
             continue;
 
-//            {
-//            UString foo(token(), len());
-//            string bar;
-//            foo.convertString(bar, UString::UTF_8);
-//            cout << "(" << bar << ") --<> " << isIndex() << "," << offset() << "," << isRaw() << "," << level() << endl;
-//            }
+/*            {
+            UString foo(token(), len()); string bar; foo.convertString(bar, UString::UTF_8);
+            cout << "(" << bar << ") --<> " << isIndex() << "," << offset() << "," << isRaw() << "," << level() << endl;
+            }*/
+
+        if( bChinese_ == true )
+        {
+            int curWordOffset = offset();
+            if( lastWordOffset == lastWordOffset )
+                topAndOrBit = Term::OR;
+            else
+                topAndOrBit = Term::AND;
+            lastWordOffset = curWordOffset;
+        }
+
         if( isIndex() )
         {
             if(isSpecialChar())
@@ -226,7 +240,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     func( data, token(), len(), offset(), pos(), Term::OR, level()+1, false);
                     func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
                 } else {
-                    func( data, token(), len(), offset(), pos(), Term::AND, level(), false);
+                    func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
                 }
             }
         }

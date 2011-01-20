@@ -97,14 +97,14 @@ int main( int argc, char** argv )
 
     if( type == "char" )
     {
-        cout << "CharAnalyzer Addition Params: [all | none]" << endl;
+        cout << "CharAnalyzer Addition Params: [all | part]" << endl;
         CharAnalyzer* ana = new CharAnalyzer;
         for( int i = 2; i < argc; ++i )
         {
             string arg = argv[i];
             if( arg == "all" )
                 ana->setSeparateAll(true);
-            else if( arg == "none" )
+            else if( arg == "part" )
                 ana->setSeparateAll(false);
             else
                 cerr << "Invalid Parameter: " << arg << endl;
@@ -114,9 +114,10 @@ int main( int argc, char** argv )
     }
     else if( type == "cn" )
     {
-        cout << "ChineseAnalyzer Addition Params: [max | min | mmm] [label | index]" << endl;
+        cout << "ChineseAnalyzer Addition Params: [max | min | mmm | min_u] [label | index]" << endl;
         ChineseAnalyzer* ana = new ChineseAnalyzer( getCmaKnowledgePath() );
         ana->setLabelMode();
+        ana->setCaseSensitive();
         ana->setAnalysisType(ChineseAnalyzer::minimum_match);
 
         for( int i = 2; i < argc; ++i )
@@ -126,6 +127,8 @@ int main( int argc, char** argv )
                 ana->setAnalysisType(ChineseAnalyzer::maximum_match);
             else if( arg == "min" )
                 ana->setAnalysisType(ChineseAnalyzer::minimum_match);
+            else if( arg == "min_u" )
+                ana->setAnalysisType(ChineseAnalyzer::minimum_match_with_unigram);
             else if( arg == "mmm" )
                 ana->setAnalysisType(ChineseAnalyzer::maximum_entropy);
             else if( arg == "label" )

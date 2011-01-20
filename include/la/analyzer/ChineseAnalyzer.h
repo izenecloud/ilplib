@@ -21,6 +21,7 @@ public:
         maximum_entropy = 1,
         maximum_match = 2,
         minimum_match = 3,
+        minimum_match_with_unigram = 4,
     };
 
     ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true );

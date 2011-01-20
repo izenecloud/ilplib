@@ -48,7 +48,7 @@ int CharAnalyzer::separate_part( const Term& input, void* data, HookType func )
     {
         UString::CharT ch = input.text_.at(i);
 
-        if(UString::isThisDigitChar(ch))
+        if(UString::isThisNumericChar(ch))
         {
             if(!digit)
             {

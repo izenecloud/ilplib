@@ -22,6 +22,7 @@ public:
         maximum_match = 2,
         minimum_match = 3,
         minimum_match_with_unigram = 4,
+        minimum_match_no_overlap = 5
     };
 
     ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true );

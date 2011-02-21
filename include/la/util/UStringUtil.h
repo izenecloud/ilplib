@@ -19,6 +19,11 @@ namespace la
             );
 
     void removeRedundantSpaces( izenelib::util::UString& output );
+
+    /**
+     * Convert full-width of numbers and alphabet characters to half-width
+     */
+    void convertFull2HalfWidth(izenelib::util::UString& input);
 }
 
 #endif

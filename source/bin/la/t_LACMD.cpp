@@ -222,6 +222,14 @@ int main( int argc, char** argv )
         exit(1);
     }
 
+    bool toHalfWidthString = false;
+    for( int i = 2; i < argc; ++i ) {
+    	string arg = argv[i];
+    	if (arg == "half-width") {
+    		toHalfWidthString = true;
+    	}
+    }
+
     la.setAnalyzer( analyzer );
     string input;
     do {
@@ -231,6 +239,14 @@ int main( int argc, char** argv )
             break;
 
         UString ustr( input, IO_ENCODING );
+
+        if ( toHalfWidthString )
+        {
+			la::convertFull2HalfWidth(ustr);
+			string str;
+			ustr.convertString(str, UString::UTF_8);
+			cout << "==> Input converted full-with chars to half-with :" << str << endl;
+        }
 
         {
             TermList termList;

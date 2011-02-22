@@ -178,7 +178,7 @@ ${wisekma_LIBRARIES}
 ${izenelib_LIBRARIES}
 ${Boost_LIBRARIES}
 ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
-
+${Glog_LIBRARIES}
 pthread
 )
 

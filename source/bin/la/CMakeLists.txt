@@ -10,6 +10,7 @@ set(la_libs
     ${izenelib_LIBRARIES}
     ${izenecma_LIBRARIES}
     ${wisekma_LIBRARIES}
+    ${Glog_LIBRARIES}
  )
 
   

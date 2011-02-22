@@ -98,11 +98,21 @@ namespace la
     	UCS2Char byte1, byte2;
     	for (size_t i = 0; i < len; i++)
     	{
+    		//cout << "0x" << setbase(16) << input[i] << endl;
     		byte1 = input[i] >> 8;
     		byte2 = input[i] & 0x00ff;
 
     		if (byte1 == 0xff && UCS_NUM_ALPHA_FULL2WIDTH_2ND_BYTE[ byte2 ]) {
     			input[i] = UCS_NUM_ALPHA_FULL2WIDTH_2ND_BYTE[ byte2 ];
+    		}
+    		// todo: hash
+    		// [space]
+    		else if(byte1 == 0x30 && byte2 == 0x00) {
+    			input[i] = 0x20;
+    		}
+    		// [Tab]
+    		else if(byte1 == 0x00 && byte2 == 0x09) {
+    			input[i] = 0x20;
     		}
     	}
     }

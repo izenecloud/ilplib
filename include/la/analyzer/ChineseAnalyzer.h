@@ -43,6 +43,19 @@ public:
         pA_->setOption( cma::Analyzer::OPTION_TYPE_NBEST, num );
     }
 
+    virtual bool isStopword()
+    {
+        segment_.clear();
+        for (size_t i = 0; i < nativeTokenLen_; i++)
+        {
+            segment_.push_back(nativeToken_[i]);
+        }
+
+        cout << segment_ << endl;
+
+        return pA_->isStopWord(segment_);
+    }
+
 protected:
 
     inline void parse(const UString & input)
@@ -171,6 +184,8 @@ private:
      * Whether the word offset in this sentence is simply incremented
      */
     bool incrementedWordOffsetB_;
+
+    string segment_;
 };
 
 }

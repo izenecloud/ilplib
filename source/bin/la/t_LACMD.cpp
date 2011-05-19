@@ -114,7 +114,7 @@ int main( int argc, char** argv )
     }
     else if( type == "cn" )
     {
-        cout << "ChineseAnalyzer Addition Params: [max | min | mmm | min_u] [label | index]" << endl;
+        cout << "ChineseAnalyzer Addition Params: [max | min | mmm | min_u] [label | index | stop]" << endl;
         ChineseAnalyzer* ana = new ChineseAnalyzer( getCmaKnowledgePath() );
         ana->setLabelMode();
         ana->setCaseSensitive();
@@ -135,6 +135,8 @@ int main( int argc, char** argv )
                 ana->setLabelMode();
             else if( arg == "index" )
                 ana->setIndexMode();
+            else if( arg == "stop")
+                ana->setRemoveStopwords();
             else
                 cerr << "Invalid Parameter: " << arg << endl;
         }

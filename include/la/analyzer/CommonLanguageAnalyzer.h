@@ -56,6 +56,17 @@ public:
 
     void setSynonymUpdateInterval(unsigned int seconds);
 
+public:
+    virtual void setRemoveStopwords(bool removeStopwords = true)
+    {
+        bRemoveStopwords_ = removeStopwords;
+    }
+
+    bool isRemoveStopwords()
+    {
+        return bRemoveStopwords_;
+    }
+
 protected:
 
     /// Parse given input
@@ -69,6 +80,9 @@ protected:
 
     /// whether morpheme_ indicates special character, e.g. punctuations
     virtual bool isSpecialChar() = 0;
+
+    /// whether current token is stopword
+    virtual bool isStopword() { return false; }
 
     inline const UString::CharT* token()
     {
@@ -164,6 +178,8 @@ protected:
     bool bExtractSynonym_;
 
     bool bChinese_;
+
+    bool bRemoveStopwords_;
 };
 
 }

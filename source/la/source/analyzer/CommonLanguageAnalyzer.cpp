@@ -57,7 +57,8 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     bContainLower_(false),
     bExtractEngStem_(false),
     bExtractSynonym_(false),
-    bChinese_(false)
+    bChinese_(false),
+    bRemoveStopwords_(false)
 {
     pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
     pSynonymContainer_->setSynonymDelimiter(" ");
@@ -112,6 +113,9 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
     while( nextToken() )
     {
         if( len() == 0 )
+            continue;
+
+        if( bRemoveStopwords_ && isStopword() )
             continue;
 
 /*            {

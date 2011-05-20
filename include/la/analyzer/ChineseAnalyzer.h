@@ -51,8 +51,6 @@ public:
             segment_.push_back(nativeToken_[i]);
         }
 
-        cout << segment_ << endl;
-
         return pA_->isStopWord(segment_);
     }
 

@@ -247,7 +247,7 @@ int main( int argc, char** argv )
 			la::convertFull2HalfWidth(ustr);
 			string str;
 			ustr.convertString(str, UString::UTF_8);
-			cout << "==> Input converted full-with chars to half-with :" << str << endl;
+			cout << "Input (full-with chars are converted to half-with): " << str << endl;
         }
 
         {

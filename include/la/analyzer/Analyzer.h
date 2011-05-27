@@ -21,6 +21,7 @@
 #include <la/tokenizer/Tokenizer.h>
 
 #include <util/ustring/UString.h>
+#include <la/util/UStringUtil.h>
 
 namespace la
 {
@@ -104,6 +105,9 @@ protected:
         } else {
             output->add(idm, text, len, offset);
         }
+
+//        UString utext(text, 0, len);
+//        cout << la::to_utf8(utext) << " " << output->back().termid_ << endl;
     }
 
     static void appendTermList(

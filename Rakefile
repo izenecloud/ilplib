@@ -19,6 +19,7 @@ finder = IZENESOFT::ProjectFinder.new(File.dirname(__FILE__))
 finder.find_izenelib
 finder.find_kma
 finder.find_icma
+finder.find_ijma
 
 require "izenesoft/tasks"
 

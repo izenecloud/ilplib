@@ -46,6 +46,7 @@
 #include "./la/analyzer/CommonLanguageAnalyzer.h"
 #include "./la/analyzer/StemAnalyzer.h"
 #include "./la/analyzer/ChineseAnalyzer.h"
+#include "./la/analyzer/JapaneseAnalyzer.h"
 #include "./la/analyzer/EnglishAnalyzer.h"
 #include "./la/LA.h"
 #include "./la/tokenizer/Tokenizer.h"

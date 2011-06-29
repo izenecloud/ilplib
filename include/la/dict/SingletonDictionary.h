@@ -20,7 +20,11 @@
 #include <fstream>
 
 #ifdef USE_IZENECMA
-	#include <icma/icma.h>
+    #include <icma/icma.h>
+#endif
+
+#ifdef USE_IZENEJMA
+    #include <ijma.h>
 #endif
 
 namespace la
@@ -159,6 +163,39 @@ namespace la
     };
 #endif
 
+#ifdef USE_IZENEJMA
+    class JMAKnowledge: public Singleton<JMAKnowledge, const char >
+    {
+    private:
+        JMAKnowledge(const char * knowledgePath)
+            :pKnowledge_(NULL)
+        {
+            if( knowledgePath != NULL )
+            {
+                std::cout << "Loading JMA JMAKnowledge..." ;
+                pKnowledge_ = jma::JMA_Factory::instance()->createKnowledge();
+                // load system dictioanry files
+                pKnowledge_->setSystemDict(knowledgePath);
+
+                if(pKnowledge_->loadDict() == 0)
+                {
+                    string msg = "Failed to load JMA knowledge from path: ";
+                    msg.append( knowledgePath );
+                    throw std::logic_error( msg );
+                }
+                std::cout << "finish!" << std::endl;
+            }
+        }
+        ~JMAKnowledge()
+        {
+            std::cout << "JMAKnowledge::~JMAKnowledge()" << std::endl;
+            delete pKnowledge_;		
+        }
+        public:
+            jma::Knowledge* pKnowledge_;		
+            friend class Singleton<JMAKnowledge, const char>;
+    };
+#endif
 
     struct StopDicParam{
         StopDicParam(std::string p, izenelib::util::UString::EncodingType e): path_(p), etype_(e)

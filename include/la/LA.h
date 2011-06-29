@@ -28,6 +28,7 @@
 #include <la/analyzer/MultiLanguageAnalyzer.h>
 #include <la/analyzer/EnglishAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>
+#include <la/analyzer/JapaneseAnalyzer.h>
 #include <la/analyzer/KoreanAnalyzer.h>
 
 #include <la/dict/PlainDictionary.h>

@@ -114,6 +114,7 @@ ENDIF( USE_LA OR USE_QA )
 
 SET( USE_IZENECMA TRUE )
 SET( USE_WISEKMA TRUE)
+SET( USE_IZENEJMA TRUE )
 
 add_definitions("-fpermissive")
 add_definitions(-DLANGID_DEBUG_PRINT=${CMAKE_LANGID_DEBUG_PRINT})
@@ -135,6 +136,15 @@ ELSE( USE_IZENECMA )
   SET( izenecma_LIBRARIES "" )
   SET( izenecma_LIBRARY_DIRS "" )
 ENDIF( USE_IZENECMA )
+
+IF( USE_IZENEJMA )
+  FIND_PACKAGE(izenejma REQUIRED)
+  ADD_DEFINITIONS( -DUSE_IZENEJMA=TRUE )
+ELSE( USE_IZENEJMA )
+  SET( izenejma_INCLUDE_DIRS "" )
+  SET( izenejma_LIBRARIES "" )
+  SET( izenejma_LIBRARY_DIRS "" )
+ENDIF( USE_IZENEJMA )
 
 FIND_PACKAGE(TokyoCabinet 1.4.29 REQUIRED)
 IF(TokyoCabinet_FOUND)
@@ -162,6 +172,7 @@ include_directories(
   ${wisekma_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
   ${izenecma_INCLUDE_DIRS}
+  ${izenejma_INCLUDE_DIRS}
 )
 
 INSTALL(DIRECTORY include/ DESTINATION include)
@@ -175,6 +186,7 @@ LIBS
 ilplib
 ${izenecma_LIBRARIES}
 ${wisekma_LIBRARIES}
+${izenejma_LIBRARIES}
 ${izenelib_LIBRARIES}
 ${Boost_LIBRARIES}
 ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
@@ -209,6 +221,7 @@ SET(CPACK_DEBIAN_PACKAGE_DEPENDS
 LINK_DIRECTORIES(
     ${izenecma_LIBRARY_DIRS}
     ${wisekma_LIBRARY_DIRS}
+    ${izenejma_LIBRARIES_DIRS}
     ${izenelib_LIBRARY_DIRS}
     )
 

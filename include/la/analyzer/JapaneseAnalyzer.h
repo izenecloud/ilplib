@@ -4,7 +4,7 @@
 #include <la/analyzer/CommonLanguageAnalyzer.h>
 
 #include <ijma.h>
-
+#include <iostream>
 namespace la
 {
 
@@ -70,6 +70,7 @@ protected:
 
             morpheme_ = pS_->getPOS(listIndex_, lexiconIndex_);
             pos_ = pS_->getStrPOS(listIndex_, lexiconIndex_);
+            isIndex_ = true;//pS_->isIndexWord(listIndex_, lexiconIndex_);
             offset_ = localOffset_;
             return true;
         }
@@ -95,7 +96,6 @@ private:
         {
             return false;
         }
-
         ++ lexiconIndex_;
 
         if( lexiconIndex_ == pS_->getCount(listIndex_) )

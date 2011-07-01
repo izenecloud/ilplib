@@ -16,7 +16,8 @@ namespace la
 
 CharAnalyzer::CharAnalyzer()
     : Analyzer(),
-      isSeparateAll( true )
+      isSeparateAll( true ),
+      isCaseSensitive( true )
 {
 }
 
@@ -54,7 +55,12 @@ int CharAnalyzer::separate_part( const Term& input, void* data, HookType func )
             {
                 if(alpha)
                 {
-                    func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+                    tmpStr_ = UString(input.text_.c_str()+begin, input.text_.c_str()+end+1);
+                    if (!isCaseSensitive)
+                    {
+                        tmpStr_.toLowerString();
+                    }
+                    func(data, tmpStr_.c_str(), end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
                     alpha = false;
                 }
                 begin = i;
@@ -86,7 +92,12 @@ int CharAnalyzer::separate_part( const Term& input, void* data, HookType func )
         {
             if(alpha)
             {
-                func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+                tmpStr_ = UString(input.text_.c_str()+begin, input.text_.c_str()+end+1);
+                if (!isCaseSensitive)
+                {
+                    tmpStr_.toLowerString();
+                }
+                func(data, tmpStr_.c_str(), end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
                 alpha = false;
             }
         }
@@ -118,7 +129,12 @@ int CharAnalyzer::separate_part( const Term& input, void* data, HookType func )
     }
     if(alpha)
     {
-        func(data, input.text_.c_str()+begin, end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+        tmpStr_ = UString(input.text_.c_str()+begin, input.text_.c_str()+end+1);
+        if (!isCaseSensitive)
+        {
+            tmpStr_.toLowerString();
+        }
+        func(data, tmpStr_.c_str(), end-begin+1, offset++, Term::EnglishPOS, Term::AND , 0, false);
     }
     return 0;
 }
@@ -141,7 +157,15 @@ int CharAnalyzer::separate_all(  const Term& input, void* data, HookType func )
         }
         else if(UString::isThisAlphaChar(ch))
         {
-            func(data, input.text_.c_str()+i, 1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+            if (isCaseSensitive)
+            {
+                func(data, input.text_.c_str()+i, 1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+            }
+            else
+            {
+                tmpCh_ = UString::toLowerChar(ch);
+                func(data, &tmpCh_, 1, offset++, Term::EnglishPOS, Term::AND , 0, false);
+            }
         }
         else if(UString::isThisSpaceChar(ch))
         {

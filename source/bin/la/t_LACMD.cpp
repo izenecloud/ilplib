@@ -97,7 +97,7 @@ int main( int argc, char** argv )
 
     if( type == "char" )
     {
-        cout << "CharAnalyzer Addition Params: [all | part]" << endl;
+        cout << "CharAnalyzer Addition Params: [all | part] [tolowcase]" << endl;
         CharAnalyzer* ana = new CharAnalyzer;
         for( int i = 2; i < argc; ++i )
         {
@@ -106,6 +106,8 @@ int main( int argc, char** argv )
                 ana->setSeparateAll(true);
             else if( arg == "part" )
                 ana->setSeparateAll(false);
+            else if( arg == "tolowcase" )
+                ana->setCaseSensitive(false);
             else
                 cerr << "Invalid Parameter: " << arg << endl;
         }

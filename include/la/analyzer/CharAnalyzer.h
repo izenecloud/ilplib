@@ -28,6 +28,11 @@ public:
      */
     void setSeparateAll( bool flag = true );
 
+    void setCaseSensitive( bool caseSensitive = false)
+    {
+        isCaseSensitive = caseSensitive;
+    }
+
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );
@@ -46,6 +51,10 @@ private:
 
 private:
     bool isSeparateAll;
+    bool isCaseSensitive;
+
+    UString::CharT tmpCh_;
+    UString tmpStr_;
 };
 
 }

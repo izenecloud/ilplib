@@ -29,6 +29,8 @@ JapaneseAnalyzer::JapaneseAnalyzer( const std::string knowledgePath)
 
     scMorp_ = pA_->getCodeFromStr( JAPANESE_SC );
 
+    pA_->setOption(jma::Analyzer::OPTION_TYPE_POS_FORMAT_ALPHABET, 1);
+
     setCaseSensitive(false);
 
     setIndexMode(); // Index mode is set by default
@@ -37,6 +39,7 @@ JapaneseAnalyzer::JapaneseAnalyzer( const std::string knowledgePath)
     output_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 
 }
+
 
 JapaneseAnalyzer::~JapaneseAnalyzer()
 {
@@ -57,6 +60,7 @@ void JapaneseAnalyzer::setIndexMode()
     pA_->setOption( jma::Analyzer::OPTION_TYPE_NBEST, 1 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_DECOMPOSE_USER_NOUN, 0 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_COMPOUND_MORPHOLOGY, 0 );
+    pA_->setOption( jma::Analyzer::OPTION_TYPE_CONVERT_TO_HALF_WIDTH, 1 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_CONVERT_TO_LOWER_CASE, 0 );
 }
 
@@ -70,6 +74,7 @@ void JapaneseAnalyzer::setLabelMode()
     pA_->setOption( jma::Analyzer::OPTION_TYPE_NBEST, 1 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_COMPOUND_MORPHOLOGY, 1 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_DECOMPOSE_USER_NOUN, 1 );
+    pA_->setOption( jma::Analyzer::OPTION_TYPE_CONVERT_TO_HALF_WIDTH, 1 );
     pA_->setOption( jma::Analyzer::OPTION_TYPE_CONVERT_TO_LOWER_CASE, 0 );	
 }
 

@@ -42,6 +42,7 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 	${izenecma_LIBRARIES}
 	${wisekma_LIBRARIES}
 	${Glog_LIBRARIES}
+	${TokyoCabinet_LIBRARIES}
  )
 
   target_link_libraries(t_LA ${la_libs})

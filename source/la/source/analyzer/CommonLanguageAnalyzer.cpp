@@ -220,30 +220,51 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             }
             else
             {
-                UString::CharT * synonymResultUstr = NULL;
-                size_t synonymResultUstrLen = 0;
-
                 if(bExtractSynonym_)
                 {
+                    UString::CharT * synonymResultUstr = NULL;
+                    size_t synonymResultUstrLen = 0;
+
                     pSynonymContainer_ = uscSPtr_->getSynonymContainer();
                     pSynonymContainer_->searchNgetSynonym( nativeToken(), pSynonymResult_ );
-                    char * synonymResult = pSynonymResult_->getHeadWord(0);
-                    if( synonymResult )
+
+                    bool hasSynonym = false;
+                    for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
                     {
-                        size_t synonymResultLen = strlen(synonymResult);
-                        if(synonymResultLen <= term_ustring_buffer_limit_)
+                        char * synonymResult = pSynonymResult_->getWord(0, i);
+                        if( synonymResult )
                         {
-                            synonymResultUstr = synonym_ustring_buffer_;
-                            synonymResultUstrLen = UString::toUcs2(synonymEncode_,
-                                    synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+                            if (strcmp(nativeToken(), synonymResult) == 0)
+                            {
+                                //cout << "synonym self: "<<string(synonymResult) <<endl;
+                                continue;
+                            }
+                            //cout << "synonym : "<<string(synonymResult) <<endl;
+
+                            size_t synonymResultLen = strlen(synonymResult);
+                            if(synonymResultLen <= term_ustring_buffer_limit_)
+                            {
+                                synonymResultUstr = synonym_ustring_buffer_;
+                                synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+                                        synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+                            }
+
+                            hasSynonym = true;
+                            func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
                         }
                     }
-                }
 
-                if(synonymResultUstr) {
-                    func( data, token(), len(), offset(), pos(), Term::OR, level()+1, false);
-                    func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
-                } else {
+                    if (hasSynonym)
+                    {
+                        func( data, token(), len(), offset(), pos(), Term::OR, level()+1, false);
+                    }
+                    else
+                    {
+                        func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
+                    }
+                }
+                else
+                {
                     func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
                 }
             }

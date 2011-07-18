@@ -97,8 +97,8 @@ void UpdateDictThread::addRelatedDict( const char* path,
         dsPtr.reset( new DictSource( pathStr) );
         map_[ pathStr ] = dsPtr;
         itr = map_.find( pathStr );
+        itr->second.get()->addRelatedDict( dict );
     }
-    itr->second.get()->addRelatedDict( dict );
 }
 
 shared_ptr< PlainDictionary > UpdateDictThread::createPlainDictionary(

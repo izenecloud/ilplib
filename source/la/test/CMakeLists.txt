@@ -40,6 +40,7 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 	${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 	${izenelib_LIBRARIES}
 	${izenecma_LIBRARIES}
+	${izenejma_LIBRARIES}	
 	${wisekma_LIBRARIES}
 	${Glog_LIBRARIES}
 	${TokyoCabinet_LIBRARIES}

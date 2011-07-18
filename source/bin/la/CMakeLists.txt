@@ -9,6 +9,7 @@ set(la_libs
     ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
     ${izenelib_LIBRARIES}
     ${izenecma_LIBRARIES}
+    ${izenejma_LIBRARIES}
     ${wisekma_LIBRARIES}
     ${Glog_LIBRARIES}
  )

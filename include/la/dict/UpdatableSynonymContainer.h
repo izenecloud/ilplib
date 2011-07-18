@@ -13,6 +13,8 @@
 
 #include <am/vsynonym/VSynonym.h>
 
+#include <string>
+
 namespace la
 {
 
@@ -25,7 +27,7 @@ public:
      */
     UpdatableSynonymContainer(
             izenelib::am::VSynonymContainer* pSynonymContainer,
-            const string& knowledgePath)
+            const std::string& knowledgePath)
             : pSynonymContainer_( pSynonymContainer ),
               knowledgePath_( knowledgePath ),
               lastModifiedTime_( -1 ),
@@ -43,20 +45,7 @@ public:
      * @param lastModifiedTime last modified time
      * @return 0 indicates success and others indicates fails
      */
-    virtual int update( const char* path, unsigned int lastModifiedTime )
-    {
-        //just update the current curModifiedTime_
-        curModifiedTime_ = lastModifiedTime;
-        if(lastModifiedTime_ != lastModifiedTime)
-        {
-            // perform updating
-            pSynonymContainer_->clear( false );
-            pSynonymContainer_->loadSynonym( path );
-            lastModifiedTime_ = lastModifiedTime;
-            return 0;
-        }
-        else return 1;
-    }
+    virtual int update( const char* path, unsigned int lastModifiedTime );
 
     /**
      * Get the pointer of WK_SynonymContainer, Don't delete this
@@ -80,7 +69,7 @@ private:
     izenelib::am::VSynonymContainer* pSynonymContainer_;
 
     /** The latest destination path */
-    string knowledgePath_;
+    std::string knowledgePath_;
 
     /** last modified time */
     unsigned int lastModifiedTime_;

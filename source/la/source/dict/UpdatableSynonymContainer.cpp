@@ -7,7 +7,6 @@ int UpdatableSynonymContainer::update( const char* path, unsigned int lastModifi
 {
     //just update the current curModifiedTime_
     curModifiedTime_ = lastModifiedTime;
-	std::cout<<"lastModifiedTime_ "<<lastModifiedTime_<<" lastModifiedTime "<<lastModifiedTime<<std::endl;
     if(lastModifiedTime_ != lastModifiedTime)
     {
         // perform updating

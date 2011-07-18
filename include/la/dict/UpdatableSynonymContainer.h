@@ -47,7 +47,15 @@ public:
     {
         //just update the current curModifiedTime_
         curModifiedTime_ = lastModifiedTime;
-        return 1;
+        if(lastModifiedTime_ != lastModifiedTime)
+        {
+            // perform updating
+            pSynonymContainer_->clear( false );
+            pSynonymContainer_->loadSynonym( path );
+            lastModifiedTime_ = lastModifiedTime;
+            return 0;
+        }
+        else return 1;
     }
 
     /**

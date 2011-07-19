@@ -17,6 +17,7 @@
 #define MULTILANGUAGEANALYZER_H_
 
 #include <la/analyzer/Analyzer.h>
+#include <la/analyzer/CommonLanguageAnalyzer.h>
 #include <la/stem/Stemmer.h>
 
 #include <boost/shared_ptr.hpp>
@@ -64,6 +65,17 @@ public:
     Language getCharType( izenelib::util::UCS2Char ucs2Char );
 
     Language detectLanguage( const izenelib::util::UString & input );
+
+    void setExtractSynonym(bool isSynonymInclude)
+    {
+        for (int lan = CHINESE; lan < OTHER; lan++)
+        {
+            if (analyzers_[lan].get())
+            {
+                static_cast<CommonLanguageAnalyzer*>(analyzers_[lan].get())->setExtractSynonym(isSynonymInclude);
+            }
+        }
+    }
 
 protected:
 

@@ -105,6 +105,12 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
     return ENGLISH;
 }
 
+void MultiLanguageAnalyzer::analyzeSynonym(TermList& output, size_t n)
+{
+    if (analyzers_[CHINESE])
+        analyzers_[CHINESE]->analyzeSynonym(output, n);
+}
+
 int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
 {
     Language lang = detectLanguage(input.text_);

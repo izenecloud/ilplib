@@ -77,6 +77,8 @@ public:
         }
     }
 
+    virtual void analyzeSynonym(TermList& output, size_t n);
+
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );

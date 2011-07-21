@@ -95,6 +95,8 @@ int main( int argc, char** argv )
     LA la;
     boost::shared_ptr<Analyzer> analyzer;
 
+    bool extractSynonym = false;
+
     if( type == "char" )
     {
         cout << "CharAnalyzer Addition Params: [all | part] [tolowcase]" << endl;
@@ -140,7 +142,10 @@ int main( int argc, char** argv )
             else if( arg == "stop")
                 ana->setRemoveStopwords();
             else if( arg == "synonym")
-                ana->setExtractSynonym(true);
+            {
+                extractSynonym = true;
+                //ana->setExtractSynonym(true);
+            }
             else if( arg == "inner")
             {
                 ChineseAnalyzer* inner_ana = new ChineseAnalyzer( getCmaKnowledgePath() );
@@ -268,6 +273,10 @@ int main( int argc, char** argv )
             TermList termList;
             cout << "-------------- process( query, termList ) ---------------" << endl;
             la.process( ustr, termList );
+            printTermList( termList );
+            cout << "=========================================================" << endl;
+            if (extractSynonym)
+                la.processSynonym( termList );
             printTermList( termList );
 
             cout << "-------------- toExpandedString ---------------" << endl;

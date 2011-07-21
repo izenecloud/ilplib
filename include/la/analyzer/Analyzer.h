@@ -57,6 +57,10 @@ public:
         bConvertToPlaceHolder_ = convertToPlaceHolder;
     }
 
+    virtual void analyzeSynonym(TermList& output, size_t n)
+    {
+    }
+
     int analyze(const Term & input, TermList & output)
     {
         void* array[2] = {&output, this};

@@ -67,6 +67,16 @@ public:
         return bRemoveStopwords_;
     }
 
+    virtual void analyzeSynonym(TermList& outList, size_t n);
+
+protected:
+    bool getSynonym(
+            const UString& combine,
+            int offset,
+            const unsigned char andOrBit,
+            const unsigned int level,
+            TermList& syOutList);
+
 protected:
 
     /// Parse given input
@@ -180,10 +190,6 @@ protected:
     bool bChinese_;
 
     bool bRemoveStopwords_;
-
-    char * pre_native_token_buffer_;
-    UString::CharT * pre_token_buffer_;
-    int pre_offset_;
 };
 
 }

@@ -60,6 +60,13 @@ public:
         return analyzer_;
     }
 
+    void processSynonym(TermList& outList)
+    {
+        if( analyzer_.get() != NULL ) {
+            analyzer_->analyzeSynonym(outList, 2);
+        }
+    }
+
     void process( const izenelib::util::UString & inputString,
                   TermList & outList )
     {

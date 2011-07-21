@@ -23,7 +23,7 @@ namespace la
     const string RES_PUNCT = "RP";
     const Term newTerm;
 
-    const UString OP_USTR( " |!(){}[]^\"", UString::UTF_8 );
+    const UString OP_USTR( "&|!(){}[]^\"", UString::UTF_8 );
     const UString BACK_SLASH( "\\", UString::UTF_8 );
 
     map< UString, UString > OP_REP_MAP;
@@ -67,10 +67,10 @@ namespace la
             return ustr;
         }
 
-        izenelib::util::UCS2Char SPACE = int('&'); // xxx, space = 32
-        izenelib::util::UCS2Char LBRACKET = 40;
-        izenelib::util::UCS2Char RBRACKET = 41;
-        izenelib::util::UCS2Char OR_CHAR = 124;
+        izenelib::util::UCS2Char AND_CHAR = 38; // '&' , space = 32
+        izenelib::util::UCS2Char LBRACKET = 40; // '('
+        izenelib::util::UCS2Char RBRACKET = 41; // ')'
+        izenelib::util::UCS2Char OR_CHAR = 124; // '|'
 
         TermList::const_iterator it;
         unsigned int prevOffset = 0;
@@ -103,7 +103,7 @@ namespace la
                     //if( prevLevel > level )
                     //output += RBRACKET;
                     //output += RBRACKET;
-                    output += OR_CHAR; //SPACE; xxx
+                    output += AND_CHAR;
                     output += LBRACKET;
                     baseLevel = level;
                 }
@@ -112,7 +112,7 @@ namespace la
                     if( prevLevel < level )
                     {
                         if( prevAndOr == Term::AND )
-                            output += SPACE;
+                            output += AND_CHAR;
                         else if( prevAndOr == Term::OR )
                             output += OR_CHAR;
                         output += LBRACKET;
@@ -120,15 +120,19 @@ namespace la
                     else
                     {
                         if( prevLevel > level )
+                        {
                             output += RBRACKET;
-                        if( andOrBit == Term::AND )
-                        {
-                            output += SPACE;
-                        }
-                        else if( andOrBit == Term::OR )
-                        {
                             output += OR_CHAR;
                         }
+                        else
+                            if( andOrBit == Term::AND )
+                            {
+                                output += AND_CHAR;
+                            }
+                            else if( andOrBit == Term::OR )
+                            {
+                                output += OR_CHAR;
+                            }
                     }
                 }
             }

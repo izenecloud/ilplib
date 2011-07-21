@@ -16,6 +16,7 @@
 //
 #include <la/analyzer/CommonLanguageAnalyzer.h>
 #include <la/util/UStringUtil.h>
+#include <la/common/Term.h>
 //#include <la/dict/UpdateDictThread.h>
 //
 //using namespace izenelib::util;
@@ -82,9 +83,6 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     lowercase_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
     synonym_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
     stemming_ustring_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
-
-    pre_native_token_buffer_ = new char[term_ustring_buffer_limit_];
-    pre_token_buffer_ = new UString::CharT[term_ustring_buffer_limit_];
 }
 
 void CommonLanguageAnalyzer::setSynonymUpdateInterval(unsigned int seconds)
@@ -104,9 +102,136 @@ CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
     delete lowercase_ustring_buffer_;
     delete synonym_ustring_buffer_;
     delete stemming_ustring_buffer_;
+}
 
-    delete pre_native_token_buffer_;
-    delete pre_token_buffer_;
+void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
+{
+    static UString SPACE(" ", izenelib::util::UString::UTF_8);
+    TermList syOutList;
+
+    size_t wordCount = outList.size();
+    for(size_t i = 0; i < wordCount; i++)
+    {
+//        cout << "[off]" <<outList[i].wordOffset_<<" [level]"<<outList[i].getLevel() <<" [andor]" <<(unsigned int)(outList[i].getAndOrBit())
+//             << "  "<< outList[i].textString()<<endl;
+
+        // find synonym for word(s)
+        for (size_t len = 1; (len <= n) && (i+len <= wordCount) ; len++)
+        {
+            // with space
+            bool ret = false;
+            UString combine;
+            if (len > 1)
+            {
+                for (size_t j = 0; j < len-1; j++)
+                {
+                    combine.append(outList[i+j].text_);
+                    combine.append(SPACE);
+                }
+                combine.append(outList[i+len-1].text_);
+                ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList);
+            }
+
+            // without space
+            if (!ret)
+            {
+                combine.clear();
+                for (size_t j = 0; j < len; j++)
+                    combine.append(outList[i+j].text_);
+               ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList);
+            }
+
+            // adjust
+            if (ret)
+            {
+                outList[i].setStats(outList[i].getAndOrBit(), outList[i].getLevel()+1);
+                for (size_t j = 1; j < len; j++)
+                {
+                    outList[i+j].wordOffset_ = outList[i].wordOffset_;
+                    outList[i+j].setStats(outList[i].getAndOrBit(), outList[i].getLevel());
+                }
+
+                syOutList.back().setStats(Term::OR, syOutList.back().getLevel());
+                break;
+            }
+        }
+
+        syOutList.push_back(outList[i]);
+    }
+
+    outList.swap(syOutList);
+}
+
+bool CommonLanguageAnalyzer::getSynonym(
+        const UString& combine,
+        int offset,
+        const unsigned char andOrBit,
+        const unsigned int level,
+        TermList& syOutList)
+{
+    bool ret = false;
+    //cout << "combined: "; combine.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
+
+    char* combineStr = lowercase_string_buffer_;
+    UString::convertString(UString::UTF_8, combine.c_str(), combine.length(), lowercase_string_buffer_, term_string_buffer_limit_);
+
+    //cout << "combined string: " << string(combineStr) << endl;
+
+    UString::CharT * synonymResultUstr = NULL;
+    size_t synonymResultUstrLen = 0;
+
+    pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+    pSynonymContainer_->searchNgetSynonym( combineStr, pSynonymResult_ );
+
+    unsigned int subLevel = 1;
+    for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
+    {
+        char * synonymResult = pSynonymResult_->getWord(0, i);
+        if( synonymResult )
+        {
+            if (strcmp(combineStr, synonymResult) == 0)
+            {
+                //cout << "synonym self: "<<string(synonymResult) <<endl;
+                continue;
+            }
+            cout << "synonym : "<<string(synonymResult) <<endl;
+            ret = true;
+
+            size_t synonymResultLen = strlen(synonymResult);
+            if(synonymResultLen <= term_ustring_buffer_limit_)
+            {
+                synonymResultUstr = synonym_ustring_buffer_;
+                synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+                        synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+            }
+
+            // word segmentment
+            UString term(synonymResultUstr, synonymResultUstrLen);
+            TermList termList;
+            if (innerAnalyzer_.get())
+            {
+                innerAnalyzer_->analyze(term, termList);
+                if (termList.size() <= 1)
+                {
+                    syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level);
+                }
+                else
+                {
+                    for(TermList::iterator iter = termList.begin(); iter != termList.end(); ++iter)
+                    {
+                        syOutList.add(iter->text_.c_str(), iter->text_.length(), offset, NULL, Term::AND, level+1+subLevel);
+                    }
+                    subLevel++;
+                }
+            }
+            else
+            {
+                syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level);
+            }
+        }
+    }
+
+    return ret;
 }
 
 int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
@@ -118,19 +243,13 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 
     while( nextToken() )
     {
-        if ( offset() == 0)
-        {
-            if (pre_native_token_buffer_)
-                pre_native_token_buffer_[0] ='\0';
-        }
-
         if( len() == 0 )
             continue;
 
         if( bRemoveStopwords_ && isStopword() )
             continue;
 
-            /*{
+/*            {
             UString foo(token(), len()); string bar; foo.convertString(bar, UString::UTF_8);
             cout << "(" << bar << ") --<> " << isIndex() << "," << offset() << "," << isRaw() << "," << level() << endl;
             }*/
@@ -230,7 +349,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     }
                 }
             }
-            //else
+            else
             {
                 if(bExtractSynonym_)
                 {
@@ -238,61 +357,20 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     size_t synonymResultUstrLen = 0;
 
                     pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+                    pSynonymContainer_->searchNgetSynonym( nativeToken(), pSynonymResult_ );
 
-                    bool synonymLevel = 0;
                     bool hasSynonym = false;
-                    size_t lpre = strlen(pre_native_token_buffer_);
-                    //cout << "pre token : "<<string(pre_native_token_buffer_, lpre) <<endl;///
-                    if (lpre > 0 && lpre < term_ustring_buffer_limit_)
-                    {
-                        // with space
-                        pre_native_token_buffer_[lpre] = ' ';
-                        size_t lcur = strlen(nativeToken());
-                        if (lpre + lcur + 1 < term_ustring_buffer_limit_)
-                        {
-                            memcpy(pre_native_token_buffer_+lpre+1, nativeToken(), lcur);
-                            pre_native_token_buffer_[lpre+1+lcur] = '\0';
-                        }
-                        //cout << "combine token : "<<string(pre_native_token_buffer_) <<endl;///
-                        pSynonymContainer_->searchNgetSynonym(pre_native_token_buffer_, pSynonymResult_ );
-
-                        // without space
-                        if (pSynonymResult_->getSynonymCount(0) <= 0)
-                        {
-                            if (lpre + lcur < term_ustring_buffer_limit_)
-                            {
-                                memcpy(pre_native_token_buffer_+lpre, nativeToken(), lcur);
-                                pre_native_token_buffer_[lpre+1+lcur] = '\0';
-                            }
-
-                            //cout << "combine token : "<<string(pre_native_token_buffer_) <<endl;///
-                            pSynonymContainer_->searchNgetSynonym( pre_native_token_buffer_, pSynonymResult_ );
-                        }
-
-                        if (pSynonymResult_->getSynonymCount(0) > 0)
-                            hasSynonym = true;
-                    }
-
-                    if (!hasSynonym)
-                    {
-                        pSynonymContainer_->searchNgetSynonym( nativeToken(), pSynonymResult_ );
-                    }
-                    else
-                    {
-                        synonymLevel = -1;
-                    }
-
                     for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
                     {
                         char * synonymResult = pSynonymResult_->getWord(0, i);
                         if( synonymResult )
                         {
-                            if (strcmp(nativeToken(), synonymResult) == 0 || strcmp(pre_native_token_buffer_, synonymResult) == 0)
+                            if (strcmp(nativeToken(), synonymResult) == 0)
                             {
-                                //cout << "synonym self: "<<string(synonymResult) <<endl;
+                                cout << "synonym self: "<<string(synonymResult) <<endl;
                                 continue;
                             }
-                            //cout << "synonym : "<<string(synonymResult) <<endl;///
+                            cout << "synonym : "<<string(synonymResult) <<endl;
 
                             size_t synonymResultLen = strlen(synonymResult);
                             if(synonymResultLen <= term_ustring_buffer_limit_)
@@ -303,65 +381,26 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                             }
 
                             hasSynonym = true;
-                            //func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
-
-                            UString term(synonymResultUstr, synonymResultUstrLen);
-                            TermList termList;
-                            if (innerAnalyzer_.get())
-                            {
-                                innerAnalyzer_->analyze(term, termList);
-                                if (termList.size() == 1)
-                                {
-                                    func( data, synonymResultUstr, synonymResultUstrLen, offset(), pos(), Term::OR, level()+1, false);
-                                }
-                                else
-                                {
-                                    for(TermList::iterator iter = termList.begin(); iter != termList.end(); ++iter)
-                                    {
-                                        func( data, iter->text_.c_str(), iter->text_.length(), offset(), pos(), iter->getAndOrBit(), level()+2+synonymLevel, false);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
-                            }
+                            func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
                         }
                     }
 
-                    if (hasSynonym && !isAlpha())
+                    if (hasSynonym)
                     {
                         func( data, token(), len(), offset(), pos(), Term::OR, level()+1, false);
                     }
-                    else if (!isAlpha())
+                    else
                     {
                         func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
                     }
                 }
-                else if (!isAlpha())
+                else
                 {
                     func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
                 }
             }
         }
-
-        /// pre token
-        if (nativeToken() && token())
-        {
-            size_t l = strlen(nativeToken());
-            if (l >= term_ustring_buffer_limit_) l = 0;
-            memcpy(pre_native_token_buffer_, nativeToken(), l);
-            pre_native_token_buffer_[l] ='\0';
-
-//            l = len() * sizeof(UString::CharT);
-//            if (l >= term_ustring_buffer_limit_) l = 0;
-//            memcpy(pre_token_buffer_, (void*)(token()), l);
-//            pre_token_buffer_[l] = '\0'; //xx
-
-            pre_offset_ = offset();
-        }
     }
-
     return offset();
 }
 

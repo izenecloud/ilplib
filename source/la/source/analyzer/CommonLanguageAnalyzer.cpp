@@ -151,7 +151,7 @@ void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
                     outList[i+j].setStats(outList[i].getAndOrBit(), outList[i].getLevel());
                 }
 
-                syOutList.back().setStats(Term::OR, syOutList.back().getLevel());
+                //syOutList.back().setStats(Term::OR, syOutList.back().getLevel());
                 break;
             }
         }
@@ -219,6 +219,9 @@ bool CommonLanguageAnalyzer::getSynonym(
                 {
                     for(TermList::iterator iter = termList.begin(); iter != termList.end(); ++iter)
                     {
+                    cout<<"add term: ";
+                    iter->text_.displayStringValue(UString::UTF_8);
+                    cout<<endl;
                         syOutList.add(iter->text_.c_str(), iter->text_.length(), offset, NULL, Term::AND, level+1+subLevel);
                     }
                     subLevel++;

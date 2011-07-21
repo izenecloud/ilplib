@@ -180,6 +180,10 @@ protected:
     bool bChinese_;
 
     bool bRemoveStopwords_;
+
+    char * pre_native_token_buffer_;
+    UString::CharT * pre_token_buffer_;
+    int pre_offset_;
 };
 
 }

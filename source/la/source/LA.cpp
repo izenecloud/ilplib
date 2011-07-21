@@ -67,7 +67,7 @@ namespace la
             return ustr;
         }
 
-        izenelib::util::UCS2Char SPACE = 32;
+        izenelib::util::UCS2Char SPACE = int('&'); // xxx, space = 32
         izenelib::util::UCS2Char LBRACKET = 40;
         izenelib::util::UCS2Char RBRACKET = 41;
         izenelib::util::UCS2Char OR_CHAR = 124;
@@ -103,7 +103,7 @@ namespace la
                     //if( prevLevel > level )
                     //output += RBRACKET;
                     //output += RBRACKET;
-                    output += SPACE;
+                    output += OR_CHAR; //SPACE; xxx
                     output += LBRACKET;
                     baseLevel = level;
                 }

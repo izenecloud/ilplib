@@ -41,6 +41,11 @@ public:
 
     virtual ~Analyzer() {}
 
+    void setInnerAnalyzer(boost::shared_ptr<la::Analyzer>& analyzer)
+    {
+        innerAnalyzer_ = analyzer;
+    }
+
     void setTokenizerConfig( const TokenizeConfig & tokenConfig )
     {
         tokenizer_.setConfig( tokenConfig );
@@ -142,6 +147,9 @@ protected:
 protected:
 
     Tokenizer tokenizer_;
+
+    /// For a secondary analysis based on analyzed output (e.g. synonym output), if needed.
+    boost::shared_ptr<la::Analyzer> innerAnalyzer_;
 
     /// Whether including speical characters (e.g. puncutations) in the result.
     bool bExtractSpecialChar_;

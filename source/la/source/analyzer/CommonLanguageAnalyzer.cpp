@@ -151,7 +151,6 @@ void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
                     outList[i+j].wordOffset_ = outList[i].wordOffset_;
                     outList[i+j].setStats(outList[i+j].getAndOrBit(), outList[i].getLevel());
                 }
-
                 break;
             }
         }

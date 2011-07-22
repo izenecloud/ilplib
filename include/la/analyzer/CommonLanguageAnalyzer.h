@@ -75,7 +75,8 @@ protected:
             int offset,
             const unsigned char andOrBit,
             const unsigned int level,
-            TermList& syOutList);
+            TermList& syOutList,
+            unsigned int& subLevel);
 
 protected:
 

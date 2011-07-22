@@ -91,6 +91,7 @@ namespace la
             if( it == termList.begin() )
             {
                 output += LBRACKET;
+                output += LBRACKET;
                 baseLevel = level;
             }
             else
@@ -98,12 +99,15 @@ namespace la
 
                 if( prevOffset < it->wordOffset_ )
                 {
-                    for( int i = prevLevel; i >= baseLevel; i-- )
-                        output += RBRACKET;
+                    ///for( int i = prevLevel; i >= baseLevel; i-- )
+                    ///    output += RBRACKET;
+                    output += RBRACKET;
+                    output += RBRACKET;
                     //if( prevLevel > level )
                     //output += RBRACKET;
                     //output += RBRACKET;
                     output += AND_CHAR;
+                    output += LBRACKET;
                     output += LBRACKET;
                     baseLevel = level;
                 }
@@ -111,28 +115,27 @@ namespace la
                 {
                     if( prevLevel < level )
                     {
-                        if( prevAndOr == Term::AND )
-                            output += AND_CHAR;
-                        else if( prevAndOr == Term::OR )
-                            output += OR_CHAR;
+//                        if( prevAndOr == Term::AND )
+//                            output += AND_CHAR;
+//                        else if( prevAndOr == Term::OR )
+//                            output += OR_CHAR;
+//                        output += LBRACKET;
+                        output += RBRACKET;
+                        output += OR_CHAR;
                         output += LBRACKET;
                     }
                     else
                     {
-                        if( prevLevel > level )
+//                        if( prevLevel > level )
+//                            output += RBRACKET;
+                        if( andOrBit == Term::AND )
                         {
-                            output += RBRACKET;
+                            output += AND_CHAR;
+                        }
+                        else if( andOrBit == Term::OR )
+                        {
                             output += OR_CHAR;
                         }
-                        else
-                            if( andOrBit == Term::AND )
-                            {
-                                output += AND_CHAR;
-                            }
-                            else if( andOrBit == Term::OR )
-                            {
-                                output += OR_CHAR;
-                            }
                     }
                 }
             }
@@ -148,8 +151,10 @@ namespace la
             //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
         }
 
-        for( int i = prevLevel; i >= baseLevel; i-- )
-            output += RBRACKET;
+        //for( int i = prevLevel; i >= baseLevel; i-- )
+        //    output += RBRACKET;
+        output += RBRACKET;
+        output += RBRACKET;
 
         return output;
     }

@@ -120,6 +120,7 @@ void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
         {
             // with space
             bool ret = false;
+            unsigned int subLevel = 0;
             UString combine;
             if (len > 1)
             {
@@ -129,7 +130,7 @@ void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
                     combine.append(SPACE);
                 }
                 combine.append(outList[i+len-1].text_);
-                ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList);
+                ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList, subLevel);
             }
 
             // without space
@@ -138,20 +139,19 @@ void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)
                 combine.clear();
                 for (size_t j = 0; j < len; j++)
                     combine.append(outList[i+j].text_);
-               ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList);
+               ret = getSynonym(combine, outList[i].wordOffset_, Term::OR, outList[i].getLevel(), syOutList, subLevel);
             }
 
             // adjust
             if (ret)
             {
-                outList[i].setStats(outList[i].getAndOrBit(), outList[i].getLevel()+1);
+                outList[i].setStats(outList[i].getAndOrBit(), outList[i].getLevel()+subLevel);
                 for (size_t j = 1; j < len; j++)
                 {
                     outList[i+j].wordOffset_ = outList[i].wordOffset_;
-                    outList[i+j].setStats(outList[i].getAndOrBit(), outList[i].getLevel());
+                    outList[i+j].setStats(outList[i+j].getAndOrBit(), outList[i].getLevel());
                 }
 
-                syOutList.back().setStats(Term::OR, syOutList.back().getLevel());
                 break;
             }
         }
@@ -167,7 +167,8 @@ bool CommonLanguageAnalyzer::getSynonym(
         int offset,
         const unsigned char andOrBit,
         const unsigned int level,
-        TermList& syOutList)
+        TermList& syOutList,
+        unsigned int& subLevel)
 {
     bool ret = false;
     //cout << "combined: "; combine.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
@@ -183,7 +184,6 @@ bool CommonLanguageAnalyzer::getSynonym(
     pSynonymContainer_ = uscSPtr_->getSynonymContainer();
     pSynonymContainer_->searchNgetSynonym( combineStr, pSynonymResult_ );
 
-    unsigned int subLevel = 1;
     for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
     {
         char * synonymResult = pSynonymResult_->getWord(0, i);
@@ -213,20 +213,22 @@ bool CommonLanguageAnalyzer::getSynonym(
                 innerAnalyzer_->analyze(term, termList);
                 if (termList.size() <= 1)
                 {
-                    syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level);
+                    syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level+subLevel);
+                    subLevel++;
                 }
                 else
                 {
                     for(TermList::iterator iter = termList.begin(); iter != termList.end(); ++iter)
                     {
-                        syOutList.add(iter->text_.c_str(), iter->text_.length(), offset, NULL, Term::AND, level+1+subLevel);
+                        syOutList.add(iter->text_.c_str(), iter->text_.length(), offset, NULL, Term::AND, level+subLevel);
                     }
                     subLevel++;
                 }
             }
             else
             {
-                syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level);
+                syOutList.add(synonymResultUstr, synonymResultUstrLen, offset, NULL, andOrBit, level+subLevel);
+                subLevel++;
             }
         }
     }

@@ -75,8 +75,6 @@ public:
             int curOffset = 0;
             for (seg = synonymOutput.begin(); seg != synonymOutput.end(); seg++)
             {
-                cout << "pre Offset" << curOffset << endl;
-
                 if (seg->size() == 1)
                 {
                     // segment which has no synonym

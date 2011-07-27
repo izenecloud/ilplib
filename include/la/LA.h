@@ -60,6 +60,7 @@ public:
         return analyzer_;
     }
 
+    /// obsolete
     void processSynonym(TermList& outList)
     {
         if( analyzer_.get() != NULL ) {
@@ -67,12 +68,20 @@ public:
         }
     }
 
+    void processSynonym( const izenelib::util::UString & inputString,
+                  TermList & outList)
+    {
+        if (analyzer_.get() != NULL) {
+            analyzer_->analyzeSynonym(inputString, outList);
+        }
+    }
+
     void process( const izenelib::util::UString & inputString,
-                  TermList & outList )
+                  TermList & outList)
     {
         outList.clear();
         if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( inputString, outList );
+            analyzer_->analyze(inputString, outList);
         }
     }
 

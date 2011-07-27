@@ -105,10 +105,25 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const USt
     return ENGLISH;
 }
 
+/// obsolete
 void MultiLanguageAnalyzer::analyzeSynonym(TermList& output, size_t n)
 {
     if (analyzers_[CHINESE])
         analyzers_[CHINESE]->analyzeSynonym(output, n);
+}
+
+int MultiLanguageAnalyzer::analyzeSynonym(const izenelib::util::UString& inputString, TermList& output)
+{
+    if (analyzers_[CHINESE])
+    {
+        return analyzers_[CHINESE]->analyzeSynonym(inputString, output);
+    }
+    else if (defAnalyzer_)
+    {
+        return defAnalyzer_->analyzeSynonym(inputString, output);
+    }
+    else
+        return 0;
 }
 
 int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )

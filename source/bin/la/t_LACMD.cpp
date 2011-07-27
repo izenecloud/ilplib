@@ -121,7 +121,7 @@ int main( int argc, char** argv )
         cout << "ChineseAnalyzer Addition Params: [max | min | mmm | min_u] [label | index | stop | synonym | inner]" << endl;
         ChineseAnalyzer* ana = new ChineseAnalyzer( getCmaKnowledgePath() );
         ana->setLabelMode();
-        ana->setCaseSensitive();
+        ana->setCaseSensitive(false);
         ana->setAnalysisType(ChineseAnalyzer::minimum_match);
 
         for( int i = 2; i < argc; ++i )
@@ -274,15 +274,24 @@ int main( int argc, char** argv )
             cout << "-------------- process( query, termList ) ---------------" << endl;
             la.process( ustr, termList );
             printTermList( termList );
-            cout << "=========================================================" << endl;
-            if (extractSynonym)
-                la.processSynonym( termList );
-            printTermList( termList );
 
             cout << "-------------- toExpandedString ---------------" << endl;
             UString exp = toExpandedString(termList);
             exp.displayStringInfo(UString::UTF_8, cout);
             cout << endl;
+
+            if (extractSynonym)
+            {
+                cout << "============== process with synonym =====================" << endl;
+                termList.clear();
+                la.processSynonym( ustr, termList);
+                printTermList( termList );
+
+                cout << "============== toExpandedString ================" << endl;
+                UString exp = toExpandedString(termList);
+                exp.displayStringInfo(UString::UTF_8, cout);
+                cout << endl;
+            }
         }
 
     } while( true );

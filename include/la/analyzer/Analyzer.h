@@ -36,6 +36,7 @@ class Analyzer
 {
 
 public:
+    typedef std::vector<std::vector<izenelib::util::UString> > SynonymOutputType;
 
     Analyzer() : bExtractSpecialChar_(true), bConvertToPlaceHolder_(true) {}
 
@@ -57,8 +58,70 @@ public:
         bConvertToPlaceHolder_ = convertToPlaceHolder;
     }
 
+    /// @deprecated absolete
     virtual void analyzeSynonym(TermList& output, size_t n)
     {
+    }
+
+    virtual int analyzeSynonym(const izenelib::util::UString& inputString, TermList& output)
+    {
+        SynonymOutputType synonymOutput;
+        if (analyze_synonym_impl(inputString, synonymOutput))
+        {
+            //cout << "[Analyzer][analyzeSynonym] found synonym" << endl;
+
+            SynonymOutputType::iterator seg;
+            TermList segOutput;
+            int curOffset = 0;
+            for (seg = synonymOutput.begin(); seg != synonymOutput.end(); seg++)
+            {
+                cout << "pre Offset" << curOffset << endl;
+
+                if (seg->size() == 1)
+                {
+                    // segment which has no synonym
+                    ///seg->at(0).displayStringValue(izenelib::util::UString::UTF_8); cout << endl;
+                    segOutput.clear();
+                    analyze(seg->at(0), segOutput);
+                    // adjust offset
+                    for (size_t j = 0; j < segOutput.size(); j++)
+                    {
+                        segOutput[j].wordOffset_ += curOffset;
+                    }
+                    output.insert(output.end(), segOutput.begin(), segOutput.end());
+                }
+                else
+                {
+                    // synonyms
+                    for (size_t i = 0; i < seg->size(); i++)
+                    {
+                        ///seg->at(i).displayStringValue(izenelib::util::UString::UTF_8); cout << " ";
+                        if (innerAnalyzer_)
+                        {
+                            segOutput.clear();
+                            innerAnalyzer_->analyze(seg->at(i), segOutput);
+                            // adjust
+                            for (size_t j = 0; j < segOutput.size(); j++)
+                            {
+                                segOutput[j].wordOffset_ = curOffset+1;
+                                segOutput[j].setStats(Term::AND, i);
+                            }
+                            output.insert(output.end(), segOutput.begin(), segOutput.end());
+                        }
+                    }
+                    ///cout << endl;
+                }
+
+                curOffset = output.back().wordOffset_ + 1;
+            }
+        }
+        else
+        {
+            //cout << "[Analyzer][analyzeSynonym] not found synonym" << endl;
+            return analyze(inputString, output);
+        }
+
+        return 0; //xxx
     }
 
     int analyze(const Term & input, TermList & output)
@@ -147,6 +210,12 @@ protected:
     }
 
     virtual int analyze_impl( const Term& input, void* data, HookType func ) = 0;
+
+    virtual bool analyze_synonym_impl(const izenelib::util::UString& inputString, SynonymOutputType& synonymOutput)
+    {
+        return false;
+    }
+
 
 protected:
 

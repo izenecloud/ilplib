@@ -77,7 +77,10 @@ public:
         }
     }
 
+    /// obsolete
     virtual void analyzeSynonym(TermList& output, size_t n);
+
+    virtual int analyzeSynonym(const izenelib::util::UString& inputString, TermList& output);
 
 protected:
 

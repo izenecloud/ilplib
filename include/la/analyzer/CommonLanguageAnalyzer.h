@@ -67,9 +67,11 @@ public:
         return bRemoveStopwords_;
     }
 
+    /// obsolete
     virtual void analyzeSynonym(TermList& outList, size_t n);
 
 protected:
+    /// obsolete
     bool getSynonym(
             const UString& combine,
             int offset,
@@ -152,6 +154,8 @@ protected:
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );
+
+    virtual bool analyze_synonym_impl(const izenelib::util::UString& inputString,  SynonymOutputType& synonymOutput);
 
 protected:
 

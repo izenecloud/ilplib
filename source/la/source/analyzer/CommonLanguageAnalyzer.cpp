@@ -17,6 +17,7 @@
 #include <la/analyzer/CommonLanguageAnalyzer.h>
 #include <la/util/UStringUtil.h>
 #include <la/common/Term.h>
+#include <am/vsynonym/StrBasedVTrie.h>
 //#include <la/dict/UpdateDictThread.h>
 //
 //using namespace izenelib::util;
@@ -235,6 +236,169 @@ bool CommonLanguageAnalyzer::getSynonym(
     return ret;
 }
 
+void displayBuffer(char* p, size_t n)
+{
+    for (size_t i =0; i< n; i++)
+    {
+        cout << *(p+i);
+    }
+    cout << endl;
+}
+
+bool CommonLanguageAnalyzer::analyze_synonym_impl(const izenelib::util::UString& inputString, SynonymOutputType& synonymOutput)
+{
+//    cout << "[CommonLanguageAnalyzer::analyze_synonym_impl] ";
+//    inputString.displayStringValue(izenelib::util::UString::UTF_8);
+//    cout << endl;
+
+    bool retFoundSynonym = false;
+
+    const UString::CharT* pInput = inputString.c_str();
+    size_t length = inputString.length();
+
+    // ensure length
+    size_t ustring_buffer_size_ = term_ustring_buffer_limit_;
+    if (ustring_buffer_size_ < length+1)
+    {
+        ustring_buffer_size_ = length+1;
+        delete lowercase_ustring_buffer_;
+        lowercase_ustring_buffer_ = new UString::CharT[ustring_buffer_size_];
+    }
+    size_t string_buffer_size = term_string_buffer_limit_;
+    if(string_buffer_size < length*4)
+    {
+        string_buffer_size = length*4;
+        delete lowercase_string_buffer_;
+        lowercase_string_buffer_ = new char[string_buffer_size];
+    }
+
+    // to low case
+    UString::CharT* lowercaseTermUstr = lowercase_ustring_buffer_;
+    bool lowercaseIsDifferent = UString::toLowerString(pInput, length,
+                                lowercase_ustring_buffer_, term_ustring_buffer_limit_);
+    if (lowercaseIsDifferent)
+        pInput = lowercaseTermUstr;
+
+    // convert input string to utf8 characters
+    char* chars = lowercase_string_buffer_;
+    vector<size_t> charOffs; charOffs.reserve(length);
+    size_t preCharLen = -1;
+    size_t curOff = 0;
+    for (size_t i = 0; i < length; i++)
+    {
+        curOff += (preCharLen+1);
+        charOffs[i] = curOff;
+        preCharLen = UString::convertString(UString::UTF_8, pInput+i, 1, chars+curOff, 4);
+        //cout << chars+curOff <<" "<<curOff<<" " << preCharLen <<endl;
+    }
+
+    // search synonym dict for input
+    izenelib::am::StrBasedVTrie strTrie(pSynonymContainer_->getData());
+    UString::CharT * synonymResultUstr = NULL;
+    size_t synonymResultUstrLen = 0;
+
+    size_t curIdx = 0;
+    size_t startIdx = 0;
+    size_t wordEndIdx;
+    VTrieNode endNode;
+    while (curIdx < length)
+    {
+        wordEndIdx = size_t(-1);
+
+        char* pch = chars+charOffs[curIdx];
+        strTrie.firstSearch( pch );
+        if (strTrie.completeSearch == false || strTrie.node->moreLong == false)
+        {
+            curIdx ++;
+            continue;
+        }
+
+        // matched a word (1 character)
+        if (strTrie.exists())
+        {
+            wordEndIdx = curIdx;
+            strTrie.getCurrentNode(endNode);
+        }
+        //else // uncomment if minimum match
+        {
+            for (size_t j = curIdx + 1; j < length; j ++)
+            {
+                char* pnch = chars+charOffs[j];
+                strTrie.search(pnch);
+
+                if (strTrie.completeSearch == false)
+                    break;
+
+                // matched a word
+                if (strTrie.exists())
+                {
+                    wordEndIdx = j;
+                    strTrie.getCurrentNode(endNode);
+                    //break; // uncomment if minimum match
+                }
+            }
+        }
+
+        if (wordEndIdx != size_t(-1))
+        {
+            retFoundSynonym = true;
+
+            if (startIdx < curIdx)
+            {
+                std::vector<UString> segment;
+                UString subsegment(pInput+startIdx, curIdx-startIdx);
+                //subsegment.displayStringValue(izenelib::util::UString::UTF_8); cout << endl;///
+                segment.push_back(subsegment);
+                synonymOutput.push_back(segment);
+            }
+
+            std::vector<UString> segment;
+            //UString(pInput+curIdx,wordEndIdx+1-curIdx).displayStringValue(izenelib::util::UString::UTF_8); cout <<" [has synonym] ";
+            pSynonymContainer_->setSynonym(pSynonymResult_, &endNode);
+            //cout << pSynonymResult_->getSynonymCount(0) << " ";
+            for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
+            {
+                char * synonymResult = pSynonymResult_->getWord(0, i);
+                if( synonymResult )
+                {
+                    size_t synonymResultLen = strlen(synonymResult);
+                    if(synonymResultLen <= term_ustring_buffer_limit_)
+                    {
+                        synonymResultUstr = synonym_ustring_buffer_;
+                        synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+                                synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+                    }
+
+                    UString synonym(synonymResultUstr, synonymResultUstrLen);
+                    segment.push_back(synonym);
+                }
+            }
+            synonymOutput.push_back(segment);
+
+            curIdx = wordEndIdx+1;
+            startIdx = curIdx;
+        }
+        else
+        {
+            curIdx++;
+        }
+    }
+
+    if (!retFoundSynonym)
+        return false;
+
+    if (startIdx < curIdx)
+    {
+        std::vector<UString> segment;
+        UString subsegment(pInput+startIdx, curIdx-startIdx);
+        //subsegment.displayStringValue(izenelib::util::UString::UTF_8); cout << endl; ///
+        segment.push_back(subsegment);
+        synonymOutput.push_back(segment);
+    }
+
+    return true;
+}
+
 int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
 {
     parse(input.text_);
@@ -307,7 +471,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     }
                 }
 
-                if(bExtractSynonym_)
+                if(false /*bExtractSynonym_, preprocessed*/)
                 {
                     pSynonymContainer_ = uscSPtr_->getSynonymContainer();
                     pSynonymContainer_->searchNgetSynonym( lowercaseTerm, pSynonymResult_ );
@@ -352,7 +516,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             }
             else
             {
-                if(bExtractSynonym_)
+                if(false /*bExtractSynonym_, preprocessed*/)
                 {
                     UString::CharT * synonymResultUstr = NULL;
                     size_t synonymResultUstrLen = 0;
@@ -368,10 +532,10 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                         {
                             if (strcmp(nativeToken(), synonymResult) == 0)
                             {
-                                cout << "synonym self: "<<string(synonymResult) <<endl;
+                                //cout << "synonym self: "<<string(synonymResult) <<endl;
                                 continue;
                             }
-                            cout << "synonym : "<<string(synonymResult) <<endl;
+                            //cout << "synonym : "<<string(synonymResult) <<endl;
 
                             size_t synonymResultLen = strlen(synonymResult);
                             if(synonymResultLen <= term_ustring_buffer_limit_)

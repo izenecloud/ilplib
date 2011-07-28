@@ -313,7 +313,6 @@ bool CommonLanguageAnalyzer::analyze_synonym_impl(const izenelib::util::UString&
             continue;
         }
 
-        // matched a word (1 character)
         if (strTrie.exists())
         {
             wordEndIdx = curIdx;
@@ -339,10 +338,12 @@ bool CommonLanguageAnalyzer::analyze_synonym_impl(const izenelib::util::UString&
             }
         }
 
+        // if matched a synonym
         if (wordEndIdx != size_t(-1))
         {
             retFoundSynonym = true;
 
+            // segment with out synonym
             if (startIdx < curIdx)
             {
                 std::vector<UString> segment;
@@ -352,27 +353,42 @@ bool CommonLanguageAnalyzer::analyze_synonym_impl(const izenelib::util::UString&
                 synonymOutput.push_back(segment);
             }
 
+            // segment with synonyms
             std::vector<UString> segment;
             //UString(pInput+curIdx,wordEndIdx+1-curIdx).displayStringValue(izenelib::util::UString::UTF_8); cout <<" [has synonym] ";
             pSynonymContainer_->setSynonym(pSynonymResult_, &endNode);
-            //cout << pSynonymResult_->getSynonymCount(0) << " ";
-            for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
-            {
-                char * synonymResult = pSynonymResult_->getWord(0, i);
-                if( synonymResult )
-                {
-                    size_t synonymResultLen = strlen(synonymResult);
-                    if(synonymResultLen <= term_ustring_buffer_limit_)
-                    {
-                        synonymResultUstr = synonym_ustring_buffer_;
-                        synonymResultUstrLen = UString::toUcs2(synonymEncode_,
-                                synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
-                    }
 
-                    UString synonym(synonymResultUstr, synonymResultUstrLen);
-                    segment.push_back(synonym);
+            size_t cnt, idx = 0;
+            set<UString> synonymSet; // avoid duplication
+            do
+            {
+                cnt = pSynonymResult_->getSynonymCount(idx);
+                for (size_t off = 0; off < cnt; off++)
+                {
+                    char * synonymResult = pSynonymResult_->getWord(idx, off);
+                    if( synonymResult )
+                    {
+                        size_t synonymResultLen = strlen(synonymResult);
+                        if(synonymResultLen <= term_ustring_buffer_limit_)
+                        {
+                            synonymResultUstr = synonym_ustring_buffer_;
+                            synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+                                    synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+                        }
+
+                        UString synonym(synonymResultUstr, synonymResultUstrLen);
+                        if(synonymSet.find(synonym) == synonymSet.end()){
+                            synonymSet.insert(synonym);
+                        }else{
+                            continue;
+                        }
+                        segment.push_back(synonym);
+                    }
                 }
+
+                idx++;
             }
+            while (cnt > 0);
             synonymOutput.push_back(segment);
 
             curIdx = wordEndIdx+1;

@@ -75,7 +75,9 @@ public:
             int curOffset = 0;
             for (seg = synonymOutput.begin(); seg != synonymOutput.end(); seg++)
             {
-                if (seg->size() == 1)
+                if (seg->size() <= 0)
+                    continue;
+                else if (seg->size() == 1)
                 {
                     // segment which has no synonym
                     ///seg->at(0).displayStringValue(izenelib::util::UString::UTF_8); cout << endl;

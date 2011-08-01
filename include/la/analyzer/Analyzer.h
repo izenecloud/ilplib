@@ -112,7 +112,8 @@ public:
                     ///cout << endl;
                 }
 
-                curOffset = output.back().wordOffset_ + 1;
+                if (output.size() > 0)
+                    curOffset = output.back().wordOffset_ + 1;
             }
         }
         else

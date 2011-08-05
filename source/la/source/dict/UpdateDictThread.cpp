@@ -40,40 +40,6 @@ long getFileLastModifiedTime( const char* path )
     return static_cast<long>( attrib.st_mtime );
 }
 
-DictSource::DictSource( const string& destPath )
-    : destPath_( destPath )
-{
-    lastModifiedTime_ = getFileLastModifiedTime( destPath.c_str() );
-}
-
-int DictSource::update()
-{
-    long curModifiedTime = getFileLastModifiedTime( destPath_.c_str() );
-    if( curModifiedTime == lastModifiedTime_ )
-        return 0;
-
-    int failedCount = 0;
-    //update all dictionary
-    for( vector< shared_ptr<UpdatableDict> >::iterator itr = relatedDicts_.begin();
-            itr != relatedDicts_.end(); ++ itr)
-    {
-        int ret = static_cast<UpdatableDict*>(itr->get())->update( destPath_.c_str(), curModifiedTime );
-        if( ret != 0 )
-            ++failedCount;
-    }
-
-#ifdef DEBUG_UDT
-    cout<<"Update "<<destPath_<<", "<<failedCount<<"/"<<relatedDicts_.size()<<" failed."<<endl;
-#endif
-    lastModifiedTime_ = curModifiedTime;
-    return failedCount;
-}
-
-void DictSource::addRelatedDict( const shared_ptr< UpdatableDict >& relatedDict )
-{
-    relatedDicts_.push_back( relatedDict );
-}
-
 UpdateDictThread::UpdateDictThread()
     : checkInterval_( DEFAULT_CHECK_INTERVAL ), isStarted_( false )
 {
@@ -85,20 +51,24 @@ UpdateDictThread::~UpdateDictThread()
 
 UpdateDictThread UpdateDictThread::staticUDT;
 
-void UpdateDictThread::addRelatedDict( const char* path,
+UpdatableDict* UpdateDictThread::addRelatedDict( const char* path,
         const shared_ptr< UpdatableDict >& dict )
 {
     ScopedWriteLock<ReadWriteLock> swl( lock_ );
     string pathStr( path );
-    MapType::iterator itr = map_.find( path );
-    if( itr == map_.end() )
+    MapType::iterator itr = map_.find( pathStr );
+    if ( itr == map_.end() )
     {
-        shared_ptr<DictSource> dsPtr;
-        dsPtr.reset( new DictSource( pathStr) );
-        map_[ pathStr ] = dsPtr;
-        itr = map_.find( pathStr );
+        if ( !dict.get() )
+            return NULL;
+        DictSource ds;
+        ds.lastModifiedTime_ = getFileLastModifiedTime(path);
+        ds.relatedDict_.reset(dict.get());
+        map_[ pathStr ] = ds;
+        return dict.get();
     }
-    itr->second.get()->addRelatedDict( dict );
+    else
+        return itr->second.relatedDict_.get();
 }
 
 shared_ptr< PlainDictionary > UpdateDictThread::createPlainDictionary(
@@ -113,13 +83,27 @@ shared_ptr< PlainDictionary > UpdateDictThread::createPlainDictionary(
     return pdPtr;
 }
 
-void UpdateDictThread::update()
+int UpdateDictThread::update()
 {
     ScopedWriteLock<ReadWriteLock> swl( lock_ );
+    int failedCount = 0;
     for( MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr )
     {
-        itr->second.get()->update();
+        long curModifiedTime = getFileLastModifiedTime( itr->first.c_str() );
+        if( curModifiedTime == itr->second.lastModifiedTime_ )
+            continue;
+
+        //update all dictionary
+        int ret = static_cast<UpdatableDict*>(itr->second.relatedDict_.get())->update( itr->first.c_str(), curModifiedTime );
+        if( ret != 0 )
+            ++failedCount;
+
+#ifdef DEBUG_UDT
+        cout << "Update " << itr->first << " failed." << endl;
+#endif
+        itr->second.lastModifiedTime_ = curModifiedTime;
     }
+    return failedCount;
 }
 
 void UpdateDictThread::run()

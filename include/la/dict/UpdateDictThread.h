@@ -28,44 +28,17 @@ namespace la
 long getFileLastModifiedTime( const char* path );
 
 /**
- * \brief The class contains destination path dictionary's source and related dictionaries.
- *
- * DictSource doesn't contain any lock and UpdateDictThread is in charge of it.
- */
-class DictSource
-{
-public:
-    DictSource( const std::string& destPath );
-
-    /**
-     * Add related dictionary
-     */
-    void addRelatedDict( const boost::shared_ptr< UpdatableDict >& relatedDict );
-
-    /**
-     * Perform a update operation
-     * \return how many UpdatableDicts are fail to update
-     */
-    int update();
-
-private:
-    /** Destination Path */
-    std::string destPath_;
-
-    /** The previous record of Last Modified Time */
-    long lastModifiedTime_;
-
-    /** Related Dictionaries */
-    std::vector< boost::shared_ptr< UpdatableDict > > relatedDicts_;
-};
-
-/**
  * \brief Thread to update dictionary from time to time
  */
 class UpdateDictThread
 {
 public:
-    typedef std::map<std::string,boost::shared_ptr<DictSource> > MapType;
+    typedef struct {
+        long lastModifiedTime_;
+        boost::shared_ptr<UpdatableDict> relatedDict_;
+    } DictSource;
+
+    typedef std::map<std::string, DictSource> MapType;
 
     UpdateDictThread();
 
@@ -76,7 +49,7 @@ public:
      * \param path the dictionary path
      * \param dict the related dictionary
      */
-    void addRelatedDict( const char* path, const boost::shared_ptr< UpdatableDict >& dict );
+    UpdatableDict* addRelatedDict( const char* path, const boost::shared_ptr< UpdatableDict >& dict );
 
     /**
      * Utility function to create plain dictionary. These Dictionary is read-only as
@@ -117,7 +90,7 @@ public:
     /**
      * Perform updating
      */
-    void update();
+    int update();
 
     /**
      * Infinite loop for the thread

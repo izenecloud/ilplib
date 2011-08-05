@@ -62,18 +62,24 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     bChinese_(false),
     bRemoveStopwords_(false)
 {
-    pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
-    pSynonymContainer_->setSynonymDelimiter(",");
-    pSynonymContainer_->setWordDelimiter("_");
-    if( pSynonymContainer_->loadSynonym( synonymDictPath.c_str() ) != 1 )
+    uscSPtr_.reset(UpdateDictThread::staticUDT.addRelatedDict( synonymDictPath.c_str(), uscSPtr_ ));
+    if ( !uscSPtr_.get() )
     {
-        string msg = "Failed to load synonym dictionary from path: ";
-        msg += synonymDictPath;
-        throw std::logic_error( msg );
-    }
+        pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
+        pSynonymContainer_->setSynonymDelimiter(",");
+        pSynonymContainer_->setWordDelimiter("_");
+        if( pSynonymContainer_->loadSynonym( synonymDictPath.c_str() ) != 1 )
+        {
+            string msg = "Failed to load synonym dictionary from path: ";
+            msg += synonymDictPath;
+            throw std::logic_error( msg );
+        }
 
-    uscSPtr_.reset( new UpdatableSynonymContainer( pSynonymContainer_, synonymDictPath ) );
-    UpdateDictThread::staticUDT.addRelatedDict( synonymDictPath.c_str(), uscSPtr_ );
+        uscSPtr_.reset( new UpdatableSynonymContainer( pSynonymContainer_, synonymDictPath ) );
+        UpdateDictThread::staticUDT.addRelatedDict( synonymDictPath.c_str(), uscSPtr_ );
+    }
+    else
+        pSynonymContainer_ = uscSPtr_->getSynonymContainer();
 
     pSynonymResult_ = izenelib::am::VSynonym::createObject();
 

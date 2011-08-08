@@ -37,6 +37,7 @@ public:
 
     ~UpdatableSynonymContainer()
     {
+        delete pSynonymContainer_;
     }
 
     /**
@@ -65,7 +66,6 @@ public:
     }
 
 private:
-    /** Won't delete this instance in UpdatableSynonymContainer */
     izenelib::am::VSynonymContainer* pSynonymContainer_;
 
     /** The latest destination path */

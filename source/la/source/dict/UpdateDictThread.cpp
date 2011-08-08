@@ -95,7 +95,7 @@ int UpdateDictThread::update()
             continue;
 
         //update all dictionary
-        int ret = static_cast<UpdatableDict*>(itr->second.relatedDict_.get())->update( itr->first.c_str(), curModifiedTime );
+        int ret = itr->second.relatedDict_.get()->update( itr->first.c_str(), curModifiedTime );
         if( ret != 0 )
             ++failedCount;
 

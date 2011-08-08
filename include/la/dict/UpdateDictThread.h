@@ -49,7 +49,7 @@ public:
      * \param path the dictionary path
      * \param dict the related dictionary
      */
-    UpdatableDict* addRelatedDict( const char* path, const boost::shared_ptr< UpdatableDict >& dict );
+    boost::shared_ptr< UpdatableDict > addRelatedDict( const char* path, const boost::shared_ptr< UpdatableDict >& dict );
 
     /**
      * Utility function to create plain dictionary. These Dictionary is read-only as

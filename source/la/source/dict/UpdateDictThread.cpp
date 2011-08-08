@@ -51,7 +51,7 @@ UpdateDictThread::~UpdateDictThread()
 
 UpdateDictThread UpdateDictThread::staticUDT;
 
-UpdatableDict* UpdateDictThread::addRelatedDict( const char* path,
+shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict( const char* path,
         const shared_ptr< UpdatableDict >& dict )
 {
     ScopedWriteLock<ReadWriteLock> swl( lock_ );
@@ -59,16 +59,17 @@ UpdatableDict* UpdateDictThread::addRelatedDict( const char* path,
     MapType::iterator itr = map_.find( pathStr );
     if ( itr == map_.end() )
     {
-        if ( !dict.get() )
-            return NULL;
-        DictSource ds;
-        ds.lastModifiedTime_ = getFileLastModifiedTime(path);
-        ds.relatedDict_.reset(dict.get());
-        map_[ pathStr ] = ds;
-        return dict.get();
+        if ( dict.get() )
+        {
+            DictSource ds;
+            ds.lastModifiedTime_ = getFileLastModifiedTime(path);
+            ds.relatedDict_ = dict;
+            map_[ pathStr ] = ds;
+        }
+        return dict;
     }
     else
-        return itr->second.relatedDict_.get();
+        return itr->second.relatedDict_;
 }
 
 shared_ptr< PlainDictionary > UpdateDictThread::createPlainDictionary(

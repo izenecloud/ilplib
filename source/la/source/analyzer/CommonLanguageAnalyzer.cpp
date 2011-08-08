@@ -62,7 +62,7 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     bChinese_(false),
     bRemoveStopwords_(false)
 {
-    uscSPtr_.reset(UpdateDictThread::staticUDT.addRelatedDict( synonymDictPath.c_str(), uscSPtr_ ));
+    uscSPtr_ = static_pointer_cast<UpdatableSynonymContainer>(UpdateDictThread::staticUDT.addRelatedDict( synonymDictPath.c_str(), uscSPtr_ ));
     if ( !uscSPtr_.get() )
     {
         pSynonymContainer_ = izenelib::am::VSynonymContainer::createObject();
@@ -101,7 +101,6 @@ void CommonLanguageAnalyzer::setSynonymUpdateInterval(unsigned int seconds)
 
 CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
 {
-    delete pSynonymContainer_;
     delete pSynonymResult_;
     delete pStemmer_;
 

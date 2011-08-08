@@ -1,5 +1,33 @@
 cmake_minimum_required(VERSION 2.6)
 
+##################################################
+# Find extra cmake modules dirs
+#
+# You can clone all modules from https://ssl.izenesoft.cn/projects/cmake
+#
+# Clone it and set environment variable EXTRA_CMAKE_MODULES_DIRS point to it.
+#
+SET(ENV_EXTRA_CMAKE_MODULES_DIRS $ENV{EXTRA_CMAKE_MODULES_DIRS})
+IF(ENV_EXTRA_CMAKE_MODULES_DIRS)
+  SET(EXTRA_CMAKE_MODULES_DIRS ${EXTRA_CMAKE_MODULES_DIRS} ${ENV_EXTRA_CMAKE_MODULES_DIRS})
+ENDIF(ENV_EXTRA_CMAKE_MODULES_DIRS)
+IF(NOT EXTRA_CMAKE_MODULES_DIRS)
+  MESSAGE(FATAL_ERROR
+    "Cannot find EXTRA_CMAKE_MODULES_DIRS.
+1. Please clone it from https://ssl.izenesoft.cn/cmake.
+2. Then set EXTRA_CMAKE_MODULES_DIRS through environment variable
+
+       export EXTRA_CMAKE_MODULES_DIRS=/path/to/cmake
+
+   You can put it in your .bashrc so it is loaded automatically.
+
+   or cmake options
+
+       cmake  -DEXTRA_CMAKE_MODULES_DIRS=/path/to/cmake (other options)
+")
+ENDIF(NOT EXTRA_CMAKE_MODULES_DIRS)
+SET(CMAKE_MODULE_PATH ${EXTRA_CMAKE_MODULES_DIRS})
+
 project(ILPLIB)
 
 # Check the mode
@@ -39,20 +67,37 @@ ENDIF (NOT CMAKE_BUILD_TYPE)
 
 MESSAGE(STATUS "CMAKE_COMPILER_IS_GNUCXX: " ${CMAKE_COMPILER_IS_GNUCXX})
 IF (CMAKE_COMPILER_IS_GNUCXX)
-  SET(CMAKE_CONFIGURATION_TYPES ${CMAKE_CONFIGURATION_TYPES} "Debugfull" "Profile")
+  INCLUDE(MacroSetBuildTypes)
 
-  # Select flags.
-  SET(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -fPIC")
-  # Disable assertion macros in RELEASE
-  SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -DNDEBUG -fPIC")
-  #SET(CMAKE_CXX_FLAGS_RELEASE        "-O2 -g")
-  SET(CMAKE_CXX_FLAGS_DEBUG          "-g -O2 -fno-reorder-blocks -fno-schedule-insns -fno-inline -fPIC")
-  SET(CMAKE_CXX_FLAGS_DEBUGFULL      "-g3 -fno-inline -DIZS_DEBUG" -fPIC CACHE STRING "Debugfull build type")
-  SET(CMAKE_CXX_FLAGS_PROFILE        "-pg -O2 -DNDEBUG -fPIC")
-  #SET(CMAKE_CXX_FLAGS_PROFILE        "-g3 -fno-inline -ftest-coverage -fprofile-arcs" CACHE STRING "Profile build type")
+  MACRO_SET_BUILD_TYPES(
+    RelWithDebInfo
+    "-O2 -g -Wno-deprecated -DNDEBUG -fPIC"
+    "Flags used by the compiler during Release with Debug Info builds."
 
-  MARK_AS_ADVANCED(CMAKE_CXX_FLAGS_DEBUGFULL CMAKE_CXX_FLAGS_PROFILE)
+    Release
+    "-O2 -Wno-deprecated -DNDEBUG -fPIC"
+    "Flags used by the compiler during release builds"
+
+    Debug
+    "-g -O0 -fno-reorder-blocks -fno-schedule-insns -fno-inline -Wno-deprecated -fPIC"
+    "Flags used by the compiler during debug builds."
+
+    Profile
+    "-g3 -fno-inline -ftest-coverage -fprofile-arcs -Wno-deprecated -fPIC"
+    "Profile build type"
+  )
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)
+
+INCLUDE(MacroSetDefaultBuildType)
+MACRO_SET_DEFAULT_BUILD_TYPE(RelWithDebInfo)
+
+INCLUDE(SetCompilerWarningAll)
+
+# Write to cache
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}" CACHE STRING
+  "Flags used by the compiler during all build types." FORCE)
+SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING
+  "Flags used by the compiler during all build types." FORCE)
 
 IF( USE_LA OR USE_QA )
 ##################################################

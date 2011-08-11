@@ -4,6 +4,7 @@
 
 #include <boost/test/unit_test.hpp>
 #include <util/ustring/UString.h>
+#include <langid/langid.h>
 /**
 #include <la/analyzer/MultiLanguageAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>
@@ -24,6 +25,13 @@ BOOST_AUTO_TEST_SUITE( MultiLanguageAnalyzerTest )
 BOOST_AUTO_TEST_CASE(test_detect_language)
 {
     MultiLanguageAnalyzer analyzer;
+    ilplib::langid::Factory* langIdFactory = ilplib::langid::Factory::instance();
+    MultiLanguageAnalyzer::langIdAnalyzer_ = langIdFactory->createAnalyzer();
+    ilplib::langid::Knowledge* langIdKnowledge_ = langIdFactory->createKnowledge();
+    langIdKnowledge_->loadEncodingModel("../db/langid/model/encoding.bin");
+    langIdKnowledge_->loadLanguageModel("../db/langid/model/language.bin");
+    MultiLanguageAnalyzer::langIdAnalyzer_->setKnowledge(langIdKnowledge_);
+
     BOOST_CHECK_EQUAL( analyzer.detectLanguage(UString("互联网(the Internet)中国 2010。", UString::UTF_8)), MultiLanguageAnalyzer::CHINESE);
     BOOST_CHECK_EQUAL( analyzer.detectLanguage(UString("(the Internet) 中国 2010。", UString::UTF_8)), MultiLanguageAnalyzer::CHINESE);
     BOOST_CHECK_EQUAL( analyzer.detectLanguage(UString("윈도7 Windows7", UString::UTF_8)), MultiLanguageAnalyzer::KOREAN);

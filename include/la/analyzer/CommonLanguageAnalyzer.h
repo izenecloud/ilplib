@@ -179,6 +179,7 @@ protected:
     const char * nativeToken_;
     size_t nativeTokenLen_;
     int offset_;
+    int localOffset_;
     const char* pos_;
     int level_;
     bool isIndex_;

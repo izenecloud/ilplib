@@ -28,7 +28,7 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 #	t_EnglishAnalyzer.cpp
 #	t_ChineseAnalyzer.cpp
 	t_KoreanAnalyzer.cpp
-#	t_MultiLanguageAnalyzer.cpp
+	t_MultiLanguageAnalyzer.cpp
 	)
 
   set(la_libs

@@ -19,6 +19,7 @@
 #include <la/analyzer/Analyzer.h>
 #include <la/analyzer/CommonLanguageAnalyzer.h>
 #include <la/stem/Stemmer.h>
+#include <langid/langid.h>
 
 #include <boost/shared_ptr.hpp>
 
@@ -31,6 +32,7 @@ namespace la
 class MultiLanguageAnalyzer: public Analyzer
 {
 public:
+
     enum Language
     {
         CHINESE,
@@ -85,6 +87,12 @@ public:
 protected:
 
     virtual int analyze_impl( const Term& input, void* data, HookType func );
+
+    virtual int analyze_impl( const Term& input, void* data, HookType func, MultilangGranularity multilangGranularity );
+
+public:
+
+    static ilplib::langid::Analyzer* langIdAnalyzer_;
 
 private:
     /**

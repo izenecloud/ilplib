@@ -443,7 +443,7 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
         if( bChinese_ == true )
         {
             int curWordOffset = offset();
-            if( lastWordOffset == lastWordOffset )
+            if( curWordOffset == lastWordOffset )
                 topAndOrBit = Term::OR;
             else
                 topAndOrBit = Term::AND;

@@ -74,7 +74,7 @@ protected:
     {
         tokenizer_.tokenize(input);
         hasNextToken_ = tokenizer_.nextToken();
-        eojulIndex_ = 0;
+        localOffset_ = 0;
         eojulInitialized_ = false;
 
         listIndex_ = 0;
@@ -99,7 +99,7 @@ protected:
 //        pA_->runWithString(input_string_buffer_);
 //
 //        eojul_ = NULL;
-//        eojulIndex_ = 0;
+//        localOffset_ = 0;
 //        listIndex_ = 0;
 //        lexiconIndex_ = -1;
 //
@@ -150,7 +150,7 @@ protected:
                 pS_->setString( input_string_buffer_ );
                 pA_->runWithEojul();
                 eojulInitialized_ = true;
-                offset_ = eojulIndex_;
+                offset_ = localOffset_;
 
                 if(bAnalyzePrime_)
                 {
@@ -251,7 +251,7 @@ private:
             {
                 lexiconIndex_ = -1;
                 listIndex_ = 0;
-                ++ eojulIndex_;
+                ++ localOffset_;
                 eojulInitialized_ = false;
                 hasNextToken_ = tokenizer_.nextToken();
                 if(!hasNextToken_ )
@@ -277,8 +277,6 @@ private:
     kmaOrange::WK_Eojul * eojul_;
 
     bool hasNextToken_;
-
-    int eojulIndex_;
 
     bool eojulInitialized_;
 

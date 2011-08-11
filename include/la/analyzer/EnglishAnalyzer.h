@@ -60,11 +60,6 @@ protected:
     {
         return tokenizer_.isDelimiter();
     }
-
-private:
-
-    int localOffset_;
-
 };
 }
 

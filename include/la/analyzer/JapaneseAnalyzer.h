@@ -126,8 +126,6 @@ private:
 
     UString::CharT * output_ustring_buffer_;
 
-    int localOffset_;
-
     int listIndex_;
 
     int lexiconIndex_;

@@ -26,6 +26,12 @@
 namespace la
 {
 
+enum MultilangGranularity {
+    FIELD_LEVEL, /// Each field adopts same language analzyer
+    SENTENCE_LEVEL, /// Each sentence adopts same language analyzer
+    BLOCK_LEVEL ///unsupported yet, which means reorganize text so that each block contains same language
+};
+
 class MultiLanguageAnalyzer;
 
 ///
@@ -125,17 +131,17 @@ public:
         return 0; //xxx
     }
 
-    int analyze(const Term & input, TermList & output)
+    int analyze(const Term & input, TermList & output, MultilangGranularity multilangGranularity = FIELD_LEVEL)
     {
         void* array[2] = {&output, this};
-        return analyze_impl(input, &array, &Analyzer::appendTermList);
+        return analyze_impl(input, &array, &Analyzer::appendTermList, multilangGranularity);
     }
 
     template <typename IDManagerType>
-    int analyze( IDManagerType* idm, const Term & input, TermIdList & output)
+    int analyze( IDManagerType* idm, const Term & input, TermIdList & output, MultilangGranularity multilangGranularity = FIELD_LEVEL)
     {
         void* array[3] = {&output, idm, this};
-        return analyze_impl(input, &array, &Analyzer::appendTermIdList<IDManagerType>);
+        return analyze_impl(input, &array, &Analyzer::appendTermIdList<IDManagerType>, multilangGranularity);
     }
 
 protected:
@@ -211,6 +217,8 @@ protected:
     }
 
     virtual int analyze_impl( const Term& input, void* data, HookType func ) = 0;
+
+    virtual int analyze_impl( const Term& input, void* data, HookType func, MultilangGranularity multilangGranularity ) { return analyze_impl(input, data, func); }
 
     virtual bool analyze_synonym_impl(const izenelib::util::UString& inputString, SynonymOutputType& synonymOutput)
     {

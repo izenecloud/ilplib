@@ -77,22 +77,24 @@ public:
     }
 
     void process( const izenelib::util::UString & inputString,
-                  TermList & outList)
+                  TermList & outList,
+                  MultilangGranularity multilangGranularity = FIELD_LEVEL )
     {
         outList.clear();
         if( analyzer_.get() != NULL ) {
-            analyzer_->analyze(inputString, outList);
+            analyzer_->analyze( inputString, outList, multilangGranularity );
         }
     }
 
     template<typename IDManagerType>
     void process( IDManagerType* idm,
                   const izenelib::util::UString & inputString,
-                  TermIdList & outList )
+                  TermIdList & outList,
+                  MultilangGranularity multilangGranularity = FIELD_LEVEL )
     {
         outList.clear();
         if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( idm, inputString, outList );
+            analyzer_->analyze( idm, inputString, outList, multilangGranularity );
         }
     }
 

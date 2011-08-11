@@ -19,6 +19,7 @@
 #include <iostream>
 using namespace std;
 using namespace izenelib::util;
+using namespace ilplib::langid;
 
 namespace la
 {
@@ -71,38 +72,26 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType( UCS2Char ucs
 
 MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const UString & input )
 {
-    static const size_t SampleCount = 10;
-    if(input.length() < SampleCount)
-    {
-        for(size_t i = 0; i< input.length(); i++ )
-        {
-            if(UString::isThisLanguageChar(input.at(i)))
-            {
-                Language lang = getCharType(input.at(i));
-                if(lang == CHINESE) return CHINESE;
-                if(lang == KOREAN) return KOREAN;
-                if(lang == JAPANESE) return JAPANESE;
-                //if(lang == OTHER) return OTHER;
-            }
-        }
-        return ENGLISH;
-    }
+    LanguageID langId;
+    std::string utf8_text;
 
-    for( size_t i = 0; i < SampleCount; i++ )
+    input.convertString(utf8_text, izenelib::util::UString::UTF_8);
+
+    langIdAnalyzer_->languageFromString(utf8_text.c_str(), langId);
+    switch (langId)
     {
-        size_t index = i*input.length()/SampleCount;
-        while(index<input.length()-1 && !UString::isThisLanguageChar(input.at(index)))
-            index ++;
-        if(UString::isThisLanguageChar(input.at(index)))
-        {
-            Language lang = getCharType(input.at(index));
-            if(lang == CHINESE) return CHINESE;
-            if(lang == KOREAN) return KOREAN;
-            if(lang == JAPANESE) return JAPANESE;
-            //if(lang == OTHER) return OTHER;
-        }
+    case LANGUAGE_ID_CHINESE_SIMPLIFIED:
+    case LANGUAGE_ID_CHINESE_TRADITIONAL:
+        return CHINESE;
+    case LANGUAGE_ID_JAPANESE:
+        return JAPANESE;
+    case LANGUAGE_ID_KOREAN:
+        return KOREAN;
+    case LANGUAGE_ID_ENGLISH:
+        return ENGLISH;
+    default:
+        return OTHER;
     }
-    return ENGLISH;
 }
 
 /// obsolete
@@ -126,14 +115,28 @@ int MultiLanguageAnalyzer::analyzeSynonym(const izenelib::util::UString& inputSt
         return 0;
 }
 
+ilplib::langid::Analyzer* MultiLanguageAnalyzer::langIdAnalyzer_;
+
 int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
 {
+    if ( !langIdAnalyzer_ )
+    {
+        if ( defAnalyzer_ )
+        {
+            return defAnalyzer_->analyze_impl(input, data, func);
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     Language lang = detectLanguage(input.text_);
-    if(lang != OTHER && analyzers_[lang])
+    if ( lang != OTHER && analyzers_[lang] )
     {
         return analyzers_[lang]->analyze_impl(input, data, func);
     }
-    else if(defAnalyzer_)
+    else if ( defAnalyzer_ )
     {
         return defAnalyzer_->analyze_impl(input, data, func);
     }
@@ -143,4 +146,41 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
     }
 }
 
+int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func, MultilangGranularity multilangGranularity )
+{
+    if ( !langIdAnalyzer_ || multilangGranularity != SENTENCE_LEVEL )
+        return analyze_impl(input, data, func);
+
+    void** parameters = (void**)data;
+    TermIdList * output = (TermIdList*) parameters[0];
+    std::string utf8_text;
+
+    input.text_.convertString(utf8_text, izenelib::util::UString::UTF_8);
+    const char* p = utf8_text.c_str();
+    std::size_t lastpos, pos = 0, globalOffset = 0;
+    while (int len = langIdAnalyzer_->sentenceLength(p))
+    {
+        UString sentence;
+        sentence.assign(p, len, izenelib::util::UString::UTF_8);
+        Language lang = detectLanguage(sentence);
+        lastpos = pos;
+
+        if(lang != OTHER && analyzers_[lang])
+            analyzers_[lang]->analyze_impl(sentence, data, func);
+        else if(defAnalyzer_)
+            defAnalyzer_->analyze_impl(sentence, data, func);
+
+        pos = output->size();
+        if(lastpos > 0)
+        {
+            TermIdList& laInput = (*output);
+            for(std::size_t i = lastpos; i < pos; ++i)
+                laInput[i].wordOffset_ += globalOffset;
+        }
+        globalOffset = output->back().wordOffset_ + 1;
+        p += len;
+    }
+
+    return pos;
+}
 }

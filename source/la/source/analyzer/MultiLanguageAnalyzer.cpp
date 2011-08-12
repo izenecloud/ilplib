@@ -171,16 +171,22 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
             defAnalyzer_->analyze_impl(sentence, data, func);
 
         pos = output->size();
+
         if(lastpos > 0)
         {
             TermIdList& laInput = (*output);
             for(std::size_t i = lastpos; i < pos; ++i)
                 laInput[i].wordOffset_ += globalOffset;
         }
-        globalOffset = output->back().wordOffset_ + 1;
+        if (pos > lastpos)
+            globalOffset = output->back().wordOffset_ + 1;
+
         p += len;
     }
 
-    return pos;
+    if (output->size() > 0)
+        return output->back().wordOffset_;
+    else
+        return 0;
 }
 }

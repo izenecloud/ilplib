@@ -103,9 +103,11 @@ void MultiLanguageAnalyzer::analyzeSynonym(TermList& output, size_t n)
 
 int MultiLanguageAnalyzer::analyzeSynonym(const izenelib::util::UString& inputString, TermList& output)
 {
-    if (analyzers_[CHINESE])
+    Language lang = detectLanguage(inputString);
+
+    if (lang != OTHER && analyzers_[lang])
     {
-        return analyzers_[CHINESE]->analyzeSynonym(inputString, output);
+        return analyzers_[lang]->analyzeSynonym(inputString, output);
     }
     else if (defAnalyzer_)
     {

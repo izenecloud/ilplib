@@ -202,6 +202,13 @@ int main( int argc, char** argv )
         mana->setAnalyzer( MultiLanguageAnalyzer::CHINESE, cbana );
         mana->setAnalyzer( MultiLanguageAnalyzer::ENGLISH, ebana );
 
+        ilplib::langid::Factory* langIdFactory = ilplib::langid::Factory::instance();
+        MultiLanguageAnalyzer::langIdAnalyzer_ = langIdFactory->createAnalyzer();
+        ilplib::langid::Knowledge* langIdKnowledge_ = langIdFactory->createKnowledge();
+        langIdKnowledge_->loadEncodingModel("../db/langid/model/encoding.bin");
+        langIdKnowledge_->loadLanguageModel("../db/langid/model/language.bin");
+        MultiLanguageAnalyzer::langIdAnalyzer_->setKnowledge(langIdKnowledge_);
+
         analyzer.reset( mana );
     }
     else if( type == "ngram" )

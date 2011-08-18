@@ -59,6 +59,69 @@ namespace la
         }
     }
 
+    /// Adjust terms' offest or level, for the following expansions:
+    /// 1. abc123,abc,123 -> "(abc123|(abc&123))"
+    ///
+    void preProcess(const TermList & ktermList)
+    {
+        TermList& termList = const_cast<TermList&>(ktermList);
+
+        TermList::iterator it = termList.begin();
+        while (it != termList.end())
+        {
+            if (it->text_.length() <= 0)
+            {
+                it++;
+                continue;
+            }
+
+            UString::CharT& ch =  it->text_[0];
+            //cout<<endl; it->text_.displayStringValue(izenelib::util::UString::UTF_8);
+            if (UString::isThisDigitChar(ch) || UString::isThisAlphaChar(ch))
+            {
+                // e.g abc123
+                unsigned int curOffset = it->wordOffset_;
+                unsigned int curLevel = it->getLevel();
+                UString& curText = it->text_;
+                size_t start = 0;
+                size_t end = curText.length();
+
+                if (++it == termList.end() || it->wordOffset_ != curOffset)
+                    continue;
+
+                // e.g abc, 123
+                while (it != termList.end())
+                {
+                    //it->text_.displayStringValue(izenelib::util::UString::UTF_8); cout<<endl;
+                    bool match = true;
+                    for (size_t i = 0; i < it->text_.length() && start < end; i++)
+                    {
+                        if (it->text_[i] == curText[start++])
+                            continue;
+
+                        match = false;
+                        break;
+                    }
+
+                    if (!match)
+                        break;
+
+                    //cout<<"matched"<<endl;
+                    it->wordOffset_ = curOffset;
+                    it->setStats(0, curLevel+1);
+                    it++;
+
+                    if (start >= end)
+                        break;
+                }
+            }
+            else
+            {
+                it++;
+            }
+        }
+    }
+
     izenelib::util::UString toExpandedString( const TermList & termList )
     {
         if( termList.empty() )
@@ -81,6 +144,8 @@ namespace la
         unsigned char andOrBit = 0;
         int level = 0;
         izenelib::util::UString output;
+
+        preProcess(termList);
 
         for( it = termList.begin(); it != termList.end(); it++ )
         {

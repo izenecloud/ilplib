@@ -404,7 +404,7 @@ private:
 		{
 			string type2 = token2.typeNoSentperiod();
 			int type2OrthContext = params.ortho_context[type2];
-			if ((type2OrthContext & ORTHO_BEG_UC != 0) && (type2OrthContext & ORTHO_MID_UC != 0 ))
+			if ((type2OrthContext & ORTHO_BEG_UC) && (type2OrthContext & ORTHO_MID_UC))
 			{
 				return true;
 			}

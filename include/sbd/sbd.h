@@ -160,7 +160,7 @@ private:
 				}
 			
 				if (isSentStarter == "unknown" && isInitial && token2.isFirstUpper() && 
-					!(params.ortho_context[nextType] & ORTHO_LC != 0))
+					(params.ortho_context[nextType] & ORTHO_LC) == 0)
 				{
 					token1.sentbreak = false;
 					token1.abbr = true;
@@ -175,11 +175,11 @@ private:
 			|| token.tok == "." || token.tok == "!" || token.tok == "?")
 			return "false";
 		int orthoContext = params.ortho_context[token.typeNoSentperiod()];
-		if (token.isFirstUpper() && (orthoContext & ORTHO_LC != 0) &&
-			!(orthoContext & ORTHO_MID_UC != 0))
+		if (token.isFirstUpper() && (orthoContext & ORTHO_LC) &&
+			(orthoContext & ORTHO_MID_UC) == 0)
 			return "true";
-		if (token.isFirstLower() && ((orthoContext & ORTHO_UC != 0) || 
-			!(orthoContext & ORTHO_BEG_LC != 0)))
+		if ((token.isFirstLower() && (orthoContext & ORTHO_UC)) ||
+			(orthoContext & ORTHO_BEG_LC) == 0)
 			return "false";
 
 		return "unknown";

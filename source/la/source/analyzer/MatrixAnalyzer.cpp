@@ -60,7 +60,6 @@ namespace la
     {
         TermList::const_iterator it;
 
-        unsigned int        level = 0;
         Term                newTerm;
         TermList::iterator  term_it;
 
@@ -69,11 +68,6 @@ namespace la
         for( it = input.begin(); it != input.end(); it++ )
         {
             term_it = output.insert( output.end(), *it );
-//            term_it->stats_ = makeStatBit( defLogicOp, level );
-//
-//            if( (retFlag & ANALYZE_SECOND_) == 0 )
-//                continue;
-
 
             length = it->text_.length();
             if( bPrefix_ )
@@ -83,7 +77,6 @@ namespace la
                     term_it = output.insert( output.end(), *it );
 
                     term_it->text_   = it->text_.substr(0, preLength);
-//                    term_it->stats_ = makeStatBit( defLogicOp, level );
                 }
             }
 
@@ -94,7 +87,6 @@ namespace la
                     term_it = output.insert( output.end(), *it );
 
                     term_it->text_   = it->text_.substr(start, length-start);
-//                    term_it->stats_ = makeStatBit( defLogicOp, level );
                 }
             }
         }

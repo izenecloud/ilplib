@@ -102,7 +102,7 @@ namespace la
         string inputstr, stem;
         TermList::const_iterator it;
 
-        unsigned char       level = 0;
+        //unsigned char       level = 0;
         Term                newTerm;
         TermList::iterator  term_it;
 

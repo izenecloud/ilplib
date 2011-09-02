@@ -137,7 +137,6 @@ SET( USE_WISEKMA TRUE)
 SET( USE_IZENEJMA TRUE )
 
 add_definitions("-fpermissive")
-add_definitions(-DLANGID_DEBUG_PRINT=${CMAKE_LANGID_DEBUG_PRINT})
 
 IF( USE_WISEKMA )
   FIND_PACKAGE(wisekma REQUIRED)

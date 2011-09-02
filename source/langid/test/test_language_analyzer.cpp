@@ -39,7 +39,6 @@
 #include "language_analyzer.h"
 #include "script_table.h"
 #include <ilplib.hpp>
-//#include "langid/knowledge.h"
 
 #include <iostream>
 #include <fstream>

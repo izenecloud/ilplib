@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
     SentenceBreakTable table;
     
     // load configuration
-    const char* configFile = "../db/langid/config/sentence_break.def";
+    const char* configFile = "../../db/langid/config/sentence_break.def";
     if(! table.loadConfig(configFile))
     {
         cerr << "error: fail to load file " << configFile << endl;

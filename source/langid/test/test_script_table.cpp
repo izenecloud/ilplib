@@ -38,8 +38,8 @@ int main(int argc, char* argv[])
     ScriptTable table;
 
     // load configuration and table
-    const char* configFile = "../db/langid/config/script.def";
-    const char* tableFile = "../db/langid/config/ct.table";
+    const char* configFile = "../../db/langid/config/script.def";
+    const char* tableFile = "../../db/langid/config/ct.table";
 
     bool result = table.loadConfig(configFile);
     if(! result)

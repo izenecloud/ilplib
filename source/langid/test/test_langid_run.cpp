@@ -517,8 +517,8 @@ int main(int argc, char* argv[])
     Knowledge* knowledge = factory->createKnowledge();
 
     // model files
-    const char* encodingModel = "../db/langid/model/encoding.bin";
-    const char* languageModel = "../db/langid/model/language.bin";
+    const char* encodingModel = "../../db/langid/model/encoding.bin";
+    const char* languageModel = "../../db/langid/model/language.bin";
 
     // load encoding model for encoding identification
     if(! knowledge->loadEncodingModel(encodingModel))

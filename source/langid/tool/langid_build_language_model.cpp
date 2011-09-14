@@ -41,9 +41,9 @@ int main(int argc, char* argv[])
     SentenceBreakTable sentenceTable;
 
     // configuration files
-    const char* scriptFile = "../db/langid/config/script.def";
-    const char* tableFile = "../db/langid/config/ct.table";
-    const char* sentenceFile = "../db/langid/config/sentence_break.def";
+    const char* scriptFile = "../../db/langid/config/script.def";
+    const char* tableFile = "../../db/langid/config/ct.table";
+    const char* sentenceFile = "../../db/langid/config/sentence_break.def";
 
     if(! scriptTable.loadConfig(scriptFile))
     {

@@ -28,8 +28,8 @@ BOOST_AUTO_TEST_CASE(test_detect_language)
     ilplib::langid::Factory* langIdFactory = ilplib::langid::Factory::instance();
     MultiLanguageAnalyzer::langIdAnalyzer_ = langIdFactory->createAnalyzer();
     ilplib::langid::Knowledge* langIdKnowledge_ = langIdFactory->createKnowledge();
-    langIdKnowledge_->loadEncodingModel("../db/langid/model/encoding.bin");
-    langIdKnowledge_->loadLanguageModel("../db/langid/model/language.bin");
+    langIdKnowledge_->loadEncodingModel("../../db/langid/model/encoding.bin");
+    langIdKnowledge_->loadLanguageModel("../../db/langid/model/language.bin");
     MultiLanguageAnalyzer::langIdAnalyzer_->setKnowledge(langIdKnowledge_);
 
     BOOST_CHECK_EQUAL( analyzer.detectLanguage(UString("互联网(the Internet)中国 2010。", UString::UTF_8)), MultiLanguageAnalyzer::CHINESE);

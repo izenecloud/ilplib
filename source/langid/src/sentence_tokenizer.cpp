@@ -40,16 +40,16 @@ SentenceTokenizer::SentenceTokenizer(const SentenceBreakTable& table)
 {
 }
 
-int SentenceTokenizer::getSentenceLength(const char* str) const
+int SentenceTokenizer::getSentenceLength(const char* begin, const char* end) const
 {
 #if LANGID_DEBUG_PRINT
-    cout << endl << ">>> SentenceTokenizer::getSentenceLength(), str:" << endl;
-    cout << str << endl;
+    cout << endl << ">>> SentenceTokenizer::getSentenceLength(), begin:" << endl;
+    cout << begin << endl;
 #endif
 
-    assert(str);
+    assert(begin && end);
 
-    if(*str == 0)
+    if(begin == end)
     {
 #if LANGID_DEBUG_PRINT
         cout << "<<< SentenceTokenizer::getSentenceLength(), end of string." << endl;
@@ -58,9 +58,8 @@ int SentenceTokenizer::getSentenceLength(const char* str) const
     }
 
     unsigned short ucs;
-    const char* p = str;
+    const char* p = begin;
     const char* q;
-    const char* end = str + strlen(str);
     bool isEnd = false;
 
     int count; // count of characters skipped in each iteration
@@ -85,10 +84,10 @@ int SentenceTokenizer::getSentenceLength(const char* str) const
         q += m[j];
     }
 
-    while(*p && ! isEnd)
+    while(p < end && ! isEnd)
     {
 #if LANGID_DEBUG_PRINT
-        cout << "iteration : " << dec << iter++ << ", char index: " << (p - str) << endl;
+        cout << "iteration : " << dec << iter++ << ", char index: " << (p - begin) << endl;
         q = p;
         for(int j=0; j<3; ++j)
         {
@@ -249,10 +248,10 @@ int SentenceTokenizer::getSentenceLength(const char* str) const
 #endif
     }
 
-    int len = p - str;
+    int len = p - begin;
 
 #if LANGID_DEBUG_PRINT
-    cout << "<<< SentenceTokenizer::getSentenceLength(), sentence: " << string(str, len)  << ", length: " << len << endl;
+    cout << "<<< SentenceTokenizer::getSentenceLength(), sentence: " << string(begin, len)  << ", length: " << len << endl;
 #endif
 
     return len;

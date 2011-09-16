@@ -46,7 +46,7 @@ bool LanguageAnalyzer::primaryIDFromString(const char* str, LanguageID& id, int 
     // count each language type
     vector<int> countVec(LANGUAGE_ID_NUM);
 
-    countIDFromString(str, countVec, maxInputSize);
+    countIDFromString(str, str+strlen(str), countVec, maxInputSize);
 
     id = getPrimaryID(countVec);
     return true;
@@ -75,7 +75,7 @@ bool LanguageAnalyzer::multipleIDFromString(const char* str, std::vector<Languag
     // count each language type
     vector<int> countVec(LANGUAGE_ID_NUM);
 
-    countIDFromString(str, countVec);
+    countIDFromString(str, str+strlen(str), countVec);
 
     getMultipleID(countVec, idVec);
     return true;
@@ -104,7 +104,7 @@ bool LanguageAnalyzer::segmentString(const char* str, std::vector<LanguageRegion
     // remove original result
     regionVec.clear();
 
-    addLanguageRegion(str, regionVec);
+    addLanguageRegion(str, str+strlen(str), regionVec);
 
     int value = option_ ? option_->getOption(Analyzer::OPTION_TYPE_BLOCK_SIZE_THRESHOLD) : 0;
     combineLanguageRegion(regionVec, value);
@@ -136,7 +136,7 @@ bool LanguageAnalyzer::segmentFile(const char* fileName, std::vector<LanguageReg
         if(! ifs.eof())
             line += '\n'; // include new line character for position accumulation
 
-        addLanguageRegion(line.c_str(), regionVec);
+        addLanguageRegion(line.c_str(), line.c_str()+line.size(), regionVec);
     }
 
     int value = option_ ? option_->getOption(Analyzer::OPTION_TYPE_BLOCK_SIZE_THRESHOLD) : 0;
@@ -145,13 +145,13 @@ bool LanguageAnalyzer::segmentFile(const char* fileName, std::vector<LanguageReg
     return true;
 }
 
-void LanguageAnalyzer::addLanguageRegion(const char* str, std::vector<LanguageRegion>& regionVec) const
+void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std::vector<LanguageRegion>& regionVec) const
 {
 #if LANGID_DEBUG_PRINT_ADD_REGION
-    cerr << ">>> LanguageAnalyzer::addLanguageRegion(): " << str << endl;
+    cerr << ">>> LanguageAnalyzer::addLanguageRegion(): " << begin << endl;
 #endif
 
-    assert(str);
+    assert(begin && end);
 
     LanguageID previousID = LANGUAGE_ID_NUM;
     unsigned int pos = 0; // position in total string
@@ -163,18 +163,15 @@ void LanguageAnalyzer::addLanguageRegion(const char* str, std::vector<LanguageRe
         pos = lastRegion.start_ + lastRegion.length_;
     }
 
-    string sentStr;
-    const char* p = str;
-    while(int len = sentenceTokenizer_.getSentenceLength(p))
+    const char* p = begin;
+    while(int len = sentenceTokenizer_.getSentenceLength(p, end))
     {
         // analyze each sentence
-        sentStr.assign(p, len);
-        LanguageID id = analyzeSentenceOnScriptPriority(sentStr.c_str());
+        LanguageID id = analyzeSentenceOnScriptPriority(p, p+len);
         assert(id != LANGUAGE_ID_NUM && "error: result in analyzing sentence is invalid.");
 
 #if LANGID_DEBUG_PRINT_ADD_REGION 
         cerr << "language: " << Knowledge::getLanguageNameFromID(id) << endl;
-        cerr << "sentence: " << sentStr << endl << endl;
 #endif
 
         if(id == previousID
@@ -208,17 +205,14 @@ void LanguageAnalyzer::addLanguageRegion(const char* str, std::vector<LanguageRe
     }
 }
 
-LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* str) const
+LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* begin, const char* end) const
 {
-    assert(str);
-
-    const char* begin = str;
-    const char* end = begin + strlen(str);
+    assert(begin && end);
 
     // check each script type
     vector<bool> flagVec(SCRIPT_TYPE_NUM, false);
     size_t mblen;
-    for(const char* p=begin; p!=end; p+=mblen)
+    for(const char* p=begin; p<end; p+=mblen)
     {
         unsigned short value = charTokenizer_.convertToUCS2(p, end, &mblen);
         ScriptType type = scriptTable_.getProperty(value);
@@ -380,9 +374,9 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptCount(const char* str)
     return result;
 }
 
-void LanguageAnalyzer::countIDFromString(const char* str, std::vector<int>& countVec, int maxInputSize) const
+void LanguageAnalyzer::countIDFromString(const char* begin, const char* end, std::vector<int>& countVec, int maxInputSize) const
 {
-    assert(str);
+    assert(begin && end);
     assert(countVec.size() == LANGUAGE_ID_NUM && "the count vector size should be the number of language types.");
 
 #if LANGID_DEBUG_PRINT_COUNT_STRING
@@ -393,16 +387,14 @@ void LanguageAnalyzer::countIDFromString(const char* str, std::vector<int>& coun
     const bool isLimitSize = (maxInputSize > 0);
     int charCount = 0;
 
-    string sentStr;
-    const char* p = str;
-    while(int len = sentenceTokenizer_.getSentenceLength(p))
+    const char* p = begin;
+    while(int len = sentenceTokenizer_.getSentenceLength(p, end))
     {
         if(isLimitSize && charCount >= maxInputSize)
             break;
 
         // analyze each sentence
-        sentStr.assign(p, len);
-        LanguageID id = analyzeSentenceOnScriptPriority(sentStr.c_str());
+        LanguageID id = analyzeSentenceOnScriptPriority(p, p+len);
         assert(id != LANGUAGE_ID_NUM && "error: result in analyzing sentence is invalid.");
 
         ++countVec[id];
@@ -410,7 +402,6 @@ void LanguageAnalyzer::countIDFromString(const char* str, std::vector<int>& coun
 #if LANGID_DEBUG_PRINT_COUNT_STRING
         cout << "sentence " << sentCount++ << " ";
         cout << Knowledge::getLanguageNameFromID(id) << ": ";
-        cout << sentStr << endl;
 #endif
 
         p += len;
@@ -459,14 +450,14 @@ bool LanguageAnalyzer::countIDFromFile(const char* fileName, std::vector<int>& c
     {
         while(getline(ifs, line))
         {
-            countIDFromString(line.c_str(), countVec);
+            countIDFromString(line.c_str(), line.c_str()+line.size(), countVec);
         }
     }
     else
     {
         while(getline(ifs, line) && maxInputSize > 0)
         {
-            countIDFromString(line.c_str(), countVec, maxInputSize);
+            countIDFromString(line.c_str(), line.c_str()+line.size(), countVec, maxInputSize);
 
             maxInputSize -= line.size();
             if(! ifs.eof())

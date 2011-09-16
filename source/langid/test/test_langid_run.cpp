@@ -505,7 +505,7 @@ int main(int argc, char* argv[])
 
         //cout << endl;
     }
-    catch(exception& e)
+    catch(std::exception& e)
     {
         cerr << "error: " << e.what() << "\n";
         exit(1);

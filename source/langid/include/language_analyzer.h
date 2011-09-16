@@ -100,10 +100,11 @@ public:
 private:
     /**
      * Identify the single primary language type for sentence, using script priority in descending order (KR, JP, CT, CS, EN).
-     * \param str sentence string in UTF-8 encoding
+     * \param begin start of sentence string in UTF-8 encoding
+     * \param end end of sentence string in UTF-8 encoding
      * \return the single primary language type
      */
-    LanguageID analyzeSentenceOnScriptPriority(const char* str) const;
+    LanguageID analyzeSentenceOnScriptPriority(const char* begin, const char* end) const;
 
     /**
      * Identify the single primary language type for sentence, using script count, especially for (EN, KR).
@@ -114,11 +115,12 @@ private:
 
     /**
      * Count the sentences for each language type contained in \e str in UTF-8 encoding.
-     * \param[in] str string in UTF-8 encoding
+     * \param[in] begin start of string in UTF-8 encoding
+     * \param[in] end end of string in UTF-8 encoding, excluding this end
      * \param[out] countVec sentence counts of each language type
      * \param[in] maxInputSize maximum analysis size in bytes, the entire string would be analyzed if a non-positive value is given.
      */
-    void countIDFromString(const char* str, std::vector<int>& countVec, int maxInputSize = 0) const;
+    void countIDFromString(const char* begin, const char* end, std::vector<int>& countVec, int maxInputSize = 0) const;
 
     /**
      * Count the sentences for each language type contained in \e fileName in UTF-8 encoding.
@@ -147,10 +149,11 @@ private:
 
     /**
      * Segment \e str into language regions, and append them into \e regionVec.
-     * \param[in] str string in UTF-8 encoding
+     * \param[in] begin start of string in UTF-8 encoding
+     * \param[in] end start of string in UTF-8 encoding
      * \param[out] regionVec region results
      */
-    void addLanguageRegion(const char* str, std::vector<LanguageRegion>& regionVec) const;
+    void addLanguageRegion(const char* begin, const char* end, std::vector<LanguageRegion>& regionVec) const;
 
     /**
      * Combine the language regions to ensure each size is larger than \e minSize.

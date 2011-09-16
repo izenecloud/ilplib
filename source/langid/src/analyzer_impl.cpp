@@ -13,6 +13,7 @@
 #include "encoding_analyzer.h"
 #include "profile_model.h"
 
+#include <cstring> // strlen
 #include <cassert>
 
 NS_ILPLIB_LANGID_BEGIN
@@ -67,7 +68,7 @@ bool AnalyzerImpl::encodingFromFile(const char* fileName, EncodingID& id)
 
 int AnalyzerImpl::sentenceLength(const char* str)
 {
-    return sentenceTokenizer_->getSentenceLength(str);
+    return sentenceTokenizer_->getSentenceLength(str, str+strlen(str));
 }
 
 bool AnalyzerImpl::languageFromString(const char* str, LanguageID& id)

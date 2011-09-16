@@ -49,7 +49,7 @@ int main(int argc, char* argv[])
         int i = 0;
         string sentStr;
         const char* p = line.c_str();
-        while(int len = tokenizer.getSentenceLength(p))
+        while(int len = tokenizer.getSentenceLength(p, p+line.size()))
         {
             // print each sentence
             sentStr.assign(p, len);

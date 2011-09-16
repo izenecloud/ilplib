@@ -39,8 +39,9 @@ NS_ILPLIB_LANGID_BEGIN
  *
  * // the raw input string
  * const char* p = "Abcde. FGHIJ";
+ * const char* end = p + strlen(p);
  *
- * while(int len = tokenizer.getSentenceLength(p))
+ * while(int len = tokenizer.getSentenceLength(p, end))
  * {
  *      // print each sentence
  *      cout << string(p, len) << endl;
@@ -60,11 +61,12 @@ public:
 
     /**
      * Get the length of the first sentence starting from \e str.
-     * \param str pointer to the raw input string encoded in UTF-8
+     * \param start pointer to the start of raw input string encoded in UTF-8
+     * \param end pointer to the end of raw input string encoded in UTF-8
      * \return the length in bytes of the first sentence starting from \e str,
      * 0 is returned if there is no sentence left, that is, when \e *str is null.
      */
-    int getSentenceLength(const char* str) const;
+    int getSentenceLength(const char* begin, const char* end) const;
     
 private:
     /**

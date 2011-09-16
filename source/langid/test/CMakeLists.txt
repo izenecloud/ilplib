@@ -18,3 +18,6 @@ target_link_libraries(test_langid_run ${LIBS})
 
 add_executable(test_multithread test_multithread.cpp)
 target_link_libraries(test_multithread ${LIBS})
+
+add_executable(test_langid_perf test_langid_perf.cpp)
+target_link_libraries(test_langid_perf ${LIBS})

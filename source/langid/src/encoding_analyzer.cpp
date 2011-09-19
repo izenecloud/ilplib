@@ -26,10 +26,7 @@ bool EncodingAnalyzer::encodingFromString(const char* str, EncodingID& id, int m
     Profile p(profileModel_.getNGramRange(), profileModel_.getProfileLength());
 
     if(! p.generateFromStr(str, maxInputSize))
-    {
-        cerr << "error: fail to generate profile from string " << str << endl;
         return false;
-    }
 
     return profileModel_.encodingFromProfile(p, id);
 }
@@ -39,10 +36,7 @@ bool EncodingAnalyzer::encodingFromFile(const char* fileName, EncodingID& id, in
     Profile p(profileModel_.getNGramRange(), profileModel_.getProfileLength());
 
     if(! p.generateFromFile(fileName, maxInputSize))
-    {
-        cerr << "error: fail to generate profile from file " << fileName << endl;
         return false;
-    }
 
     return profileModel_.encodingFromProfile(p, id);
 }

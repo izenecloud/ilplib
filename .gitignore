@@ -11,6 +11,7 @@
 !/lib
 !/docs
 !/source
+!/test
 !/cmake
 !/include
 !/.gitignore

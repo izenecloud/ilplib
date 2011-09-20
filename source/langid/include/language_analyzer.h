@@ -161,7 +161,10 @@ private:
      * it is combined into adjacent larger block in a different language.
      * \param[in][out] regionVec regions, used as input of language blocks, and also as output of combination result.
      */
-    void combineLanguageRegion(std::vector<LanguageRegion>& regionVec, int minSize) const;
+    void combineLanguageRegion(std::vector<LanguageRegion>& regionVec, std::size_t minSize) const;
+
+    bool isOptionNoChineseTraditional() const;
+    int getOptionBlockSizeThreshold() const;
 
 private:
     /** character tokenizer */

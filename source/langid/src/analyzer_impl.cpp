@@ -66,7 +66,7 @@ bool AnalyzerImpl::encodingFromFile(const char* fileName, EncodingID& id)
     return encodingAnalyzer_->encodingFromFile(fileName, id, getOption(Analyzer::OPTION_TYPE_LIMIT_ANALYZE_SIZE));
 }
 
-int AnalyzerImpl::sentenceLength(const char* str)
+std::size_t AnalyzerImpl::sentenceLength(const char* str)
 {
     return sentenceTokenizer_->getSentenceLength(str, str+strlen(str));
 }

@@ -13,6 +13,7 @@
 #include <ilplib.h>
 
 #include <vector>
+#include <cstddef> // size_t
 
 /**
  * namespace of library Language Identification.
@@ -30,10 +31,10 @@ struct LanguageRegion
     LanguageID languageID_;
 
     /** region start position (zero-indexed in bytes) */
-    unsigned int start_;
+    std::size_t start_;
 
     /** region length (in bytes) */
-    unsigned int length_;
+    std::size_t length_;
 };
 
 /**
@@ -87,7 +88,7 @@ struct LanguageRegion
  * analyzer->segmentFile("...", regionVec);
  *
  * // get the length of the first sentence of string in UTF-8 encoding
- * int len = analyzer->sentenceLength("...");
+ * std::size_t len = analyzer->sentenceLength("...");
  *
  * delete knowledge;
  * delete analyzer;
@@ -257,7 +258,7 @@ public:
      * \return the length in bytes of the first sentence starting from \e str,
      * 0 is returned if there is no sentence left, that is, when \e *str is null.
      */
-    virtual int sentenceLength(const char* str) = 0;
+    virtual std::size_t sentenceLength(const char* str) = 0;
 
 private:
     /** option values */

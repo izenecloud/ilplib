@@ -62,7 +62,7 @@ public:
      * \return the length in bytes of the first sentence starting from \e str,
      * 0 is returned if there is no sentence left, that is, when \e *str is null.
      */
-    virtual int sentenceLength(const char* str);
+    virtual std::size_t sentenceLength(const char* str);
 
     /**
      * Identify the single primary language type contained in \e str in UTF-8 encoding.

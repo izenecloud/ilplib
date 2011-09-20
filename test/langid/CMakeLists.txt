@@ -20,24 +20,28 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 
   add_executable(t_identify_primary_language
     Runner.cpp
+    LangidTestFixture.cpp
     t_identify_primary_language.cpp
   )
   target_link_libraries(t_identify_primary_language ${libs})
 
   add_executable(t_identify_multi_language
     Runner.cpp
+    LangidTestFixture.cpp
     t_identify_multi_language.cpp
   )
   target_link_libraries(t_identify_multi_language ${libs})
 
   add_executable(t_tokenize_sentence
     Runner.cpp
+    LangidTestFixture.cpp
     t_tokenize_sentence.cpp
   )
   target_link_libraries(t_tokenize_sentence ${libs})
 
   add_executable(t_identify_encoding
     Runner.cpp
+    LangidTestFixture.cpp
     t_identify_encoding.cpp
   )
   target_link_libraries(t_identify_encoding ${libs})

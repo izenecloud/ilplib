@@ -160,7 +160,7 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
     input.text_.convertString(utf8_text, izenelib::util::UString::UTF_8);
     const char* p = utf8_text.c_str();
     std::size_t lastpos, pos = 0, globalOffset = 0;
-    while (int len = langIdAnalyzer_->sentenceLength(p))
+    while (std::size_t len = langIdAnalyzer_->sentenceLength(p))
     {
         UString sentence;
         sentence.assign(p, len, izenelib::util::UString::UTF_8);

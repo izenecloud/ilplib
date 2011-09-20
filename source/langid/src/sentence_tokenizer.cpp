@@ -40,7 +40,7 @@ SentenceTokenizer::SentenceTokenizer(const SentenceBreakTable& table)
 {
 }
 
-int SentenceTokenizer::getSentenceLength(const char* begin, const char* end) const
+std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* end) const
 {
 #if LANGID_DEBUG_PRINT
     cout << endl << ">>> SentenceTokenizer::getSentenceLength(), begin:" << endl;
@@ -248,7 +248,7 @@ int SentenceTokenizer::getSentenceLength(const char* begin, const char* end) con
 #endif
     }
 
-    int len = p - begin;
+    size_t len = p - begin;
 
 #if LANGID_DEBUG_PRINT
     cout << "<<< SentenceTokenizer::getSentenceLength(), sentence: " << string(begin, len)  << ", length: " << len << endl;

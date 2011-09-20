@@ -106,8 +106,7 @@ bool LanguageAnalyzer::segmentString(const char* str, std::vector<LanguageRegion
 
     addLanguageRegion(str, str+strlen(str), regionVec);
 
-    int value = option_ ? option_->getOption(Analyzer::OPTION_TYPE_BLOCK_SIZE_THRESHOLD) : 0;
-    combineLanguageRegion(regionVec, value);
+    combineLanguageRegion(regionVec, getOptionBlockSizeThreshold());
 
     return true;
 }
@@ -139,8 +138,7 @@ bool LanguageAnalyzer::segmentFile(const char* fileName, std::vector<LanguageReg
         addLanguageRegion(line.c_str(), line.c_str()+line.size(), regionVec);
     }
 
-    int value = option_ ? option_->getOption(Analyzer::OPTION_TYPE_BLOCK_SIZE_THRESHOLD) : 0;
-    combineLanguageRegion(regionVec, value);
+    combineLanguageRegion(regionVec, getOptionBlockSizeThreshold());
 
     return true;
 }
@@ -154,7 +152,7 @@ void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std
     assert(begin && end);
 
     LanguageID previousID = LANGUAGE_ID_NUM;
-    unsigned int pos = 0; // position in total string
+    size_t pos = 0; // position in total string
 
     if(! regionVec.empty())
     {
@@ -164,7 +162,7 @@ void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std
     }
 
     const char* p = begin;
-    while(int len = sentenceTokenizer_.getSentenceLength(p, end))
+    while(size_t len = sentenceTokenizer_.getSentenceLength(p, end))
     {
         // analyze each sentence
         LanguageID id = analyzeSentenceOnScriptPriority(p, p+len);
@@ -234,7 +232,7 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* begin, 
     }
     else if(flagVec[SCRIPT_TYPE_TRADITIONAL])
     {
-        if(option_ && option_->getOption(Analyzer::OPTION_TYPE_NO_CHINESE_TRADITIONAL))
+        if(isOptionNoChineseTraditional())
             result = LANGUAGE_ID_CHINESE_SIMPLIFIED;
         else
             result = LANGUAGE_ID_CHINESE_TRADITIONAL;
@@ -325,7 +323,7 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptCount(const char* str)
     }
     else if(countVec[SCRIPT_TYPE_TRADITIONAL])
     {
-        if(option_ && option_->getOption(Analyzer::OPTION_TYPE_NO_CHINESE_TRADITIONAL))
+        if(isOptionNoChineseTraditional())
             result = LANGUAGE_ID_CHINESE_SIMPLIFIED;
         else
             result = LANGUAGE_ID_CHINESE_TRADITIONAL;
@@ -388,7 +386,7 @@ void LanguageAnalyzer::countIDFromString(const char* begin, const char* end, std
     int charCount = 0;
 
     const char* p = begin;
-    while(int len = sentenceTokenizer_.getSentenceLength(p, end))
+    while(size_t len = sentenceTokenizer_.getSentenceLength(p, end))
     {
         if(isLimitSize && charCount >= maxInputSize)
             break;
@@ -556,9 +554,9 @@ void LanguageAnalyzer::getMultipleID(const std::vector<int>& countVec, std::vect
 #endif
 }
 
-void LanguageAnalyzer::combineLanguageRegion(std::vector<LanguageRegion>& regionVec, int minSize) const
+void LanguageAnalyzer::combineLanguageRegion(std::vector<LanguageRegion>& regionVec, std::size_t minSize) const
 {
-    if(minSize <= 0) // disable combination
+    if(minSize == 0) // disable combination
         return;
 
     typedef vector<LanguageRegion>::iterator RegionIter;
@@ -567,9 +565,9 @@ void LanguageAnalyzer::combineLanguageRegion(std::vector<LanguageRegion>& region
 
     for(RegionIter iter=prevIter+1; iter<endIter; ++iter)
     {
-        if(iter->length_ <= static_cast<unsigned int>(minSize)
-                || prevIter->length_ <= static_cast<unsigned int>(minSize)
-                || prevIter->languageID_ == iter->languageID_)
+        if(iter->length_ <= minSize
+            || prevIter->length_ <= minSize
+            || prevIter->languageID_ == iter->languageID_)
         {
             if(prevIter->length_ < iter->length_)
                 prevIter->languageID_ = iter->languageID_; // use language of larger size
@@ -590,6 +588,26 @@ void LanguageAnalyzer::combineLanguageRegion(std::vector<LanguageRegion>& region
 void LanguageAnalyzer::setOptionSrc(const Analyzer* src)
 {
     option_ = src;
+}
+
+bool LanguageAnalyzer::isOptionNoChineseTraditional() const
+{
+    if(option_ && option_->getOption(Analyzer::OPTION_TYPE_NO_CHINESE_TRADITIONAL))
+        return true;
+
+    return false;
+}
+
+int LanguageAnalyzer::getOptionBlockSizeThreshold() const
+{
+    if (option_)
+    {
+        int value = option_->getOption(Analyzer::OPTION_TYPE_BLOCK_SIZE_THRESHOLD);
+        if (value >= 0)
+            return value;
+    }
+
+    return 0;
 }
 
 NS_ILPLIB_LANGID_END

@@ -170,7 +170,7 @@ analyzer->segmentString("...", regionVec);
 analyzer->segmentFile("...", regionVec);
 
 // get the length of the first sentence of string in UTF-8 encoding
-int len = analyzer->sentenceLength("...");
+std::size_t len = analyzer->sentenceLength("...");
 
 delete knowledge;
 delete analyzer;
@@ -191,7 +191,7 @@ Given a string in UTF-8 encoding, you could use <CODE>Analyzer::sentenceLength()
 \code
 const char* p = "...";
 string sentStr;
-while(int len = analyzer->sentenceLength(p))
+while(std::size_t len = analyzer->sentenceLength(p))
 {
     sentStr.assign(p, len);  // get each sentence
     cout << sentStr << endl; // print each sentence

@@ -5,62 +5,55 @@
 /// @date Created 2011-09-19
 ///
 
-#include <langid/langid.h>
+#ifndef LANGID_TEST_FIXTURE_H
+#define LANGID_TEST_FIXTURE_H
 
+#include <langid/langid.h>
+#include <util/ustring/UString.h>
+
+#include <vector>
+#include <string>
 #include <boost/test/unit_test.hpp>
-#include <boost/filesystem.hpp>
 #include <boost/filesystem/path.hpp>
-#include <fstream>
+
+NS_ILPLIB_LANGID_BEGIN
 
 class LangidTestFixture
 {
 public:
-    LangidTestFixture()
-        : analyzer_(NULL)
-        , knowledge_(NULL)
-        , testDir_("LangidTestFixture")
-    {
-        ilplib::langid::Factory* factory = ilplib::langid::Factory::instance();
-        analyzer_ = factory->createAnalyzer();
-        knowledge_ = factory->createKnowledge();
+    LangidTestFixture();
+    ~LangidTestFixture();
 
-        const char* encodingModel = "../db/langid/model/encoding.bin";
-        const char* languageModel = "../db/langid/model/language.bin";
+    ilplib::langid::Analyzer* getAnalyzer() { return analyzer_; }
 
-        BOOST_REQUIRE(knowledge_->loadEncodingModel(encodingModel));
-        BOOST_REQUIRE(knowledge_->loadLanguageModel(languageModel));
+    std::string createTestFile(const char* fileName, const char* content) const;
 
-        analyzer_->setKnowledge(knowledge_);
+    void checkEncoding(const char* str, EncodingID gold);
 
-        boost::filesystem::remove_all(testDir_);
-        boost::filesystem::create_directory(testDir_);
-    }
+    void checkPrimaryLanguage(const char* str, LanguageID gold);
 
-    ~LangidTestFixture()
-    {
-        boost::filesystem::remove_all(testDir_);
+    void checkLanguageList(
+        const std::vector<string>& languageBlocks,
+        const std::vector<LanguageID>& goldLangIDs
+    );
 
-        delete knowledge_;
-        delete analyzer_;
-    }
+    void checkSegmentLanguage(
+        const std::vector<string>& languageBlocks,
+        const std::vector<LanguageID>& goldLangIDs
+    );
 
-    ilplib::langid::Analyzer* getAnalyzer()
-    {
-        return analyzer_;
-    }
+    void checkTokenizeSentence(const vector<string>& sentVec);
 
-    std::string createTestFile(const char* fileName, const char* content)
-    {
-        std::string path = (testDir_ / fileName).string();
-        std::ofstream ofs(path.c_str());
-        BOOST_REQUIRE(ofs);
-
-        ofs << content;
-        return path;
-    }
+private:
+    void checkTokenizeUTF8String_(const vector<string>& sentVec);
+    void checkTokenizeUString_(const vector<izenelib::util::UString>& sentVec);
 
 private:
     ilplib::langid::Analyzer* analyzer_;
     ilplib::langid::Knowledge* knowledge_;
     const boost::filesystem::path testDir_;
 };
+
+NS_ILPLIB_LANGID_END
+
+#endif // LANGID_TEST_FIXTURE_H

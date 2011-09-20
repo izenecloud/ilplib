@@ -300,7 +300,7 @@ void testSentenceLength(Analyzer& analyzer, istream& is)
     {
         const char* p = line.c_str();
         string sentStr;
-        while(int len = analyzer.sentenceLength(p))
+        while(size_t len = analyzer.sentenceLength(p))
         {
             sentStr.assign(p, len); // get each sentence
             cout << sentStr << endl; // print each sentence

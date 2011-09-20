@@ -28,3 +28,5 @@ task :default => :cmake
 IZENESOFT::CMake.new do |t|
   t.source_dir = "."
 end
+
+IZENESOFT::BoostTest.new

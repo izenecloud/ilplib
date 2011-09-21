@@ -73,11 +73,8 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType( UCS2Char ucs
 MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const UString & input )
 {
     LanguageID langId;
-    std::string utf8_text;
 
-    input.convertString(utf8_text, izenelib::util::UString::UTF_8);
-
-    langIdAnalyzer_->languageFromString(utf8_text.c_str(), langId);
+    langIdAnalyzer_->languageFromString(input, langId);
     switch (langId)
     {
     case LANGUAGE_ID_CHINESE_SIMPLIFIED:
@@ -158,12 +155,10 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
     std::string utf8_text;
 
     input.text_.convertString(utf8_text, izenelib::util::UString::UTF_8);
-    const char* p = utf8_text.c_str();
-    std::size_t lastpos, pos = 0, globalOffset = 0;
-    while (std::size_t len = langIdAnalyzer_->sentenceLength(p))
+    std::size_t strPos = 0, lastpos, pos = 0, globalOffset = 0;
+    while (std::size_t len = langIdAnalyzer_->sentenceLength(utf8_text, strPos))
     {
-        UString sentence;
-        sentence.assign(p, len, izenelib::util::UString::UTF_8);
+        UString sentence(utf8_text, strPos, len);
         Language lang = detectLanguage(sentence);
         lastpos = pos;
 
@@ -183,7 +178,7 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         if (pos > lastpos)
             globalOffset = output->back().wordOffset_ + 1;
 
-        p += len;
+        strPos += len;
     }
 
     if (output->size() > 0)

@@ -12,9 +12,9 @@
 #include "langid/language_id.h"
 #include "langid/analyzer.h"
 
-#include "ucs2_converter.h"
 #include "script_table.h"
 #include "sentence_tokenizer.h"
+#include <util/ustring/UString.h>
 
 #include <vector>
 
@@ -43,6 +43,15 @@ public:
     bool primaryIDFromString(const char* str, LanguageID& id, int maxInputSize = 0) const;
 
     /**
+     * Identify the single primary language type contained in \e ustr.
+     * \param[in] ustr UString instance
+     * \param[out] id the single primary language type as identification result
+     * \param[in] maxInputSize maximum analysis size in bytes, the entire string would be analyzed if a non-positive value is given.
+     * \return true for success, false for failure
+     */
+    bool primaryIDFromString(const izenelib::util::UString& ustr, LanguageID& id, int maxInputSize = 0) const;
+
+    /**
      * Identify the single primary language type contained in \e fileName in UTF-8 encoding.
      * \param[in] fileName file name, which content is in UTF-8 encoding
      * \param[out] id the single primary language type as identification result
@@ -61,6 +70,17 @@ public:
      * \attention the original data in \e idVec would be removed.
      */
     bool multipleIDFromString(const char* str, std::vector<LanguageID>& idVec) const;
+
+    /**
+     * Identify the list of multiple language types contained in \e ustr.
+     * \param[in] ustr UString instance
+     * \param[out] idVec the list of multiple language types as identification result,
+     * the items in \e idVec are sorted by its sentence count in descending order,
+     * that is, <em> idVec[0] </em> would be the primary language type, and <em> idVec[1] </em> the next primary type, etc.
+     * \return true for success, false for failure
+     * \attention the original data in \e idVec would be removed.
+     */
+    bool multipleIDFromString(const izenelib::util::UString& ustr, std::vector<LanguageID>& idVec) const;
 
     /**
      * Identify the list of multiple language types contained in \e fileName in UTF-8 encoding.
@@ -83,6 +103,15 @@ public:
     bool segmentString(const char* str, std::vector<LanguageRegion>& regionVec) const;
 
     /**
+     * Segment the multi-lingual UString into single-language regions.
+     * \param[in] ustr UString instance
+     * \param[out] regionVec region results, each region is in a single language type
+     * \return true for success, false for failure
+     * \attention the original data in \e regionVec would be removed.
+     */
+    bool segmentString(const izenelib::util::UString& ustr, std::vector<LanguageRegion>& regionVec) const;
+
+    /**
      * Segment the UTF-8 multi-lingual document into single-language regions.
      * \param[in] fileName file name, which content is in UTF-8 encoding
      * \param[out] regionVec region results, each region is in a single language type
@@ -100,27 +129,31 @@ public:
 private:
     /**
      * Identify the single primary language type for sentence, using script priority in descending order (KR, JP, CT, CS, EN).
-     * \param begin start of sentence string in UTF-8 encoding
-     * \param end end of sentence string in UTF-8 encoding
+     * \param begin start of sentence string in \p encoding
+     * \param end end of sentence string in \p encoding
      * \return the single primary language type
      */
+    template<EncodingID encoding>
     LanguageID analyzeSentenceOnScriptPriority(const char* begin, const char* end) const;
 
     /**
      * Identify the single primary language type for sentence, using script count, especially for (EN, KR).
-     * \param str sentence string in UTF-8 encoding
+     * \param begin start of sentence string in \p encoding
+     * \param end end of sentence string in \p encoding
      * \return the single primary language type
      */
-    LanguageID analyzeSentenceOnScriptCount(const char* str);
+    template<EncodingID encoding>
+    LanguageID analyzeSentenceOnScriptCount(const char* begin, const char* end) const;
 
     /**
-     * Count the sentences for each language type contained in \e str in UTF-8 encoding.
-     * \param[in] begin start of string in UTF-8 encoding
-     * \param[in] end end of string in UTF-8 encoding, excluding this end
+     * Count the sentences for each language type contained between [begin, end) in \p encoding.
+     * \param[in] begin start of string in \p encoding
+     * \param[in] end end of string in \p encoding, excluding this end
      * \param[out] countVec sentence counts of each language type
      * \param[in] maxInputSize maximum analysis size in bytes, the entire string would be analyzed if a non-positive value is given.
      */
-    void countIDFromString(const char* begin, const char* end, std::vector<int>& countVec, int maxInputSize = 0) const;
+    template<EncodingID encoding>
+    void countIDFromString(const char* begin, const char* end, std::vector<int>& countVec, int maxInputSize) const;
 
     /**
      * Count the sentences for each language type contained in \e fileName in UTF-8 encoding.
@@ -129,7 +162,7 @@ private:
      * \param[in] maxInputSize maximum analysis size in bytes, the entire file would be analyzed if a non-positive value is given.
      * \return true for success, false for failure
      */
-    bool countIDFromFile(const char* fileName, std::vector<int>& countVec, int maxInputSize = 0) const;
+    bool countIDFromFile(const char* fileName, std::vector<int>& countVec, int maxInputSize) const;
 
     /**
      * Identify the single primary language type in the sentence counts of each language type \e countVec.
@@ -149,10 +182,11 @@ private:
 
     /**
      * Segment \e str into language regions, and append them into \e regionVec.
-     * \param[in] begin start of string in UTF-8 encoding
-     * \param[in] end start of string in UTF-8 encoding
+     * \param[in] begin start of string in \p encoding
+     * \param[in] end start of string in \p encoding
      * \param[out] regionVec region results
      */
+    template<EncodingID encoding>
     void addLanguageRegion(const char* begin, const char* end, std::vector<LanguageRegion>& regionVec) const;
 
     /**
@@ -163,13 +197,12 @@ private:
      */
     void combineLanguageRegion(std::vector<LanguageRegion>& regionVec, std::size_t minSize) const;
 
+    void convertUStringLanguageRegion(std::vector<LanguageRegion>& regionVec) const;
+
     bool isOptionNoChineseTraditional() const;
     int getOptionBlockSizeThreshold() const;
 
 private:
-    /** character tokenizer */
-    Utf8ToUcs2 charTokenizer_;
-
     /** script type table */
     const ScriptTable& scriptTable_;
 

@@ -11,7 +11,7 @@
 #ifndef LANGID_SENTENCE_TOKENIZER_H
 #define LANGID_SENTENCE_TOKENIZER_H
 
-#include "ucs2_converter.h"
+#include <langid/language_id.h>
 #include "sentence_break_table.h"
 
 #include <cstddef> // std::size_t
@@ -41,7 +41,7 @@ NS_ILPLIB_LANGID_BEGIN
  * const char* p = "Abcde. FGHIJ";
  * const char* end = p + strlen(p);
  *
- * while(std::size_t len = tokenizer.getSentenceLength(p, end))
+ * while(std::size_t len = tokenizer.getSentenceLength<ENCODING_ID_UTF8>(p, end))
  * {
  *      // print each sentence
  *      cout << string(p, len) << endl;
@@ -57,15 +57,18 @@ public:
      * Constructor.
      * \param table sentence break table used to determine sentence boundary
      */
-    SentenceTokenizer(const SentenceBreakTable& table);
+    SentenceTokenizer(const SentenceBreakTable& table)
+        : breakTable_(table)
+    {}
 
     /**
-     * Get the length of the first sentence starting from \e str.
-     * \param start pointer to the start of raw input string encoded in UTF-8
-     * \param end pointer to the end of raw input string encoded in UTF-8
-     * \return the length in bytes of the first sentence starting from \e str,
-     * 0 is returned if there is no sentence left, that is, when \e *str is null.
+     * Get the length of the first sentence between [begin, end).
+     * \param begin pointer to the start of raw input string encoded in \p encoding
+     * \param end pointer to the end of raw input string encoded in \p encoding
+     * \return the length in bytes of the first sentence starting from \p begin,
+     * 0 is returned if there is no sentence left, that is, when begin >= end.
      */
+    template<EncodingID encoding>
     std::size_t getSentenceLength(const char* begin, const char* end) const;
     
 private:
@@ -77,6 +80,7 @@ private:
      * \param mask bit mask in match. The match pattern is (each type & \e mask).
      * \return the count of bytes matched.
      */
+    template<EncodingID encoding>
     std::size_t starMatch(const char* begin, const char* end, int mask) const;
 
     /**
@@ -100,10 +104,17 @@ private:
     /** sentence break table */
     const SentenceBreakTable& breakTable_;
 
-    /** character tokenizer */
-    Utf8ToUcs2 encoding_;
+    enum BitMask
+    {
+        MASK_SEP = SB_TYPE_SEP | SB_TYPE_CR | SB_TYPE_LF, ///< paragraph separators
+        MASK_TERM = SB_TYPE_STERM | SB_TYPE_ATERM, ///< sentence terminators
+        MASK_SEP_TERM_CONTINUE = MASK_SEP | MASK_TERM | SB_TYPE_SCONTINUE, ///< sentence separators, terminators and continues
+        MASK_NEG_LETTER = ~(SB_TYPE_OLETTER | SB_TYPE_UPPER | SB_TYPE_LOWER | MASK_SEP | MASK_TERM) ///< negation of letters, sentence separators and terminators
+    };
 };
 
 NS_ILPLIB_LANGID_END
+
+#include "sentence_tokenizer.inl"
 
 #endif // LANGID_SENTENCE_TOKENIZER_H

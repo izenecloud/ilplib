@@ -68,12 +68,29 @@ bool AnalyzerImpl::encodingFromFile(const char* fileName, EncodingID& id)
 
 std::size_t AnalyzerImpl::sentenceLength(const char* str)
 {
-    return sentenceTokenizer_->getSentenceLength(str, str+strlen(str));
+    return sentenceTokenizer_->getSentenceLength<ENCODING_ID_UTF8>(str, str+strlen(str));
+}
+
+std::size_t AnalyzerImpl::sentenceLength(const izenelib::util::UString& ustr, std::size_t pos)
+{
+    const char* begin = reinterpret_cast<const char*>(ustr.data());
+    const char* end = begin + ustr.size();
+
+    // 2 bytes for each character
+    begin += (pos << 1);
+    std::size_t byteCount = sentenceTokenizer_->getSentenceLength<ENCODING_ID_UTF16>(begin, end);
+
+    return (byteCount >> 1);
 }
 
 bool AnalyzerImpl::languageFromString(const char* str, LanguageID& id)
 {
     return languageAnalyzer_->primaryIDFromString(str, id, getOption(Analyzer::OPTION_TYPE_LIMIT_ANALYZE_SIZE));
+}
+
+bool AnalyzerImpl::languageFromString(const izenelib::util::UString& ustr, LanguageID& id)
+{
+    return languageAnalyzer_->primaryIDFromString(ustr, id, getOption(Analyzer::OPTION_TYPE_LIMIT_ANALYZE_SIZE));
 }
 
 bool AnalyzerImpl::languageFromFile(const char* fileName, LanguageID& id)
@@ -86,6 +103,11 @@ bool AnalyzerImpl::languageListFromString(const char* str, std::vector<LanguageI
     return languageAnalyzer_->multipleIDFromString(str, idVec);
 }
 
+bool AnalyzerImpl::languageListFromString(const izenelib::util::UString& ustr, std::vector<LanguageID>& idVec)
+{
+    return languageAnalyzer_->multipleIDFromString(ustr, idVec);
+}
+
 bool AnalyzerImpl::languageListFromFile(const char* fileName, std::vector<LanguageID>& idVec)
 {
     return languageAnalyzer_->multipleIDFromFile(fileName, idVec);
@@ -94,6 +116,11 @@ bool AnalyzerImpl::languageListFromFile(const char* fileName, std::vector<Langua
 bool AnalyzerImpl::segmentString(const char* str, std::vector<LanguageRegion>& regionVec)
 {
     return languageAnalyzer_->segmentString(str, regionVec);
+}
+
+bool AnalyzerImpl::segmentString(const izenelib::util::UString& ustr, std::vector<LanguageRegion>& regionVec)
+{
+    return languageAnalyzer_->segmentString(ustr, regionVec);
 }
 
 bool AnalyzerImpl::segmentFile(const char* fileName, std::vector<LanguageRegion>& regionVec)

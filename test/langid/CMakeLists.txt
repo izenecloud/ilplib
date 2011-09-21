@@ -4,6 +4,7 @@ FIND_PACKAGE(Boost ${Boost_FIND_VERSION}
 
 IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
   INCLUDE_DIRECTORIES(
+    ${PROJECT_SOURCE_DIR}/source/langid/include
     ${Boost_INCLUDE_DIRS}
   )
 
@@ -45,5 +46,11 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
     t_identify_encoding.cpp
   )
   target_link_libraries(t_identify_encoding ${libs})
+
+  add_executable(t_ucs2_converter
+    Runner.cpp
+    t_ucs2_converter.cpp
+  )
+  target_link_libraries(t_ucs2_converter ${libs})
 
 ENDIF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)

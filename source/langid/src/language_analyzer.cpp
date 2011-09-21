@@ -8,6 +8,7 @@
 
 #include "language_analyzer.h"
 #include "script_table.h"
+#include "ucs2_converter.h"
 #include "langid/knowledge.h"
 
 #include <cassert>
@@ -46,7 +47,20 @@ bool LanguageAnalyzer::primaryIDFromString(const char* str, LanguageID& id, int 
     // count each language type
     vector<int> countVec(LANGUAGE_ID_NUM);
 
-    countIDFromString(str, str+strlen(str), countVec, maxInputSize);
+    countIDFromString<ENCODING_ID_UTF8>(str, str+strlen(str), countVec, maxInputSize);
+
+    id = getPrimaryID(countVec);
+    return true;
+}
+
+bool LanguageAnalyzer::primaryIDFromString(const izenelib::util::UString& ustr, LanguageID& id, int maxInputSize) const
+{
+    // count each language type
+    vector<int> countVec(LANGUAGE_ID_NUM);
+
+    const char* begin = reinterpret_cast<const char*>(ustr.data());
+    const char* end = begin + ustr.size();
+    countIDFromString<ENCODING_ID_UTF16>(begin, end, countVec, maxInputSize);
 
     id = getPrimaryID(countVec);
     return true;
@@ -75,7 +89,20 @@ bool LanguageAnalyzer::multipleIDFromString(const char* str, std::vector<Languag
     // count each language type
     vector<int> countVec(LANGUAGE_ID_NUM);
 
-    countIDFromString(str, str+strlen(str), countVec);
+    countIDFromString<ENCODING_ID_UTF8>(str, str+strlen(str), countVec, 0);
+
+    getMultipleID(countVec, idVec);
+    return true;
+}
+
+bool LanguageAnalyzer::multipleIDFromString(const izenelib::util::UString& ustr, std::vector<LanguageID>& idVec) const
+{
+    // count each language type
+    vector<int> countVec(LANGUAGE_ID_NUM);
+
+    const char* begin = reinterpret_cast<const char*>(ustr.data());
+    const char* end = begin + ustr.size();
+    countIDFromString<ENCODING_ID_UTF16>(begin, end, countVec, 0);
 
     getMultipleID(countVec, idVec);
     return true;
@@ -86,7 +113,7 @@ bool LanguageAnalyzer::multipleIDFromFile(const char* fileName, std::vector<Lang
     // count each language type
     vector<int> countVec(LANGUAGE_ID_NUM);
 
-    if(! countIDFromFile(fileName, countVec))
+    if(! countIDFromFile(fileName, countVec, 0))
         return false;
 
     getMultipleID(countVec, idVec);
@@ -104,9 +131,24 @@ bool LanguageAnalyzer::segmentString(const char* str, std::vector<LanguageRegion
     // remove original result
     regionVec.clear();
 
-    addLanguageRegion(str, str+strlen(str), regionVec);
+    addLanguageRegion<ENCODING_ID_UTF8>(str, str+strlen(str), regionVec);
 
     combineLanguageRegion(regionVec, getOptionBlockSizeThreshold());
+
+    return true;
+}
+
+bool LanguageAnalyzer::segmentString(const izenelib::util::UString& ustr, std::vector<LanguageRegion>& regionVec) const
+{
+    // remove original result
+    regionVec.clear();
+
+    const char* begin = reinterpret_cast<const char*>(ustr.data());
+    const char* end = begin + ustr.size();
+    addLanguageRegion<ENCODING_ID_UTF16>(begin, end, regionVec);
+
+    combineLanguageRegion(regionVec, getOptionBlockSizeThreshold());
+    convertUStringLanguageRegion(regionVec);
 
     return true;
 }
@@ -135,7 +177,7 @@ bool LanguageAnalyzer::segmentFile(const char* fileName, std::vector<LanguageReg
         if(! ifs.eof())
             line += '\n'; // include new line character for position accumulation
 
-        addLanguageRegion(line.c_str(), line.c_str()+line.size(), regionVec);
+        addLanguageRegion<ENCODING_ID_UTF8>(line.c_str(), line.c_str()+line.size(), regionVec);
     }
 
     combineLanguageRegion(regionVec, getOptionBlockSizeThreshold());
@@ -143,13 +185,12 @@ bool LanguageAnalyzer::segmentFile(const char* fileName, std::vector<LanguageReg
     return true;
 }
 
+template<EncodingID encoding>
 void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std::vector<LanguageRegion>& regionVec) const
 {
 #if LANGID_DEBUG_PRINT_ADD_REGION
     cerr << ">>> LanguageAnalyzer::addLanguageRegion(): " << begin << endl;
 #endif
-
-    assert(begin && end);
 
     LanguageID previousID = LANGUAGE_ID_NUM;
     size_t pos = 0; // position in total string
@@ -162,10 +203,10 @@ void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std
     }
 
     const char* p = begin;
-    while(size_t len = sentenceTokenizer_.getSentenceLength(p, end))
+    while(size_t len = sentenceTokenizer_.getSentenceLength<encoding>(p, end))
     {
         // analyze each sentence
-        LanguageID id = analyzeSentenceOnScriptPriority(p, p+len);
+        LanguageID id = analyzeSentenceOnScriptPriority<encoding>(p, p+len);
         assert(id != LANGUAGE_ID_NUM && "error: result in analyzing sentence is invalid.");
 
 #if LANGID_DEBUG_PRINT_ADD_REGION 
@@ -203,6 +244,7 @@ void LanguageAnalyzer::addLanguageRegion(const char* begin, const char* end, std
     }
 }
 
+template<EncodingID encoding>
 LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* begin, const char* end) const
 {
     assert(begin && end);
@@ -210,14 +252,15 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* begin, 
     // check each script type
     vector<bool> flagVec(SCRIPT_TYPE_NUM, false);
     size_t mblen;
+    typedef UCS2_Converter<encoding> UCSConv;
+
     for(const char* p=begin; p<end; p+=mblen)
     {
-        unsigned short value = charTokenizer_.convertToUCS2(p, end, &mblen);
+        unsigned short value = UCSConv::convertToUCS2(p, end, &mblen);
         ScriptType type = scriptTable_.getProperty(value);
 
         flagVec[type] = true;
     }
-
 
     LanguageID result = LANGUAGE_ID_UNKNOWN;
     // check script type for each language
@@ -269,19 +312,17 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptPriority(const char* begin, 
     return result;
 }
 
-LanguageID LanguageAnalyzer::analyzeSentenceOnScriptCount(const char* str)
+template<EncodingID encoding>
+LanguageID LanguageAnalyzer::analyzeSentenceOnScriptCount(const char* begin, const char* end) const
 {
-    assert(str);
-
-    const char* begin = str;
-    const char* end = begin + strlen(str);
-
     // count each script type
     vector<int> countVec(SCRIPT_TYPE_NUM);
     size_t mblen;
+    typedef UCS2_Converter<encoding> UCSConv;
+
     for(const char* p=begin; p!=end; p+=mblen)
     {
-        unsigned short value = charTokenizer_.convertToUCS2(p, end, &mblen);
+        unsigned short value = UCSConv::convertToUCS2(p, end, &mblen);
         ScriptType type = scriptTable_.getProperty(value);
 
         ++countVec[type];
@@ -372,9 +413,9 @@ LanguageID LanguageAnalyzer::analyzeSentenceOnScriptCount(const char* str)
     return result;
 }
 
+template<EncodingID encoding>
 void LanguageAnalyzer::countIDFromString(const char* begin, const char* end, std::vector<int>& countVec, int maxInputSize) const
 {
-    assert(begin && end);
     assert(countVec.size() == LANGUAGE_ID_NUM && "the count vector size should be the number of language types.");
 
 #if LANGID_DEBUG_PRINT_COUNT_STRING
@@ -386,13 +427,13 @@ void LanguageAnalyzer::countIDFromString(const char* begin, const char* end, std
     int charCount = 0;
 
     const char* p = begin;
-    while(size_t len = sentenceTokenizer_.getSentenceLength(p, end))
+    while(size_t len = sentenceTokenizer_.getSentenceLength<encoding>(p, end))
     {
         if(isLimitSize && charCount >= maxInputSize)
             break;
 
         // analyze each sentence
-        LanguageID id = analyzeSentenceOnScriptPriority(p, p+len);
+        LanguageID id = analyzeSentenceOnScriptPriority<encoding>(p, p+len);
         assert(id != LANGUAGE_ID_NUM && "error: result in analyzing sentence is invalid.");
 
         ++countVec[id];
@@ -448,14 +489,14 @@ bool LanguageAnalyzer::countIDFromFile(const char* fileName, std::vector<int>& c
     {
         while(getline(ifs, line))
         {
-            countIDFromString(line.c_str(), line.c_str()+line.size(), countVec);
+            countIDFromString<ENCODING_ID_UTF8>(line.c_str(), line.c_str()+line.size(), countVec, 0);
         }
     }
     else
     {
         while(getline(ifs, line) && maxInputSize > 0)
         {
-            countIDFromString(line.c_str(), line.c_str()+line.size(), countVec, maxInputSize);
+            countIDFromString<ENCODING_ID_UTF8>(line.c_str(), line.c_str()+line.size(), countVec, maxInputSize);
 
             maxInputSize -= line.size();
             if(! ifs.eof())
@@ -583,6 +624,16 @@ void LanguageAnalyzer::combineLanguageRegion(std::vector<LanguageRegion>& region
     }
 
     regionVec.erase(prevIter+1, endIter);
+}
+
+void LanguageAnalyzer::convertUStringLanguageRegion(std::vector<LanguageRegion>& regionVec) const
+{
+    for (vector<LanguageRegion>::iterator it = regionVec.begin();
+        it != regionVec.end(); ++it)
+    {
+        it->start_ >>= 1;
+        it->length_ >>= 1;
+    }
 }
 
 void LanguageAnalyzer::setOptionSrc(const Analyzer* src)

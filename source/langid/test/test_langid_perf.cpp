@@ -62,9 +62,10 @@ void countLanguageFromFileLine(
         if (isConvertUStr)
         {
             izenelib::util::UString ustr(line, UString::UTF_8);
-            string utf8;
-            ustr.convertString(utf8, UString::UTF_8);
-            result = analyzer.languageFromString(utf8.c_str(), lineID);
+            //string utf8;
+            //ustr.convertString(utf8, UString::UTF_8);
+            //result = analyzer.languageFromString(utf8.c_str(), lineID);
+            result = analyzer.languageFromString(ustr, lineID);
         }
         else
         {

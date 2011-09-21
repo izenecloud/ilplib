@@ -11,6 +11,7 @@
 
 #include "language_id.h"
 #include <ilplib.h>
+#include <util/ustring/UString.h>
 
 #include <vector>
 #include <cstddef> // size_t
@@ -30,10 +31,10 @@ struct LanguageRegion
     /** the language type */
     LanguageID languageID_;
 
-    /** region start position (zero-indexed in bytes) */
+    /** region start position (zero-indexed) */
     std::size_t start_;
 
-    /** region length (in bytes) */
+    /** region length */
     std::size_t length_;
 };
 
@@ -205,6 +206,14 @@ public:
     virtual bool languageFromString(const char* str, LanguageID& id) = 0;
 
     /**
+     * Identify the single primary language type contained in \e ustr.
+     * \param[in] ustr UString instance
+     * \param[out] id the single primary language type as identification result
+     * \return true for success, false for failure
+     */
+    virtual bool languageFromString(const izenelib::util::UString& ustr, LanguageID& id) = 0;
+
+    /**
      * Identify the single primary language type contained in file \e fileName in UTF-8 encoding.
      * \param[in] fileName file name, which content is in UTF-8 encoding
      * \param[out] id the single primary language type as identification result
@@ -224,6 +233,17 @@ public:
     virtual bool languageListFromString(const char* str, std::vector<LanguageID>& idVec) = 0;
 
     /**
+     * Identify the list of multiple language types contained in \e ustr.
+     * \param[in] ustr UString instance
+     * \param[out] idVec the list of multiple language types as identification result,
+     * the items in \e idVec are sorted by its sentence count in descending order,
+     * that is, <em> idVec[0] </em> would be the primary language type, and <em> idVec[1] </em> the next primary type, etc.
+     * \return true for success, false for failure
+     * \attention the original data in \e idVec would be removed.
+     */
+    virtual bool languageListFromString(const izenelib::util::UString& ustr, std::vector<LanguageID>& idVec) = 0;
+
+    /**
      * Identify the list of multiple language types contained in file \e fileName in UTF-8 encoding.
      * \param[in] fileName file name, which content is in UTF-8 encoding
      * \param[out] idVec the list of multiple language types as identification result,
@@ -239,15 +259,28 @@ public:
      * \param[in] str string in UTF-8 encoding
      * \param[out] regionVec region results, each region is in a single language type
      * \return true for success, false for failure
+     * \note in \p regionVec, the count unit for \c LanguageRegion::start_ and \c LanguageRegion::length_ is byte.
      * \attention the original data in \e regionVec would be removed.
      */
     virtual bool segmentString(const char* str, std::vector<LanguageRegion>& regionVec) = 0;
+
+    /**
+     * Segment the multi-lingual UString into single-language regions.
+     * \param[in] ustr UString instance
+     * \param[out] regionVec region results, each region is in a single language type
+     * \return true for success, false for failure
+     * \note in \p regionVec, the count unit for \c LanguageRegion::start_ and \c LanguageRegion::length_ is character,
+     *       that is, for UString, we use character count instead of byte count for region result.
+     * \attention the original data in \e regionVec would be removed.
+     */
+    virtual bool segmentString(const izenelib::util::UString& ustr, std::vector<LanguageRegion>& regionVec) = 0;
 
     /**
      * Segment the UTF-8 multi-lingual document into single-language regions.
      * \param[in] fileName file name, which content is in UTF-8 encoding
      * \param[out] regionVec region results, each region is in a single language type
      * \return true for success, false for failure
+     * \note in \p regionVec, the count unit for \c LanguageRegion::start_ and \c LanguageRegion::length_ is byte.
      * \attention the original data in \e regionVec would be removed.
      */
     virtual bool segmentFile(const char* fileName, std::vector<LanguageRegion>& regionVec) = 0;
@@ -259,6 +292,15 @@ public:
      * 0 is returned if there is no sentence left, that is, when \e *str is null.
      */
     virtual std::size_t sentenceLength(const char* str) = 0;
+
+    /**
+     * Get the length of the first sentence starting from character \e ustr[pos].
+     * \param[in] ustr UString instance
+     * \param[in] pos position of a character in \e ustr to be used as starting character for the sentence
+     * \return the count of characters in the first sentence starting from character \e ustr[pos],
+     * 0 is returned if there is no sentence left, that is, when \e pos >= \e ustr.length().
+     */
+    virtual std::size_t sentenceLength(const izenelib::util::UString& ustr, std::size_t pos = 0) = 0;
 
 private:
     /** option values */

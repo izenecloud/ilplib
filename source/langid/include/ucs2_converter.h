@@ -21,8 +21,6 @@ NS_ILPLIB_LANGID_BEGIN
  *
  * \code
  * // create instance of encoding type
- * Utf8ToUcs2 converter;
- *
  * const char* begin = "...";
  * const char* end = begin + strlen(begin);
  *
@@ -30,7 +28,7 @@ NS_ILPLIB_LANGID_BEGIN
  * size_t mblen;
  * for(const char* p=begin; p!=end; p+=mblen)
  * {
- *      unsigned short value = converter.convertToUCS2(p, end, &mblen);
+ *      unsigned short value = Utf8ToUcs2::convertToUCS2(p, end, &mblen);
  *      string str(p, mblen);
  *
  *      cout << str << "\t" << value << endl;
@@ -50,17 +48,17 @@ public:
      * \attention 0 is returned if the character is out of UCS2
      * \attention if \e begin is not less than \e end, 0 is returned, and \e mblen would be 0.
      */
-    unsigned short convertToUCS2(const char* begin, const char* end, std::size_t* mblen) const;
+    static unsigned short convertToUCS2(const char* begin, const char* end, std::size_t* mblen);
 };
 
 /**
- * UCS2_Converter<ENCODING_ID_UTF8> converts from UTF-8 to UCS2.
+ * convert from UTF-8 to UCS2.
  */
 template<>
 class UCS2_Converter<ENCODING_ID_UTF8>
 {
 public:
-    unsigned short convertToUCS2(const char* begin, const char* end, std::size_t* mblen) const
+    static unsigned short convertToUCS2(const char* begin, const char* end, std::size_t* mblen)
     {
         // in case of out of range [begin, end)
         if(begin >= end)
@@ -112,8 +110,33 @@ public:
     }
 };
 
-/** Utf8ToUcs2 converts from UTF-8 to UCS2. */
+/**
+ * convert from UTF-16 to UCS2.
+ */
+template<>
+class UCS2_Converter<ENCODING_ID_UTF16>
+{
+public:
+    static unsigned short convertToUCS2(const char* begin, const char* end, std::size_t* mblen)
+    {
+        // in case of out of range [begin, end)
+        if(begin >= end)
+        {
+            *mblen = 0;
+            return 0;
+        }
+
+        *mblen = 2;
+        return (static_cast<unsigned char>(begin[1]) << 8)
+                | static_cast<unsigned char>(begin[0]);
+    }
+};
+
+/** convert from UTF-8 to UCS2. */
 typedef UCS2_Converter<ENCODING_ID_UTF8> Utf8ToUcs2;
+
+/** convert from UTF-16 to UCS2. */
+typedef UCS2_Converter<ENCODING_ID_UTF16> Utf16ToUcs2;
 
 NS_ILPLIB_LANGID_END
 

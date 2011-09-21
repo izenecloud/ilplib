@@ -38,6 +38,7 @@ enum EncodingID
     ENCODING_ID_EUCJP, ///< encoding ID for "EUC-JP"
     ENCODING_ID_SHIFT_JIS, ///< encoding ID for "Shift_JIS"
     ENCODING_ID_EUCKR, ///< encoding ID for "EUC-KR"
+    ENCODING_ID_UTF16, ///< encoding ID for "UTF-16"
     ENCODING_ID_NUM ///< the count of encoding types
 };
 

@@ -6,7 +6,7 @@
  * \date Dec 04, 2009
  */
 
-#include "sentence_tokenizer.h"
+#include "ucs2_converter.h"
 
 #include <string>
 #include <iostream>
@@ -16,47 +16,25 @@
 
 #define LANGID_DEBUG_PRINT 0
 
-using namespace std;
-
-namespace
-{
-/** bit mask of paragraph separators */
-const int MASK_SEP = ilplib::langid::SB_TYPE_SEP | ilplib::langid::SB_TYPE_CR | ilplib::langid::SB_TYPE_LF;
-
-/** bit mask of sentence terminators */
-const int MASK_TERM = ilplib::langid::SB_TYPE_STERM | ilplib::langid::SB_TYPE_ATERM;
-
-/** bit mask of sentence separators, terminators and continues */
-const int MASK_SEP_TERM_CONTINUE = MASK_SEP | MASK_TERM | ilplib::langid::SB_TYPE_SCONTINUE;
-
-/** bit mask of negation of letters, sentence separators and terminators */
-const int MASK_NEG_LETTER = ~(ilplib::langid::SB_TYPE_OLETTER | ilplib::langid::SB_TYPE_UPPER | ilplib::langid::SB_TYPE_LOWER | MASK_SEP | MASK_TERM);
-} // namespace
-
 NS_ILPLIB_LANGID_BEGIN
 
-SentenceTokenizer::SentenceTokenizer(const SentenceBreakTable& table)
-    : breakTable_(table)
-{
-}
-
+template<EncodingID encoding>
 std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* end) const
 {
 #if LANGID_DEBUG_PRINT
-    cout << endl << ">>> SentenceTokenizer::getSentenceLength(), begin:" << endl;
-    cout << begin << endl;
+    std::std::cout << std::std::endl << ">>> SentenceTokenizer::getSentenceLength(), begin:" << std::std::endl;
+    std::std::cout << begin << std::std::endl;
 #endif
 
-    assert(begin && end);
-
-    if(begin == end)
+    if(!begin || !end || begin >= end)
     {
 #if LANGID_DEBUG_PRINT
-        cout << "<<< SentenceTokenizer::getSentenceLength(), end of string." << endl;
+        std::std::cout << "<<< SentenceTokenizer::getSentenceLength(), end of string." << std::std::endl;
 #endif
         return 0;
     }
 
+    typedef UCS2_Converter<encoding> UCSConv;
     unsigned short ucs;
     const char* p = begin;
     const char* q;
@@ -74,11 +52,11 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
     q = p;
     for(int j=0; j<3; ++j)
     {
-        ucs = encoding_.convertToUCS2(q, end, &m[j]);
+        ucs = UCSConv::convertToUCS2(q, end, &m[j]);
         t[j] = breakTable_.getProperty(ucs);
         assert(q < end || (m[j] == 0 && t[j] == SB_TYPE_OTHER));
 #if LANGID_DEBUG_PRINT
-        cout << "new c[" << j << "]: ";
+        std::cout << "new c[" << j << "]: ";
         debugPrintUCS(q, m[j], ucs, t[j]);
 #endif
         q += m[j];
@@ -87,11 +65,11 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
     while(p < end && ! isEnd)
     {
 #if LANGID_DEBUG_PRINT
-        cout << "iteration : " << dec << iter++ << ", char index: " << (p - begin) << endl;
+        std::cout << "iteration : " << dec << iter++ << ", char index: " << (p - begin) << std::endl;
         q = p;
         for(int j=0; j<3; ++j)
         {
-            cout << "c[" << j << "]: ";
+            std::cout << "c[" << j << "]: ";
             debugPrintUCS(q, m[j], t[j]);
             q += m[j];
         }
@@ -104,7 +82,7 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
         {
             count = 1;
 #if LANGID_DEBUG_PRINT
-            cout << "using rule 3.0" << endl;
+            std::cout << "using rule 3.0" << std::endl;
 #endif
         }
         // rule 4.0
@@ -113,7 +91,7 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
             count = 1;
             isEnd = true;
 #if LANGID_DEBUG_PRINT
-            cout << "using rule 4.0" << endl;
+            std::cout << "using rule 4.0" << std::endl;
 #endif
         }
         // rule 6.0
@@ -121,7 +99,7 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
         {
             count = 1;
 #if LANGID_DEBUG_PRINT
-            cout << "using rule 6.0" << endl;
+            std::cout << "using rule 6.0" << std::endl;
 #endif
         }
         // rule 7.0
@@ -129,34 +107,34 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
         {
             count = 2;
 #if LANGID_DEBUG_PRINT
-            cout << "using rule 7.0" << endl;
+            std::cout << "using rule 7.0" << std::endl;
 #endif
         }
         else if(t[0] & MASK_TERM)
         {
 #if LANGID_DEBUG_PRINT
-            cout << "c[1] SB_TYPE_CLOSE*: ";
+            std::cout << "c[1] SB_TYPE_CLOSE*: ";
 #endif
             q = p + m[0];
-            m[1] = starMatch(q, end, SB_TYPE_CLOSE);
+            m[1] = starMatch<encoding>(q, end, SB_TYPE_CLOSE);
 
 #if LANGID_DEBUG_PRINT
-            cout << "c[2] SB_TYPE_SP*: ";
+            std::cout << "c[2] SB_TYPE_SP*: ";
 #endif
             q += m[1];
-            m[2] = starMatch(q, end, SB_TYPE_SP);
+            m[2] = starMatch<encoding>(q, end, SB_TYPE_SP);
 
 #if LANGID_DEBUG_PRINT
-            cout << "c[3] MASK_NEG_LETTER*: ";
+            std::cout << "c[3] MASK_NEG_LETTER*: ";
 #endif
             q += m[2];
-            m[3] = starMatch(q, end, MASK_NEG_LETTER);
+            m[3] = starMatch<encoding>(q, end, MASK_NEG_LETTER);
 
-            ucs = encoding_.convertToUCS2(q + m[3], end, &m[4]);
+            ucs = UCSConv::convertToUCS2(q + m[3], end, &m[4]);
             t[4] = breakTable_.getProperty(ucs);
             assert(q + m[3] < end || (m[4] == 0 && t[4] == SB_TYPE_OTHER));
 #if LANGID_DEBUG_PRINT
-            cout << "c[4]: ";
+            std::cout << "c[4]: ";
             debugPrintUCS(q + m[3], m[4], ucs, t[4]);
 #endif
 
@@ -165,7 +143,7 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
             {
                 count = 4;
 #if LANGID_DEBUG_PRINT
-                cout << "using rule 8.0" << endl;
+                std::cout << "using rule 8.0" << std::endl;
 #endif
             }
             else
@@ -182,12 +160,12 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
                 else
                 {
                     assert(q == p + m[0] + m[1] + m[2]);
-                    ucs = encoding_.convertToUCS2(q, end, &m[3]);
+                    ucs = UCSConv::convertToUCS2(q, end, &m[3]);
                     t[3] = breakTable_.getProperty(ucs);
                     assert(q < end || (m[3] == 0 && t[3] == SB_TYPE_OTHER));
                 }
 #if LANGID_DEBUG_PRINT
-                cout << "c[3]: ";
+                std::cout << "c[3]: ";
                 debugPrintUCS(q, m[3], ucs, t[3]);
 #endif
 
@@ -196,14 +174,14 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
                 {
                     isEnd = true;
 #if LANGID_DEBUG_PRINT
-                    cout << "using rule 11.0" << endl;
+                    std::cout << "using rule 11.0" << std::endl;
 #endif
                 }
 #if LANGID_DEBUG_PRINT
                 else if(t[3] & MASK_SEP)
-                    cout << "using rule 11.0" << endl;
+                    std::cout << "using rule 11.0" << std::endl;
                 else
-                    cout << "using rule 8.1" << endl;
+                    std::cout << "using rule 8.1" << std::endl;
 #endif
             }
         }
@@ -212,7 +190,7 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
         {
             count = 1;
 #if LANGID_DEBUG_PRINT
-            cout << "using rule 12.0" << endl;
+            std::cout << "using rule 12.0" << std::endl;
 #endif
         }
 
@@ -232,35 +210,37 @@ std::size_t SentenceTokenizer::getSentenceLength(const char* begin, const char* 
         }
         for(; j<3; ++j)
         {
-            ucs = encoding_.convertToUCS2(q, end, &m[j]);
+            ucs = UCSConv::convertToUCS2(q, end, &m[j]);
             t[j] = breakTable_.getProperty(ucs);
             assert(q < end || (m[j] == 0 && t[j] == SB_TYPE_OTHER));
 #if LANGID_DEBUG_PRINT
-            cout << "new c[" << j << "]: ";
+            std::cout << "new c[" << j << "]: ";
             debugPrintUCS(q, m[j], ucs, t[j]);
 #endif
             q += m[j];
         }
 
 #if LANGID_DEBUG_PRINT
-        cout << "virtual characters count: " << count << ", isEnd: " << isEnd << endl;
-        cout << endl;
+        std::cout << "virtual characters count: " << count << ", isEnd: " << isEnd << std::endl;
+        std::cout << std::endl;
 #endif
     }
 
     size_t len = p - begin;
 
 #if LANGID_DEBUG_PRINT
-    cout << "<<< SentenceTokenizer::getSentenceLength(), sentence: " << string(begin, len)  << ", length: " << len << endl;
+    std::cout << "<<< SentenceTokenizer::getSentenceLength(), sentence: " << std::string(begin, len)  << ", length: " << len << std::endl;
 #endif
 
     return len;
 }
 
+template<EncodingID encoding>
 std::size_t SentenceTokenizer::starMatch(const char* begin, const char* end, int mask) const
 {
     assert(begin <= end && "range is invalid in SentenceTokenizer::starMatch()");
 
+    typedef UCS2_Converter<encoding> UCSConv;
     unsigned short ucs;
     const char* p = begin;
     size_t mblen;
@@ -268,7 +248,7 @@ std::size_t SentenceTokenizer::starMatch(const char* begin, const char* end, int
 
     while(p < end)
     {
-        ucs = encoding_.convertToUCS2(p, end, &mblen);
+        ucs = UCSConv::convertToUCS2(p, end, &mblen);
         type = breakTable_.getProperty(ucs);
 
         if((type & mask) == 0)
@@ -276,12 +256,12 @@ std::size_t SentenceTokenizer::starMatch(const char* begin, const char* end, int
 #if LANGID_DEBUG_PRINT
         else
         {
-            string propStr;
+            std::string propStr;
             if(breakTable_.propertyToStr(type, propStr))
-                //cout << "[" << string(p, mblen) << "_0x" << setw(4) << setfill('0') << hex << ucs << "_" << propStr << "] ";
-                cout << "[" << string(p, mblen) << "_0x" << setw(4) << setfill('0') << hex << ucs << "_" << propStr << "_" << type << "] ";
+                //std::cout << "[" << std::string(p, mblen) << "_0x" << setw(4) << setfill('0') << hex << ucs << "_" << propStr << "] ";
+                std::cout << "[" << std::string(p, mblen) << "_0x" << setw(4) << setfill('0') << hex << ucs << "_" << propStr << "_" << type << "] ";
             else
-                cerr << "error: unknown property: " << type << endl;
+                std::cerr << "error: unknown property: " << type << std::endl;
         }
 #endif
 
@@ -289,27 +269,27 @@ std::size_t SentenceTokenizer::starMatch(const char* begin, const char* end, int
     }
 
 #if LANGID_DEBUG_PRINT
-    cout << "mask: " << hex << mask << ", match bytes: " << (p - begin) << endl;
+    std::cout << "mask: " << hex << mask << ", match bytes: " << (p - begin) << std::endl;
 #endif
     return p - begin;
 }
 
-void SentenceTokenizer::debugPrintUCS(const char* s, std::size_t n, unsigned short ucs, SentenceBreakType type) const
+inline void SentenceTokenizer::debugPrintUCS(const char* s, std::size_t n, unsigned short ucs, SentenceBreakType type) const
 {
-    string propStr;
+    std::string propStr;
     if(breakTable_.propertyToStr(type, propStr))
-        cout << "[" << string(s, n) << "_0x" << setw(4) << setfill('0') << hex << ucs << "_" << propStr << "]" << endl;
+        std::cout << "[" << std::string(s, n) << "_0x" << std::setw(4) << std::setfill('0') << std::hex << ucs << "_" << propStr << "]" << std::endl;
     else
-        cerr << "error: unknown property: " << type << endl;
+        std::cerr << "error: unknown property: " << type << std::endl;
 }
 
-void SentenceTokenizer::debugPrintUCS(const char* s, std::size_t n, SentenceBreakType type) const
+inline void SentenceTokenizer::debugPrintUCS(const char* s, std::size_t n, SentenceBreakType type) const
 {
-    string propStr;
+    std::string propStr;
     if(breakTable_.propertyToStr(type, propStr))
-        cout << "[" << string(s, n) << "_" << propStr << "]" << endl;
+        std::cout << "[" << std::string(s, n) << "_" << propStr << "]" << std::endl;
     else
-        cerr << "error: unknown property: " << type << endl;
+        std::cerr << "error: unknown property: " << type << std::endl;
 }
 
 NS_ILPLIB_LANGID_END

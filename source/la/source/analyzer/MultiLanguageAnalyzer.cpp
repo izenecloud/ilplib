@@ -72,7 +72,7 @@ MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType( UCS2Char ucs
 
 MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const UString & input )
 {
-    LanguageID langId;
+    LanguageID langId = LANGUAGE_ID_UNKNOWN;
 
     langIdAnalyzer_->languageFromString(input, langId);
     switch (langId)
@@ -152,21 +152,22 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
 
     void** parameters = (void**)data;
     TermIdList * output = (TermIdList*) parameters[0];
-    std::string utf8_text;
+    const izenelib::util::UString& text = input.text_;
+    std::size_t textPos = 0;
+    UString sentence;
 
-    input.text_.convertString(utf8_text, izenelib::util::UString::UTF_8);
-    std::size_t strPos = 0, lastpos, pos = 0, globalOffset = 0;
-    while (std::size_t len = langIdAnalyzer_->sentenceLength(utf8_text, strPos))
+    std::size_t lastpos=0, pos=0, globalOffset=0;
+    while (std::size_t len = langIdAnalyzer_->sentenceLength(text, textPos))
     {
-        UString sentence(utf8_text, strPos, len);
+        sentence.assign(text, textPos, len);
         Language lang = detectLanguage(sentence);
-        lastpos = pos;
 
         if(lang != OTHER && analyzers_[lang])
             analyzers_[lang]->analyze_impl(sentence, data, func);
         else if(defAnalyzer_)
             defAnalyzer_->analyze_impl(sentence, data, func);
 
+        lastpos = pos;
         pos = output->size();
 
         if(lastpos > 0)
@@ -178,7 +179,7 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         if (pos > lastpos)
             globalOffset = output->back().wordOffset_ + 1;
 
-        strPos += len;
+        textPos += len;
     }
 
     if (output->size() > 0)

@@ -151,28 +151,31 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         return analyze_impl(input, data, func);
 
     void** parameters = (void**)data;
-    TermIdList * output = (TermIdList*) parameters[0];
+    TermList * output = (TermList*) parameters[0];
     const izenelib::util::UString& text = input.text_;
     std::size_t textPos = 0;
-    UString sentence;
+    Term sentence;
+    UString& stext = sentence.text_;
 
     std::size_t lastpos=0, pos=0, globalOffset=0;
     while (std::size_t len = langIdAnalyzer_->sentenceLength(text, textPos))
     {
-        sentence.assign(text, textPos, len);
-        Language lang = detectLanguage(sentence);
+        stext.assign(text, textPos, len);
+        Language lang = detectLanguage(stext);
 
         if(lang != OTHER && analyzers_[lang])
             analyzers_[lang]->analyze_impl(sentence, data, func);
         else if(defAnalyzer_)
             defAnalyzer_->analyze_impl(sentence, data, func);
+        else
+            return 0;
 
         lastpos = pos;
         pos = output->size();
 
         if(lastpos > 0)
         {
-            TermIdList& laInput = (*output);
+            TermList& laInput = (*output);
             for(std::size_t i = lastpos; i < pos; ++i)
                 laInput[i].wordOffset_ += globalOffset;
         }

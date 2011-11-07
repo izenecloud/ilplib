@@ -180,7 +180,7 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
                 laInput[i].wordOffset_ += globalOffset;
         }
         if (pos > lastpos)
-            globalOffset = output->back().wordOffset_ + 2;
+            globalOffset = output->back().wordOffset_ + 1;
 
         textPos += len;
     }

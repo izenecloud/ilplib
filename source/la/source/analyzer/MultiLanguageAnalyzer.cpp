@@ -184,9 +184,6 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         globalOffset += localOffset;
     }
 
-    if (output->size() > 0)
-        return globalOffset;
-    else
-        return 0;
+    return globalOffset;
 }
 }

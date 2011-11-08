@@ -97,42 +97,6 @@ protected:
     /// whether current token is stopword
     virtual bool isStopword() { return false; }
 
-    inline const UString::CharT* token()
-    {
-        return token_;
-    }
-    inline int len()
-    {
-        return len_;
-    }
-    inline const char* nativeToken()
-    {
-        return nativeToken_;
-    }
-    inline size_t nativeTokenLen()
-    {
-        return nativeTokenLen_;
-    }
-    inline int offset()
-    {
-        return offset_;
-    }
-    inline const char* pos()
-    {
-        return pos_;
-    }
-    inline int level()
-    {
-        return level_;
-    }
-    inline bool isIndex()
-    {
-        return isIndex_;
-    }
-    inline bool isRaw()
-    {
-        return isRaw_;
-    }
     inline void resetToken()
     {
         token_ = NULL;
@@ -144,11 +108,6 @@ protected:
         level_ = 0;
         isIndex_ = false;
         isRaw_ = false;
-    }
-
-    inline bool isChinese()
-    {
-        return bChinese_;
     }
 
 protected:

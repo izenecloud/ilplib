@@ -430,20 +430,20 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 
     while( nextToken() )
     {
-        if( len() == 0 )
+        if( len_ == 0 )
             continue;
 
         if( bRemoveStopwords_ && isStopword() )
             continue;
 
 /*            {
-            UString foo(token(), len()); string bar; foo.convertString(bar, UString::UTF_8);
-            cout << "(" << bar << ") --<> " << isIndex() << "," << offset() << "," << isRaw() << "," << level() << endl;
+            UString foo(token_, len_); string bar; foo.convertString(bar, UString::UTF_8);
+            cout << "(" << bar << ") --<> " << isIndex_ << "," << offset_ << "," << isRaw_ << "," << level_ << endl;
             }*/
 
-        if( bChinese_ == true )
+        if( bChinese_ )
         {
-            int curWordOffset = offset();
+            int curWordOffset = offset_;
             if( curWordOffset == lastWordOffset )
                 topAndOrBit = Term::OR;
             else
@@ -451,17 +451,17 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             lastWordOffset = curWordOffset;
         }
 
-        if( isIndex() )
+        if( isIndex_ )
         {
             if(isSpecialChar())
             {
-                func( data, token(), len(), offset(), Term::SpecialCharPOS, Term::AND, level(), true);
+                func( data, token_, len_, offset_, Term::SpecialCharPOS, Term::AND, level_, true);
                 tempOffset++;
                 continue;
             }
-            if(isRaw())
+            if(isRaw_)
             {
-                func( data, token(), len(), offset(), pos(), Term::OR, level(), false);
+                func( data, token_, len_, offset_, pos_, Term::OR, level_, false);
                 tempOffset++;
                 continue;
             }
@@ -470,11 +470,11 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             if( isAlpha() )
             {
                 UString::CharT* lowercaseTermUstr = lowercase_ustring_buffer_;
-                bool lowercaseIsDifferent = UString::toLowerString(token(), len(),
+                bool lowercaseIsDifferent = UString::toLowerString(token_, len_,
                                             lowercase_ustring_buffer_, term_ustring_buffer_limit_);
 
                 char* lowercaseTerm = lowercase_string_buffer_;
-                UString::convertString(UString::UTF_8, lowercaseTermUstr, len(), lowercase_string_buffer_, term_string_buffer_limit_);
+                UString::convertString(UString::UTF_8, lowercaseTermUstr, len_, lowercase_string_buffer_, term_string_buffer_limit_);
 
                 UString::CharT* stemmingTermUstr = NULL;
                 size_t stemmingTermUstrSize = 0;
@@ -495,107 +495,104 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     }
                 }
 
-                if(false /*bExtractSynonym_, preprocessed*/)
-                {
-                    pSynonymContainer_ = uscSPtr_->getSynonymContainer();
-                    pSynonymContainer_->searchNgetSynonym( lowercaseTerm, pSynonymResult_ );
-                    char * synonymResult = pSynonymResult_->getHeadWord(0);
-                    if( synonymResult )
-                    {
-                        size_t synonymResultLen = strlen(synonymResult);
-                        if(synonymResultLen <= term_ustring_buffer_limit_)
-                        {
-                            synonymResultUstr = synonym_ustring_buffer_;
-                            synonymResultUstrLen = UString::toUcs2(synonymEncode_,
-                                    synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
-                        }
-                    }
-                }
+//              if(false /*bExtractSynonym_, preprocessed*/)
+//              {
+//                  pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+//                  pSynonymContainer_->searchNgetSynonym( lowercaseTerm, pSynonymResult_ );
+//                  char * synonymResult = pSynonymResult_->getHeadWord(0);
+//                  if( synonymResult )
+//                  {
+//                      size_t synonymResultLen = strlen(synonymResult);
+//                      if(synonymResultLen <= term_ustring_buffer_limit_)
+//                      {
+//                          synonymResultUstr = synonym_ustring_buffer_;
+//                          synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+//                                  synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+//                      }
+//                  }
+//              }
 
                 if( stemmingTermUstr || synonymResultUstr || (bCaseSensitive_ && bContainLower_ && lowercaseIsDifferent) ) {
                     /// have more than one output
                     if(bCaseSensitive_) {
-                        func( data,  token(), len(), offset(), Term::EnglishPOS, Term::OR, level()+1, false);
+                        func( data,  token_, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
                         tempOffset++;
                     } else {
-                        func( data, lowercaseTermUstr, len(), offset(), Term::EnglishPOS, Term::OR, level()+1, false);
+                        func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
                         tempOffset++;
                     }
                     if(stemmingTermUstr) {
-                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset(), Term::EnglishPOS, Term::OR, level()+1, false);
+                        func( data, stemmingTermUstr, stemmingTermUstrSize, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
                         tempOffset++;
                     }
                     if(synonymResultUstr) {
-                        func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
+                        func( data, synonymResultUstr, synonymResultUstrLen, offset_, NULL, Term::OR, level_+1, false);
                         tempOffset++;
                     }
                     if(bCaseSensitive_ && bContainLower_ && lowercaseIsDifferent)
                     {
-                        func( data, lowercaseTermUstr, len(), offset(), Term::EnglishPOS, Term::OR, level()+1, false);
+                        func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
                         tempOffset++;
                     }
                 } else {
                     /// have only one output
                     if(bCaseSensitive_) {
-                        func( data,  token(), len(), offset(), Term::EnglishPOS, Term::AND, level(), false);
+                        func( data,  token_, len_, offset_, Term::EnglishPOS, Term::AND, level_, false);
                         tempOffset++;
                     } else {
-                        func( data, lowercaseTermUstr, len(), offset(), Term::EnglishPOS, Term::AND, level(), false);
+                        func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::AND, level_, false);
                         tempOffset++;
                     }
                 }
             }
             else
             {
-                if(false /*bExtractSynonym_, preprocessed*/)
+//              if(false /*bExtractSynonym_, preprocessed*/)
+//              {
+//                  UString::CharT * synonymResultUstr = NULL;
+//                  size_t synonymResultUstrLen = 0;
+
+//                  pSynonymContainer_ = uscSPtr_->getSynonymContainer();
+//                  pSynonymContainer_->searchNgetSynonym( nativeToken_, pSynonymResult_ );
+
+//                  bool hasSynonym = false;
+//                  for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
+//                  {
+//                      char * synonymResult = pSynonymResult_->getWord(0, i);
+//                      if( synonymResult )
+//                      {
+//                          if (strcmp(nativeToken_, synonymResult) == 0)
+//                          {
+//                              //cout << "synonym self: "<<string(synonymResult) <<endl;
+//                              continue;
+//                          }
+//                          //cout << "synonym : "<<string(synonymResult) <<endl;
+
+//                          size_t synonymResultLen = strlen(synonymResult);
+//                          if(synonymResultLen <= term_ustring_buffer_limit_)
+//                          {
+//                              synonymResultUstr = synonym_ustring_buffer_;
+//                              synonymResultUstrLen = UString::toUcs2(synonymEncode_,
+//                                      synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
+//                          }
+
+//                          hasSynonym = true;
+//                          func( data, synonymResultUstr, synonymResultUstrLen, offset_, NULL, Term::OR, level_+1, false);
+//                      }
+//                  }
+
+//                  if (hasSynonym)
+//                  {
+//                      func( data, token_, len_, offset_, pos_, Term::OR, level_+1, false);
+//                  }
+//                  else
+//                  {
+//                      func( data, token_, len_, offset_, pos_, topAndOrBit, level_, false);
+//                  }
+//              }
+//              else
                 {
-                    UString::CharT * synonymResultUstr = NULL;
-                    size_t synonymResultUstrLen = 0;
-
-                    pSynonymContainer_ = uscSPtr_->getSynonymContainer();
-                    pSynonymContainer_->searchNgetSynonym( nativeToken(), pSynonymResult_ );
-
-                    bool hasSynonym = false;
-                    for (int i =0; i<pSynonymResult_->getSynonymCount(0); i++)
-                    {
-                        char * synonymResult = pSynonymResult_->getWord(0, i);
-                        if( synonymResult )
-                        {
-                            if (strcmp(nativeToken(), synonymResult) == 0)
-                            {
-                                //cout << "synonym self: "<<string(synonymResult) <<endl;
-                                continue;
-                            }
-                            //cout << "synonym : "<<string(synonymResult) <<endl;
-
-                            size_t synonymResultLen = strlen(synonymResult);
-                            if(synonymResultLen <= term_ustring_buffer_limit_)
-                            {
-                                synonymResultUstr = synonym_ustring_buffer_;
-                                synonymResultUstrLen = UString::toUcs2(synonymEncode_,
-                                        synonymResult, synonymResultLen, synonym_ustring_buffer_, term_ustring_buffer_limit_);
-                            }
-
-                            hasSynonym = true;
-                            func( data, synonymResultUstr, synonymResultUstrLen, offset(), NULL, Term::OR, level()+1, false);
-                            tempOffset++;
-                        }
-                    }
-
-                    if (hasSynonym)
-                    {
-                        func( data, token(), len(), offset(), pos(), Term::OR, level()+1, false);
-                        tempOffset++;
-                    }
-                    else
-                    {
-                        func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
-                        tempOffset++;
-                    }
-                }
-                else
-                {
-                    func( data, token(), len(), offset(), pos(), topAndOrBit, level(), false);
+                    func( data, token_, len_, offset_, pos_, topAndOrBit, level_, false);
                     tempOffset++;
                 }
             }

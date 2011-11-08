@@ -45,6 +45,7 @@ namespace la
             ngram = max_gram = len;
         }
 
+        int tempOffset = max_gram - ngram + 1;
         for( ; ngram <= max_gram; ++ngram )
         {
             if( apartFlag_ == 0 )
@@ -90,7 +91,7 @@ namespace la
             }
         } // end for( ; ngram <= max_gram; ++ngram )
 
-        return 0;
+        return tempOffset;
     }
 
 

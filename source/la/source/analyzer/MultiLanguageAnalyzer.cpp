@@ -163,10 +163,11 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         stext.assign(text, textPos, len);
         Language lang = detectLanguage(stext);
 
+        std::size_t localOffset;
         if(lang != OTHER && analyzers_[lang])
-            analyzers_[lang]->analyze_impl(sentence, data, func);
+            localOffset = analyzers_[lang]->analyze_impl(sentence, data, func);
         else if(defAnalyzer_)
-            defAnalyzer_->analyze_impl(sentence, data, func);
+            localOffset = defAnalyzer_->analyze_impl(sentence, data, func);
         else
             return 0;
 
@@ -179,14 +180,12 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
             for(std::size_t i = lastpos; i < pos; ++i)
                 laInput[i].wordOffset_ += globalOffset;
         }
-        if (pos > lastpos)
-            globalOffset = output->back().wordOffset_ + 1;
-
         textPos += len;
+        globalOffset += localOffset;
     }
 
     if (output->size() > 0)
-        return output->back().wordOffset_;
+        return globalOffset;
     else
         return 0;
 }

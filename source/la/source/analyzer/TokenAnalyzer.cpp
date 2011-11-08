@@ -33,7 +33,7 @@ int TokenAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
              offset, NULL, Term::AND, 0, tokenizer_.isDelimiter() );
         offset++;
     }
-    return 0;
+    return offset;
 };
 
 }

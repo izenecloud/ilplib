@@ -38,4 +38,3 @@ namespace la
 }
 
 #endif /* _LA_MATRIX_ANALYZER_H_ */
-

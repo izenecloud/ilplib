@@ -456,13 +456,13 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
             if(isSpecialChar())
             {
                 func( data, token_, len_, offset_, Term::SpecialCharPOS, Term::AND, level_, true);
-                tempOffset++;
+                tempOffset = offset_;
                 continue;
             }
             if(isRaw_)
             {
                 func( data, token_, len_, offset_, pos_, Term::OR, level_, false);
-                tempOffset++;
+                tempOffset = offset_;
                 continue;
             }
 
@@ -516,32 +516,32 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
                     /// have more than one output
                     if(bCaseSensitive_) {
                         func( data,  token_, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     } else {
                         func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     }
                     if(stemmingTermUstr) {
                         func( data, stemmingTermUstr, stemmingTermUstrSize, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     }
                     if(synonymResultUstr) {
                         func( data, synonymResultUstr, synonymResultUstrLen, offset_, NULL, Term::OR, level_+1, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     }
                     if(bCaseSensitive_ && bContainLower_ && lowercaseIsDifferent)
                     {
                         func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::OR, level_+1, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     }
                 } else {
                     /// have only one output
                     if(bCaseSensitive_) {
                         func( data,  token_, len_, offset_, Term::EnglishPOS, Term::AND, level_, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     } else {
                         func( data, lowercaseTermUstr, len_, offset_, Term::EnglishPOS, Term::AND, level_, false);
-                        tempOffset++;
+                        tempOffset = offset_;
                     }
                 }
             }
@@ -593,12 +593,12 @@ int CommonLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookTyp
 //              else
                 {
                     func( data, token_, len_, offset_, pos_, topAndOrBit, level_, false);
-                    tempOffset++;
+                    tempOffset = offset_;
                 }
             }
         }
     }
-    return tempOffset;
+    return tempOffset + 1;
 }
 
 }

@@ -22,7 +22,7 @@ namespace la
         private:
             int             minGram_;   ///< min gram
             int             maxGram_;   ///< max gram (mingram <= ngram <= maxgram)
-            unsigned int    maxNo_;     ///< The maximum number of terms to generate.
+            unsigned long   maxNo_;     ///< The maximum number of terms to generate.
             bool            bApart_;     ///< Creates NGram for korean, alphabet, and numerical character independently
 
             /// @brief  Defines what character types to apply ngram with.
@@ -46,7 +46,7 @@ namespace la
 
         public:
 
-            NGramAnalyzer( int nmin, int nmax, unsigned int maxNo, unsigned char apartFlag = NGRAM_APART_NON_ )
+            NGramAnalyzer( int nmin, int nmax, unsigned long maxNo, unsigned char apartFlag = NGRAM_APART_NON_ )
                 :apartFlag_(apartFlag)
             {
                 setMinMaxGram( nmin, nmax );
@@ -66,7 +66,7 @@ namespace la
                     throw std::logic_error( "NGramAnalyzer mingram > maxgram" );
             }
 
-            void setMaxNo( unsigned int no )
+            void setMaxNo( unsigned long no )
             {
                 if( no < 1 )
                     throw std::logic_error( "NGramAnalyzer: maxno < 1" );

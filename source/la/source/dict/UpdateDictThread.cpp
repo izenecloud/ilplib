@@ -33,15 +33,15 @@ namespace la
  * @brief get the last modified time of specific file, represented in seconds
  * FIXME only support linux/unix now
  */
-long getFileLastModifiedTime( const char* path )
+long getFileLastModifiedTime(const std::string& path)
 {
     struct stat attrib;   // create a file attribute structure
-    stat( path , &attrib );  // get the attributes of specific file
-    return static_cast<long>( attrib.st_mtime );
+    stat(path.c_str() , &attrib);  // get the attributes of specific file
+    return static_cast<long>(attrib.st_mtime);
 }
 
 UpdateDictThread::UpdateDictThread()
-    : checkInterval_( DEFAULT_CHECK_INTERVAL ), isStarted_( false )
+    : checkInterval_(DEFAULT_CHECK_INTERVAL), isStarted_(false)
 {
 }
 
@@ -51,20 +51,18 @@ UpdateDictThread::~UpdateDictThread()
 
 UpdateDictThread UpdateDictThread::staticUDT;
 
-shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict( const char* path,
-        const shared_ptr< UpdatableDict >& dict )
+shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict(const std::string& path,
+        const shared_ptr< UpdatableDict >& dict)
 {
-    ScopedWriteLock<ReadWriteLock> swl( lock_ );
-    string pathStr( path );
-    MapType::iterator itr = map_.find( pathStr );
-    if ( itr == map_.end() )
+    ScopedWriteLock<ReadWriteLock> swl(lock_);
+    MapType::iterator itr = map_.find(path);
+    if (itr == map_.end())
     {
-        if ( dict.get() )
+        if (dict.get())
         {
-            DictSource ds;
+            DictSource& ds = map_[path];
             ds.lastModifiedTime_ = getFileLastModifiedTime(path);
             ds.relatedDict_ = dict;
-            map_[ pathStr ] = ds;
         }
         return dict;
     }
@@ -72,31 +70,30 @@ shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict( const char* path,
         return itr->second.relatedDict_;
 }
 
-shared_ptr< PlainDictionary > UpdateDictThread::createPlainDictionary(
-        const char* path,
+shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
+        const std::string& path,
         UString::EncodingType encoding,
-        bool ignoreNoExistFile )
+        bool ignoreNoExistFile)
 {
-    shared_ptr< PlainDictionary > pdPtr;
-    pdPtr.reset( new PlainDictionary( encoding ) );
-    pdPtr->loadDict( path, ignoreNoExistFile );
-    addRelatedDict( path, pdPtr );
+    shared_ptr<PlainDictionary> pdPtr;
+    pdPtr.reset(new PlainDictionary(encoding));
+    pdPtr->loadDict(path.c_str(), ignoreNoExistFile);
+    addRelatedDict(path, pdPtr);
     return pdPtr;
 }
 
 int UpdateDictThread::update()
 {
-    ScopedWriteLock<ReadWriteLock> swl( lock_ );
+    ScopedWriteLock<ReadWriteLock> swl(lock_);
     int failedCount = 0;
-    for( MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr )
+    for (MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr)
     {
-        long curModifiedTime = getFileLastModifiedTime( itr->first.c_str() );
-        if( curModifiedTime == itr->second.lastModifiedTime_ )
+        long curModifiedTime = getFileLastModifiedTime(itr->first);
+        if (curModifiedTime == itr->second.lastModifiedTime_)
             continue;
 
         //update all dictionary
-        int ret = itr->second.relatedDict_.get()->update( itr->first.c_str(), curModifiedTime );
-        if( ret != 0 )
+        if (itr->second.relatedDict_.get()->update(itr->first.c_str(), curModifiedTime))
             ++failedCount;
 
 #ifdef DEBUG_UDT
@@ -109,19 +106,19 @@ int UpdateDictThread::update()
 
 void UpdateDictThread::run()
 {
-    while( true )
+    while (true)
     {
-        boost::this_thread::sleep( boost::posix_time::seconds( checkInterval_ ) );
+        boost::this_thread::sleep(boost::posix_time::seconds(checkInterval_));
         update();
     }
 }
 
 bool UpdateDictThread::start()
 {
-    ScopedWriteLock<ReadWriteLock> swl( lock_ );
-    if( isStarted_ )
+    ScopedWriteLock<ReadWriteLock> swl(lock_);
+    if (isStarted_)
         return false;
-    boost::thread( boost::bind( &UpdateDictThread::run, this ) );
+    boost::thread(boost::bind(&UpdateDictThread::run, this));
     isStarted_ = true;
     return true;
 }

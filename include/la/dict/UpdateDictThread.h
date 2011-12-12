@@ -25,7 +25,7 @@ namespace la
  * @brief get the last modified time of specific file, represented in seconds
  * FIXME only support linux/unix now
  */
-long getFileLastModifiedTime( const char* path );
+long getFileLastModifiedTime(const std::string& path);
 
 /**
  * \brief Thread to update dictionary from time to time
@@ -49,7 +49,10 @@ public:
      * \param path the dictionary path
      * \param dict the related dictionary
      */
-    boost::shared_ptr< UpdatableDict > addRelatedDict( const char* path, const boost::shared_ptr< UpdatableDict >& dict );
+    boost::shared_ptr<UpdatableDict> addRelatedDict(
+            const std::string& path,
+            const boost::shared_ptr<UpdatableDict>& dict = boost::shared_ptr<UpdatableDict>()
+    );
 
     /**
      * Utility function to create plain dictionary. These Dictionary is read-only as
@@ -58,10 +61,11 @@ public:
      * \param encoding the encoding of this dictionary
      * \param ignoreNoExistFile if true, the files not exists won't cause error
      */
-    boost::shared_ptr< PlainDictionary > createPlainDictionary(
-            const char* path,
+    boost::shared_ptr<PlainDictionary> createPlainDictionary(
+            const string& path,
             izenelib::util::UString::EncodingType encoding,
-            bool ignoreNoExistFile = false );
+            bool ignoreNoExistFile = false
+    );
 
     /**
      * Get the check interval ( in seconds )
@@ -74,7 +78,7 @@ public:
     /**
      * Set the check interval ( in seconds )
      */
-    void setCheckInterval( unsigned int checkInterval )
+    void setCheckInterval(unsigned int checkInterval)
     {
         checkInterval_ = checkInterval;
     }

@@ -25,6 +25,12 @@ public:
         minimum_match_no_overlap = 5
     };
 
+    enum ChineseAnalysisOption
+    {
+        // xxx, extend
+        mergeAlphaDigit,
+    };
+
     ChineseAnalyzer( const std::string knowledgePath, bool loadModel = true );
 
     ~ChineseAnalyzer();
@@ -36,6 +42,14 @@ public:
     inline void setAnalysisType( ChineseAnalysisType type )
     {
         pA_->setOption( cma::Analyzer::OPTION_ANALYSIS_TYPE, type );
+    }
+
+    inline void setAnalysisOption(ChineseAnalysisOption option, bool value)
+    {
+        if (option == mergeAlphaDigit)
+        {
+            pA_->setAnalOption(cma::Analyzer::ANAL_OPTION_MERGE_ALPHA_DIGIT, value);
+        }
     }
 
     inline  void setNBest( unsigned int num=2 )

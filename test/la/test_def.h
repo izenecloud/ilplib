@@ -24,7 +24,7 @@ public:
         for ( directory_iterator itr( origdir_ ); itr != end_itr; ++itr )
         {
             if(!is_directory(itr->status()) ) {
-                  copy_file(itr->path(), tmpdir_/itr->leaf());
+                  copy_file(itr->path(), tmpdir_/path(*itr).filename());
             }
         }
     }

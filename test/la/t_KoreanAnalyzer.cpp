@@ -38,7 +38,7 @@ public:
           directory_iterator end_itr; // default construction yields past-the-end
           for ( directory_iterator itr( "." ); itr != end_itr; ++itr )
           {
-              if(!is_directory(itr->status()) && itr->leaf().substr(0,
+              if(!is_directory(itr->status()) && path(*itr).filename().string().substr(0,
                     sizeof("KoreanAnalyzerTest_")-1) == "KoreanAnalyzerTest_") {
                     remove(itr->path());
                 }

@@ -12,6 +12,7 @@
 #include <vector>
 
 #include <boost/shared_ptr.hpp>
+#include <boost/thread/thread.hpp>
 
 #include <la/dict/UpdatableDict.h>
 #include <la/dict/PlainDictionary.h>
@@ -88,18 +89,8 @@ public:
      */
     bool isStarted()
     {
-        return isStarted_;
+        return thread_.joinable();
     }
-
-    /**
-     * Perform updating
-     */
-    int update();
-
-    /**
-     * Infinite loop for the thread
-     */
-    void run();
 
     /**
      * start the thread
@@ -107,21 +98,36 @@ public:
      */
     bool start();
 
+    /**
+     * Stop the thread's execution, and wait for its complete.
+     */
+    void stop();
+
 public:
     static UpdateDictThread staticUDT;
 
 private:
+    /**
+     * Perform updating
+     */
+    int update_();
+
+    /**
+     * Infinite loop for the thread
+     */
+    void run_();
+
+private:
     /** check interval */
     unsigned int checkInterval_;
-
-    /** Whether the thread has started */
-    bool isStarted_;
 
     /** path -> DictSource */
     MapType map_;
 
     /** Read Write Lock */
     izenelib::util::ReadWriteLock lock_;
+
+    boost::thread thread_;
 };
 
 }

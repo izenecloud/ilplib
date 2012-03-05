@@ -11,8 +11,6 @@
 // for getLastModifiedTime
 #include <sys/stat.h>
 
-#include <boost/thread/thread.hpp>
-
 //#define DEBUG_UDT
 
 #ifdef DEBUG_UDT
@@ -41,12 +39,13 @@ long getFileLastModifiedTime(const std::string& path)
 }
 
 UpdateDictThread::UpdateDictThread()
-    : checkInterval_(DEFAULT_CHECK_INTERVAL), isStarted_(false)
+    : checkInterval_(DEFAULT_CHECK_INTERVAL)
 {
 }
 
 UpdateDictThread::~UpdateDictThread()
 {
+    stop();
 }
 
 UpdateDictThread UpdateDictThread::staticUDT;
@@ -82,7 +81,7 @@ shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
     return pdPtr;
 }
 
-int UpdateDictThread::update()
+int UpdateDictThread::update_()
 {
     ScopedWriteLock<ReadWriteLock> swl(lock_);
     int failedCount = 0;
@@ -104,23 +103,36 @@ int UpdateDictThread::update()
     return failedCount;
 }
 
-void UpdateDictThread::run()
+void UpdateDictThread::run_()
 {
-    while (true)
+    try
     {
-        boost::this_thread::sleep(boost::posix_time::seconds(checkInterval_));
-        update();
+        while (true)
+        {
+            boost::this_thread::sleep(boost::posix_time::seconds(checkInterval_));
+            update_();
+        }
+    }
+    catch (boost::thread_interrupted& e)
+    {
+        return;
     }
 }
 
 bool UpdateDictThread::start()
 {
     ScopedWriteLock<ReadWriteLock> swl(lock_);
-    if (isStarted_)
+    if (isStarted())
         return false;
-    boost::thread(boost::bind(&UpdateDictThread::run, this));
-    isStarted_ = true;
+
+    thread_ = boost::thread(&UpdateDictThread::run_, this);
     return true;
+}
+
+void UpdateDictThread::stop()
+{
+    thread_.interrupt();
+    thread_.join();
 }
 
 }

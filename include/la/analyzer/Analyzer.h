@@ -178,7 +178,7 @@ protected:
             return;
         if(isSpecialChar && analyzer->bConvertToPlaceHolder_) {
             unsigned int termId;
-            idm->getTermIdByTermString(PLACE_HOLDER.c_str(), PLACE_HOLDER.length(), termId);
+            idm->getTermIdByTermString(UString(PLACE_HOLDER.c_str(), PLACE_HOLDER.length()), termId);
             if( output->empty() == true || output->back().termid_ != termId )
                 output->add(termId, offset);
         } else {

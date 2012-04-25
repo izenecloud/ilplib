@@ -123,7 +123,8 @@ ELSE(Boost_FOUND)
     MESSAGE(STATUS "BOOST: not found")
 ENDIF(Boost_FOUND)
 
-FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util)
+FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util leveldb 
+snappy)
 
 IF(izenelib_FOUND)
     MESSAGE(STATUS "izenelib:")

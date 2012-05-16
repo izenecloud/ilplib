@@ -111,7 +111,7 @@ ENDIF (CMAKE_COMPILER_IS_GNUCXX)
 # Boost package
 SET(Boost_ADDITIONAL_VERSIONS 1.39 1.39.0 1.38 1.38.0 1.37 1.37.0)
 FIND_PACKAGE(Boost 1.36 COMPONENTS
-    program_options thread serialization filesystem system)
+    program_options system thread serialization filesystem)
 
 IF(Boost_FOUND)
     MESSAGE(STATUS "BOOST:")
@@ -203,12 +203,12 @@ SET(LIBRARY_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/lib")
 set(
 LIBS
 ilplib
+${Boost_LIBRARIES}
+${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 ${izenecma_LIBRARIES}
 ${wisekma_LIBRARIES}
 ${izenejma_LIBRARIES}
 ${izenelib_LIBRARIES}
-${Boost_LIBRARIES}
-${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 ${Glog_LIBRARIES}
 pthread
 )

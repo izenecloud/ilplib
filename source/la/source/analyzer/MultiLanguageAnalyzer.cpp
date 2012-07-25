@@ -28,49 +28,49 @@ MultiLanguageAnalyzer::MultiLanguageAnalyzer() : Analyzer() {}
 
 MultiLanguageAnalyzer::~MultiLanguageAnalyzer() {}
 
-void MultiLanguageAnalyzer::setAnalyzer( Language lang, shared_ptr<Analyzer>& analyzer )
+void MultiLanguageAnalyzer::setAnalyzer(Language lang, boost::shared_ptr<Analyzer>& analyzer)
 {
-    if( lang == OTHER )
+    if (lang == OTHER)
         return;
     analyzers_[ lang ] = analyzer;
 }
 
-shared_ptr<Analyzer> MultiLanguageAnalyzer::getAnalyzer( MultiLanguageAnalyzer::Language lang ) const
+boost::shared_ptr<Analyzer> MultiLanguageAnalyzer::getAnalyzer(MultiLanguageAnalyzer::Language lang) const
 {
-    if( lang == OTHER )
-        return shared_ptr<Analyzer>();
+    if (lang == OTHER)
+        return boost::shared_ptr<Analyzer>();
     return analyzers_[ lang ];
 }
 
 
-void MultiLanguageAnalyzer::setDefaultAnalyzer( shared_ptr<Analyzer>& defAnalyzer )
+void MultiLanguageAnalyzer::setDefaultAnalyzer(boost::shared_ptr<Analyzer>& defAnalyzer)
 {
     defAnalyzer_ = defAnalyzer;
 }
 
-shared_ptr<Analyzer> MultiLanguageAnalyzer::getDefaultAnalyzer() const
+boost::shared_ptr<Analyzer> MultiLanguageAnalyzer::getDefaultAnalyzer() const
 {
     return defAnalyzer_;
 }
 
-MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType( UCS2Char ucs2Char )
+MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::getCharType(UCS2Char ucs2Char)
 {
-    if(UString::isThisChineseChar( ucs2Char ) )
+    if (UString::isThisChineseChar(ucs2Char))
         return CHINESE;
 
-    if(UString::isThisAlphaChar( ucs2Char ) )
+    if (UString::isThisAlphaChar(ucs2Char))
         return ENGLISH;
 
-    if(UString::isThisKoreanChar( ucs2Char ) )
+    if (UString::isThisKoreanChar(ucs2Char))
         return KOREAN;
 
-    if(UString::isThisJapaneseChar( ucs2Char ) )
+    if (UString::isThisJapaneseChar(ucs2Char))
         return JAPANESE;
 
     return OTHER;
 }
 
-MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage( const UString & input )
+MultiLanguageAnalyzer::Language MultiLanguageAnalyzer::detectLanguage(const UString & input)
 {
     LanguageID langId = LANGUAGE_ID_UNKNOWN;
 
@@ -116,11 +116,11 @@ int MultiLanguageAnalyzer::analyzeSynonym(const izenelib::util::UString& inputSt
 
 ilplib::langid::Analyzer* MultiLanguageAnalyzer::langIdAnalyzer_;
 
-int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func )
+int MultiLanguageAnalyzer::analyze_impl(const Term& input, void* data, HookType func)
 {
-    if ( !langIdAnalyzer_ )
+    if (!langIdAnalyzer_)
     {
-        if ( defAnalyzer_ )
+        if (defAnalyzer_)
         {
             return defAnalyzer_->analyze_impl(input, data, func);
         }
@@ -131,11 +131,11 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
     }
 
     Language lang = detectLanguage(input.text_);
-    if ( lang != OTHER && analyzers_[lang] )
+    if (lang != OTHER && analyzers_[lang])
     {
         return analyzers_[lang]->analyze_impl(input, data, func);
     }
-    else if ( defAnalyzer_ )
+    else if (defAnalyzer_)
     {
         return defAnalyzer_->analyze_impl(input, data, func);
     }
@@ -145,9 +145,9 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
     }
 }
 
-int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType func, MultilangGranularity multilangGranularity )
+int MultiLanguageAnalyzer::analyze_impl(const Term& input, void* data, HookType func, MultilangGranularity multilangGranularity)
 {
-    if ( !langIdAnalyzer_ || multilangGranularity != SENTENCE_LEVEL )
+    if (!langIdAnalyzer_ || multilangGranularity != SENTENCE_LEVEL)
         return analyze_impl(input, data, func);
 
     void** parameters = (void**)data;
@@ -164,9 +164,9 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         Language lang = detectLanguage(stext);
 
         std::size_t localOffset;
-        if(lang != OTHER && analyzers_[lang])
+        if (lang != OTHER && analyzers_[lang])
             localOffset = analyzers_[lang]->analyze_impl(sentence, data, func);
-        else if(defAnalyzer_)
+        else if (defAnalyzer_)
             localOffset = defAnalyzer_->analyze_impl(sentence, data, func);
         else
             return 0;
@@ -174,7 +174,7 @@ int MultiLanguageAnalyzer::analyze_impl( const Term& input, void* data, HookType
         lastpos = pos;
         pos = output->size();
 
-        if(lastpos > 0)
+        if (lastpos > 0)
         {
             TermList& laInput = (*output);
             for(std::size_t i = lastpos; i < pos; ++i)

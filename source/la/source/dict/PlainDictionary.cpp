@@ -28,7 +28,7 @@ PlainDictionary::~PlainDictionary()
 
 int PlainDictionary::loadDict( const char* srcFile, bool ignoreNoExistFile )
 {
-    ScopedWriteLock<ReadWriteLock> swl( lock_ );
+    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl( lock_ );
     ignoreNoExistFile_ = ignoreNoExistFile;
     ifstream in( srcFile );
 	if( !in.good() )
@@ -60,7 +60,7 @@ int PlainDictionary::loadDict( const char* srcFile, bool ignoreNoExistFile )
 
 void PlainDictionary::display( ostream& out )
 {
-    ScopedReadLock<ReadWriteLock> srl( lock_ );
+    izenelib::util::ScopedReadLock<izenelib::util::ReadWriteLock> srl( lock_ );
     for( DictType::iterator itr = words_.begin(); itr != words_.end(); ++itr )
     {
         itr->first.displayStringInfo( encoding_, out ); out<<endl;

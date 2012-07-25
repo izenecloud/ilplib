@@ -121,7 +121,7 @@ protected:
     izenelib::am::VSynonymContainer*      pSynonymContainer_;
     izenelib::am::VSynonym*               pSynonymResult_;
     izenelib::util::UString::EncodingType synonymEncode_;
-    shared_ptr<UpdatableSynonymContainer> uscSPtr_;
+    boost::shared_ptr<UpdatableSynonymContainer> uscSPtr_;
 
     stem::Stemmer *                     pStemmer_;
 

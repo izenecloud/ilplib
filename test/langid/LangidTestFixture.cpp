@@ -35,7 +35,7 @@ void convert(
     for (vector<string>::const_iterator it = source.begin();
         it != source.end(); ++it)
     {
-        izenelib::util::UString ustr(*it, UString::UTF_8);
+        izenelib::util::UString ustr(*it, izenelib::util::UString::UTF_8);
         target.push_back(ustr);
     }
 }
@@ -134,7 +134,7 @@ void LangidTestFixture::checkPrimaryLanguage(const char* str, LanguageID gold)
     BOOST_CHECK(analyzer_->languageFromFile(fileName.c_str(), id));
     BOOST_CHECK_EQUAL(id, gold);
 
-    izenelib::util::UString ustr(str, UString::UTF_8);
+    izenelib::util::UString ustr(str, izenelib::util::UString::UTF_8);
     BOOST_CHECK(analyzer_->languageFromString(ustr, id));
     BOOST_CHECK_EQUAL(id, gold);
 }
@@ -155,7 +155,7 @@ void LangidTestFixture::checkLanguageList(
     BOOST_CHECK(analyzer_->languageListFromFile(fileName.c_str(), idVec));
     checkLangIdList(idVec, goldLangIDs);
 
-    izenelib::util::UString ustr(totalBlock, UString::UTF_8);
+    izenelib::util::UString ustr(totalBlock, izenelib::util::UString::UTF_8);
     BOOST_CHECK(analyzer_->languageListFromString(ustr, idVec));
     checkLangIdList(idVec, goldLangIDs);
 }
@@ -178,7 +178,7 @@ void LangidTestFixture::checkSegmentLanguage(
 
     vector<izenelib::util::UString> ustrBlocks;
     convert(languageBlocks, ustrBlocks);
-    izenelib::util::UString ustr(totalBlock, UString::UTF_8);
+    izenelib::util::UString ustr(totalBlock, izenelib::util::UString::UTF_8);
     BOOST_CHECK(analyzer_->segmentString(ustr, regionVec));
     checkRegionList(regionVec, ustrBlocks, goldLangIDs);
 }
@@ -230,7 +230,7 @@ void LangidTestFixture::checkTokenizeUString_(const vector<izenelib::util::UStri
 
         ustr.assign(totalBlock, pos, len);
         string utf8;
-        ustr.convertString(utf8, UString::UTF_8);
+        ustr.convertString(utf8, izenelib::util::UString::UTF_8);
         BOOST_TEST_MESSAGE("sentence " << i
                            << ", len: " << len
                            << ", text: " << utf8);

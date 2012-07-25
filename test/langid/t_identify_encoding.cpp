@@ -48,13 +48,13 @@ BOOST_AUTO_TEST_CASE(checkEncodingFromChinese)
     string utf8 = "中华人民共和国";
     checkEncoding(utf8.c_str(), ENCODING_ID_UTF8);
 
-    izenelib::util::UString ustr(utf8, UString::UTF_8);
+    izenelib::util::UString ustr(utf8, izenelib::util::UString::UTF_8);
     string target;
 
-    ustr.convertString(target, UString::GB2312);
+    ustr.convertString(target, izenelib::util::UString::GB2312);
     checkEncoding(target.c_str(), ENCODING_ID_GB18030);
 
-    ustr.convertString(target, UString::BIG5);
+    ustr.convertString(target, izenelib::util::UString::BIG5);
     checkEncoding(target.c_str(), ENCODING_ID_BIG5);
 }
 
@@ -63,13 +63,13 @@ BOOST_AUTO_TEST_CASE(checkEncodingFromJapanese)
     string utf8 = "おはようございます";
     checkEncoding(utf8.c_str(), ENCODING_ID_UTF8);
 
-    izenelib::util::UString ustr(utf8, UString::UTF_8);
+    izenelib::util::UString ustr(utf8, izenelib::util::UString::UTF_8);
     string target;
 
-    ustr.convertString(target, UString::EUC_JP);
+    ustr.convertString(target, izenelib::util::UString::EUC_JP);
     checkEncoding(target.c_str(), ENCODING_ID_EUCJP);
 
-    ustr.convertString(target, UString::SJIS);
+    ustr.convertString(target, izenelib::util::UString::SJIS);
     checkEncoding(target.c_str(), ENCODING_ID_SHIFT_JIS);
 }
 
@@ -78,11 +78,11 @@ BOOST_AUTO_TEST_CASE(checkEncodingFromKorean)
     string utf8 = "환영. 안녕하세요.";
     checkEncoding(utf8.c_str(), ENCODING_ID_UTF8);
 
-    izenelib::util::UString ustr(utf8, UString::UTF_8);
+    izenelib::util::UString ustr(utf8, izenelib::util::UString::UTF_8);
     string target;
 
-    ustr.convertString(target, UString::EUC_KR);
+    ustr.convertString(target, izenelib::util::UString::EUC_KR);
     checkEncoding(target.c_str(), ENCODING_ID_EUCKR);
 }
 
-BOOST_AUTO_TEST_SUITE_END() 
+BOOST_AUTO_TEST_SUITE_END()

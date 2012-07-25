@@ -66,7 +66,7 @@ public:
     int reloadDict( const char* srcFile, bool ignoreNoExistFile = false )
     {
         {
-            ScopedWriteLock<ReadWriteLock> swl( lock_ );
+            izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl( lock_ );
             words_.clear();
         }
         return loadDict( srcFile, ignoreNoExistFile );
@@ -78,7 +78,7 @@ public:
 	 */
 	inline void insert( const izenelib::util::UString& word )
 	{
-	    ScopedWriteLock<ReadWriteLock> swl( lock_ );
+	    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl( lock_ );
 	    words_[ word ] = true;
 	}
 
@@ -88,7 +88,7 @@ public:
 	 */
 	inline void remove( const izenelib::util::UString& word )
 	{
-	    ScopedWriteLock<ReadWriteLock> swl( lock_ );
+	    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl( lock_ );
 	    words_.erase( word );
 	}
 
@@ -98,7 +98,7 @@ public:
 	 */
 	inline bool contain( const izenelib::util::UString& word )
 	{
-	    ScopedReadLock<ReadWriteLock> srl( lock_ );
+	    izenelib::util::ScopedReadLock<izenelib::util::ReadWriteLock> srl( lock_ );
 	    return words_.find( word ) != words_.end();
 	}
 

@@ -32,7 +32,7 @@ void checkUTF16(const char* str, size_t goldMBLen, unsigned short goldUCS2)
 {
     typedef UCS2_Converter<ENCODING_ID_UTF16> UCSConv;
 
-    izenelib::util::UString ustr(str, UString::UTF_8);
+    izenelib::util::UString ustr(str, izenelib::util::UString::UTF_8);
     const char* start = reinterpret_cast<const char*>(ustr.data());
     size_t mblen;
     unsigned short ucs2 = UCSConv::convertToUCS2(start, start+ustr.size(), &mblen);
@@ -67,4 +67,4 @@ BOOST_AUTO_TEST_CASE(checkConvertFromUTF16)
     checkUTF16("안녕하", 2, 0xC548);
 }
 
-BOOST_AUTO_TEST_SUITE_END() 
+BOOST_AUTO_TEST_SUITE_END()

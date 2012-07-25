@@ -8,7 +8,7 @@
  * $./test_langid_perf -f inputFile -l 1024
  *
  * \endcode
- * 
+ *
  * \author Jun Jiang
  * \version 0.1
  * \date Sep 15, 2011
@@ -61,7 +61,7 @@ void countLanguageFromFileLine(
         bool result = true;
         if (isConvertUStr)
         {
-            izenelib::util::UString ustr(line, UString::UTF_8);
+            izenelib::util::UString ustr(line, izenelib::util::UString::UTF_8);
             //string utf8;
             //ustr.convertString(utf8, UString::UTF_8);
             //result = analyzer.languageFromString(utf8.c_str(), lineID);
@@ -113,7 +113,7 @@ int main(int argc, char* argv[])
 
         po::variables_map vm;
         store(po::command_line_parser(argc, argv).options(cmdline_options).run(), vm);
-        po::notify(vm);    
+        po::notify(vm);
 
         if(vm.count("help"))
         {
@@ -166,7 +166,7 @@ int main(int argc, char* argv[])
     analyzer->setOption(Analyzer::OPTION_TYPE_LIMIT_ANALYZE_SIZE, limit);
 
     analyzer->setKnowledge(knowledge);
-    
+
     countLanguageFromFileLine(*analyzer, inputFile.c_str(), isConvertUStr);
 
     delete knowledge;

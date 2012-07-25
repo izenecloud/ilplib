@@ -50,10 +50,10 @@ UpdateDictThread::~UpdateDictThread()
 
 UpdateDictThread UpdateDictThread::staticUDT;
 
-shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict(const std::string& path,
-        const shared_ptr< UpdatableDict >& dict)
+boost::shared_ptr<UpdatableDict> UpdateDictThread::addRelatedDict(const std::string& path,
+        const boost::shared_ptr< UpdatableDict >& dict)
 {
-    ScopedWriteLock<ReadWriteLock> swl(lock_);
+    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
     MapType::iterator itr = map_.find(path);
     if (itr == map_.end())
     {
@@ -69,12 +69,12 @@ shared_ptr< UpdatableDict > UpdateDictThread::addRelatedDict(const std::string& 
         return itr->second.relatedDict_;
 }
 
-shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
+boost::shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
         const std::string& path,
         UString::EncodingType encoding,
         bool ignoreNoExistFile)
 {
-    shared_ptr<PlainDictionary> pdPtr;
+    boost::shared_ptr<PlainDictionary> pdPtr;
     pdPtr.reset(new PlainDictionary(encoding));
     pdPtr->loadDict(path.c_str(), ignoreNoExistFile);
     addRelatedDict(path, pdPtr);
@@ -83,7 +83,7 @@ shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
 
 int UpdateDictThread::update_()
 {
-    ScopedWriteLock<ReadWriteLock> swl(lock_);
+    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
     int failedCount = 0;
     for (MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr)
     {
@@ -121,7 +121,7 @@ void UpdateDictThread::run_()
 
 bool UpdateDictThread::start()
 {
-    ScopedWriteLock<ReadWriteLock> swl(lock_);
+    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
     if (isStarted())
         return false;
 

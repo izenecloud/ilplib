@@ -23,19 +23,19 @@ namespace la
     const string RES_PUNCT = "RP";
     const Term newTerm;
 
-    const UString OP_USTR( "&|!(){}[]^\"", UString::UTF_8 );
-    const UString BACK_SLASH( "\\", UString::UTF_8 );
+    const UString OP_USTR("&|!(){}[]^\"", UString::UTF_8);
+    const UString BACK_SLASH("\\", UString::UTF_8);
 
     map< UString, UString > OP_REP_MAP;
 
-    void replaceSpecialChar( const UString& in, UString& ret )
+    void replaceSpecialChar(const UString& in, UString& ret)
     {
         map< UString, UString >::iterator itr;
-        for( size_t i = 0; i < in.length(); ++i )
+        for (size_t i = 0; i < in.length(); ++i)
         {
-            UString key = in.substr( i, 1 );
-            itr = OP_REP_MAP.find( key );
-            if( itr == OP_REP_MAP.end() )
+            UString key = in.substr(i, 1);
+            itr = OP_REP_MAP.find(key);
+            if (itr == OP_REP_MAP.end())
             {
                 ret += key;
             }
@@ -48,11 +48,11 @@ namespace la
 
     LA::LA()
     {
-        if( OP_REP_MAP.empty() == true )
+        if (OP_REP_MAP.empty())
         {
-            for( size_t i = 0; i < OP_USTR.length(); ++i )
+            for (size_t i = 0; i < OP_USTR.length(); ++i)
             {
-                UString key = OP_USTR.substr( i, 1 );
+                UString key = OP_USTR.substr(i, 1);
                 OP_REP_MAP[ key ] = BACK_SLASH;
                 OP_REP_MAP[ key ] += key;
             }
@@ -122,9 +122,9 @@ namespace la
         }
     }
 
-    izenelib::util::UString toExpandedString( const TermList & termList )
+    izenelib::util::UString toExpandedString(const TermList & termList)
     {
-        if( termList.empty() )
+        if (termList.empty())
         {
             UString ustr;
             return ustr;
@@ -147,13 +147,13 @@ namespace la
 
         preProcess(termList);
 
-        for( it = termList.begin(); it != termList.end(); it++ )
+        for (it = termList.begin(); it != termList.end(); it++)
         {
             //cout << "for term " << *it << endl;
             andOrBit = it->getAndOrBit();
             level = it->getLevel();
 
-            if( it == termList.begin() )
+            if (it == termList.begin())
             {
                 output += LBRACKET;
                 output += LBRACKET;
@@ -162,13 +162,13 @@ namespace la
             else
             {
 
-                if( prevOffset < it->wordOffset_ )
+                if (prevOffset < it->wordOffset_)
                 {
-                    ///for( int i = prevLevel; i >= baseLevel; i-- )
+                    ///for (int i = prevLevel; i >= baseLevel; i--)
                     ///    output += RBRACKET;
                     output += RBRACKET;
                     output += RBRACKET;
-                    //if( prevLevel > level )
+                    //if (prevLevel > level)
                     //output += RBRACKET;
                     //output += RBRACKET;
                     output += AND_CHAR;
@@ -178,11 +178,11 @@ namespace la
                 }
                 else
                 {
-                    if( prevLevel < level )
+                    if (prevLevel < level)
                     {
-//                        if( prevAndOr == Term::AND )
+//                        if (prevAndOr == Term::AND)
 //                            output += AND_CHAR;
-//                        else if( prevAndOr == Term::OR )
+//                        else if (prevAndOr == Term::OR)
 //                            output += OR_CHAR;
 //                        output += LBRACKET;
                         output += RBRACKET;
@@ -191,13 +191,13 @@ namespace la
                     }
                     else
                     {
-//                        if( prevLevel > level )
+//                        if (prevLevel > level)
 //                            output += RBRACKET;
-                        if( andOrBit == Term::AND )
+                        if (andOrBit == Term::AND)
                         {
                             output += AND_CHAR;
                         }
-                        else if( andOrBit == Term::OR )
+                        else if (andOrBit == Term::OR)
                         {
                             output += OR_CHAR;
                         }
@@ -206,17 +206,17 @@ namespace la
             }
 
             UString replacedText;
-            replaceSpecialChar( it->text_, replacedText );
+            replaceSpecialChar(it->text_, replacedText);
             output += replacedText;
 
             prevLevel = level;
             prevOffset = it->wordOffset_;
             prevAndOr = andOrBit;
 
-            //output.displayStringValue( izenelib::util::UString::UTF_8 ); cout << endl;
+            //output.displayStringValue(izenelib::util::UString::UTF_8); cout << endl;
         }
 
-        //for( int i = prevLevel; i >= baseLevel; i-- )
+        //for (int i = prevLevel; i >= baseLevel; i--)
         //    output += RBRACKET;
         output += RBRACKET;
         output += RBRACKET;
@@ -224,17 +224,18 @@ namespace la
         return output;
     }
 
-    void LA::removeStopwords( TermList & termList,
-            shared_ptr<PlainDictionary>&  stopDict )
+    void LA::removeStopwords(
+            TermList & termList,
+            boost::shared_ptr<PlainDictionary>&  stopDict)
     {
-        ScopedReadLock<ReadWriteLock> srl( stopDict->getLock() );
+        ScopedReadLock<ReadWriteLock> srl(stopDict->getLock());
         TermList::iterator itr = termList.begin();
-        while( itr != termList.end() )
+        while (itr != termList.end())
         {
-            //cout<<"Contains ";itr->text_.displayStringInfo( UString::UTF_8);
-            //cout<<" : "<<stopDict->containNoLock( itr->text_ )<<", size: "<<stopDict->size()<<endl;
-            if( stopDict->containNoLock( itr->text_ ) )
-                itr = termList.erase( itr );
+            //cout<<"Contains ";itr->text_.displayStringInfo(UString::UTF_8);
+            //cout<<" : "<<stopDict->containNoLock(itr->text_)<<", size: "<<stopDict->size()<<endl;
+            if (stopDict->containNoLock(itr->text_))
+                itr = termList.erase(itr);
             else
                 ++itr;
         }

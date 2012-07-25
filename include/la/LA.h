@@ -50,7 +50,7 @@ public:
 
     LA();
 
-    void setAnalyzer( const boost::shared_ptr<Analyzer> & analyzer )
+    void setAnalyzer(const boost::shared_ptr<Analyzer> & analyzer)
     {
         analyzer_ = analyzer;
     }
@@ -63,38 +63,42 @@ public:
     /// obsolete
     void processSynonym(TermList& outList)
     {
-        if( analyzer_.get() != NULL ) {
+        if (analyzer_)
+        {
             analyzer_->analyzeSynonym(outList, 2);
         }
     }
 
-    void processSynonym( const izenelib::util::UString & inputString,
-                  TermList & outList)
+    void processSynonym(const izenelib::util::UString & inputString,
+                        TermList & outList)
     {
-        if (analyzer_.get() != NULL) {
+        if (analyzer_)
+        {
             analyzer_->analyzeSynonym(inputString, outList);
         }
     }
 
-    void process( const izenelib::util::UString & inputString,
-                  TermList & outList,
-                  MultilangGranularity multilangGranularity = FIELD_LEVEL )
+    void process(const izenelib::util::UString & inputString,
+                 TermList & outList,
+                 MultilangGranularity multilangGranularity = FIELD_LEVEL)
     {
         outList.clear();
-        if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( inputString, outList, multilangGranularity );
+        if (analyzer_)
+        {
+            analyzer_->analyze(inputString, outList, multilangGranularity);
         }
     }
 
     template<typename IDManagerType>
-    void process( IDManagerType* idm,
-                  const izenelib::util::UString & inputString,
-                  TermIdList & outList,
-                  MultilangGranularity multilangGranularity = FIELD_LEVEL )
+    void process(IDManagerType* idm,
+                 const izenelib::util::UString & inputString,
+                 TermIdList & outList,
+                 MultilangGranularity multilangGranularity = FIELD_LEVEL)
     {
         outList.clear();
-        if( analyzer_.get() != NULL ) {
-            analyzer_->analyze( idm, inputString, outList, multilangGranularity );
+        if (analyzer_)
+        {
+            analyzer_->analyze(idm, inputString, outList, multilangGranularity);
         }
     }
 
@@ -105,15 +109,15 @@ public:
      */
     static void removeStopwords(
         TermList & termList,
-        shared_ptr<PlainDictionary>&  stopDict
+        boost::shared_ptr<PlainDictionary>&  stopDict
     );
 
 private:
 
-    shared_ptr<Analyzer>    analyzer_;
+    boost::shared_ptr<Analyzer>    analyzer_;
 };
 
-izenelib::util::UString toExpandedString( const TermList & termList );
+izenelib::util::UString toExpandedString(const TermList & termList);
 
 }
 

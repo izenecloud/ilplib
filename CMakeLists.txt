@@ -50,19 +50,19 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
 
   MACRO_SET_BUILD_TYPES(
     RelWithDebInfo
-    "-O2 -g -Wno-deprecated -DNDEBUG -fPIC"
+    "-march=native -mtune=native -O2 -g -Wno-deprecated -DNDEBUG -fPIC"
     "Flags used by the compiler during Release with Debug Info builds."
 
     Release
-    "-O2 -Wno-deprecated -DNDEBUG -fPIC"
+    "-march=native -mtune=native -O2 -Wno-deprecated -DNDEBUG -fPIC"
     "Flags used by the compiler during release builds"
 
     Debug
-    "-g -O0 -fno-reorder-blocks -fno-schedule-insns -fno-inline -Wno-deprecated -fPIC"
+    "-march=native -mtune=native -g -O0 -fno-reorder-blocks -fno-schedule-insns -fno-inline -Wno-deprecated -fPIC"
     "Flags used by the compiler during debug builds."
 
     Profile
-    "-g3 -fno-inline -ftest-coverage -fprofile-arcs -Wno-deprecated -fPIC"
+    "-march=native -mtune=native -g3 -fno-inline -ftest-coverage -fprofile-arcs -Wno-deprecated -fPIC"
     "Profile build type"
   )
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)
@@ -82,7 +82,7 @@ SET(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}" CACHE STRING
 # Find extra cmake modules dirs
 #
 # You can clone all modules from izenesoft.com:/git/cmake.git.
-# 
+#
 # Copy it to your install dir or change the variable
 # EXTRA_CMAKE_MODULES_DIRS.
 #
@@ -123,7 +123,7 @@ ELSE(Boost_FOUND)
     MESSAGE(STATUS "BOOST: not found")
 ENDIF(Boost_FOUND)
 
-FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util leveldb 
+FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util leveldb
 snappy)
 
 IF(izenelib_FOUND)
@@ -235,4 +235,3 @@ LINK_DIRECTORIES(
     ${izenejma_LIBRARIES_DIRS}
     ${izenelib_LIBRARY_DIRS}
     )
-

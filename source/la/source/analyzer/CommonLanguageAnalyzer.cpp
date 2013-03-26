@@ -37,6 +37,7 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer()
     , bExtractEngStem_(false)
     , bExtractSynonym_(false)
     , bChinese_(false)
+    , bRemoveStopwords_(false)
 {
     pStemmer_ = new stem::Stemmer();
     pStemmer_->init(stem::STEM_LANG_ENGLISH);

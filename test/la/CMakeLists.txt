@@ -15,8 +15,8 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
     ${Boost_INCLUDE_DIRS}
   )
 
-  add_executable(t_LA
-	Runner.cpp
+#  add_executable(t_LA
+#	Runner.cpp
 #	t_Tokenizer.cpp
 #	t_Analyzer.cpp
 #	t_CharAnalyzer.cpp
@@ -25,7 +25,7 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 #	t_ChineseAnalyzer.cpp
 #	t_KoreanAnalyzer.cpp
 #	t_MultiLanguageAnalyzer.cpp
-	)
+#	)
 
   set(la_libs
 	ilplib
@@ -42,6 +42,6 @@ IF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 	${TokyoCabinet_LIBRARIES}
  )
 
-  target_link_libraries(t_LA ${la_libs})
+#  target_link_libraries(t_LA ${la_libs})
 ENDIF(Boost_FOUND AND Boost_UNIT_TEST_FRAMEWORK_FOUND)
 

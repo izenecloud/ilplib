@@ -54,7 +54,6 @@ CommonLanguageAnalyzer::CommonLanguageAnalyzer(
     , pSynonymContainer_(NULL)
     , pSynonymResult_(NULL)
     , synonymEncode_(synonymEncode)
-    , uscSPtr_(UpdateDictThread::staticUDT.addRelatedDict(synonymDictPath), boost::detail::static_cast_tag())
     , pStemmer_(NULL)
     , bCaseSensitive_(false)
     , bContainLower_(false)

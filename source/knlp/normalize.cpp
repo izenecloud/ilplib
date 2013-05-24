@@ -3,7 +3,7 @@
  *
  *       Filename:  normalize.cpp
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  2013年05月24日 11时07分41秒
@@ -16,10 +16,13 @@
  * =====================================================================================
  */
 #include "knlp/normalize.h"
-namespace ilplib{
-	    namespace knlp{
+namespace ilplib
+{
+namespace knlp
+{
 
 Trad2Simp Normalize::trd2smp_;
 
-}}
+}
+}
 

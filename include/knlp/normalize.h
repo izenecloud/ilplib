@@ -3,7 +3,7 @@
  *
  *       Filename:  normalize.h
  *
- *    Description:  
+ *    Description:
  *
  *        Version:  1.0
  *        Created:  2013年05月22日 12时04分42秒
@@ -21,20 +21,23 @@
 #include "trd2simp.h"
 #include "util/string/kstring.hpp"
 
-namespace ilplib{
-	namespace knlp{
+namespace ilplib
+{
+namespace knlp
+{
 
 class Normalize
 {
-	static Trad2Simp trd2smp_;
-	public:
-		static void normalize(izenelib::util::KString& kstr)
-		{
-			kstr.to_dbc();
-			kstr.to_lower_case();
-			trd2smp_.transform(kstr);
-		}
+    static Trad2Simp trd2smp_;
+public:
+    static void normalize(izenelib::util::KString& kstr)
+    {
+        kstr.to_dbc();
+        kstr.to_lower_case();
+        trd2smp_.transform(kstr);
+    }
 };
 
-}}//namespace
+}
+}//namespace
 #endif

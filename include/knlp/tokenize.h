@@ -269,6 +269,7 @@ class Tokenize
 		struct timezone tz;
 		uint64_t C = 0;
 		{
+			uint32_t CC = 0;
 			gettimeofday (&tvpre , &tz);
 			for ( uint32_t t=0; t<corpus.size(); t++)
 			{
@@ -276,7 +277,8 @@ class Tokenize
 				char* line = NULL;
 				while((line = lr.line(line))!= NULL)
 				{
-					std::cout<<"\r"<<C<<std::flush;
+					CC ++;
+					std::cout<<"\r"<<CC<<std::flush;
 					try{
 						KString  u(line);
 						for ( uint32_t i=0; i<u.length(); ++i)

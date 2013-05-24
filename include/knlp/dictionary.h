@@ -54,7 +54,7 @@ class Dictionary
 		bytes_ = ftell(f);
 		fseek(f, 0, SEEK_SET);
 		buf_ = new char[bytes_+1];
-		fread(buf_, bytes_, 1, f);
+		if(fread(buf_, bytes_, 1, f)!=1)throw std::runtime_error("File Read error.");
 		fclose(f);
 
 		char* m = buf_;

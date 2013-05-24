@@ -217,10 +217,9 @@ class Tokenize
 	{
 	}
 
-	std::vector<std::pair<KString, double> >
-		tokenize(const KString& line)
+	void
+		tokenize(const KString& line, std::vector<std::pair<KString, double> >& v)
 		{
-			std::vector<std::pair<KString, double> > v;
 			std::vector<KString> chunks = chunk_(line);
 			for ( uint32_t i=0; i<chunks.size(); ++i)
 			{
@@ -237,15 +236,17 @@ class Tokenize
 				std::vector<std::pair<KString, double> > r = token_(chunks[i], 0, ps);
 				v.insert(v.end(), r.begin(), r.begin()+((int)r.size()-1));
 			}
-			return v;
 		}
 
-	void tokenize(const KString& line, std::vector<KString>& r)
+	std::vector<KString> tokenize(const KString& line)
 	{
-		std::vector<std::pair<KString, double> > vv = tokenize(line);
+		std::vector<KString> r;
+		std::vector<std::pair<KString, double> > vv;
+	    tokenize(line, vv);
 		r.clear();r.reserve(vv.size());
 		for ( uint32_t i=0; i<vv.size(); ++i)
 		  r.push_back(vv[i].first);
+		return r;
 	}
 
 	uint32_t size()const
@@ -260,7 +261,7 @@ class Tokenize
 		izenelib::am::KStringHashTable<KString, bool> prefix;
 		gen_prefix_(dictnm, prefix);
 
-		izenelib::am::KStringHashTable<KString, double> freq_table(dict.size()*3, dict.size()+2);
+		izenelib::am::KStringHashTable<KString, double> freq_table(dict.size()*10, dict.size()+2);
 		std::vector<std::pair<KString, uint32_t> > vv;
 		vv.reserve(1000000);
 
@@ -275,6 +276,7 @@ class Tokenize
 				char* line = NULL;
 				while((line = lr.line(line))!= NULL)
 				{
+					std::cout<<"\r"<<C<<std::flush;
 					try{
 						KString  u(line);
 						for ( uint32_t i=0; i<u.length(); ++i)

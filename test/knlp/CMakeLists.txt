@@ -30,3 +30,11 @@ ADD_EXECUTABLE(fill_idf
 TARGET_LINK_LIBRARIES(fill_idf
    ${Boost_SYSTEM_LIBRARY}
 )
+ADD_EXECUTABLE(fill_naive_bayes 
+			fill_naive_bayes.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(fill_naive_bayes
+   ${Boost_SYSTEM_LIBRARY}
+)

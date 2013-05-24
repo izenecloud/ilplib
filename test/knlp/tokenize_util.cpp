@@ -84,7 +84,8 @@ int main(int argc,char * argv[])
             break;
         if (t<corpus.size())
         {
-            freopen (corpus[t].c_str(), "r", stdin);
+            if(freopen (corpus[t].c_str(), "r", stdin) == NULL)
+              ;
             ++t;
         }
         string line;

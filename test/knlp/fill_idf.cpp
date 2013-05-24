@@ -37,7 +37,7 @@ int main(int argc,char * argv[])
 {
 	if (argc < 4)
 	{
-		std::cout<<argv[0]<<" [tokenize dict] [output] [corpus 1] [corpus 2] ....";
+		std::cout<<argv[0]<<" [tokenize dict] [output] [corpus 1] [corpus 2] ....\n";
 		return 0;
 	}
 

@@ -21,3 +21,12 @@ ADD_EXECUTABLE(tokenize_util
 TARGET_LINK_LIBRARIES(tokenize_util
    ${Boost_SYSTEM_LIBRARY}
 )
+
+ADD_EXECUTABLE(fill_idf 
+			fill_idf.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(fill_idf
+   ${Boost_SYSTEM_LIBRARY}
+)

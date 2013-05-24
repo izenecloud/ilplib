@@ -50,19 +50,19 @@ IF (CMAKE_COMPILER_IS_GNUCXX)
 
   MACRO_SET_BUILD_TYPES(
     RelWithDebInfo
-    "-march=native -mtune=native -O2 -g -Wno-deprecated -DNDEBUG -fPIC"
+    "-march=native -mtune=native -O2 -g -Wno-deprecated -DNDEBUG -fPIC -Wstrict-aliasing"
     "Flags used by the compiler during Release with Debug Info builds."
 
     Release
-    "-march=native -mtune=native -O2 -Wno-deprecated -DNDEBUG -fPIC"
+    "-march=native -mtune=native -O2 -Wno-deprecated -DNDEBUG -fPIC -Wstrict-aliasing"
     "Flags used by the compiler during release builds"
 
     Debug
-    "-march=native -mtune=native -g -O0 -fno-reorder-blocks -fno-schedule-insns -fno-inline -Wno-deprecated -fPIC"
+    "-march=native -mtune=native -g -O0 -fno-reorder-blocks -fno-schedule-insns -fno-inline -Wno-deprecated -fPIC -Wstrict-aliasing"
     "Flags used by the compiler during debug builds."
 
     Profile
-    "-march=native -mtune=native -g3 -fno-inline -ftest-coverage -fprofile-arcs -Wno-deprecated -fPIC"
+    "-march=native -mtune=native -g3 -fno-inline -ftest-coverage -fprofile-arcs -Wno-deprecated -fPIC -Wstrict-aliasing"
     "Profile build type"
   )
 ENDIF (CMAKE_COMPILER_IS_GNUCXX)

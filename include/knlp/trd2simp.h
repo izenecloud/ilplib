@@ -39,7 +39,7 @@ class Trad2Simp
 	mutable izenelib::am::KIntegerHashTable<uint16_t, uint16_t> table_;
 
 	public:
-		explicit Trad2Simp()
+		Trad2Simp()
 			:table_(5000, 50000)
 		{
 			{table_.insert(37650,38165);}

@@ -36,7 +36,5 @@ class Normalize
 		}
 };
 
-Trad2Simp Normalize::trd2smp_;
-
 }}//namespace
 #endif

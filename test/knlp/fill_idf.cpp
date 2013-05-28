@@ -37,6 +37,10 @@ int main(int argc,char * argv[])
 {
     if (argc < 4)
     {
+        KStringHashTable<KString, double> idft;
+        idft.load("./term.idf");
+        double* w = idft.find(KString("[[NONE]]"));
+        std::cout<<*w<<std::endl;
         std::cout<<argv[0]<<" [tokenize dict] [output] [corpus 1] [corpus 2] ....\n";
         return 0;
     }
@@ -55,12 +59,19 @@ int main(int argc,char * argv[])
         while((line=lr.line(line))!=NULL)
         {
             if (strlen(line) == 0)continue;
+            std::cout<<"\r"<<docn<<std::flush;
             docn++;
             KString kstr(line);
             ilplib::knlp::Normalize::normalize(kstr);
             std::vector<KString> v = tkn.tokenize(kstr);
-            std::set<KString> set(v.begin(), v.end());
-            for ( std::set<KString>::const_iterator it=set.begin(); it!=set.end(); ++i)
+            std::set<KString> set;
+            for ( uint32_t t=0; t<v.size(); ++t)
+            {
+                v[t].trim();
+                if (v[t].length() > 0)
+                  set.insert(v[t]);
+            }
+            for ( std::set<KString>::iterator it=set.begin(); it!=set.end(); ++it)
             {
                 double* f = idft.find(*it);
                 if (f)(*f)++;

@@ -36,6 +36,7 @@
 #include "trd2simp.h"
 #include "am/util/line_reader.h"
 #include "util/kthread/asynchronization.h"
+#include "net/seda/queue.hpp"
 
 namespace ilplib
 {
@@ -214,6 +215,7 @@ public:
         }
         catch(std::runtime_error e)
         {
+            std::cout<<e.what()<<std::endl;
             gen_prefix_(dict_nm, prefix_);
         }
     }
@@ -258,6 +260,158 @@ public:
     uint32_t size()const
     {
         return freq_.size();
+    }
+
+    static void insert_table(std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>, 
+                std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> > para)
+    {
+        Dictionary* dict = para.first.first;
+        //izenelib::am::KStringHashTable<KString, bool>* pref = para.first.second;
+        izenelib::EventQueue<KString*>* q = para.second.first;
+        izenelib::am::KStringHashTable<KString, double>* tb = para.second.second;
+        while(1)
+        {
+            uint64_t e;
+            KString* s;
+            q->pop(s, e);
+            if (s == NULL)
+              return;
+             if (!dict->row(*s))
+                 continue;
+            double* f = tb->find(*s);
+            if (!f)
+              tb->insert(*s, 1);
+            else *f += 1;
+            delete s;
+        }
+    }
+
+    static void merge_table(std::pair<izenelib::am::KStringHashTable<KString, double>*,
+                                              izenelib::am::KStringHashTable<KString, double>*> para)
+    {
+        izenelib::am::KStringHashTable<KString, double>* a = para.first;
+        izenelib::am::KStringHashTable<KString, double>* b = para.second;
+        for ( izenelib::am::KStringHashTable<KString, double>::iterator it=b->begin(); it!=b->end(); ++it)
+        {
+            double* f = a->find(*it.key());
+            if (!f)a->insert(*it.key(), *it.value());
+            else (*f) += *it.value();
+        }
+    }
+
+    static bool asy_train(const std::string& dictnm, const std::vector<std::string>& corpus,
+                      const std::string& out, uint32_t parrallel=2)
+    {
+        Dictionary dict(dictnm);
+        izenelib::am::KStringHashTable<KString, bool> prefix;
+        try
+        {
+            prefix.load(dictnm+".prefix");
+        }
+        catch(std::runtime_error e)
+        {
+            std::cout<<e.what()<<std::endl;
+            gen_prefix_(dictnm, prefix);
+        }
+
+        std::vector<izenelib::EventQueue<KString*>* > qs(parrallel, NULL); 
+        for ( uint32_t i=0; i<parrallel; ++i)
+          qs[i] = new izenelib::EventQueue<KString*>(100000);
+
+        std::vector<izenelib::am::KStringHashTable<KString, double>*> freq_tables(parrallel, NULL);
+        for ( uint32_t i=0; i<parrallel; ++i)
+          freq_tables[i] = new izenelib::am::KStringHashTable<KString, double>(dict.size()*10, dict.size()+2);
+
+        struct timeval tvafter,tvpre;
+        struct timezone tz;
+        uint64_t C = 0;
+        {
+            uint32_t CC = 0;
+            gettimeofday (&tvpre , &tz);
+            izenelib::Asynchronization asyn(parrallel+1);
+            for ( uint32_t i=0; i<parrallel; ++i)
+              asyn.new_static_thread(&Tokenize::insert_table, 
+                          std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>, 
+                          std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> >
+                          (std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>(&dict, &prefix), 
+                           std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*>(qs[i], freq_tables[i])));
+
+            for ( uint32_t t=0; t<corpus.size(); t++)
+            {
+                izenelib::am::util::LineReader lr(corpus[t]);
+                char* line = NULL;
+                while((line = lr.line(line))!= NULL)
+                {
+                    CC ++;
+                    std::cout<<"\r"<<CC<<std::flush;
+                    try
+                    {
+                        KString  u(line);
+                        for ( uint32_t i=0; i<u.length(); ++i)
+                          for ( uint32_t j=i; j<u.length(); ++j)
+                          {
+                              //KString sub = u.substr(i, j-i+1);
+                              /*if (!dict.row(sub))
+                              {
+                                  if (!prefix.find(sub))
+                                    break;
+                                  continue;
+                              }*/
+                              qs[C%parrallel]->push(new KString(u.substr(i, j-i+1)), C);
+                              C++;
+                          }
+                    }
+                    catch(...) {}
+                }
+            }
+            for ( uint32_t i=0; i<parrallel; ++i)
+              qs[i]->push(NULL, C);
+            asyn.join();
+            gettimeofday (&tvafter , &tz);
+            std::cout<<"\nPhase A: "<<((tvafter.tv_sec-tvpre.tv_sec)*1000+(tvafter.tv_usec-tvpre.tv_usec)/1000)/60000.<<" min"<<std::endl;
+        }
+        {
+            gettimeofday (&tvpre , &tz);
+            uint32_t gap = 1;
+            while(gap < parrallel)
+            {
+                izenelib::Asynchronization asyn(parrallel+1);
+                for ( uint32_t i=0; i+gap<parrallel; i+=gap*2)
+                  asyn.new_static_thread(&Tokenize::merge_table, 
+                              std::pair<izenelib::am::KStringHashTable<KString, double>*, 
+                              izenelib::am::KStringHashTable<KString, double>*>(freq_tables[i], freq_tables[i+gap]));
+                asyn.join();
+                gap*=2;
+            }
+            std::ofstream of(out.c_str());
+            const char* row = NULL;
+            while((row = dict.next_row(row))!=NULL)
+            {
+                //std::cout<<row<<std::endl;
+                const char* t = strchr(row, '\t');
+                IASSERT(t != NULL);
+                KString kstr(std::string(row, t-row));
+                double* f = freq_tables[0]->find(kstr);
+                double s = 0;
+                if (f)s = *f;
+                char buf[125];
+                memset(buf, 0, sizeof(buf));
+                sprintf(buf, "%9.9f", log((s+0.5)/(C+10000)));
+                of << kstr << "\t" <<buf<<std::endl;
+            }
+            char buf[125];
+            memset(buf, 0, sizeof(buf));
+            sprintf(buf, "%9.9f", log(0.5/(C+10000)));
+            of << "[MIN]\t" << buf << std::endl;
+            gettimeofday (&tvafter , &tz);
+            std::cout<<"\nPhase B: "<<((tvafter.tv_sec-tvpre.tv_sec)*1000+(tvafter.tv_usec-tvpre.tv_usec)/1000)/60000.<<" min"<<std::endl;
+        }
+        for ( uint32_t i=0; i<parrallel; ++i)
+        {
+            delete qs[i];
+            delete freq_tables[i];
+        }
+        return true;
     }
 
     static bool train(const std::string& dictnm, const std::vector<std::string>& corpus,

@@ -61,7 +61,7 @@ int main(int argc,char * argv[])
             printHelp();
         }
 
-    Tokenize::train(dictnm, corpus, output);
+    Tokenize::asy_train(dictnm, corpus, output);
     return 0;
 }
 

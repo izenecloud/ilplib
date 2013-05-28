@@ -11,6 +11,7 @@ ADD_EXECUTABLE(tokenize_unigram_train
 
 TARGET_LINK_LIBRARIES(tokenize_unigram_train
    ${Boost_SYSTEM_LIBRARY}
+   pthread
 )
 
 ADD_EXECUTABLE(tokenize_util 

@@ -272,7 +272,7 @@ public:
         while(1)
         {
             uint64_t e;
-            KString* s;
+            KString* s=NULL;
             q->pop(s, e);
             if (s == NULL)
               return;

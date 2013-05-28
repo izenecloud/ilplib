@@ -45,9 +45,9 @@ namespace knlp
 
 class Tokenize
 {
+    mutable double minf_;
     Dictionary freq_;
     izenelib::am::KStringHashTable<KString, bool> prefix_;
-    mutable double minf_;
     std::vector<uint8_t> delimiter_;
 
     static void gen_prefix_(const std::string& dict_nm,
@@ -107,7 +107,7 @@ class Tokenize
         {
             if (minf_ == 0.0)
             {
-                f = freq_.value(KString("[MIN]"));
+                f = freq_.value(KString("[min]"));
                 IASSERT(f);
                 minf_ = atof(f);
             }
@@ -136,8 +136,8 @@ class Tokenize
             if (f == minf_ && pre)//sub is a prefix of some tokens in dictionary
                 continue;
 
-            //std::cout<<s<<"\t"<<i<<"\t"<<line.substring(s, i).get_bytes(charset)<<"--\t"<<f<<std::endl;
             double la = (s > 0? pos[s-1].second :0.0);
+            //std::cout<<s<<"\t"<<i<<"\t"<<sub<<"--\t"<<f<<"\t"<<la<<"\t"<<pos[i].second<<std::endl;
             if (pos[i].second < (double)(la+f))
             {
                 pos[i].second = la+f;
@@ -203,7 +203,7 @@ class Tokenize
 public:
 
     Tokenize(const std::string& dict_nm)
-        :freq_(dict_nm)
+        :minf_(0), freq_(dict_nm)
     {
         KString ustr("~！@#￥……&*（）—+【】{}：“”；‘’、|，。《》？ ^()-_=[]\\|;':\"<>?/");
         delimiter_.resize((int)((uint16_t)-1), 0);

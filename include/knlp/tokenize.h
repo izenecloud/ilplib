@@ -107,7 +107,7 @@ class Tokenize
         {
             if (minf_ == 0.0)
             {
-                f = freq_.value(KString("[min]"));
+                f = freq_.value(KString("[MIN]"));
                 IASSERT(f);
                 minf_ = atof(f);
             }
@@ -227,6 +227,8 @@ public:
     void
     tokenize(const KString& line, std::vector<std::pair<KString, double> >& v)
     {
+        v.clear();
+        if (line.length() == 0)return;
         std::vector<KString> chunks = chunk_(line);
         for ( uint32_t i=0; i<chunks.size(); ++i)
         {

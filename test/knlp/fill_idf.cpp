@@ -27,11 +27,54 @@
 #include "knlp/normalize.h"
 #include "am/hashtable/khash_table.hpp"
 #include "am/util/line_reader.h"
+#include "net/seda/queue.hpp"
+
+#include <boost/thread/thread.hpp>
 
 using namespace std;
 using namespace ilplib::knlp;
 using namespace izenelib::am;
 using namespace izenelib::am::util;
+using namespace izenelib;
+
+void reduce(KStringHashTable<KString, double>* a, KStringHashTable<KString, double>* b)
+{
+    for ( izenelib::am::KStringHashTable<KString, double>::iterator it=b->begin(); it!=b->end(); ++it)
+    {
+        double* f = a->find(*it.key());
+        if (!f)a->insert(*it.key(), *it.value());
+        else (*f) += *it.value();
+    }
+}
+
+void mapping(EventQueue<std::string*>* q, KStringHashTable<KString, double>* idft, ilplib::knlp::Tokenize* tkn)
+{
+    while(1)
+    {
+        uint64_t e =  -1;
+        std::string* str = NULL;
+        q->pop(str, e);
+        if (str == NULL)
+          return;
+        KString kstr(*str);
+        delete str;
+        ilplib::knlp::Normalize::normalize(kstr);
+        std::vector<KString> v = tkn->tokenize(kstr);
+        std::set<KString> set;
+        for ( uint32_t t=0; t<v.size(); ++t)
+        {
+            v[t].trim();
+            if (v[t].length() > 0)
+              set.insert(v[t]);
+        }
+        for ( std::set<KString>::iterator it=set.begin(); it!=set.end(); ++it)
+        {
+            double* f = idft->find(*it);
+            if (f)(*f)++;
+            else idft->insert(*it, 1);
+        }
+    }
+}
 
 int main(int argc,char * argv[])
 {
@@ -49,46 +92,69 @@ int main(int argc,char * argv[])
     string output = argv[2];
 
     ilplib::knlp::Tokenize tkn(dictnm);
-    KStringHashTable<KString, double> idft(tkn.size()*3, tkn.size()+3);
-
     uint32_t docn = 0;
-    for ( int32_t i=3; i<argc; ++i)
-    {
-        LineReader lr(argv[i]);
-        char* line = NULL;
-        while((line=lr.line(line))!=NULL)
+    std::vector<KStringHashTable<KString, double>*> idfts;
+    const uint32_t parall = 8;
+    {//mapping
+        std::vector<boost::thread*> threads;
+        std::vector<EventQueue<std::string*>*> qs;
+        for ( uint32_t i=0; i<parall; ++i)
         {
-            if (strlen(line) == 0)continue;
-            std::cout<<"\r"<<docn<<std::flush;
-            docn++;
-            KString kstr(line);
-            ilplib::knlp::Normalize::normalize(kstr);
-            std::vector<KString> v = tkn.tokenize(kstr);
-            std::set<KString> set;
-            for ( uint32_t t=0; t<v.size(); ++t)
+            qs.push_back(new EventQueue<std::string*>(1000));
+            idfts.push_back(new KStringHashTable<KString, double>(tkn.size()*3, tkn.size()+3));
+            threads.push_back(new boost::thread(&mapping, qs[i], idfts[i], &tkn));
+        }
+
+        for ( int32_t i=3; i<argc; ++i)
+        {
+            LineReader lr(argv[i]);
+            char* line = NULL;
+            while((line=lr.line(line))!=NULL)
             {
-                v[t].trim();
-                if (v[t].length() > 0)
-                  set.insert(v[t]);
+                if (strlen(line) == 0)continue;
+                std::cout<<"\r"<<docn<<std::flush;
+                docn++;
+                qs[docn%parall]->push(new std::string(line), -1);
             }
-            for ( std::set<KString>::iterator it=set.begin(); it!=set.end(); ++it)
+        }
+        for ( uint32_t i=0; i<parall; ++i)
+          qs[i]->push(NULL, -1);
+        for ( uint32_t i=0; i<parall; ++i)
+        {
+            threads[i]->join();
+            delete threads[i];
+            threads[i] = NULL;
+            delete qs[i];
+        }
+    }
+
+    {//merge
+        uint32_t gap = 1;
+        while(gap < parall)
+        {
+            std::vector<boost::thread*> threads;
+            for ( uint32_t i=0; i+gap<parall; i+=gap*2)
+              threads.push_back(new boost::thread(&reduce, idfts[i], idfts[i+gap]));
+            gap*=2;
+            for ( uint32_t i=0; i<threads.size(); ++i)
             {
-                double* f = idft.find(*it);
-                if (f)(*f)++;
-                else idft.insert(*it, 1);
+                threads[i]->join();
+                delete threads[i];
             }
         }
     }
 
-
-    for(KStringHashTable<KString, double>::iterator it = idft.begin(); it!=idft.end(); ++it)
+    double ave = 0;
+    for(KStringHashTable<KString, double>::iterator it = idfts[0]->begin(); it!=idfts[0]->end(); ++it)
     {
         double t = *it.value();
         *it.value() = log((docn-t+0.5)/(t+0.5));
+        ave += *it.value();
     }
-    idft.insert(KString("[[NONE]]"), log((docn+0.5)/0.5));
+    ave /= idfts[0]->size();
+    idfts[0]->insert(KString("[[NONE]]"), ave);
 
-    idft.persistence(output);
+    idfts[0]->persistence(output);
 
     return 0;
 }

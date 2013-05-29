@@ -30,6 +30,7 @@ ADD_EXECUTABLE(fill_idf
 
 TARGET_LINK_LIBRARIES(fill_idf
    ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
 )
 ADD_EXECUTABLE(fill_naive_bayes 
 			fill_naive_bayes.cpp 

@@ -279,7 +279,10 @@ public:
             if (s == NULL)
               return;
              if (!dict->row(*s))
+             {
+                 delete s;
                  continue;
+             }
             double* f = tb->find(*s);
             if (!f)
               tb->insert(*s, 1);
@@ -302,7 +305,7 @@ public:
     }
 
     static bool asy_train(const std::string& dictnm, const std::vector<std::string>& corpus,
-                      const std::string& out, uint32_t parrallel=2)
+                      const std::string& out, uint32_t parrallel=8)
     {
         Dictionary dict(dictnm);
         izenelib::am::KStringHashTable<KString, bool> prefix;

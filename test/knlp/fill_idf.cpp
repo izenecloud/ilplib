@@ -80,10 +80,10 @@ int main(int argc,char * argv[])
 {
     if (argc < 4)
     {
-        KStringHashTable<KString, double> idft;
-        idft.load("./term.idf");
-        double* w = idft.find(KString("[[NONE]]"));
-        std::cout<<*w<<std::endl;
+        //KStringHashTable<KString, double> idft;
+        //idft.load("./term.idf");
+        //double* w = idft.find(KString("[[NONE]]"));
+        //std::cout<<*w<<std::endl;
         std::cout<<argv[0]<<" [tokenize dict] [output] [corpus 1] [corpus 2] ....\n";
         return 0;
     }

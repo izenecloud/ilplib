@@ -67,7 +67,7 @@ class Tokenize
                     num++;
             }
         }
-        prefix.reserve(num*3, num+3);
+        prefix.reserve(num*15, num*15+3);
         {
             izenelib::am::util::LineReader lr(dict_nm);
             char* r = NULL;
@@ -353,15 +353,8 @@ public:
                     {
                         KString  u(line);
                         for ( uint32_t i=0; i<u.length(); ++i)
-                          for ( uint32_t j=i; j<u.length(); ++j)
+                          for ( uint32_t j=i; j-i+1<10 && j<u.length(); ++j)
                           {
-                              //KString sub = u.substr(i, j-i+1);
-                              /*if (!dict.row(sub))
-                              {
-                                  if (!prefix.find(sub))
-                                    break;
-                                  continue;
-                              }*/
                               qs[C%parrallel]->push(new KString(u.substr(i, j-i+1)), C);
                               C++;
                           }

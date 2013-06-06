@@ -42,7 +42,7 @@ int main(int argc,char * argv[])
         return 0;
     }
 
-	uint32_t MAX_N = atoi(argv[3]);
+	int32_t MAX_N = atoi(argv[3]);
 	std::string tks(argv[2]);
 	std::vector<std::string> vstr;
 	uint32_t last = 0;
@@ -59,7 +59,7 @@ int main(int argc,char * argv[])
 
 	LineReader lr(argv[1], 1000000000);
 	char* line = NULL;
-	while((line=lr.line(line))!=NULL)
+	while(MAX_N>0 && (line=lr.line(line))!=NULL)
 	{
 		char* low = line;
 		while(*low)
@@ -76,6 +76,9 @@ int main(int argc,char * argv[])
 			  break;
 		  }
 		if (good)
-		  std::cout<<line<<std::endl;
+		{
+			std::cout<<line<<std::endl;
+			MAX_N --;
+		}
 	}
 }

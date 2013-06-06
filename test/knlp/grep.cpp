@@ -45,6 +45,10 @@ int main(int argc,char * argv[])
 	int32_t MAX_N = atoi(argv[3]);
 	std::string tks(argv[2]);
 	std::vector<std::string> vstr;
+	for ( uint32_t i=0; i<tks.length(); ++i)
+	    if (isupper(tks[i]))
+	        tks[i] = tolower(tks[i]);
+
 	uint32_t last = 0;
 	for ( uint32_t i=0; i<tks.length(); ++i)
 	  if (tks[i] == ' ' && i > last)

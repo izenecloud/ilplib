@@ -52,12 +52,10 @@ int main(int argc,char * argv[])
 		  vstr.push_back(tks.substr(last, i-last));
 		  last = i + 1;
 	  }
-	  else if (i == last)last++;
+	  else if (tks[i] == ' ' && i == last)last++;
 	  
 	if (last < tks.length())
 	  vstr.push_back(tks.substr(last));
-	for ( uint32_t i=0; i<vstr.size(); ++i)
-	  std::cout<<vstr[i]<<std::endl;
 
 	LineReader lr(argv[1], 1000000000);
 	char* line = NULL;

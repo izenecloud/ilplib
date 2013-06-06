@@ -38,10 +38,11 @@ int main(int argc,char * argv[])
 {
     if (argc < 4)
     {
-        std::cout<<argv[0]<<" [corpus] [token1 token2]\n";
+        std::cout<<argv[0]<<" [corpus] [token1 token2] [max num]\n";
         return 0;
     }
 
+	uint32_t MAX_N = atoi(argv[3]);
 	std::string tks(argv[2]);
 	std::vector<std::string> vstr;
 	uint32_t last = 0;

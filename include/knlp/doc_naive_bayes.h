@@ -89,63 +89,91 @@ class DocNaiveBayes
             }
 
         static void train(const std::string& dictnm, const std::string& output,
-                    const std::vector<std::string>& corpus)
-        {
-            ilplib::knlp::Tokenize tkn(dictnm);
-            KStringHashTable<KString, double> cate_c;
+                    const std::vector<std::string>& corpus, uint32_t parrallel=8)
+		{
+			ilplib::knlp::Tokenize tkn(dictnm);
+			KStringHashTable<KString, double> cate_c;
+			uint32_t cc = 0;
+			{
+				std::ofstream of(output.c_str());
 
-            uint32_t cc = 0;
-            for ( uint32_t i=0; i<corpus.size(); ++i)
-            {
-                LineReader lr(corpus[i]);
-                char* line = NULL;
-                while((line=lr.line(line))!=NULL)
-                {
-                    if (strlen(line) == 0)continue;
-                    char* t = strchr(line, '\t');
-                    if (!t)continue;
-                    t++;
-                    if (strlen(t) == 0)continue;
-                    KString cat(t);
-                    double* f = cate_c.find(cat);
-                    if(!f)
-                    {
-                        cate_c.insert(cat, 1.);
-                        cc ++;
-                        continue;
-                    }
-                    (*f)++;
-                }
-            }
+				for ( uint32_t i=0; i<corpus.size(); ++i)
+				{
+					LineReader lr(corpus[i]);
+					char* line = NULL;
+					while((line=lr.line(line))!=NULL)
+					{
+						if (strlen(line) == 0)continue;
+						char* t = strchr(line, '\t');
+						if (!t)continue;
+						t++;
+						if (strlen(t) == 0)continue;
+						KString cat(t);
+						double* f = cate_c.find(cat);
+						if(!f)
+						{
+							cate_c.insert(cat, 1.);
+							cc ++;
+							continue;
+						}
+						(*f)++;
 
-            KStringHashTable<KString, double> t2c(tkn.size()*cc*3, tkn.size()*cc+3);//p(word|cate)
-            for ( uint32_t i=0; i<corpus.size(); ++i)
-            {
-                LineReader lr(corpus[i]);
-                char* line = NULL;
-                while((line=lr.line(line))!=NULL)
-                {
-                    if (strlen(line) == 0)continue;
-                    char* t = strchr(line, '\t');
-                    if (!t)continue;
-                    t++;
-                    if (strlen(t) == 0)continue;
-                    KString cat(t);
-                    double* cf = cate_c.find(cat);
-                    IASSERT(cf);
-                    KString doc(std::string(line, t-line-1));
-                    ilplib::knlp::Normalize::normalize(doc);
-                    std::vector<KString> v = tkn.tokenize(doc);
-                    for ( uint32_t i=0; i<v.size(); ++i)
-                    {
-                        v[i] += '\t';
-                        v[i] += cat;
-                        double * f = t2c.find(v[i]);
-                        if (!f)t2c.insert(v[i], 1./(*cf));
-                        else (*f) += 1./(*cf);
-                    }
-                }
-            }
+						KString doc(std::string(line, t-line-1));
+						ilplib::knlp::Normalize::normalize(doc);
+						std::vector<KString> v = tkn.tokenize(doc);
+						for ( uint32_t i=0; i<v.size(); ++i)
+						  if (v[i].length() > 0 && v[i][0]!=' ')
+							of << v[i] << "\t" << t<<std::endl;
+					}
+				}
+			}
+
+			KStringHashTable<KString, double> cate_c4tkn;
+			uint32_t L = 0;
+			{
+				LineReader lr(output);
+				char* line = NULL;
+				while((line=lr.line(line))!=NULL)
+				{
+					if (strlen(line) == 0)continue;
+					char* t = strchr(line, '\t');
+					if (!t)continue;
+					t++;
+					if (strlen(t) == 0)continue;
+					L++;
+					KString cat(t);
+					double* f = cate_c4tkn.find(cat);
+					if(!f)
+					{
+						cate_c4tkn.insert(cat, 1.);
+						continue;
+					}
+					(*f)++;
+				}
+			}
+
+			KStringHashTable<KString, double> t2c(tkn.size()*cc*3, tkn.size()*cc+3);//p(word|cate)
+			{
+				LineReader lr(output);
+				char* line = NULL;
+				while((line=lr.line(line))!=NULL)
+				{
+					if (strlen(line) == 0)continue;
+					char* t = strchr(line, '\t');
+					if (!t)continue;
+					t++;
+					if (strlen(t) == 0)continue;
+					KString cat(t);
+					double* cf = cate_c4tkn.find(cat);
+					IASSERT(cf);
+					KString tkn(std::string(line, t-line-1));
+					tkn += '\t';
+					tkn += cat;
+					double * f = t2c.find(tkn);
+					if (!f)t2c.insert(tkn, 1./(*cf));
+					else (*f) += 1./(*cf);
+				}
+			}
 
             for(KStringHashTable<KString, double>::iterator it = t2c.begin(); it!=cate_c.end(); ++it)
               *it.value() = log(*it.value());

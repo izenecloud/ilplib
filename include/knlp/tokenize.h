@@ -88,7 +88,21 @@ class Tokenize
 
         uint32_t la = 0;
         for ( uint32_t i=0; i<line.length(); ++i)
-            if (delimiter_[line[i]])
+		  if (isalpha(line[i]) || is_digit_(line[i]))
+		  {
+			  uint32_t s = i;
+			  while(i<line.length() && (isalpha(line[i]) || is_digit_(line[i])))
+				i++;
+			  if (i-s <= 2)
+			  {
+  				  i = s;
+				  continue;
+			  }
+			  r.push_back(line.substr(la, i-s));
+			  la = i;
+			  i--;
+		  }
+		  else if (delimiter_[line[i]])
             {
                 //std::cout<<line.substring(la, i)<<std::endl;
                 r.push_back(line.substr(la, i-la+1));
@@ -169,6 +183,15 @@ class Tokenize
     {
         return (::isdigit(c)||c=='.'||c=='%'||c=='$'||c==',');
     }
+
+	bool is_alphanum_(const KString& str)
+	{
+		for ( uint32_t i=0; i<str.length(); ++i)
+		  if (!(is_digit_(str[i])||isalpha(str[i])))
+			return false;
+		return true;
+	}
+
     std::vector<std::pair<KString, double> >
     merge_(std::vector<std::pair<KString, double> > v)
     {
@@ -232,6 +255,11 @@ public:
         std::vector<KString> chunks = chunk_(line);
         for ( uint32_t i=0; i<chunks.size(); ++i)
         {
+			if (is_alphanum_(chunks[i]))
+			{
+				v.insert(v.end(), std::pair<KString, double>(chunks[i], minf_/10.));
+				continue;
+			}
             chunks[i]+=' ';
             std::vector<std::pair<uint32_t, double> > ps;/* {from:0, score:0.5} */
             ps.reserve(chunks[i].length());

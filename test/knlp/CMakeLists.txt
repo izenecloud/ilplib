@@ -40,3 +40,12 @@ ADD_EXECUTABLE(fill_naive_bayes
 TARGET_LINK_LIBRARIES(fill_naive_bayes
    ${Boost_SYSTEM_LIBRARY}
 )
+
+ADD_EXECUTABLE(grep 
+			grep.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(grep
+   ${Boost_SYSTEM_LIBRARY}
+)

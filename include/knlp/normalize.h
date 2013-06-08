@@ -21,6 +21,8 @@
 #include "trd2simp.h"
 #include "util/string/kstring.hpp"
 
+#include <string>
+
 namespace ilplib
 {
 namespace knlp
@@ -35,6 +37,13 @@ public:
         kstr.to_dbc();
         kstr.to_lower_case();
         trd2smp_.transform(kstr);
+    }
+	
+	static void normalize(std::string& str)
+    {
+		izenelib::util::KString kstr(str);
+		normalize(kstr);
+		str = kstr.get_bytes("utf-8");
     }
 };
 

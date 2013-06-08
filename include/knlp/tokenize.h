@@ -247,6 +247,46 @@ public:
     {
     }
 
+	std::vector<KString> fmm(const KString& line)//forward maximize match
+	{
+		std::vector<KString> r;
+		if (line.length() == 0)return r;
+		std::vector<KString> chunks = chunk_(line);
+		for ( uint32_t i=0; i<chunks.size(); ++i)
+		{
+			if (is_alphanum_(chunks[i]) || chunks[i].length() < 2)
+			{
+  				r.push_back(chunks[i]);
+				continue;
+			}
+			uint32_t from = 0, to = 1;
+			while(to < chunks[i].length())
+			{
+				KString sub = chunks[i].substr(from, to-from +1);
+				double f = term_freq_(sub);
+				bool pre = (prefix_.find(sub)!=NULL);
+				if (f == minf_)
+				{
+					if (pre)
+					{
+						to++;
+						continue;
+					}
+					r.push_back(chunks[i].substr(from, to-from));
+					from = to, to++;
+					continue;
+				}
+				if (pre){to++; continue;}
+				r.push_back(sub);
+				from  = to + 1;
+				to+=2;
+			}
+			for (;from < chunks[i].length();++from)
+			  r.push_back(chunks[i].substr(from, 1));
+		}
+		return r;
+	}
+
     void
     tokenize(const KString& line, std::vector<std::pair<KString, double> >& v)
     {

@@ -49,3 +49,13 @@ ADD_EXECUTABLE(grep
 TARGET_LINK_LIBRARIES(grep
    ${Boost_SYSTEM_LIBRARY}
 )
+
+ADD_EXECUTABLE(token_t-test 
+			token_t-test.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(token_t-test
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+)

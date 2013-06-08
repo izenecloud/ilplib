@@ -151,9 +151,9 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 
 int main(int argc,char * argv[])
 {
-	if (argc < 4)
+	if (argc < 3)
 	{
-		std::cout<<argv[0]<<" [tokenize dict] [output] [corpus 1] [corpus 2] ....\n\t[format]: doc\\tcategory\n";
+		std::cout<<argv[0]<<" [tokenize dict] [corpus 1] [corpus 2] ....\n\t[format]: doc\\tcategory\n";
 		return 0;
 	}
 
@@ -161,7 +161,7 @@ int main(int argc,char * argv[])
 	string output = argv[2];
 	std::vector<std::string> cps;
 
-	for ( int32_t i=3; i<argc; ++i)
+	for ( int32_t i=2; i<argc; ++i)
 	  cps.push_back(argv[i]);
 
 	tkn = new ilplib::knlp::Tokenize(dictnm);
@@ -171,7 +171,7 @@ int main(int argc,char * argv[])
 	tks.reserve(tkn->size());
 
 	EventQueue<std::pair<string*,string*> > in, out;
-	uint32_t cpu_num = 4;
+	uint32_t cpu_num = 8;
 	std::vector<boost::thread*> token_ths;
 	for ( uint32_t i=0; i<cpu_num; ++i)
 	  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out));

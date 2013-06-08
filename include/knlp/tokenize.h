@@ -26,7 +26,7 @@
 #include <algorithm>
 #include <istream>
 #include <ostream>
-#include <algorithm>
+#include <cctype>
 #include <math.h>
 
 #include "types.h"
@@ -88,17 +88,16 @@ class Tokenize
 
         uint32_t la = 0;
         for ( uint32_t i=0; i<line.length(); ++i)
-		  if (isalpha(line[i]) || is_digit_(line[i]))
+		  if (KString::is_english(line[i]) || is_digit_(line[i]))
 		  {
-			  uint32_t s = i;
-			  while(i<line.length() && (isalpha(line[i]) || is_digit_(line[i])))
-				i++;
-			  if (i-s <= 2)
+			  if (la < i)
 			  {
-  				  i = s;
-				  continue;
+				  r.push_back(line.substr(la, i-la));
+				  la = i;
 			  }
-			  r.push_back(line.substr(la, i-s));
+			  while(i<line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
+				i++;
+			  r.push_back(line.substr(la, i-la));
 			  la = i;
 			  i--;
 		  }
@@ -111,22 +110,23 @@ class Tokenize
 
         if (la < line.length()-1)
             r.push_back(line.substr(la));
+		//for ( uint32_t i=0; i<r.size(); ++i)
+		  //std::cout<<r[i]<<std::endl;
         return r;
     }
 
     double  term_freq_(const KString& ustr)
     {
-        char* f = freq_.value(ustr, false);
-        if (!f)
-        {
-            if (minf_ == 0.0)
+		if (minf_ == 0.0)
             {
-                f = freq_.value(KString("[MIN]"));
+                char* f = freq_.value(KString("[MIN]"));
                 IASSERT(f);
                 minf_ = atof(f);
             }
+
+        char* f = freq_.value(ustr, false);
+        if (!f)
             return minf_;
-        }
         return atof(f);
     }
 
@@ -179,15 +179,15 @@ class Tokenize
         return merge_(std::vector<std::pair<KString, double> >(r.begin(), r.end()));
     }
 
-    bool is_digit_(char c)const
+    bool is_digit_(int c)const
     {
-        return (::isdigit(c)||c=='.'||c=='%'||c=='$'||c==',');
+        return (std::isdigit(c)||c=='.'||c=='%'||c=='$'||c==',');
     }
 
 	bool is_alphanum_(const KString& str)
 	{
 		for ( uint32_t i=0; i<str.length(); ++i)
-		  if (!(is_digit_(str[i])||isalpha(str[i])))
+		  if (!(is_digit_(str[i])||KString::is_english(str[i])))
 			return false;
 		return true;
 	}
@@ -195,18 +195,18 @@ class Tokenize
     std::vector<std::pair<KString, double> >
     merge_(std::vector<std::pair<KString, double> > v)
     {
-        bool la_eng = (v.size()&&v[0].first.length() == 1? isalpha(v[0].first[0]):false);
+        bool la_eng = (v.size()&&v[0].first.length() == 1? KString::is_english(v[0].first[0]):false);
         bool la_dig = (v.size()&&v[0].first.length() == 1? is_digit_(v[0].first[0]):false);
 
         for ( uint32_t i=1; i<v.size(); ++i)
             if (v[i].first.length() == 1)
             {
-                if (isalpha(v[i].first[0]) || is_digit_(v[i].first[0]))
+                if (KString::is_english(v[i].first[0]) || is_digit_(v[i].first[0]))
                 {
-                    if ((la_eng && isalpha(v[i].first[0]))
+                    if ((la_eng && KString::is_english(v[i].first[0]))
                             || (la_dig && is_digit_(v[i].first[0])))
                     {
-                        la_eng = isalpha(v[i].first[0]);
+                        la_eng = KString::is_english(v[i].first[0]);
                         la_dig = is_digit_(v[i].first[0]);
 
                         v[i-1].first += v[i].first;
@@ -215,7 +215,7 @@ class Tokenize
                         --i;
                         continue;
                     }
-                    la_eng = isalpha(v[i].first[0]);
+                    la_eng = KString::is_english(v[i].first[0]);
                     la_dig = is_digit_(v[i].first[0]);
                 }
                 else la_eng=la_dig=false;
@@ -247,16 +247,16 @@ public:
     {
     }
 
-	std::vector<KString> fmm(const KString& line)//forward maximize match
+	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r)//forward maximize match
 	{
-		std::vector<KString> r;
-		if (line.length() == 0)return r;
+		r.clear();
+		if (line.length() == 0)return;
 		std::vector<KString> chunks = chunk_(line);
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
 			if (is_alphanum_(chunks[i]) || chunks[i].length() < 2)
 			{
-  				r.push_back(chunks[i]);
+  				r.push_back(make_pair(chunks[i], minf_));
 				continue;
 			}
 			uint32_t from = 0, to = 1;
@@ -272,18 +272,32 @@ public:
 						to++;
 						continue;
 					}
-					r.push_back(chunks[i].substr(from, to-from));
+					r.push_back(make_pair(chunks[i].substr(from, to-from),minf_));
 					from = to, to++;
 					continue;
 				}
 				if (pre){to++; continue;}
-				r.push_back(sub);
+				r.push_back(make_pair(sub, f));
 				from  = to + 1;
 				to+=2;
 			}
-			for (;from < chunks[i].length();++from)
-			  r.push_back(chunks[i].substr(from, 1));
+			KString sub = chunks[i].substr(from, to-from);
+			double f = term_freq_(sub);
+			if (f == minf_)
+			  for (;from < chunks[i].length();++from)
+  				r.push_back(make_pair(chunks[i].substr(from, 1), minf_));
+			else r.push_back(make_pair(sub, f));
 		}
+	}
+
+
+	std::vector<KString> fmm(const KString& line)//forward maximize match
+	{
+		std::vector<std::pair<KString,double> > v;
+		fmm(line, v);
+		std::vector<KString> r;
+		for ( uint32_t i=0; i<v.size(); ++i)
+		  r.push_back(v[i].first);
 		return r;
 	}
 

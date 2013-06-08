@@ -92,7 +92,7 @@ int main(int argc,char * argv[])
         while(!std::getline(std::cin, line).eof())
         {
             std::vector<std::pair<KString, double> > r;
-            tok.tokenize(KString(line),r);
+            tok.fmm(KString(line),r);
             for ( uint32_t i=0; i<r.size(); ++i)
             {
                 if (output.length())

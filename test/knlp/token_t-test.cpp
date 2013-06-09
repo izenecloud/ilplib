@@ -56,7 +56,7 @@ uint32_t N = 0;
 typedef KStringHashTable<string,uint32_t> freq_t;
 
 std::pair<double,double>
-t_test(const string& c, const string& t)
+t_test(const string& c, const string& t, double MAX_IDF=10000)
 {
 	double nt = 0, nct = 0, nc = 0;
 	{
@@ -75,7 +75,34 @@ t_test(const string& c, const string& t)
 	}
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
-	return make_pair((nct/nc - nt/N)*sqrt(nc-1)/sqrt(((nc-nct)*pow((nc-nct)/nc,2)+nct*nct*nct/nc/nc)/(nc-1)), pow((nc-nct+0.5)/(nct+0.5), 1.04));
+	return make_pair((nct/nc - nt/N)*sqrt(nc-1)/sqrt(((nc-nct)*pow((nc-nct)/nc,2)+nct*nct*nct/nc/nc)/(nc-1)), 
+				pow(std::min((nc-nct+0.5)/(nct+0.5), MAX_IDF)/MAX_IDF, 2));
+}
+
+std::pair<double,double>
+chi_square_test(const string& ca, const string& t, double MAX_IDF=10000)
+{
+	double nt = 0, nct = 0, nc = 0;
+	{
+		uint32_t* f = Nt->find(t);
+		if (f) nt = *f;
+	}
+	{
+		string ct = t;ct+='\t';ct+=ca;
+		uint32_t* f = Nct->find(ct);
+		if (f) nct = *f;
+	}
+	{
+		uint32_t* f = Nc->find(ca);
+		IASSERT(f);
+		if (f) nc = *f;
+	}
+	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
+	double a = nct, b = nc-nct, c = nt-nct, d=N-nc-nt+nct;
+	a /= 100, b/=100, c/=100, d/=100;
+	//std::cout<<a<<":"<<b<<":"<<c<<":"<<d<<std::endl;
+
+	return make_pair(pow(a*d-b*c, 2)*N/(a+b)/(c+d)/(a+c)/(b+d), pow(std::min((nc-nct+0.5)/(nct+0.5), MAX_IDF)/MAX_IDF, 2));
 }
 
 void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
@@ -151,17 +178,17 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 
 int main(int argc,char * argv[])
 {
-	if (argc < 3)
+	if (argc < 4)
 	{
-		std::cout<<argv[0]<<" [tokenize dict] [corpus 1] [corpus 2] ....\n\t[format]: doc\\tcategory\n";
+		std::cout<<argv[0]<<" [tokenize dict] [MAX_IDF] [corpus 1] [corpus 2] ....\n\t[format]: doc\\tcategory\n";
 		return 0;
 	}
 
 	string dictnm = argv[1];
-	string output = argv[2];
+	const double MAX_IDF = atof(argv[2]);
 	std::vector<std::string> cps;
 
-	for ( int32_t i=2; i<argc; ++i)
+	for ( int32_t i=3; i<argc; ++i)
 	  cps.push_back(argv[i]);
 
 	tkn = new ilplib::knlp::Tokenize(dictnm);
@@ -206,7 +233,8 @@ int main(int argc,char * argv[])
 		v.reserve(cates.size());
 		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
 		{
-			std::pair<double,double> p = t_test(*it, tks[i]);
+			//std::pair<double,double> p = t_test(*it, tks[i], MAX_IDF);
+			std::pair<double,double> p = chi_square_test(*it, tks[i], MAX_IDF);
 			v.push_back(make_pair(p, *it));
 			std::cout<<"-1111111\t"<<p.first<<"\t"<<p.second<<"\t"<<tks[i]<<"\t"<<*it<<std::endl;;
 		}

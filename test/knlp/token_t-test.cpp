@@ -53,10 +53,11 @@ KStringHashTable<string,uint32_t>* Nct;
 std::set<string> cates;
 std::vector<string> tks;
 uint32_t N = 0;
+double MAX_IDF;
 typedef KStringHashTable<string,uint32_t> freq_t;
 
 std::pair<double,double>
-t_test(const string& c, const string& t, double MAX_IDF=10000)
+t_test(const string& c, const string& t)
 {
 	double nt = 0, nct = 0, nc = 0;
 	{
@@ -76,11 +77,11 @@ t_test(const string& c, const string& t, double MAX_IDF=10000)
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
 	return make_pair((nct/nc - nt/N)*sqrt(nc-1)/sqrt(((nc-nct)*pow((nc-nct)/nc,2)+nct*nct*nct/nc/nc)/(nc-1)), 
-				pow(std::min((nc-nct+0.5)/(nct+0.5), MAX_IDF)/MAX_IDF, 2));
+				pow(std::min((nc-nct+0.5)/(nct+0.5),MAX_IDF)/MAX_IDF, 2));
 }
 
 std::pair<double,double>
-chi_square_test(const string& ca, const string& t, double MAX_IDF=10000)
+chi_square_test(const string& ca, const string& t)
 {
 	double nt = 0, nct = 0, nc = 0;
 	{
@@ -102,9 +103,31 @@ chi_square_test(const string& ca, const string& t, double MAX_IDF=10000)
 	a /= 100, b/=100, c/=100, d/=100;
 	//std::cout<<a<<":"<<b<<":"<<c<<":"<<d<<std::endl;
 
-	return make_pair(pow(a*d-b*c, 2)*N/(a+b)/(c+d)/(a+c)/(b+d), pow(std::min((nc-nct+0.5)/(nct+0.5), MAX_IDF)/MAX_IDF, 2));
+	return make_pair(pow(a*d-b*c, 2)*N/(a+b)/(c+d)/(a+c)/(b+d), 
+	  pow(std::min((nc-nct+0.5)/(nct+0.5), MAX_IDF)/MAX_IDF, 2));
 }
 
+double nct_given_nt(const string& ca, const string& t)
+{
+	double nt = 0, nct = 0, nc = 0;
+	{
+		uint32_t* f = Nt->find(t);
+		if (f) nt = *f;
+	}
+	{
+		string ct = t;ct+='\t';ct+=ca;
+		uint32_t* f = Nct->find(ct);
+		if (f) nct = *f;
+	}
+	{
+		uint32_t* f = Nc->find(ca);
+		IASSERT(f);
+		if (f) nc = *f;
+	}
+	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
+
+	return nct/nt*nc/N;
+}
 void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
 {
 	while(true)
@@ -167,12 +190,66 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 		std::vector<KString> v = tkn->fmm(KString(*t));
 		std::set<string> s;
 		for ( uint32_t i=0; i<v.size(); ++i)
-		  if (v[i].length() > 0 && KString::is_chinese(v[i][0]))
+		  if (v[i].length() > 0 )//&& KString::is_chinese(v[i][0]))
 			  s.insert(v[i].get_bytes("utf-8"));
 		
 		for ( std::set<string>::iterator it=s.begin(); it!=s.end(); ++it)
 			out->push(make_pair(new string(it->c_str()), new string(c->c_str())), e);
 		delete t, delete c;
+	}
+}
+
+void output_ttest()
+{
+	for ( uint32_t i=0; i<tks.size(); ++i)
+	{
+		std::vector<std::pair<std::pair<double,double>, string> > v;
+		v.reserve(cates.size());
+		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
+		{
+			std::pair<double,double> p = t_test(*it, tks[i]);
+			v.push_back(make_pair(p, *it));
+		}
+		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
+		std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
+	}
+}
+
+void output_chisquare()
+{
+	for ( uint32_t i=0; i<tks.size(); ++i)
+	{
+		std::vector<std::pair<std::pair<double,double>, string> > v;
+		v.reserve(cates.size());
+		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
+		{
+			std::pair<double,double> p = chi_square_test(*it, tks[i]);
+			v.push_back(make_pair(p, *it));
+		}
+		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
+		std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
+	}
+}
+
+void output_standard_dev()
+{
+	for ( uint32_t i=0; i<tks.size(); ++i)
+	{
+		std::vector<std::pair<double, string> > v;
+		v.reserve(cates.size());
+		double aver = 0;
+		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
+		{
+			double p = nct_given_nt(*it, tks[i]);
+			aver += p;
+			v.push_back(make_pair(p, *it));
+		}
+		aver /= cates.size();
+		double sd = 0;
+		for (uint32_t j=0;j<v.size();++j)
+		    sd += (v[j].first-aver)*(v[j].first-aver);
+		sd = sqrt(sd/v.size());
+		std::cout<<tks[i]<<"\t"<<sd<<std::endl;
 	}
 }
 
@@ -185,7 +262,7 @@ int main(int argc,char * argv[])
 	}
 
 	string dictnm = argv[1];
-	const double MAX_IDF = atof(argv[2]);
+	MAX_IDF = atof(argv[2]);
 	std::vector<std::string> cps;
 
 	for ( int32_t i=3; i<argc; ++i)
@@ -227,20 +304,7 @@ int main(int argc,char * argv[])
 	out.push(make_pair<string*,string*>(NULL, NULL), -1);
 	cal_th.join();
 
-	for ( uint32_t i=0; i<tks.size(); ++i)
-	{
-		std::vector<std::pair<std::pair<double,double>, string> > v;
-		v.reserve(cates.size());
-		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
-		{
-			//std::pair<double,double> p = t_test(*it, tks[i], MAX_IDF);
-			std::pair<double,double> p = chi_square_test(*it, tks[i], MAX_IDF);
-			v.push_back(make_pair(p, *it));
-			std::cout<<"-1111111\t"<<p.first<<"\t"<<p.second<<"\t"<<tks[i]<<"\t"<<*it<<std::endl;;
-		}
-		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
-		std::cout<<it->first.first*it->first.second<<"\t"<<tks[i]<<"\t"<<it->second<<std::endl;
-	}
+    output_standard_dev();
 
 	return 0;
 }

@@ -63,11 +63,11 @@ class Tokenize
                 if (!t)throw runtime_error("dictionary format error.");
                 IASSERT(t -r > 0);
                 KString k(std::string(r, t -r));
-                for ( uint32_t l=2; l<k.length() -1; ++l)
+                for ( int32_t l=2; l<=(int32_t)k.length() -1; ++l)
                     num++;
             }
         }
-        prefix.reserve(num*15, num*15+3);
+        prefix.reserve(num*3, num*3+3);
         {
             izenelib::am::util::LineReader lr(dict_nm);
             char* r = NULL;
@@ -75,7 +75,7 @@ class Tokenize
             {
                 char* t = strchr(r, '\t');
                 KString k(std::string(r, t -r));
-                for ( uint32_t l=2; l<k.length() -1; ++l)
+                for ( int32_t l=2; l<=(int32_t)k.length() -1; ++l)
                     prefix.insert(k.substr(0, l), true);
             }
         }
@@ -263,6 +263,7 @@ public:
 			while(to < chunks[i].length())
 			{
 				KString sub = chunks[i].substr(from, to-from +1);
+                //std::cout<<sub<<std::endl;
 				double f = term_freq_(sub);
 				bool pre = (prefix_.find(sub)!=NULL);
 				if (f == minf_)
@@ -272,6 +273,7 @@ public:
 						to++;
 						continue;
 					}
+                    //std::cout<<chunks[i].substr(from, to-from)<<"xxxxxxxxxxx\n";
 					r.push_back(make_pair(chunks[i].substr(from, to-from),minf_));
 					from = to, to++;
 					continue;
@@ -281,7 +283,10 @@ public:
 				from  = to + 1;
 				to+=2;
 			}
+			if (from >= chunks[i].length())
+			    continue;
 			KString sub = chunks[i].substr(from, to-from);
+            //std::cout<<sub<<"<><>><><><\n";
 			double f = term_freq_(sub);
 			if (f == minf_)
 			  for (;from < chunks[i].length();++from)

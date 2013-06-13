@@ -126,8 +126,9 @@ double nct_given_nt(const string& ca, const string& t)
 	}
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
-	return nct/nt*nc/N;
+	return nct/nt;
 }
+
 void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
 {
 	while(true)
@@ -199,6 +200,17 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 	}
 }
 
+double standard_deviation(const std::vector<std::pair<std::pair<double,double>, string> >& v)
+{
+    double sd = 0, aver=0;
+    for (uint32_t i=0;i<v.size();++i)
+        aver += v[i].first.first;
+    aver /= v.size();
+    for (uint32_t i=0;i<v.size();++i)
+        sd += (v[i].first.first-aver)*(v[i].first.first-aver);
+    return sqrt(sd/v.size());
+}
+
 void output_ttest()
 {
 	for ( uint32_t i=0; i<tks.size(); ++i)
@@ -210,8 +222,9 @@ void output_ttest()
 			std::pair<double,double> p = t_test(*it, tks[i]);
 			v.push_back(make_pair(p, *it));
 		}
-		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
-		std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
+        std::cout<<tks[i]<<"\t"<<standard_deviation(v)<<std::endl;
+		//std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
+		//std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
 	}
 }
 
@@ -226,6 +239,7 @@ void output_chisquare()
 			std::pair<double,double> p = chi_square_test(*it, tks[i]);
 			v.push_back(make_pair(p, *it));
 		}
+        //std::cout<<tks[i]<<"\t"<<standard_deviation(v)<<std::endl;
 		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
 		std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
 	}
@@ -250,6 +264,20 @@ void output_standard_dev()
 		    sd += (v[j].first-aver)*(v[j].first-aver);
 		sd = sqrt(sd/v.size());
 		std::cout<<tks[i]<<"\t"<<sd<<std::endl;
+	}
+}
+
+void ouput_entropy()
+{
+    for ( uint32_t i=0; i<tks.size(); ++i)
+	{
+		double H = 0;
+		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
+		{
+			double p = nct_given_nt(*it, tks[i]);
+			H += p*log(p);
+		}
+		std::cout<<tks[i]<<"\t"<<H<<std::endl;
 	}
 }
 
@@ -304,7 +332,10 @@ int main(int argc,char * argv[])
 	out.push(make_pair<string*,string*>(NULL, NULL), -1);
 	cal_th.join();
 
-    output_standard_dev();
+    //output_standard_dev();
+    //output_ttest();
+    //output_chisquare();
+    ouput_entropy();
 
 	return 0;
 }

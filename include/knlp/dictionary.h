@@ -26,6 +26,7 @@
 #include <algorithm>
 #include <istream>
 #include <ostream>
+#include <limits>
 
 #include "types.h"
 #include "am/hashtable/khash_table.hpp"
@@ -135,6 +136,85 @@ public:
         if (r < buf_+bytes_)
             return r;
         return NULL;
+    }
+};
+
+class DigitalDictionary
+{
+    izenelib::am::KStringHashTable<izenelib::util::KString, double>* dict_;
+    char delimitor_;
+
+public:
+    DigitalDictionary(const std::string& nm, char delimitor='\t')
+    {
+        delimitor_ = delimitor;
+        FILE* f = fopen(nm.c_str(), "r");
+        if (!f)throw std::runtime_error("can't open file.");
+        fseek(f, 0, SEEK_END);
+        uint32_t bytes = ftell(f);
+        fseek(f, 0, SEEK_SET);
+        char* buf = new char[bytes+1];
+        if(fread(buf, bytes, 1, f)!=1)throw std::runtime_error("File Read error.");
+        fclose(f);
+
+        char* m = buf;
+        uint32_t T = 0;
+        while(*m && m-buf < bytes)
+        {
+            if (*m == '\n')
+                T++;
+            m++;
+        }
+
+        IASSERT(T > 0);
+        dict_ = new izenelib::am::KStringHashTable<KString, double>(T*3, T+2);
+        m = buf;
+        char* la = m;
+        while(*m && m-buf < bytes)
+        {
+            if (*m == '\n')
+            {
+                *m = 0;
+				char* t = strchr(la, delimitor);
+				if (!t)
+				  throw std::runtime_error(std::string("File format is not correct: ")+la);
+				*t = 0;
+				t++;
+                KString kstr(la);
+                Normalize::normalize(kstr);
+                dict_->insert(kstr, atof(t));
+                la = m + 1;
+            }
+            m++;
+        }
+        if (*la == 0 || la - buf >= bytes)
+            return;
+		char* t = strchr(la, delimitor);
+		if (!t)
+		  return;
+		*t = 0, t++;
+        KString kstr(la);
+        Normalize::normalize(kstr);
+        kstr = kstr.substr(0, kstr.index_of(delimitor));
+        dict_->insert(kstr, atof(t));
+    }
+
+    ~DigitalDictionary()
+    {
+        delete dict_;
+    }
+
+    uint32_t size()const
+    {
+        return dict_->size();
+    }
+
+	double value(KString kstr, bool nor = true)
+    {
+        if(nor)Normalize::normalize(kstr);
+        double* p = dict_->find(kstr);
+        if (!p) return std::numeric_limits<double>::min();
+        return *p;
     }
 };
 

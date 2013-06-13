@@ -46,7 +46,7 @@ namespace knlp
 class Tokenize
 {
     mutable double minf_;
-    Dictionary freq_;
+    DigitalDictionary freq_;
     izenelib::am::KStringHashTable<KString, bool> prefix_;
     std::vector<uint8_t> delimiter_;
 
@@ -118,16 +118,12 @@ class Tokenize
     double  term_freq_(const KString& ustr)
     {
 		if (minf_ == 0.0)
-            {
-                char* f = freq_.value(KString("[MIN]"));
-                IASSERT(f);
-                minf_ = atof(f);
-            }
+				minf_= freq_.value(KString("[MIN]"));
 
-        char* f = freq_.value(ustr, false);
-        if (!f)
+        double f = freq_.value(ustr, false);
+        if (f == std::numeric_limits<double>::min())
             return minf_;
-        return atof(f);
+        return f;
     }
 
 

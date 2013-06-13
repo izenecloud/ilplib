@@ -126,7 +126,7 @@ double nct_given_nt(const string& ca, const string& t)
 	}
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
-	return nct/nt;
+	return nct/nt*nc/nc;
 }
 
 void calculate_stage(EventQueue<std::pair<string*,string*> >* out)

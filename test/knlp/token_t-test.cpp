@@ -142,7 +142,6 @@ void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
 		if (t == NULL && c == NULL)
 		  break;
 		
-		if (t == NULL)
         {
             //add Nc
             if (cates.find(*c) == cates.end())
@@ -155,8 +154,6 @@ void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
                 IASSERT(f);
                 (*f)++;
             }
-            delete c;
-            continue;
         }
 
 		{//Nt
@@ -200,7 +197,7 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 		
 		for ( std::set<string>::iterator it=s.begin(); it!=s.end(); ++it)
 			out->push(make_pair(new string(it->c_str()), new string(c->c_str())), e);
-		out->push(make_pair<std::string*, std::string*>(NULL, new string(c->c_str())), e);
+//		out->push(make_pair<std::string*, std::string*>(NULL, new string(c->c_str())), e);
 		delete t, delete c;
 	}
 }

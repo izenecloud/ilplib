@@ -39,6 +39,7 @@ ADD_EXECUTABLE(fill_naive_bayes
 
 TARGET_LINK_LIBRARIES(fill_naive_bayes
    ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
 )
 
 ADD_EXECUTABLE(grep 

@@ -113,7 +113,7 @@ class Tokenize
                 la = i+1;
             }
 
-        if (la < (int32_t)line.length()-1)
+        if (la < (int32_t)line.length())
             r.push_back(line.substr(la));
 		//for ( uint32_t i=0; i<r.size(); ++i)
 		  //std::cout<<r[i]<<std::endl;

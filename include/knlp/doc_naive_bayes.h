@@ -151,7 +151,7 @@ namespace ilplib
 
 			static KString concat(const KString& tk, const KString& ca)
 			{
-				uint32_t c = izenelib::util::HashFunction<std::string>::generateHash32(ca.get_bytes("utf-8"));
+				uint32_t c = category_id(ca);
 				KString r = tk;
 				r += '\t';
 				r += ((uint16_t*)(&c))[0];
@@ -166,6 +166,11 @@ namespace ilplib
 				r += ((uint16_t*)(&c))[0];
 				r += ((uint16_t*)(&c))[1];
 				return r;
+			}
+
+			static uint32_t category_id(const KString& ca)
+			{
+				return izenelib::util::HashFunction<std::string>::generateHash32(ca.get_bytes("utf-8"));
 			}
 
 			static void calculate_stage(EventQueue<std::pair<KString*,KString*> >* out,

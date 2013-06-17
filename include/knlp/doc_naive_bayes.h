@@ -56,7 +56,10 @@ namespace ilplib
 				t2c_.load(nm+".t2c");
 			}
 
-			double  classify(const KString& d, const KString& c)
+			template <
+				class CATE_T
+				>
+			double  classify(const KString& d, const CATE_T& c)
 			{
 				KString doc =d;
 				ilplib::knlp::Normalize::normalize(doc);
@@ -67,9 +70,7 @@ namespace ilplib
 				double sc = (*s)*(int32_t)(tks.size()-1)*-1.;
 				for ( uint32_t j=0; j<tks.size(); ++j)
 				{
-					KString kstr = tks[j];
-					kstr += '\t';
-					kstr += c;
+					KString kstr = concat(tks[j], c);
 					s = t2c_.find(kstr);
 					if (s == NULL)
 					  sc += log(1.0/10000000);
@@ -148,6 +149,25 @@ namespace ilplib
 				}
 			}
 
+			static KString concat(const KString& tk, const KString& ca)
+			{
+				uint32_t c = izenelib::util::HashFunction<std::string>::generateHash32(ca.get_bytes("utf-8"));
+				KString r = tk;
+				r += '\t';
+				r += ((uint16_t*)(&c))[0];
+				r += ((uint16_t*)(&c))[1];
+				return r;
+			}
+
+			static KString concat(const KString& tk, uint32_t c)
+			{
+				KString r = tk;
+				r += '\t';
+				r += ((uint16_t*)(&c))[0];
+				r += ((uint16_t*)(&c))[1];
+				return r;
+			}
+
 			static void calculate_stage(EventQueue<std::pair<KString*,KString*> >* out,
 						KStringHashTable<KString, double>* Nc, 
 						KStringHashTable<KString, double>* Ntc)
@@ -171,8 +191,7 @@ namespace ilplib
 						  (*f)++;
 					}
 					{//Nct
-						(*t) += '\t';(*t) += (*c);
-						double* f = Ntc->find(*t);
+						double* f = Ntc->find(concat(*t, *c));
 						if (!f)
 						  Ntc->insert(*t,1);
 						else (*f)++;

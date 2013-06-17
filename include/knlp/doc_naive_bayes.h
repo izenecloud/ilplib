@@ -32,6 +32,7 @@
 #include "am/hashtable/khash_table.hpp"
 #include "util/string/kstring.hpp"
 #include "normalize.h"
+#include "knlp/string_patterns.h"
 
 using namespace izenelib::util;
 using namespace izenelib::am;
@@ -46,7 +47,7 @@ namespace ilplib
 		{
 
 			ilplib::knlp::Tokenize* tkn_;
-			KStringHashTable<KString, double> cate_;
+			KIntegerHashTable<uint32_t, double> cate_;
 			KStringHashTable<KString, double> t2c_;
 			public:
 			DocNaiveBayes(ilplib::knlp::Tokenize* tkn, const std::string& nm)
@@ -63,14 +64,37 @@ namespace ilplib
 			{
 				KString doc =d;
 				ilplib::knlp::Normalize::normalize(doc);
-				std::vector<KString> tks = tkn_->fmm(doc);
-				double* s = cate_.find(c);
+				double* s = cate_.find(category_id(c));
 				if (!s)
 				  return std::numeric_limits<double>::min();
+
+				std::set<KString> tks = normalize_tokens(tkn_->fmm(doc));
 				double sc = (*s)*(int32_t)(tks.size()-1)*-1.;
-				for ( uint32_t j=0; j<tks.size(); ++j)
+				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
 				{
-					KString kstr = concat(tks[j], c);
+					KString kstr = concat(*it, c);
+					s = t2c_.find(kstr);
+					if (s == NULL)
+					  sc += log(1.0/10000000);
+					else sc += *s;
+				}
+				return sc;
+			}
+
+			template <
+				class CATE_T
+				>
+			double  classify(std::vector<KString> v, const CATE_T& c)
+			{
+				double* s = cate_.find(category_id(c));
+				if (!s)
+				  return std::numeric_limits<double>::min();
+
+				std::set<KString> tks = normalize_tokens(v);
+				double sc = (*s)*(int32_t)(tks.size()-1)*-1.;
+				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
+				{
+					KString kstr = concat(*it, c);
 					s = t2c_.find(kstr);
 					if (s == NULL)
 					  sc += log(1.0/10000000);
@@ -126,6 +150,24 @@ namespace ilplib
 				cates.persistence(output+".cate");
 			}
 
+			static std::set<KString> normalize_tokens(std::vector<KString>  v)
+			{
+				for ( uint32_t i=0; i<v.size(); i++)
+				{
+					int32_t ty = StringPatterns::string_type(v[i]);
+					if (ty == 2)
+					  v[i] = KString("[[NUMBERS]]");
+					else if(ty == 3)
+					  v[i] == KString("[[NUGLISH]]");
+					else if (ty == 4)
+					{
+						v.erase(v.begin()+i);
+						--i;
+					}
+				}
+				return std::set<KString>(v.begin(), v.end());
+			}
+
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
 						EventQueue<std::pair<KString*,KString*> >* out, 
 						ilplib::knlp::Tokenize* tkn)
@@ -140,8 +182,7 @@ namespace ilplib
 					if (t == NULL || c == NULL)
 					  break;
 					ilplib::knlp::Normalize::normalize(*t);
-					std::vector<KString> v = tkn->fmm(KString(*t));
-					std::set<KString> s(v.begin(), v.end());
+					std::set<KString> s = normalize_tokens(tkn->fmm(KString(*t)));
 
 					for ( std::set<KString>::iterator it=s.begin(); it!=s.end(); ++it)
 					  out->push(make_pair(new KString(*it), new KString(c->c_str())), e);
@@ -168,6 +209,11 @@ namespace ilplib
 				return r;
 			}
 
+			static uint32_t category_id(uint32_t ca)
+			{
+				return ca;
+			}
+
 			static uint32_t category_id(const KString& ca)
 			{
 				return izenelib::util::HashFunction<std::string>::generateHash32(ca.get_bytes("utf-8"));
@@ -189,9 +235,10 @@ namespace ilplib
 					KString* c = p.second;
 					{
 						//add Nc
-						double* f = Nc->find(*c);
+						uint32_t cid = category_id(*c);
+						double* f = Nc->find(cid);
 						if (!f)
-						  Nc->insert(*c, 1);
+						  Nc->insert(cid, 1);
 						else
 						  (*f)++;
 					}

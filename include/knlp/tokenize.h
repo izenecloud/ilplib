@@ -86,8 +86,8 @@ class Tokenize
     {
         std::vector<KString> r;
 
-        uint32_t la = 0;
-        for ( uint32_t i=0; i<line.length(); ++i)
+        int32_t la = 0;
+        for ( int32_t i=0; i<(int32_t)line.length(); ++i)
 		  if (KString::is_english(line[i]) || is_digit_(line[i]))
 		  {
 			  if (la < i)
@@ -95,8 +95,13 @@ class Tokenize
 				  r.push_back(line.substr(la, i-la));
 				  la = i;
 			  }
-			  while(i<line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
+			  while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
 				i++;
+			  if (i -la <= 1)
+              {
+                  --i;
+                  continue;
+              }
 			  r.push_back(line.substr(la, i-la));
 			  la = i;
 			  i--;
@@ -108,7 +113,7 @@ class Tokenize
                 la = i+1;
             }
 
-        if (la < line.length()-1)
+        if (la < (int32_t)line.length()-1)
             r.push_back(line.substr(la));
 		//for ( uint32_t i=0; i<r.size(); ++i)
 		  //std::cout<<r[i]<<std::endl;
@@ -177,7 +182,7 @@ class Tokenize
 
     bool is_digit_(int c)const
     {
-        return (std::isdigit(c)||c=='.'||c=='%'||c=='$'||c==',');
+        return is_digit(c);
     }
 
 	bool is_alphanum_(const KString& str)
@@ -243,6 +248,11 @@ public:
     {
     }
 
+    static bool is_digit(int c)
+    {
+        return (std::isdigit(c)||c=='.'||c=='%'||c=='$'||c==','||c=='-');
+    }
+
 	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r)//forward maximize match
 	{
 		r.clear();
@@ -270,7 +280,9 @@ public:
 						continue;
 					}
                     //std::cout<<chunks[i].substr(from, to-from)<<"xxxxxxxxxxx\n";
-					r.push_back(make_pair(chunks[i].substr(from, to-from),minf_));
+                    sub = chunks[i].substr(from, to-from);
+                    f = term_freq_(sub);
+					r.push_back(make_pair(chunks[i].substr(from, to-from),f));
 					from = to, to++;
 					continue;
 				}
@@ -289,6 +301,14 @@ public:
   				r.push_back(make_pair(chunks[i].substr(from, 1), minf_));
 			else r.push_back(make_pair(sub, f));
 		}
+		for (uint32_t i=0;i<r.size();++i)
+        {
+            r[i].first.trim();
+            if (r[i].first.length() > 0)
+                continue;
+            r.erase(r.begin()+i);
+            --i;
+        }
 	}
 
 
@@ -573,6 +593,11 @@ public:
         }
 
         return true;
+    }
+
+    double min()const
+    {
+        return minf_;
     }
 };
 

@@ -126,7 +126,8 @@ double nct_given_nt(const string& ca, const string& t)
 	}
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
-	return nct/nt*nc/nc;
+	//return (nct+1)/(nt+10000);
+	return nct/nt;
 }
 
 void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
@@ -138,22 +139,25 @@ void calculate_stage(EventQueue<std::pair<string*,string*> >* out)
 		out->pop(p, e);
 		string* t = p.first;
 		string* c = p.second;
-		if (t == NULL || c == NULL)
+		if (t == NULL && c == NULL)
 		  break;
 		
-		//add Nc
-		if (cates.find(*c) == cates.end())
-		{
-			cates.insert(*c);
-			Nc->insert(*c, 1);
-		}
-		else{
-			uint32_t* f = Nc->find(*c);
-			IASSERT(f);
-			(*f)++;
-		}
-		
-		N++;
+		if (t == NULL)
+        {
+            //add Nc
+            if (cates.find(*c) == cates.end())
+            {
+                cates.insert(*c);
+                Nc->insert(*c, 1);
+            }
+            else{
+                uint32_t* f = Nc->find(*c);
+                IASSERT(f);
+                (*f)++;
+            }
+            delete c;
+            continue;
+        }
 
 		{//Nt
 			uint32_t* f = Nt->find(*t);
@@ -196,6 +200,7 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 		
 		for ( std::set<string>::iterator it=s.begin(); it!=s.end(); ++it)
 			out->push(make_pair(new string(it->c_str()), new string(c->c_str())), e);
+		out->push(make_pair<std::string*, std::string*>(NULL, new string(c->c_str())), e);
 		delete t, delete c;
 	}
 }
@@ -222,9 +227,9 @@ void output_ttest()
 			std::pair<double,double> p = t_test(*it, tks[i]);
 			v.push_back(make_pair(p, *it));
 		}
-        std::cout<<tks[i]<<"\t"<<standard_deviation(v)<<std::endl;
-		//std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
-		//std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
+        //std::cout<<tks[i]<<"\t"<<standard_deviation(v)<<std::endl;
+		std::vector<std::pair<std::pair<double,double>, string> >::iterator it = max_element(v.begin(), v.end());
+		std::cout<<tks[i]<<"\t"<<it->first.first*it->first.second<<std::endl;
 	}
 }
 
@@ -275,7 +280,8 @@ void ouput_entropy()
 		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
 		{
 			double p = nct_given_nt(*it, tks[i]);
-			H += p*log(p);
+			if (p != 0.)
+			    H += p*log(p);
 		}
 		std::cout<<tks[i]<<"\t"<<H<<std::endl;
 	}
@@ -309,6 +315,7 @@ int main(int argc,char * argv[])
 	  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out));
 	boost::thread cal_th(&calculate_stage, &out);
 
+    N = 0;
 	for ( uint32_t i=0; i<cps.size(); ++i)
 	{
 		LineReader lr(cps[i]);
@@ -322,6 +329,7 @@ int main(int argc,char * argv[])
 			if (strlen(t) == 0)continue;
 
 			in.push(make_pair(new std::string(line, t-line-1), new string(t)), -1);
+			N++;
 		}
 	}
 

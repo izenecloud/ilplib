@@ -195,8 +195,11 @@ namespace ilplib
 				uint32_t c = category_id(ca);
 				KString r = tk;
 				r += '\t';
-				r += ((uint16_t*)(&c))[0];
-				r += ((uint16_t*)(&c))[1];
+				uint16_t n = (uint16_t) c;
+				r += n;
+				c = c >> 16;
+				n = (uint16_t) c;
+				r += n;
 				return r;
 			}
 
@@ -204,8 +207,11 @@ namespace ilplib
 			{
 				KString r = tk;
 				r += '\t';
-				r += ((uint16_t*)(&c))[0];
-				r += ((uint16_t*)(&c))[1];
+				uint16_t n = (uint16_t) c;
+				r += n;
+				c = c >> 16;
+				n = (uint16_t) c;
+				r += n;
 				return r;
 			}
 

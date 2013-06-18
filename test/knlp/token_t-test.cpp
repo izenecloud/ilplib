@@ -30,6 +30,7 @@
 #include "net/seda/queue.hpp"
 
 #include <boost/thread/thread.hpp>
+#include <boost/thread/mutex.hpp>
 
 using namespace std;
 using namespace ilplib::knlp;
@@ -109,7 +110,7 @@ chi_square_test(const string& ca, const string& t)
 
 double nct_given_nt(const string& ca, const string& t)
 {
-	double nt = 0, nct = 0, nc = 0;
+	double nt = 0, nct = 0;//, nc = 0;
 	{
 		uint32_t* f = Nt->find(t);
 		if (f) nt = *f;
@@ -119,11 +120,11 @@ double nct_given_nt(const string& ca, const string& t)
 		uint32_t* f = Nct->find(ct);
 		if (f) nct = *f;
 	}
-	{
+	/*{
 		uint32_t* f = Nc->find(ca);
 		IASSERT(f);
 		if (f) nc = *f;
-	}
+	}*/
 	//std::cout<<c<<":"<<t<<":"<<nt<<":"<<nct<<":"<<nc<<":"<<nct/nc<<":"<<nt/N<<std::endl;
 
 	//return (nct+1)/(nt+10000);
@@ -269,18 +270,26 @@ void output_standard_dev()
 	}
 }
 
-void ouput_entropy()
+boost::mutex io_mutex;
+void print(const std::string& tk, double s)
 {
-    for ( uint32_t i=0; i<tks.size(); ++i)
+	 boost::mutex::scoped_lock lock(io_mutex);
+	 std::cout<<tk<<"\t"<<s<<std::endl;
+}
+
+void ouput_entropy(std::vector<string>::iterator begin,
+			std::vector<string>::iterator end)
+{
+    for (std::vector<string>::iterator t=begin;t!=end;++t)
 	{
 		double H = 0;
 		for ( std::set<string>::iterator it=cates.begin(); it!=cates.end(); ++it)
 		{
-			double p = nct_given_nt(*it, tks[i]);
+			double p = nct_given_nt(*it, *t);
 			if (p != 0.)
 			    H += p*log(p);
 		}
-		std::cout<<tks[i]<<"\t"<<H<<std::endl;
+		print(*t, H);
 	}
 }
 
@@ -340,7 +349,13 @@ int main(int argc,char * argv[])
     //output_standard_dev();
     //output_ttest();
     //output_chisquare();
-    ouput_entropy();
+	uint32_t gap = tks.size()/cpu_num;
+	token_ths.clear();
+	for ( uint32_t i=0; i*gap<tks.size(); i++)
+		token_ths.push_back(new boost::thread(&ouput_entropy, tks.begin()+i*gap, 
+						((i+1)*gap<tks.size() ?(tks.begin()+(i+1)*gap) : tks.end())));
+	for (uint32_t i=0;i<token_ths.size();++i)
+	  token_ths[i]->join(),delete token_ths[i];
 
 	return 0;
 }

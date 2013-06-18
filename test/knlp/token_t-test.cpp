@@ -315,7 +315,7 @@ int main(int argc,char * argv[])
 	tks.reserve(tkn->size());
 
 	EventQueue<std::pair<string*,string*> > in, out;
-	uint32_t cpu_num = 8;
+	uint32_t cpu_num = 11;
 	std::vector<boost::thread*> token_ths;
 	for ( uint32_t i=0; i<cpu_num; ++i)
 	  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out));

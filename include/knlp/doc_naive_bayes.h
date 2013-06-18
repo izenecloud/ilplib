@@ -114,8 +114,8 @@ namespace ilplib
 				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn));
 
 				uint32_t N = 0;
-				KStringHashTable<KString, double> cates;
-				KStringHashTable<KString, double> t2c;
+				KStringHashTable<KString, double> cates(2000, 1000);
+				KStringHashTable<KString, double> t2c(tkn.size()*300, tkn.size()*100);
 				boost::thread cal_th(&calculate_stage, &out, &cates, &t2c);
 
 					for ( uint32_t i=0; i<corpus.size(); ++i)

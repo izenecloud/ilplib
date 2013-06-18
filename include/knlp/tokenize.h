@@ -260,7 +260,7 @@ public:
 		std::vector<KString> chunks = chunk_(line);
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
-			if (is_alphanum_(chunks[i]) || chunks[i].length() < 2)
+			if (is_alphanum_(chunks[i]) || chunks[i].length() <= 2)
 			{
   				r.push_back(make_pair(chunks[i], minf_));
 				continue;

@@ -60,3 +60,13 @@ TARGET_LINK_LIBRARIES(token_t-test
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
 )
+
+ADD_EXECUTABLE(fmm_util 
+			fmm_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(fmm_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+)

@@ -126,7 +126,7 @@ class Tokenize
 				minf_= freq_.value(KString("[MIN]"));
 
         double f = freq_.value(ustr, false);
-        if (f == std::numeric_limits<double>::min())
+        if (f == (double)std::numeric_limits<int>::min())
             return minf_;
         return f;
     }
@@ -242,6 +242,7 @@ public:
             std::cout<<e.what()<<std::endl;
             gen_prefix_(dict_nm, prefix_);
         }
+        term_freq_(KString("[MIN]"));
     }
 
     ~Tokenize()
@@ -253,6 +254,19 @@ public:
         return (std::isdigit(c)||c=='.'||c=='%'||c=='$'||c==','||c=='-');
     }
 
+    bool is_in(const KString& kstr)
+    {
+        double f = freq_.value(kstr, false);
+        if (f == (double)std::numeric_limits<int>::min())
+            return false;
+        return true;
+    }
+
+    double score(const KString& kstr)
+    {
+        return term_freq_(kstr);
+    }
+
 	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r)//forward maximize match
 	{
 		r.clear();
@@ -260,9 +274,9 @@ public:
 		std::vector<KString> chunks = chunk_(line);
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
-			if (is_alphanum_(chunks[i]) || chunks[i].length() <= 2)
+			if (is_alphanum_(chunks[i]) || chunks[i].length() <= 3)
 			{
-  				r.push_back(make_pair(chunks[i], minf_));
+  				r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
 				continue;
 			}
 			uint32_t from = 0, to = 1;

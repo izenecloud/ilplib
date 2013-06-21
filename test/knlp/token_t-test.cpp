@@ -193,7 +193,7 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 		std::vector<KString> v = tkn->fmm(KString(*t));
 		std::set<string> s;
 		for ( uint32_t i=0; i<v.size(); ++i)
-		  if (v[i].length() > 0 )//&& KString::is_chinese(v[i][0]))
+		  if (v[i].length() > 0 && tkn->is_in(v[i]))//&& KString::is_chinese(v[i][0]))
 			  s.insert(v[i].get_bytes("utf-8"));
 		
 		for ( std::set<string>::iterator it=s.begin(); it!=s.end(); ++it)

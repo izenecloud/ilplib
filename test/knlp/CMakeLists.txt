@@ -71,3 +71,13 @@ TARGET_LINK_LIBRARIES(etao_downloader
    boost_regex
    curl
 )
+
+ADD_EXECUTABLE(fmm_util 
+			fmm_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(fmm_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+)

@@ -193,7 +193,7 @@ void tokenize_stage(EventQueue<std::pair<string*,string*> >* in,
 		std::vector<KString> v = tkn->fmm(KString(*t));
 		std::set<string> s;
 		for ( uint32_t i=0; i<v.size(); ++i)
-		  if (v[i].length() > 0 )//&& KString::is_chinese(v[i][0]))
+		  if (v[i].length() > 0 && tkn->is_in(v[i]))//&& KString::is_chinese(v[i][0]))
 			  s.insert(v[i].get_bytes("utf-8"));
 		
 		for ( std::set<string>::iterator it=s.begin(); it!=s.end(); ++it)
@@ -315,7 +315,7 @@ int main(int argc,char * argv[])
 	tks.reserve(tkn->size());
 
 	EventQueue<std::pair<string*,string*> > in, out;
-	uint32_t cpu_num = 8;
+	uint32_t cpu_num = 11;
 	std::vector<boost::thread*> token_ths;
 	for ( uint32_t i=0; i<cpu_num; ++i)
 	  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out));

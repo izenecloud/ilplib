@@ -213,7 +213,7 @@ public:
     {
         if(nor)Normalize::normalize(kstr);
         double* p = dict_->find(kstr);
-        if (!p) return std::numeric_limits<double>::min();
+        if (!p) return (double)std::numeric_limits<int>::min();
         return *p;
     }
 };

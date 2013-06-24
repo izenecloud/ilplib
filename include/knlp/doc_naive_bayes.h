@@ -64,16 +64,20 @@ namespace ilplib
 			{
 				KString doc =d;
 				ilplib::knlp::Normalize::normalize(doc);
+                std::cout<<category_id(c)<<std::endl;
 				double* s = cate_.find(category_id(c));
 				if (!s)
-				  return std::numeric_limits<double>::min();
+				  return (double)std::numeric_limits<int>::min();
 
+                //std::cout<<*s<<"eeeeeeeeee\n";
 				std::set<KString> tks = normalize_tokens(tkn_->fmm(doc));
-				double sc = (*s)*(int32_t)(tks.size()-1)*-1.;
+				double sc = (*s)*tks.size()*-1.;
+                //std::cout<<sc<<"XXXXXXXXx\n";
 				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
 				{
 					KString kstr = concat(*it, c);
 					s = t2c_.find(kstr);
+                    //if(s)std::cout<<*s<<";;;;;;;\n";
 					if (s == NULL)
 					  sc += log(1.0/10000000);
 					else sc += *s;
@@ -88,10 +92,10 @@ namespace ilplib
 			{
 				double* s = cate_.find(category_id(c));
 				if (!s)
-				  return std::numeric_limits<double>::min();
+				  return (double)std::numeric_limits<int>::min();
 
 				std::set<KString> tks = normalize_tokens(v);
-				double sc = (*s)*(int32_t)(tks.size()-1)*-1.;
+				double sc = (*s)*tks.size()*-1.;
 				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
 				{
 					KString kstr = concat(*it, c);
@@ -104,7 +108,7 @@ namespace ilplib
 			}
 
 			static void train(const std::string& dictnm, const std::string& output,
-						const std::vector<std::string>& corpus, uint32_t cpu_num=8)
+						const std::vector<std::string>& corpus, uint32_t cpu_num=11)
 			{
 				ilplib::knlp::Tokenize tkn(dictnm);
 				EventQueue<std::pair<string*, string*> > in;
@@ -114,8 +118,8 @@ namespace ilplib
 				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn));
 
 				uint32_t N = 0;
-				KStringHashTable<KString, double> cates;
-				KStringHashTable<KString, double> t2c;
+				KStringHashTable<KString, double> cates(2000, 1000);
+				KStringHashTable<KString, double> t2c(tkn.size()*300, tkn.size()*100);
 				boost::thread cal_th(&calculate_stage, &out, &cates, &t2c);
 
 					for ( uint32_t i=0; i<corpus.size(); ++i)
@@ -184,8 +188,14 @@ namespace ilplib
 					ilplib::knlp::Normalize::normalize(*t);
 					std::set<KString> s = normalize_tokens(tkn->fmm(KString(*t)));
 
-					for ( std::set<KString>::iterator it=s.begin(); it!=s.end(); ++it)
-					  out->push(make_pair(new KString(*it), new KString(c->c_str())), e);
+                    std::vector<std::pair<double,KString> > v;
+					for(std::set<KString>::iterator it=s.begin();it!=s.end();++it)
+					    v.push_back(make_pair(-1.*tkn->score(*it), *it));
+                    std::sort(v.begin(), v.end());
+
+                    for (uint32_t i=0;i<(uint32_t)(v.size()/3.);++i)
+					  out->push(make_pair(new KString(v[i].second.get_bytes(), v[i].second.get_bytes()+v[i].second.length()), 
+					        new KString(*c)), e);
 					delete t, delete c;
 				}
 			}
@@ -222,7 +232,8 @@ namespace ilplib
 
 			static uint32_t category_id(const KString& ca)
 			{
-				return izenelib::util::HashFunction<std::string>::generateHash32(ca.get_bytes("utf-8"));
+			    uint32_t t = ca.find('>');
+				return izenelib::util::HashFunction<std::string>::generateHash32(ca.substr(0, t).get_bytes("utf-8"));
 			}
 
 			static void calculate_stage(EventQueue<std::pair<KString*,KString*> >* out,
@@ -249,12 +260,13 @@ namespace ilplib
 						  (*f)++;
 					}
 					{//Nct
-						double* f = Ntc->find(concat(*t, *c));
+					    KString tt = concat(*t, *c);
+						double* f = Ntc->find(tt);
 						if (!f)
-						  Ntc->insert(*t,1);
+						  Ntc->insert(tt,1);
 						else (*f)++;
 					}
-
+					
 					delete t, delete c;
 				}
 			}

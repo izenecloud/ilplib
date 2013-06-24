@@ -60,3 +60,14 @@ TARGET_LINK_LIBRARIES(token_t-test
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
 )
+
+ADD_EXECUTABLE(etao_downloader 
+			etao_downloader.cpp 
+)
+
+TARGET_LINK_LIBRARIES(etao_downloader
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+   boost_regex
+   curl
+)

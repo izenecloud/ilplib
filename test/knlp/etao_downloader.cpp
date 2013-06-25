@@ -70,11 +70,11 @@ void load_output(const string file)
 std::string url(const std::string& q)
 {
 	string url = "http://s.etao.com/search?q=";
-	url += q + "&s=0&size=36&tbpm=t";
+	url += q + "&s=0&size=36&tbpm=t&style=grid&cd=false&tab=all&usearch=yes";
 	return url;
 }
 
-#define WEB_SIZE 1000000
+#define WEB_SIZE 2000000
 struct GrabPage_MemoryStruct {
 	char *memory;
 	size_t size;
@@ -112,8 +112,8 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 	CURL *curl = curl_easy_init();
 	if (!curl){std::cout<<"[ERROR]CURL init error!";return "";}
 	curl_easy_setopt(curl, CURLOPT_HEADER, 1);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 15);
-	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 5);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 8);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 2);
 	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
 	const char * dafault_agent = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; "
 		"rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16";
@@ -137,18 +137,24 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 		for ( uint32_t i=0; i<html.length(); ++i)
 		  if (html[i] == '\n' || html[i] == '\r')
 			html[i] = ' ';
-		try{
-			html = KString(html, "GBK").get_bytes("utf-8");
-		}
-		catch(...)
+        {
+            boost::regex reg(KString(string("<span class=H>")+query+"</span>").get_bytes("GBK"));
+            boost::smatch m;
+            boost::regex_match(html, m, reg);
+            if (m.size() == 0)
+            {
+                cout<<query<<"[Inappropriate Term]\n";
+                succ = true;
+                delete mem.memory;
+                curl_easy_cleanup(curl);
+                return "";
+            }
+        }
 		{
-			std::cout<<"[Encode ERROR]\n";
-		}
-		{
-			boost::regex reg("<div class=\"toggle-more\"> <a class=\"plus\" href=\"#\"> 更多 <span class=\"icon icon-v\"></span>");
+			boost::regex reg(KString("<h4 class=\"title\">商家筛选</h4>").get_bytes("GBK"));
 			html = boost::regex_replace(html, reg, "@@@@");
 		}
-		boost::regex reg("<h4>所有分类</h4>[ ]+<ul>([^@]+)@@@@");
+		boost::regex reg(KString("<h4>所有分类</h4>[ ]+<ul>([^@]+)@@@@").get_bytes("GBK"));
 		boost::smatch m;
 		if (boost::regex_search(html, m, reg) && m[1].matched)
 		{
@@ -163,11 +169,11 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 		}
 		else if(html.length() > 30000)
 		{
-		  std::cout<<"Can't find the pattern!\n";
+		  std::cout<<query<<"[Can't find the pattern!]\n";
 		  //std::cout<<html<<std::endl;
 			succ = true;
 		}
-		else cout<<"Maybe be blocked or something\n";
+		else cout<<query<<"[Maybe be blocked or something]\n";
 	}
 	delete mem.memory;
 	curl_easy_cleanup(curl);
@@ -180,7 +186,7 @@ string get_proxy()
 	std::vector<std::string> v;
 	v.reserve(proxys.size());
 
-	bool total = (rand()%7==0);
+	bool total = (rand()%17==0);
 	for ( std::map<std::string,int32_t>::const_iterator it=proxys.begin(); it!=proxys.end(); ++it)
 	  if (it->second > 0 || total)
   		v.push_back(it->first);
@@ -188,6 +194,7 @@ string get_proxy()
 	  for ( std::map<std::string,int32_t>::const_iterator it=proxys.begin(); it!=proxys.end(); ++it)
 		v.push_back(it->first);
 
+    std::cout<<"[PROXY]:"<<v.size()<<"-"<<total<<std::endl;
 	return v[rand()%v.size()];
 }
 
@@ -214,7 +221,15 @@ void download_stage(EventQueue<string*>* in, EventQueue<string*>* out)
 		}
 
 		if (r.length() > 0)
-		  out->push(new string(*s + "\t" + r), -1);
+        {
+            try{
+                r = KString(r, "GBK").get_bytes("utf-8");
+            }catch(...)
+            {
+                std::cout<<"[ENCODING ERORRO]\n";
+            }
+            out->push(new string(*s + "\t" + r), -1);
+        }
 		delete s;
 	}
 }
@@ -225,7 +240,7 @@ void output_stage(EventQueue<string*>* out)
 {
 	while(1)
 	{
-		string* s;
+		string* s=NULL;
 		uint64_t e;
 		out->pop(s, e);
 		if (s == NULL)
@@ -256,7 +271,7 @@ int main(int argc,char * argv[])
 	load_output(argv[3]);
 
 	EventQueue<string*> q, o;
-	uint32_t cpu_num = 11;
+	uint32_t cpu_num = 20;
 	std::vector<boost::thread*> download_ths;
 	for ( uint32_t i=0; i<cpu_num; ++i)
 	  download_ths.push_back(new boost::thread(&download_stage, &q, &o));
@@ -288,3 +303,97 @@ int main(int argc,char * argv[])
 
 	return 0;
 }
+/*
+gawk -F' ' '{for(i=1;i<=NF;++i)print $i}' etao_downloader.out |\
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
+sort -t" " -k1,1 |\
+gawk -F" " '
+function atof(str)
+{
+    i = index(str, "万")
+    wan = 1;
+    if (i > 0)
+    {
+        str = substr(str, 1, i-1)
+        wan = 10000;
+    }
+        return str*wan;
+}
+{
+    total += atof($2);
+    if(last!=$1 && length(last)>0)
+    {
+#print last" "num;
+        a[last]=num
+        last=$1;
+        num=atof($2);
+    }
+    else{
+        num+=atof($2);
+        last = $1
+    }
+}
+END{
+    a[last]=num;
+#print last" "num;
+    for (i in a)
+        print i"\t"log(a[i])
+}' > etao.cate.sort
+
+sed "s/ 其[它他] .\+//g" etao_downloader.out|gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' |\
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
+sort -t" " -k1,1 |\
+gawk -F" " '
+function atof(str)
+{
+    i = index(str, "万")
+    wan = 1;
+    if (i > 0)
+    {
+        str = substr(str, 1, i-1)
+        wan = 10000;
+    }
+        return str*wan;
+}
+{
+    print $1" "$2"\t"log(atof($3))
+}
+' > etao.term.cate
+
+
+gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' etao_downloader.out|\
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
+gawk -F" " '
+function atof(str)
+{
+    i = index(str, "万")
+    wan = 1;
+    if (i > 0)
+    {
+        str = substr(str, 1, i-1)
+        wan = 10000;
+    }
+    return str*wan;
+}
+{
+    n = atof($3)
+    term[$1] += n
+    tc[$1" "$2] = n
+    cate[$2] = 1;
+}
+END{
+    for (ttcc in tc)
+    {
+        split(ttcc, a, " ");
+        if(term[a[1]] == 0)continue;
+        p = 1.*tc[ttcc]/term[a[1]];
+#print a[1]":"a[2]"=="p
+        tw[a[1]] += p*log(p)
+    }
+    for (i in tw)
+        print i"\t"(10**(4 + tw[i]))
+}'|sort -t $'\t' -k2,2nr > etao.term
+ * */

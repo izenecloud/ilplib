@@ -288,7 +288,7 @@ public:
 				bool pre = (prefix_.find(sub)!=NULL);
 				if (f == minf_)
 				{
-					if (pre)
+					if (pre && to+1<chunks[i].length())
 					{
 						to++;
 						continue;
@@ -296,11 +296,17 @@ public:
                     //std::cout<<chunks[i].substr(from, to-from)<<"xxxxxxxxxxx\n";
                     sub = chunks[i].substr(from, to-from);
                     f = term_freq_(sub);
+                    while(f == minf_ && to > from+1)
+                    {
+                        to--;
+                        sub = chunks[i].substr(from, to-from);
+                        f = term_freq_(sub);
+                    }
 					r.push_back(make_pair(chunks[i].substr(from, to-from),f));
 					from = to, to++;
 					continue;
 				}
-				if (pre){to++; continue;}
+				if (pre && to+1<chunks[i].length()){to++; continue;}
 				r.push_back(make_pair(sub, f));
 				from  = to + 1;
 				to+=2;

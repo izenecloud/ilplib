@@ -92,6 +92,28 @@ TARGET_LINK_LIBRARIES(fmm_util
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
 )
+
+SET(libs
+  ilplib
+  ${Boost_LIBRARIES}
+  ${Boost_FILESYSTEM_LIBRARY}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
+  ${izenelib_LIBRARIES}
+  ${izenecma_LIBRARIES}
+  ${izenejma_LIBRARIES}
+  ${wisekma_LIBRARIES}
+  ${Glog_LIBRARIES}
+)
+
+ADD_EXECUTABLE(t_knlp_tokenize
+  t_knlp_tokenize.cpp
+  KNlpTokenizeTestFixture.cpp
+  Runner.cpp
+)
+
+TARGET_LINK_LIBRARIES(t_knlp_tokenize ${libs})
+
 ADD_EXECUTABLE(t_etao_cate 
 			t_etao_cate.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp

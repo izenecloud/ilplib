@@ -81,3 +81,13 @@ TARGET_LINK_LIBRARIES(fmm_util
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
 )
+ADD_EXECUTABLE(t_etao_cate 
+			t_etao_cate.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(t_etao_cate
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+)
+

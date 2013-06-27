@@ -305,7 +305,7 @@ int main(int argc,char * argv[])
 }
 /*
 gawk -F' ' '{for(i=1;i<=NF;++i)print $i}' etao_downloader.out |\
-grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' | \
 sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
 sort -t" " -k1,1 |\
 gawk -F" " '
@@ -318,7 +318,8 @@ function atof(str)
         str = substr(str, 1, i-1)
         wan = 10000;
     }
-        return str*wan;
+    gsub(/,/, "", str)
+    return str*wan;
 }
 {
     total += atof($2);
@@ -337,12 +338,12 @@ function atof(str)
 END{
     a[last]=num;
 #print last" "num;
-    for (i in a)
-        print i"\t"log(a[i])
+    for (i in a)if(a[i]!=0)
+        print i"\t"log(a[i]+1000000)
 }' > etao.cate.sort
 
 sed "s/ 其[它他] .\+//g" etao_downloader.out|gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' |\
-grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' | \
 sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
 sort -t" " -k1,1 |\
 gawk -F" " '
@@ -355,16 +356,17 @@ function atof(str)
         str = substr(str, 1, i-1)
         wan = 10000;
     }
-        return str*wan;
+    gsub(/,/, "", str)
+    return str*wan;
 }
 {
-    print $1" "$2"\t"log(atof($3))
+    print $1" "$2"\t"log(atof($3)+1000)
 }
 ' > etao.term.cate
 
 
 gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' etao_downloader.out|\
-grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' -e 's/,//g' | \
+grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' | \
 sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
 gawk -F" " '
 function atof(str)
@@ -376,6 +378,7 @@ function atof(str)
         str = substr(str, 1, i-1)
         wan = 10000;
     }
+    gsub(/,/, "", str)
     return str*wan;
 }
 {
@@ -389,11 +392,29 @@ END{
     {
         split(ttcc, a, " ");
         if(term[a[1]] == 0)continue;
-        p = 1.*tc[ttcc]/term[a[1]];
+        p = 1.*(tc[ttcc]+1)/(term[a[1]]+100);
 #print a[1]":"a[2]"=="p
         tw[a[1]] += p*log(p)
     }
     for (i in tw)
         print i"\t"(10**(4 + tw[i]))
-}'|sort -t $'\t' -k2,2nr > etao.term
- * */
+}'|sort -t $'\t' -k2,2nr > etao.term;echo -e "[MIN]\t0.3" >> etao.term
+
+grep -ve "^[-―]" etao.term.cate |sort -t' ' -k1,1 |\
+gawk -F'[ \t]' '
+{
+    if(last != $1 && length(last)>0)
+    {
+        print last"\t"cates;
+        last = $1;cates=$2;
+    }
+    else{
+        last = $1;
+        if(length(cates)>0)cates = cates" "$2;
+        else cates=$2;
+    }
+}
+END{
+    print last"\t"cates;
+}'  > etao.term.cates
+* */

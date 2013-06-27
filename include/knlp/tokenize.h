@@ -274,7 +274,8 @@ public:
 		std::vector<KString> chunks = chunk_(line);
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
-			if (is_alphanum_(chunks[i]) || chunks[i].length() <= 3)
+			if (is_alphanum_(chunks[i]) || chunks[i].length() < 3
+			  || (chunks[i].length() == 3 && chunks[i].is_chinese(0)))
 			{
   				r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
 				continue;

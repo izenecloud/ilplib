@@ -107,6 +107,63 @@ namespace ilplib
 				return sc;
 			}
 
+			static std::map<KString, double>
+			  classify(
+			    DigitalDictionary* cat,
+			    DigitalDictionary* t2c,
+			    Dictionary* t2cs,
+			    std::vector<std::pair<KString,double> > v)
+              {
+                  double sum = 0;
+                  for (uint32_t j=0;j<v.size();++j)
+                      sum += v[j].second;
+                  const uint32_t TOTAL = v.size()*8;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      v[j].second /= sum;
+                      v[j].second = (int)(v[j].second*TOTAL+0.5);
+                      cout<<v[j].first<<":"<<v[j].second<<" ";
+                  }
+                  cout<<"\n";
+
+                  std::map<KString, double> m;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      char* c = t2cs->value(v[j].first, false);
+                      if(!c)continue;
+                      KString ct(c);
+                      vector<KString> kv = ct.split(' ');
+                      for (uint32_t i=0;i<kv.size();++i)
+                          if(m.find(kv[i])== m.end())
+                          {
+                              double c = cat->value(kv[i], false);
+                              if (c == (double)std::numeric_limits<int>::min())continue;
+                              m[kv[i]] = c;
+                          }
+                  }
+
+                  for (std::map<KString, double>::iterator it=m.begin();it!=m.end();it++)
+                  {
+                      double c = it->second;
+                      for (uint32_t j=0;j<v.size();++j)
+                      {
+                          KString k = v[j].first;
+                          k += ' ';
+                          k += it->first;
+                          double f = t2c->value(k, false);
+                          if (f == (double)std::numeric_limits<int>::min())
+                              it->second += (-100 - c)*v[j].second;//continue;
+                          else
+                          {
+                              double h = (f-c)*v[j].second;
+                              it->second += h;
+                              //std::cout<<v[j].first<<"xxxx"<<it->first<<":"<<f<<" "<<h<<"     "<<it->second<<":"<<c<<std::endl;
+                          }
+                      }
+                  }
+                  return m;
+              }
+
 			static void train(const std::string& dictnm, const std::string& output,
 						const std::vector<std::string>& corpus, uint32_t cpu_num=11)
 			{

@@ -72,6 +72,17 @@ TARGET_LINK_LIBRARIES(etao_downloader
    curl
 )
 
+ADD_EXECUTABLE(taobao_downloader 
+			taobao_downloader.cpp 
+)
+
+TARGET_LINK_LIBRARIES(taobao_downloader
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+   boost_regex
+   curl
+)
+
 ADD_EXECUTABLE(fmm_util 
 			fmm_util.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp

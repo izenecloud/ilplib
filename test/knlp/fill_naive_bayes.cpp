@@ -51,6 +51,7 @@ int main(int argc,char * argv[])
         ilplib::knlp::Tokenize tkn(dictnm);
         DocNaiveBayes nb(&tkn, output);
         KString line("iphone");
+        //KString line("iPhone4 8G手机 支持移动/联通 双摄像头-黑色、白色");
         std::cout<<nb.classify(line, KString("手机数码>手机配件>手机保护套"))<<"手机数码>手机配件>手机保护套\n";
         std::cout<<nb.classify(line, KString("图书音像>教育>考试"))<<"图书音像>教育>考试\n";
         std::cout<<nb.classify(line, KString("汽车用品"))<<"汽车用品\n";

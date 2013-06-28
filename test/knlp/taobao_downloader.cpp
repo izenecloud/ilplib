@@ -117,8 +117,8 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 	CURL *curl = curl_easy_init();
 	if (!curl){std::cout<<"[ERROR]CURL init error!";return "";}
 	curl_easy_setopt(curl, CURLOPT_HEADER, 1);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 15);
-	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 5);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
+	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 2);
 	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
 	const char * dafault_agent = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; "
 		"rv:1.9.2.16) Gecko/20110319 Firefox/3.6.16";
@@ -142,7 +142,7 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 		for ( uint32_t i=0; i<html.length(); ++i)
 		  if (html[i] == '\n' || html[i] == '\r')
 			html[i] = ' ';
-		boost::regex reg("<h3 class=\"summary\"><a trace=\"auction\" traceNum=\"2\" href=\"http://item.taobao.com/item.htm?id=[0-9]+\" target=\"_blank\" title=\"([^\"]+)\"");
+		boost::regex reg("<h3 class=\"summary\"><a trace=\"auction\" traceNum=\"2\" href=\"http://item\\.taobao\\.com/item\\.htm\\?id=[0-9]+\" target=\"_blank\" title=\"([^\"]+)\"");
 		std::string::const_iterator start = html.begin();
 		std::string::const_iterator end = html.end();
 		boost::smatch m;
@@ -163,7 +163,10 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 			succ = true;
 		}
 		else if(start == html.begin())
+        {
 		  cout<<query<<"[Maybe be blocked or something]\n";
+		  succ = true;
+        }
 	}
 	delete mem.memory;
 	curl_easy_cleanup(curl);
@@ -184,6 +187,7 @@ string get_proxy()
 	  for ( std::map<std::string,int32_t>::const_iterator it=proxys.begin(); it!=proxys.end(); ++it)
 		v.push_back(it->first);
 
+    std::cout<<"PROXY: "<<v.size()<<"-"<<total<<endl;
 	return v[rand()%v.size()];
 }
 
@@ -273,12 +277,9 @@ int main(int argc,char * argv[])
 		while((line=lr.line(line))!=NULL)
 		{
 			if (strlen(line) == 0)continue;
-			char* t = strchr(line, '\t');
-			if (!t)t = strchr(line, ' ');
-			if (!t)t = line+strlen(line);
-			bool* e = outs.find(string(line, t-line));
+			bool* e = outs.find(string(line));
 			if (e)continue;
-			q.push(new string(line, t-line), -1);
+			q.push(new string(line), -1);
 		}
 	}
 
@@ -292,3 +293,66 @@ int main(int argc,char * argv[])
 
 	return 0;
 }
+/**
+gawk -F'\t' '
+{
+    c[$2]++;
+    tc[$1" "$2]++;
+    t[$1]++;
+}
+END{
+    m = 1000000000000;
+    for (i in t)
+    {
+        ent = 0;
+        for(j in c)
+        if (i" "j in tc)
+        {
+            p = (tc[i" "j]*1.0+1)/(t[i]+1000)
+            ent += -1*p*log(p)
+        }
+        print i"\t"10**(4-ent)
+        if (m > 10**(4-ent))
+            m = 10**(4-ent);
+    }
+    print "[MIN]\t"m
+}' taobao.out.2 > taobao.term.weight
+
+ gawk -F'\t' '
+ {
+    pc[$2] += $3;
+ }
+ END{
+    for (i in pc)
+        print i"\t"log(pc[i]+100)
+ }
+ ' taobao.out.2 > taobao.cat
+
+ gawk -F'\t' '
+ {
+    ptc[$1" "$2] += $3;
+ }
+ END{
+    for (tc in ptc)
+        printf("%s\t%.5f", tc, log(ptc[tc]+1));
+ }' taobao.out.2 > taobao.term.cat
+
+sort -t ' ' -k1,1  taobao.term.cat| \
+gawk -F'[\t ]' '
+ {
+    if (last != $1 && length(last) > 0)
+    {
+        tc[last] = cats;
+        last = $1
+        cats = $2;
+    }else{
+        last = $1
+        cats = cats" "$2
+    }
+ }
+ END{
+     tc[last] = cats;
+     for (t in tc)
+         print t"\t"tc[t]
+ }'  > taobao.term.cats
+ * */

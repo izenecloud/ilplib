@@ -60,27 +60,27 @@ namespace ilplib
 			template <
 				class CATE_T
 				>
-			double  classify(const KString& d, const CATE_T& c)
+			double  classify(const KString& d, const CATE_T& ca)
 			{
 				KString doc =d;
 				ilplib::knlp::Normalize::normalize(doc);
-                std::cout<<category_id(c)<<std::endl;
-				double* s = cate_.find(category_id(c));
-				if (!s)
+                std::cout<<category_id(ca)<<std::endl;
+				double* c = cate_.find(category_id(ca));
+				if (!c)
 				  return (double)std::numeric_limits<int>::min();
 
-                //std::cout<<*s<<"eeeeeeeeee\n";
-				std::set<KString> tks = normalize_tokens(tkn_->fmm(doc));
-				double sc = (*s)*tks.size()*-1.;
-                //std::cout<<sc<<"XXXXXXXXx\n";
-				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
+                std::vector<std::pair<KString,double> > v;
+                tkn_->fmm(doc, v);
+				std::set<std::pair<KString,double> > tks = normalize_tokens(v);
+				double sc = *c;//(*s)*tks.size()*-1.;
+				for (  std::set<std::pair<KString,double> >::iterator it=tks.begin(); it!=tks.end(); ++it)
 				{
-					KString kstr = concat(*it, c);
-					s = t2c_.find(kstr);
-                    //if(s)std::cout<<*s<<";;;;;;;\n";
+					KString kstr = concat(it->first, ca);
+					double* s = t2c_.find(kstr);
+                    if(s)std::cout<<*s<<":"<<*c<<";;;;;;;\n";
 					if (s == NULL)
-					  sc += log(1.0/10000000);
-					else sc += *s;
+					  sc += (-100-*c)*it->second*tks.size()*5;
+					else sc += (*s-*c)*it->second*tks.size()*5;
 				}
 				return sc;
 			}
@@ -88,21 +88,22 @@ namespace ilplib
 			template <
 				class CATE_T
 				>
-			double  classify(std::vector<KString> v, const CATE_T& c)
+			double  classify(std::vector<std::pair<KString,double> > v, const CATE_T& ca)
 			{
-				double* s = cate_.find(category_id(c));
-				if (!s)
+				double* c = cate_.find(category_id(ca));
+				if (!c)
 				  return (double)std::numeric_limits<int>::min();
 
-				std::set<KString> tks = normalize_tokens(v);
-				double sc = (*s)*tks.size()*-1.;
-				for (  std::set<KString>::iterator it=tks.begin(); it!=tks.end(); ++it)
+                std::set<std::pair<KString,double> > tks = normalize_tokens(v);
+				double sc = *c;//(*s)*tks.size()*-1.;
+				for (  std::set<std::pair<KString,double> >::iterator it=tks.begin(); it!=tks.end(); ++it)
 				{
-					KString kstr = concat(*it, c);
-					s = t2c_.find(kstr);
+					KString kstr = concat(it->first, ca);
+					double* s = t2c_.find(kstr);
+                    //if(s)std::cout<<*s<<";;;;;;;\n";
 					if (s == NULL)
-					  sc += log(1.0/10000000);
-					else sc += *s;
+					  sc += (-100-*c)*it->second*tks.size()*5;
+					else sc += (*s-*c)*it->second*tks.size()*5;
 				}
 				return sc;
 			}
@@ -136,9 +137,10 @@ namespace ilplib
                       for (uint32_t i=0;i<kv.size();++i)
                           if(m.find(kv[i])== m.end())
                           {
-                              double c = cat->value(kv[i], false);
+                              double c = cat->value(kv[i], true);
                               if (c == (double)std::numeric_limits<int>::min())continue;
                               m[kv[i]] = c;
+                              //std::cout<<v[j].first<<" "<<kv[i]<<std::endl;
                           }
                   }
 
@@ -150,14 +152,14 @@ namespace ilplib
                           KString k = v[j].first;
                           k += ' ';
                           k += it->first;
-                          double f = t2c->value(k, false);
+                          double f = t2c->value(k, true);
                           if (f == (double)std::numeric_limits<int>::min())
-                              it->second += (-100 - c)*v[j].second;//continue;
+                              it->second += (-10 - c)*v[j].second;//continue;
                           else
                           {
                               double h = (f-c)*v[j].second;
                               it->second += h;
-                              //std::cout<<v[j].first<<"xxxx"<<it->first<<":"<<f<<" "<<h<<"     "<<it->second<<":"<<c<<std::endl;
+                              std::cout<<v[j].first<<"xxxx"<<it->first<<":"<<f<<" "<<h<<"     "<<it->second<<":"<<c<<std::endl;
                           }
                       }
                   }
@@ -169,7 +171,7 @@ namespace ilplib
 			{
 				ilplib::knlp::Tokenize tkn(dictnm);
 				EventQueue<std::pair<string*, string*> > in;
-				EventQueue<std::pair<KString*, KString*> > out;
+				EventQueue<std::pair<KString*, double> > out;
 				std::vector<boost::thread*> token_ths;
 				for ( uint32_t i=0; i<cpu_num; ++i)
 				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn));
@@ -199,38 +201,44 @@ namespace ilplib
 				  in.push(make_pair<string*,string*>(NULL, NULL), -1);
 				for ( uint32_t i=0; i<cpu_num; ++i)
 				  token_ths[i]->join(),delete token_ths[i];
-				out.push(make_pair<KString*,KString*>(NULL, NULL), -1);
+				out.push(make_pair<KString*,double>(NULL, 0), -1);
 				cal_th.join();
 
 				for(KStringHashTable<KString, double>::iterator it = t2c.begin(); it!=t2c.end(); ++it)
-				  *it.value() = log((*it.value()+1)/(N+10000));
+				  *it.value() = log((*it.value()+0.01)/(N+100));
 				for(KStringHashTable<KString, double>::iterator it = cates.begin(); it!=cates.end(); ++it)
-				  *it.value() = log((*it.value()+1)/(N+100));
+				  *it.value() = log((*it.value()+0.01)/(N+1));
 
 				t2c.persistence(output+".t2c");
 				cates.persistence(output+".cate");
 			}
 
-			static std::set<KString> normalize_tokens(std::vector<KString>  v)
+			static std::set<std::pair<KString,double> > normalize_tokens(std::vector<std::pair<KString,double> >  v)
 			{
 				for ( uint32_t i=0; i<v.size(); i++)
 				{
-					int32_t ty = StringPatterns::string_type(v[i]);
+					int32_t ty = StringPatterns::string_type(v[i].first);
 					if (ty == 2)
-					  v[i] = KString("[[NUMBERS]]");
+					  v[i].first = KString("[[NUMBERS]]");
 					else if(ty == 3)
-					  v[i] == KString("[[NUGLISH]]");
+					  v[i].first == KString("[[NUGLISH]]");
 					else if (ty == 4)
 					{
 						v.erase(v.begin()+i);
 						--i;
 					}
 				}
-				return std::set<KString>(v.begin(), v.end());
+
+				double s = 0;
+				for ( uint32_t i=0; i<v.size(); i++)
+				    s += v[i].second;
+				for ( uint32_t i=0; i<v.size(); i++)
+				    v[i].second /= s;
+				return std::set<std::pair<KString,double> > (v.begin(), v.end());
 			}
 
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
-						EventQueue<std::pair<KString*,KString*> >* out, 
+						EventQueue<std::pair<KString*,double> >* out, 
 						ilplib::knlp::Tokenize* tkn)
 			{
 				while(true)
@@ -243,16 +251,15 @@ namespace ilplib
 					if (t == NULL || c == NULL)
 					  break;
 					ilplib::knlp::Normalize::normalize(*t);
-					std::set<KString> s = normalize_tokens(tkn->fmm(KString(*t)));
+                    std::vector<std::pair<KString,double> >  v;
+                    tkn->fmm(KString(*t), v);
+                    std::set<std::pair<KString,double> > s = normalize_tokens(v);
+                    for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
+                    {
+                        KString k = it->first;k += ' ';k+=KString(*c);
+                        out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
+                    }
 
-                    std::vector<std::pair<double,KString> > v;
-					for(std::set<KString>::iterator it=s.begin();it!=s.end();++it)
-					    v.push_back(make_pair(-1.*tkn->score(*it), *it));
-                    std::sort(v.begin(), v.end());
-
-                    for (uint32_t i=0;i<(uint32_t)(v.size()/3.);++i)
-					  out->push(make_pair(new KString(v[i].second.get_bytes(), v[i].second.get_bytes()+v[i].second.length()), 
-					        new KString(*c)), e);
 					delete t, delete c;
 				}
 			}
@@ -289,42 +296,44 @@ namespace ilplib
 
 			static uint32_t category_id(const KString& ca)
 			{
-			    uint32_t t = ca.find('>');
+			    uint32_t t = -1;//ca.find('>');
 				return izenelib::util::HashFunction<std::string>::generateHash32(ca.substr(0, t).get_bytes("utf-8"));
 			}
 
-			static void calculate_stage(EventQueue<std::pair<KString*,KString*> >* out,
+			static void calculate_stage(EventQueue<std::pair<KString*,double> >* out,
 						KStringHashTable<KString, double>* Nc, 
 						KStringHashTable<KString, double>* Ntc)
 			{
 				while(true)
 				{
 					uint64_t e = -1;
-					std::pair<KString*,KString*> p(NULL,NULL);
+					std::pair<KString*,double> p(NULL,0);
 					out->pop(p, e);
-					if (p.first == NULL && p.second == NULL)
+					if (p.first == NULL)
 					  break;
 
-					KString* t = p.first;
-					KString* c = p.second;
+                    std::vector<KString> ct = p.first->split(' ');
+					double  s = p.second;
+					printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
+
 					{
 						//add Nc
-						uint32_t cid = category_id(*c);
+						uint32_t cid = category_id(ct[1]);
 						double* f = Nc->find(cid);
 						if (!f)
-						  Nc->insert(cid, 1);
+						  Nc->insert(cid, s);
 						else
-						  (*f)++;
+						  (*f) += s;
 					}
 					{//Nct
-					    KString tt = concat(*t, *c);
+					    KString tt = concat(ct[0], ct[1]);
 						double* f = Ntc->find(tt);
 						if (!f)
-						  Ntc->insert(tt,1);
-						else (*f)++;
+						  Ntc->insert(tt, s);
+						else (*f) += s;
 					}
 					
-					delete t, delete c;
+					delete p.first;
 				}
 			}
 		};

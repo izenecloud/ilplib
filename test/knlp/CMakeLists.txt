@@ -114,12 +114,12 @@ ADD_EXECUTABLE(t_knlp_tokenize
 
 TARGET_LINK_LIBRARIES(t_knlp_tokenize ${libs})
 
-ADD_EXECUTABLE(t_etao_cate 
-			t_etao_cate.cpp 
+ADD_EXECUTABLE(tao_cate_test 
+			tao_cate_test.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 )
 
-TARGET_LINK_LIBRARIES(t_etao_cate
+TARGET_LINK_LIBRARIES(tao_cate_test
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
 )

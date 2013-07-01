@@ -272,7 +272,6 @@ public:
 		r.clear();
 		if (line.length() == 0)return;
 		std::vector<KString> chunks = chunk_(line);
-        std::cout<<chunks[0]<<"=="<<chunks[0].is_chinese(0)<<endl;
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
 			if (is_alphanum_(chunks[i]) || chunks[i].length() < 3

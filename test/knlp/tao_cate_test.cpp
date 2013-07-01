@@ -34,6 +34,7 @@ using namespace ilplib::knlp;
 
 Tokenize* tkn;
 DigitalDictionary* cat;
+DigitalDictionary* term;
 DigitalDictionary* t2c;
 Dictionary* t2cs;
 std::vector<std::string> catv;
@@ -55,18 +56,35 @@ void classify(std::string str)
     cout<<"#################33\n";
 }
 
+void classify_vote(std::string str)
+{
+    ilplib::knlp::Normalize::normalize(str);
+    std::vector<std::pair<KString,double> > v;
+    tkn->fmm(KString(str), v);
+
+    std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v);
+    vector<pair<double,KString> > dv;
+    for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
+        dv.push_back(make_pair(it->second*-1, it->first));
+    sort(dv.begin(), dv.end());
+    std::cout<<"###################\n"<<str<<"\n";
+    for(uint32_t i=0; i<dv.size()&&i<6; ++i)
+          cout<<"@@"<<dv[i].second<<":"<<dv[i].first<<std::endl;
+    cout<<"#################33\n";
+}
 int main(int argc,char * argv[])
 {
-    if (argc < 4)
+    if (argc < 6)
     {
-        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term2cate dict] [term2cates dict] [corpus 1] ....\n";
+        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term dict] [term2cate dict] [term2cates dict] [corpus 1] ....\n";
         return 0;
     }
 
     tkn = new Tokenize(argv[1]);
     cat = new DigitalDictionary(argv[2]);
-    t2c = new DigitalDictionary(argv[3]);
-    t2cs = new Dictionary(argv[4]);
+    term = new DigitalDictionary(argv[3]);
+    t2c = new DigitalDictionary(argv[4]);
+    t2cs = new Dictionary(argv[5]);
 
     /*{
         char* li = NULL;
@@ -81,14 +99,15 @@ int main(int argc,char * argv[])
     }*/
 
     string corpus;
-    if (argc > 5)
-        corpus = argv[5];
+    if (argc > 6)
+        corpus = argv[6];
     if(corpus.length()>0 && freopen (corpus.c_str(), "r", stdin) == NULL);
 
     string line;
     while(!std::getline(std::cin, line).eof())
     {
-        classify(line);
+        //classify(line);
+        classify_vote(line);
     }
 
     return 0;

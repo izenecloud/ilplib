@@ -108,6 +108,78 @@ namespace ilplib
 				return sc;
 			}
 
+            static std::map<KString, double>
+			  classify(
+			    DigitalDictionary* cat,
+			    DigitalDictionary* term,
+			    DigitalDictionary* t2c,
+			    Dictionary* t2cs,
+			    std::vector<std::pair<KString,double> > v)
+              {
+                  double sum = 0;
+                  for (uint32_t j=0;j<v.size();++j)
+                      sum += v[j].second;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      v[j].second /= sum;
+                      //v[j].second = sqrt(v[j].second);
+                      cout<<v[j].first<<":"<<v[j].second<<" ";
+                  }
+                  cout<<"\n";
+
+                  std::vector<double> pt;pt.reserve(v.size());
+                  for(uint32_t i=0; i<v.size();++i)
+                  {
+                      double f = term->value(v[i].first, true);
+                      if (v.size()>1 && (f < 1050 || v[i].second < 0.01))
+                      {
+                          v.erase(v.begin()+i);
+                          --i;
+                      }else
+                          pt.push_back(f);
+                  }
+                  std::map<KString, double> m;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      char* c = t2cs->value(v[j].first, false);
+                      if(!c)continue;
+                      KString ct(c);
+                      vector<KString> kv = ct.split(' ');
+                      for (uint32_t i=0;i<kv.size();++i)
+                          if(m.find(kv[i])== m.end())
+                          {
+                              double c = cat->value(kv[i], true);
+                              if (c == (double)std::numeric_limits<int>::min())continue;
+                              m[kv[i]] = c;
+                              //std::cout<<v[j].first<<" "<<kv[i]<<std::endl;
+                          }
+                  }
+
+                  for (std::map<KString, double>::iterator it=m.begin();it!=m.end();it++)
+                  {
+                      double c = it->second;
+                      it->second = 0;
+                      for (uint32_t j=0;j<v.size();++j)
+                      {
+                          KString k = v[j].first;
+                          k += ' ';
+                          k += it->first;
+                          double f = t2c->value(k, true);
+                          if (v.size() > 1 && f <10)continue;
+                          //double h = exp(f - c - pt[j])*v[j].second;
+                          double h = f/(c*pt[j])*v[j].second;
+
+                          KString ca = it->first;                          
+                          //ilplib::knlp::Normalize::normalize(ca);
+                          if (ca.find(v[j].first) != (uint32_t)-1)
+                              h = h * (1+v[j].second);
+                          it->second += h;
+                          std::cout<<v[j].first<<"xxxx"<<it->first<<":"<<f<<" "<<pt[j]<<"     "<<it->second<<":"<<c<<std::endl;
+                      }
+                  }
+                  return m;
+              }
+
 			static std::map<KString, double>
 			  classify(
 			    DigitalDictionary* cat,
@@ -154,7 +226,7 @@ namespace ilplib
                           k += it->first;
                           double f = t2c->value(k, true);
                           if (f == (double)std::numeric_limits<int>::min())
-                              it->second += (-10 - c)*v[j].second;//continue;
+                              it->second += (-50 - c)*v[j].second;//continue;
                           else
                           {
                               double h = (f-c)*v[j].second;
@@ -250,13 +322,21 @@ namespace ilplib
 					string* c = p.second;
 					if (t == NULL || c == NULL)
 					  break;
-					ilplib::knlp::Normalize::normalize(*t);
+					try{
+                        ilplib::knlp::Normalize::normalize(*t);
+                        ilplib::knlp::Normalize::normalize(*c);
+                    }catch(...)
+                    {
+                        delete t, delete c;
+                        continue;
+                    }
+                    KString ca(*c);
                     std::vector<std::pair<KString,double> >  v;
                     tkn->fmm(KString(*t), v);
                     std::set<std::pair<KString,double> > s = normalize_tokens(v);
                     for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                     {
-                        KString k = it->first;k += ' ';k+=KString(*c);
+                        KString k = it->first;k += ' ';k+=ca;
                         out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
                     }
 

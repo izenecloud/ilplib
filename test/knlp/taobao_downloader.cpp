@@ -69,13 +69,15 @@ void load_output(const string file)
 
 std::string url(const std::string& q)
 {
-	const char* t = strchr(q.c_str(), '/');
-	const char* a = strchr(q.c_str(), '@');
-	if (t == NULL || a == NULL)return "";
-	t++;
-	string url = "http://s.taobao.com/search?q=";
-	url += string(t, a-t) + "&promote=0&tab=all&bcoffset=0&s=";
-	url += (++a);
+	const char* f1 = strchr(q.c_str(), '@');if(!f1)return "";
+	f1++;
+	const char* f2 = strchr(f1, '@');if(!f2)return "";
+	f2++;
+	string url = "http://list.taobao.com/itemlist/default.htm?cat=";
+	url+=string(f1,f2-1-f1);
+	url+="&viewIndex=1&as=0&atype=b&style=grid&same_info=1&isnew=2&tid=0&_input_charset=utf-8&json=on&data-key=s&data-value=";
+	url+=string(f2);
+	url+= "&module=page&callback=jsonp";
 	return url;
 }
 
@@ -117,7 +119,7 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 	CURL *curl = curl_easy_init();
 	if (!curl){std::cout<<"[ERROR]CURL init error!";return "";}
 	curl_easy_setopt(curl, CURLOPT_HEADER, 1);
-	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
+	curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
 	curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 2);
 	curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
 	const char * dafault_agent = "Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10.6; en-US; "
@@ -142,7 +144,7 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 		for ( uint32_t i=0; i<html.length(); ++i)
 		  if (html[i] == '\n' || html[i] == '\r')
 			html[i] = ' ';
-		boost::regex reg("<h3 class=\"summary\"><a trace=\"auction\" traceNum=\"2\" href=\"http://item\\.taobao\\.com/item\\.htm\\?id=[0-9]+\" target=\"_blank\" title=\"([^\"]+)\"");
+		boost::regex reg("\"title\":\"([^\"]+)\",");
 		std::string::const_iterator start = html.begin();
 		std::string::const_iterator end = html.end();
 		boost::smatch m;
@@ -157,15 +159,18 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 			start = m[0].second;
 			succ = true;
 		}
-		if(start == html.begin() && html.length() > 30000)
-		{
-		  std::cout<<query<<"[Can't find the pattern!]\n";
-			succ = true;
-		}
+		if(start == html.begin() && strstr(html.c_str(), "\"code\":  \"200\" ,"))
+        {
+            std::cout<<query<<"[Can't find the pattern!]\n";
+            //cout<<url(query)<<endl;
+            //cout<<html<<endl;
+            succ = true;
+        }
 		else if(start == html.begin())
         {
-		  cout<<query<<"[Maybe be blocked or something]\n";
-		  succ = true;
+		  cout<<query<<":"<<html.length()<<"[Maybe be blocked or something]\n";
+		  cout<<url(query)<<endl;
+          //cout<<html<<endl;
         }
 	}
 	delete mem.memory;
@@ -294,6 +299,7 @@ int main(int argc,char * argv[])
 	return 0;
 }
 /**
+export CORPUS="taobao.out.2"
 gawk -F'\t' '
 {
     c[$2]++;
@@ -315,29 +321,34 @@ END{
         if (m > 10**(4-ent))
             m = 10**(4-ent);
     }
-    print "[MIN]\t"m
-}' taobao.out.2 > taobao.term.weight
+    print "[MIN]\t"m/10
+}' $CORPUS > $CORPUS.term.weight
 
+sed -e 's/\t书籍杂志[^\n]\+/书籍杂志/g' -e 's/\t音像影视[^\n]\+/音像影视/g' taobao_json.out.1 |\
+gawk -F"\t" '{if(index($2,"手机/Apple/苹果")==0)print;else{if(index($1,"苹果")>0||index($1,"Apple")>0)print}}'> taobao_json.out.1.bk
+./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
+export CORPUS="./taobao_json.out.2"
  gawk -F'\t' '
  {
     pc[$2] += $3;
  }
  END{
     for (i in pc)
-        print i"\t"log(pc[i]+100)
+        print i"\t"(pc[i]+10000)
  }
- ' taobao.out.2 > taobao.cat
-
+ ' $CORPUS > $CORPUS.cat
+gawk -F"\t" '{pt[$1]+=$3
+}END{for (t in pt)printf("%s\t%.5f\n", t, (pt[t]+1000))}' $CORPUS > $CORPUS.term
  gawk -F'\t' '
  {
     ptc[$1" "$2] += $3;
  }
  END{
     for (tc in ptc)
-        printf("%s\t%.5f", tc, log(ptc[tc]+1));
- }' taobao.out.2 > taobao.term.cat
+        printf("%s\t%.5f\n", tc, (ptc[tc]));
+ }' $CORPUS > $CORPUS.term.cat
 
-sort -t ' ' -k1,1  taobao.term.cat| \
+sort -t ' ' -k1,1  $CORPUS.term.cat| \
 gawk -F'[\t ]' '
  {
     if (last != $1 && length(last) > 0)
@@ -354,5 +365,5 @@ gawk -F'[\t ]' '
      tc[last] = cats;
      for (t in tc)
          print t"\t"tc[t]
- }'  > taobao.term.cats
+ }'  > $CORPUS.term.cats
  * */

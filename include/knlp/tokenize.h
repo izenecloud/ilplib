@@ -108,8 +108,9 @@ class Tokenize
 		  }
 		  else if (delimiter_[line[i]])
             {
-                //std::cout<<line.substring(la, i)<<std::endl;
-                r.push_back(line.substr(la, i-la+1));
+                //std::cout<<line.substr(la, i-la+1)<<"OOOOOO\n";
+                if (i > la)r.push_back(line.substr(la, i-la));
+                r.push_back(line.substr(i, 1));
                 la = i+1;
             }
 
@@ -277,6 +278,7 @@ public:
 			if (is_alphanum_(chunks[i]) || chunks[i].length() < 3
 			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0])))
 			{
+                //std::cout<<"::"<<chunks[i]<<"::\n";
   				r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
 				continue;
 			}

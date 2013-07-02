@@ -114,8 +114,9 @@ namespace ilplib
 			    DigitalDictionary* term,
 			    DigitalDictionary* t2c,
 			    Dictionary* t2cs,
-			    std::vector<std::pair<KString,double> > v)
+			    std::vector<std::pair<KString,double> > v, std::stringstream& ss)
               {
+                  static const double BASE = 1000;
                   double sum = 0;
                   for (uint32_t j=0;j<v.size();++j)
                       sum += v[j].second;
@@ -123,15 +124,15 @@ namespace ilplib
                   {
                       v[j].second /= sum;
                       //v[j].second = sqrt(v[j].second);
-                      cout<<v[j].first<<":"<<v[j].second<<" ";
+                      ss<<v[j].first<<":"<<v[j].second<<" ";
                   }
-                  cout<<"\n";
+                  ss<<"\n";
 
                   std::vector<double> pt;pt.reserve(v.size());
                   for(uint32_t i=0; i<v.size();++i)
                   {
                       double f = term->value(v[i].first, true);
-                      if (v.size()>1 && (f < 1050 || v[i].second < 0.01))
+                      if (v.size()>1 && (f < BASE+50 || v[i].second < 0.01))
                       {
                           v.erase(v.begin()+i);
                           --i;
@@ -165,20 +166,30 @@ namespace ilplib
                           k += ' ';
                           k += it->first;
                           double f = t2c->value(k, true);
-                          if (v.size() > 1 && f <10)continue;
-                          //double h = exp(f - c - pt[j])*v[j].second;
-                          double h = f/(c*pt[j])*v[j].second;
-
-                          KString ca = it->first;                          
-                          //ilplib::knlp::Normalize::normalize(ca);
-                          if (ca.find(v[j].first) != (uint32_t)-1)
-                              h = h * (1+v[j].second);
-                          it->second += h;
-                          std::cout<<v[j].first<<"xxxx"<<it->first<<":"<<f<<" "<<pt[j]<<"     "<<it->second<<":"<<c<<std::endl;
+                          if (f == (double)std::numeric_limits<int>::min())
+                              f = 0;
+                          
+                          it->second += relevance(v[j].first, it->first, f, c, pt[j],BASE, ss)*v[j].second;
                       }
                   }
                   return m;
               }
+
+            static double relevance(const KString& tk, const KString& ca, 
+              double tc, double c, double t, double BASE, std::stringstream& ss)
+            {
+                bool find = (ca.find(tk) != (uint32_t)-1);
+                double r = 0;
+                if (!find && tc < 0.1 && t > BASE*2)
+                {
+                    r = -1*(c*t)/tc/BASE;
+                }else{
+                    r = tc/(c*t);
+                    if (find) r*=7;
+                }
+                ss<<tk<<"==>"<<ca<<":"<<tc<<" "<<c<<" "<<t<<" =="<<r<<std::endl;
+                return r;
+            }
 
 			static std::map<KString, double>
 			  classify(

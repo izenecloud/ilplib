@@ -62,15 +62,17 @@ void classify_vote(std::string str)
     std::vector<std::pair<KString,double> > v;
     tkn->fmm(KString(str), v);
 
-    std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v);
+    std::stringstream ss;
+    std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v, ss);
     vector<pair<double,KString> > dv;
     for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
         dv.push_back(make_pair(it->second*-1, it->first));
     sort(dv.begin(), dv.end());
-    std::cout<<"###################\n"<<str<<"\n";
+    std::cout<<str<<"########\n";
     for(uint32_t i=0; i<dv.size()&&i<6; ++i)
-          cout<<"@@"<<dv[i].second<<":"<<dv[i].first<<std::endl;
-    cout<<"#################33\n";
+          cout<<"@"<<dv[i].second<<":"<<dv[i].first<<", ";
+    cout<<"\n";
+    cout<<"\n"<<ss.str()<<endl;
 }
 int main(int argc,char * argv[])
 {

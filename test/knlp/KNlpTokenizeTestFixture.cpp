@@ -63,6 +63,8 @@ void KNlpTokenizeTestFixture::initScoreMap_(const std::string& dictContent)
 
 void KNlpTokenizeTestFixture::checkFMM(const std::string& raw, const std::string& gold)
 {
+    BOOST_TEST_MESSAGE("checkFMM, raw: " << raw << ", gold: " << gold);
+
     std::vector<std::string> goldTokens;
     splitTokens(gold, goldTokens);
 
@@ -83,6 +85,11 @@ void KNlpTokenizeTestFixture::checkFMM(const std::string& raw, const std::string
         double actualScore = tokenScores[i].second;
         TokenScoreMap::const_iterator it = scoreMap_.find(token);
         double goldScore = it != scoreMap_.end() ? it->second : dictMinScore_;
+
+        BOOST_TEST_MESSAGE("check token: " << token <<
+                           ", actual score: " << actualScore <<
+                           ", goldScore: " << goldScore);
+
         BOOST_CHECK_EQUAL(actualScore, goldScore);
     }
 }

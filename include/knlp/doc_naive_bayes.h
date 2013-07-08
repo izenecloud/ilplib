@@ -207,7 +207,7 @@ namespace ilplib
                   std::map<KString, double> r;
                   if (lasti >= cates.size())return r;
                   for (std::map<KString, double>::iterator it=cates[lasti].begin(); it!=cates[lasti].end();++it)
-                      if (it->second != 0)r[it->first] = (200.-it->second)/200.;
+                      if (it->second != 0)r[it->first] = (200.+it->second)/200.;
                   return r;
               }
 

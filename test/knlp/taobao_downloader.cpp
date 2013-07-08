@@ -178,7 +178,6 @@ string download_extract(const string& query, const string& proxy, bool& succ)
 	return r;
 }
 
-
 string get_proxy()
 {
 	std::vector<std::string> v;
@@ -300,6 +299,9 @@ int main(int argc,char * argv[])
 }
 /**
 export CORPUS="taobao.out.2"
+./merge_cates.sh taobao_json.out.1 |\
+gawk -F"\t" '{if(index($2,"手机>Apple@苹果")==0)print;else{if(index($1,"苹果")>0||index($1,"Apple")>0)print}}'> taobao_json.out.1.bk
+./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
 gawk -F'\t' '
 {
     c[$2]++;
@@ -324,10 +326,8 @@ END{
     print "[MIN]\t"m/10
 }' $CORPUS > $CORPUS.term.weight
 
-sed -e 's/\t书籍杂志[^\n]\+/书籍杂志/g' -e 's/\t音像影视[^\n]\+/音像影视/g' taobao_json.out.1 |\
-gawk -F"\t" '{if(index($2,"手机/Apple/苹果")==0)print;else{if(index($1,"苹果")>0||index($1,"Apple")>0)print}}'> taobao_json.out.1.bk
-./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
-export CORPUS="./taobao_json.out.2"
+gawk -F "\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a)print}' etao.term  $CORPUS.term.weight > etao.term.bk
+./fill_naive_bayes etao.term.bk nb taobao_json.out.1.bk > taobao_json.out.2
  gawk -F'\t' '
  {
     pc[$2] += $3;
@@ -366,4 +366,5 @@ gawk -F'[\t ]' '
      for (t in tc)
          print t"\t"tc[t]
  }'  > $CORPUS.term.cats
+./tao_cate_test etao.term.bk $CORPUS.cat $CORPUS.term $CORPUS.term.cat $CORPUS.term.cats cate.test > cate.test.res
  * */

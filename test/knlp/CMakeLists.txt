@@ -83,6 +83,17 @@ TARGET_LINK_LIBRARIES(taobao_downloader
    curl
 )
 
+ADD_EXECUTABLE(makeup_etao_downloader 
+			makeup_etao_downloader.cpp 
+)
+
+TARGET_LINK_LIBRARIES(makeup_etao_downloader
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+   boost_regex
+   curl
+)
+
 ADD_EXECUTABLE(fmm_util 
 			fmm_util.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp

@@ -268,15 +268,15 @@ public:
         return term_freq_(kstr);
     }
 
-	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r)//forward maximize match
+	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r, bool smart=true)//forward maximize match
 	{
 		r.clear();
 		if (line.length() == 0)return;
 		std::vector<KString> chunks = chunk_(line);
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
-			if (is_alphanum_(chunks[i]) || chunks[i].length() < 3
-			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0])))
+			if (smart && (is_alphanum_(chunks[i]) || chunks[i].length() < 3
+			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
 			{
                 //std::cout<<"::"<<chunks[i]<<"::\n";
   				r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
@@ -335,10 +335,10 @@ public:
 	}
 
 
-	std::vector<KString> fmm(const KString& line)//forward maximize match
+	std::vector<KString> fmm(const KString& line, bool smart=true)//forward maximize match
 	{
 		std::vector<std::pair<KString,double> > v;
-		fmm(line, v);
+		fmm(line, v, smart);
 		std::vector<KString> r;
 		for ( uint32_t i=0; i<v.size(); ++i)
 		  r.push_back(v[i].first);

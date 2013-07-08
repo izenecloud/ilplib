@@ -365,7 +365,7 @@ function atof(str)
 ' > etao.term.cate
 
 
-gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' etao_downloader.out|\
+sed "s/ 其[它他] .\+//g" etao_downloader.out|gawk -F' ' '{for(i=2;i<=NF;++i)print $1" "$i}' |\
 grep "("|sed -e 's/(\([0-9\.万,]\+\))/ \1/g' | \
 sed -e "s/\/[^\/]\+\.\.\./\//g" -e "s/\.\.\.//g" -e "s/href=[^>]\+>//g"|\
 gawk -F" " '
@@ -417,4 +417,8 @@ gawk -F'[ \t]' '
 END{
     print last"\t"cates;
 }'  > etao.term.cates
+gawk -F"\t" '{print $2}' etao_downloader.out |\
+sed -e 's/([0-9\.,]\+[万]*)/ /g' -e "s/[\/()*（ ）]/ /g" \
+-e 's/ [^ ]\+\.\.\./ /g' -e 's/\.\.\./ /g'| \
+gawk -F' ' '{for (i=1;i<=NF;++i)if(length($i)<6)a[$i]++}END{for (i in a)print i"\t"a[i]}'|sort -t$'\t' -k2,2nr > cats.txt
 * */

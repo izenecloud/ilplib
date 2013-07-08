@@ -58,10 +58,12 @@ void tokenize_stage(Tokenize* tkn)
 
 		KString kstr(*li);delete li;
 		ilplib::knlp::Normalize::normalize(kstr);
-		std::vector<KString> v = tkn->fmm(kstr);
+		std::vector<KString> v = tkn->fmm(kstr, false);
+		KString o;
 		for ( uint32_t i=0; i<v.size(); ++i)
-		    out.push(new string(v[i].get_bytes("utf-8").c_str()), -1);
-		out.push(new string("\n"), -1);
+		    o += v[i], o+= '\t';
+		o += '\n';
+        out.push(new string(o.get_bytes("utf-8").c_str()), -1);
 	}
 }
 

@@ -109,6 +109,109 @@ namespace ilplib
 			}
 
             static std::map<KString, double>
+			  classify_multi_level(
+			    DigitalDictionary* cat,
+			    DigitalDictionary* t2c,
+			    Dictionary* t2cs,
+			    std::vector<std::pair<KString,double> > v, std::stringstream& ss)
+              {
+                  double sum = 0;
+                  for (uint32_t j=0;j<v.size();++j)
+                      sum += v[j].second;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      v[j].second /= sum;
+                      ss<<v[j].first<<":"<<v[j].second<<" ";
+                  }
+                  ss<<"\n";
+
+                  std::vector<std::map<KString, double> >  cates(5, std::map<KString, double>());
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      char* c = t2cs->value(v[j].first, false);
+                      if(!c)continue;
+                      KString ct(c);
+                      vector<KString> kv = ct.split(' ');
+                      for (uint32_t i=0;i<kv.size();++i)
+                      {
+                          uint32_t lev = (uint32_t)(kv[i][kv[i].length()-1]-'0'-1);
+                          if (lev == (uint32_t)-1)continue;
+                          kv[i] = kv[i].substr(0, kv[i].length()-1);
+                          if(cates[lev].find(kv[i])== cates[lev].end())
+                          {
+                              double c = cat->value(kv[i], true);
+                              if (c == (double)std::numeric_limits<int>::min())continue;
+                              cates[lev][kv[i]] = c;
+                          }
+                      }
+                  }
+
+                  for (uint32_t i=1;i<cates.size();++i)
+                      if (cates[i-1].size()==0 && cates[i].size()>0)
+                          std::cout<<"[ERROR]: "<<cates[i].begin()->first<<", category level didn't align\n";
+                  KString lastc("R");uint32_t lasti = -1;
+                  for (uint32_t i=0;i<cates.size();++i)
+                      if (cates[i].size() == 0)break;
+                      else
+                  {
+                      std::vector<double> pt;pt.reserve(v.size());
+                      for(uint32_t j=0;j<v.size();++j)
+                      {
+                          KString k = v[j].first;
+                          k += ' ';
+                          k += lastc;
+                          double f = t2c->value(k, true);
+                          if (f == (double)std::numeric_limits<int>::min())
+                              f = 0;
+                          pt.push_back(f);
+                      }
+
+                      double max = (double)std::numeric_limits<int>::min();KString maxv;
+                      for (std::map<KString, double>::iterator it=cates[i].begin(); it!=cates[i].end();++it)
+                          if (it->first.find(lastc) == 0)
+                          {
+                              double c = it->second;
+                              it->second = 0;
+                              for (uint32_t j=0;j<v.size();++j)
+                                  if (pt[j] > 20)
+                              {
+                                  KString k = v[j].first;
+                                  k += ' ';
+                                  k += it->first;
+                                  double f = t2c->value(k, true);
+                                  if (f == (double)std::numeric_limits<int>::min()
+                                    || f < (3-i)*4)
+                                      f = 0;
+
+                                  //if (f/pt[j] < 0.004)
+                                  //    it->second += -100*v[j].second;
+                                  //else
+                                  //    it->second += ((f+1)*10000000/pt[j]/(c+10000))*v[j].second;
+                                  it->second += log((f+1)/(c+100000));
+                                  ss<<v[j].first<<">>>"<<it->first<<" ptc="<<f<<", pt="<<pt[j]<<", c="<<c<<", r="<<it->second<<std::endl;
+                              }
+                              it->second += log((c+100000)/(3000000));
+                              //it->second = it->second*10+(c+100000)/(200000);
+                              if (it->second > max)
+                                  max = it->second,maxv=it->first;
+                          }
+                          else it->second = 0;
+                      if (max > (double)std::numeric_limits<int>::min())
+                      {
+                          lastc = maxv;
+                          ss << "max: "<<maxv<<"="<<max<<std::endl;
+                          lasti = i;
+                      }
+                  }
+
+                  std::map<KString, double> r;
+                  if (lasti >= cates.size())return r;
+                  for (std::map<KString, double>::iterator it=cates[lasti].begin(); it!=cates[lasti].end();++it)
+                      if (it->second != 0)r[it->first] = (200.-it->second)/200.;
+                  return r;
+              }
+
+            static std::map<KString, double>
 			  classify(
 			    DigitalDictionary* cat,
 			    DigitalDictionary* term,
@@ -180,14 +283,15 @@ namespace ilplib
             {
                 bool find = (ca.find(tk) != (uint32_t)-1);
                 double r = 0;
-                if (!find && tc < 0.1 && t > BASE*2)
+                if (!find && tc < 0.3 && t > BASE*2)
                 {
                     r = -1*(c*t)/tc/BASE;
                 }else{
                     r = tc/(c*t);
-                    if (find) r*=7;
+                    if (find) r = r *2;
                 }
-                ss<<tk<<"==>"<<ca<<":"<<tc<<" "<<c<<" "<<t<<" =="<<r<<std::endl;
+                r = r * (c+100000)/(300000);
+                ss<<tk<<"==>"<<ca<<": tc="<<tc<<" c="<<c<<" t="<<t<<" r="<<r<<std::endl;
                 return r;
             }
 
@@ -430,4 +534,122 @@ namespace ilplib
 		};
 	}}
 #endif
+/*
+./merge_cates.sh taobao_json.out.1 |\
+gawk -F"\t" '
+{
+    if (index($2, "数码>手机>") == 0 && index($2, "数码>笔记本>") == 0 && index($2, "数码>平板电脑>") == 0)print;
+    else{
+        for (i=0;i<2;++i){
+            if(index($2,"数码>手机>Apple@苹果")==0)print;
+            else
+                if(index($1,"苹果")>0||index($1,"Apple")>0)print
+        }
+    }
+}'|sed -e 's/【[^【】]\+】//g' -e 's/送[^ ]\+ / /g'> taobao_json.out.1.bk
 
+./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
+export CORPUS="./taobao_json.out.2";
+gawk -F"\t" '{
+    split($2, ca, ">");
+    L = length(ca)
+    R = "R";N[$1"\t"R]++;
+    for (i=1;i<=L;i++)
+    {
+        R=R">"ca[i];
+        N[$1"\t"R]++;
+    }
+}
+function min(a, b){ if (a < b)return a; else return b;}
+END{
+    for(k in N)
+    {
+        split(k, f, "\t")
+        AB = f[1];cate=f[2];
+        split(cate, ca, ">")
+        L = length(ca)
+        if (L < 2)continue;
+        R = "R";
+        for (i=2;i<L;++i)
+           R = R">"ca[i];
+        if (N[AB"\t"R] < 150)continue;
+        p = N[k]*1.0/N[AB"\t"R]#if ( p== 1)print k":"R"="N[k]"="N[AB"\t"R];
+        ent[AB"\t"R] -= p*log(p);
+    }
+    for (e in ent)
+    {
+        split(e, a, "\t");
+        AB = a[1];
+        if (!(AB in W))W[AB] = ent[e];
+        else W[AB] = min(W[AB], ent[e]);
+    }
+    m = 10000000
+    for (k in W)
+    {
+        v = 10**(4-W[k])
+        if (m > v)m = v;
+        print k"\t"v;
+    }
+    print "[MIN]\t"m/10
+}
+' $CORPUS > $CORPUS.termweight;
+awk -F"\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a)print}' etao.term $CORPUS.termweight > etao.term.bk
+./fill_naive_bayes etao.term.bk nb taobao_json.out.1.bk > $CORPUS;
+gawk -F"\t" '
+{
+    split($2, ca, ">");
+    L = length(ca)
+    R = "R";
+    for (i=1;i<=L;i++)
+    {
+        R=R">"ca[i];
+        #N[R]++;
+        N[R] += $3;
+    }
+}
+END{
+    for (k in N)
+        print k"\t"N[k]
+}
+' $CORPUS > $CORPUS.cat;
+gawk -F"\t" '
+{
+    split($2, ca, ">");
+    L = length(ca)
+    R = "R";N[$1" "R]++;
+    for (i=1;i<=L;i++)
+    {
+        R=R">"ca[i];
+        #N[$1" "R]++;
+        N[$1" "R] += $3;
+    }
+}
+END{
+    for (k in N)
+        print k"\t"N[k]
+}
+' $CORPUS > $CORPUS.term.cat;
+sort -t ' ' -k1,1  $CORPUS.term.cat| \
+gawk -F'[\t ]' '
+function level(ca)
+{
+    g = gsub(">", ">", ca);
+    return g;
+}
+{
+    if (last != $1 && length(last) > 0)
+    {
+        tc[last] = cats;
+        last = $1
+        cats = $2""level($2);
+    }else{
+        last = $1
+        cats = cats" "$2""level($2);
+    }
+}
+END{
+    tc[last] = cats;
+    for (t in tc)
+        print t"\t"tc[t]
+}'  > $CORPUS.term.cats
+ * */

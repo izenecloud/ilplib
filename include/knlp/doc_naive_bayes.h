@@ -132,10 +132,10 @@ namespace ilplib
                       if(!c)continue;
                       KString ct(c);
                       vector<KString> kv = ct.split(' ');
-                      for (uint32_t i=0;i<kv.size();++i)
+                      for (uint32_t i=0;i<kv.size();++i)if(kv[i].length()>0)
                       {
                           uint32_t lev = (uint32_t)(kv[i][kv[i].length()-1]-'0'-1);
-                          if (lev == (uint32_t)-1)continue;
+                          if (lev >= cates.size())continue;
                           kv[i] = kv[i].substr(0, kv[i].length()-1);
                           if(cates[lev].find(kv[i])== cates[lev].end())
                           {
@@ -148,7 +148,11 @@ namespace ilplib
 
                   for (uint32_t i=1;i<cates.size();++i)
                       if (cates[i-1].size()==0 && cates[i].size()>0)
-                          std::cout<<"[ERROR]: "<<cates[i].begin()->first<<", category level didn't align\n";
+                      {
+                          std::cout<<"[ERROR]: "<<i<<cates[i].begin()->first<<", category level didn't align\n";
+                          for (uint32_t j=0;j<v.size();++j)
+                              std::cout<<v[j]<<"\t";std::cout<<std::endl;
+                      }
                   KString lastc("R");uint32_t lasti = -1;
                   for (uint32_t i=0;i<cates.size();++i)
                       if (cates[i].size() == 0)break;
@@ -170,6 +174,7 @@ namespace ilplib
                       for (std::map<KString, double>::iterator it=cates[i].begin(); it!=cates[i].end();++it)
                           if (it->first.find(lastc) == 0)
                           {
+                              ss <<"【"<< it->first<<"】\t";
                               double c = it->second;
                               it->second = 0;
                               for (uint32_t j=0;j<v.size();++j)
@@ -180,20 +185,21 @@ namespace ilplib
                                   k += it->first;
                                   double f = t2c->value(k, true);
                                   if (f == (double)std::numeric_limits<int>::min()
-                                    || f < (3-i)*4)
+                                    || f < (3-i)*3)
                                       f = 0;
 
                                   //if (f/pt[j] < 0.004)
                                   //    it->second += -100*v[j].second;
                                   //else
                                   //    it->second += ((f+1)*10000000/pt[j]/(c+10000))*v[j].second;
-                                  it->second += log((f+1)/(c+100000));
-                                  ss<<v[j].first<<">>>"<<it->first<<" ptc="<<f<<", pt="<<pt[j]<<", c="<<c<<", r="<<it->second<<std::endl;
+                                  it->second += log((f+10)/(c+1000000));
+                                  ss<<v[j].first<<"{"<<f<<", "<<pt[j]<<", "<<c<<", "<<it->second<<"}\t";
                               }
-                              it->second += log((c+100000)/(3000000));
+                              it->second += log(c+100000/30000000);//(c+100000)/(3000000));
                               //it->second = it->second*10+(c+100000)/(200000);
                               if (it->second > max)
                                   max = it->second,maxv=it->first;
+                              ss <<it->second<<std::endl;
                           }
                           else it->second = 0;
                       if (max > (double)std::numeric_limits<int>::min())
@@ -535,18 +541,20 @@ namespace ilplib
 	}}
 #endif
 /*
-./merge_cates.sh taobao_json.out.1 |\
+./merge_cates.sh taobao_json.out.1 > taobao_json.out.1.bkk
 gawk -F"\t" '
 {
     if (index($2, "数码>手机>") == 0 && index($2, "数码>笔记本>") == 0 && index($2, "数码>平板电脑>") == 0)print;
     else{
-        for (i=0;i<2;++i){
-            if(index($2,"数码>手机>Apple@苹果")==0)print;
-            else
-                if(index($1,"苹果")>0||index($1,"Apple")>0)print
+        if(index($2,"数码>手机>Apple@苹果")==0)print;
+        else if(index($1,"苹果")>0||index($1,"Apple")>0)print;
+        if (index($2,"数码>数码配件>手机配件")!=0)
+        {
+            N++;
+            if (N % 4 == 0)print;
         }
     }
-}'|sed -e 's/【[^【】]\+】//g' -e 's/送[^ ]\+ / /g'> taobao_json.out.1.bk
+}' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/送[^ ]\+ / /g'> taobao_json.out.1.bk
 
 ./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
 export CORPUS="./taobao_json.out.2";
@@ -568,11 +576,11 @@ END{
         AB = f[1];cate=f[2];
         split(cate, ca, ">")
         L = length(ca)
-        if (L < 2)continue;
+        if (L != 2)continue;
         R = "R";
         for (i=2;i<L;++i)
            R = R">"ca[i];
-        if (N[AB"\t"R] < 150)continue;
+        #if (N[AB"\t"R] < 1000)continue;
         p = N[k]*1.0/N[AB"\t"R]#if ( p== 1)print k":"R"="N[k]"="N[AB"\t"R];
         ent[AB"\t"R] -= p*log(p);
     }

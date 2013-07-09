@@ -151,7 +151,7 @@ namespace ilplib
                       {
                           std::cout<<"[ERROR]: "<<i<<cates[i].begin()->first<<", category level didn't align\n";
                           for (uint32_t j=0;j<v.size();++j)
-                              std::cout<<v[j]<<"\t";std::cout<<std::endl;
+                              std::cout<<v[j].first<<"\t";std::cout<<std::endl;
                       }
                   KString lastc("R");uint32_t lasti = -1;
                   for (uint32_t i=0;i<cates.size();++i)

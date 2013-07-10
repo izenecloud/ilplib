@@ -444,6 +444,7 @@ namespace ilplib
 				double s = 0;
 				for ( uint32_t i=0; i<v.size(); i++)
 				    s += v[i].second;
+				IASSERT(s != 0);
 				for ( uint32_t i=0; i<v.size(); i++)
 				    v[i].second /= s;
 				return std::set<std::pair<KString,double> > (v.begin(), v.end());
@@ -535,6 +536,7 @@ namespace ilplib
                     std::vector<KString> ct = p.first->split(' ');
 					double  s = p.second;
 					printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
+					delete p.first;
 					continue;
 
 					{
@@ -553,8 +555,6 @@ namespace ilplib
 						  Ntc->insert(tt, s);
 						else (*f) += s;
 					}
-					
-					delete p.first;
 				}
 			}
 		};
@@ -577,7 +577,7 @@ gawk -F"\t" '
 }' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/[送赠][^ ]\+ / /g' -e 's/[送赠][^ ]\+$//g'> taobao_json.out.1.bk
 export TOKEN_DICT="./etao.term.bk"
 #rm "$TOKEN_DICT.prefix"
-./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk > taobao_json.out.2
+./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk|awk -F"\t" '{if(NF==3)print}' > taobao_json.out.2
 export CORPUS="./taobao_json.out.2";
 gawk -F"\t" '{
     split($2, ca, ">");
@@ -627,7 +627,7 @@ awk -F"\t" '
 NR==FNR{a[$1]=1}
 NR>FNR{b[$1]=$2}
 END{for(i in a)if(i in b)print i"\t"b[i];else{print i"\t"b["[MIN]"]*5}}' "$TOKEN_DICT" $CORPUS.termweight > "$TOKEN_DICT.bk"
-./fill_naive_bayes "$TOKEN_DICT.bk" nb taobao_json.out.1.bk > $CORPUS;
+./fill_naive_bayes "$TOKEN_DICT.bk" nb taobao_json.out.1.bk|awk -F"\t" '{if(NF==3)print}' > $CORPUS;
 gawk -F"\t" '
 {
     split($2, ca, ">");

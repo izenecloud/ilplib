@@ -43,7 +43,7 @@ WilliamTrie(string file_name)
     {
         dict[dict_size].st = KString(st);
         ilplib::knlp::Normalize::normalize(dict[dict_size].st);
-        ch1[dict[dict_size].st[0]]=1;
+        ch1[dict[dict_size].st[0]] = 1;
         dict[dict_size++].value = value;
         if (!strcmp(st,"[MIN]")) MINVALUE = value;
     }
@@ -57,34 +57,48 @@ static bool cmp(const node& x, const node& y)
     return x.st < y.st;
 }
 
-size_t bisearch(size_t ind, uint16_t ch, size_t &p, size_t &q, double &value)
+size_t bisearch(size_t ind, uint16_t ch, size_t &p, size_t &q, double &value, const KString& k=KString(""))
 {
     ++tot_bi;
-    int head = p, tail = q, mid = head;
+    int head = p, tail = q, mid=0;
+    uint16_t tmp;
     while(head <= tail)
     {
         mid = (head + tail) / 2;
-        if (dict[mid].st[ind] < ch)
+        //if (ind == dict[mid].st.length())cout<<k<<"::::::::::::::::"<<dict[mid].st<<endl;        
+        tmp = dict[mid].st[ind];
+        if (tmp < ch)
             head = mid + 1;
-        else if (dict[mid].st[ind] == ch && (mid == (int)p || dict[mid-1].st[ind] != ch))
+        else if (tmp == ch && (mid == (int)p || dict[mid-1].st[ind] != ch))
         {
             p = mid;
             break;
         }
         else
+        {
             tail = mid - 1;
+            if (tmp > ch) 
+                q = mid - 1;
+        }
     }
     if (dict[mid].st[ind] != ch)
         return 0;
 
+    if (p==q || dict[p+1].st[ind] != ch)
+    {
+       value = dict[p].value;
+       return 3;
+    }
+
     ++tot_bi;
-    head = p; tail = q; mid = head;
+    head = p; tail = q;
     while(head <= tail)
     {
         mid = (head + tail) / 2;
-        if (dict[mid].st[ind] > ch)
+        tmp = dict[mid].st[ind];
+        if (tmp > ch)
             tail = mid - 1;
-        else if (dict[mid].st[ind] == ch && (mid == (int)q || dict[mid+1].st[ind] != ch))
+        else if (tmp == ch && (mid == (int)q || dict[mid+1].st[ind] != ch))
         {
             q = mid;
             break;
@@ -95,6 +109,8 @@ size_t bisearch(size_t ind, uint16_t ch, size_t &p, size_t &q, double &value)
     if (dict[p].st.length() == ind+1)
     {
         value = dict[p].value;
+        if (dict[++p].st[ind] != ch)
+            return 3;
         return 2;
     }
     else
@@ -112,7 +128,7 @@ tot_len += len;
     term.reserve(len);
     while(i < len)
     {
-        size_t maxlen = 0, p = 0, q = dict_size-1, flag = 0;
+        size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
         double value = 0;
 //        while(i < len && st[i] == ' ') ++i;
 
@@ -120,23 +136,31 @@ tot_len += len;
         {
             if (st[j] == ' ') break;
             if (j == 0 && !ch1[st[i+j]]) 
-                flag = 0;
+                break;
             else
-                flag = bisearch(j, st[i+j], p, q, value);        
+                flag = bisearch(j, st[i+j], p, q, value, st);        
             if (flag == 0)
                 break;
-            else if (flag == 2)
+            else if (flag == 3)
+            {
                 maxlen = j;
+                break;
+            }
+            else if (flag == 2)
+            {
+                maxlen = j;
+            }
         }
-        if (maxlen > 0)
-        {    
-            term.push_back(make_pair(st.substr(i, maxlen + 1), value));
-            i += maxlen + 1;
-        }
-        else
+
+        if (!maxlen)
         {
             term.push_back(make_pair(st.substr(i, 1), MINVALUE));
             i += 1;
+        }
+        else
+        {    
+            term.push_back(make_pair(st.substr(i, maxlen + 1), value));
+            i += maxlen + 1;
         }
     }
     return term;
@@ -151,7 +175,7 @@ bool check_term(const KString st)
     for (size_t j = 0; j < len; ++j)
     {
         flag = bisearch(j, st[j], p, q, value);        
-        if (flag == 0)
+        if (flag == 0 || flag == 3)
             return 0;
         else if (flag == 2)
             maxlen = j;
@@ -171,8 +195,8 @@ double score(const KString st)
 
     for (size_t j = 0; j < len; ++j)
     {
-        flag = bisearch(j, st[j], p, q, value);        
-        if (flag == 0)
+       flag = bisearch(j, st[j], p, q, value, st);        
+        if (flag == 0||flag == 3)
             return MINVALUE;
         else if (flag == 2)
             maxlen = j;

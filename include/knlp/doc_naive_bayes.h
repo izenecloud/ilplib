@@ -444,9 +444,12 @@ namespace ilplib
 				double s = 0;
 				for ( uint32_t i=0; i<v.size(); i++)
 				    s += v[i].second;
-				IASSERT(s != 0);
 				for ( uint32_t i=0; i<v.size(); i++)
+                {
+                    if (v[i].second <= 0)std::cout<<"SSSSSSSSS"<<v[i].first<<"::::::::::\n";
+                    assert( v[i].second > 0);
 				    v[i].second /= s;
+                }
 				return std::set<std::pair<KString,double> > (v.begin(), v.end());
 			}
 
@@ -477,6 +480,7 @@ namespace ilplib
                     std::set<std::pair<KString,double> > s = normalize_tokens(v);
                     for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                     {
+                        assert(it->second > 0);
                         KString k = it->first;k += ' ';k+=ca;
                         out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
                     }

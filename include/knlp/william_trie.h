@@ -22,16 +22,18 @@ namespace ilplib
 		{
 
 			struct node{KString st;double value;};
-			node dict[4000000];
+			node* dict;
 			size_t dict_size;
 			double MINVALUE;
 			size_t tot_bi;
 			size_t tot_len;
-			size_t ch1[100001];
+			size_t* ch1;
 
 			public:
 			WilliamTrie(string file_name)
 			{
+			    dict = new node[200000];
+			    ch1 = new size_t[100001];
 				for(size_t i = 0; i < 100000; ++i){ch1[i]=0;}
 				tot_bi = 0;
 				tot_len = 0;
@@ -166,7 +168,7 @@ namespace ilplib
 				return term;
 			}
 
-			bool check_term(const KString st)const
+			bool check_term(const KString st)
 			{
 				size_t len = st.length();
 				size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
@@ -186,12 +188,12 @@ namespace ilplib
 				  return 0;
 			}
 
-			double score(const KString st)const
+			double score(const KString st)
 			{
 
 				size_t len = st.length();
 				size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
-				double value = 0;
+				double value = MINVALUE;
 
 				for (size_t j = 0; j < len; ++j)
 				{

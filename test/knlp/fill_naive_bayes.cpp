@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "knlp/tokenize.h"
+#include "knlp/fmm.h"
 #include "knlp/normalize.h"
 #include "knlp/doc_naive_bayes.h"
 #include "am/hashtable/khash_table.hpp"

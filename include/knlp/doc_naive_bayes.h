@@ -33,6 +33,7 @@
 #include "util/string/kstring.hpp"
 #include "normalize.h"
 #include "knlp/string_patterns.h"
+#include "knlp/fmm.h"
 
 using namespace izenelib::util;
 using namespace izenelib::am;
@@ -107,6 +108,24 @@ namespace ilplib
 				}
 				return sc;
 			}
+
+            static void makeitclean(string& str)
+            {
+                const char* t = strstr(str.c_str(), "【");
+                if (t){
+                    const char* p = strstr(t, "】");
+                    if (p)
+                        str = str.substr(0, t-str.c_str()) + str.substr(p-str.c_str()+strlen("】"));
+                }
+                t = strstr(str.c_str(), "送");
+                if (t)
+                {
+                    const char* p = strchr(t+strlen("送"), ' ');
+                    str = str.substr(0, t-str.c_str());
+                    if (p)
+                        str += p;
+                }
+            }
 
             static std::map<KString, double>
 			  classify_multi_level(
@@ -362,7 +381,7 @@ namespace ilplib
 			static void train(const std::string& dictnm, const std::string& output,
 						const std::vector<std::string>& corpus, uint32_t cpu_num=11)
 			{
-				ilplib::knlp::Tokenize tkn(dictnm);
+				ilplib::knlp::Fmm tkn(dictnm);
 				EventQueue<std::pair<string*, string*> > in;
 				EventQueue<std::pair<KString*, double> > out;
 				std::vector<boost::thread*> token_ths;
@@ -432,7 +451,7 @@ namespace ilplib
 
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
 						EventQueue<std::pair<KString*,double> >* out, 
-						ilplib::knlp::Tokenize* tkn)
+						ilplib::knlp::Fmm* tkn)
 			{
 				while(true)
 				{	
@@ -516,6 +535,7 @@ namespace ilplib
                     std::vector<KString> ct = p.first->split(' ');
 					double  s = p.second;
 					printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
+					continue;
 
 					{
 						//add Nc
@@ -554,9 +574,10 @@ gawk -F"\t" '
             if (N % 4 == 0)print;
         }
     }
-}' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/送[^ ]\+ / /g'> taobao_json.out.1.bk
-
-./fill_naive_bayes etao.term nb taobao_json.out.1.bk > taobao_json.out.2
+}' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/[送赠][^ ]\+ / /g' -e 's/[送赠][^ ]\+$//g'> taobao_json.out.1.bk
+export TOKEN_DICT="./etao.term.bk"
+#rm "$TOKEN_DICT.prefix"
+./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk > taobao_json.out.2
 export CORPUS="./taobao_json.out.2";
 gawk -F"\t" '{
     split($2, ca, ">");
@@ -576,11 +597,11 @@ END{
         AB = f[1];cate=f[2];
         split(cate, ca, ">")
         L = length(ca)
-        if (L != 2)continue;
+        if (L == 1)continue;
         R = "R";
         for (i=2;i<L;++i)
            R = R">"ca[i];
-        #if (N[AB"\t"R] < 1000)continue;
+        if (N[AB"\t"R] < 10)continue;
         p = N[k]*1.0/N[AB"\t"R]#if ( p== 1)print k":"R"="N[k]"="N[AB"\t"R];
         ent[AB"\t"R] -= p*log(p);
     }
@@ -588,8 +609,9 @@ END{
     {
         split(e, a, "\t");
         AB = a[1];
-        if (!(AB in W))W[AB] = ent[e];
-        else W[AB] = min(W[AB], ent[e]);
+        L = gsub(">",">", a[2]);
+        if (!(AB in W))W[AB] = ent[e]+(L-1)*0.5;
+        else W[AB] = min(W[AB], ent[e]+(L-1)*0.5);
     }
     m = 10000000
     for (k in W)
@@ -601,8 +623,11 @@ END{
     print "[MIN]\t"m/10
 }
 ' $CORPUS > $CORPUS.termweight;
-awk -F"\t" 'NR==FNR{a[$1]=1}NR>FNR{if($1 in a)print}' etao.term $CORPUS.termweight > etao.term.bk
-./fill_naive_bayes etao.term.bk nb taobao_json.out.1.bk > $CORPUS;
+awk -F"\t" '
+NR==FNR{a[$1]=1}
+NR>FNR{b[$1]=$2}
+END{for(i in a)if(i in b)print i"\t"b[i];else{print i"\t"b["[MIN]"]*5}}' "$TOKEN_DICT" $CORPUS.termweight > "$TOKEN_DICT.bk"
+./fill_naive_bayes "$TOKEN_DICT.bk" nb taobao_json.out.1.bk > $CORPUS;
 gawk -F"\t" '
 {
     split($2, ca, ">");
@@ -637,7 +662,7 @@ END{
         print k"\t"N[k]
 }
 ' $CORPUS > $CORPUS.term.cat;
-sort -t ' ' -k1,1  $CORPUS.term.cat| \
+sort -t ' ' -k1,2  $CORPUS.term.cat| \
 gawk -F'[\t ]' '
 function level(ca)
 {

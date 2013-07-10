@@ -22,7 +22,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "knlp/tokenize.h"
+#include "knlp/fmm.h"
 #include "knlp/normalize.h"
 #include "am/hashtable/khash_table.hpp"
 #include "am/util/line_reader.h"
@@ -46,7 +46,7 @@ void printHelp()
 
 EventQueue<string*> in, out;
 
-void tokenize_stage(Tokenize* tkn)
+void tokenize_stage(Fmm* tkn)
 {
 	while(true)
 	{	
@@ -111,7 +111,7 @@ int main(int argc,char * argv[])
         }
 
 
-    Tokenize tok(dictnm);
+    Fmm tok(dictnm);
 
 	std::vector<boost::thread*> token_ths;
 	for ( uint32_t i=0; i<cpu_num; ++i)

@@ -188,7 +188,10 @@ public:
             m++;
         }
         if (*la == 0 || la - buf >= bytes)
+        {
+            //delete buf;
             return;
+        }
 		char* t = strchr(la, delimitor);
 		if (!t)
 		  return;
@@ -197,6 +200,7 @@ public:
         Normalize::normalize(kstr);
         kstr = kstr.substr(0, kstr.index_of(delimitor));
         dict_->insert(kstr, atof(t));
+        //delete buf;
     }
 
     ~DigitalDictionary()

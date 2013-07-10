@@ -135,3 +135,12 @@ TARGET_LINK_LIBRARIES(tao_cate_test
    ${Boost_THREAD_LIBRARY}
 )
 
+ADD_EXECUTABLE(william_trie_util
+			william_trie_util.cpp 
+            ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(william_trie_util
+   ${Boost_SYSTEM_LIBRARY}
+)
+

@@ -59,6 +59,7 @@ void classify(std::string str)
 void classify_vote(std::string str)
 {
     ilplib::knlp::Normalize::normalize(str);
+    DocNaiveBayes::makeitclean(str);
     std::vector<std::pair<KString,double> > v;
     tkn->fmm(KString(str), v);
 

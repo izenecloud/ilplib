@@ -203,6 +203,8 @@ namespace ilplib
                       if(maxi < ct_nm.size())lastcc=lastc, lastc = ct_nm[maxi], lasti=i;
                   }
 
+                  if (lastcc == KString("R"))
+                      lastcc = lastc.substr(0, lastc.length()-1);
                   std::map<KString, double> r;
                   for (uint32_t j=0;j<ct_nm.size();++j)
                       if (ct_nm[j].find(lastcc) == 0 && ct_nm[j].length() > lastcc.length())

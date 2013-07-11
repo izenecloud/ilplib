@@ -101,7 +101,7 @@ public:
     Fmm(const std::string& dict_nm)
         :trie_(dict_nm)
     {
-        KString ustr("~！@#￥……&*（）—+【】{}：“”；‘’、|，。《》？ ^()-_=[]\\|;':\"<>?/");
+        KString ustr("~！@#￥……&*（）—+【】{}：“”；‘’、|，。《》？ ^()-_=[]\\|;':\"<>?/　");
         delimiter_.resize((int)((uint16_t)-1), 0);
         for ( uint32_t i=0; i<ustr.length(); ++i)
             delimiter_[ustr[i]] = 1;

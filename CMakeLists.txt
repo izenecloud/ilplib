@@ -124,7 +124,8 @@ ELSE(Boost_FOUND)
 ENDIF(Boost_FOUND)
 
 FIND_PACKAGE(izenelib REQUIRED COMPONENTS procmeminfo am izene_util leveldb
-snappy)
+    febird
+    snappy)
 
 IF(izenelib_FOUND)
     MESSAGE(STATUS "izenelib:")
@@ -227,7 +228,6 @@ CONFIGURE_FILE(
   )
 SET(CPACK_DEBIAN_PACKAGE_DEPENDS
   "libboost-dev, libc6-dev, izenelib, icma")
-
 
 LINK_DIRECTORIES(
     ${izenecma_LIBRARY_DIRS}

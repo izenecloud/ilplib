@@ -24,6 +24,7 @@
 #include <unistd.h>
 
 #include "knlp/tokenize.h"
+#include "knlp/fmm.h"
 
 using namespace std;
 using namespace ilplib::knlp;
@@ -76,7 +77,7 @@ int main(int argc,char * argv[])
     ofstream of;
     if (output.length())of.open(output.c_str());
 
-    Tokenize tok(dictnm);
+    Fmm tok(dictnm);
     uint32_t t = 0;
     while(1)
     {

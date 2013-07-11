@@ -27,6 +27,8 @@
 #include <istream>
 #include <ostream>
 #include <limits>
+#include<time.h>
+#include <functional>
 
 #include "types.h"
 #include "am/hashtable/khash_table.hpp"
@@ -130,20 +132,105 @@ namespace ilplib
             static std::map<KString, double>
 			  classify_multi_level(
 			    DigitalDictionary* cat,
+			    VectorDictionary* t2cs,
+			    const std::vector<std::pair<KString,double> >& v, std::stringstream& sss, bool dolog=false)
+              {
+                  std::vector<KString> tks;
+                  double sum = 0;
+                  for (uint32_t j=0;j<v.size();++j)
+                      sum += v[j].second;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      double f = v[j].second/sum;
+                      if (v.size() < 5 || f > 0.01)
+                          tks.push_back(v[j].first);
+                      if(dolog)sss<<v[j].first<<":"<<f<<" ";
+                  }
+                  if(dolog)sss<<"\n";
+
+                  izenelib::am::KStringHashTable<std::string, uint32_t> cat_dict(10000, 5000);
+                  std::vector<KString> ct_nm;
+                  std::vector<double> ct_p;
+                  std::vector<uint8_t> ct_lev;
+                  std::vector<uint32_t> ct_hit;
+                  std::vector<double> ct_va;
+                  std::vector<std::string> ct_log;
+                  for (uint32_t j=0;j<tks.size();++j)
+                  {
+                      vector<char*>** cts = t2cs->value(tks[j], false);
+                      if(!cts || (*cts)->size()%3 != 0)continue;
+                      vector<char*>* cats = *cts;
+                      for (uint32_t i=3;i<cats->size();i+=3)if(strlen(cats->at(i))>0)
+                      {
+                          double tc = atof(cats->at(i+2));
+                          uint32_t* idx = cat_dict.find(cats->at(i));
+                          if (!idx)
+                          {
+                              KString cnm(cats->at(i));
+                              double c = cat->value(cnm, true);
+                              if (c == (double)std::numeric_limits<int>::min())IASSERT(false);
+                              ct_nm.push_back(cnm);
+                              ct_p.push_back(c);
+                              ct_lev.push_back(cats->at(i+1)[0]-'0'-1);
+                              ct_hit.push_back(1);
+                              ct_va.push_back(log((c+100000)/30000000)+tc);
+                              cat_dict.insert(cats->at(i), ct_hit.size()-1);
+                              if(dolog){stringstream ss;ss << tks[j].get_bytes("utf-8")<<":"<<tc;ct_log.push_back(ss.str());}
+                              continue;
+                          }
+                          ct_va[*idx] += tc;
+                          ct_hit[*idx] ++;
+                          if(dolog){stringstream ss;ss <<"\t"<< tks[j].get_bytes("utf-8")<<":"<<tc;ct_log[*idx] += ss.str();}
+                      }
+                  }
+                  for (uint32_t i=0;i<ct_hit.size();++i)
+                  {
+                      ct_va[i] += log(10./(ct_p[i] + 300000))*(tks.size()-ct_hit[i]);
+                      if(dolog)sss<<ct_nm[i]<<"\t"<<ct_va[i]<<"\t"<<ct_log[i]<<std::endl;
+                  }
+                  //std::cout<<tks.size()<<":"<<ct_va.size()<<"-"<<o<<"FFFFFFFFFFFFFF\n"; 
+
+                  KString lastc("R");uint32_t lasti = -1;
+                  KString lastcc;
+                  for (uint32_t i=0;i<3;++i)
+                  {
+                      double maxv = (double)std::numeric_limits<int>::min();
+                      uint32_t maxi = -1;
+                      for (uint32_t j=0;j<ct_nm.size();++j)
+                          if (i == (uint32_t)ct_lev[j] && maxv < ct_va[j]
+                            && ct_nm[j].find(lastc) == 0 && ct_nm[j].length() > lastc.length())
+                              maxv = ct_va[j], maxi = j;
+                      if(maxi < ct_nm.size())lastcc=lastc, lastc = ct_nm[maxi], lasti=i;
+                  }
+
+                  std::map<KString, double> r;
+                  for (uint32_t j=0;j<ct_nm.size();++j)
+                      if (ct_nm[j].find(lastcc) == 0 && ct_nm[j].length() > lastcc.length())
+                          r[ct_nm[j]] = (300.+ct_va[j])/300.;
+                  
+                  return r;
+              }
+
+            
+            static std::map<KString, double>
+			  classify_multi_level(
+			    DigitalDictionary* cat,
 			    DigitalDictionary* t2c,
 			    Dictionary* t2cs,
-			    std::vector<std::pair<KString,double> > v, std::stringstream& ss)
+			    std::vector<std::pair<KString,double> > v, std::stringstream& ss, bool dolog=false)
               {
+                  timeval start, end; 
                   double sum = 0;
                   for (uint32_t j=0;j<v.size();++j)
                       sum += v[j].second;
                   for (uint32_t j=0;j<v.size();++j)
                   {
                       v[j].second /= sum;
-                      ss<<v[j].first<<":"<<v[j].second<<" ";
+                      if(dolog)ss<<v[j].first<<":"<<v[j].second<<" ";
                   }
-                  ss<<"\n";
+                  if(dolog)ss<<"\n";
 
+                  gettimeofday(&start, NULL); 
                   std::vector<std::map<KString, double> >  cates(5, std::map<KString, double>());
                   for (uint32_t j=0;j<v.size();++j)
                   {
@@ -164,7 +251,10 @@ namespace ilplib
                           }
                       }
                   }
+                  gettimeofday(&end, NULL); 
+                  //std::cout<<"[TIME]:"<<1000*(end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec)/1000<<" ms\n";
 
+                  gettimeofday(&start, NULL); 
                   for (uint32_t i=1;i<cates.size();++i)
                       if (cates[i-1].size()==0 && cates[i].size()>0)
                       {
@@ -193,7 +283,7 @@ namespace ilplib
                       for (std::map<KString, double>::iterator it=cates[i].begin(); it!=cates[i].end();++it)
                           if (it->first.find(lastc) == 0)
                           {
-                              ss <<"【"<< it->first<<"】\t";
+                              if(dolog)ss <<"【"<< it->first<<"】\t";
                               double c = it->second;
                               it->second = 0;
                               for (uint32_t j=0;j<v.size();++j)
@@ -207,27 +297,24 @@ namespace ilplib
                                     || f < (3-i)*3)
                                       f = 0;
 
-                                  //if (f/pt[j] < 0.004)
-                                  //    it->second += -100*v[j].second;
-                                  //else
-                                  //    it->second += ((f+1)*10000000/pt[j]/(c+10000))*v[j].second;
                                   it->second += log((f+10)/(c+1000000));
-                                  ss<<v[j].first<<"{"<<f<<", "<<pt[j]<<", "<<c<<", "<<it->second<<"}\t";
+                                  if(dolog)ss<<v[j].first<<"{"<<f<<", "<<pt[j]<<", "<<c<<", "<<it->second<<"}\t";
                               }
                               it->second += log(c+100000/30000000);//(c+100000)/(3000000));
-                              //it->second = it->second*10+(c+100000)/(200000);
                               if (it->second > max)
                                   max = it->second,maxv=it->first;
-                              ss <<it->second<<std::endl;
+                              if(dolog)ss <<it->second<<std::endl;
                           }
                           else it->second = 0;
                       if (max > (double)std::numeric_limits<int>::min())
                       {
                           lastc = maxv;
-                          ss << "max: "<<maxv<<"="<<max<<std::endl;
+                          if(dolog)ss << "max: "<<maxv<<"="<<max<<std::endl;
                           lasti = i;
                       }
                   }
+                  gettimeofday(&end, NULL); 
+                  //std::cout<<"[TIME]:"<<1000*(end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec)/1000<<" ms\n";
 
                   std::map<KString, double> r;
                   if (lasti >= cates.size())return r;
@@ -614,8 +701,8 @@ END{
         split(e, a, "\t");
         AB = a[1];
         L = gsub(">",">", a[2]);
-        if (!(AB in W))W[AB] = ent[e]+(L-1)*0.5;
-        else W[AB] = min(W[AB], ent[e]+(L-1)*0.5);
+        if (!(AB in W))W[AB] = ent[e]+(L-1)*0.7;
+        else W[AB] = min(W[AB], ent[e]+(L-1)*0.7);
     }
     m = 10000000
     for (k in W)
@@ -662,11 +749,12 @@ gawk -F"\t" '
     }
 }
 END{
+    asort(N);
     for (k in N)
         print k"\t"N[k]
 }
 ' $CORPUS > $CORPUS.term.cat;
-sort -t ' ' -k1,2  $CORPUS.term.cat| \
+sort -t $'\t' -k1,1  $CORPUS.term.cat| \
 gawk -F'[\t ]' '
 function level(ca)
 {
@@ -674,19 +762,34 @@ function level(ca)
     return g;
 }
 {
+    ca[$2] += $3;
     if (last != $1 && length(last) > 0)
     {
         tc[last] = cats;
         last = $1
-        cats = $2""level($2);
+        #cats = $2""level($2)
+        cats = $2"|"level($2)"|"$3;
     }else{
         last = $1
-        cats = cats" "$2""level($2);
+        if (length(cats)>0)cats=cats" "
+        cats = cats""$2"|"level($2)"|"$3;
+        #cats = cats" "$2""level($2)
     }
 }
 END{
     tc[last] = cats;
     for (t in tc)
+    {
         print t"\t"tc[t]
+        split(tc[t], ar, " ")
+        va = "";
+        for (i=1;i<=length(ar);++i)
+        {
+            split(ar[i], arr, "|")
+            if(length(va)>0)va=va"\t";
+            va = va""arr[1]"\t"arr[2]"\t"log((arr[3]+10)/(ca[arr[1]]+300000))
+        }
+        print t"\t"va
+    }
 }'  > $CORPUS.term.cats
  * */

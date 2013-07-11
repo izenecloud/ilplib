@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include "knlp/normalize.h"
-#include<knlp/william_trie.h>
+#include "knlp/william_trie.h"
 #include "am/util/line_reader.h"
 
 using namespace std;
@@ -17,7 +17,7 @@ int main()
 {
 time_t t1,t2;
 t2 = clock();
-    string file_name = "sort.etao.term";
+    string file_name = "etao.term.bk.bk";
     WilliamTrie token(file_name);
     vector<pair<KString, double> > term;
 /*
@@ -26,23 +26,20 @@ cout<<token.check_term(kstr)<<' '<<token.score(kstr)<<endl;;
 */
 t1 = clock();
 cout<<"get dict time ="<<(double)(t1-t2)/1000000<<endl;
-//    freopen("new.cate.test","r",stdin);
 
-LineReader lr("new.cate.test");    
+LineReader lr("cate.test");    
 char* line = NULL;
-//    while(getline(cin,st))
     while((line=lr.line(line))!=NULL)
     {
-//        st[strlen(st)-1]=0;
         KString kstr(line);
         vector<pair<KString, double> > term(token.token(kstr));
 //        token.token(kstr);
-/*
+
 cout<<kstr<<endl;
 for(size_t i = 0; i < term.size(); ++i)
     cout<<term[i].first<<' '<<term[i].second<<' ';
 cout<<endl;
-*/
+
     }
 cout<<"tot bi = "<<token.tot()<<endl;
 cout<<"tot len = "<<token.totlen()<<endl;

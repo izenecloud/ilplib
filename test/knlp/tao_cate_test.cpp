@@ -23,7 +23,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "knlp/tokenize.h"
+#include "knlp/fmm.h"
 #include "knlp/normalize.h"
 #include "knlp/doc_naive_bayes.h"
 #include "am/hashtable/khash_table.hpp"
@@ -32,11 +32,12 @@
 using namespace std;
 using namespace ilplib::knlp;
 
-Tokenize* tkn;
+Fmm* tkn;
 DigitalDictionary* cat;
 DigitalDictionary* term;
 DigitalDictionary* t2c;
 Dictionary* t2cs;
+VectorDictionary* vt2cs;
 std::vector<std::string> catv;
 
 void classify(std::string str)
@@ -61,15 +62,17 @@ void classify_vote(std::string str)
     ilplib::knlp::Normalize::normalize(str);
     DocNaiveBayes::makeitclean(str);
     std::vector<std::pair<KString,double> > v;
+    try{
     tkn->fmm(KString(str), v);
+    }catch(...){}
 
     std::stringstream ss;
-    std::map<KString, double> m = DocNaiveBayes::classify_multi_level(cat,t2c,t2cs,v, ss);
+    std::map<KString, double> m = DocNaiveBayes::classify_multi_level(cat,vt2cs,v, ss, true);
     //std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v, ss);
     vector<pair<double,KString> > dv;
     for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
-        dv.push_back(make_pair(it->second*-1, it->first));
-    sort(dv.begin(), dv.end());
+        dv.push_back(make_pair(it->second, it->first));
+    sort(dv.begin(), dv.end(), std::greater<pair<double,KString> >());
     std::cout<<str<<"########\n";
     for(uint32_t i=0; i<dv.size()&&i<6; ++i)
           cout<<"@"<<dv[i].second<<":"<<dv[i].first<<", ";
@@ -84,11 +87,12 @@ int main(int argc,char * argv[])
         return 0;
     }
 
-    tkn = new Tokenize(argv[1]);
+    tkn = new Fmm(argv[1]);
     cat = new DigitalDictionary(argv[2]);
     term = new DigitalDictionary(argv[3]);
     t2c = new DigitalDictionary(argv[4]);
     t2cs = new Dictionary(argv[5]);
+    vt2cs = new VectorDictionary(argv[5]);
 
     /*{
         char* li = NULL;

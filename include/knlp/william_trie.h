@@ -1,15 +1,12 @@
 #ifndef _ILPLIB_NLP_WILLIAM_TRIE_H_
 #define _ILPLIB_NLP_WILLIAM_TRIE_H_
 
-#include<iostream>
-#include<stdio.h>
-#include<string.h>
-#include<string>
+#include <string.h>
+#include <vector>
 #include "types.h"
 #include "util/string/kstring.hpp"
 #include "knlp/normalize.h"
 
-using namespace std;
 using namespace izenelib;
 using namespace izenelib::util;
 using namespace ilplib::knlp;
@@ -20,58 +17,55 @@ namespace ilplib
 	{
 		class WilliamTrie
 		{
+        private:
+            std::vector<std::pair<KString, double> > dict_;
+			double MINVALUE_;
+			size_t tot_bi_;
+			size_t tot_len_;
+			size_t ch1_[100001];
 
-			struct node{KString st;double value;};
-			node* dict;
-			size_t dict_size;
-			double MINVALUE;
-			size_t tot_bi;
-			size_t tot_len;
-			size_t* ch1;
-
-			public:
+		public:
 			WilliamTrie(string file_name)
 			{
-			    dict = new node[200000];
-			    ch1 = new size_t[100001];
-				for(size_t i = 0; i < 100000; ++i){ch1[i]=0;}
-				tot_bi = 0;
-				tot_len = 0;
-				dict_size = 0;
+				for(size_t i = 0; i < 100000; ++i){ch1_[i]=0;}
+				tot_bi_ = 0;
+				tot_len_ = 0;
+				dict_.reserve(200000);
 				freopen(file_name.c_str(),"r",stdin);
 				char st[1024];
 				double value;
 				while(scanf("%s\t%lf", st, &value)==2)
 				{
-					dict[dict_size].st = KString(st);
-					ilplib::knlp::Normalize::normalize(dict[dict_size].st);
-					ch1[dict[dict_size].st[0]] = 1;
-					dict[dict_size++].value = value;
-					if (!strcmp(st,"[MIN]")) MINVALUE = value;
+					dict_.push_back(std::make_pair(KString(st), value));
+					ilplib::knlp::Normalize::normalize(dict_[dict_.size() - 1].first);
+					ch1_[dict_[dict_.size() - 1].first[0]] = 1;
+					if (!strcmp(st,"[MIN]")) 
+					    MINVALUE_ = value;
 				}
-				sort(dict, dict+dict_size, WilliamTrie::cmp);
+				sort(dict_.begin(), dict_.end(), WilliamTrie::cmp);
 			}
 
 			~WilliamTrie(){}
 
-			static bool cmp(const node& x, const node& y)
+			static bool cmp(const std::pair<KString, double>& x, const std::pair<KString, double>& y)
 			{
-				return x.st < y.st;
+				return x.first < y.first;
 			}
 
 			size_t bisearch(size_t ind, uint16_t ch, size_t &p, size_t &q, double &value, const KString& k=KString(""))
 			{
-				++tot_bi;
-				int head = p, tail = q, mid=0;
+				int head = p, tail = q, mid = 0;
 				uint16_t tmp;
 				while(head <= tail)
 				{
+				    ++tot_bi_;
 					mid = (head + tail) / 2;
-					//if (ind == dict[mid].st.length())cout<<k<<"::::::::::::::::"<<dict[mid].st<<endl;        
-					tmp = dict[mid].st[ind];
+					tmp = dict_[mid].first[ind];
 					if (tmp < ch)
-					  head = mid + 1;
-					else if (tmp == ch && (mid == (int)p || dict[mid-1].st[ind] != ch))
+                    {
+					    head = mid + 1;
+                    }
+					else if (tmp == ch && (mid == (int)p || dict_[mid-1].first[ind] != ch))
 					{
 						p = mid;
 						break;
@@ -83,66 +77,73 @@ namespace ilplib
 						  q = mid - 1;
 					}
 				}
-				if (dict[mid].st[ind] != ch)
-				  return 0;
+				if (dict_[mid].first[ind] != ch)
+				    return 0;
 
-				if (p==q || dict[p+1].st[ind] != ch)
-				{
-					value = dict[p].value;
-					return 3;
-				}
 
-				++tot_bi;
 				head = p; tail = q;
 				while(head <= tail)
 				{
+				    ++tot_bi_;
 					mid = (head + tail) / 2;
-					tmp = dict[mid].st[ind];
+					tmp = dict_[mid].first[ind];
 					if (tmp > ch)
-					  tail = mid - 1;
-					else if (tmp == ch && (mid == (int)q || dict[mid+1].st[ind] != ch))
+                    {
+					    tail = mid - 1;
+                    }
+					else if (tmp == ch && (mid == (int)q || dict_[mid+1].first[ind] != ch))
 					{
 						q = mid;
 						break;
 					}
 					else
-					  head = mid + 1;
+                    {
+					    head = mid + 1;
+                    }
 				}
-				if (dict[p].st.length() == ind+1)
+				if (dict_[p].first.length() == ind+1)
 				{
-					value = dict[p].value;
-					if (dict[++p].st[ind] != ch)
-					  return 3;
+					value = dict_[p].second;
+					++p;
 					return 2;
 				}
 				else
-				  return 1;
+                {
+				    return 1;
+                }
 			}
 
 
 
-			vector<pair<KString, double> > token(const KString st)
+            std::vector<std::pair<KString, double> > token(const KString st)
 			{    
 				size_t i = 0;
 				size_t len = st.length();
-				tot_len += len;    
-				vector<pair<KString, double> > term;
+                std::vector<std::pair<KString, double> > term;
 				term.reserve(len);
+				if (!len)
+				    return term;
 				while(i < len)
 				{
-					size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
-					double value = 0;
-					//        while(i < len && st[i] == ' ') ++i;
+					size_t maxlen = (size_t)-1, p = 0, q = dict_.size() - 1, flag = 0;
+					double value = MINVALUE_;
+					while(i < len && st[i] == ' ') 
+					    ++i;
+					if (i >= len)
+					    break;
 
 					for (size_t j = 0; j < len - i; ++j)
 					{
-						if (st[j] == ' ') break;
-						if (j == 0 && !ch1[st[i+j]]) 
-						  break;
+						if (st[i+j] == ' ') break;
+						if (j == 0 && !ch1_[st[i+j]])
+						    break;
 						else
-						  flag = bisearch(j, st[i+j], p, q, value, st);        
+						    flag = bisearch(j, st[i+j], p, q, value, st);        
+++tot_len_;
 						if (flag == 0)
-						  break;
+                        {
+						    break;
+                        }
 						else if (flag == 3)
 						{
 							maxlen = j;
@@ -153,10 +154,9 @@ namespace ilplib
 							maxlen = j;
 						}
 					}
-
-					if (!maxlen)
+					if (maxlen == (size_t)-1)
 					{
-						term.push_back(make_pair(st.substr(i, 1), MINVALUE));
+						term.push_back(make_pair(st.substr(i, 1), MINVALUE_));
 						i += 1;
 					}
 					else
@@ -168,65 +168,83 @@ namespace ilplib
 				return term;
 			}
 
-			bool check_term(const KString st)
+			bool check_term(const KString& st)
 			{
 				size_t len = st.length();
-				size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
-				double value = 0;
+				if (!len)
+				    return MINVALUE_;
+				size_t maxlen = -1, p = 0, q = dict_.size() - 1, flag = 0;
+				double value = MINVALUE_;
 
 				for (size_t j = 0; j < len; ++j)
 				{
 					flag = bisearch(j, st[j], p, q, value);        
-					if (flag == 0 || flag == 3)
-					  return 0;
+					if (flag == 0)
+					    return 0;
 					else if (flag == 2)
-					  maxlen = j;
+					    maxlen = j;
+                    else if (flag == 3)
+                    {
+                        maxlen = j;
+                        break;
+                    }
 				}
 				if (maxlen == len - 1)
-				  return 1;
+				    return 1;
 				else
-				  return 0;
+				    return 0;
 			}
 
-			double score(const KString st)
+			double score(const KString& st)
 			{
 
 				size_t len = st.length();
-				size_t maxlen = 0, p = 0, q = dict_size - 1, flag = 0;
-				double value = MINVALUE;
+				if (!len)
+				    return MINVALUE_;
+				size_t maxlen = -1, p = 0, q = dict_.size() - 1, flag = 0;
+				double value = MINVALUE_;
 
 				for (size_t j = 0; j < len; ++j)
 				{
 					flag = bisearch(j, st[j], p, q, value, st);        
-					if (flag == 0||flag == 3)
-					  return MINVALUE;
+					if (flag == 0)
+                    {
+					    return MINVALUE_;
+                    }
 					else if (flag == 2)
-					  maxlen = j;
+                    {
+					    maxlen = j;
+                    }
+                    else if (flag == 3)
+                    {
+                        maxlen = j;
+                        break;
+                    }
 				}
 				if (maxlen == len - 1)
-				  return value;
+				    return value;
 				else
-				  return MINVALUE;
+				    return MINVALUE_;
 			}
 
 			size_t size() const
 			{
-				return dict_size;
+				return dict_.size();
 			}
 
 			double min() const
 			{
-				return MINVALUE;
+				return MINVALUE_;
 			}
 
 			size_t tot() const
 			{
-				return tot_bi;
+				return tot_bi_;
 			}
 
 			size_t totlen() const
 			{
-				return tot_len;
+				return tot_len_;
 			}
 
 		};

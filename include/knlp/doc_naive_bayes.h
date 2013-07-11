@@ -122,10 +122,10 @@ namespace ilplib
                 t = strstr(str.c_str(), "送");
                 if (t)
                 {
-                    const char* p = strchr(t+strlen("送"), ' ');
+                    const char* p = strchr(t, ' ');
+                    string pp;if(p)pp = p;
                     str = str.substr(0, t-str.c_str());
-                    if (p)
-                        str += p;
+                    str += pp;
                 }
             }
 
@@ -160,7 +160,7 @@ namespace ilplib
                       vector<char*>** cts = t2cs->value(tks[j], false);
                       if(!cts || (*cts)->size()%3 != 0)continue;
                       vector<char*>* cats = *cts;
-                      for (uint32_t i=3;i<cats->size();i+=3)if(strlen(cats->at(i))>0)
+                      for (uint32_t i=0;i<cats->size();i+=3)if(strlen(cats->at(i))>0)
                       {
                           double tc = atof(cats->at(i+2));
                           uint32_t* idx = cat_dict.find(cats->at(i));
@@ -185,7 +185,7 @@ namespace ilplib
                   }
                   for (uint32_t i=0;i<ct_hit.size();++i)
                   {
-                      ct_va[i] += log(10./(ct_p[i] + 300000))*(tks.size()-ct_hit[i]);
+                      ct_va[i] += log(1./(ct_p[i] + 10000))*(tks.size()-ct_hit[i]);
                       if(dolog)sss<<ct_nm[i]<<"\t"<<ct_va[i]<<"\t"<<ct_log[i]<<std::endl;
                   }
                   //std::cout<<tks.size()<<":"<<ct_va.size()<<"-"<<o<<"FFFFFFFFFFFFFF\n"; 
@@ -668,7 +668,7 @@ gawk -F"\t" '
 }' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/[送赠][^ ]\+ / /g' -e 's/[送赠][^ ]\+$//g'> taobao_json.out.1.bk
 export TOKEN_DICT="./etao.term.bk"
 #rm "$TOKEN_DICT.prefix"
-./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk|awk -F"\t" '{if(NF==3)print}' > taobao_json.out.2
+./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk|awk -F"[\t 　]" '{if(NF==3)print}' > taobao_json.out.2
 export CORPUS="./taobao_json.out.2";
 gawk -F"\t" '{
     split($2, ca, ">");
@@ -701,8 +701,8 @@ END{
         split(e, a, "\t");
         AB = a[1];
         L = gsub(">",">", a[2]);
-        if (!(AB in W))W[AB] = ent[e]+(L-1)*0.7;
-        else W[AB] = min(W[AB], ent[e]+(L-1)*0.7);
+        if (!(AB in W))W[AB] = ent[e]+(L-1)*0.8;
+        else W[AB] = min(W[AB], ent[e]+(L-1)*0.8);
     }
     m = 10000000
     for (k in W)
@@ -718,7 +718,7 @@ awk -F"\t" '
 NR==FNR{a[$1]=1}
 NR>FNR{b[$1]=$2}
 END{for(i in a)if(i in b)print i"\t"b[i];else{print i"\t"b["[MIN]"]*5}}' "$TOKEN_DICT" $CORPUS.termweight > "$TOKEN_DICT.bk"
-./fill_naive_bayes "$TOKEN_DICT.bk" nb taobao_json.out.1.bk|awk -F"\t" '{if(NF==3)print}' > $CORPUS;
+./fill_naive_bayes "$TOKEN_DICT.bk" nb taobao_json.out.1.bk|awk -F"[\t 　]" '{if(NF==3)print}' > $CORPUS;
 gawk -F"\t" '
 {
     split($2, ca, ">");
@@ -737,24 +737,36 @@ END{
 }
 ' $CORPUS > $CORPUS.cat;
 gawk -F"\t" '
+function level(ca)
+{
+    g = gsub(">", ">", ca);
+    return g;
+}
 {
     split($2, ca, ">");
     L = length(ca)
-    R = "R";N[$1" "R]++;
+    R = "R";#N[$1" "R]++;
     for (i=1;i<=L;i++)
     {
         R=R">"ca[i];
         #N[$1" "R]++;
         N[$1" "R] += $3;
+        ca[R] += $3;
     }
 }
 END{
-    asort(N);
     for (k in N)
-        print k"\t"N[k]
+    {
+        split(k, ar, " ");
+        if (ar[1] in tc)tc[ar[1]]=tc[ar[1]]"\t"
+        tc[ar[1]]=tc[ar[1]]""ar[2]"\t"level(ar[2])"\t"log((N[k]+1)/(ca[ar[2]]+30000));
+        #print k"\t"N[k]
+    }
+    for (t in tc)
+        print t"\t"tc[t]
 }
-' $CORPUS > $CORPUS.term.cat;
-sort -t $'\t' -k1,1  $CORPUS.term.cat| \
+' $CORPUS > $CORPUS.term.cats;
+sort  $CORPUS.term.cat| \
 gawk -F'[\t ]' '
 function level(ca)
 {
@@ -780,7 +792,7 @@ END{
     tc[last] = cats;
     for (t in tc)
     {
-        print t"\t"tc[t]
+        #print t"\t"tc[t]
         split(tc[t], ar, " ")
         va = "";
         for (i=1;i<=length(ar);++i)

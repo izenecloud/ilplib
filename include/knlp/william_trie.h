@@ -2,10 +2,12 @@
 #define _ILPLIB_NLP_WILLIAM_TRIE_H_
 
 #include <string.h>
+#include <string>
 #include <vector>
 #include "types.h"
 #include "util/string/kstring.hpp"
 #include "knlp/normalize.h"
+#include "am/util/line_reader.h"
 
 using namespace izenelib;
 using namespace izenelib::util;
@@ -31,18 +33,30 @@ namespace ilplib
 				tot_bi_ = 0;
 				tot_len_ = 0;
 				dict_.reserve(200000);
-				freopen(file_name.c_str(),"r",stdin);
-				char st[1024];
+//				freopen(file_name.c_str(),"r",stdin);
+				char* st = NULL;
 				double value;
-				while(scanf("%s\t%lf", st, &value)==2)
+				string s0;
+				int p;
+                izenelib::am::util::LineReader lr(file_name);
+				while((st = lr.line(st))!=NULL)
 				{
-					dict_.push_back(std::make_pair(KString(st), value));
-					ilplib::knlp::Normalize::normalize(dict_[dict_.size() - 1].first);
-					ch1_[dict_[dict_.size() - 1].first[0]] = 1;
-					if (!strcmp(st,"[MIN]")) 
+				    s0 = string(st);
+				    p = s0.find("\t",0);
+				    KString kstr(s0.substr(0,p));
+					ilplib::knlp::Normalize::normalize(kstr);
+				    value = atof(s0.substr(p+1, s0.length()-p-1).c_str());
+				    dict_.push_back(std::make_pair(kstr, value));
+					ch1_[kstr[0]] = 1;
+					if (kstr == "[min]")
 					    MINVALUE_ = value;
 				}
 				sort(dict_.begin(), dict_.end(), WilliamTrie::cmp);
+/*				
+freopen("testdict","w",stdout);				
+for(size_t i = 0; i < dict_.size(); ++i)
+    cout<<dict_[i].first<<'\t'<<dict_[i].second<<endl;
+    */
 			}
 
 			~WilliamTrie(){}
@@ -127,18 +141,20 @@ namespace ilplib
 				{
 					size_t maxlen = (size_t)-1, p = 0, q = dict_.size() - 1, flag = 0;
 					double value = MINVALUE_;
+/*					
 					while(i < len && st[i] == ' ') 
 					    ++i;
 					if (i >= len)
 					    break;
-
+*/
 					for (size_t j = 0; j < len - i; ++j)
 					{
-						if (st[i+j] == ' ') break;
+//						if (st[i+j] == ' ') break;
 						if (j == 0 && !ch1_[st[i+j]])
 						    break;
 						else
 						    flag = bisearch(j, st[i+j], p, q, value, st);        
+//cout<<st[i+j]<<' '<<i<<' '<<j<<' '<<p<<' '<<q<<endl;						
 ++tot_len_;
 						if (flag == 0)
                         {

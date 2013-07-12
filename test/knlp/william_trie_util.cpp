@@ -17,7 +17,7 @@ int main()
 {
 time_t t1,t2;
 t2 = clock();
-    string file_name = "etao.term.bk.bk";
+    string file_name = "brand.term";
     WilliamTrie token(file_name);
     vector<pair<KString, double> > term;
 /*
@@ -37,7 +37,7 @@ char* line = NULL;
 
 cout<<kstr<<endl;
 for(size_t i = 0; i < term.size(); ++i)
-    cout<<term[i].first<<' '<<term[i].second<<' ';
+    cout<<term[i].first<<' '<<term[i].second<<endl;
 cout<<endl;
 
     }

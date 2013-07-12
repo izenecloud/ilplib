@@ -44,7 +44,7 @@ class Fmm
     WilliamTrie trie_;
     std::vector<uint8_t> delimiter_;
 
-    std::vector<KString> chunk_(const KString& line)
+    std::vector<KString> chunk_(const KString& line, bool del=true)
     {
         std::vector<KString> r;
 
@@ -68,7 +68,7 @@ class Fmm
 			  la = i;
 			  i--;
 		  }
-		  else if (delimiter_[line[i]])
+		  else if (del && delimiter_[line[i]])
             {
                 //std::cout<<line.substr(la, i-la+1)<<"OOOOOO\n";
                 if (i > la)r.push_back(line.substr(la, i-la));
@@ -126,11 +126,12 @@ public:
         return trie_.score(kstr);
     }
 
-	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r, bool smart=true)//forward maximize match
+	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r, bool smart=true, bool bigterm=true)//forward maximize match
 	{
 		r.clear();
 		if (line.length() == 0)return;
-		std::vector<KString> chunks = chunk_(line);
+
+		std::vector<KString> chunks = chunk_(line, (!bigterm));
 		for ( uint32_t i=0; i<chunks.size(); ++i)
 		{
 			if (smart && (is_alphanum_(chunks[i]) || chunks[i].length() < 3
@@ -154,10 +155,10 @@ public:
 	}
 
 
-	std::vector<KString> fmm(const KString& line, bool smart=true)//forward maximize match
+	std::vector<KString> fmm(const KString& line, bool smart=true, bool bigterm=true)//forward maximize match
 	{
 		std::vector<std::pair<KString,double> > v;
-		fmm(line, v, smart);
+		fmm(line, v, smart, true);
 		std::vector<KString> r;
 		for ( uint32_t i=0; i<v.size(); ++i)
 		  r.push_back(v[i].first);

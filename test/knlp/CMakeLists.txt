@@ -145,7 +145,6 @@ TARGET_LINK_LIBRARIES(william_trie_util
 )
 
 #ADD_EXECUTABLE(new_tao_cate_test 
-
 #new_tao_cate_test.cpp 
 #			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 #)

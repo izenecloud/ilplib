@@ -133,20 +133,32 @@ namespace ilplib
 			  classify_multi_level(
 			    DigitalDictionary* cat,
 			    VectorDictionary* t2cs,
-			    const std::vector<std::pair<KString,double> >& v, std::stringstream& sss, bool dolog=false)
+			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false)
               {
+                  {
+                      std::vector<std::pair<double,KString> > vv;
+                      for (uint32_t j=0;j<v.size();++j)
+                          vv.push_back(make_pair(v[j].second, v[j].first));
+                      std::sort(vv.begin(),vv.end(), std::greater<std::pair<double,KString> >());
+                      for (uint32_t j=0;j<v.size();++j)
+                          v[j].first = vv[j].second, v[j].second = vv[j].first;
+                  }
                   std::vector<KString> tks;
+                  std::vector<double> sc;
+                  uint32_t SCALE=5;
                   double sum = 0;
-                  for (uint32_t j=0;j<v.size();++j)
+                  for (uint32_t j=0;j<v.size()&&j<SCALE;++j)
                       sum += v[j].second;
-                  for (uint32_t j=0;j<v.size();++j)
+                  for (uint32_t j=0;j<v.size()&&j<SCALE;++j)
                   {
                       double f = v[j].second/sum;
-                      if (v.size() < 5 || f > 0.01)
-                          tks.push_back(v[j].first);
+                      //if (.size() < 5 || f > 0.001)
+                          tks.push_back(v[j].first),
+                            sc.push_back(1);//f*SCALE);
                       if(dolog)sss<<v[j].first<<":"<<f<<" ";
                   }
                   if(dolog)sss<<"\n";
+                  SCALE = tks.size();
 
                   izenelib::am::KStringHashTable<std::string, uint32_t> cat_dict(10000, 5000);
                   std::vector<KString> ct_nm;
@@ -162,7 +174,7 @@ namespace ilplib
                       vector<char*>* cats = *cts;
                       for (uint32_t i=0;i<cats->size();i+=3)if(strlen(cats->at(i))>0)
                       {
-                          double tc = atof(cats->at(i+2));
+                          double tc = atof(cats->at(i+2))*sc[j];
                           uint32_t* idx = cat_dict.find(cats->at(i));
                           if (!idx)
                           {
@@ -172,21 +184,25 @@ namespace ilplib
                               ct_nm.push_back(cnm);
                               ct_p.push_back(c);
                               ct_lev.push_back(cats->at(i+1)[0]-'0'-1);
-                              ct_hit.push_back(1);
-                              ct_va.push_back(log((c+100000)/30000000)+tc);
+                              ct_hit.push_back(sc[j]);
+                              ct_va.push_back(log((c+500000)/8000000)+tc);
                               cat_dict.insert(cats->at(i), ct_hit.size()-1);
                               if(dolog){stringstream ss;ss << tks[j].get_bytes("utf-8")<<":"<<tc;ct_log.push_back(ss.str());}
                               continue;
                           }
                           ct_va[*idx] += tc;
-                          ct_hit[*idx] ++;
+                          ct_hit[*idx] += sc[j];
+                          //ct_hit[*idx] ++;
                           if(dolog){stringstream ss;ss <<"\t"<< tks[j].get_bytes("utf-8")<<":"<<tc;ct_log[*idx] += ss.str();}
                       }
                   }
                   for (uint32_t i=0;i<ct_hit.size();++i)
                   {
-                      ct_va[i] += log(1./(ct_p[i] + 10000))*(tks.size()-ct_hit[i]);
-                      if(dolog)sss<<ct_nm[i]<<"\t"<<ct_va[i]<<"\t"<<ct_log[i]<<std::endl;
+                      //double pen = log(1./(ct_p[i]*1.15 + 300000))*(tks.size()-ct_hit[i]);
+                      double pen = log(1./(ct_p[i] + 3000000))*(SCALE-ct_hit[i]);
+                      ct_va[i] += pen;
+                      if(dolog)sss<<ct_nm[i]<<"\t"<<ct_va[i]<<"\t"<<ct_log[i]<<"\tpen="<<pen<<"="
+                          <<log(1./(ct_p[i] + 300000))<<"*"<<SCALE-ct_hit[i]<<"+"<<log((ct_p[i]+500000)/8000000)<<std::endl;
                   }
                   //std::cout<<tks.size()<<":"<<ct_va.size()<<"-"<<o<<"FFFFFFFFFFFFFF\n"; 
 
@@ -197,10 +213,14 @@ namespace ilplib
                       double maxv = (double)std::numeric_limits<int>::min();
                       uint32_t maxi = -1;
                       for (uint32_t j=0;j<ct_nm.size();++j)
+                      {
+                          //cout<<i<<":"<<ct_nm[j]<<" "<<ct_va[j]<<" "<<(int)ct_lev[j]<<" "<<maxv<<std::endl;
                           if (i == (uint32_t)ct_lev[j] && maxv < ct_va[j]
                             && ct_nm[j].find(lastc) == 0 && ct_nm[j].length() > lastc.length())
                               maxv = ct_va[j], maxi = j;
+                      }
                       if(maxi < ct_nm.size())lastcc=lastc, lastc = ct_nm[maxi], lasti=i;
+                      //cout<<lastcc<<"=="<<lastc<<endl;
                   }
 
                   if (lastcc == KString("R"))
@@ -520,9 +540,9 @@ namespace ilplib
 				{
 					int32_t ty = StringPatterns::string_type(v[i].first);
 					if (ty == 2)
-					  v[i].first = KString("[[NUMBERS]]");
+					  ;//v[i].first = KString("[[NUMBERS]]");
 					else if(ty == 3)
-					  v[i].first == KString("[[NUGLISH]]");
+					  ;//v[i].first == KString("[[NUGLISH]]");
 					else if (ty == 4)
 					{
 						v.erase(v.begin()+i);
@@ -668,7 +688,7 @@ gawk -F"\t" '
         }
     }
 }' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/[送赠][^ ]\+ / /g' -e 's/[送赠][^ ]\+$//g'> taobao_json.out.1.bk
-export TOKEN_DICT="./etao.term.bk"
+export TOKEN_DICT="./brand.term"
 #rm "$TOKEN_DICT.prefix"
 ./fill_naive_bayes $TOKEN_DICT nb taobao_json.out.1.bk|awk -F"[\t 　]" '{if(NF==3)print}' > taobao_json.out.2
 export CORPUS="./taobao_json.out.2";
@@ -761,7 +781,7 @@ END{
     {
         split(k, ar, " ");
         if (ar[1] in tc)tc[ar[1]]=tc[ar[1]]"\t"
-        tc[ar[1]]=tc[ar[1]]""ar[2]"\t"level(ar[2])"\t"log((N[k]+1)/(ca[ar[2]]+30000));
+        tc[ar[1]]=tc[ar[1]]""ar[2]"\t"level(ar[2])"\t"log((N[k]*0.9+1)/(ca[ar[2]]*1.15+300000));
         #print k"\t"N[k]
     }
     for (t in tc)
@@ -801,7 +821,7 @@ END{
         {
             split(ar[i], arr, "|")
             if(length(va)>0)va=va"\t";
-            va = va""arr[1]"\t"arr[2]"\t"log((arr[3]+10)/(ca[arr[1]]+300000))
+            va = va""arr[1]"\t"arr[2]"\t"log((arr[3]*0.8+2)/(ca[arr[1]]*1.15+300000)
         }
         print t"\t"va
     }

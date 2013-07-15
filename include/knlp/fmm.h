@@ -158,6 +158,18 @@ public:
         }
 	}
 
+    static void gauss_smooth(std::vector<std::pair<KString,double> >& r)
+    {
+        for (uint32_t i=0;i<r.length();++i)
+        {
+            if (i >= 1 && i<r.length()-1)
+                r[i].second = r[i].second*0.7 + (r[i+1].second+r[i-1].second)*0.15;
+            else if(i == 0 && i+1 < r.length())
+                r[i].second = r[i].second*0.7 + r[i+1].second*0.3;
+            else if (i == r.length() -1 && i>=1)
+                r[i].second = r[i].second*0.7 + r[i-1].second*0.3;
+        }
+    }
 
 	std::vector<KString> fmm(const KString& line, bool smart=true, bool bigterm=true)//forward maximize match
 	{

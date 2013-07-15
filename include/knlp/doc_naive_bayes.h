@@ -111,22 +111,29 @@ namespace ilplib
 				return sc;
 			}
 
-            static void makeitclean(string& str)
+            static void makeitclean(KString& kstr)
             {
-                const char* t = strstr(str.c_str(), "【");
-                if (t){
-                    const char* p = strstr(t, "】");
-                    if (p)
-                        str = str.substr(0, t-str.c_str()) + str.substr(p-str.c_str()+strlen("】"));
-                }
-                t = strstr(str.c_str(), "送");
-                if (t)
+                KString m1("【"), m2("】"), m3("送");
+                uint32_t t = kstr.find(m1);
+                if (t < kstr.length())
                 {
-                    const char* p = strchr(t, ' ');
-                    string pp;if(p)pp = p;
-                    str = str.substr(0, t-str.c_str());
-                    str += pp;
+                    uint32_t t2 = kstr.find(m2);
+                    if (t2 < kstr.length() && t2 < t)
+                    {
+                        KString kk = kstr.substr(0, t);
+                        kk += kstr.substr(t2+1);
+                        kstr = kk;
+                    }
                 }
+                t = kstr.find(m3);
+                if (t < kstr.length())
+                {
+                    kstr = kstr.substr(0, t);
+                    uint32_t t2 = kstr.index_of(' ', t);
+                    if (t2 < kstr.length())
+                         kstr = kstr.substr(t2+1);
+                }
+
             }
 
             static std::map<KString, double>
@@ -152,7 +159,7 @@ namespace ilplib
                   for (uint32_t j=0;j<v.size()&&j<SCALE;++j)
                   {
                       double f = v[j].second/sum;
-                      //if (.size() < 5 || f > 0.001)
+                      if (tks.size() ==0 ||  f > 0.001)
                           tks.push_back(v[j].first),
                             sc.push_back(1);//f*SCALE);
                       if(dolog)sss<<v[j].first<<":"<<f<<" ";

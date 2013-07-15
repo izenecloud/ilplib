@@ -44,7 +44,7 @@ class Fmm
     WilliamTrie trie_;
     std::vector<uint8_t> delimiter_;
 
-    std::vector<KString> chunk_(const KString& line, bool del=true)
+    std::vector<KString> chunk_(const KString& line, bool deli=true)
     {
         std::vector<KString> r;
 
@@ -57,8 +57,10 @@ class Fmm
 				  r.push_back(line.substr(la, i-la));
 				  la = i;
 			  }
-			  while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
+			  while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i]) || (!deli && line[i] == ' ')))
 				i++;
+			  while((int32_t)i>0 && i < (int32_t)line.length() && (!deli && line[i] == ' '))
+			      i--;
 			  if (i -la <= 1)
               {
                   --i;
@@ -68,7 +70,7 @@ class Fmm
 			  la = i;
 			  i--;
 		  }
-		  else if (del && delimiter_[line[i]])
+		  else if (deli && delimiter_[line[i]])
             {
                 //std::cout<<line.substr(la, i-la+1)<<"OOOOOO\n";
                 if (i > la)r.push_back(line.substr(la, i-la));
@@ -91,7 +93,7 @@ class Fmm
 	bool is_alphanum_(const KString& str)
 	{
 		for ( uint32_t i=0; i<str.length(); ++i)
-		  if (!(is_digit_(str[i])||KString::is_english(str[i])))
+		  if (KString::is_chinese(str[i]))
 			return false;
 		return true;
 	}
@@ -146,7 +148,9 @@ public:
 		}
 		for (uint32_t i=0;i<r.size();++i)
         {
-            r[i].first.trim();
+            //r[i].first.trim();
+            if (r[i].first.length() == 1 && r[i].first[0] == ' ')
+                continue;
             if (r[i].first.length() > 0)
                 continue;
             r.erase(r.begin()+i);

@@ -34,90 +34,60 @@ using namespace ilplib::knlp;
 
 Fmm* tkn;
 DigitalDictionary* cat;
-DigitalDictionary* term;
-DigitalDictionary* t2c;
-Dictionary* t2cs;
 VectorDictionary* vt2cs;
-std::vector<std::string> catv;
 
-void classify(std::string str)
-{
-    ilplib::knlp::Normalize::normalize(str);
-    std::vector<std::pair<KString,double> > v;
-    tkn->fmm(KString(str), v);
-
-    std::map<KString, double> m = DocNaiveBayes::classify(cat,t2c,t2cs,v);
-    vector<pair<double,KString> > dv;
-    for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
-        dv.push_back(make_pair(it->second*-1, it->first));
-    sort(dv.begin(), dv.end());
-    std::cout<<"###################\n"<<str<<"\n";
-    for(uint32_t i=0; i<dv.size()&&i<6; ++i)
-          cout<<"@@"<<dv[i].second<<":"<<dv[i].first<<std::endl;
-    cout<<"#################33\n";
-}
-
-void classify_vote(std::string str)
+KString classify(std::string str, std::stringstream& ss)
 {
     KString kstr(str);
     ilplib::knlp::Normalize::normalize(kstr);
     DocNaiveBayes::makeitclean(kstr);
     std::vector<std::pair<KString,double> > v;
-    try{
     tkn->fmm(kstr, v);
-    }catch(...){}
 
-    std::stringstream ss;
     std::map<KString, double> m = DocNaiveBayes::classify_multi_level(cat,vt2cs,v, ss, true);
+    if (m.size() == 0)return KString();
     //std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v, ss);
     vector<pair<double,KString> > dv;
     for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
         dv.push_back(make_pair(it->second, it->first));
+
     sort(dv.begin(), dv.end(), std::greater<pair<double,KString> >());
-    std::cout<<str<<"########\n";
-    for(uint32_t i=0; i<dv.size()&&i<6; ++i)
-          cout<<"@"<<dv[i].second<<":"<<dv[i].first<<", ";
-    cout<<"\n";
-    cout<<"\n"<<ss.str()<<endl;
+    return dv.begin()->second;
 }
+
 int main(int argc,char * argv[])
 {
-    if (argc < 6)
+    if (argc < 4)
     {
-        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term dict] [term2cate dict] [term2cates dict] [corpus 1] ....\n";
+        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term2cates dict] [corpus 1] ....\n";
         return 0;
     }
 
     tkn = new Fmm(argv[1]);
     cat = new DigitalDictionary(argv[2]);
-    term = new DigitalDictionary(argv[3]);
-    t2c = new DigitalDictionary(argv[4]);
-    t2cs = new Dictionary(argv[5]);
-    vt2cs = new VectorDictionary(argv[5]);
-
-    /*{
-        char* li = NULL;
-        LineReader lr(argv[5]);
-        while((li=lr.line(li))!=NULL)
-        {
-            char* t = strchr(li, '\t');
-            if (!t) t = strchr(li, ' ');
-            if (!t)continue;
-            catv.push_back(string(li, t-li));
-        }
-    }*/
+    vt2cs = new VectorDictionary(argv[3]);
 
     string corpus;
-    if (argc > 6)
-        corpus = argv[6];
+    if (argc > 4)
+        corpus = argv[4];
     if(corpus.length()>0 && freopen (corpus.c_str(), "r", stdin) == NULL);
 
+    std::stringstream sss;
+    uint32_t C = 0, R = 0;
     string line;
     while(!std::getline(std::cin, line).eof())
     {
-        //classify(line);
-        classify_vote(line);
+        C++;
+        uint32_t t = line.find('\t');
+        std::stringstream ss;
+        KString c = classify(line.substr(0, t), ss);
+        if (c == KString(line.substr(t+1)))
+            R++;
+        else
+            sss<<ss.str();
     }
+
+    cout<<"precision: "<< 1.*R/C<<endl<<sss.str()<<"\n";
 
     return 0;
 }

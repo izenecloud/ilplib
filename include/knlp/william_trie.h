@@ -68,6 +68,7 @@ for(size_t i = 0; i < dict_.size(); ++i)
 
 			size_t bisearch(size_t ind, uint16_t ch, size_t &p, size_t &q, double &value, const KString& k=KString(""))
 			{
+			    if (p > q) return 0;
 				int head = p, tail = q, mid = 0;
 				uint16_t tmp;
 				while(head <= tail)

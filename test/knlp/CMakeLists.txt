@@ -144,6 +144,15 @@ TARGET_LINK_LIBRARIES(william_trie_util
    ${Boost_SYSTEM_LIBRARY}
 )
 
+ADD_EXECUTABLE(cate_precision
+			cate_precision.cpp 
+            ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(cate_precision
+   ${Boost_SYSTEM_LIBRARY}
+)
+
 #ADD_EXECUTABLE(new_tao_cate_test 
 #new_tao_cate_test.cpp 
 #			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp

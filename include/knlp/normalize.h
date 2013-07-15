@@ -37,6 +37,7 @@ public:
         kstr.to_dbc();
         kstr.to_lower_case();
         trd2smp_.transform(kstr);
+        kstr.trim_into_1();
     }
 	
 	static void normalize(std::string& str)

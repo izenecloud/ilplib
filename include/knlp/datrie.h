@@ -258,7 +258,7 @@ namespace ilplib
                         //term[term_size].first = st.substr(i, maxlen);
                         //for (size_t j = i; j < (size_t)maxlen; ++j)
                         //    term[term_size].first += st[j];
-//                        term[term_size].first = dict_[value].kstr;
+                        term[term_size].first = dict_[value].kstr;
                         term[term_size++].second = value;
                         i += maxlen;
                     }

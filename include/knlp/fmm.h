@@ -87,13 +87,16 @@ class Fmm
 
     bool is_digit_(int c)const
     {
+        return c >= '0' && c<='9';
         return is_digit(c);
     }
 
 	bool is_alphanum_(const KString& str)
 	{
 		for ( uint32_t i=0; i<str.length(); ++i)
-		  if (KString::is_chinese(str[i]))
+		  if (!(KString::is_english(str[i]) || is_digit_(str[i]) 
+		        || str[i]==' ' || str[i]=='\'' || str[i]=='-' || str[i]=='.'
+		        || str[i] == '$' || str[i]=='%'))
 			return false;
 		return true;
 	}
@@ -160,13 +163,13 @@ public:
 
     static void gauss_smooth(std::vector<std::pair<KString,double> >& r)
     {
-        for (uint32_t i=0;i<r.length();++i)
+        for (uint32_t i=0;i<r.size();++i)
         {
-            if (i >= 1 && i<r.length()-1)
+            if (i >= 1 && i<r.size()-1)
                 r[i].second = r[i].second*0.7 + (r[i+1].second+r[i-1].second)*0.15;
-            else if(i == 0 && i+1 < r.length())
+            else if(i == 0 && i+1 < r.size())
                 r[i].second = r[i].second*0.7 + r[i+1].second*0.3;
-            else if (i == r.length() -1 && i>=1)
+            else if (i == r.size() -1 && i>=1)
                 r[i].second = r[i].second*0.7 + r[i-1].second*0.3;
         }
     }

@@ -65,6 +65,7 @@ void classify_vote(std::string str)
     std::vector<std::pair<KString,double> > v;
     try{
     tkn->fmm(kstr, v);
+    tkn->gauss_smooth(v);
     }catch(...){}
 
     std::stringstream ss;

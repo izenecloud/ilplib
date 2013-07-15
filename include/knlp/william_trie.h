@@ -1,5 +1,5 @@
-#ifndef _ILPLIB_NLP_WILLIAM_TRIE_H_
-#define _ILPLIB_NLP_WILLIAM_TRIE_H_
+#ifndef _ILPLIB_NLP_DA_TRIE_H_
+#define _ILPLIB_NLP_DA_TRIE_H_
 
 #include <string.h>
 #include <string>

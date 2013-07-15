@@ -208,7 +208,7 @@ namespace ilplib
                     if (base_[tmpad] > 0)
                     {
                         base_[tmpad] = 0 - base_[tmpad];
-                        value_[tmpad] = i;
+                        value_[tmpad] = dict_[tmpad].value;
                     }
                 }
             }
@@ -246,19 +246,13 @@ namespace ilplib
 
                     if (maxlen == -1)
                     {
-                        //term[term_size].first = st.substr(i, 1);
-                        //term[term_size].first += st[i];
                         term[term_size].first = st.substr(i, 1);
-//                        term[term_size].first[0] = st[i];
                         term[term_size++].second = MINVALUE_;
                         i += 1;
                     }
                     else
                     {
-                        //term[term_size].first = st.substr(i, maxlen);
-                        //for (size_t j = i; j < (size_t)maxlen; ++j)
-                        //    term[term_size].first += st[j];
-                        term[term_size].first = dict_[value].kstr;
+                        term[term_size].first = st.substr(i, maxlen);
                         term[term_size++].second = value;
                         i += maxlen;
                     }

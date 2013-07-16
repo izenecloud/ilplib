@@ -161,7 +161,7 @@ public:
         }
 	}
 
-	static void bigram(const std::vector<std::pair<KString,double> >& r)
+	static void bigram(std::vector<std::pair<KString,double> >& r)
     {
         for (uint32_t i=0;i<r.size()-1;++i)
         {

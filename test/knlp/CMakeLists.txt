@@ -68,7 +68,7 @@ ADD_EXECUTABLE(etao_downloader
 TARGET_LINK_LIBRARIES(etao_downloader
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
-   boost_regex
+   ${Boost_REGEX_LIBRARY}
    curl
 )
 
@@ -79,7 +79,7 @@ ADD_EXECUTABLE(taobao_downloader
 TARGET_LINK_LIBRARIES(taobao_downloader
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
-   boost_regex
+   ${Boost_REGEX_LIBRARY}
    curl
 )
 
@@ -90,7 +90,7 @@ ADD_EXECUTABLE(makeup_etao_downloader
 TARGET_LINK_LIBRARIES(makeup_etao_downloader
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
-   boost_regex
+   ${Boost_REGEX_LIBRARY}
    curl
 )
 

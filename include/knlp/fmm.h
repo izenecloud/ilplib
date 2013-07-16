@@ -151,15 +151,25 @@ public:
 		}
 		for (uint32_t i=0;i<r.size();++i)
         {
-            //r[i].first.trim();
-            if (r[i].first.length() == 1 && r[i].first[0] == ' ')
+            r[i].first.trim_head_tail();
+            if (r[i].first.length() > 1)
                 continue;
-            if (r[i].first.length() > 0)
+            if (r[i].first.length() >0 && r[i].first[0] != ' ')
                 continue;
             r.erase(r.begin()+i);
             --i;
         }
 	}
+
+	static void bigram(const std::vector<std::pair<KString,double> >& r)
+    {
+        for (uint32_t i=0;i<r.size()-1;++i)
+        {
+            r[i].first += r[i+1].first;
+            r[i].second = (r[i].second+r[i+1].second)/2.;
+        }
+        r.erase(r.begin()+r.size()-1);
+    }
 
     static void gauss_smooth(std::vector<std::pair<KString,double> >& r)
     {

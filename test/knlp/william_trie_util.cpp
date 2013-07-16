@@ -19,6 +19,7 @@ time_t t1,t2;
 t2 = clock();
     string file_name = "brand.term";
     WilliamTrie token(file_name);
+return 0;    
     vector<pair<KString, double> > term;
 /*
     KString kstr("我是以为");

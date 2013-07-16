@@ -20,19 +20,19 @@ namespace ilplib
     {
         class DATrie
         {
+#define NOT_FOUND 0xFFFFFFFFFFFFFFFF
 //        pravite:
             size_t max_length_;
             size_t tot_length_;
             double MINVALUE_; 
             typedef struct {KString kstr; double value; size_t len;} word_type;
-            std::vector<word_type> dict_;
             std::vector<int> base_;
             std::vector<int> check_;
-            std::vector<int> cnt_;
             std::vector<double> value_;
             uint16_t ch1_[123456];
 
         public:
+            std::vector<word_type> dict_;
             static bool word_cmp(const word_type& x, const word_type& y)
             {
                 return x.kstr < y.kstr;
@@ -46,6 +46,8 @@ namespace ilplib
             }
             DATrie(string file_name)
             {
+time_t time1, time2;
+time1 = clock();
                 MINVALUE_ = 0.123;
                 dict_.reserve(1234567);
                 memset(ch1_, 0, sizeof(ch1_));
@@ -75,6 +77,7 @@ namespace ilplib
 				}
 
                 sort(dict_.begin(), dict_.end(), word_cmp);
+                //去重
 /*
                 freopen("testdict", "w", stdout);
                 for (size_t i = 0; i < dict.size(); ++i)
@@ -84,7 +87,11 @@ namespace ilplib
 
 
                 build(dict_);
+time2 = clock();
+printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
             }
+
+            ~DATrie(){}
 
             void build(std::vector<word_type> word)
             {
@@ -93,8 +100,12 @@ namespace ilplib
                 int tryBase, tryBaseCount, tryBaseMax = 50;
                 int start;
                 size_t word_size = word.size();
-                size_t max_num = word_size * 7;
+                size_t max_num;
+                if (max_length_>30)
+                    max_num = word_size * 20;
+                else max_num = word_size * 10;
                 int ad[word_size], next[word_size], pre[word_size];
+                std::vector<int> cnt_;
 
                 memset(ad, 0, sizeof(ad));
                 memset(next, 0, sizeof(next));
@@ -208,9 +219,61 @@ namespace ilplib
                     if (base_[tmpad] > 0)
                     {
                         base_[tmpad] = 0 - base_[tmpad];
-                        value_[tmpad] = dict_[tmpad].value;
+                        value_[tmpad] = i;
                     }
                 }
+            }
+
+            size_t find_word(const KString st)
+            {
+                int ad, nextad;
+                size_t len = st.length();
+                ad = st[0];
+                for (size_t i = 1; i < len; ++i)
+                {
+                    nextad = abs(base_[ad]) + st[i];
+                    if (base_[nextad] == 0 || check_[nextad] != ad)
+                        return NOT_FOUND;
+                    ad = nextad;
+                }
+                if (base_[ad] < 0)
+                    return value_[ad];
+                return NOT_FOUND;
+            }
+
+            bool check_term(const KString st)
+            {
+                int ad, nextad;
+                size_t len = st.length();
+                ad = st[0];
+                for (size_t i = 1; i < len; ++i)
+                {
+                    nextad = abs(base_[ad]) + st[i];
+                    if (base_[nextad] == 0 || check_[nextad] != ad)
+                        return 0;
+                    ad = nextad;
+                }
+                if (base_[ad] < 0)
+                    return 1;
+                return 0;
+            }
+
+            double score(KString st)
+            {
+                size_t ind = find_word(st);
+                if (ind != NOT_FOUND)
+                    return dict_[ind].value;
+                return MINVALUE_;
+            }
+
+            size_t size() const
+            {
+                return dict_.size();
+            }
+
+            double min() const
+            {
+                return MINVALUE_;
             }
 
             vector<pair<KString, double> > token(const KString st)
@@ -218,6 +281,7 @@ namespace ilplib
                 size_t i = 0;
                 size_t len = st.length();
                 std::vector<std::pair<KString, double> > term;
+                return term;
                 size_t term_size = 0;
                 term.resize(len);
                 if (!len)
@@ -253,7 +317,7 @@ namespace ilplib
                     else
                     {
                         term[term_size].first = st.substr(i, maxlen);
-                        term[term_size++].second = value;
+                        term[term_size++].second = dict_[i].value;
                         i += maxlen;
                     }
                 }

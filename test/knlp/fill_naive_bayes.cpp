@@ -47,6 +47,7 @@ int main(int argc,char * argv[])
     for ( int32_t i=3; i<argc; ++i)
       cps.push_back(argv[i]);
     DocNaiveBayes::train(dictnm, output, cps);
+    return 0;
     {
         ilplib::knlp::Tokenize tkn(dictnm);
         DocNaiveBayes nb(&tkn, output);

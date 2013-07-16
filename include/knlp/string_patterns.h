@@ -43,7 +43,7 @@ class StringPatterns
 				num = true;
 			  else if (KString::is_chinese(kstr[i]))
 				chn = true;
-			  else
+			  else if (kstr[i]!=' ')
 				oth = true;
 			if (eng && (!num) && (!chn) && (!oth))
 			  return 1;//all english char

@@ -29,10 +29,12 @@ namespace ilplib
 		public:
 			WilliamTrie(string file_name)
 			{
+                std::vector<std::pair<KString, double> > tmpdict;
 				for(size_t i = 0; i < 100000; ++i){ch1_[i]=0;}
+//freopen("testdict","w",stdout);				
 				tot_bi_ = 0;
 				tot_len_ = 0;
-				dict_.reserve(200000);
+				tmpdict.reserve(200000);
 //				freopen(file_name.c_str(),"r",stdin);
 				char* st = NULL;
 				double value;
@@ -41,22 +43,27 @@ namespace ilplib
                 izenelib::am::util::LineReader lr(file_name);
 				while((st = lr.line(st))!=NULL)
 				{
-				    s0 = string(st);
+                    s0 = string(st);
 				    p = s0.find("\t",0);
 				    KString kstr(s0.substr(0,p));
 					ilplib::knlp::Normalize::normalize(kstr);
 				    value = atof(s0.substr(p+1, s0.length()-p-1).c_str());
-				    dict_.push_back(std::make_pair(kstr, value));
+				    tmpdict.push_back(std::make_pair(kstr, value));
 					ch1_[kstr[0]] = 1;
 					if (kstr == "[min]")
 					    MINVALUE_ = value;
 				}
-				sort(dict_.begin(), dict_.end(), WilliamTrie::cmp);
-/*				
-freopen("testdict","w",stdout);				
-for(size_t i = 0; i < dict_.size(); ++i)
-    cout<<dict_[i].first<<'\t'<<dict_[i].second<<endl;
-    */
+				sort(tmpdict.begin(), tmpdict.end(), WilliamTrie::cmp);
+
+                dict_.reserve(tmpdict.size());
+                for(size_t i = 0; i < tmpdict.size() - 1; ++i)
+                    if (!(tmpdict[i].first == tmpdict[i+1].first))
+                        dict_.push_back(tmpdict[i]);
+                dict_.push_back(tmpdict[tmpdict.size() - 1]);
+				
+//for(size_t i = 0; i < dict_.size(); ++i)
+//    cout<<dict_[i].first<<'\t'<<dict_[i].second<<endl;
+    
 			}
 
 			~WilliamTrie(){}

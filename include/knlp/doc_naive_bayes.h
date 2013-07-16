@@ -546,11 +546,11 @@ namespace ilplib
 				for ( uint32_t i=0; i<v.size(); i++)
 				{
 					int32_t ty = StringPatterns::string_type(v[i].first);
-					if (ty == 2)
+					if (ty == 2 && v[i].first.length() > 1)
 					  ;//v[i].first = KString("[[NUMBERS]]");
-					else if(ty == 3)
+					else if(ty == 3 && v[i].first.length() > 1)
 					  ;//v[i].first == KString("[[NUGLISH]]");
-					else if (ty == 4)
+					else if (ty == 4 || (v[i].first.length()<=1 && (ty == 2||ty == 3)))
 					{
 						v.erase(v.begin()+i);
 						--i;
@@ -591,13 +591,15 @@ namespace ilplib
                         continue;
                     }
                     KString ca(*c);
+                    KString ti(*t);
+                    makeitclean(ti);
                     std::vector<std::pair<KString,double> >  v;
-                    tkn->fmm(KString(*t), v);
+                    tkn->fmm(ti, v);
                     std::set<std::pair<KString,double> > s = normalize_tokens(v);
                     for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                     {
                         assert(it->second > 0);
-                        KString k = it->first;k += ' ';k+=ca;
+                        KString k = it->first;k += '|';k+=ca;
                         out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
                     }
 
@@ -653,7 +655,7 @@ namespace ilplib
 					if (p.first == NULL)
 					  break;
 
-                    std::vector<KString> ct = p.first->split(' ');
+                    std::vector<KString> ct = p.first->split('|');
 					double  s = p.second;
 					printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
 					delete p.first;

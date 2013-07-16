@@ -26,8 +26,13 @@ cout<<token.check_term(kstr)<<' '<<token.score(kstr)<<endl;;
 */
 t1 = clock();
 cout<<"get dict time ="<<(double)(t1-t2)/1000000<<endl;
-
-//freopen("testda", "w", stdout);
+/*
+freopen("testda", "w", stdout);
+KString kstr = KString("架子鼓");
+cout<<dict.find_word(kstr)<<endl;
+kstr = KString("架鼓");
+cout<<dict.find_word(kstr)<<endl;
+*/
 LineReader lr("/opt/kevin-sf1r-bin/new_cate.test");    
 size_t tot = 0;
 char* line = NULL;

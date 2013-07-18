@@ -32,7 +32,8 @@
 #include "util/string/kstring.hpp"
 #include "trd2simp.h"
 #include "am/util/line_reader.h"
-#include "william_trie.h"
+#include "datrie.h"
+//#include "knlp/william_trie.h"
 
 namespace ilplib
 {
@@ -41,7 +42,8 @@ namespace knlp
 
 class Fmm
 {
-    WilliamTrie trie_;
+    DATrie trie_;
+    //WilliamTrie trie_;
     std::vector<uint8_t> delimiter_;
 
     std::vector<KString> chunk_(const KString& line, bool deli=true)
@@ -160,6 +162,17 @@ public:
             --i;
         }
 	}
+
+	static void bigram_with_space(std::vector<std::pair<KString,double> >& r)
+    {
+        for (uint32_t i=0;i<r.size()-1;++i)
+        {
+            r[i].first += ' ';
+            r[i].first += r[i+1].first;
+            r[i].second = (r[i].second+r[i+1].second)/2.;
+        }
+        r.erase(r.begin()+r.size()-1);
+    }
 
 	static void bigram(std::vector<std::pair<KString,double> >& r)
     {

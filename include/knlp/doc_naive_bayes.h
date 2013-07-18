@@ -138,21 +138,72 @@ namespace ilplib
 
             static std::map<KString, double>
 			  classify_multi_level(
+			    VectorDictionary* t2cs,
+			    const KString tk, std::stringstream& sss, bool dolog=false)
+              {
+                  if (dolog) sss <<"preclassify: "<< tk<<std::endl;
+                  vector<char*>** cats = t2cs->value(tk, false);
+                  if(!cats || (*cats)->size()%3 != 0)
+                      return std::map<KString, double>();
+
+                  vector<char*>* cts = *cats;
+                  std::vector<KString> ct_nm;ct_nm.reserve(cts->size());
+                  std::vector<double> ct_p;ct_p.reserve(cts->size());
+                  std::vector<uint8_t> ct_lev;ct_lev.reserve(cts->size());
+                  for (uint32_t i=0;i<cts->size();i+=3)if(strlen(cts->at(i))>0)
+                  {
+                      ct_p.push_back(atof(cts->at(i+2)));
+                      ct_lev.push_back(cts->at(i+1)[0]-'0'-1);
+                      ct_nm.push_back(KString(cts->at(i)));
+                  }
+
+                  KString lastc("R"), lastcc;
+                  for (uint32_t t=0;t<3;++t)
+                  {
+                      double maxv = (double)std::numeric_limits<int>::min();
+                      uint32_t maxi = -1;
+                      for (uint32_t i=0;i<ct_nm.size();i++)
+                          if (t == ct_lev[i] && maxv < ct_p[i] && ct_nm[i].find(lastc) == 0)
+                              maxv = ct_p[i], maxi = i;
+                      if(maxi < ct_nm.size())lastcc=lastc, lastc = ct_nm[maxi];
+                  }
+                  
+                  if (lastcc == KString("R"))
+                      lastcc = lastc.substr(0, lastc.length()-1);
+                  std::map<KString, double> r;
+                  for (uint32_t j=0;j<ct_nm.size();++j)
+                      if (ct_nm[j].find(lastcc) == 0 && ct_nm[j].length() > lastcc.length())
+                          r[ct_nm[j]] = (300.+ct_p[j])/300.;
+                  
+                  return r;
+              }
+
+            static std::map<KString, double>
+			  classify_multi_level(
 			    DigitalDictionary* cat,
 			    VectorDictionary* t2cs,
+			    VectorDictionary* pct,
 			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false)
               {
+                  //Fmm::gauss_smooth(v);
                   {
                       std::vector<std::pair<double,KString> > vv;
                       for (uint32_t j=0;j<v.size();++j)
                           vv.push_back(make_pair(v[j].second, v[j].first));
                       std::sort(vv.begin(),vv.end(), std::greater<std::pair<double,KString> >());
+                      KString top3;
                       for (uint32_t j=0;j<v.size();++j)
+                      {
                           v[j].first = vv[j].second, v[j].second = vv[j].first;
+                          if (j < 3)
+                              top3 += vv[j].second;
+                      }
+                      std::map<KString, double> r = classify_multi_level(pct, top3, sss, dolog);
+                      if (r.size())return r;
                   }
                   std::vector<KString> tks;
                   std::vector<double> sc;
-                  uint32_t SCALE=5;
+                  uint32_t SCALE=7;
                   double sum = 0;
                   for (uint32_t j=0;j<v.size()&&j<SCALE;++j)
                       sum += v[j].second;
@@ -495,14 +546,14 @@ namespace ilplib
               }
 
 			static void train(const std::string& dictnm, const std::string& output,
-						const std::vector<std::string>& corpus, uint32_t cpu_num=11)
+						const std::vector<std::string>& corpus, bool bigterm=true, uint32_t cpu_num=11)
 			{
 				ilplib::knlp::Fmm tkn(dictnm);
 				EventQueue<std::pair<string*, string*> > in;
 				EventQueue<std::pair<KString*, double> > out;
 				std::vector<boost::thread*> token_ths;
 				for ( uint32_t i=0; i<cpu_num; ++i)
-				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn));
+				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn, bigterm));
 
 				uint32_t N = 0;
 				KStringHashTable<KString, double> cates(2000, 1000);
@@ -550,7 +601,8 @@ namespace ilplib
 					  ;//v[i].first = KString("[[NUMBERS]]");
 					else if(ty == 3 && v[i].first.length() > 1)
 					  ;//v[i].first == KString("[[NUGLISH]]");
-					else if (ty == 4 || (v[i].first.length()<=1 && (ty == 2||ty == 3)))
+					else if (v[i].first.length()==0
+					  ||ty == 4 || (v[i].first.length()<=1 && (ty == 2||ty == 3)))
 					{
 						v.erase(v.begin()+i);
 						--i;
@@ -571,7 +623,7 @@ namespace ilplib
 
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
 						EventQueue<std::pair<KString*,double> >* out, 
-						ilplib::knlp::Fmm* tkn)
+						ilplib::knlp::Fmm* tkn, bool bigterm=true)
 			{
 				while(true)
 				{	
@@ -587,6 +639,7 @@ namespace ilplib
                         ilplib::knlp::Normalize::normalize(*c);
                     }catch(...)
                     {
+                        //cout<<"[Exception]: "<<*t<<std::endl;
                         delete t, delete c;
                         continue;
                     }
@@ -596,6 +649,29 @@ namespace ilplib
                     std::vector<std::pair<KString,double> >  v;
                     tkn->fmm(ti, v);
                     std::set<std::pair<KString,double> > s = normalize_tokens(v);
+
+                    if (bigterm)
+                    {
+                        std::vector<std::pair<double,KString> > v;v.reserve(s.size());
+                        for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
+                        {
+                            assert(it->second > 0);
+                            v.push_back(make_pair(it->second,it->first));
+                        }
+                        std::sort(v.begin(), v.end(), std::greater<std::pair<double,KString> >());
+                        uint32_t t = 3;
+                        while(t>0)
+                        {
+                            KString* k = new KString("=<>=");
+                            for (uint32_t i=0;i<v.size() && i<t;++i)
+                                (*k) += v[i].second;
+                            (*k) += '|';
+                            (*k) += ca;
+                            out->push(make_pair(k, 1), e);
+                            --t;
+                        }
+                    }
+
                     for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                     {
                         assert(it->second > 0);
@@ -657,7 +733,8 @@ namespace ilplib
 
                     std::vector<KString> ct = p.first->split('|');
 					double  s = p.second;
-					printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
+					if(ct.size() == 2 && ct[0].length() > 0 && ct[1].length() > 0 )
+					    printf("%s\t%s\t%.5f\n", ct[0].get_bytes("utf-8").c_str(),  ct[1].get_bytes("utf-8").c_str(), s);
 					delete p.first;
 					continue;
 
@@ -693,7 +770,7 @@ gawk -F"\t" '
         if (index($2,"数码>数码配件>手机配件")!=0)
         {
             N++;
-            if (N % 4 == 0)print;
+            if (N % 2 == 0)print;
         }
     }
 }' taobao_json.out.1.bkk |sed -e 's/【[^【】]\+】//g' -e 's/[送赠][^ ]\+ / /g' -e 's/[送赠][^ ]\+$//g'> taobao_json.out.1.bk
@@ -797,6 +874,45 @@ END{
         print t"\t"tc[t]
 }
 ' $CORPUS > $CORPUS.term.cats;
+
+gawk -F"\t" '
+function level(ca)
+{
+    g = gsub(">", ">", ca);
+    return g;
+}
+{
+    split($2, ca, ">");
+    L = length(ca)
+    R = "R";
+    N[$1"\t"R]+=$3;
+    for (i=1;i<=L;i++)
+    {
+        R=R">"ca[i];
+        N[$1"\t"R] += $3;
+    }
+}
+END{
+    for (k in N)
+    {
+        split(k, ar, "\t");
+        split(ar[2], ca, ">");
+        L = length(ca);
+        if (L < 1)
+            continue;
+        R = "R";
+        for(i=2;i<L;i++)
+            R = R">"ca[i];
+
+        if (ar[1] in tc)tc[ar[1]]=tc[ar[1]]"\t"
+        tc[ar[1]]=tc[ar[1]]""ar[2]"\t"level(ar[2])"\t"log((N[k]+1)/(N[ar[1]"\t"R+300]));
+        #print k"\t"N[k]
+    }
+    for (t in tc)
+        print t"\t"tc[t]
+}
+' $CORPUS > $CORPUS.bigterm.cats;
+
 sort  $CORPUS.term.cat| \
 gawk -F'[\t ]' '
 function level(ca)

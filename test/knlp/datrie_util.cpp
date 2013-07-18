@@ -20,10 +20,10 @@ t2 = clock();
     string file_name = "brand.term";
     DATrie dict(file_name);
     vector<pair<KString, double> > term;
-/*
-    KString kstr("我是以为");
-cout<<token.check_term(kstr)<<' '<<token.score(kstr)<<endl;;
-*/
+
+    KString kstr("爱步");
+cout<<dict.check_term(kstr)<<' '<<dict.find_word(kstr)<<endl;
+
 t1 = clock();
 cout<<"get dict time ="<<(double)(t1-t2)/1000000<<endl;
 /*

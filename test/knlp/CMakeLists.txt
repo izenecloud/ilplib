@@ -125,6 +125,14 @@ ADD_EXECUTABLE(t_knlp_tokenize
 
 TARGET_LINK_LIBRARIES(t_knlp_tokenize ${libs})
 
+
+ADD_EXECUTABLE(t_datrie
+  t_datrie.cpp
+  Runner.cpp
+)
+
+TARGET_LINK_LIBRARIES(t_datrie ${libs})
+
 ADD_EXECUTABLE(tao_cate_test 
 			tao_cate_test.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
@@ -172,4 +180,11 @@ ADD_EXECUTABLE(datrie_util
 TARGET_LINK_LIBRARIES(datrie_util
    ${Boost_SYSTEM_LIBRARY}
 )
+
+#ADD_EXECUTABLE(t_load_resource
+#  t_load_resource.cpp
+#  Runner.cpp
+#)
+
+#TARGET_LINK_LIBRARIES(t_load_resource ${libs})
 

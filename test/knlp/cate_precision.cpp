@@ -28,6 +28,7 @@
 #include "knlp/doc_naive_bayes.h"
 #include "am/hashtable/khash_table.hpp"
 #include "am/util/line_reader.h"
+#include "knlp/cate_classify.h"
 
 using namespace std;
 using namespace ilplib::knlp;
@@ -35,6 +36,8 @@ using namespace ilplib::knlp;
 Fmm* tkn;
 DigitalDictionary* cat;
 VectorDictionary* vt2cs;
+VectorDictionary* pct;//p(c|T)
+CateClassify* cc;
 
 KString classify(std::string str, std::stringstream& ss)
 {
@@ -44,7 +47,8 @@ KString classify(std::string str, std::stringstream& ss)
     std::vector<std::pair<KString,double> > v;
     tkn->fmm(kstr, v);
 
-    std::map<KString, double> m = DocNaiveBayes::classify_multi_level(cat,vt2cs,v, ss, true);
+    //std::map<KString, double> m = cc->classify_multi_level(v, ss, true);
+    std::map<KString, double> m = DocNaiveBayes::classify_multi_level(cat,vt2cs,pct,v, ss, true);
     if (m.size() == 0)return KString();
     //std::map<KString, double> m = DocNaiveBayes::classify(cat,term, t2c,t2cs,v, ss);
     vector<pair<double,KString> > dv;
@@ -57,19 +61,21 @@ KString classify(std::string str, std::stringstream& ss)
 
 int main(int argc,char * argv[])
 {
-    if (argc < 4)
+    if (argc < 5)
     {
-        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term2cates dict] [corpus 1] ....\n";
+        std::cout<<argv[0]<<" [tokenize dict] [category dict] [term2cates dict] [pct dict] [corpus 1] ....\n";
         return 0;
     }
 
     tkn = new Fmm(argv[1]);
     cat = new DigitalDictionary(argv[2]);
     vt2cs = new VectorDictionary(argv[3]);
+    pct = new VectorDictionary(argv[4]);
+    //cc = new CateClassify(argv[3], argv[2]);
 
     string corpus;
-    if (argc > 4)
-        corpus = argv[4];
+    if (argc > 5)
+        corpus = argv[5];
     if(corpus.length()>0 && freopen (corpus.c_str(), "r", stdin) == NULL);
 
     std::stringstream sss;
@@ -80,11 +86,13 @@ int main(int argc,char * argv[])
         C++;
         uint32_t t = line.find('\t');
         std::stringstream ss;
+        try{
         KString c = classify(line.substr(0, t), ss);
         if (c == KString(line.substr(t+1)))
             R++;
         else
-            sss<<ss.str();
+            sss<<line.substr(0, t)<<"==>>"<<c<<"\n"<<ss.str();
+        }catch(...){}
     }
 
     cout<<"precision: "<< 1.*R/C<<endl<<sss.str()<<"\n";

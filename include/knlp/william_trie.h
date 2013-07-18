@@ -1,5 +1,5 @@
-#ifndef _ILPLIB_NLP_DA_TRIE_H_
-#define _ILPLIB_NLP_DA_TRIE_H_
+#ifndef _ILPLIB_NLP_WILLIAM_TRIE_H_
+#define _ILPLIB_NLP_WILLIAM_TRIE_H_
 
 #include <string.h>
 #include <string>
@@ -45,11 +45,12 @@ namespace ilplib
 				{
                     s0 = string(st);
 				    p = s0.find("\t",0);
+				    if (p < 0 || p >= (int)s0.length()) continue;
 				    KString kstr(s0.substr(0,p));
 					ilplib::knlp::Normalize::normalize(kstr);
 				    value = atof(s0.substr(p+1, s0.length()-p-1).c_str());
 				    tmpdict.push_back(std::make_pair(kstr, value));
-					ch1_[kstr[0]] = 1;
+					if (kstr.length() > 0) ch1_[kstr[0]] = 1;
 					if (kstr == "[min]")
 					    MINVALUE_ = value;
 				}

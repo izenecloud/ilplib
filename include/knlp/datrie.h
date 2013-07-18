@@ -11,7 +11,6 @@
 
 using namespace izenelib;
 using namespace izenelib::util;
-using namespace ilplib::knlp;
 using namespace std;
 
 namespace ilplib
@@ -24,100 +23,141 @@ namespace ilplib
 //        pravite:
             size_t max_length_;
             size_t tot_length_;
+            size_t max_num;
             double MINVALUE_; 
             typedef struct {KString kstr; double value; size_t len;} word_type;
             std::vector<int> base_;
             std::vector<int> check_;
             std::vector<double> value_;
-            uint16_t ch1_[123456];
+            std::vector<int> cnt_;
 
         public:
             std::vector<word_type> dict_;
+            bool ch1_[123456];
             static bool word_cmp(const word_type& x, const word_type& y)
             {
                 return x.kstr < y.kstr;
-                /*
-                size_t min_len = std::min(x.len, y.len);
-                for (size_t i = 0; i < min_len; ++i)
-                    if (x.kstr[i] != y.kstr[i])
-                        return x.kstr[i] < y.kstr[i];
-                return x.len < y.len;
-                */
             }
-            DATrie(string file_name)
+
+            DATrie() {}
+            DATrie(const std::string& file_name, const size_t mode = 0)
             {
 time_t time1, time2;
 time1 = clock();
-                MINVALUE_ = 0.123;
-                dict_.reserve(1234567);
-                memset(ch1_, 0, sizeof(ch1_));
-//                char st[65536];
-                double value;
+                base_.clear();
+                check_.clear();
+                cnt_.clear();
+                value_.clear();
+                dict_.clear();
                 max_length_ = 0;
                 tot_length_ = 0;
+                MINVALUE_ = 0;
+                memset(ch1_, 0, sizeof(ch1_));
+                MINVALUE_ = 0.123;
+                std::vector<word_type> tmpdict;
+                tmpdict.clear();
+                tmpdict.reserve(1234567);
+                double value;
 
+//cout<<"mode = "<<mode<<endl;
                 char* st = NULL;
                 izenelib::am::util::LineReader lr(file_name);
 				while((st = lr.line(st)) != NULL)
 				{
+				  if (mode == 1)
+                  {
+				    if (strlen(st) == 0) continue;
 				    word_type tmpword;
 				    string s0 = string(st);
+				    s0 += '\t';
+//                    Normalize::normalize(s0);
 				    int p = s0.find("\t",0);
+				    if (p <= 0 || p >= (int)s0.length()) continue;
 				    KString kstr(s0.substr(0,p));
-					ilplib::knlp::Normalize::normalize(kstr);
+                    Normalize::normalize(kstr);
+					tmpword.kstr = kstr;
+					tmpword.len = kstr.length();
+					tmpdict.push_back(tmpword);
+					if (kstr.length() > 0)
+					    ch1_[kstr[0]] = 1; 
+					tot_length_ += tmpword.len;
+					max_length_ = std::max(max_length_, tmpword.len);
+                  }
+                  else if (mode == 0)
+                  {
+				    if (strlen(st) == 0) continue;
+				    word_type tmpword;
+				    string s0 = string(st);
+				    s0 += '\t';
+//                    Normalize::normalize(s0);
+				    int p = s0.find("\t",0);
+				    if (p <= 0 || p >= (int)s0.length()) continue;
+				    KString kstr(s0.substr(0,p));
+                    Normalize::normalize(kstr);
 				    value = atof(s0.substr(p+1, s0.length()-p-1).c_str());
 				    tmpword.kstr = kstr;
 				    tmpword.value = value;
-				    tmpword.len = tmpword.kstr.length();
-				    dict_.push_back(tmpword);
+				    tmpword.len = kstr.length();
+				    tmpdict.push_back(tmpword);
+					if (kstr.length() > 0) 
 					ch1_[kstr[0]] = 1;
-//					if (kstr == "[min]") MINVALUE_ = value;
+					if (kstr == "[min]") MINVALUE_ = value;
 					tot_length_ += tmpword.len;
 					max_length_ = std::max(max_length_, tmpword.len);
+                  }
 				}
+                
+                if (tmpdict.empty()) return;
+                sort(tmpdict.begin(), tmpdict.end(), word_cmp);
+//cout<<"sort ok "<<tmpdict.size()<<endl;                
 
-                sort(dict_.begin(), dict_.end(), word_cmp);
-                //去重
-/*
-                freopen("testdict", "w", stdout);
-                for (size_t i = 0; i < dict.size(); ++i)
-                    cout<<dict[i].kstr<<'\t'<<dict[i].len<<'\t'<<dict[i].value<<endl;
-*/                    
-                printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
+                dict_.reserve(tmpdict.size());
+                for(size_t i = 0; i < tmpdict.size() - 1; ++i)
+                    if (!(tmpdict[i].kstr == tmpdict[i+1].kstr))
+                        dict_.push_back(tmpdict[i]);
+                dict_.push_back(tmpdict[tmpdict.size() - 1]);
+/*                
+for(size_t i = 0 ; i < tmpdict.size(); ++i)
+    cout<<i<<' '<<tmpdict[i].kstr<<endl;
+for(size_t i = 0; i < dict_.size(); ++i)
+    cout<<i<<' '<<dict_[i].kstr<<' '<<dict_[i].value<<endl;
+  */              
 
+//                freopen("testdict", "w", stdout);
+//                for (size_t i = 0; i < dict_.size(); ++i)
+//                   cout<<dict_[i].kstr<<'\t'<<dict_[i].len<<'\t'<<dict_[i].value<<endl;
+                    
+//printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
 
-                build(dict_);
+                if (max_length_ > 30) max_num = dict_.size() * 8;
+                else max_num = dict_.size() * 8;
+                max_num = std::max((size_t)1000000, max_num);
 time2 = clock();
-printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
+//printf("before build dict time = %lf\n", (double)(time2 - time1) / 1000000);
+                build(dict_);
+time1 = clock();
+//printf("build %zu dict time = %lf\n", dict_.size(), (double)(time1 - time2) / 1000000);
             }
 
             ~DATrie(){}
 
-            void build(std::vector<word_type> word)
+            void build(std::vector<word_type>& word)
             {
+                if (word.empty()) return;
                 int lastad, tmpad, temp;
                 int dataNum;
                 int tryBase, tryBaseCount, tryBaseMax = 50;
                 int start;
                 size_t word_size = word.size();
-                size_t max_num;
-                if (max_length_>30)
-                    max_num = word_size * 20;
-                else max_num = word_size * 10;
                 int ad[word_size], next[word_size], pre[word_size];
-                std::vector<int> cnt_;
 
                 memset(ad, 0, sizeof(ad));
                 memset(next, 0, sizeof(next));
                 memset(pre, 0, sizeof(pre));
 
-                base_.clear();
                 base_.resize(max_num);
-                check_.clear();
                 check_.resize(max_num);
-                cnt_.clear();
                 cnt_.resize(max_num);
-                value_.clear();
                 value_.resize(max_num);
 
 
@@ -220,16 +260,22 @@ printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                     {
                         base_[tmpad] = 0 - base_[tmpad];
                         value_[tmpad] = i;
+//cout<<dict_[i].kstr<<' '<<i<<endl;                        
                     }
                 }
             }
 
-            size_t find_word(const KString st)
+            size_t find_word(const KString& st, const bool normalize = 0)
             {
-                int ad, nextad;
+//                KString st(kst);
+//                if (normalize)
+//                    Normalize::normalize(st);
+                int ad = 0, nextad = 0;
                 size_t len = st.length();
-                ad = st[0];
-                for (size_t i = 1; i < len; ++i)
+                if (len == 0) return NOT_FOUND;
+//                ad = st[0];
+//                if (len == 1 && check_[ad] != 0) return NOT_FOUND;
+                for (size_t i = 0; i < len; ++i)
                 {
                     nextad = abs(base_[ad]) + st[i];
                     if (base_[nextad] == 0 || check_[nextad] != ad)
@@ -241,12 +287,17 @@ printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                 return NOT_FOUND;
             }
 
-            bool check_term(const KString st)
+            bool check_term(const KString& st, const bool normalize = 0)
             {
-                int ad, nextad;
+//                KString st(kst);
+//                if (normalize)
+//                    Normalize::normalize(st);
+                int ad = 0, nextad;
                 size_t len = st.length();
-                ad = st[0];
-                for (size_t i = 1; i < len; ++i)
+                if (len == 0) return 0;
+//                ad = st[0];
+//                if (len == 1 && check_[ad] != 0) return NOT_FOUND;
+                for (size_t i = 0; i < len; ++i)
                 {
                     nextad = abs(base_[ad]) + st[i];
                     if (base_[nextad] == 0 || check_[nextad] != ad)
@@ -258,9 +309,9 @@ printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                 return 0;
             }
 
-            double score(KString st)
+            double score(const KString& st, const bool normalize = 0)
             {
-                size_t ind = find_word(st);
+                size_t ind = find_word(st, normalize);
                 if (ind != NOT_FOUND)
                     return dict_[ind].value;
                 return MINVALUE_;
@@ -276,23 +327,25 @@ printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                 return MINVALUE_;
             }
 
-            vector<pair<KString, double> > token(const KString st)
+            std::vector<pair<KString, double> > token(const KString& st)
             {
                 size_t i = 0;
                 size_t len = st.length();
                 std::vector<std::pair<KString, double> > term;
-                return term;
+                if (len == 0)
+                    return term;
                 size_t term_size = 0;
                 term.resize(len);
-                if (!len)
-                    return term;
                 while(i < len)
                 {
-                    int maxlen = -1, ad, nextad, flag = 0;
+                    int maxlen = -1, ad = 0, nextad, flag = 0;
                     double value = MINVALUE_;
-                    ad = st[i];
-                    if (base_[ad] < 0) maxlen = 1;
-                    for (size_t j = 1; j < len - i; ++j)
+//                    ad = st[i];
+//                    if ((check_[ad] == 0)){
+//                        maxlen = 1;
+//                        value = value_[ad];
+//                    }
+                    for (size_t j = 0; j < len - i; ++j)
                     {
                         nextad = abs(base_[ad]) + st[i+j];                
                         if (base_[nextad] == 0 || check_[nextad] != ad)
@@ -317,7 +370,7 @@ printf("build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                     else
                     {
                         term[term_size].first = st.substr(i, maxlen);
-                        term[term_size++].second = dict_[i].value;
+                        term[term_size++].second = dict_[value].value;
                         i += maxlen;
                     }
                 }

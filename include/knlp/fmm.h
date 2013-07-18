@@ -151,7 +151,8 @@ public:
 			if (smart && (is_alphanum_(chunks[i]) || (chunks[i].length() < 3 && KString::is_chinese(chunks[i][0]))
 			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
 			{
-                //std::cout<<"::"<<chunks[i]<<"::\n";
+			    chunks[i].trim_head_tail();
+                //std::cout<<trie_.score(chunks[i])<<"::::"<<chunks[i]<<"::\n";
   				r.push_back(make_pair(chunks[i], trie_.score(chunks[i])));
 				continue;
 			}

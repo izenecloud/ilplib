@@ -148,7 +148,8 @@ public:
 		std::vector<KString> chunks = chunk_(line, (!bigterm));
 		for ( uint32_t i=0; i<chunks.size(); ++i)if(chunks[i].length()>0)
 		{
-			if (smart && (is_alphanum_(chunks[i]) || (chunks[i].length() < 3 && KString::is_chinese(chunks[i][0]))
+			if (smart && ((is_alphanum_(chunks[i]) && chunks[i].length() < 18)
+			      || (chunks[i].length() < 3 && KString::is_chinese(chunks[i][0]))
 			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
 			{
 			    chunks[i].trim_head_tail();

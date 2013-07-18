@@ -181,10 +181,10 @@ TARGET_LINK_LIBRARIES(datrie_util
    ${Boost_SYSTEM_LIBRARY}
 )
 
-#ADD_EXECUTABLE(t_load_resource
-#  t_load_resource.cpp
-#  Runner.cpp
-#)
+ADD_EXECUTABLE(t_load_resource
+  t_load_resource.cpp
+  Runner.cpp
+)
 
-#TARGET_LINK_LIBRARIES(t_load_resource ${libs})
+TARGET_LINK_LIBRARIES(t_load_resource ${libs})
 

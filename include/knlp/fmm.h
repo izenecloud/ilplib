@@ -52,14 +52,14 @@ class Fmm
 
         int32_t la = 0;
         for ( int32_t i=0; i<(int32_t)line.length(); ++i)
-		  if (KString::is_english(line[i]) || is_digit_(line[i]))
+		  if (is_alphanum_(line[i]))
 		  {
 			  if (la < i)
 			  {
 				  r.push_back(line.substr(la, i-la));
 				  la = i;
 			  }
-			  while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i]) || (!deli && line[i] == ' ')))
+			  while(i<(int32_t)line.length() && (is_alphanum_(line[i]) || (!deli && line[i] == ' ')))
 				i++;
 			  while((int32_t)i>0 && i < (int32_t)line.length() && (!deli && line[i] == ' '))
 			      i--;
@@ -93,13 +93,20 @@ class Fmm
         return is_digit(c);
     }
 
+    bool is_alphanum_(int c)
+    {
+        if (KString::is_english(c) || is_digit_(c)
+            || c==' ' || c=='\'' || c=='-' || c=='.'
+            || c == '$' || c=='%')
+            return true;
+        return false;
+    }
+
 	bool is_alphanum_(const KString& str)
 	{
 		for ( uint32_t i=0; i<str.length(); ++i)
-		  if (!(KString::is_english(str[i]) || is_digit_(str[i]) 
-		        || str[i]==' ' || str[i]=='\'' || str[i]=='-' || str[i]=='.'
-		        || str[i] == '$' || str[i]=='%'))
-			return false;
+		    if(!is_alphanum_(str[i]))
+		        return false;
 		return true;
 	}
 
@@ -139,9 +146,9 @@ public:
 		if (line.length() == 0)return;
 
 		std::vector<KString> chunks = chunk_(line, (!bigterm));
-		for ( uint32_t i=0; i<chunks.size(); ++i)
+		for ( uint32_t i=0; i<chunks.size(); ++i)if(chunks[i].length()>0)
 		{
-			if (smart && (is_alphanum_(chunks[i]) || chunks[i].length() < 3
+			if (smart && (is_alphanum_(chunks[i]) || (chunks[i].length() < 3 && KString::is_chinese(chunks[i][0]))
 			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
 			{
                 //std::cout<<"::"<<chunks[i]<<"::\n";

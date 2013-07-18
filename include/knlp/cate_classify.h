@@ -48,11 +48,12 @@ namespace ilplib
 	{
 	    class CateClassifyCateDict
         {
-        public:
+        private:
             typedef struct {KString kstr; double score, con1, con2;} cate_table_type;
             vector<cate_table_type> cate_table_;
             typedef struct {vector<size_t> child; size_t parent;} cate_graph_type;
             vector<cate_graph_type> cate_graph_;
+            size_t size_;
         public:
             bool ischild(const size_t i, const size_t j)
             {
@@ -115,6 +116,7 @@ namespace ilplib
                         }
                     }
                 
+                size_ = cate_table_.size();
             }
 
             CateClassifyCateDict(const CateClassifyCateDict* c_dict)
@@ -128,6 +130,7 @@ namespace ilplib
 
             KString cate_trans(const size_t ind)
             {
+                if (ind > size_) return KString("");
                 return cate_table_[ind].kstr;
             }
 
@@ -149,17 +152,68 @@ namespace ilplib
                 else
                     return NOT_FOUND;
             }
+
+            size_t size()
+            {
+                return size_;
+            }
+
+            size_t get_con1(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return cate_table_[i].con1;
+            }
+
+            size_t get_con2(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return cate_table_[i].con2;
+            }
+
+            size_t child_size(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return cate_graph_[i].child.size();
+            }
+
+            size_t child(const size_t i, const size_t j)
+            {
+                if (i > size_) return NOT_FOUND;
+                if (j > cate_graph_[i].child.size()) return NOT_FOUND;
+                return cate_graph_[i].child[j];
+            }
+
+            size_t parent(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return cate_graph_[i].parent;
+            }
+
+            KString get_kstr(const size_t i)
+            {
+                if (i > size_) return KString("");
+                return cate_table_[i].kstr;
+            }
+
+            double get_score(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return cate_table_[i].score;
+            }
+
+
         };
 
 		class CateClassifyScoreDict
 		{
-            public:
+        private:
             typedef struct {size_t cate_ind; double score;} token_score_type;
             vector<vector<token_score_type> > token_score_;
+            size_t size_;
             uint16_t first[65537];
             DATrie* DA_dict_;
             CateClassifyCateDict* c_dict_;
-			public:
+		public:
 			CateClassifyScoreDict()
 			{
             }
@@ -176,7 +230,7 @@ namespace ilplib
                 int p, p1;
 size_t times = 0;
                 token_score_.clear();
-                token_score_.resize(DA_dict_->dict_.size());
+                token_score_.resize(DA_dict_->size());
                 LineReader lr(file1.c_str());
                 while((st = lr.line(st)) != NULL)//getline(cin,s0))
                 {                    
@@ -192,7 +246,7 @@ size_t times = 0;
                     KString kstr(s1);
                     Normalize::normalize(kstr);
                     token_ind = token_trans(kstr);
-                    if (token_ind >= DA_dict_->dict_.size() || token_ind == NOT_FOUND) 
+                    if (token_ind == NOT_FOUND) 
                     {
                         cout<<"read error! "<<token_ind<<' '<<kstr<<endl;
                         continue;
@@ -225,7 +279,7 @@ size_t times = 0;
                     
                 }
 //cout<<"get big table ok\n";               
-
+                size_ = token_score_.size();
 			}
 
 			~CateClassifyScoreDict() {}
@@ -267,6 +321,31 @@ size_t times = 0;
                 return DA_dict_->find_word(kstr);
             }
 
+            size_t size()
+            {
+                return size_;
+            }
+
+            size_t size(const size_t i)
+            {
+                if (i > size_) return NOT_FOUND;
+                return token_score_[i].size();
+            }
+
+            size_t get_ind(const size_t i, const size_t j)
+            {
+                if (i > size_) return NOT_FOUND;
+                if (j > token_score_[i].size()) return NOT_FOUND;
+                return token_score_[i][j].cate_ind;
+            }
+
+            double get_score(const size_t i, const size_t j)
+            {
+                if (i > size_) return NOT_FOUND;
+                if (j > token_score_[i].size()) return NOT_FOUND;
+                return token_score_[i][j].score;
+            }
+
 
         };
 
@@ -278,12 +357,15 @@ size_t times = 0;
             CateClassifyScoreDict* dict2_;
             CateClassifyCateDict* c_dict_;
             size_t tot_loop;
+            size_t tot_term;
             typedef struct {size_t ind; double score;} cate_score_type;
 
         public:
             CateClassify() {}
             CateClassify(const std::string& file1, const std::string& file2, const std::string& file3 = "")
             {
+                tot_loop = 0;
+                tot_term = 0;
                 c_dict_ = new CateClassifyCateDict(file2);
                 dict1_ = new CateClassifyScoreDict(file1, c_dict_);
                 if (file3 != "") dict2_ = new CateClassifyScoreDict(file3, c_dict_);
@@ -296,43 +378,43 @@ size_t times = 0;
                 return tot_loop;
             }
 
-            std::map<KString, double> classify_multi_level(
-			    const std::vector<std::pair<KString,double> >& v, stringstream& ss, bool dolog=false)
-              {
-                  std::map<KString, double> res_map;
-//return res_map;                  
+            size_t get_term()
+            {
+                return tot_term;
+            }
+
+            std::map<KString, double> classify_stage_1(
+              const KString& kstr, stringstream& ss, bool dolog = false)
+            {
+                std::map<KString, double> res_map;
                   std::pair<KString, double> res;                
-                  if (v.size()==0)return res_map;
-                  size_t v_size = v.size();
+                  if (kstr == "" || dict2_ == NULL)
+                      return res_map;
                   size_t token_ind = 0;
-                  size_t cate_size = c_dict_->cate_table_.size();
+                  size_t cate_size = c_dict_->size();
                   std::vector<double> cate_score;
                   cate_score.resize(cate_size);
                   std::vector<size_t> hit;
                   hit.resize(cate_size);
 
-                  for (size_t i = 0; i < v_size; ++i)
-                  {
-                      const KString &kstr = v[i].first;
 //                      if (kstr.length() == 0) continue;
-//                      if (!DA_dict_.ch1_[kstr[0]]) continue;
-                      token_ind = dict1_->token_trans(kstr);
-                      if (token_ind == NOT_FOUND) continue;
-                      size_t token_size = dict1_->token_score_[token_ind].size();
-                      
-                      for (size_t j = 0; j < token_size; ++j)
-                      {
+                  token_ind = dict2_->token_trans(kstr);
+                  if (token_ind == NOT_FOUND)
+                      return res_map;
+                  size_t token_size = dict2_->size(token_ind);
+++tot_term;                    
+                  for (size_t j = 0; j < token_size; ++j)
+                  {
 ++tot_loop;
-                          cate_score[dict1_->token_score_[token_ind][j].cate_ind] += dict1_->token_score_[token_ind][j].score;
-                          ++hit[dict1_->token_score_[token_ind][j].cate_ind];
-                      }
-                      
+                      cate_score[dict2_->get_ind(token_ind, j)] += dict2_->get_score(token_ind, j);
+                      ++hit[dict2_->get_ind(token_ind, j)];
                   }
+                      
                   
                   for (size_t i = 0; i < cate_size; ++i) if (cate_score[i] != 0)
                   {
-                      cate_score[i] += (v_size - hit[i]) * c_dict_->cate_table_[i].con2;
-                      cate_score[i] += c_dict_->cate_table_[i].con1;
+//                      cate_score[i] += (v_size - hit[i]) * c_dict_->get_con2(i);
+                      cate_score[i] += c_dict_->get_con1(i);
 //                      cate_score[i].score = (cate_score[i].score + 500 ) / 500;
                   }
 
@@ -340,7 +422,7 @@ size_t times = 0;
                   size_t max_ind = 0, ind = 0;;
                   size_t find = 0;
                   for (size_t i = 0; i < cate_size; ++i)
-                      if (cate_score[i] != 0 && cate_score[i] > max_score && c_dict_->cate_graph_[i].parent == 0)
+                      if (cate_score[i] != 0 && cate_score[i] > max_score && c_dict_->parent(i) == 0)
                       {
                           max_score = cate_score[i];
                           max_ind = i;
@@ -366,13 +448,13 @@ size_t times = 0;
                           mm[i].ind = 0;
                           mm[i].score = -1234567;
                       }
-                      for (size_t i = 0; i < c_dict_->cate_graph_[ind].child.size(); ++i)
+                      for (size_t i = 0; i < c_dict_->child_size(ind); ++i)
                       {
-                          double tmp_score = cate_score[c_dict_->cate_graph_[ind].child[i]];
+                          double tmp_score = cate_score[c_dict_->child(ind, i)];
                           if (tmp_score != 0 && tmp_score > mm[2].score)
                           {
                               mm[2].score = tmp_score;
-                              mm[2].ind = c_dict_->cate_graph_[ind].child[i];
+                              mm[2].ind = c_dict_->child(ind, i);
                               if (mm[2].score > mm[1].score) {tmp = mm[2]; mm[2] = mm[1]; mm[1] = tmp;}
                               if (mm[1].score > mm[0].score) {tmp = mm[1]; mm[1] = mm[0]; mm[0] = tmp;}
                               find = 1;
@@ -384,7 +466,131 @@ size_t times = 0;
                   }
                   for (size_t i = 0; i < mm1.size(); ++i)
                       if (fabs(mm1[i].score + 1234567) > 1e-6) 
-                          res_map[c_dict_->cate_table_[mm1[i].ind].kstr] = mm1[i].score;
+                          res_map[c_dict_->get_kstr(mm1[i].ind)] = mm1[i].score;
+
+if (dolog)                  
+{
+//ss<<res.first<<' '<<res.second<<endl;                 
+ss<<kstr<<'\t';
+
+for(size_t i = 0; i < cate_size; ++i)
+{
+    if (cate_score[i] == 0)continue;
+    ss<<i<<' '<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<'\t';
+//    ss<<i<<' '<<cate_table_[i].kstr<<' '<<cate_score[i]<<' '<<cate_table_[i].score<<' '<<cate_table_[i].con1<<' '<<cate_table_[i].con2<<' '<<hit[i]<<endl;
+        token_ind = dict2_->token_trans(kstr);
+        if (token_ind == NOT_FOUND) 
+            ss<<kstr<<' '<<0<<'\t';
+        else
+        {
+            size_t flag = 0;
+            for (size_t k = 0; k < dict2_->size(token_ind); ++k)
+                if (dict2_->get_ind(token_ind, k) == i)
+                {
+                    ss<<kstr<<' '<<dict2_->get_score(token_ind, k)<<'\t';
+                    flag = 1;
+                    break;
+                }
+            if (flag == 0)
+                ss<<kstr<<' '<<0<<'\t';
+        }
+    ss<<endl;
+}
+} 
+
+                return res_map;
+            }
+
+
+
+            std::map<KString, double> classify_stage_2(
+			    const std::vector<std::pair<KString,double> >& v, stringstream& ss, bool dolog = false)
+              {
+                  std::map<KString, double> res_map;
+                  std::pair<KString, double> res;                
+                  if (v.size() == 0 || dict1_ == NULL)
+                      return res_map;
+                  size_t v_size = v.size();
+                  size_t token_ind = 0;
+                  size_t cate_size = c_dict_->size();
+                  std::vector<double> cate_score;
+                  cate_score.resize(cate_size);
+                  std::vector<size_t> hit;
+                  hit.resize(cate_size);
+
+                  for (size_t i = 0; i < v_size; ++i)
+                  {
+                      const KString &kstr = v[i].first;
+//                      if (kstr.length() == 0) continue;
+                      token_ind = dict1_->token_trans(kstr);
+                      if (token_ind == NOT_FOUND) continue;
+                      size_t token_size = dict1_->size(token_ind);
+++tot_term;                      
+                      for (size_t j = 0; j < token_size; ++j)
+                      {
+++tot_loop;
+                          cate_score[dict1_->get_ind(token_ind, j)] += dict1_->get_score(token_ind, j);
+                          ++hit[dict1_->get_ind(token_ind, j)];
+                      }
+                      
+                  }
+                  
+                  for (size_t i = 0; i < cate_size; ++i) if (cate_score[i] != 0)
+                  {
+                      cate_score[i] += (v_size - hit[i]) * c_dict_->get_con2(i);
+                      cate_score[i] += c_dict_->get_con1(i);
+//                      cate_score[i].score = (cate_score[i].score + 500 ) / 500;
+                  }
+
+                  double max_score = -1234567;
+                  size_t max_ind = 0, ind = 0;;
+                  size_t find = 0;
+                  for (size_t i = 0; i < cate_size; ++i)
+                      if (cate_score[i] != 0 && cate_score[i] > max_score && c_dict_->parent(i) == 0)
+                      {
+                          max_score = cate_score[i];
+                          max_ind = i;
+                          find = 1;
+                      } 
+                  if (find == 0) return res_map;
+
+
+                  std::vector<cate_score_type> mm, mm1;
+                  cate_score_type tmp;
+                  mm1.resize(3);
+                  mm1[0].score = max_score;
+                  mm1[1].score = -1234567;
+                  mm1[2].score = -1234567;
+                  mm1[0].ind = max_ind;
+                  mm.resize(3);
+                  while(find == 1)
+                  {
+                      find = 0;
+                      ind = mm1[0].ind;
+                      for (size_t i = 0; i < 3; ++i)
+                      {
+                          mm[i].ind = 0;
+                          mm[i].score = -1234567;
+                      }
+                      for (size_t i = 0; i < c_dict_->child_size(ind); ++i)
+                      {
+                          double tmp_score = cate_score[c_dict_->child(ind, i)];
+                          if (tmp_score != 0 && tmp_score > mm[2].score)
+                          {
+                              mm[2].score = tmp_score;
+                              mm[2].ind = c_dict_->child(ind, i);
+                              if (mm[2].score > mm[1].score) {tmp = mm[2]; mm[2] = mm[1]; mm[1] = tmp;}
+                              if (mm[1].score > mm[0].score) {tmp = mm[1]; mm[1] = mm[0]; mm[0] = tmp;}
+                              find = 1;
+                          }
+                      }
+                      if (find == 0) break;
+                      for (size_t i = 0; i < 3; ++i)
+                          mm1[i] = mm[i];
+                  }
+                  for (size_t i = 0; i < mm1.size(); ++i)
+                      if (fabs(mm1[i].score + 1234567) > 1e-6) 
+                          res_map[c_dict_->get_kstr(mm1[i].ind)] = mm1[i].score;
 
 if (dolog)                  
 {
@@ -396,7 +602,7 @@ ss<<endl;
 for(size_t i = 0; i < cate_size; ++i)
 {
     if (cate_score[i] == 0)continue;
-    ss<<i<<' '<<c_dict_->cate_table_[i].kstr<<' '<<cate_score[i]<<'\t';
+    ss<<i<<' '<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<'\t';
 //    ss<<i<<' '<<cate_table_[i].kstr<<' '<<cate_score[i]<<' '<<cate_table_[i].score<<' '<<cate_table_[i].con1<<' '<<cate_table_[i].con2<<' '<<hit[i]<<endl;
     for (size_t j = 0; j < v_size; ++j)
     {
@@ -406,10 +612,10 @@ for(size_t i = 0; i < cate_size; ++i)
         else
         {
             size_t flag = 0;
-            for (size_t k = 0; k < dict1_->token_score_[token_ind].size(); ++k)
-                if (dict1_->token_score_[token_ind][k].cate_ind == i)
+            for (size_t k = 0; k < dict1_->size(token_ind); ++k)
+                if (dict1_->get_ind(token_ind, k) == i)
                 {
-                    ss<<v[j].first<<' '<<dict1_->token_score_[token_ind][k].score<<'\t';
+                    ss<<v[j].first<<' '<<dict1_->get_score(token_ind, k)<<'\t';
                     flag = 1;
                     break;
                 }

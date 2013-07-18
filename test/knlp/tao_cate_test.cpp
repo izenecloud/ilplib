@@ -46,7 +46,7 @@ void classify(std::string str)
     }catch(...){}
 
     std::stringstream ss;
-    std::map<KString, double> m = cat->classify_multi_level(v, ss, true);
+    std::map<KString, double> m = cat->classify_stage_2(v, ss, true);
     vector<pair<double,KString> > dv;
     for(std::map<KString, double>::iterator it=m.begin();it!=m.end();++it)
         dv.push_back(make_pair(it->second, it->first));

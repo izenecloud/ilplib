@@ -12,15 +12,14 @@
 using namespace izenelib;
 using namespace izenelib::util;
 using namespace std;
-
+#define NOT_FOUND 0xFFFFFFFFFFFFFFFF
 namespace ilplib
 {
     namespace knlp
     {
         class DATrie
         {
-#define NOT_FOUND 0xFFFFFFFFFFFFFFFF
-//        pravite:
+        private:
             size_t max_length_;
             size_t tot_length_;
             size_t max_num;
@@ -30,10 +29,11 @@ namespace ilplib
             std::vector<int> check_;
             std::vector<double> value_;
             std::vector<int> cnt_;
-
-        public:
             std::vector<word_type> dict_;
             bool ch1_[123456];
+            
+
+        public:
             static bool word_cmp(const word_type& x, const word_type& y)
             {
                 return x.kstr < y.kstr;

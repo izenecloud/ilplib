@@ -118,9 +118,10 @@ namespace ilplib
                 if (t < kstr.length())
                 {
                     uint32_t t2 = kstr.find(m2);
-                    if (t2 < kstr.length() && t2 < t)
+                    if (t2 < kstr.length() && t2 > t)
                     {
-                        KString kk = kstr.substr(0, t);
+                        KString kk;
+                        if(t > 0)kstr.substr(0, t-1);
                         kk += kstr.substr(t2+1);
                         kstr = kk;
                     }
@@ -128,7 +129,7 @@ namespace ilplib
                 t = kstr.find(m3);
                 if (t < kstr.length())
                 {
-                    kstr = kstr.substr(0, t);
+                    if (t > 0)kstr = kstr.substr(0, t-1);
                     uint32_t t2 = kstr.index_of(' ', t);
                     if (t2 < kstr.length())
                          kstr = kstr.substr(t2+1);
@@ -141,6 +142,7 @@ namespace ilplib
 			    VectorDictionary* t2cs,
 			    const KString tk, std::stringstream& sss, bool dolog=false)
               {
+                  cout<<"preclassify: "<< tk<<std::endl;
                   if (dolog) sss <<"preclassify: "<< tk<<std::endl;
                   vector<char*>** cats = t2cs->value(tk, false);
                   if(!cats || (*cats)->size()%3 != 0)

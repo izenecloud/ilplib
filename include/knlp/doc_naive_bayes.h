@@ -118,10 +118,10 @@ namespace ilplib
                 if (t < kstr.length())
                 {
                     uint32_t t2 = kstr.find(m2);
-                    if (t2 < kstr.length() && t2 > t)
+                    if (t2!=(uint32_t)-1 && t2+1 < kstr.length() && t2 > t)
                     {
                         KString kk;
-                        if(t > 0)kstr.substr(0, t-1);
+                        if(t > 0)kstr.substr(0, t);
                         kk += kstr.substr(t2+1);
                         kstr = kk;
                     }
@@ -129,10 +129,12 @@ namespace ilplib
                 t = kstr.find(m3);
                 if (t < kstr.length())
                 {
-                    if (t > 0)kstr = kstr.substr(0, t-1);
+                    KString k;
+                    if (t > 0)k = kstr.substr(0, t);
                     uint32_t t2 = kstr.index_of(' ', t);
-                    if (t2 < kstr.length())
-                         kstr = kstr.substr(t2+1);
+                    if (t2!=(uint32_t)-1 && t2+1 < kstr.length())
+                         k += kstr.substr(t2+1);
+                    if(k.length() > 0)kstr = k;
                 }
 
             }
@@ -142,7 +144,6 @@ namespace ilplib
 			    VectorDictionary* t2cs,
 			    const KString tk, std::stringstream& sss, bool dolog=false)
               {
-                  cout<<"preclassify: "<< tk<<std::endl;
                   if (dolog) sss <<"preclassify: "<< tk<<std::endl;
                   vector<char*>** cats = t2cs->value(tk, false);
                   if(!cats || (*cats)->size()%3 != 0)
@@ -193,15 +194,19 @@ namespace ilplib
                       for (uint32_t j=0;j<v.size();++j)
                           vv.push_back(make_pair(v[j].second, v[j].first));
                       std::sort(vv.begin(),vv.end(), std::greater<std::pair<double,KString> >());
-                      KString top3;
-                      for (uint32_t j=0;j<v.size();++j)
+                      v.clear();
+                      for (uint32_t j=0;j<vv.size();++j)
+                          if(j==0 ||(j>0 && !(vv[j].second == vv[j-1].second)))
+                              v.push_back(make_pair(vv[j].second, vv[j].first));
+                      for (uint32_t T=4;T>=3;T--)
                       {
-                          v[j].first = vv[j].second, v[j].second = vv[j].first;
-                          if (j < 3)
-                              top3 += vv[j].second;
+                          KString top3;
+                          for (uint32_t j=0;j<v.size()&&j<T;++j)
+                                  top3 += v[j].first;
+                          std::map<KString, double> r = classify_multi_level(pct, top3, sss, dolog);
+                          if (r.size())return r;
+                          if (T >= v.size())break;
                       }
-                      std::map<KString, double> r = classify_multi_level(pct, top3, sss, dolog);
-                      if (r.size())return r;
                   }
                   std::vector<KString> tks;
                   std::vector<double> sc;
@@ -551,6 +556,7 @@ namespace ilplib
 						const std::vector<std::string>& corpus, bool bigterm=true, uint32_t cpu_num=11)
 			{
 				ilplib::knlp::Fmm tkn(dictnm);
+                ilplib::knlp::GarbagePattern gp(dictnm+".garbage");
 				EventQueue<std::pair<string*, string*> > in;
 				EventQueue<std::pair<KString*, double> > out;
 				std::vector<boost::thread*> token_ths;
@@ -575,7 +581,8 @@ namespace ilplib
 							if (strlen(t) == 0)continue;
 
 							N++;
-							in.push(make_pair(new std::string(line, t-line-1), new string(t)), -1);
+							in.push(make_pair(new std::string(gp.clean(std::string(line, t-line-1)).c_str()), 
+							      new string(t)), -1);
 						}
 					}
 				for ( uint32_t i=0; i<cpu_num; ++i)
@@ -647,7 +654,6 @@ namespace ilplib
                     }
                     KString ca(*c);
                     KString ti(*t);
-                    makeitclean(ti);
                     std::vector<std::pair<KString,double> >  v;
                     tkn->fmm(ti, v);
                     std::set<std::pair<KString,double> > s = normalize_tokens(v);
@@ -661,16 +667,16 @@ namespace ilplib
                             v.push_back(make_pair(it->second,it->first));
                         }
                         std::sort(v.begin(), v.end(), std::greater<std::pair<double,KString> >());
-                        uint32_t t = 3;
-                        while(t>0)
+                        static const uint32_t WIDTH = 4;
+                        for (uint32_t f = 0;f<WIDTH;f++)
+                            for (uint32_t t=f;t<WIDTH && t<v.size();t++)
                         {
-                            KString* k = new KString("=<>=");
-                            for (uint32_t i=0;i<v.size() && i<t;++i)
+                            KString* k=  new KString("=<>=");
+                            for (uint32_t i=f;i<=t;++i)
                                 (*k) += v[i].second;
                             (*k) += '|';
                             (*k) += ca;
                             out->push(make_pair(k, 1), e);
-                            --t;
                         }
                     }
 

@@ -23,10 +23,45 @@
 #include <string>
 
 #include "knlp/tokenize.h"
+#include "am/util/line_reader.h"
+
+#include <boost/regex.hpp>    
 using namespace izenelib::am::util;
 using namespace izenelib;
 namespace ilplib{
 	namespace knlp{
+
+class GarbagePattern
+{
+    std::vector<boost::regex> regs_;
+
+public:
+    GarbagePattern(const std::string& nm)
+    {
+        LineReader lr(nm);
+        char* line = NULL;
+        while((line=lr.line(line))!=NULL)
+        {
+            if (strlen(line) == 0)continue;
+            try{
+                regs_.push_back(boost::regex(line));
+            }catch(...)
+            {
+                std::cout<<"Regex compile ERROR: "<<line<<std::endl;
+            }
+        }
+    }
+
+    std::string clean(const std::string& str)
+    {
+        std::string r = str;
+        for (uint32_t i=0; i<regs_.size(); ++i)
+             r = boost::regex_replace(r, regs_[i], " ");
+        if (r.length() > 0)
+            return r;
+        return str;
+    }
+};
 
 class StringPatterns
 {

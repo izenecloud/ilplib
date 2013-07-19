@@ -40,6 +40,7 @@ ADD_EXECUTABLE(fill_naive_bayes
 TARGET_LINK_LIBRARIES(fill_naive_bayes
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_THREAD_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
 )
 
 ADD_EXECUTABLE(grep 
@@ -159,12 +160,13 @@ ADD_EXECUTABLE(cate_precision
 
 TARGET_LINK_LIBRARIES(cate_precision
    ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
 )
 
 #ADD_EXECUTABLE(new_tao_cate_test 
-#new_tao_cate_test.cpp 
-#			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-#)
+#    new_tao_cate_test.cpp 
+#${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+#            )
 
 #TARGET_LINK_LIBRARIES(new_tao_cate_test
 #   ${Boost_SYSTEM_LIBRARY}

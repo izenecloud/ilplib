@@ -30,6 +30,7 @@ namespace ilplib
             std::vector<double> value_;
             std::vector<int> cnt_;
             std::vector<word_type> dict_;
+            std::vector<int> ad,next,pre;
             bool ch1_[123456];
             
 
@@ -109,23 +110,12 @@ time1 = clock();
                 
                 if (tmpdict.empty()) return;
                 sort(tmpdict.begin(), tmpdict.end(), word_cmp);
-//cout<<"sort ok "<<tmpdict.size()<<endl;                
 
                 dict_.reserve(tmpdict.size());
-                for(size_t i = 0; i < tmpdict.size() - 1; ++i)
+                for(size_t i = 0; i+1 < tmpdict.size(); ++i)
                     if (!(tmpdict[i].kstr == tmpdict[i+1].kstr))
                         dict_.push_back(tmpdict[i]);
                 dict_.push_back(tmpdict[tmpdict.size() - 1]);
-/*                
-for(size_t i = 0 ; i < tmpdict.size(); ++i)
-    cout<<i<<' '<<tmpdict[i].kstr<<endl;
-for(size_t i = 0; i < dict_.size(); ++i)
-    cout<<i<<' '<<dict_[i].kstr<<' '<<dict_[i].value<<endl;
-  */              
-
-//                freopen("testdict", "w", stdout);
-//                for (size_t i = 0; i < dict_.size(); ++i)
-//                   cout<<dict_[i].kstr<<'\t'<<dict_[i].len<<'\t'<<dict_[i].value<<endl;
                     
 //printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
 
@@ -135,6 +125,7 @@ for(size_t i = 0; i < dict_.size(); ++i)
 time2 = clock();
 //printf("before build dict time = %lf\n", (double)(time2 - time1) / 1000000);
                 build(dict_);
+//cout<<"build finish"<<endl;                
 time1 = clock();
 //printf("build %zu dict time = %lf\n", dict_.size(), (double)(time1 - time2) / 1000000);
             }
@@ -149,17 +140,19 @@ time1 = clock();
                 int tryBase, tryBaseCount, tryBaseMax = 50;
                 int start;
                 size_t word_size = word.size();
-                int ad[word_size], next[word_size], pre[word_size];
+ //               int ad[word_size], next[word_size], pre[word_size];
 
-                memset(ad, 0, sizeof(ad));
-                memset(next, 0, sizeof(next));
-                memset(pre, 0, sizeof(pre));
+//                memset(ad, 0, sizeof(ad));
+//                memset(next, 0, sizeof(next));
+//                memset(pre, 0, sizeof(pre));
+                ad.resize(word_size);
+                next.resize(word_size);
+                pre.resize(word_size);
 
                 base_.resize(max_num);
                 check_.resize(max_num);
                 cnt_.resize(max_num);
                 value_.resize(max_num);
-
 
                 for (size_t i = 0; i < word_size; ++i)
                 {
@@ -175,7 +168,6 @@ time1 = clock();
 
                 for (size_t i = 0; i < max_length_; i++)
                 {
-//                    printf("finish : %d/%d  dataNUm=%d  tryBase=%d\n", i+1, maxLength, dataNum, tryBase);
                     lastad = start;
                     size_t j = 0;
                     for (j = next[start]; j < word_size; j = next[j])
@@ -260,7 +252,6 @@ time1 = clock();
                     {
                         base_[tmpad] = 0 - base_[tmpad];
                         value_[tmpad] = i;
-//cout<<dict_[i].kstr<<' '<<i<<endl;                        
                     }
                 }
             }
@@ -273,8 +264,6 @@ time1 = clock();
                 int ad = 0, nextad = 0;
                 size_t len = st.length();
                 if (len == 0) return NOT_FOUND;
-//                ad = st[0];
-//                if (len == 1 && check_[ad] != 0) return NOT_FOUND;
                 for (size_t i = 0; i < len; ++i)
                 {
                     nextad = abs(base_[ad]) + st[i];
@@ -295,8 +284,6 @@ time1 = clock();
                 int ad = 0, nextad;
                 size_t len = st.length();
                 if (len == 0) return 0;
-//                ad = st[0];
-//                if (len == 1 && check_[ad] != 0) return NOT_FOUND;
                 for (size_t i = 0; i < len; ++i)
                 {
                     nextad = abs(base_[ad]) + st[i];
@@ -340,11 +327,6 @@ time1 = clock();
                 {
                     int maxlen = -1, ad = 0, nextad, flag = 0;
                     double value = MINVALUE_;
-//                    ad = st[i];
-//                    if ((check_[ad] == 0)){
-//                        maxlen = 1;
-//                        value = value_[ad];
-//                    }
                     for (size_t j = 0; j < len - i; ++j)
                     {
                         nextad = abs(base_[ad]) + st[i+j];                

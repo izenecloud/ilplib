@@ -24,6 +24,7 @@
 #include <unistd.h>
 
 #include "knlp/tokenize.h"
+#include "knlp/normalize.h"
 #include "knlp/fmm.h"
 
 using namespace std;
@@ -93,7 +94,8 @@ int main(int argc,char * argv[])
         while(!std::getline(std::cin, line).eof())
         {
             std::vector<std::pair<KString, double> > r;
-            tok.fmm(KString(line),r);
+            KString L(line);ilplib::knlp::Normalize::normalize(L);
+            tok.fmm(L, r);
             for ( uint32_t i=0; i<r.size(); ++i)
             {
                 if (output.length())

@@ -267,7 +267,7 @@ namespace ilplib
                       double pen = log(1./(ct_p[i] + 3000000))*(SCALE-ct_hit[i]);
                       ct_va[i] += pen;
                       if(dolog)sss<<ct_nm[i]<<"\t"<<ct_va[i]<<"\t"<<ct_log[i]<<"\tpen="<<pen<<"="
-                          <<log(1./(ct_p[i] + 300000))<<"*"<<SCALE-ct_hit[i]<<"+"<<log((ct_p[i]+500000)/8000000)<<std::endl;
+                          <<log(1./(ct_p[i] + 3000000))<<"*"<<SCALE-ct_hit[i]<<"+"<<log((ct_p[i]+500000)/8000000)<<std::endl;
                   }
                   //std::cout<<tks.size()<<":"<<ct_va.size()<<"-"<<o<<"FFFFFFFFFFFFFF\n"; 
 
@@ -582,7 +582,8 @@ namespace ilplib
 
 							N++;
 							in.push(make_pair(new std::string(gp.clean(std::string(line, t-line-1)).c_str()), 
-							      new string(t)), -1);
+							     new string(t)), -1);
+							//in.push(make_pair(new std::string(line, t-line-1),new string(t)), -1);
 						}
 					}
 				for ( uint32_t i=0; i<cpu_num; ++i)
@@ -603,7 +604,7 @@ namespace ilplib
 
 			static std::set<std::pair<KString,double> > normalize_tokens(std::vector<std::pair<KString,double> >  v)
 			{
-				for ( uint32_t i=0; i<v.size(); i++)
+				/*for ( uint32_t i=0; i<v.size(); i++)
 				{
 					int32_t ty = StringPatterns::string_type(v[i].first);
 					if (ty == 2 && v[i].first.length() > 1)
@@ -616,7 +617,7 @@ namespace ilplib
 						v.erase(v.begin()+i);
 						--i;
 					}
-				}
+				}*/
 
 				double s = 0;
 				for ( uint32_t i=0; i<v.size(); i++)
@@ -629,6 +630,13 @@ namespace ilplib
                 }
 				return std::set<std::pair<KString,double> > (v.begin(), v.end());
 			}
+
+            static int cmp_pair(const std::pair<KString,double>& a, const std::pair<KString,double>& b)
+            {
+                if (a.second > b.second)
+                    return 1;
+                return 0;
+            }
 
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
 						EventQueue<std::pair<KString*,double> >* out, 
@@ -656,35 +664,44 @@ namespace ilplib
                     KString ti(*t);
                     std::vector<std::pair<KString,double> >  v;
                     tkn->fmm(ti, v);
-                    std::set<std::pair<KString,double> > s = normalize_tokens(v);
+                    //std::set<std::pair<KString,double> > s = normalize_tokens(v);
 
                     if (bigterm)
                     {
-                        std::vector<std::pair<double,KString> > v;v.reserve(s.size());
-                        for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
+                        std::sort(v.begin(), v.end(), DocNaiveBayes::cmp_pair);
+                        for (uint32_t i=1;i < v.size();++i)
+                            if (v[i].first == v[i-1].first)
+                                v.erase(v.begin()+i), --i;
+                        /*for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                         {
                             assert(it->second > 0);
                             v.push_back(make_pair(it->second,it->first));
                         }
-                        std::sort(v.begin(), v.end(), std::greater<std::pair<double,KString> >());
+                        std::sort(v.begin(), v.end(), std::greater<std::pair<double,KString> >());*/
                         static const uint32_t WIDTH = 4;
                         for (uint32_t f = 0;f<WIDTH;f++)
                             for (uint32_t t=f;t<WIDTH && t<v.size();t++)
                         {
                             KString* k=  new KString("=<>=");
                             for (uint32_t i=f;i<=t;++i)
-                                (*k) += v[i].second;
+                                (*k) += v[i].first;
                             (*k) += '|';
                             (*k) += ca;
-                            out->push(make_pair(k, 1), e);
+                            out->push(make_pair(k, v[f].second), e);
                         }
                     }
 
-                    for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
+                    /*for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                     {
                         assert(it->second > 0);
                         KString k = it->first;k += '|';k+=ca;
                         out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
+                    }*/
+                    for (uint32_t i=0;i < v.size();++i)
+                    {
+                        assert(v[i].second > 0);
+                        KString k = v[i].first;k += '|';k+=ca;
+                        out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), v[i].second), e);
                     }
 
 					delete t, delete c;

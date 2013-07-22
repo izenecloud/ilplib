@@ -57,8 +57,9 @@ public:
         std::string r = str;
         for (uint32_t i=0; i<regs_.size(); ++i)
              r = boost::regex_replace(r, regs_[i], " ");
-        if (r.length() > 0)
-            return r;
+        for (uint32_t i=0;i<r.length();++i)
+            if (r[i]!=' ')
+                return r;
         return str;
     }
 };

@@ -54,9 +54,14 @@ public:
 
     std::string clean(const std::string& str)
     {
-        std::string r = str;
-        for (uint32_t i=0; i<regs_.size(); ++i)
-             r = boost::regex_replace(r, regs_[i], " ");
+        std::string last = str;
+        std::string r = last;
+        do{
+            last = r;
+            for (uint32_t i=0; i<regs_.size(); ++i)
+                r = boost::regex_replace(r, regs_[i], " ");
+        }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
+
         for (uint32_t i=0;i<r.length();++i)
             if (r[i]!=' ')
                 return r;

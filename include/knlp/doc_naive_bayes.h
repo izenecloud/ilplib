@@ -670,7 +670,9 @@ namespace ilplib
                     {
                         std::sort(v.begin(), v.end(), DocNaiveBayes::cmp_pair);
                         for (uint32_t i=1;i < v.size();++i)
-                            if (v[i].first == v[i-1].first)
+                            if (v[i].first == v[i-1].first 
+                              || (v[i].first.length()==1 
+                                  &&(KString::is_english(v[i].first[0]) ||KString::is_numeric(v[i].first[0]))))
                                 v.erase(v.begin()+i), --i;
                         /*for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
                         {

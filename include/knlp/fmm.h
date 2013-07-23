@@ -156,13 +156,18 @@ public:
 		std::vector<KString> chunks = chunk_(line, (!bigterm));
 		for ( uint32_t i=0; i<chunks.size(); ++i)if(chunks[i].length()>0)
 		{
-			if (smart && chunks.size() > 1 && ((is_alphanum_(chunks[i]) && chunks[i].length() < 18)
+            if (smart && ((is_alphanum_(chunks[i]) && chunks[i].length() < 18)
 			      || (chunks[i].length() < 3 && ischinese(chunks[i]))
 			  || (chunks[i].length() == 3 && ischinese(chunks[i]))))
 			{
 			    chunks[i].trim_head_tail();
-                //std::cout<<trie_.score(chunks[i])<<"::::"<<chunks[i]<<"::\n";
-  				r.push_back(make_pair(chunks[i], trie_.score(chunks[i])));
+			    if (chunks.size() > 1)
+                    r.push_back(make_pair(chunks[i], trie_.score(chunks[i])));
+                else{
+                    std::vector<KString> sp = chunks[i].split(' ');
+                    for (uint32_t t=0;t<sp.size();t++)
+                        r.push_back(make_pair(sp[t], trie_.score(sp[t])));
+                }
 				continue;
 			}
 			std::vector<std::pair<KString,double> > v = trie_.token(chunks[i]);

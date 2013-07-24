@@ -195,9 +195,13 @@ namespace ilplib
                           vv.push_back(make_pair(v[j].second, v[j].first));
                       std::sort(vv.begin(),vv.end(), std::greater<std::pair<double,KString> >());
                       v.clear();
+                      for (uint32_t j=1;j<vv.size();++j)
+                          if (vv[j].second == vv[j-1].second)
+                              vv.erase(vv.begin()+j),--j;
                       for (uint32_t j=0;j<vv.size();++j)
-                          if(j==0 ||(j>0 && !(vv[j].second == vv[j-1].second)))
-                              v.push_back(make_pair(vv[j].second, vv[j].first));
+                          if(vv[j].second.length()==1 && !KString::is_chinese(vv[j].second[0]))
+                              continue;
+                          else v.push_back(make_pair(vv[j].second, vv[j].first));
                       for (uint32_t T=4;T>=3;T--)
                       {
                           KString top3;

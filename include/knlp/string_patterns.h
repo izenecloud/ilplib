@@ -10,8 +10,8 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Kevin Hu (), hukai.kevin@snda.com
- *        Company:  Snda.com
+ *         Author:  Kevin Hu (), hukai.kevin@b5m.com
+ *        Company:  b5m.com
  *
  * =====================================================================================
  */

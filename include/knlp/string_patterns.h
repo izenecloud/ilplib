@@ -31,48 +31,20 @@ using namespace izenelib;
 namespace ilplib{
 	namespace knlp{
 
-class GarbagePattern
-{
-    std::vector<boost::regex> regs_;
-
-public:
-    GarbagePattern(const std::string& nm)
-    {
-        LineReader lr(nm);
-        char* line = NULL;
-        while((line=lr.line(line))!=NULL)
-        {
-            if (strlen(line) == 0)continue;
-            try{
-                regs_.push_back(boost::regex(line));
-            }catch(...)
-            {
-                std::cout<<"Regex compile ERROR: "<<line<<std::endl;
-            }
-        }
-    }
-
-    std::string clean(const std::string& str)
-    {
-        std::string last = str;
-        std::string r = last;
-        do{
-            last = r;
-            for (uint32_t i=0; i<regs_.size(); ++i)
-                r = boost::regex_replace(r, regs_[i], " ");
-        }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
-
-        for (uint32_t i=0;i<r.length();++i)
-            if (r[i]!=' ')
-                return r;
-        return str;
-    }
-};
-
 class StringPatterns
 {
 
 	public:
+	    static void erase(KString& kstr, uint16_t from_c, uint16_t to_c)
+        {
+            uint32_t s = kstr.index_of(from_c);
+            if (s == (uint32_t)-1)return;
+            uint32_t e = kstr.index_of(to_c, s);
+            if (e == (uint32_t)-1)return;
+            KString r = kstr.substr(0, s);
+            r += kstr.substr(e+1);
+            kstr = r;
+        }
 
 		static int32_t string_type(const KString& kstr)
 		{
@@ -97,6 +69,83 @@ class StringPatterns
 			return -1;
 		}
 
+};
+
+class GarbagePattern
+{
+    std::vector<boost::regex> regs_;
+    std::vector<std::string>  stopwds_;
+
+public:
+    GarbagePattern(const std::string& nm)
+    {
+        bool stop = false;
+        LineReader lr(nm);
+        char* line = NULL;
+        while((line=lr.line(line))!=NULL)
+        {
+            if (strlen(line) == 0)continue;
+            if (strcmp(line, "##############################") == 0)
+            {
+                stop = true;
+                continue;
+            }
+            if (stop)
+            {
+                stopwds_.push_back(line);
+                continue;
+            }
+            try{
+                regs_.push_back(boost::regex(line));
+            }catch(...)
+            {
+                std::cout<<"Regex compile ERROR: "<<line<<std::endl;
+            }
+        }
+    }
+
+    std::string clean(const std::string& str)
+    {
+        std::string last = str;
+        std::string r = last;
+        do{
+            last = r;
+            for (uint32_t i=0; i<regs_.size(); ++i)
+                r = boost::regex_replace(r, regs_[i], " ");
+            for (uint32_t i=0;i<stopwds_.size();i++)
+            {
+                const char* f = strstr(r.c_str(), stopwds_[i].c_str());
+                if (!f)continue;
+                r = r.substr(0, f-r.c_str())+(f+stopwds_[i].length());
+            }
+        }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
+
+        for (uint32_t i=0;i<r.length();++i)
+            if (r[i]!=' ')
+                return r;
+        return str;
+    }
+
+    std::string erase_stop_word(const std::string& str)
+    {
+        std::string last = str;
+        std::string r = last;
+        do{
+            last = r;
+            for (uint32_t i=0;i<stopwds_.size();i++)
+            {
+                const char* f = strstr(r.c_str(), stopwds_[i].c_str());
+                if (!f)continue;
+                r = r.substr(0, f-r.c_str())+(f+stopwds_[i].length());
+            }
+        }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
+
+        for (uint32_t i=0;i<r.length();++i)
+            if (r[i]!=' ')
+                return r;
+        return str;
+
+    }
 };
 
 }}

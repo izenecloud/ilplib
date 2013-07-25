@@ -116,7 +116,7 @@ public:
             {
                 const char* f = strstr(r.c_str(), stopwds_[i].c_str());
                 if (!f)continue;
-                r = r.substr(0, f-r.c_str())+(f+stopwds_[i].length());
+                r = r.substr(0, f-r.c_str())+std::string(" ")+(f+stopwds_[i].length());
             }
         }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
 
@@ -136,7 +136,7 @@ public:
             {
                 const char* f = strstr(r.c_str(), stopwds_[i].c_str());
                 if (!f)continue;
-                r = r.substr(0, f-r.c_str())+(f+stopwds_[i].length());
+                r = r.substr(0, f-r.c_str())+std::string(" ")+(f+stopwds_[i].length());
             }
         }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
 

@@ -286,7 +286,7 @@ namespace ilplib
                                   top3 += v[j].first;
                           std::map<KString, double> r = classify_multi_level(pct, top3, sss, dolog);
                           if (r.size())return r;
-                          if (T >= v.size())break;
+                          if (T >= v.size())T = v.size();
                       }
                   }
                   std::vector<KString> tks;

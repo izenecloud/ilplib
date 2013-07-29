@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include "knlp/normalize.h"
-#include "knlp/new_datrie.h"
+#include "knlp/datrie.h"
 #include "am/util/line_reader.h"
 
 using namespace std;

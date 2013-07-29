@@ -24,9 +24,11 @@
 #include <unistd.h>
 #include <tuple>
 
-#include "knlp/new_fmm.h"
+//#include "knlp/new_fmm.h"
+#include "knlp/fmm.h"
 #include "knlp/normalize.h"
-#include "knlp/new_cate_classify.h"
+//#include "knlp/new_cate_classify.h"
+#include "knlp/cate_classify.h"
 #include "am/hashtable/khash_table.hpp"
 #include "am/util/line_reader.h"
 
@@ -45,7 +47,7 @@ void classify_vote(const std::string& str)
 //    std::vector<std::pair<KString, double> > v;
     std::vector<std::tuple<size_t, size_t, double> > v;
     try{
-        tkn->fmm(kstr, v);
+        //tkn->fmm(kstr, v);
     }catch(...){}
 /*
 cout<<kstr<<endl;    
@@ -60,7 +62,7 @@ return;
 */
     std::stringstream ss;
     std::map<KString, double> m;
-    m = worker->classify_multi_level(kstr,v,ss);
+    //m = worker->classify_multi_level(kstr,v,ss);
 //    m = worker->classify_multi_level(v,ss,0);
 //cout<<ss.str()<<endl;
 /*    

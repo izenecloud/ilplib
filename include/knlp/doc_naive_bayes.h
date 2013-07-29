@@ -181,28 +181,105 @@ namespace ilplib
                   return r;
               }
 
+            static void features(std::vector<std::pair<KString,double> >& v, 
+              Dictionary* syn)
+            {
+                /*for (uint32_t i=0;i < v.size();++i)
+                {
+                    char* s = syn->value(v[i].first);
+                    if (!s)continue;
+                    v[i].first = KString(s);
+                }*/
+                std::sort(v.begin(), v.end(), DocNaiveBayes::cmp_pair);
+                for (uint32_t i=1;i < v.size();++i)
+                    if (v[i].first == v[i-1].first 
+                      || (v[i].first.length()==1 
+                          &&!KString::is_chinese(v[i].first[0])))
+                        v.erase(v.begin()+i), --i;
+            }
+
+            static std::map<KString, double>
+			  classify_multi_level1(
+			    DigitalDictionary* cat,
+			    VectorDictionary* t2cs,
+			    VectorDictionary* pct,
+			    Dictionary* syn,
+			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false)
+              {
+                  //Fmm::gauss_smooth(v);
+                  {
+                      features(v, syn);
+                      for (uint32_t T=4;T>=3;T--)
+                      {
+                          KString top3;
+                          for (uint32_t j=0;j<v.size()&&j<T;++j)
+                                  top3 += v[j].first;
+                          std::map<KString, double> r = classify_multi_level(pct, top3, sss, dolog);
+                          if (r.size())return r;
+                          if (T >= v.size())break;
+                      }
+                  }
+
+                  std::vector<std::pair<double, std::pair<KString, std::pair<KString, uint32_t> > > > vv;
+                  for (uint32_t j=0;j<v.size();++j)
+                  {
+                      vector<char*>** cts = t2cs->value(v[j].first, false);
+                      if(!cts || (*cts)->size()%3 != 0)continue;
+                      vector<char*>* cats = *cts;
+                      for (uint32_t i=0;i<cats->size();i+=3)if(strlen(cats->at(i))>0)
+                      {
+                          double tc = atof(cats->at(i+2));
+                          KString cnm(cats->at(i));
+                          uint32_t le = cats->at(i+1)[0]-'0'-1;
+                          vv.push_back(make_pair(tc, make_pair(v[j].first, make_pair(cnm, le))));
+                      }
+                  }
+                  
+                  std::sort(vv.begin(), vv.end(), std::greater<std::pair<double, std::pair<KString, std::pair<KString, uint32_t> > > >());
+                  if(dolog)
+                      for (uint32_t i=0; i<vv.size();++i)
+                          sss << vv[i].first<<""<<vv[i].second.first<<":"<<vv[i].second.second.first<<std::endl;
+
+                  std::map<KString, double> r;
+                  uint32_t le = 0;
+                  KString lastc("R");
+                  KString lastcc;
+                  bool flag = false;
+                  do{
+                      flag = false;
+                      for (uint32_t i=0; i<vv.size();++i)
+                          if (le == vv[i].second.second.second
+                            && vv[i].second.second.first.find(lastc) == 0)
+                          {
+                              lastcc = lastc;
+                              lastc = vv[i].second.second.first;
+                              le ++;
+                              flag = true;
+                          }
+                  }while(flag);
+
+                  if (lastcc == KString("R"))
+                      lastcc = lastc.substr(0, lastc.length()-1);
+                  for (uint32_t i=0; i<vv.size();++i)
+                      if(r.size() > 5)break;
+                      else if (vv[i].second.second.first.length() > lastcc.length() 
+                        && vv[i].second.second.first.find(lastcc) == 0)
+                          r[vv[i].second.second.first] = vv[i].first;
+                  return r;
+              }
+
             static std::map<KString, double>
 			  classify_multi_level(
 			    DigitalDictionary* cat,
 			    VectorDictionary* t2cs,
 			    VectorDictionary* pct,
+			    Dictionary* syn,
 			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false)
               {
                   //Fmm::gauss_smooth(v);
                   {
-                      std::vector<std::pair<double,KString> > vv;
-                      for (uint32_t j=0;j<v.size();++j)
-                          vv.push_back(make_pair(v[j].second, v[j].first));
-                      std::sort(vv.begin(),vv.end(), std::greater<std::pair<double,KString> >());
-                      v.clear();
-                      for (uint32_t j=1;j<vv.size();++j)
-                          if (vv[j].second == vv[j-1].second)
-                              vv.erase(vv.begin()+j),--j;
-                      for (uint32_t j=0;j<vv.size();++j)
-                          if(vv[j].second.length()==1 && !KString::is_chinese(vv[j].second[0]))
-                              continue;
-                          else v.push_back(make_pair(vv[j].second, vv[j].first));
-                      for (uint32_t T=4;T>=3;T--)
+                      features(v, syn);
+                      for (uint32_t T=4;T>=1;T--)
                       {
                           KString top3;
                           for (uint32_t j=0;j<v.size()&&j<T;++j)
@@ -214,7 +291,7 @@ namespace ilplib
                   }
                   std::vector<KString> tks;
                   std::vector<double> sc;
-                  uint32_t SCALE=7;
+                  uint32_t SCALE=4;
                   double sum = 0;
                   for (uint32_t j=0;j<v.size()&&j<SCALE;++j)
                       sum += v[j].second;
@@ -556,16 +633,18 @@ namespace ilplib
                   return m;
               }
 
-			static void train(const std::string& dictnm, const std::string& output,
+			static void train(const std::string& output, const std::string& dictnm, 
+			            const std::string& garbagenm, const std::string& synnm,
 						const std::vector<std::string>& corpus, bool bigterm=true, uint32_t cpu_num=11)
 			{
 				ilplib::knlp::Fmm tkn(dictnm);
-                ilplib::knlp::GarbagePattern gp(dictnm+".garbage");
+                ilplib::knlp::GarbagePattern gp(garbagenm);
+                Dictionary syn(synnm);
 				EventQueue<std::pair<string*, string*> > in;
 				EventQueue<std::pair<KString*, double> > out;
 				std::vector<boost::thread*> token_ths;
 				for ( uint32_t i=0; i<cpu_num; ++i)
-				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn, bigterm));
+				  token_ths.push_back(new boost::thread(&tokenize_stage, &in, &out, &tkn, &syn, bigterm));
 
 				uint32_t N = 0;
 				KStringHashTable<KString, double> cates(2000, 1000);
@@ -644,7 +723,7 @@ namespace ilplib
 
 			static void tokenize_stage(EventQueue<std::pair<string*,string*> >* in, 
 						EventQueue<std::pair<KString*,double> >* out, 
-						ilplib::knlp::Fmm* tkn, bool bigterm=true)
+						ilplib::knlp::Fmm* tkn, Dictionary* syn, bool bigterm=true)
 			{
 				while(true)
 				{	
@@ -669,22 +748,11 @@ namespace ilplib
                     std::vector<std::pair<KString,double> >  v;
                     tkn->fmm(ti, v);
                     //std::set<std::pair<KString,double> > s = normalize_tokens(v);
+                    features(v, syn);
+                    static const uint32_t WIDTH = 4;
 
                     if (bigterm)
                     {
-                        std::sort(v.begin(), v.end(), DocNaiveBayes::cmp_pair);
-                        for (uint32_t i=1;i < v.size();++i)
-                            if (v[i].first == v[i-1].first 
-                              || (v[i].first.length()==1 
-                                  &&(KString::is_english(v[i].first[0]) ||KString::is_numeric(v[i].first[0]))))
-                                v.erase(v.begin()+i), --i;
-                        /*for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
-                        {
-                            assert(it->second > 0);
-                            v.push_back(make_pair(it->second,it->first));
-                        }
-                        std::sort(v.begin(), v.end(), std::greater<std::pair<double,KString> >());*/
-                        static const uint32_t WIDTH = 4;
                         for (uint32_t f = 0;f<WIDTH;f++)
                             for (uint32_t t=f;t<WIDTH && t<v.size();t++)
                         {
@@ -697,12 +765,14 @@ namespace ilplib
                         }
                     }
 
-                    /*for (std::set<std::pair<KString,double> >::iterator it=s.begin();it!=s.end();++it)
+                    for (uint32_t i=0;i<WIDTH && i < v.size();++i)
                     {
-                        assert(it->second > 0);
-                        KString k = it->first;k += '|';k+=ca;
-                        out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), it->second), e);
-                    }*/
+                        assert(v[i].second > 0);
+                        KString k("=<=>=");
+                        k += v[i].first;k += '|';k+=ca;
+                        out->push(make_pair(new KString(k.get_bytes(), k.get_bytes()+k.length()), v[i].second), e);
+                    }
+                    
                     for (uint32_t i=0;i < v.size();++i)
                     {
                         assert(v[i].second > 0);

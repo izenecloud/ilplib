@@ -161,7 +161,7 @@ public:
 			  || (chunks[i].length() == 3 && ischinese(chunks[i]))))
 			{
 			    chunks[i].trim_head_tail();
-                std::cout<<chunks[i]<<std::endl;
+                //std::cout<<chunks[i]<<std::endl;
 			    if (chunks.size() > 1)
                     r.push_back(make_pair(chunks[i], trie_.score(chunks[i])));
                 else{

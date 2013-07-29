@@ -206,16 +206,16 @@ public:
         r.erase(r.begin()+r.size()-1);
     }
 
-    static void gauss_smooth(std::vector<std::pair<KString,double> >& r)
+    static void gauss_smooth(std::vector<std::pair<KString,double> >& r, double alpha=0.4)
     {
         for (uint32_t i=0;i<r.size();++i)
         {
             if (i >= 1 && i<r.size()-1)
-                r[i].second = r[i].second*0.7 + (r[i+1].second+r[i-1].second)*0.15;
+                r[i].second = r[i].second*alpha + (r[i+1].second+r[i-1].second)*(1.-alpha)/2;
             else if(i == 0 && i+1 < r.size())
-                r[i].second = r[i].second*0.7 + r[i+1].second*0.3;
+                r[i].second = r[i].second*alpha + r[i+1].second*(1.-alpha);
             else if (i == r.size() -1 && i>=1)
-                r[i].second = r[i].second*0.7 + r[i-1].second*0.3;
+                r[i].second = r[i].second*alpha + r[i-1].second*(1.-alpha);
         }
     }
 

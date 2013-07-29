@@ -119,8 +119,7 @@ time1 = clock();
                     
 //printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
 
-                if (max_length_ > 30) max_num = dict_.size() * 8;
-                else max_num = dict_.size() * 8;
+                max_num = tot_length_ * 2;
                 max_num = std::max((size_t)1000000, max_num);
 time2 = clock();
 //printf("before build dict time = %lf\n", (double)(time2 - time1) / 1000000);
@@ -137,7 +136,7 @@ time1 = clock();
                 if (word.empty()) return;
                 int lastad, tmpad, temp;
                 int dataNum;
-                int tryBase, tryBaseCount, tryBaseMax = 50;
+                int tryBase, tryBaseCount, tryBaseMax = 2;
                 int start;
                 size_t word_size = word.size();
  //               int ad[word_size], next[word_size], pre[word_size];
@@ -276,6 +275,23 @@ time1 = clock();
                 return NOT_FOUND;
             }
 
+            size_t find_word(const KString& st, const size_t be, const size_t en)
+            {
+                int ad = 0, nextad = 0;
+                size_t len = st.length();
+                if (len == 0) return NOT_FOUND;
+                for (size_t i = be; i < en; ++i)
+                {
+                    nextad = abs(base_[ad]) + st[i];
+                    if (base_[nextad] == 0 || check_[nextad] != ad)
+                        return NOT_FOUND;
+                    ad = nextad;
+                }
+                if (base_[ad] < 0)
+                    return value_[ad];
+                return NOT_FOUND;
+            }
+
             bool check_term(const KString& st, const bool normalize = 0)
             {
 //                KString st(kst);
@@ -314,7 +330,7 @@ time1 = clock();
                 return MINVALUE_;
             }
 
-            std::vector<pair<KString, double> > token(const KString& st)
+            std::vector<std::pair<KString, double> > token(const KString& st)
             {
                 size_t i = 0;
                 size_t len = st.length();
@@ -358,6 +374,30 @@ time1 = clock();
                 }
                 term.resize(term_size);
                 return term;
+            }
+
+            std::vector<std::pair<KString, double> > sub_token(const KString& st)
+            {
+                size_t r = find_word(st);
+                if (r == NOT_FOUND) return token(st);
+                else
+                {
+                    size_t len = st.length();
+                    std::vector<std::pair<KString, double> > term;
+                    for (size_t i = len-1; i > 0; --i)
+                    {
+                        size_t p = find_word(st, 0, i);
+                        size_t q = find_word(st, i, len);
+                        if (p != NOT_FOUND && q != NOT_FOUND)
+                        {
+                            term.push_back(std::make_pair(st.substr(0, i), dict_[p].value));
+                            term.push_back(std::make_pair(st.substr(i, len - i), dict_[q].value));
+                            return term;
+                        }
+                    }
+                    term.push_back(std::make_pair(st, dict_[r].value));
+                    return term;
+                }
             }
 
         };

@@ -273,8 +273,8 @@ namespace ilplib
 			    DigitalDictionary* cat,
 			    VectorDictionary* t2cs,
 			    VectorDictionary* pct,
-			    Dictionary* syn,
-			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false)
+			    std::vector<std::pair<KString,double> > v, std::stringstream& sss, bool dolog=false,
+			    Dictionary* syn=NULL)
               {
                   //Fmm::gauss_smooth(v);
                   {

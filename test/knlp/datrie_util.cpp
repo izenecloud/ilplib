@@ -5,7 +5,7 @@
 #include <ctype.h>
 #include <unistd.h>
 #include "knlp/normalize.h"
-#include "knlp/datrie.h"
+#include "knlp/new_datrie.h"
 #include "am/util/line_reader.h"
 
 using namespace std;
@@ -18,11 +18,11 @@ int main()
 time_t t1,t2;
 t2 = clock();
     string file_name = "brand.term";
-    DATrie dict(file_name);
+    DATrie dict(file_name,1);
     vector<pair<KString, double> > term;
 
-    KString kstr("爱步");
-cout<<dict.check_term(kstr)<<' '<<dict.find_word(kstr)<<endl;
+//    KString kstr("爱步");
+//cout<<dict.check_term(kstr)<<' '<<dict.find_word(kstr)<<endl;
 
 t1 = clock();
 cout<<"get dict time ="<<(double)(t1-t2)/1000000<<endl;
@@ -40,8 +40,13 @@ char* line = NULL;
     {
         ++tot;
 //if(tot == 100)break;        
+//        KString kstr(line);
         KString kstr(line);
-        vector<pair<KString, double> > term(dict.token(kstr));
+//        vector<pair<string, double> > term(dict.token(kstr));
+//        vector<tuple<size_t, size_t, double> > term(dict.token(kstr));
+//        vector<pair<KString, double> > term;
+//        dict.token(kstr, term);
+          
 /*
 cout<<kstr<<endl;
 for(size_t i = 0; i < term.size(); ++i)

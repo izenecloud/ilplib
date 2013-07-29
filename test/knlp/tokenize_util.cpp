@@ -38,7 +38,12 @@ void printHelp()
 		\t-f\toutput with score\n\
 		\t-t\tsplit charactor. White space is default charactor\n";
 }
-
+int cmp_pair(const std::pair<KString,double>& a, const std::pair<KString,double>& b)
+              {
+                                  if (a.second > b.second)
+                                                          return 1;
+                                                  return 0;
+                                                              }
 int main(int argc,char * argv[])
 {
     if (argc == 1)
@@ -96,6 +101,7 @@ int main(int argc,char * argv[])
             std::vector<std::pair<KString, double> > r;
             KString L(line);ilplib::knlp::Normalize::normalize(L);
             tok.fmm(L, r);
+            std::sort(r.begin(), r.end(), cmp_pair);
             for ( uint32_t i=0; i<r.size(); ++i)
             {
                 if (output.length())

@@ -33,10 +33,12 @@ using namespace ilplib::knlp;
 using namespace izenelib;
 void printHelp()
 {
-    cout<< "./normalize_util\n"<<"\t-d\t pattern path\n \
+    cout<< "./normalize_util\n"<<"\t-p\t pattern path\n \
 		\t-o\toutput file\n\
 		\t-c\tcorpus path\n\
-		\t-s\ttokenize and sort, token dict.\n";
+		\t-d\ttokenize and sort, token dict.\n\
+		\t-t\ttop N\n\
+		\t-s\ttokenize and split with space, token dict.\n";
 }
 
 bool cmp(const std::pair<KString, double>&a, const std::pair<KString, double>&  b)
@@ -58,11 +60,13 @@ int main(int argc,char * argv[])
     string dictnm;
     string output;
     Fmm* fmm = NULL;
+    bool split=false;
+    uint32_t top = -1;
     vector<string> corpus;
-    while ((c = getopt (argc, argv, "d:o:c:s:")) != -1)
+    while ((c = getopt (argc, argv, "p:o:c:d:s:t:")) != -1)
         switch (c)
         {
-        case 'd':
+        case 'p':
             dictnm = optarg;
             break;
         case 'o':
@@ -71,8 +75,15 @@ int main(int argc,char * argv[])
         case 'c':
             corpus.push_back(optarg);
             break;
+        case 'd':
+            fmm = new Fmm(optarg);
+            break;
+        case 't':
+            top = atoi(optarg);
+            break;
         case 's':
             fmm = new Fmm(optarg);
+            split=true;
             break;
         case '?':
             printHelp();
@@ -110,9 +121,12 @@ int main(int argc,char * argv[])
                 if (fmm){
                     std::vector<std::pair<KString, double> > v;
                     fmm->fmm(L, v);
-                    std::sort(v.begin(), v.end(), cmp);
-                    for (uint32_t i=0;i<v.size();++i)
+                    if(!split)std::sort(v.begin(), v.end(), cmp);
+                    for (uint32_t i=0;i<v.size() && i<top;++i)
+                    {
+                        if (split && k.length()> 0 )k += ' ';
                         k += v[i].first;
+                    }
                 }
                 if (output.length())
                 {
@@ -128,7 +142,10 @@ int main(int argc,char * argv[])
                     else
                         cout<<L<<v<<std::endl;
                 }
-            }catch(...){}
+            }
+            catch(...){
+                std::cout<<"Exception:"<<line<<"\n";
+           }
         }
     }
 

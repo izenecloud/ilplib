@@ -110,8 +110,9 @@ public:
         std::string r = last;
         do{
             last = r;
-            for (uint32_t i=0; i<regs_.size(); ++i)
-                r = boost::regex_replace(r, regs_[i], " ");
+            if (r.length() > 30)
+                for (uint32_t i=0; i<regs_.size(); ++i)
+                    r = boost::regex_replace(r, regs_[i], " ");
             for (uint32_t i=0;i<stopwds_.size();i++)
             {
                 const char* f = strstr(r.c_str(), stopwds_[i].c_str());

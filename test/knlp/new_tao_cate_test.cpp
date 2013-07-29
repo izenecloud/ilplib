@@ -47,12 +47,16 @@ void classify_vote(const std::string& str)
     try{
         tkn->fmm(kstr, v);
     }catch(...){}
-return ;    
 /*
 cout<<kstr<<endl;    
 for(size_t i = 0; i < v.size(); ++i)
-    cout<<v[i].first<<' '<<v[i].second<<'\t';
+{
+KString kkk = kstr.substr(get<0>(v[i]), get<1>(v[i])-get<0>(v[i]));
+  cout<<get<1>(v[i])<<' '<<kkk.length()<<' '<<kkk<<endl;
+}
+//    cout<<v[i].first<<' '<<v[i].second<<'\t';
 cout<<endl;
+return;
 */
     std::stringstream ss;
     std::map<KString, double> m;
@@ -104,7 +108,7 @@ size_t times = 0;
         ++times;
         classify_vote(line);
 //        if (times%10000==0) cout<<times<<endl;
-//if (times == 100000) break;        
+//if (times == 1000) break;        
     }
 time2 = clock();
 printf("tot term = %zu\ntot loop = %zu\n",worker->get_term(), worker->get_loop());

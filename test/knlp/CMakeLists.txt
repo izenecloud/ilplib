@@ -163,15 +163,25 @@ TARGET_LINK_LIBRARIES(cate_precision
    ${Boost_REGEX_LIBRARY}
 )
 
-#ADD_EXECUTABLE(new_tao_cate_test 
-#    new_tao_cate_test.cpp 
-#${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-#            )
+ADD_EXECUTABLE(normaize_util
+			normaize_util.cpp 
+            ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
 
-#TARGET_LINK_LIBRARIES(new_tao_cate_test
-#   ${Boost_SYSTEM_LIBRARY}
-#   ${Boost_THREAD_LIBRARY}
-#)
+TARGET_LINK_LIBRARIES(normaize_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+ADD_EXECUTABLE(new_tao_cate_test 
+    new_tao_cate_test.cpp 
+${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+            )
+
+TARGET_LINK_LIBRARIES(new_tao_cate_test
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+)
 
 
 ADD_EXECUTABLE(datrie_util

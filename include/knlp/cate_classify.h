@@ -40,7 +40,6 @@ using namespace izenelib::am;
 using namespace izenelib::am::util;
 using namespace izenelib;
 
-#define NOT_FOUND 0xFFFFFFFFFFFFFFFF
 
 namespace ilplib
 {
@@ -55,6 +54,7 @@ namespace ilplib
             vector<cate_graph_type> cate_graph_;
             size_t size_;
         public:
+            static const size_t NOT_FOUND_ = -1;
             bool ischild(const size_t i, const size_t j)
             {
                 const KString &kstr_i = cate_table_[i].kstr;
@@ -77,6 +77,7 @@ namespace ilplib
                 return x.kstr < y.kstr;
             }
 
+            CateClassifyCateDict() {}
             CateClassifyCateDict(const std::string& file)
             {
                 char* st = NULL;
@@ -97,7 +98,7 @@ namespace ilplib
                     s1 = s0.substr(p+1, s0.length() - p);
                     tmp.score = atof(s1.c_str());
                     tmp.con1 = log((tmp.score + 500000) / 8000000);
-                    tmp.con2 = log(1./(tmp.score + 300000));
+                    tmp.con2 = log(1./(tmp.score + 3000000));
                     cate_table_.push_back(tmp);
                 }
                 sort(cate_table_.begin(), cate_table_.end(), cate_table_cmp);
@@ -115,7 +116,6 @@ namespace ilplib
                             cate_graph_[j].parent = i;
                         }
                     }
-                
                 size_ = cate_table_.size();
             }
 
@@ -124,7 +124,6 @@ namespace ilplib
                 *this = c_dict;
             }
 
-            CateClassifyCateDict() {}
 
             ~CateClassifyCateDict() {}
 
@@ -150,7 +149,7 @@ namespace ilplib
                 if (cate_table_[mid].kstr == kstr) 
                     return mid;
                 else
-                    return NOT_FOUND;
+                    return NOT_FOUND_;
             }
 
             size_t size()
@@ -158,34 +157,34 @@ namespace ilplib
                 return size_;
             }
 
-            size_t get_con1(const size_t i)
+            double get_con1(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return cate_table_[i].con1;
             }
 
-            size_t get_con2(const size_t i)
+            double get_con2(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return cate_table_[i].con2;
             }
 
             size_t child_size(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return cate_graph_[i].child.size();
             }
 
             size_t child(const size_t i, const size_t j)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 if (j > cate_graph_[i].child.size()) return NOT_FOUND;
                 return cate_graph_[i].child[j];
             }
 
             size_t parent(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return cate_graph_[i].parent;
             }
 
@@ -197,7 +196,7 @@ namespace ilplib
 
             double get_score(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return cate_table_[i].score;
             }
 
@@ -207,20 +206,23 @@ namespace ilplib
 		class CateClassifyScoreDict
 		{
         private:
-            typedef struct {size_t cate_ind; double score;} token_score_type;
-            vector<vector<token_score_type> > token_score_;
             size_t size_;
             uint16_t first[65537];
             DATrie* DA_dict_;
             CateClassifyCateDict* c_dict_;
 		public:
+            typedef struct {size_t cate_ind; double score;} token_score_type;
+            vector<vector<token_score_type> > token_score_;
+		    static const size_t NOT_FOUND_ = -1;
 			CateClassifyScoreDict()
+			  :DA_dict_(NULL), c_dict_(NULL)
 			{
             }
 
-            CateClassifyScoreDict(const std::string& file1, CateClassifyCateDict* c_dict)
+            CateClassifyScoreDict(const std::string& file, CateClassifyCateDict* c_dict)
+              :DA_dict_(NULL), c_dict_(NULL)
             {
-                DA_dict_ = new DATrie(file1, 1);
+                DA_dict_ = new DATrie(file, 1);
                 c_dict_ = c_dict;
 
 			    for(size_t i = 0; i < 65537; ++i)first[i] = 0;
@@ -231,7 +233,7 @@ namespace ilplib
 size_t times = 0;
                 token_score_.clear();
                 token_score_.resize(DA_dict_->size());
-                LineReader lr(file1.c_str());
+                LineReader lr(file.c_str());
                 while((st = lr.line(st)) != NULL)//getline(cin,s0))
                 {                    
 //cout<<st<<endl;                    
@@ -262,6 +264,11 @@ size_t times = 0;
                         KString kstr(s1);
 //                        Normalize::normalize(kstr);
                         tmp.cate_ind = c_dict_->cate_trans(kstr);
+                        if (tmp.cate_ind >= c_dict_->size())
+                        {
+                        	cout<<"read error! "<<kstr<<endl;
+                        	continue;
+                        }
                         p1 = p + 1;
 
                         p = s0.find("\t", p1);
@@ -328,21 +335,21 @@ size_t times = 0;
 
             size_t size(const size_t i)
             {
-                if (i > size_) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
                 return token_score_[i].size();
             }
 
             size_t get_ind(const size_t i, const size_t j)
             {
-                if (i > size_) return NOT_FOUND;
-                if (j > token_score_[i].size()) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
+                if (j > token_score_[i].size()) return NOT_FOUND_;
                 return token_score_[i][j].cate_ind;
             }
 
             double get_score(const size_t i, const size_t j)
             {
-                if (i > size_) return NOT_FOUND;
-                if (j > token_score_[i].size()) return NOT_FOUND;
+                if (i > size_) return NOT_FOUND_;
+                if (j > token_score_[i].size()) return NOT_FOUND_;
                 return token_score_[i][j].score;
             }
 
@@ -361,14 +368,20 @@ size_t times = 0;
             typedef struct {size_t ind; double score;} cate_score_type;
 
         public:
-            CateClassify() {}
+            static const size_t NOT_FOUND_ = -1;
+            CateClassify() 
+              :dict1_(NULL), dict2_(NULL), c_dict_(NULL)
+            {}
+
             CateClassify(const std::string& file1, const std::string& file2, const std::string& file3 = "")
+              :dict1_(NULL), dict2_(NULL), c_dict_(NULL)
             {
                 tot_loop = 0;
                 tot_term = 0;
                 c_dict_ = new CateClassifyCateDict(file2);
                 dict1_ = new CateClassifyScoreDict(file1, c_dict_);
                 if (file3 != "") dict2_ = new CateClassifyScoreDict(file3, c_dict_);
+
             }
             
             ~CateClassify() {}
@@ -383,8 +396,13 @@ size_t times = 0;
                 return tot_term;
             }
 
+            static bool token_cmp(const std::pair<KString, double>& x, const std::pair<KString, double>& y)
+            {
+                return x.second > y.second;
+            }
+
             std::map<KString, double> classify_stage_1(
-              const KString& kstr, stringstream& ss, bool dolog = false)
+              const size_t num, const KString& kstr, stringstream& ss, bool dolog = false)
             {
                 std::map<KString, double> res_map;
                   std::pair<KString, double> res;                
@@ -392,22 +410,26 @@ size_t times = 0;
                       return res_map;
                   size_t token_ind = 0;
                   size_t cate_size = c_dict_->size();
-                  std::vector<double> cate_score;
-                  cate_score.resize(cate_size);
-                  std::vector<size_t> hit;
-                  hit.resize(cate_size);
-
+                  double cate_score[500];
+                  size_t hit[500];
+                  memset(cate_score, 0, sizeof(cate_score));
+                  memset(hit,0, sizeof(hit));
 //                      if (kstr.length() == 0) continue;
                   token_ind = dict2_->token_trans(kstr);
-                  if (token_ind == NOT_FOUND)
+                  if (token_ind == dict2_->NOT_FOUND_)
                       return res_map;
                   size_t token_size = dict2_->size(token_ind);
 ++tot_term;                    
                   for (size_t j = 0; j < token_size; ++j)
                   {
 ++tot_loop;
-                      cate_score[dict2_->get_ind(token_ind, j)] += dict2_->get_score(token_ind, j);
-                      ++hit[dict2_->get_ind(token_ind, j)];
+                      CateClassifyScoreDict::token_score_type tmp1 = dict2_->token_score_[token_ind][j];
+                      if (tmp1.cate_ind >= cate_size)
+                      {
+                      	  cout<<"error "<<tmp1.cate_ind<<' '<<kstr<<endl;
+                      }
+                      cate_score[tmp1.cate_ind] += tmp1.score;
+                      ++hit[tmp1.cate_ind];
                   }
                       
                   
@@ -468,18 +490,19 @@ size_t times = 0;
                       if (fabs(mm1[i].score + 1234567) > 1e-6) 
                           res_map[c_dict_->get_kstr(mm1[i].ind)] = mm1[i].score;
 
+res.first = c_dict_->get_kstr(mm1[0].ind);
+res.second = mm1[0].score;
 if (dolog)                  
 {
-//ss<<res.first<<' '<<res.second<<endl;                 
-ss<<kstr<<'\t';
+ss<<num<<' '<<kstr<<endl;                 
 
 for(size_t i = 0; i < cate_size; ++i)
 {
     if (cate_score[i] == 0)continue;
-    ss<<i<<' '<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<'\t';
+    ss<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<'\t';
 //    ss<<i<<' '<<cate_table_[i].kstr<<' '<<cate_score[i]<<' '<<cate_table_[i].score<<' '<<cate_table_[i].con1<<' '<<cate_table_[i].con2<<' '<<hit[i]<<endl;
         token_ind = dict2_->token_trans(kstr);
-        if (token_ind == NOT_FOUND) 
+        if (token_ind == dict2_->NOT_FOUND_) 
             ss<<kstr<<' '<<0<<'\t';
         else
         {
@@ -504,7 +527,7 @@ for(size_t i = 0; i < cate_size; ++i)
 
 
             std::map<KString, double> classify_stage_2(
-			    const std::vector<std::pair<KString,double> >& v, stringstream& ss, bool dolog = false)
+			    const size_t num, const std::vector<std::pair<KString,double> >& v, stringstream& ss, bool dolog = false)
               {
                   std::map<KString, double> res_map;
                   std::pair<KString, double> res;                
@@ -513,28 +536,31 @@ for(size_t i = 0; i < cate_size; ++i)
                   size_t v_size = v.size();
                   size_t token_ind = 0;
                   size_t cate_size = c_dict_->size();
-                  std::vector<double> cate_score;
-                  cate_score.resize(cate_size);
-                  std::vector<size_t> hit;
-                  hit.resize(cate_size);
-
+                  double cate_score[500];
+                  size_t hit[500];
+                  memset(cate_score, 0, sizeof(cate_score));
+                  memset(hit,0, sizeof(hit));
                   for (size_t i = 0; i < v_size; ++i)
                   {
                       const KString &kstr = v[i].first;
 //                      if (kstr.length() == 0) continue;
                       token_ind = dict1_->token_trans(kstr);
-                      if (token_ind == NOT_FOUND) continue;
+                      if (token_ind == dict1_->NOT_FOUND_) continue;
                       size_t token_size = dict1_->size(token_ind);
 ++tot_term;                      
                       for (size_t j = 0; j < token_size; ++j)
                       {
 ++tot_loop;
-                          cate_score[dict1_->get_ind(token_ind, j)] += dict1_->get_score(token_ind, j);
-                          ++hit[dict1_->get_ind(token_ind, j)];
+                          CateClassifyScoreDict::token_score_type tmp1 = dict1_->token_score_[token_ind][j];
+                          if (tmp1.cate_ind >= cate_size)
+                          {
+                          	  cout<<"error "<<tmp1.cate_ind<<' '<<i<<' '<<j<<' '<<kstr<<endl;
+                          }
+                          cate_score[tmp1.cate_ind] += tmp1.score;
+                          ++hit[tmp1.cate_ind];
                       }
                       
                   }
-                  
                   for (size_t i = 0; i < cate_size; ++i) if (cate_score[i] != 0)
                   {
                       cate_score[i] += (v_size - hit[i]) * c_dict_->get_con2(i);
@@ -592,22 +618,20 @@ for(size_t i = 0; i < cate_size; ++i)
                       if (fabs(mm1[i].score + 1234567) > 1e-6) 
                           res_map[c_dict_->get_kstr(mm1[i].ind)] = mm1[i].score;
 
+res.first = c_dict_->get_kstr(mm1[0].ind);
+res.second = mm1[0].score;
 if (dolog)                  
 {
-//ss<<res.first<<' '<<res.second<<endl;                 
-for(size_t i = 0; i < v_size; ++i)                  
-ss<<v[i].first<<' '<<v[i].second<<'\t';
-ss<<endl;
-
+ss<<num<<endl;                 
 for(size_t i = 0; i < cate_size; ++i)
 {
     if (cate_score[i] == 0)continue;
-    ss<<i<<' '<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<'\t';
-//    ss<<i<<' '<<cate_table_[i].kstr<<' '<<cate_score[i]<<' '<<cate_table_[i].score<<' '<<cate_table_[i].con1<<' '<<cate_table_[i].con2<<' '<<hit[i]<<endl;
+    ss<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<' '<<c_dict_->get_con2(i)<<' '<<c_dict_->get_con1(i)<<'\t';
+//    ss<<i<<' '<<c_dict_->get_kstr(i)<<' '<<cate_score[i]<<' '<<c_dict_->get_score(i)<<' '<<c_dict_->get_con1(i)<<' '<<c_dict_->get_con2(i)<<' '<<hit[i]<<endl;
     for (size_t j = 0; j < v_size; ++j)
     {
         token_ind = dict1_->token_trans(v[j].first);
-        if (token_ind == NOT_FOUND) 
+        if (token_ind == dict1_->NOT_FOUND_) 
             ss<<v[j].first<<' '<<0<<'\t';
         else
         {
@@ -628,6 +652,54 @@ for(size_t i = 0; i < cate_size; ++i)
 }
                       return res_map;
               }
+            
+            std::map<KString, double> classify_multi_level(std::vector<std::pair<KString,double> >& v, stringstream& ss, bool dolog = false)
+            {
+                std::map<KString, double> res;
+                std::vector<std::pair<KString, double> > u;
+                if (v.size() ==0 || dict1_ == NULL) {
+                    return res;
+                }
+                size_t j = 0;
+                if (dict2_)
+                {
+                    sort(v.begin(), v.end(), CateClassify::token_cmp);
+                    
+                    u.reserve(v.size());
+                    for (size_t i = 0; i+1 < v.size(); ++i)
+                        if (!(v[i].first == v[i+1].first))
+                            u.push_back(v[i]);
+                    u.push_back(v[v.size() - 1]);
+
+                    size_t num = std::min((size_t)4, u.size());
+                    if (num > 3)
+                    {
+                        for (j = num; j > 2; --j)
+                        {
+                            KString kstr;
+                            for (size_t i = 0; i < j; ++i)
+                                kstr += u[i].first;
+                            res = classify_stage_1(j, kstr, ss, dolog);
+                            if (!res.empty())
+                                return res;
+                         }
+                    }
+                    else
+                    {
+                        KString kstr;
+                        for (size_t i = 0; i < num; ++i)
+                            kstr += u[i].first;
+                        res = classify_stage_1(num, kstr, ss, dolog);
+                        if (!res.empty())
+                            return res;
+                    }
+
+                }
+                res = classify_stage_2(0, v, ss, dolog);
+                return res;
+            }
+
+
 		};
 	}}
 #endif

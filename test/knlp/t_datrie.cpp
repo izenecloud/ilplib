@@ -28,6 +28,7 @@ void gen_dict(const char* nm)
     of << "B\t3.6\n";
 }
 
+
 BOOST_AUTO_TEST_CASE(testDATrie)
 {
     gen_dict("./tmp.dict");

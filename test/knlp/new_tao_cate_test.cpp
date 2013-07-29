@@ -22,7 +22,7 @@
 #include <ctype.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <tuple>
+//#include <tuple>
 
 //#include "knlp/new_fmm.h"
 #include "knlp/fmm.h"
@@ -45,7 +45,7 @@ void classify_vote(const std::string& str)
     CateClassifyScoreDict::makeitclean(kstr);
     ilplib::knlp::Normalize::normalize(kstr);
 //    std::vector<std::pair<KString, double> > v;
-    std::vector<std::tuple<size_t, size_t, double> > v;
+//    std::vector<std::tuple<size_t, size_t, double> > v;
     try{
         //tkn->fmm(kstr, v);
     }catch(...){}

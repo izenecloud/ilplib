@@ -268,6 +268,18 @@ namespace ilplib
                   return r;
               }
 
+            static std::string price_feature(double p)
+            {
+                if (p < 100)return "0--100";
+                if (p >= 100 && p<300)return "100--300";
+                if (p >= 300 && p<600)return "300--600";
+                if (p >= 600 && p<1000)return "600--1000";
+                if (p >= 1000 && p<3000)return "1000--3000";
+                if (p >= 3000 && p<6000)return "3000--6000";
+                if (p >= 6000 && p<10000)return "6000-10000";
+                return "10000--inf";
+            }
+
             static std::map<KString, double>
 			  classify_multi_level(
 			    DigitalDictionary* cat,

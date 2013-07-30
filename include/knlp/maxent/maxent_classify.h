@@ -130,7 +130,8 @@ namespace ilplib
                 {
                     KString k = query_features(str);
                     char* v = query_cate_dict_->value(k);
-                    if (!v)r[std::string(v)] = 10000;
+                    if (v)r[std::string(v)] = 10000;
+                    if (dolog && v)ss<<"[Query Dict]: "<<v;
                 }
                 std::vector<std::pair<KString, double> > vv;
                 features(tkn_, gp_, str, vv, ss, dolog);

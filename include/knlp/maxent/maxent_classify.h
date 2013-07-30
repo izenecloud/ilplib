@@ -201,17 +201,19 @@ namespace ilplib
                 std::vector<std::pair<KString, double> > v;
                 tkn->fmm(kstr, v);
                 if (v.empty()) return;
-                if (price.length())v.push_back(make_pair(KString(price), 10000));
+
                 std::sort(v.begin(), v.end(), MaxentClassify::cmp);
                 vv.reserve(v.size());
                 if (v.size())vv.push_back(v[0]);
                 for (size_t i = 1; i < v.size(); ++i)
                     if (!(v[i].first == v[i-1].first))
                         vv.push_back(v[i]);
+                if (price.length())vv.push_back(make_pair(KString(price), 0));
+
                 KString key;
                 for (uint32_t i=0;i<3 && i<v.size(); ++i)
                     key += v[i].first;
-                vv.push_back(make_pair(key, 1000));
+                vv.push_back(make_pair(key, 0));
                 if (dolog)
                     for(uint32_t i=0;i<vv.size();++i)
                         ss<<vv[i].first<<":"<<vv[i].second<<" ";

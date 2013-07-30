@@ -200,3 +200,32 @@ ADD_EXECUTABLE(t_load_resource
 
 TARGET_LINK_LIBRARIES(t_load_resource ${libs})
 
+ADD_EXECUTABLE(maxent_util 
+    maxent_util.cpp 
+${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+${PROJECT_SOURCE_DIR}/source/knlp/maxent/maxent.cpp
+${PROJECT_SOURCE_DIR}/source/knlp/maxent/lbfgs.cpp
+${PROJECT_SOURCE_DIR}/source/knlp/maxent/owlqn.cpp
+${PROJECT_SOURCE_DIR}/source/knlp/maxent/sgd.cpp
+            )
+
+TARGET_LINK_LIBRARIES(maxent_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+#ADD_EXECUTABLE(new_maxent_util 
+#    new_maxent_util.cpp 
+#${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/maxent.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/lbfgs.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/owlqn.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/sgd.cpp
+#            )
+
+#TARGET_LINK_LIBRARIES(new_maxent_util
+#   ${Boost_SYSTEM_LIBRARY}
+#   ${Boost_THREAD_LIBRARY}
+#   ${libs}
+#)

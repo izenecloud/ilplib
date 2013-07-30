@@ -69,6 +69,13 @@ boost::shared_ptr<UpdatableDict> UpdateDictThread::addRelatedDict(const std::str
         return itr->second.relatedDict_;
 }
 
+void UpdateDictThread::addUpdateCallback(UpdateCBType cb)
+{
+    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+    if (cb)
+        callback_list_.push_back(cb);
+}
+
 boost::shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
         const std::string& path,
         UString::EncodingType encoding,
@@ -83,22 +90,44 @@ boost::shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
 
 int UpdateDictThread::update_()
 {
-    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+    std::vector<UpdateCBType> update_cbs;
+    std::vector<std::string> updated_files;
     int failedCount = 0;
-    for (MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr)
     {
-        long curModifiedTime = getFileLastModifiedTime(itr->first);
-        if (curModifiedTime == itr->second.lastModifiedTime_)
-            continue;
+        izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+        for (MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr)
+        {
+            long curModifiedTime = getFileLastModifiedTime(itr->first);
+            if (curModifiedTime == itr->second.lastModifiedTime_)
+                continue;
 
-        //update all dictionary
-        if (itr->second.relatedDict_.get()->update(itr->first.c_str(), curModifiedTime))
-            ++failedCount;
+            //update all dictionary
+            if (itr->second.relatedDict_.get()->update(itr->first.c_str(), curModifiedTime))
+                ++failedCount;
+
+            updated_files.push_back(itr->first);
 
 #ifdef DEBUG_UDT
-        cout << "Update " << itr->first << " failed." << endl;
+            cout << "Update " << itr->first << " failed." << endl;
 #endif
-        itr->second.lastModifiedTime_ = curModifiedTime;
+            itr->second.lastModifiedTime_ = curModifiedTime;
+        }
+
+        if (!updated_files.empty())
+        {
+            update_cbs = callback_list_;
+        }
+    }
+    for(size_t i = 0; i < update_cbs.size(); ++i)
+    {
+        try
+        {
+            update_cbs[i](updated_files);
+        }
+        catch(const std::exception& e)
+        {
+            std::cerr << "update callback exception : " << e.what() << std::endl;
+        }
     }
     return failedCount;
 }

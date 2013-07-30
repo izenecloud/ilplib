@@ -14,6 +14,7 @@
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/function.hpp>
+#include <boost/thread/condition.hpp>
 
 #include <la/dict/UpdatableDict.h>
 #include <la/dict/PlainDictionary.h>
@@ -57,7 +58,8 @@ public:
             const boost::shared_ptr<UpdatableDict>& dict = boost::shared_ptr<UpdatableDict>()
     );
 
-    void addUpdateCallback(UpdateCBType cb);
+    void addUpdateCallback(const std::string& unique_str, UpdateCBType cb);
+    void removeUpdateCallback(const std::string& unique_str);
     /**
      * Utility function to create plain dictionary. These Dictionary is read-only as
      * updating from dictionary source occurs from time to time
@@ -127,9 +129,12 @@ private:
     /** path -> DictSource */
     MapType map_;
 
-    std::vector<UpdateCBType> callback_list_;
+    std::map<std::string, UpdateCBType> callback_list_;
     /** Read Write Lock */
-    izenelib::util::ReadWriteLock lock_;
+    boost::mutex lock_;
+    boost::condition cond_;
+    bool updating_;
+
 
     boost::thread thread_;
 };

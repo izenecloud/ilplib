@@ -39,7 +39,7 @@ long getFileLastModifiedTime(const std::string& path)
 }
 
 UpdateDictThread::UpdateDictThread()
-    : checkInterval_(DEFAULT_CHECK_INTERVAL)
+    : checkInterval_(DEFAULT_CHECK_INTERVAL), updating_(false)
 {
 }
 
@@ -53,7 +53,7 @@ UpdateDictThread UpdateDictThread::staticUDT;
 boost::shared_ptr<UpdatableDict> UpdateDictThread::addRelatedDict(const std::string& path,
         const boost::shared_ptr< UpdatableDict >& dict)
 {
-    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+    boost::mutex::scoped_lock swl(lock_);
     MapType::iterator itr = map_.find(path);
     if (itr == map_.end())
     {
@@ -69,11 +69,27 @@ boost::shared_ptr<UpdatableDict> UpdateDictThread::addRelatedDict(const std::str
         return itr->second.relatedDict_;
 }
 
-void UpdateDictThread::addUpdateCallback(UpdateCBType cb)
+void UpdateDictThread::addUpdateCallback(const std::string& unique_str, UpdateCBType cb)
 {
-    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+    boost::mutex::scoped_lock swl(lock_);
     if (cb)
-        callback_list_.push_back(cb);
+    {
+        while(updating_)
+        {
+            cond_.wait(lock_);
+        }
+        callback_list_[unique_str] = cb;
+    }
+}
+
+void UpdateDictThread::removeUpdateCallback(const std::string& unique_str)
+{
+    boost::mutex::scoped_lock swl(lock_);
+    while (updating_)
+    {
+        cond_.wait(lock_);
+    }
+    callback_list_.erase(unique_str);
 }
 
 boost::shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
@@ -90,11 +106,11 @@ boost::shared_ptr<PlainDictionary> UpdateDictThread::createPlainDictionary(
 
 int UpdateDictThread::update_()
 {
-    std::vector<UpdateCBType> update_cbs;
     std::vector<std::string> updated_files;
     int failedCount = 0;
     {
-        izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+        boost::mutex::scoped_lock swl(lock_);
+        updating_ = true;
         for (MapType::iterator itr = map_.begin(); itr != map_.end(); ++itr)
         {
             long curModifiedTime = getFileLastModifiedTime(itr->first);
@@ -112,23 +128,25 @@ int UpdateDictThread::update_()
 #endif
             itr->second.lastModifiedTime_ = curModifiedTime;
         }
-
-        if (!updated_files.empty())
-        {
-            update_cbs = callback_list_;
-        }
     }
-    for(size_t i = 0; i < update_cbs.size(); ++i)
+    if (!updated_files.empty())
     {
-        try
+        for(std::map<std::string, UpdateCBType>::const_iterator it = callback_list_.begin();
+            it != callback_list_.end(); ++it)
         {
-            update_cbs[i](updated_files);
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << "update callback exception : " << e.what() << std::endl;
+            try
+            {
+                it->second(updated_files);
+            }
+            catch(const std::exception& e)
+            {
+                std::cerr << "update callback exception in " << it->first << ", " << e.what() << std::endl;
+            }
         }
     }
+    boost::mutex::scoped_lock swl(lock_);
+    updating_ = false;
+    cond_.notify_all();
     return failedCount;
 }
 
@@ -150,7 +168,7 @@ void UpdateDictThread::run_()
 
 bool UpdateDictThread::start()
 {
-    izenelib::util::ScopedWriteLock<izenelib::util::ReadWriteLock> swl(lock_);
+    boost::mutex::scoped_lock swl(lock_);
     if (isStarted())
         return false;
 

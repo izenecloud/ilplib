@@ -34,7 +34,7 @@ public:
     CommonLanguageAnalyzer();
 
     CommonLanguageAnalyzer( const std::string & synonymDictPath,
-        UString::EncodingType synonymEncode );
+        UString::EncodingType synonymEncode);
 
     ~CommonLanguageAnalyzer();
 

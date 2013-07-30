@@ -13,6 +13,7 @@
 
 #include <boost/shared_ptr.hpp>
 #include <boost/thread/thread.hpp>
+#include <boost/function.hpp>
 
 #include <la/dict/UpdatableDict.h>
 #include <la/dict/PlainDictionary.h>
@@ -34,6 +35,7 @@ long getFileLastModifiedTime(const std::string& path);
 class UpdateDictThread
 {
 public:
+    typedef boost::function<void(const std::vector<std::string>&)> UpdateCBType; 
     typedef struct {
         long lastModifiedTime_;
         boost::shared_ptr<UpdatableDict> relatedDict_;
@@ -55,6 +57,7 @@ public:
             const boost::shared_ptr<UpdatableDict>& dict = boost::shared_ptr<UpdatableDict>()
     );
 
+    void addUpdateCallback(UpdateCBType cb);
     /**
      * Utility function to create plain dictionary. These Dictionary is read-only as
      * updating from dictionary source occurs from time to time
@@ -124,6 +127,7 @@ private:
     /** path -> DictSource */
     MapType map_;
 
+    std::vector<UpdateCBType> callback_list_;
     /** Read Write Lock */
     izenelib::util::ReadWriteLock lock_;
 

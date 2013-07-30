@@ -30,11 +30,12 @@ namespace ilplib
             ME_Model model_[3];
             Fmm* tkn_;
             ilplib::knlp::GarbagePattern* gp_;
+            Dictionary* query_cate_dict_;
             
         public:
             MaxentClassify(const std::string& model_nm, 
-              Fmm* tkn=NULL, GarbagePattern* gp=NULL)
-              :tkn_(tkn),gp_(gp)
+              Fmm* tkn=NULL, GarbagePattern* gp=NULL, const std::string& query_dict="")
+              :tkn_(tkn),gp_(gp),query_cate_dict_(NULL)
             {
                 if (model_nm.length() > 0)
                     for (uint32_t i=0;i<3;i++)
@@ -43,6 +44,8 @@ namespace ilplib
                         m += '.';m += '0'+i;
                         model_[i].load_from_file(m);
                     }
+                if (query_dict.length())
+                    query_cate_dict_ = new Dictionary(query_dict);
             }
 
             static std::vector<std::string> split_class(std::string ca)
@@ -106,10 +109,29 @@ namespace ilplib
 
             ~MaxentClassify(){}
 
+            KString query_features(const std::string& q)
+            {
+                KString kstr(gp_->clean(q));
+                ilplib::knlp::Normalize::normalize(kstr);
+                std::vector<std::pair<KString, double> > v;
+                tkn_->fmm(kstr, v);
+                std::sort(v.begin(), v.end(), MaxentClassify::cmp);
+                KString r;
+                for (uint32_t i=0;i<v.size();i++)
+                    r += v[i].first;
+                return r;
+            }
+
             std::map<std::string,double>
               classify(const string& str, std::stringstream& ss, bool dolog=false)
             {  
                 std::map<std::string,double>  r;
+                if (query_cate_dict_ && str.length() < 20)
+                {
+                    KString k = query_features(str);
+                    char* v = query_cate_dict_->value(k);
+                    if (!v)r[std::string(v)] = 10000;
+                }
                 std::vector<std::pair<KString, double> > vv;
                 features(tkn_, gp_, str, vv, ss, dolog);
                 if(vv.empty()) return r;
@@ -179,12 +201,16 @@ namespace ilplib
                 tkn->fmm(kstr, v);
                 if (v.empty()) return;
                 if (price.length())v.push_back(make_pair(KString(price), 10000));
-                sort(v.begin(), v.end(), MaxentClassify::cmp);
+                std::sort(v.begin(), v.end(), MaxentClassify::cmp);
                 vv.reserve(v.size());
                 if (v.size())vv.push_back(v[0]);
                 for (size_t i = 1; i < v.size(); ++i)
                     if (!(v[i].first == v[i-1].first))
                         vv.push_back(v[i]);
+                KString key;
+                for (uint32_t i=0;i<3 && i<v.size(); ++i)
+                    key += v[i].first;
+                vv.push_back(make_pair(key, 1000));
                 if (dolog)
                     for(uint32_t i=0;i<vv.size();++i)
                         ss<<vv[i].first<<":"<<vv[i].second<<" ";

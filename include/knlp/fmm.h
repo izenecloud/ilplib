@@ -156,13 +156,13 @@ public:
 		std::vector<KString> chunks = chunk_(line, (!bigterm));
 		for ( uint32_t i=0; i<chunks.size(); ++i)if(chunks[i].length()>0)
 		{
-            if (smart && ((is_alphanum_(chunks[i]) && chunks[i].length() < 18)
+            if (smart && (is_alphanum_(chunks[i]) 
 			      || (chunks[i].length() < 3 && ischinese(chunks[i]))
 			  || (chunks[i].length() == 3 && ischinese(chunks[i]))))
 			{
 			    chunks[i].trim_head_tail();
                 //std::cout<<chunks[i]<<std::endl;
-			    if (chunks.size() > 1)
+			    if (chunks.size() > 1 && chunks[i].length() < 18)
                     r.push_back(make_pair(chunks[i], trie_.score(chunks[i])));
                 else{
                     std::vector<KString> sp = chunks[i].split(' ');

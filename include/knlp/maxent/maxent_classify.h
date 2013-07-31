@@ -161,11 +161,13 @@ namespace ilplib
                         if (scores[i][j].second.length() > R.length()
                           && strstr(scores[i][j].second.c_str(), R.c_str()))
                 {
-                    R = scores[i][j].second;
                     if (dolog)ss<<" [Level "<<i<<"]: "<<scores[i][j].second;
                     if (i == 2 && r.size() < 3)
                         r[scores[i][j].second] = scores[i][j].first;
-                    else break;
+                    else{
+                        R = scores[i][j].second;
+                        break;
+                    }
                 }
                 if (r.size() == 0 && scores.size() > 1 && scores[1].size() > 0 && scores[0].size() > 0)
                     for (uint32_t i=0;i < scores[1].size();++i)

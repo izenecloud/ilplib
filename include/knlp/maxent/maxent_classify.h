@@ -63,7 +63,7 @@ namespace ilplib
             }
 
             static void train(const std::string& train_set, const std::string& mdnm, 
-              Fmm* tkn, GarbagePattern* gp)
+              Fmm* tkn, GarbagePattern* gp, int32_t feature_type=0)
             {
                 ME_Model model[3];
                 LineReader lr(train_set);
@@ -78,7 +78,17 @@ namespace ilplib
 
                     std::vector<std::pair<KString, double> > vv;
                     std::stringstream ss;
-                    features(tkn, gp, ti, vv, ss, false);
+                    switch(feature_type)
+                    {
+                    case 0:
+                        features(tkn, gp, ti, vv, ss, false);
+                        break;
+                    case 1:
+                        query_features(tkn, gp, ti, vv, ss, false);
+                        break;
+                    default:
+                        features(tkn, gp, ti, vv, ss, false);
+                    };
                     if(vv.empty()) continue;
 
                     std::string R="";
@@ -109,7 +119,7 @@ namespace ilplib
 
             ~MaxentClassify(){}
 
-            KString query_features(const std::string& q)
+            KString dict_key(const std::string& q)
             {
                 KString kstr(gp_->clean(q));
                 ilplib::knlp::Normalize::normalize(kstr);
@@ -123,18 +133,28 @@ namespace ilplib
             }
 
             std::map<std::string,double>
-              classify(const string& str, std::stringstream& ss, bool dolog=false)
+              classify(const string& str, std::stringstream& ss, bool dolog=false, int32_t feature_type=0)
             {                  
                 std::map<std::string,double>  r;
                 if (query_cate_dict_ && str.length() < 20)
                 {
-                    KString k = query_features(str);
+                    KString k = dict_key(str);
                     char* v = query_cate_dict_->value(k);
                     if (v)r[std::string(v)] = 1.0;
                     if (dolog && v)ss<<"[Query Dict]: "<<v;
                 }
                 std::vector<std::pair<KString, double> > vv;
-                features(tkn_, gp_, str, vv, ss, dolog);
+                switch(feature_type)
+                {
+                case 0:
+                    features(tkn_, gp_, str, vv, ss, dolog);
+                    break;
+                case 1:
+                    query_features(tkn_, gp_, str, vv, ss, dolog);
+                    break;
+                default:
+                    features(tkn_, gp_, str, vv, ss, dolog);
+                };
                 if(vv.empty()) return r;
 
                 ME_Sample t;
@@ -151,7 +171,6 @@ namespace ilplib
                         scp.push_back(make_pair(sc[j], model_[i].get_class_label(j)));
                     std::sort(scp.begin(), scp.end(), std::greater<std::pair<double, std::string> >());
                     scores.push_back(scp);
-                    
                 }
 
                 if (scores.size() == 0 || scores[0].size() == 0)
@@ -218,6 +237,19 @@ namespace ilplib
                 for (uint32_t i=0;i<3 && i<v.size(); ++i)
                     key += v[i].first;
                 vv.push_back(make_pair(key, 0));
+                if (dolog)
+                    for(uint32_t i=0;i<vv.size();++i)
+                        ss<<vv[i].first<<":"<<vv[i].second<<" ";
+            }
+
+            static void query_features(Fmm* tkn, GarbagePattern* gp, const string& str, 
+              std::vector<std::pair<KString, double> >& vv, std::stringstream& ss, bool dolog=false)
+            {
+                vv.clear();
+                KString kstr(gp->clean(str));
+                ilplib::knlp::Normalize::normalize(kstr);
+                tkn->fmm(kstr, vv);
+                vv.push_back(make_pair(kstr, 0));
                 if (dolog)
                     for(uint32_t i=0;i<vv.size();++i)
                         ss<<vv[i].first<<":"<<vv[i].second<<" ";

@@ -13,7 +13,7 @@ using namespace ilplib::knlp;
 double
 ME_Model::FunctionGradient(const vector<double> & x, vector<double> & grad)
 {
-  assert((int)_fb.Size() == x.size());
+  assert(_fb.Size() == (int)x.size());
   for (size_t i = 0; i < x.size(); i++) {
     _vl[i] = x[i];
   }
@@ -129,7 +129,7 @@ ME_Model::conditional_probability(const Sample & s,
   }
   for (int label = 0; label < _num_classes; label++) {
     membp[label] /= sum;
-    if (membp[label] > membp[max_label]) max_label = label;
+    if (-1 == max_label || membp[label] > membp[max_label]) max_label = label;
   }
   assert(max_label >= 0);
   return max_label;

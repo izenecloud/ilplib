@@ -124,7 +124,7 @@ namespace ilplib
 
             std::map<std::string,double>
               classify(const string& str, std::stringstream& ss, bool dolog=false)
-            {  
+            {                  
                 std::map<std::string,double>  r;
                 if (query_cate_dict_ && str.length() < 20)
                 {
@@ -145,11 +145,13 @@ namespace ilplib
                 for (uint32_t i=0;i<3;i++)
                 {
                     std::vector<double> sc = model_[i].classify(t);
+                    
                     std::vector<std::pair<double, std::string> >scp;
                     for (uint32_t j=0;j<sc.size();j++)
                         scp.push_back(make_pair(sc[j], model_[i].get_class_label(j)));
                     std::sort(scp.begin(), scp.end(), std::greater<std::pair<double, std::string> >());
                     scores.push_back(scp);
+                    
                 }
 
                 if (scores.size() == 0 || scores[0].size() == 0)

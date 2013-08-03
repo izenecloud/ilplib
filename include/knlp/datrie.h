@@ -384,7 +384,7 @@ time1 = clock();
                 {
                     size_t len = st.length();
                     std::vector<std::pair<KString, double> > term;
-                    for (size_t i = len-1; i > 0; --i)
+                    for (int32_t i = (int32_t)len-1; i > 0; --i)
                     {
                         size_t p = find_word(st, 0, i);
                         size_t q = find_word(st, i, len);

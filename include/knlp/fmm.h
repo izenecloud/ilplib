@@ -186,6 +186,25 @@ public:
         }
 	}
 
+    std::vector<std::pair<KString,double> >
+      subtokens(const std::vector<std::pair<KString,double> >& tks)
+    {
+        std::vector<std::pair<KString,double> > r;
+        for (uint32_t i=0; i<tks.size(); ++i)
+        {
+            std::vector<KString> t = chunk_(tks[i].first);
+            if (t.size() > 1)
+            {
+                for (uint32_t j=0;j<t.size();++j)
+                    r.push_back(make_pair(t[j], trie_.score(t[j])));
+                continue;
+            }
+            std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
+            r.insert(r.end(), vv.begin(), vv.end());
+        }
+        return r;
+    }
+
 	static void bigram_with_space(std::vector<std::pair<KString,double> >& r)
     {
         for (uint32_t i=0;i<r.size()-1;++i)

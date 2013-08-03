@@ -17,7 +17,8 @@ void printHelp()
 		\t-t\ttraining corpus path\n\
 		\t-p\ttesting corpus path\n\
 		\t-m\tmodel name.\n\
-		\t-d\ttoken dict.\n";
+		\t-d\ttoken dict.\n\
+		\t-q\tuse query feature\n";
 }
 
 
@@ -29,13 +30,15 @@ int main(int argc,char * argv[])
         return 0;
     }
 
+    time_t starttm,endtm;
     char c = '?';
     string dictnm;
     string garbnm;
     string tcorpus;
     string pcorpus;
     string mdnm;
-    while ((c = getopt (argc, argv, "g:t:p:m:d:")) != -1)
+    bool query_feature = false;
+    while ((c = getopt (argc, argv, "g:t:p:m:d:q")) != -1)
         switch (c)
         {
         case 'g':
@@ -53,6 +56,9 @@ int main(int argc,char * argv[])
         case 'm':
             mdnm = optarg;
             break;
+        case 'q':
+            query_feature = true;
+            break;
         case '?':
             printHelp();
         }
@@ -67,24 +73,29 @@ int main(int argc,char * argv[])
 
     if (tcorpus.length() > 0)
     {
-        MaxentClassify::train(tcorpus, mdnm, fmm, gp);
+        MaxentClassify::train(tcorpus, mdnm, fmm, gp, (query_feature ? 1:0));
         return 0;
     }
+
     if (pcorpus.length() > 0)
     {
+        starttm = clock();
         char* st = NULL;
         mc = new MaxentClassify(mdnm, fmm, gp);
+        
         LineReader lr(pcorpus);
         while ((st = lr.line(st)) != NULL)
         {
             ++tot;
             string str(st);
+            
             int p = str.find("\t");
             string ti = str.substr(0, p);
             string cat = str.substr(p+1, str.length() - p - 1);
             if (cat.length() > 2 && cat[0]=='R')cat = cat.substr(2);
             std::stringstream ss;
-            std::map<std::string, double> m = mc->classify(ti, ss, true);
+            std::map<std::string, double> m;
+            m = mc->classify(ti, ss, true, (query_feature ? 1:0));
             std::string ans;double max = -1000000;
             for (std::map<std::string, double>::const_iterator it=m.begin(); it!=m.end();++it)
                 if (it->second > max)ans = it->first,max=it->second;
@@ -96,7 +107,11 @@ int main(int argc,char * argv[])
                 cout<<ti<<"\t"<<ans<<'\t'<<cat<<endl<<ss.str()<<std::endl;
         }
         cout<<"[Presicion]: "<<(double)right/tot<<endl;
+        
+        endtm = clock();
+        cout<<"classify time = "<<(double)(starttm-endtm)/1000000<<endl;
     }
-
+    
     return 0;
 }
+

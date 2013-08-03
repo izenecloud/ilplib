@@ -183,7 +183,7 @@ namespace ilplib
                           && strstr(scores[i][j].second.c_str(), R.c_str()))
                 {
                     if (dolog)ss<<" [Level "<<i<<"]: "<<scores[i][j].second;
-                    if (i == 2)// && r.size() < 4)
+                    if (i == 2 && r.find(scores[i][j].second) == r.end())// && r.size() < 4)
                         r[scores[i][j].second] = scores[i][j].first;
                     else{
                         R = scores[i][j].second;
@@ -249,6 +249,7 @@ namespace ilplib
                 KString kstr(gp->clean(str));
                 ilplib::knlp::Normalize::normalize(kstr);
                 tkn->fmm(kstr, vv);
+                kstr += '$';
                 vv.push_back(make_pair(kstr, 0));
                 if (dolog)
                     for(uint32_t i=0;i<vv.size();++i)

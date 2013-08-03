@@ -21,11 +21,13 @@ void gen_dict(const char* nm)
     of << "[MIN]\t0.01\n";
     of << "\t0.001\n";
     of << "   [MIN]     \t0.01\n";
-    of << "ABC\t0.2\n";
+    of << "C\t0.2\n";
     of << "ABC C\t0.4\n";
     of << " ABC C D\t1.6\n";
     of << " ABC \t2.6\n";
     of << "B\t3.6\n";
+    of << "ABCD\t2\n";
+    of << "E\t1\n";
 }
 
 
@@ -34,7 +36,7 @@ BOOST_AUTO_TEST_CASE(testDATrie)
     gen_dict("./tmp.dict");
     DATrie da("./tmp.dict");
 
-    BOOST_CHECK(da.size() == 6);
+    BOOST_CHECK(da.size() == 9);
     BOOST_CHECK(da.score(KString("abc c d")) == 1.6);
     BOOST_CHECK(da.score(KString("abc")) == 2.6);
     BOOST_CHECK(da.score(KString("b")) == 3.6);
@@ -59,8 +61,30 @@ BOOST_AUTO_TEST_CASE(testDATrie)
     BOOST_CHECK(v[8].first == KString("s") && v[8].second == 0.01); 
     BOOST_CHECK(v[9].first == KString(" ") && v[9].second == 0.01);
     BOOST_CHECK(v[10].first == KString("abc c d") && v[10].second == 1.6);
-    BOOST_CHECK(v[11].first == KString("c") && v[11].second == 0.01);
+    BOOST_CHECK(v[11].first == KString("c") && v[11].second == 0.2);
     BOOST_CHECK(v[12].first == KString(" ") && v[12].second == 0.01);
+
+    v = da.sub_token(KString("ac"));
+    BOOST_CHECK(v.size() == 2);
+    BOOST_CHECK(v[0].first == KString("a") && v[0].second == 0.1);
+    BOOST_CHECK(v[1].first == KString("c") && v[1].second == 0.2);
+
+    v = da.sub_token(KString("abc"));
+    BOOST_CHECK(v.size() == 1);
+    BOOST_CHECK(v[0].first == KString("abc") && v[0].second == 2.6);
+//    BOOST_CHECK(v[1].first == KString("b") && v[1].second == 3.6);
+//    BOOST_CHECK(v[2].first == KString("c") && v[2].second == 0.2);
+
+    v = da.sub_token(KString("abcd"));
+    BOOST_CHECK(v.size() == 1);
+    BOOST_CHECK(v[0].first == KString("abcd") && v[0].second == 2);
+
+    v = da.sub_token(KString("abce"));
+    BOOST_CHECK(v.size() == 2);
+    BOOST_CHECK(v[0].first == KString("abc") && v[0].second == 2.6);
+    BOOST_CHECK(v[1].first == KString("e") && v[1].second == 1);
+
+
 
     v = da.token(KString(""));
     BOOST_CHECK(v.size() == 0);

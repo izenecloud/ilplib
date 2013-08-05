@@ -192,7 +192,9 @@ public:
         std::vector<std::pair<KString,double> > r;
         for (uint32_t i=0; i<tks.size(); ++i)
         {
-            std::vector<KString> t = chunk_(tks[i].first);
+            //std::vector<KString> t = chunk_(tks[i].first);
+            KString kstr = tks[i].first;
+            std::vector<KString> t = kstr.split(' ');
             if (t.size() > 1)
             {
                 for (uint32_t j=0;j<t.size();++j)

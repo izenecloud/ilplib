@@ -110,7 +110,7 @@ public:
         std::string r = last;
         do{
             last = r;
-            if (r.length() > 30)
+            //if (r.length() > 30)
                 for (uint32_t i=0; i<regs_.size(); ++i)
                     r = boost::regex_replace(r, regs_[i], " ");
             for (uint32_t i=0;i<stopwds_.size();i++)

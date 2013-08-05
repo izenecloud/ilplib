@@ -199,8 +199,9 @@ public:
                     r.push_back(make_pair(t[j], trie_.score(t[j])));
                 continue;
             }
-            std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
-            r.insert(r.end(), vv.begin(), vv.end());
+            r.push_back(tks[i]);
+            //std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
+            //r.insert(r.end(), vv.begin(), vv.end());
         }
         return r;
     }

@@ -110,7 +110,6 @@ public:
         std::string r = last;
         do{
             last = r;
-            //if (r.length() > 30)
                 for (uint32_t i=0; i<regs_.size(); ++i)
                     r = boost::regex_replace(r, regs_[i], " ");
             for (uint32_t i=0;i<stopwds_.size();i++)
@@ -121,10 +120,9 @@ public:
             }
         }while(r.length()>0 && strcmp(last.c_str(), r.c_str())!=0);
 
-        for (uint32_t i=0;i<r.length();++i)
-            if (r[i]!=' ')
-                return r;
-        return str;
+        if (r.length() < str.length()/2)
+            return str;
+        return r;
     }
 
     std::string erase_stop_word(const std::string& str)

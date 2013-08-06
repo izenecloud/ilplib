@@ -197,6 +197,8 @@ namespace ilplib
                             r[scores[1][i].second] = scores[1][i].first;
                 if (r.size() == 0 && scores.size() && scores[0].size())
                     r[scores[0][0].second] = scores[0][0].first;
+                if (r.size() == 1 && r.begin()->second < 0.1)
+                    return  std::map<std::string,double>();
                 return r;
             }
             

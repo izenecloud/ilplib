@@ -45,7 +45,7 @@ namespace ilplib
                         model_[i].load_from_file(m);
                     }
                 if (query_dict.length())
-                    query_cate_dict_ = new Dictionary(query_dict);
+                    query_cate_dict_ = new VectorDictionary(query_dict);
             }
 
             static std::vector<std::string> split_class(std::string ca)
@@ -143,7 +143,7 @@ namespace ilplib
                     if (v)
                         for(uint32_t i=0;i<v->size();++i)
                         {
-                            r[std::string(v->at(i))] = 1.0;
+                            r[std::string(v->at(i))] = 1.0-i/100.;
                             if (dolog)ss<<"[Query Dict]: "<<v->at(i)<<std::endl;
                         }
                 }

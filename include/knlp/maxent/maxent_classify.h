@@ -30,7 +30,7 @@ namespace ilplib
             ME_Model model_[3];
             Fmm* tkn_;
             ilplib::knlp::GarbagePattern* gp_;
-            Dictionary* query_cate_dict_;
+            VectorDictionary* query_cate_dict_;
             
         public:
             MaxentClassify(const std::string& model_nm, 
@@ -139,9 +139,13 @@ namespace ilplib
                 if (query_cate_dict_ && str.length() < 20)
                 {
                     KString k = dict_key(str);
-                    char* v = query_cate_dict_->value(k);
-                    if (v)r[std::string(v)] = 1.0;
-                    if (dolog && v)ss<<"[Query Dict]: "<<v;
+                    std::vector<char*>* v = query_cate_dict_->value(k);
+                    if (v)
+                        for(uint32_t i=0;i<v->size();++i)
+                        {
+                            r[std::string(v->at(i))] = 1.0;
+                            if (dolog)ss<<"[Query Dict]: "<<v->at(i)<<std::endl;
+                        }
                 }
                 std::vector<std::pair<KString, double> > vv;
                 switch(feature_type)

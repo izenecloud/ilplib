@@ -139,12 +139,12 @@ namespace ilplib
                 if (query_cate_dict_ && str.length() < 20)
                 {
                     KString k = dict_key(str);
-                    std::vector<char*>* v = query_cate_dict_->value(k);
+                    std::vector<char*>** v = query_cate_dict_->value(k);
                     if (v)
-                        for(uint32_t i=0;i<v->size();++i)
+                        for(uint32_t i=0;i<(*v)->size();++i)
                         {
-                            r[std::string(v->at(i))] = 1.0-i/100.;
-                            if (dolog)ss<<"[Query Dict]: "<<v->at(i)<<std::endl;
+                            r[std::string((*v)->at(i))] = 1.0-i/100.;
+                            if (dolog)ss<<"[Query Dict]: "<<(*v)->at(i)<<std::endl;
                         }
                 }
                 std::vector<std::pair<KString, double> > vv;

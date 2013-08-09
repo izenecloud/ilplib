@@ -192,18 +192,20 @@ public:
         std::vector<std::pair<KString,double> > r;
         for (uint32_t i=0; i<tks.size(); ++i)
         {
-            //std::vector<KString> t = chunk_(tks[i].first);
-            KString kstr = tks[i].first;
-            std::vector<KString> t = kstr.split(' ');
+            for(uint32_t j=0;j<tks[i].first.length();j++)
+                if (tks[i].first[j] == ' ')
+                    tks[i].first[j] = ',';
+            std::vector<KString> t = chunk_(tks[i].first);
             if (t.size() > 1)
             {
                 for (uint32_t j=0;j<t.size();++j)
-                    r.push_back(make_pair(t[j], trie_.score(t[j])));
+                    if (t[j].length() == 1 && t[j][0] == ',')continue;
+                    else r.push_back(make_pair(t[j], trie_.score(t[j])));
                 continue;
             }
-            r.push_back(tks[i]);
-            //std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
-            //r.insert(r.end(), vv.begin(), vv.end());
+            //r.push_back(tks[i]);
+            std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
+            r.insert(r.end(), vv.begin(), vv.end());
         }
         return r;
     }

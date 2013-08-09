@@ -203,8 +203,11 @@ public:
                     else r.push_back(make_pair(t[j], trie_.score(t[j])));
                 continue;
             }
-            //r.push_back(tks[i]);
-            std::vector<std::pair<KString,double> > vv = trie_.sub_token(t[0]);
+            if (tks[i].length() > 0 && KString::is_english(tks[i][0]))
+            {
+                r.push_back(tks[i]);continue;
+            }
+            std::vector<std::pair<KString,double> > vv = trie_.sub_token(tks[i]);
             r.insert(r.end(), vv.begin(), vv.end());
         }
         return r;

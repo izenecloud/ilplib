@@ -187,7 +187,7 @@ public:
 	}
 
     std::vector<std::pair<KString,double> >
-      subtokens(const std::vector<std::pair<KString,double> >& tks)
+      subtokens(std::vector<std::pair<KString,double> > tks)
     {
         std::vector<std::pair<KString,double> > r;
         for (uint32_t i=0; i<tks.size(); ++i)

@@ -49,6 +49,10 @@ class Dictionary
 
 public:
     Dictionary(const std::string& nm, char delimitor='\t')
+        : dict_(NULL)
+        , buf_(NULL)
+        , bytes_(0)
+        , delimitor_(delimitor)
     {
         delimitor_ = delimitor;
         FILE* f = fopen(nm.c_str(), "r");
@@ -56,7 +60,7 @@ public:
         fseek(f, 0, SEEK_END);
         bytes_ = ftell(f);
         fseek(f, 0, SEEK_SET);
-        buf_ = new char[bytes_+1];
+        buf_ = new char[bytes_+1]();
         if(fread(buf_, bytes_, 1, f)!=1)throw std::runtime_error("File Read error.");
         fclose(f);
 
@@ -96,8 +100,8 @@ public:
 
     ~Dictionary()
     {
-        delete buf_;
         delete dict_;
+        delete[] buf_;
     }
 
     uint32_t size()const
@@ -141,25 +145,29 @@ public:
 
 class VectorDictionary
 {
-    izenelib::am::KStringHashTable<izenelib::util::KString, std::vector<char*>* >* dict_;
+    typedef izenelib::am::KStringHashTable<izenelib::util::KString, std::vector<char*>* > DictT;
+    DictT* dict_;
+    char* buf_;
     char delimitor_;
 
 public:
     VectorDictionary(const std::string& nm, char delimitor='\t')
+        : dict_(NULL)
+        , buf_(NULL)
+        , delimitor_(delimitor)
     {
-        delimitor_ = delimitor;
         FILE* f = fopen(nm.c_str(), "r");
         if (!f)throw std::runtime_error("can't open file.");
         fseek(f, 0, SEEK_END);
         uint32_t bytes = ftell(f);
         fseek(f, 0, SEEK_SET);
-        char* buf = new char[bytes+1];
-        if(fread(buf, bytes, 1, f)!=1)throw std::runtime_error("File Read error.");
+        buf_ = new char[bytes+1]();
+        if(fread(buf_, bytes, 1, f)!=1)throw std::runtime_error("File Read error.");
         fclose(f);
 
-        char* m = buf;
+        char* m = buf_;
         uint32_t T = 0;
-        while(*m && m-buf < bytes)
+        while(*m && m-buf_ < bytes)
         {
             if (*m == '\n')
                 T++;
@@ -168,9 +176,9 @@ public:
 
         IASSERT(T > 0);
         dict_ = new izenelib::am::KStringHashTable<KString, std::vector<char*>*>(T*3, T+2);
-        m = buf;
+        m = buf_;
         char* la = m;
-        while(*m && m-buf < bytes)
+        while(*m && m-buf_ < bytes)
         {
             if (*m == '\n')
             {
@@ -197,7 +205,7 @@ public:
             }
             m++;
         }
-        if (*la == 0 || la - buf >= bytes)
+        if (*la == 0 || la - buf_ >= bytes)
             return;
 		char* t = strchr(la, delimitor);
 		if (!t)
@@ -220,7 +228,12 @@ public:
 
     ~VectorDictionary()
     {
+        for (DictT::iterator it = dict_->begin(); it != dict_->end(); ++it)
+        {
+            delete *it.value();
+        }
         delete dict_;
+        delete[] buf_;
     }
 
     uint32_t size()const
@@ -239,24 +252,27 @@ public:
 class DigitalDictionary
 {
     izenelib::am::KStringHashTable<izenelib::util::KString, double>* dict_;
+    char* buf_;
     char delimitor_;
 
 public:
     DigitalDictionary(const std::string& nm, char delimitor='\t')
+        : dict_(NULL)
+        , buf_(NULL)
+        , delimitor_(delimitor)
     {
-        delimitor_ = delimitor;
         FILE* f = fopen(nm.c_str(), "r");
         if (!f)throw std::runtime_error("can't open file.");
         fseek(f, 0, SEEK_END);
         uint32_t bytes = ftell(f);
         fseek(f, 0, SEEK_SET);
-        char* buf = new char[bytes+1];
-        if(fread(buf, bytes, 1, f)!=1)throw std::runtime_error("File Read error.");
+        buf_ = new char[bytes+1]();
+        if(fread(buf_, bytes, 1, f)!=1)throw std::runtime_error("File Read error.");
         fclose(f);
 
-        char* m = buf;
+        char* m = buf_;
         uint32_t T = 0;
-        while(*m && m-buf < bytes)
+        while(*m && m-buf_ < bytes)
         {
             if (*m == '\n')
                 T++;
@@ -265,9 +281,9 @@ public:
 
         IASSERT(T > 0);
         dict_ = new izenelib::am::KStringHashTable<KString, double>(T*3, T+2);
-        m = buf;
+        m = buf_;
         char* la = m;
-        while(*m && m-buf < bytes)
+        while(*m && m-buf_ < bytes)
         {
             if (*m == '\n')
             {
@@ -284,9 +300,8 @@ public:
             }
             m++;
         }
-        if (*la == 0 || la - buf >= bytes)
+        if (*la == 0 || la - buf_ >= bytes)
         {
-            //delete buf;
             return;
         }
 		char* t = strchr(la, delimitor);
@@ -297,12 +312,12 @@ public:
         Normalize::normalize(kstr);
         kstr = kstr.substr(0, kstr.index_of(delimitor));
         dict_->insert(kstr, atof(t));
-        //delete buf;
     }
 
     ~DigitalDictionary()
     {
         delete dict_;
+        delete[] buf_;
     }
 
     uint32_t size()const

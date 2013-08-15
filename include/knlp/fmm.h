@@ -204,7 +204,7 @@ public:
                 continue;
             }
             if (tks[i].first.length() <4 
-              ||(tks[i].first.length() > 0 && KString::is_english(tks[i].first[0])))
+              ||(tks[i].first.length() > 0 && (KString::is_english(tks[i].first[0] || KString::is_numeric(tks[i].first[0])))))
             {
                 r.push_back(tks[i]);continue;
             }

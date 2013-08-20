@@ -52,7 +52,7 @@ class Fmm
 
         int32_t la = 0;
         for ( int32_t i=0; i<(int32_t)line.length(); ++i)
-		  if (is_alphanum_(line[i]))
+		  if (KString::is_english(line[i])||KString::is_numeric(line[i]))
 		  {
 			  if (la < i)
 			  {
@@ -192,6 +192,7 @@ public:
         std::vector<std::pair<KString,double> > r;
         for (uint32_t i=0; i<tks.size(); ++i)
         {
+            //std::cout<<tks[i].first<<" xxxxx\n";
             for(uint32_t j=0;j<tks[i].first.length();j++)
                 if (tks[i].first[j] == ' ')
                     tks[i].first[j] = ',';
@@ -204,8 +205,9 @@ public:
                 continue;
             }
             if (tks[i].first.length() <4 
-              ||(tks[i].first.length() > 0 && (KString::is_english(tks[i].first[0] || KString::is_numeric(tks[i].first[0])))))
+              ||(tks[i].first.length() > 0 && (KString::is_english(tks[i].first[0]) || KString::is_numeric(tks[i].first[0]))))
             {
+                //std::cout<<tks[i].first<<" sssss\n";
                 r.push_back(tks[i]);continue;
             }
             std::vector<std::pair<KString,double> > vv = trie_.sub_token(tks[i].first);

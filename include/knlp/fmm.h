@@ -282,6 +282,11 @@ public:
     {
         return trie_.min();
     }
+
+	std::size_t termid(const KString& t)const
+	{
+		return trie_.find_word(t);
+	}
 };
 
 }

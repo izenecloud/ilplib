@@ -255,7 +255,13 @@ time1 = clock();
                 }
             }
 
-            size_t find_word(const KString& st, const bool normalize = 0)
+			KString id2word(const size_t id)const
+			{
+				if (id >= dict_.size())return KString();
+				return dict_[id].kstr;
+			}
+
+            size_t find_word(const KString& st, const bool normalize = 0)const
             {
 //                KString st(kst);
 //                if (normalize)

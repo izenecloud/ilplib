@@ -136,7 +136,7 @@ public:
 
     ~Tokenizer()
     {
-        delete output_buffer_;
+        delete[] output_buffer_;
     }
 
     /// \brief set the user defined char types

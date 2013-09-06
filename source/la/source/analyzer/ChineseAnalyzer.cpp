@@ -60,8 +60,8 @@ ChineseAnalyzer::~ChineseAnalyzer()
     delete pA_;
     delete pS_;
 
-    delete input_string_buffer_;
-    delete output_ustring_buffer_;
+    delete[] input_string_buffer_;
+    delete[] output_ustring_buffer_;
 }
 
 void ChineseAnalyzer::setIndexMode()

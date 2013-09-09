@@ -215,17 +215,33 @@ TARGET_LINK_LIBRARIES(maxent_util
    ${Boost_REGEX_LIBRARY}
 )
 
-#ADD_EXECUTABLE(new_maxent_util 
-#    new_maxent_util.cpp 
-#${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-#${PROJECT_SOURCE_DIR}/source/knlp/maxent/maxent.cpp
-#${PROJECT_SOURCE_DIR}/source/knlp/maxent/lbfgs.cpp
-#${PROJECT_SOURCE_DIR}/source/knlp/maxent/owlqn.cpp
-#${PROJECT_SOURCE_DIR}/source/knlp/maxent/sgd.cpp
-#            )
+ADD_EXECUTABLE(product_name_util
+			product_name_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
 
-#TARGET_LINK_LIBRARIES(new_maxent_util
-#   ${Boost_SYSTEM_LIBRARY}
-#   ${Boost_THREAD_LIBRARY}
-#   ${libs}
-#)
+TARGET_LINK_LIBRARIES(product_name_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+ADD_EXECUTABLE(product_detector_util
+			product_detector_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(product_detector_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+ADD_EXECUTABLE(attr_util
+			attr_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(attr_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+

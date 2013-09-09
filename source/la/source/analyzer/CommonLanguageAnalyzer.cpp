@@ -104,10 +104,10 @@ CommonLanguageAnalyzer::~CommonLanguageAnalyzer()
     delete pSynonymResult_;
     delete pStemmer_;
 
-    delete lowercase_string_buffer_;
-    delete lowercase_ustring_buffer_;
-    delete synonym_ustring_buffer_;
-    delete stemming_ustring_buffer_;
+    delete[] lowercase_string_buffer_;
+    delete[] lowercase_ustring_buffer_;
+    delete[] synonym_ustring_buffer_;
+    delete[] stemming_ustring_buffer_;
 }
 
 void CommonLanguageAnalyzer::analyzeSynonym(TermList& outList, size_t n)

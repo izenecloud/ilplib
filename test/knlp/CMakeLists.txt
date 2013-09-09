@@ -215,16 +215,6 @@ TARGET_LINK_LIBRARIES(maxent_util
    ${Boost_REGEX_LIBRARY}
 )
 
-ADD_EXECUTABLE(product_name_util
-			product_name_util.cpp 
-			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-)
-
-TARGET_LINK_LIBRARIES(product_name_util
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_REGEX_LIBRARY}
-)
-
 
 ADD_EXECUTABLE(attr_util
 			attr_util.cpp 

@@ -1,5 +1,5 @@
-#ifndef _ILPLIB_NLP_CATE_CLASSIFY_H_
-#define _ILPLIB_NLP_CATE_CLASSIFY_H_
+#ifndef _ILPLIB_NLP_ATTR_NORMALIZE_H_
+#define _ILPLIB_NLP_ATTR_NORMALIZE_H_
 #include<string>
 using std::string;
 using std::wstring;

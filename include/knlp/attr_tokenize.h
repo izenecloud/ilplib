@@ -44,7 +44,7 @@ namespace knlp
 class AttributeTokenize
 {
     DATrie token_dict_;
-    DATrie attv_dict__;
+    DATrie attv_dict_;
 	Dictionary syn_dict_;
 
 	KString sub_cate_(const std::string& cate)
@@ -52,7 +52,7 @@ class AttributeTokenize
 		KString r(cate);
 		int32_t i=r.length()-1;
 		for ( ; i>=0 || r[i]=='/' || r[i]=='>'; --i);
-		if (i+1 < r.length())
+		if (i+1 < (int32_t)r.length())
   		  return r.substr(i+1);
 		return r;
 	}
@@ -100,8 +100,8 @@ class AttributeTokenize
 			  chunks.push_back(kstr.substr(last, pos[i].first - last));
 			last = pos[i].second;
 		}
-		if (last < pos[i].first)
-		  chunks.push_back(kstr.substr(last, pos[i].first - last));
+		if (last < kstr.length())
+		  chunks.push_back(kstr.substr(last));
 
 		std::vector<KString> r;
 		for ( uint32_t i=0; i<chunks.size(); ++i)
@@ -163,11 +163,11 @@ public:
 					const std::string& cate, const std::string& ocate)
     {
 		std::vector<std::pair<KString, double> > rr;
-		std::vector<KString> kattrs = attr.split(',');
+		std::vector<KString> kattrs = KString(attr).split(',');
 
 		double max_avs = attv_dict_.score(KString("[title]"));
 		KString subcate = sub_cate_(cate);
-		const double hyper_p = sqrt(kattrs.size()/40).;
+		const double hyper_p = sqrt(kattrs.size()/40.);
 
 		for ( uint32_t i=0; i<kattrs.size(); ++i)
 		{

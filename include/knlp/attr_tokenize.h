@@ -160,7 +160,8 @@ public:
 
 	std::vector<std::pair<std::string, double> >
 		tokenize(const std::string& title, const std::string& attr, 
-					const std::string& cate, const std::string& ocate)
+					const std::string& cate, const std::string& ocate,
+					const std::string& source)
     {
 		std::vector<std::pair<KString, double> > rr;
 		std::vector<KString> kattrs = KString(attr).split(',');
@@ -183,6 +184,7 @@ public:
 		rr.push_back(make_pair(normallize_(title), max_avs));
 		rr.push_back(make_pair(normallize_(cate), max_avs));
 		rr.push_back(make_pair(normallize_(ocate), max_avs));
+		rr.push_back(make_pair(normallize_(source), max_avs));
 
 		return token_(rr);
     }

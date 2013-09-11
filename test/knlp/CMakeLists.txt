@@ -226,3 +226,13 @@ TARGET_LINK_LIBRARIES(attr_util
    ${Boost_REGEX_LIBRARY}
 )
 
+ADD_EXECUTABLE(cluster_util
+			cluster_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(cluster_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+

@@ -50,8 +50,10 @@ class AttributeTokenize
 
 	KString sub_cate_(const std::string& cate, bool g=true)
 	{
+		if (cate.length() == 0)return KString();
 		KString r(cate);
 		int32_t i=r.length()-1;
+		if (r[i] == '>')i--;
 		for ( ; i>=0 || (g && r[i]=='/') || r[i]=='>'; --i);
 		if (i+1 < (int32_t)r.length())
   		  return r.substr(i+1);

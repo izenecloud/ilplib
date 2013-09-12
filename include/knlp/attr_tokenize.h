@@ -30,6 +30,7 @@
 #include <math.h>
 #include <set>
 
+#include "dictionary.h"
 #include "util/string/kstring.hpp"
 #include "trd2simp.h"
 #include "am/util/line_reader.h"

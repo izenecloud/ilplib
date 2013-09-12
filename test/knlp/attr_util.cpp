@@ -12,7 +12,7 @@ using namespace izenelib::util;
 
 void printHelp()
 {
-    cout<< "./attr_util\n"<<"-s\tsource file\n-t\ttest file\n";
+    cout<< "./attr_util\n"<<"-t\ttest file\n";
 }
 
 
@@ -26,14 +26,10 @@ int main(int argc,char * argv[])
 
     time_t t1,t2;
     char c = '?';
-    string source;
     string test;
-    while ((c = getopt (argc, argv, "s:t")) != -1)
+    while ((c = getopt (argc, argv, "t:")) != -1)
         switch (c)
         {
-        case 's':
-            source = optarg;
-            break;
         case 't':
             test = optarg;
             break;
@@ -41,7 +37,7 @@ int main(int argc,char * argv[])
             printHelp();
         }
 
-    if (source.length() == 0)
+    if (test.length() == 0)
     {
         printHelp();
         return 0;
@@ -51,14 +47,36 @@ int main(int argc,char * argv[])
     t1 = clock();
     char* st = NULL;
         
-    LineReader lr(source);
+    LineReader lr(test);
     while ((st = lr.line(st)) != NULL)
     {
-        string str(st);
-        str.erase(0,11);
-        string res = an.attr_normalize(str);
-//        printf("%s\n%s\n\n",str.c_str(),res.c_str());
-        std::cout<<str<<"\n"<<res<<"\n\n";
+        string str(st), att, cate, title;
+        vector<string> v;
+        boost::split(v, str, is_any_of("\t"));
+        for(size_t i = 0; i < v.size(); ++i) if(!v[i].empty())
+        {
+            if(v[i][1]=='A')
+                att=v[i].substr(11, v[i].length()-11);
+            else if(v[i][1]=='C')
+            {
+                string tmp = v[i].substr(10, v[i].length()-10);
+                int p = -1;
+                for(size_t j = tmp.length()-1; j >= 0; --j)
+                    if(tmp[j]=='>')
+                    {
+                        p = j;
+                        break;
+                    }
+                if (p>-1)
+                    cate = tmp.substr(p+1, tmp.length()-p-1);
+                else cate = tmp;
+            }
+            else if(v[i][1]=='T')title=v[i].substr(7, v[i].length()-7);
+        }
+//        cout<<att<<'\n'<<title<<'\n'<<cate<<'\n';
+        string res = an.attr_normalize(att, 0, cate);
+        cout<<res<<"\t"<<title<<endl;
+//        std::cout<<str<<"\n"<<res<<"\n\n";
     }
     t2=clock();
     cout<<(t2-t1)/1000000<<endl;

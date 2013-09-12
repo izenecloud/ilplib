@@ -16,6 +16,7 @@ namespace ilplib{
             public:
                 AttributeNormalize()
                 {
+                    setlocale(LC_ALL, "zh_CN.utf8");
                     build();
                 }
             
@@ -31,21 +32,20 @@ namespace ilplib{
 
                 std::string trans_name(std::string& s)
                 {
-                    ilplib::knlp::Normalize::normalize(s);
                     return trans(s, name_reg);
                 }
 
                 std::string trans_value(std::string& s)
                 {
-                    ilplib::knlp::Normalize::normalize(s);
                     return trans(s, value_reg);
                 }
                 
 
                 std::string trans(const std::string& s, const std::vector<std::pair<boost::wregex, std::wstring> >& reg)
-                {
-                    setlocale(LC_ALL, "");
+                {                    
                     int wlen = mbstowcs(NULL, s.c_str(), 0);
+                    if (-1 == wlen)
+                        return s;
                     wchar_t *wst = new wchar_t[wlen+1];
                     mbstowcs(wst, s.c_str(), wlen+1);
                     std::wstring wres(wst);
@@ -60,16 +60,17 @@ namespace ilplib{
                     }
                     
                     int len= wcstombs(NULL, wres.c_str(), 0);
+                    if (-1 == len)
+                        return s;
                     char *st= new char[len+1];
                     wcstombs(st, wres.c_str(), len+1);
-                    st[len] = '\0';
                     std::string res(st);
                     delete []wst;
                     delete []st;
                     return res;
                 }
 
-                std::string attr_normalize(std::string& s, const std::string& cate = "")
+                std::string attr_normalize(std::string& s, const bool add_att = 0, const std::string& cate = "")
                 {
                     bool use_cate = 1;
                     if (cate.empty())
@@ -79,7 +80,7 @@ namespace ilplib{
                     boost::split(atts, res, boost::is_any_of("\t"));
                     res = "";
                     std::set<std::string> name_set;
-                    for (int i = 0; i < atts.size(); ++i)
+                    for (size_t i = 0; i < atts.size(); ++i)
                     {
                         std::string pairs0,pairs1;
 //        boost::split(pairs, atts[i], boost::is_any_of(":"));
@@ -103,7 +104,7 @@ namespace ilplib{
                     }
                     if(!res.empty())
                     {
-                        if(use_cate)
+                        if(add_att)
                         {
                             res += "[atts]:";
                             for(std::set<std::string>::iterator it = name_set.begin(); it != name_set.end(); ++it)

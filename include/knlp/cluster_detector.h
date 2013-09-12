@@ -2,6 +2,7 @@
 #define _ILPLIB_NLP_CLUSTER_DETECTOR_H_
 #include "knlp/model_detector.h"
 #include "knlp/product_name_detector.h"
+#include "knlp/attr_normalize.h"
 #include<iostream>
 #include<string>
 #include "knlp/normalize.h"
@@ -19,6 +20,8 @@ namespace ilplib{
             ProductNameDetector* pnd;
             Fmm tkn_;
             ilplib::knlp::GarbagePattern* gp_;
+            AttributeNormalize an;
+
 
             ClusterDetector(const std::string& nm, GarbagePattern* gp=NULL)
                 : tkn_(nm), gp_(gp)
@@ -58,7 +61,7 @@ namespace ilplib{
                 return md.model_detect(s, 2);
             }
 
-            std::string cluster_detect(std::string& title, std::string& cate, std::string& att)
+            std::string cluster_detect(std::string& title, std::string& cate, std::string& att, bool attr_normalize = 0)
             {
                 ilplib::knlp::Normalize::normalize(title);
                 ilplib::knlp::Normalize::normalize(att);
@@ -66,6 +69,10 @@ namespace ilplib{
                 gp_->clean(title);
                 gp_->clean(att);
                 gp_->clean(cate);
+
+                if (attr_normalize)
+                    att = an.attr_normalize(att);
+
 
                 std::string model;
                 std::vector<std::string> product_name;
@@ -75,7 +82,12 @@ namespace ilplib{
                 std::vector<std::string> v_att;
                 std::string header("http://www.b5m.com/");
                 if (cate.empty())
-                    return header + title_full(title);
+                {
+                    if (title.length() > 10)
+                        return header + title_full(title);
+                    else 
+                        return res;
+                }
                 boost::split(v_att, att, is_any_of(","));              
 //                boost::split(v_att, att, is_any_of("\t"));
 
@@ -96,11 +108,16 @@ namespace ilplib{
                     model = att_normal(att_value);
                 if (model.empty())
                     model = title_loose(title);
-                if (model.empty())
+                if (model.empty() && title.length() > 10)
                     model = title_full(title);
 
+                if (model.empty())
+                    return res;
 
-                res = cate + "\t" + model + "\t";
+
+                res = cate + "\t" + model;
+                if (!product_name.empty())
+                    res = res + "\t";
                 for (size_t i = 0; i< product_name.size(); ++i)
                     if(i>0)
                         res = res + " " + product_name[i];

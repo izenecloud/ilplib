@@ -47,11 +47,11 @@ class AttributeTokenize
     DATrie attv_dict_;
 	Dictionary syn_dict_;
 
-	KString sub_cate_(const std::string& cate)
+	KString sub_cate_(const std::string& cate, bool g=true)
 	{
 		KString r(cate);
 		int32_t i=r.length()-1;
-		for ( ; i>=0 || r[i]=='/' || r[i]=='>'; --i);
+		for ( ; i>=0 || (g && r[i]=='/') || r[i]=='>'; --i);
 		if (i+1 < (int32_t)r.length())
   		  return r.substr(i+1);
 		return r;
@@ -59,7 +59,14 @@ class AttributeTokenize
 
 	KString normallize_(const std::string& str)
 	{
+	    return normallize_(KString(str));
 		KString r(str);
+		Normalize::normalize(r);
+		return r;
+	}
+
+	KString normallize_(KString r)
+	{
 		Normalize::normalize(r);
 		return r;
 	}
@@ -142,7 +149,7 @@ class AttributeTokenize
 
 			std::vector<std::pair<std::string, double> > r;
 			for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end(); ++it)
-			  r.push_back(*it);
+			  r.push_back(make_pair(it->first, it->second*100.));
 			return r;
 		}
 public:
@@ -183,7 +190,7 @@ public:
 		}
 		rr.push_back(make_pair(normallize_(title), max_avs));
 		rr.push_back(make_pair(normallize_(cate), max_avs));
-		rr.push_back(make_pair(normallize_(ocate), max_avs));
+		rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
 		rr.push_back(make_pair(normallize_(source), max_avs));
 
 		return token_(rr);

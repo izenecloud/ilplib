@@ -178,7 +178,7 @@ namespace ilplib
             size_t child(const size_t i, const size_t j)
             {
                 if (i > size_) return NOT_FOUND_;
-                if (j > cate_graph_[i].child.size()) return NOT_FOUND;
+                if (j > cate_graph_[i].child.size()) return NOT_FOUND_;
                 return cate_graph_[i].child[j];
             }
 
@@ -248,7 +248,7 @@ size_t times = 0;
                     KString kstr(s1);
                     Normalize::normalize(kstr);
                     token_ind = token_trans(kstr);
-                    if (token_ind == NOT_FOUND) 
+                    if (token_ind == NOT_FOUND_) 
                     {
                         cout<<"read error! "<<token_ind<<' '<<kstr<<endl;
                         continue;

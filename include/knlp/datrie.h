@@ -12,7 +12,6 @@
 using namespace izenelib;
 using namespace izenelib::util;
 using namespace std;
-#define NOT_FOUND 0xFFFFFFFFFFFFFFFF
 namespace ilplib
 {
     namespace knlp
@@ -35,13 +34,14 @@ namespace ilplib
             
 
         public:
+            const size_t NOT_FOUND;
             static bool word_cmp(const word_type& x, const word_type& y)
             {
                 return x.kstr < y.kstr;
             }
 
-            DATrie() {}
-            DATrie(const std::string& file_name, const size_t mode = 0)
+            DATrie():NOT_FOUND(-1) {}
+            DATrie(const std::string& file_name, const size_t mode = 0):NOT_FOUND(-1)
             {
 time_t time1, time2;
 time1 = clock();

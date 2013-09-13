@@ -11,7 +11,6 @@
 using namespace boost;
 using namespace ilplib::knlp;
 using namespace izenelib::util;
-using namespace std;
 namespace ilplib{
     namespace knlp{
         class ClusterDetector{

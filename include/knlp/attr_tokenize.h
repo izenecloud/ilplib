@@ -132,7 +132,7 @@ class AttributeTokenize
 			const char* syn = syn_dict_.value(sub);
 			if (syn)sub = KString(syn);
 			std::vector<std::pair<KString, double> > v = token_dict_.token(sub);
-			if (v.size() ==0 || v[i].first.length() < 3)
+			if (v.size() ==0 || v[0].first.length() < 3)
   			  r.push_back(sub);
 			else for ( uint32_t j=0; j<v.size(); ++j)
 			  r.push_back(v[j].first);

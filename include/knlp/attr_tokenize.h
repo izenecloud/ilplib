@@ -101,6 +101,7 @@ class AttributeTokenize
 			  }
 			  f = false;
 		  }
+		if (f)pos.back().second = kstr.length();
 
 		std::vector<KString> chunks;
 		uint32_t last = 0;
@@ -126,6 +127,7 @@ class AttributeTokenize
 		}
 		for ( uint32_t i=0; i<pos.size(); ++i)
 		{
+			assert(pos[i].second >= pos[i].first);
 			KString sub = kstr.substr(pos[i].first, pos[i].second-pos[i].first);
 			const char* syn = syn_dict_.value(sub);
 			if (syn)sub = KString(syn);

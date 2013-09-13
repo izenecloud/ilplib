@@ -137,6 +137,11 @@ class AttributeTokenize
 			else for ( uint32_t j=0; j<v.size(); ++j)
 			  r.push_back(v[j].first);
 		}
+		for ( uint32_t i=0; i<r.size(); ++i)
+		  if (r.size() > 1 && r[i].length() == 1 
+			&& (!KString::is_english(r[i][0]) && !KString::is_numeric(r[i][0]) && !KString::is_chinese(r[i][0]))\
+			)
+			r.erase(r.begin()+i),--i;
 		return r;
 	}
 
@@ -154,7 +159,7 @@ class AttributeTokenize
 
 			std::vector<std::pair<std::string, double> > r;
 			for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end(); ++it)
-			  r.push_back(make_pair(it->first, it->second*100.));
+  				r.push_back(make_pair(it->first, it->second*100.));
 			return r;
 		}
 public:

@@ -8,7 +8,6 @@ using std::wstring;
 #include <boost/algorithm/string.hpp>
 #include "knlp/normalize.h"
 #include <set>
-using namespace boost;
 namespace ilplib{
     namespace knlp{
         class AttributeNormalize

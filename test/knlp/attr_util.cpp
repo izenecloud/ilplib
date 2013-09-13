@@ -52,7 +52,7 @@ int main(int argc,char * argv[])
     {
         string str(st), att, cate, title;
         vector<string> v;
-        boost::split(v, str, is_any_of("\t"));
+        boost::split(v, str, boost::is_any_of("\t"));
         for(size_t i = 0; i < v.size(); ++i) if(!v[i].empty())
         {
             if(v[i][1]=='A')

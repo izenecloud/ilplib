@@ -84,7 +84,7 @@ namespace ilplib{
                     else 
                         return res;
                 }
-                boost::split(v_att, att, is_any_of(","));              
+                boost::split(v_att, att, boost::is_any_of(","));              
 //                boost::split(v_att, att, is_any_of("\t"));
 
                 for(size_t i = 0; i < v_att.size(); ++i)

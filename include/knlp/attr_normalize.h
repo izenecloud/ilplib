@@ -67,11 +67,8 @@ namespace ilplib{
                     return res;
                 }
 
-                std::string attr_normalize(std::string& s, const bool add_att = 0, const std::string& cate = "")
+                std::string attr_normalize(std::string& s, const std::string& cate = "", const bool add_at = 0)
                 {
-                    bool use_cate = 1;
-                    if (cate.empty())
-                        use_cate = 0;
                     string res = trans_whole(s);
                     std::vector<std::string> atts;
                     boost::split(atts, res, boost::is_any_of("\t"));
@@ -91,7 +88,7 @@ namespace ilplib{
 //        cout<<pairs0<<":"<<pairs1<<endl;
                         if(pairs0!=""&&pairs1!="")
                         {
-                            if(use_cate)
+                            if(add_at)
                                 res = res + pairs0 + "@" + cate + ":" + pairs1 + ",";
                             else
                                 res = res + pairs0 + ":" + pairs1 + ",";
@@ -101,12 +98,14 @@ namespace ilplib{
                     }
                     if(!res.empty())
                     {
+/*                        
                         if(add_att)
                         {
                             res += "[atts]:";
                             for(std::set<std::string>::iterator it = name_set.begin(); it != name_set.end(); ++it)
                                 res += (*it) + "/";
                         }
+*/                        
                         if ((res[res.length()-1]==','||res[res.length()-1]=='/'))
                             res.erase(res.length()-1, 1);
                     }

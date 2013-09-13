@@ -8,9 +8,6 @@
 #include "knlp/normalize.h"
 #include "knlp/fmm.h"
 #include <boost/algorithm/string.hpp>
-using namespace boost;
-using namespace ilplib::knlp;
-using namespace izenelib::util;
 namespace ilplib{
     namespace knlp{
         class ClusterDetector{

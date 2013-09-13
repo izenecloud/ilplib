@@ -4,8 +4,6 @@
 #include<string>
 #include<boost/regex.hpp>
 #include<algorithm>
-using namespace std;
-using namespace boost;
 namespace ilplib{
     namespace knlp{
         class ModelDetector{
@@ -150,7 +148,7 @@ namespace ilplib{
 
             }
 
-            void clean(string& res)
+            void clean(std::string& res)
             {
                 //cout<<"before clean "<<res<<endl;
                 //android
@@ -257,7 +255,7 @@ namespace ilplib{
                 else 
                 {
                     int p=begin+len;
-                    string s0,s1,s2,s3;
+                    std::string s0,s1,s2,s3;
                     if (p+2<(int)s.length() && s[p]&0x80 && (unsigned)s[p]>=0)
                     {
                         s0 = s.substr(p,3);
@@ -336,7 +334,7 @@ namespace ilplib{
                     }   
                     else
                     {   
-                        string tmp;
+                        std::string tmp;
                         tmp = check(s, begin, len, eng, num, punc, mode);
                         if (res.empty() || tmp.length() > res.length())
                             res = tmp;
@@ -348,7 +346,7 @@ namespace ilplib{
                     }   
                 }   
 
-                string tmp = check(s, begin, len, eng, num, punc, mode);
+                std::string tmp = check(s, begin, len, eng, num, punc, mode);
                 if (res.empty() || tmp.length() > res.length())
                     res = tmp;
                 return res;
@@ -357,22 +355,3 @@ namespace ilplib{
     }
 }
 #endif
-/*
-int main()
-{
-    unit_init();
-    freopen("title2","r", stdin);
-    string st;
-    while(cin>>st)
-    {
-        string res=model_detect(st);
-        if(!res.empty())
-            cout<<st<<'\n'<<res<<"\n\n";
-    }
-
-    
-
-
-    return 0;
-}
-*/

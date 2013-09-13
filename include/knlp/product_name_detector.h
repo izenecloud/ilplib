@@ -12,12 +12,6 @@
 #include "knlp/string_patterns.h"
 #include "am/util/line_reader.h"
 
-using namespace std;
-using namespace izenelib;
-using namespace izenelib::am::util;
-using namespace izenelib::util;
-using namespace ilplib::knlp;
-
 namespace ilplib
 {
     namespace knlp

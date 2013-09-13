@@ -1,8 +1,6 @@
 #ifndef _ILPLIB_NLP_ATTR_NORMALIZE_H_
 #define _ILPLIB_NLP_ATTR_NORMALIZE_H_
 #include<string>
-using std::string;
-using std::wstring;
 #include <locale>
 #include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>

@@ -138,8 +138,9 @@ class AttributeTokenize
 			  r.push_back(v[j].first);
 		}
 		for ( uint32_t i=0; i<r.size(); ++i)
-		  if (r.size() > 1 && r[i].length() == 1 
-			&& (!KString::is_english(r[i][0]) && !KString::is_numeric(r[i][0]) && !KString::is_chinese(r[i][0]))\
+		  if (r[i].length() == 0 
+				|| (r.size() > 1 && r[i].length() == 1 
+			&& ((KString::is_english(r[i][0]) && !KString::is_numeric(r[i][0]) && !KString::is_chinese(r[i][0])))
 			)
 			r.erase(r.begin()+i),--i;
 		return r;

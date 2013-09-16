@@ -13,16 +13,15 @@ namespace ilplib{
         class ClusterDetector{
         public:
             ModelDetector md;
-            ProductNameDetector* pnd;
+            ProductNameDetector pnd_;
             Fmm tkn_;
             ilplib::knlp::GarbagePattern* gp_;
             AttributeNormalize an;
 
 
-            ClusterDetector(const std::string& nm, GarbagePattern* gp=NULL)
-                : tkn_(nm), gp_(gp)
+            ClusterDetector(const std::string& nm, const std::string& syn_dict, GarbagePattern* gp=NULL)
+                : pnd_(nm, gp), tkn_(nm), gp_(gp), an(syn_dict)
             {
-                pnd = new ProductNameDetector(nm, gp);
             }
 
             ~ClusterDetector()
@@ -95,15 +94,15 @@ namespace ilplib{
                         att_value = att_value + value + " ";
                 }
 
-                product_name = pnd->multi_product_name(title);
+                product_name = pnd_.multi_product_name(title);
 
                 model = title_normal(title);
                 if (model.empty())
                     model = title_trim(title);
                 if (model.empty() && !product_name.empty())
                     model = att_normal(att_value);
-                if (model.empty())
-                    model = title_loose(title);
+//                if (model.empty())
+//                    model = title_loose(title);
                 if (model.empty() && title.length() > 10)
                     model = title_full(title);
 

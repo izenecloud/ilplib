@@ -1,4 +1,6 @@
-
+FILE( GLOB_RECURSE MAXENT
+    "${PROJECT_SOURCE_DIR}/source/knlp/maxent/*.*"
+    )
 INCLUDE_DIRECTORIES(
     ${IZENELIB_SOURCE_DIR}/include/
 )
@@ -121,6 +123,7 @@ SET(libs
 ADD_EXECUTABLE(t_knlp_tokenize
   t_knlp_tokenize.cpp
   KNlpTokenizeTestFixture.cpp
+  ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
   Runner.cpp
 )
 
@@ -129,6 +132,7 @@ TARGET_LINK_LIBRARIES(t_knlp_tokenize ${libs})
 
 ADD_EXECUTABLE(t_datrie
   t_datrie.cpp
+  ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
   Runner.cpp
 )
 
@@ -195,6 +199,7 @@ TARGET_LINK_LIBRARIES(datrie_util
 
 ADD_EXECUTABLE(t_load_resource
   t_load_resource.cpp
+  ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
   Runner.cpp
 )
 
@@ -202,11 +207,12 @@ TARGET_LINK_LIBRARIES(t_load_resource ${libs})
 
 ADD_EXECUTABLE(maxent_util 
     maxent_util.cpp 
-${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-${PROJECT_SOURCE_DIR}/source/knlp/maxent/maxent.cpp
-${PROJECT_SOURCE_DIR}/source/knlp/maxent/lbfgs.cpp
-${PROJECT_SOURCE_DIR}/source/knlp/maxent/owlqn.cpp
-${PROJECT_SOURCE_DIR}/source/knlp/maxent/sgd.cpp
+    ${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+    ${MAXENT}
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/maxent.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/lbfgs.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/owlqn.cpp
+#${PROJECT_SOURCE_DIR}/source/knlp/maxent/sgd.cpp
             )
 
 TARGET_LINK_LIBRARIES(maxent_util
@@ -222,17 +228,21 @@ ADD_EXECUTABLE(attr_util
 )
 
 TARGET_LINK_LIBRARIES(attr_util
+   ${libs}
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_REGEX_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
 )
 
 ADD_EXECUTABLE(cluster_util
-			cluster_util.cpp 
-			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+		cluster_util.cpp 
+    	${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 )
 
 TARGET_LINK_LIBRARIES(cluster_util
+   ${libs}
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_REGEX_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
 )
 

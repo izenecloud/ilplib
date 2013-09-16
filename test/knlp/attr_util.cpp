@@ -12,7 +12,7 @@ using namespace izenelib::util;
 
 void printHelp()
 {
-    cout<< "./attr_util\n"<<"-t\ttest file\n";
+    cout<< "./attr_util\n"<<"-t\ttest file\n-d\tsyn dict\n";
 }
 
 
@@ -27,23 +27,31 @@ int main(int argc,char * argv[])
     time_t t1,t2;
     char c = '?';
     string test;
-    while ((c = getopt (argc, argv, "t:")) != -1)
+    string syn_dict;
+    while ((c = getopt (argc, argv, "t:d:")) != -1)
         switch (c)
         {
         case 't':
             test = optarg;
             break;
+        case 'd':
+            syn_dict = optarg;
+            break;
         case '?':
             printHelp();
         }
 
-    if (test.length() == 0)
+    if (test.empty())
     {
         printHelp();
         return 0;
     }
 
-    AttributeNormalize an;
+    AttributeNormalize *an = NULL;
+    if(syn_dict.empty())
+        an = new AttributeNormalize();
+    else
+        an = new AttributeNormalize(syn_dict);
     t1 = clock();
     char* st = NULL;
         
@@ -62,7 +70,7 @@ int main(int argc,char * argv[])
                 string tmp = v[i].substr(10, v[i].length()-10);
                 int p = -1;
                 for(size_t j = tmp.length()-1; j >= 0; --j)
-                    if(tmp[j]=='>')
+                    if(tmp[j]=='>' || tmp[j]=='/')
                     {
                         p = j;
                         break;
@@ -74,9 +82,9 @@ int main(int argc,char * argv[])
             else if(v[i][1]=='T')title=v[i].substr(7, v[i].length()-7);
         }
 //        cout<<att<<'\n'<<title<<'\n'<<cate<<'\n';
-        string res = an.attr_normalize(att, 0, cate);
-        cout<<res<<"\t"<<title<<endl;
-//        std::cout<<str<<"\n"<<res<<"\n\n";
+        string res(an->attr_normalize(att, cate, 1));
+        printf("%s\t%s\n",res.c_str(),title.c_str());
+//        cout<<res<<"\t"<<title<<endl;
     }
     t2=clock();
     cout<<(t2-t1)/1000000<<endl;

@@ -4,6 +4,7 @@
 #include<string>
 #include<boost/regex.hpp>
 #include<algorithm>
+#include"re2/re2.h"
 namespace ilplib{
     namespace knlp{
         class ModelDetector{
@@ -11,6 +12,7 @@ namespace ilplib{
             ModelDetector()
             {
                 unit_init();
+                build();
             }
             ~ModelDetector()
             {}
@@ -18,6 +20,8 @@ namespace ilplib{
             std::set<std::string> chs_unit;
             std::set<std::string> chs_num;
             std::set<std::string> eng_unit;
+            std::vector<std::pair<re2::RE2*, std::string> > regs0, regs1, regs2;
+            std::vector<re2::RE2*> unit_reg;
             void unit_init()
             {
                 chs_unit.insert("克");
@@ -148,10 +152,10 @@ namespace ilplib{
 
             }
 
-            void clean(std::string& res)
+            void clean(std::string& s)
             {
                 //cout<<"before clean "<<res<<endl;
-                //android
+/*                
                 res = regex_replace(res, boost::regex("android"), "");
                 res = regex_replace(res, boost::regex("1573"), "");
                 res = regex_replace(res, boost::regex("cet"), "");
@@ -167,15 +171,31 @@ namespace ilplib{
                 res = regex_replace(res, boost::regex("^([0-9]{1,4})\\.([0-9]{1,2})$"), "");
                 res = regex_replace(res, boost::regex("^([0-9]{1,4})\\.([0-9]{1,2})\\.([0-9]{1,2})$"), "");
                 res = regex_replace(res, boost::regex("^[a-z]{2,}(20|19)[0-9]{2,2}$"), "");
+*/                
 
-
+                for (size_t i = 0; i < regs1.size(); ++i)
+                    re2::RE2::GlobalReplace(&s, *(regs1[i].first), regs1[i].second);
+                if (s.length() < 4)
                 {
-                    boost::smatch what;
-                    boost::regex_search(res, what, boost::regex("^([0-9\\.]+)[x\\-]([0-9\\.]+)$"));
-                    if (what.size()==3)
-                        res = regex_replace(res, boost::regex("^([0-9\\.]+)[x\\-]([0-9\\.]+)$"), "");
+                    s.clear();
+                    return;
                 }
 
+                std::string s0, s1, s2, s3, s4, s5, s6, tmp(s);
+
+
+                if (re2::RE2::FullMatch(s, *(unit_reg[0]), &s0, &s1) && eng_unit.find(s1) != eng_unit.end())
+                    s.clear();
+                else if (re2::RE2::FullMatch(s, *(unit_reg[1]), &s0, &s1, &s2) && eng_unit.find(s2) != eng_unit.end())
+                    s.clear();
+                else if (re2::RE2::FullMatch(s, *(unit_reg[2]), &s0, &s1, &s2) && eng_unit.find(s1) != eng_unit.end())
+                    s.clear();
+                else if (re2::RE2::FullMatch(s, *(unit_reg[3]), &s0, &s1, &s2, &s3) && eng_unit.find(s1) != eng_unit.end() && eng_unit.find(s3) != eng_unit.end())
+                    s.clear();
+                else if (re2::RE2::FullMatch(s, *(unit_reg[4]), &s0, &s1, &s2, &s3, &s4, &s5) && eng_unit.find(s1) != eng_unit.end() && eng_unit.find(s3) != eng_unit.end() &&eng_unit.find(s5) != eng_unit.end())
+                    s.clear();
+
+/*
                 {
                     boost::smatch what;
                     boost::regex_search(res, what, boost::regex("^([0-9\\.]*[0-9])([a-z]{1,6})$"));
@@ -210,7 +230,7 @@ namespace ilplib{
                     if (what.size()==7 && eng_unit.find(what[2])!=eng_unit.end() && eng_unit.find(what[4])!=eng_unit.end() && eng_unit.find(what[6])!=eng_unit.end())
                         res = regex_replace(res, boost::regex("^([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)([a-z]{1,6})$"), "");
                 }
-
+*/
 
                 /*    
                       for (size_t i = 0; i < what.size(); ++i)
@@ -219,8 +239,8 @@ namespace ilplib{
                       std::cout << what[i] << std::endl;
                       }
                  */
-                if (res.length() < 4)
-                    res.clear();
+                if (s.length() < 4)
+                    s.clear();
                 //cout<<"after clean "<<res<<endl;
                 //    res = regex_replace(res, "[-]+", "-");
                 //    res = regex_replace(res, "[-]+", "-");
@@ -307,7 +327,10 @@ namespace ilplib{
                 int len=0,begin=-1;
                 std::string res;
 //                transform(s.begin(), s.end(), s.begin(), (int (*)(int))tolower);
-                s = regex_replace(s, boost::regex("[0-9\\.]+\\*[0-9\\.]"), "");
+//                s = regex_replace(s, boost::regex("[0-9\\.]+\\*[0-9\\.]+"), "");
+                for (size_t i = 0; i < regs0.size(); ++i)
+                    re2::RE2::GlobalReplace(&s, *(regs0[i].first), regs0[i].second); 
+
 
                 for(size_t i = 0; i < s.length(); ++i)
                 {   
@@ -350,6 +373,43 @@ namespace ilplib{
                 if (res.empty() || tmp.length() > res.length())
                     res = tmp;
                 return res;
+            }
+
+            void build()
+            {
+            
+                std::vector<std::pair<std::string, std::string> > reg;
+                reg.push_back(std::make_pair("[0-9\\.]+\\*[0-9\\.]+\\*[0-9\\.]+", ""));
+                reg.push_back(std::make_pair("[0-9\\.]+[\\*x\\-][0-9\\.]+", ""));
+                for (size_t i = 0; i < reg.size(); ++i)
+                {
+                    regs0.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                
+                }
+                reg.clear();
+
+
+
+                reg.push_back(std::make_pair("android|1573|cet|led|(spf[0-9\\-]+)|[0-9]*color[s]*", ""));
+                reg.push_back(std::make_pair("^\\.|\\.$||^-|-$", ""));
+                reg.push_back(std::make_pair("[-]+", "-"));
+                reg.push_back(std::make_pair("[\\.]+", "."));
+                reg.push_back(std::make_pair("^([0-9\\.]+)x([0-9]+\\.)x([0-9]+\\.)$", ""));
+                reg.push_back(std::make_pair("^([0-9]+\\.)x([0-9]+\\.)$", ""));
+                reg.push_back(std::make_pair("^([0-9]{1,4})\\.([0-9]{1,2})$", ""));
+                reg.push_back(std::make_pair("^([0-9]{2,4})\\.([0-9]{1,2})\\.([0-9]{1,2})$", ""));
+                reg.push_back(std::make_pair("^[a-z]{2,}(20|19)[0-9]{2,2}$",""));
+                for (size_t i = 0; i < reg.size(); ++i)
+                {
+                    regs1.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                
+                }
+                reg.clear();
+
+                unit_reg.push_back(new re2::RE2("^([0-9\\.]*[0-9])([a-z]{1,6})$"));
+                unit_reg.push_back(new re2::RE2("^([0-9\\.]+)[x\\-]([0-9\\.]+)([a-z]{1,6})$"));
+                unit_reg.push_back(new re2::RE2("^([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)$"));
+                unit_reg.push_back(new re2::RE2("^([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)([a-z]{1,6})$"));
+                unit_reg.push_back(new re2::RE2("^([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)([a-wyz]{1,6})[x\\-]([0-9\\.]+)([a-z]{1,6})$"));
+            
             }
         };
     }

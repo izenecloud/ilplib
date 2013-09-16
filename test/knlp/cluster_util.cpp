@@ -10,7 +10,7 @@ GarbagePattern* gp = NULL;
 
 void printHelp()
 {
-    cout<< "./cluster_util\n"<<"-g\tgarbage source file\n-d\tdict file\n-s\ttest file\n";
+    cout<< "./cluster_util\n"<<"-g\tgarbage source file\n-d\tdict file\n-t\ttest file\n-s\tsyn dict\n";
 }
 
 int main(int argc,char * argv[])
@@ -19,8 +19,9 @@ int main(int argc,char * argv[])
     char c = '?';
     string dict;
     string test;
+    string syn_dict;
 
-    while ((c = getopt (argc, argv, "g:d:s:")) != -1)
+    while ((c = getopt (argc, argv, "g:d:t:s:")) != -1)
         switch (c)
         {
         case 'g':
@@ -29,8 +30,11 @@ int main(int argc,char * argv[])
         case 'd':
             dict = optarg;
             break;
-        case 's':
+        case 't':
             test = optarg;
+            break;
+        case 's':
+            syn_dict = optarg;
             break;
         case '?':
             printHelp();
@@ -41,7 +45,7 @@ int main(int argc,char * argv[])
         printHelp();
         return 0;
     }
-    ClusterDetector cd(dict, gp);
+    ClusterDetector cd(dict, syn_dict, gp);
 
     t1 = clock();
     char* st = NULL;
@@ -60,7 +64,7 @@ int main(int argc,char * argv[])
         if(q!=p+1)cate = s.substr(p+1, q-p-1);
         if(q+1!=s.length())att = s.substr(q+1, s.length() - q - 1);
 //        printf("title:%s\ncate:%s\natt%s\n", title.c_str(), cate.c_str(), att.c_str());
-        string res = cd.cluster_detect(title, cate, att);
+        string res = cd.cluster_detect(title, cate, att, 0);
         std::cout<<s<<"\n"<<res<<"\n\n";
 
         /*

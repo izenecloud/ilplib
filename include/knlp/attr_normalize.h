@@ -1,24 +1,45 @@
 #ifndef _ILPLIB_NLP_ATTR_NORMALIZE_H_
 #define _ILPLIB_NLP_ATTR_NORMALIZE_H_
 #include<string>
+#include<map>
 #include <locale>
-#include <boost/regex.hpp>
+//#include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>
 #include "knlp/normalize.h"
 #include <set>
+#include "re2/re2.h"
+#include "dictionary.h"
+using namespace izenelib::util;
 namespace ilplib{
     namespace knlp{
         class AttributeNormalize
         {
             public:
+                Dictionary *syn_;
+                std::map<std::string, std::string> unit_map;
+
+                re2::RE2 *ureg;
                 AttributeNormalize()
                 {
                     setlocale(LC_ALL, "zh_CN.utf8");
                     build();
                 }
+                AttributeNormalize(const string& syn_path)
+                {
+                    syn_ = new Dictionary(syn_path);
+                    setlocale(LC_ALL, "zh_CN.utf8");
+                    build();
+                }
             
                 ~AttributeNormalize()
-                {}
+                {
+                    for(size_t i =0; i< whole_reg.size(); ++i)
+                        delete whole_reg[i].first;
+                    for(size_t i =0; i< name_reg.size(); ++i)
+                        delete name_reg[i].first;
+                    for(size_t i =0; i< value_reg.size(); ++i)
+                        delete value_reg[i].first;
+                }
 
 
                 std::string trans_whole(std::string& s)
@@ -34,44 +55,58 @@ namespace ilplib{
 
                 std::string trans_value(std::string& s)
                 {
-                    return trans(s, value_reg);
+                    std::string res(trans(s, value_reg));
+
+                    std::string s0, s1, s2;
+                    re2::StringPiece p(res);
+                    std::string tmp = res;
+                    
+                    while (re2::RE2::FindAndConsume(&p, *ureg, &s0, &s1, &s2) && unit_map.find(s1) != unit_map.end())
+                    {
+                        re2::RE2::Replace(&res, s0+s1+s2, s0+unit_map[s1]+s2);
+                    }
+                    
+                    return res;
+//                    re2::RE2::FullMatch(res, "([0-9\\.]+)([^$/]+)($|/)", &s1, &s2, &s3);
+                    
+//                    return trans(s, value_reg);
                 }
                 
 
-                std::string trans(const std::string& s, const std::vector<std::pair<boost::wregex, std::wstring> >& reg)
-                {                    
-                    int wlen = mbstowcs(NULL, s.c_str(), 0);
-                    if (-1 == wlen)
-                        return s;
-                    wchar_t *wst = new wchar_t[wlen+1];
-                    mbstowcs(wst, s.c_str(), wlen+1);
-                    std::wstring wres(wst);
-
-                    for(size_t i = 0 ; i < wres.size(); ++i)
-                        if ((int)wres[i] > 65248 && (int)wres[i] < 65373)    
-                            wres[i] = wres[i]-65248;
-
+                std::string trans(const std::string& s, const std::vector<std::pair<re2::RE2*, std::string> >& reg)
+                {   
+                    std::string res(s);
                     for (size_t i = 0; i < reg.size(); ++i)
-                    {
-                        wres = regex_replace(wres, reg[i].first, reg[i].second);
-                    }
-                    
-                    int len= wcstombs(NULL, wres.c_str(), 0);
-                    if (-1 == len)
-                        return s;
-                    char *st= new char[len+1];
-                    wcstombs(st, wres.c_str(), len+1);
-                    std::string res(st);
-                    delete []wst;
-                    delete []st;
+                        re2::RE2::GlobalReplace(&res, *(reg[i].first), reg[i].second);
+
                     return res;
                 }
 
-                std::string attr_normalize(std::string& s, const bool add_att = 0, const std::string& cate = "")
+                void trans_syn(string& s)
                 {
-                    bool use_cate = 1;
-                    if (cate.empty())
-                        use_cate = 0;
+                    KString kstr(s);
+                    char *v = syn_->value(kstr);
+                    if (!v)
+                        return;
+                    s = string(v);
+/*                    
+                    KString kstr(s);                    
+                    KString ans;
+                    std::vector<KString> values(kstr.split('/'));
+                    for (size_t i = 0; i < values.size(); ++i)
+                    {
+                        char* v = syn_->value(values[i]);
+                        if (!v)
+                            ans += values[i];
+                        else ans += KString(v);
+                        if (i<values.size()-1)ans+='/';
+                    }
+                    s = ans.get_bytes("utf-8");
+*/                    
+                }
+
+                std::string attr_normalize(std::string& s, const std::string& cate = "", const bool add_at = 0)
+                {
                     string res = trans_whole(s);
                     std::vector<std::string> atts;
                     boost::split(atts, res, boost::is_any_of("\t"));
@@ -80,174 +115,244 @@ namespace ilplib{
                     for (size_t i = 0; i < atts.size(); ++i)
                     {
                         std::string pairs0,pairs1;
-//        boost::split(pairs, atts[i], boost::is_any_of(":"));
                         int p = atts[i].find(":");
                         pairs0 = atts[i].substr(0, p);
                         pairs1 = atts[i].substr(p + 1, atts[i].length() - p - 1);
-//        if (pairs.size() != 2) continue;
-
                         pairs0 = trans_name(pairs0);
                         pairs1 = trans_value(pairs1);
-//        cout<<pairs0<<":"<<pairs1<<endl;
                         if(pairs0!=""&&pairs1!="")
                         {
-                            if(use_cate)
+                            if(syn_!=NULL)
+                            {
+                                trans_syn(pairs0);
+                                trans_syn(pairs1);
+                            }
+                            if(add_at)
                                 res = res + pairs0 + "@" + cate + ":" + pairs1 + ",";
                             else
                                 res = res + pairs0 + ":" + pairs1 + ",";
-                            name_set.insert(pairs0);
+//                            name_set.insert(pairs0);
                         }
 
                     }
                     if(!res.empty())
                     {
+                        /*
                         if(add_att)
                         {
                             res += "[atts]:";
                             for(std::set<std::string>::iterator it = name_set.begin(); it != name_set.end(); ++it)
                                 res += (*it) + "/";
                         }
+                        */
                         if ((res[res.length()-1]==','||res[res.length()-1]=='/'))
                             res.erase(res.length()-1, 1);
                     }
                     return res;
                 }
 
-            public:
-                std::vector<std::pair<boost::wregex, std::wstring> > whole_reg;
-                std::vector<std::pair<boost::wregex, std::wstring> > name_reg;
-                std::vector<std::pair<boost::wregex, std::wstring> > value_reg;
+            private:
+                std::vector<std::pair<re2::RE2*, std::string> > whole_reg;
+                std::vector<std::pair<re2::RE2*, std::string> > name_reg;
+                std::vector<std::pair<re2::RE2*, std::string> > value_reg;
                 void build()
                 {
-                    std::vector<std::pair<std::wstring, std::wstring> > reg;
-                    reg.push_back(std::make_pair(L"[\"☆◇~^┍�②“”￥_=★?!！‘㊣’～○？○□◎→■※◆・【】●◇]+", L" "));
-                    reg.push_back(std::make_pair(L"。", L"."));
-                    reg.push_back(std::make_pair(L"　", L" "));
-                    reg.push_back(std::make_pair(L"•", L"·"));
-                    reg.push_back(std::make_pair(L"、", L"\\"));
-                    reg.push_back(std::make_pair(L":是:", L":是;"));
-                    reg.push_back(std::make_pair(L"×", L"x"));
-                    reg.push_back(std::make_pair(L"(^[^:]+)[,]+",L"$1"));
-                    reg.push_back(std::make_pair(L"([0-9])\\*([0-9])", L"$1x$2"));
-                    reg.push_back(std::make_pair(L"[是\\/、;,·|+.\\\\]+:", L":"));
-                    reg.push_back(std::make_pair(L",([^,:]+:)", L",\t$1"));
-                    reg.push_back(std::make_pair(L"([^a-z0-9]+)[ ]+", L"$1"));
-                    reg.push_back(std::make_pair(L"[ ]+([^a-z0-9]+)", L"$1"));
-                    reg.push_back(std::make_pair(L"\\\\",L"/"));
-                    reg.push_back(std::make_pair(L"\\([^\\(\\)]*\\)", L""));
-                    reg.push_back(std::make_pair(L"\\[[^\\[\\]]*\\]", L""));
+                    ureg = new re2::RE2("([0-9\\.]+)([^$/0-9]+)($|/)");
+                    std::vector<std::pair<std::string, std::string> > reg;
+                    reg.push_back(std::make_pair("[\"☆◇^┍�②“”￥_=★?!！‘㊣’～○？○□◎→■※◆・【】●◇]+", " "));
+                    reg.push_back(std::make_pair("~", "-"));
+                    reg.push_back(std::make_pair("。", "."));
+                    reg.push_back(std::make_pair("　", " "));
+                    reg.push_back(std::make_pair("•", "·"));
+                    reg.push_back(std::make_pair("[、\\\\]", "/"));
+                    reg.push_back(std::make_pair(":是:", ":是;"));
+                    reg.push_back(std::make_pair("×", "x"));
+                    reg.push_back(std::make_pair("(^[^:]+)[,]+","\\1"));
+                    reg.push_back(std::make_pair("([0-9])\\*([0-9])", "\\1x\\2"));
+                    reg.push_back(std::make_pair("[是/、;,·|+.]+:", ":"));
+                    reg.push_back(std::make_pair(",([^,:]+:)", ",\t\\1"));
+                    reg.push_back(std::make_pair("([^a-z0-9]+)[ ]+", "\\1"));
+                    reg.push_back(std::make_pair("[ ]+([^a-z0-9]+)", "\\1"));
+                    reg.push_back(std::make_pair("\\([^\\(\\)]*\\)", ""));
+                    reg.push_back(std::make_pair("\\[[^\\[\\]]*\\]", ""));
                     for (size_t i = 0; i < reg.size(); ++i)
                     {
-                        boost::wregex wreg(reg[i].first, boost::regex::icase|boost::regex::perl);
-                        whole_reg.push_back(std::make_pair(wreg, reg[i].second));                
+                        whole_reg.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                
                     }
                     reg.clear();
                     
 
-                    reg.push_back(std::make_pair(L"^[0-9a-z]{1}([^0-9a-z])", L"$1"));
-                    reg.push_back(std::make_pair(L"([^0-9a-z])[0-9a-z]{1}$", L"$1"));
-                    reg.push_back(std::make_pair(L"[.\\- /\\\\·,\"•:;]+", L""));
-                    reg.push_back(std::make_pair(L"^[\\*]+", L""));
-                    reg.push_back(std::make_pair(L"^[0-9]+$", L""));
+                    reg.push_back(std::make_pair("^[0-9a-z]{1}([^0-9a-z])", "\\1"));
+                    reg.push_back(std::make_pair("([^0-9a-z])[0-9a-z]{1}$", "\\1"));
+                    reg.push_back(std::make_pair("[.\\- /\\\\·,\"•:;]+", ""));
+                    reg.push_back(std::make_pair("^[\\*]+", ""));
+                    reg.push_back(std::make_pair("^[0-9]+$", ""));
                     for (size_t i = 0; i < reg.size(); ++i)
                     {
-                        boost::wregex wreg(reg[i].first, boost::regex::icase|boost::regex::perl);
-                        name_reg.push_back(std::make_pair(wreg, reg[i].second));                
+                        name_reg.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                
                     }
                     reg.clear();
 
-                    reg.push_back(std::make_pair(L"[.]+", L"."));
-                    reg.push_back(std::make_pair(L"约([0-9]+)", L"$1"));
-//                    reg.push_back(std::make_pair(L"([a-z]+)[ ]+([0-9]+)", L"$1$2"));
-//                    reg.push_back(std::make_pair(L"([0-9]+)[ ]+([a-z]+)", L"$1$2"));
-                    reg.push_back(std::make_pair(L"([0-9]+)\\.[0]{1,2}([^0-9])", L"$1$2"));
-                    reg.push_back(std::make_pair(L"([0-9]+)\\.[0]{1,2}$", L"$1"));
-                    reg.push_back(std::make_pair(L"([0-9]+),([0-9]{3})", L"$1$2"));
-                    reg.push_back(std::make_pair(L"[/,#@|]+", L"\\/"));
-//                    reg.push_back(std::make_pair(L"([^0-9a-z])[ ]+([^0-9a-z])", L"$1/$2"));
-                    reg.push_back(std::make_pair(L"([^a-z0-9]+)[ ]+", L"$1"));
-                    reg.push_back(std::make_pair(L"[ ]+([^a-z0-9]+)", L"$1"));
-                    reg.push_back(std::make_pair(L"^", L"/"));
-                    reg.push_back(std::make_pair(L"$", L"/"));
-                    reg.push_back(std::make_pair(L"/[^/]*(其他|其它|other)[^/]*/", L"/"));
-                    reg.push_back(std::make_pair(L"[等\\-/\\.]+$", L""));
-                    reg.push_back(std::make_pair(L"^[/:]+", L""));
+                    reg.push_back(std::make_pair("[.]+", "."));
+                    reg.push_back(std::make_pair("约([0-9]+)", "\\1"));
+//                    reg.push_back(std::make_pair("([a-z]+)[ ]+([0-9]+)", "\\1\\2"));
+//                    reg.push_back(std::make_pair("([0-9]+)[ ]+([a-z]+)", "\\1\\2"));
+                    reg.push_back(std::make_pair("([0-9]+)\\.[0]{1,2}([^0-9])", "\\1\\2"));
+                    reg.push_back(std::make_pair("([0-9]+)\\.[0]{1,2}$", "\\1"));
+                    reg.push_back(std::make_pair("([0-9]+),([0-9]{3})", "\\1\\2"));
+                    reg.push_back(std::make_pair("[/,#@|]+", "/"));
+//                    reg.push_back(std::make_pair("([^0-9a-z])[ ]+([^0-9a-z])", "\\1/\\2"));
+                    reg.push_back(std::make_pair("([^a-z0-9]+)[ ]+", "\\1"));
+                    reg.push_back(std::make_pair("[ ]+([^a-z0-9]+)", "\\1"));
+//                    reg.push_back(std::make_pair("^", "/"));
+//                    reg.push_back(std::make_pair("$", "/"));
+                    reg.push_back(std::make_pair("/[^/]*(其他|其它|other)[^/]*/", "/"));
+                    reg.push_back(std::make_pair("[等\\-/\\.]+$", ""));
+                    reg.push_back(std::make_pair("^[/:]+", ""));
 
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)英寸($|/)", L"$1inches$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)毫安时($|/)", L"$1mah$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)秒($|/)", L"$1s$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)分钟($|/)", L"$1min$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)小时($|/)", L"$1h$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)克($|/)", L"$1g$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)毫克($|/)", L"$1mg$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)千克($|/)", L"$1kg$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)公斤($|/)", L"$1kg$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)吨($|/)", L"$1ton$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)磅($|/)", L"$1lb$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)盎司($|/)", L"$1oz$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)米($|/)", L"$1m$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)公里($|/)", L"$1km$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)千米($|/)", L"$1km$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)厘米($|/)", L"$1cm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)毫米($|/)", L"$1mm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)纳米($|/)", L"$1nm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)微米($|/)", L"$1μm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)um($|/)", L"$1μm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)英尺($|/)", L"$1ft$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)foot($|/)", L"$1ft$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)feet($|/)", L"$1ft$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)inch($|/)", L"$1inches$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)升($|/)", L"$1l$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)毫升($|/)", L"$1ml$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)加仑($|/)", L"$1gal$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)克拉($|/)", L"$1gar$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)千瓦($|/)", L"$1kw$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)赫兹($|/)", L"$1hz$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)牛顿($|/)", L"$1n$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)帕斯卡($|/)", L"$1pa$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)焦($|/)", L"$1j$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)焦耳($|/)", L"$1j$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)瓦($|/)", L"$1w$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)瓦特($|/)", L"$1w$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)库仑($|/)", L"$1c$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)伏($|/)", L"$1v$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)伏特($|/)", L"$1v$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)安培($|/)", L"$1a$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)开尔文($|/)", L"$1k$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)摩尔($|/)", L"$1mol$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)坎德拉($|/)", L"$1cd$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)弧度($|/)", L"$1rad$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)球面度($|/)", L"$1sr$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)法拉($|/)", L"$1f$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)欧($|/)", L"$1Ω$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)欧姆($|/)", L"$1Ω$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)亨利($|/)", L"$1h$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)韦伯($|/)", L"$1wb$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)℃($|/)", L"$1摄氏度$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)°c($|/)", L"$1摄氏度$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)流明($|/)", L"$1lm$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)勒克斯($|/)", L"$1lx$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)贝可($|/)", L"$1bq$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)戈瑞($|/)", L"$1gy$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)希沃特($|/)", L"$1sv$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)°($|/)", L"$1度$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)分贝($|/)", L"$1db$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)特克斯($|/)", L"$1tex$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)电子伏($|/)", L"$1ev$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)像素($|/)", L"$1pixel$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)象素($|/)", L"$1pixel$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)万像素($|/)", L"$1wpixel$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)万象素($|/)", L"$1wpixel$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)毫安($|/)", L"$1ma$2"));
-                    reg.push_back(std::make_pair(L"([0-9\\.]+)万($|/)", L"$1w$2"));
+/*
+                    reg.push_back(std::make_pair("([0-9\\.]+)英寸($|/)", "\\1inches\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)毫安时($|/)", "\\1mah\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)秒($|/)", "\\1s\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)分钟($|/)", "\\1min\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)小时($|/)", "\\1h\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)克($|/)", "\\1g\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)毫克($|/)", "\\1mg\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)千克($|/)", "\\1kg\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)公斤($|/)", "\\1kg\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)吨($|/)", "\\1ton\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)磅($|/)", "\\1lb\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)盎司($|/)", "\\1oz\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)米($|/)", "\\1m\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)公里($|/)", "\\1km\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)千米($|/)", "\\1km\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)厘米($|/)", "\\1cm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)毫米($|/)", "\\1mm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)纳米($|/)", "\\1nm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)微米($|/)", "\\1μm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)um($|/)", "\\1μm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)英尺($|/)", "\\1ft\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)foot($|/)", "\\1ft\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)feet($|/)", "\\1ft\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)inch($|/)", "\\1inches\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)升($|/)", "\\1l\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)毫升($|/)", "\\1ml\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)加仑($|/)", "\\1gal\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)克拉($|/)", "\\1gar\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)千瓦($|/)", "\\1kw\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)赫兹($|/)", "\\1hz\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)牛顿($|/)", "\\1n\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)帕斯卡($|/)", "\\1pa\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)焦($|/)", "\\1j\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)焦耳($|/)", "\\1j\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)瓦($|/)", "\\1w\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)瓦特($|/)", "\\1w\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)库仑($|/)", "\\1c\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)伏($|/)", "\\1v\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)伏特($|/)", "\\1v\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)安培($|/)", "\\1a\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)开尔文($|/)", "\\1k\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)摩尔($|/)", "\\1mol\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)坎德拉($|/)", "\\1cd\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)弧度($|/)", "\\1rad\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)球面度($|/)", "\\1sr\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)法拉($|/)", "\\1f\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)欧($|/)", "\\1Ω\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)欧姆($|/)", "\\1Ω\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)亨利($|/)", "\\1h\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)韦伯($|/)", "\\1wb\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)℃($|/)", "\\1摄氏度\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)°c($|/)", "\\1摄氏度\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)流明($|/)", "\\1lm\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)勒克斯($|/)", "\\1lx\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)贝可($|/)", "\\1bq\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)戈瑞($|/)", "\\1gy\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)希沃特($|/)", "\\1sv\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)°($|/)", "\\1度\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)分贝($|/)", "\\1db\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)特克斯($|/)", "\\1tex\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)电子伏($|/)", "\\1ev\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)像素($|/)", "\\1pixel\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)象素($|/)", "\\1pixel\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)万像素($|/)", "\\1wpixel\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)万象素($|/)", "\\1wpixel\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)毫安($|/)", "\\1ma\\2"));
+                    reg.push_back(std::make_pair("([0-9\\.]+)万($|/)", "\\1w\\2"));
+*/                    
                     for (size_t i = 0; i < reg.size(); ++i)
                     {
-                        boost::wregex wreg(reg[i].first, boost::regex::icase|boost::regex::perl);
-                        value_reg.push_back(std::make_pair(wreg, reg[i].second));                
+                        value_reg.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                
                     }
                     reg.clear();
 
 
+                    unit_map.insert(std::make_pair("英寸", "inches"));
+                    unit_map.insert(std::make_pair("毫安时", "mah"));
+                    unit_map.insert(std::make_pair("秒", "s"));
+                    unit_map.insert(std::make_pair("分钟", "min"));
+                    unit_map.insert(std::make_pair("小时", "h"));
+                    unit_map.insert(std::make_pair("克", "g"));
+                    unit_map.insert(std::make_pair("毫克", "mg"));
+                    unit_map.insert(std::make_pair("千克", "kg"));
+                    unit_map.insert(std::make_pair("公斤", "kg"));
+                    unit_map.insert(std::make_pair("吨", "ton"));
+                    unit_map.insert(std::make_pair("磅", "lb"));
+                    unit_map.insert(std::make_pair("盎司", "oz"));
+                    unit_map.insert(std::make_pair("米", "m"));
+                    unit_map.insert(std::make_pair("公里", "km"));
+                    unit_map.insert(std::make_pair("千米", "km"));
+                    unit_map.insert(std::make_pair("厘米", "cm"));
+                    unit_map.insert(std::make_pair("毫米", "mm"));
+                    unit_map.insert(std::make_pair("纳米", "nm"));
+                    unit_map.insert(std::make_pair("微米", "μm"));
+                    unit_map.insert(std::make_pair("um", "μm"));
+                    unit_map.insert(std::make_pair("英尺", "ft"));
+                    unit_map.insert(std::make_pair("foot", "ft"));
+                    unit_map.insert(std::make_pair("feet", "ft"));
+                    unit_map.insert(std::make_pair("inch", "inches"));
+                    unit_map.insert(std::make_pair("升", "l"));
+                    unit_map.insert(std::make_pair("毫升", "ml"));
+                    unit_map.insert(std::make_pair("加仑", "gal"));
+                    unit_map.insert(std::make_pair("克拉", "gar"));
+                    unit_map.insert(std::make_pair("千瓦", "kw"));
+                    unit_map.insert(std::make_pair("赫兹", "hz"));
+                    unit_map.insert(std::make_pair("牛顿", "n"));
+                    unit_map.insert(std::make_pair("帕斯卡", "pa"));
+                    unit_map.insert(std::make_pair("焦", "j"));
+                    unit_map.insert(std::make_pair("焦耳", "j"));
+                    unit_map.insert(std::make_pair("瓦", "w"));
+                    unit_map.insert(std::make_pair("瓦特", "w"));
+                    unit_map.insert(std::make_pair("库仑", "c"));
+                    unit_map.insert(std::make_pair("伏", "v"));
+                    unit_map.insert(std::make_pair("伏特", "v"));
+                    unit_map.insert(std::make_pair("安培", "a"));
+                    unit_map.insert(std::make_pair("开尔文", "k"));
+                    unit_map.insert(std::make_pair("摩尔", "mol"));
+                    unit_map.insert(std::make_pair("坎德拉", "cd"));
+                    unit_map.insert(std::make_pair("弧度", "rad"));
+                    unit_map.insert(std::make_pair("球面度", "sr"));
+                    unit_map.insert(std::make_pair("法拉", "f"));
+                    unit_map.insert(std::make_pair("欧", "Ω"));
+                    unit_map.insert(std::make_pair("欧姆", "Ω"));
+                    unit_map.insert(std::make_pair("亨利", "h"));
+                    unit_map.insert(std::make_pair("韦伯", "wb"));
+                    unit_map.insert(std::make_pair("℃", "摄氏度"));
+                    unit_map.insert(std::make_pair("°c", "摄氏度"));
+                    unit_map.insert(std::make_pair("流明", "lm"));
+                    unit_map.insert(std::make_pair("勒克斯", "lx"));
+                    unit_map.insert(std::make_pair("贝可", "bq"));
+                    unit_map.insert(std::make_pair("戈瑞", "gy"));
+                    unit_map.insert(std::make_pair("希沃特", "sv"));
+                    unit_map.insert(std::make_pair("°", "度"));
+                    unit_map.insert(std::make_pair("分贝", "db"));
+                    unit_map.insert(std::make_pair("特克斯", "tex"));
+                    unit_map.insert(std::make_pair("电子伏", "ev"));
+                    unit_map.insert(std::make_pair("像素", "pixel"));
+                    unit_map.insert(std::make_pair("象素", "pixel"));
+                    unit_map.insert(std::make_pair("万像素", "wpixel"));
+                    unit_map.insert(std::make_pair("万象素", "wpixel"));
+                    unit_map.insert(std::make_pair("毫安", "ma"));
+                    unit_map.insert(std::make_pair("万", "w"));
                 }
         };
     }

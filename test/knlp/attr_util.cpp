@@ -61,11 +61,11 @@ int main(int argc,char * argv[])
         string str(st), att, cate, title;
         vector<string> v;
         boost::split(v, str, boost::is_any_of("\t"));
-        for(size_t i = 0; i < v.size(); ++i) if(!v[i].empty())
+        for(size_t i = 0; i < v.size(); ++i) if(v[i].length()>7 && '<'==v[i][0])
         {
-            if(v[i][1]=='A')
+            if('A'==v[i][1])
                 att=v[i].substr(11, v[i].length()-11);
-            else if(v[i][1]=='C')
+            else if('C'==v[i][1])
             {
                 string tmp = v[i].substr(10, v[i].length()-10);
                 int p = -1;
@@ -79,9 +79,9 @@ int main(int argc,char * argv[])
                     cate = tmp.substr(p+1, tmp.length()-p-1);
                 else cate = tmp;
             }
-            else if(v[i][1]=='T')title=v[i].substr(7, v[i].length()-7);
+            else if('T'==v[i][1])title=v[i].substr(7, v[i].length()-7);
         }
-//        cout<<att<<'\n'<<title<<'\n'<<cate<<'\n';
+//        cout<<"att="<<att<<"\ntitle="<<title<<"\ncate="<<cate<<'\n';
         string res(an->attr_normalize(att, cate, 1));
         printf("%s\t%s\n",res.c_str(),title.c_str());
 //        cout<<res<<"\t"<<title<<endl;

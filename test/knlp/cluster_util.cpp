@@ -65,6 +65,7 @@ int main(int argc,char * argv[])
         if(q+1!=s.length())att = s.substr(q+1, s.length() - q - 1);
 //        printf("title:%s\ncate:%s\natt%s\n", title.c_str(), cate.c_str(), att.c_str());
         string res = cd.cluster_detect(title, cate, att, 0);
+//        string res;
         std::cout<<s<<"\n"<<res<<"\n\n";
 
         /*

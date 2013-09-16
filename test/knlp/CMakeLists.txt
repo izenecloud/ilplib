@@ -228,7 +228,6 @@ TARGET_LINK_LIBRARIES(attr_util
 
 ADD_EXECUTABLE(cluster_util
 		cluster_util.cpp 
-    	${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 )
 
 TARGET_LINK_LIBRARIES(cluster_util

@@ -61,10 +61,11 @@ namespace ilplib{
                 ilplib::knlp::Normalize::normalize(title);
                 ilplib::knlp::Normalize::normalize(att);
                 ilplib::knlp::Normalize::normalize(cate);
+/*                
                 gp_->clean(title);
                 gp_->clean(att);
                 gp_->clean(cate);
-
+*/                
                 if (attr_normalize)
                     att = an.attr_normalize(att);
 
@@ -84,7 +85,6 @@ namespace ilplib{
                         return res;
                 }
                 boost::split(v_att, att, boost::is_any_of(","));              
-//                boost::split(v_att, att, is_any_of("\t"));
 
                 for(size_t i = 0; i < v_att.size(); ++i)
                 {
@@ -97,8 +97,8 @@ namespace ilplib{
                 product_name = pnd_.multi_product_name(title);
 
                 model = title_normal(title);
-                if (model.empty())
-                    model = title_trim(title);
+//                if (model.empty())
+//                    model = title_trim(title);
                 if (model.empty() && !product_name.empty())
                     model = att_normal(att_value);
 //                if (model.empty())

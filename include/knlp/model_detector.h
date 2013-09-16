@@ -71,7 +71,6 @@ namespace ilplib{
                 chs_unit.insert("牛顿");
                 chs_unit.insert("立方");
                 chs_unit.insert("摩尔");
-                chs_unit.insert("个月");
                 chs_unit.insert("岁");
                 chs_unit.insert("年级");
                 chs_unit.insert("周岁");
@@ -88,6 +87,7 @@ namespace ilplib{
                 chs_unit.insert("饼");
                 chs_unit.insert("块");
                 chs_unit.insert("元");
+                chs_unit.insert("公升");
 
 
                 chs_num.insert("万");

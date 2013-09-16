@@ -82,13 +82,25 @@ namespace ilplib{
                     return res;
                 }
 
-                void trans_syn(string& s)
+                void trans_syn(string& s, const bool is_name = 0, const std::string& cate = "")
                 {
-                    KString kstr(s);
-                    char *v = syn_->value(kstr);
-                    if (!v)
-                        return;
-                    s = string(v);
+                    if(is_name)
+                    {
+                        KString kstr(s + "@" + cate);
+                        char *v = syn_->value(kstr);
+                        if (!v) return ;
+                        string tmp(v);
+                        size_t p = tmp.find("@");
+                        if (p == string::npos) return;
+                        s = tmp.substr(0, p);
+                    }
+                    else
+                    {
+                        KString kstr(s);
+                        char *v = syn_->value(kstr);
+                        if (!v) return;
+                        s = string(v);
+                    }
 /*                    
                     KString kstr(s);                    
                     KString ans;
@@ -115,18 +127,21 @@ namespace ilplib{
                     for (size_t i = 0; i < atts.size(); ++i)
                     {
                         std::string pairs0,pairs1;
-                        int p = atts[i].find(":");
+                        size_t p = atts[i].find(":");
+                        if (p==string::npos) continue;
                         pairs0 = atts[i].substr(0, p);
                         pairs1 = atts[i].substr(p + 1, atts[i].length() - p - 1);
                         pairs0 = trans_name(pairs0);
                         pairs1 = trans_value(pairs1);
+
                         if(pairs0!=""&&pairs1!="")
-                        {
+                        {                            
                             if(syn_!=NULL)
                             {
-                                trans_syn(pairs0);
+                                trans_syn(pairs0, 1);
                                 trans_syn(pairs1);
                             }
+
                             if(add_at)
                                 res = res + pairs0 + "@" + cate + ":" + pairs1 + ",";
                             else
@@ -137,7 +152,7 @@ namespace ilplib{
                     }
                     if(!res.empty())
                     {
-                        /*
+/*
                         if(add_att)
                         {
                             res += "[atts]:";
@@ -164,6 +179,7 @@ namespace ilplib{
                     reg.push_back(std::make_pair("。", "."));
                     reg.push_back(std::make_pair("　", " "));
                     reg.push_back(std::make_pair("•", "·"));
+                    reg.push_back(std::make_pair("：", ":"));
                     reg.push_back(std::make_pair("[、\\\\]", "/"));
                     reg.push_back(std::make_pair(":是:", ":是;"));
                     reg.push_back(std::make_pair("×", "x"));

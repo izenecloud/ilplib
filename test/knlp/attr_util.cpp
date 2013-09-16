@@ -82,15 +82,9 @@ int main(int argc,char * argv[])
             else if(v[i][1]=='T')title=v[i].substr(7, v[i].length()-7);
         }
 //        cout<<att<<'\n'<<title<<'\n'<<cate<<'\n';
-<<<<<<< HEAD
         string res(an->attr_normalize(att, cate, 1));
         printf("%s\t%s\n",res.c_str(),title.c_str());
 //        cout<<res<<"\t"<<title<<endl;
-=======
-        string res = an.attr_normalize(att, cate, 1);
-        cout<<res<<"\t"<<title<<endl;
-//        std::cout<<str<<"\n"<<res<<"\n\n";
->>>>>>> d32db9872daaaa8e8cecd85e7cbfa3a799a7c334
     }
     t2=clock();
     cout<<(t2-t1)/1000000<<endl;

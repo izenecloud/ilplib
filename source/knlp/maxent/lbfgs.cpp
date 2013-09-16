@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cmath>
 #include <cstdio>
-
+#include "re2/re2.h"
 #include "knlp/maxent/mathvec.h"
 #include "knlp/maxent/lbfgs.h"
 #include "knlp/maxent/maxent.h"

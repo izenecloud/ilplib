@@ -122,11 +122,14 @@ namespace ilplib{
                         pairs1 = trans_value(pairs1);
                         if(pairs0!=""&&pairs1!="")
                         {
+<<<<<<< HEAD
                             if(syn_!=NULL)
                             {
                                 trans_syn(pairs0);
                                 trans_syn(pairs1);
                             }
+=======
+>>>>>>> d32db9872daaaa8e8cecd85e7cbfa3a799a7c334
                             if(add_at)
                                 res = res + pairs0 + "@" + cate + ":" + pairs1 + ",";
                             else
@@ -137,14 +140,22 @@ namespace ilplib{
                     }
                     if(!res.empty())
                     {
+<<<<<<< HEAD
                         /*
+=======
+/*                        
+>>>>>>> d32db9872daaaa8e8cecd85e7cbfa3a799a7c334
                         if(add_att)
                         {
                             res += "[atts]:";
                             for(std::set<std::string>::iterator it = name_set.begin(); it != name_set.end(); ++it)
                                 res += (*it) + "/";
                         }
+<<<<<<< HEAD
                         */
+=======
+*/                        
+>>>>>>> d32db9872daaaa8e8cecd85e7cbfa3a799a7c334
                         if ((res[res.length()-1]==','||res[res.length()-1]=='/'))
                             res.erase(res.length()-1, 1);
                     }

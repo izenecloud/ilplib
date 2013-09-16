@@ -101,6 +101,7 @@ class AttributeTokenize
 			  }
 			  f = false;
 		  }
+		if (f)pos.back().second = kstr.length();
 
 		std::vector<KString> chunks;
 		uint32_t last = 0;
@@ -126,15 +127,22 @@ class AttributeTokenize
 		}
 		for ( uint32_t i=0; i<pos.size(); ++i)
 		{
+			assert(pos[i].second >= pos[i].first);
 			KString sub = kstr.substr(pos[i].first, pos[i].second-pos[i].first);
 			const char* syn = syn_dict_.value(sub);
 			if (syn)sub = KString(syn);
 			std::vector<std::pair<KString, double> > v = token_dict_.token(sub);
-			if (v.size() ==0 || v[i].first.length() < 3)
+			if (v.size() ==0 || v[0].first.length() < 3)
   			  r.push_back(sub);
 			else for ( uint32_t j=0; j<v.size(); ++j)
 			  r.push_back(v[j].first);
 		}
+		for ( uint32_t i=0; i<r.size(); ++i)
+		  if (r[i].length() == 0 
+				|| (r.size() > 1 && r[i].length() == 1 
+			&& ((!KString::is_english(r[i][0]) && !KString::is_numeric(r[i][0]) && !KString::is_chinese(r[i][0]))))
+			)
+			r.erase(r.begin()+i),--i;
 		return r;
 	}
 
@@ -152,7 +160,7 @@ class AttributeTokenize
 
 			std::vector<std::pair<std::string, double> > r;
 			for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end(); ++it)
-			  r.push_back(make_pair(it->first, it->second*100.));
+  				r.push_back(make_pair(it->first, it->second*100.));
 			return r;
 		}
 public:

@@ -7,6 +7,7 @@ using namespace ilplib::knlp;
 using namespace izenelib;
 using namespace izenelib::util;
 
+
 MaxentClassify* mc = NULL;
 Fmm* fmm = NULL;
 GarbagePattern* gp = NULL;

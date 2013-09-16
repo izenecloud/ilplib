@@ -5,7 +5,7 @@ FILE( GLOB_RECURSE SOURCE
   "${CMAKE_CURRENT_SOURCE_DIR}/langid/src/*.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/question-answering/*.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/sbd/src.cpp"
-  #  "${CMAKE_CURRENT_SOURCE_DIR}/knlp/*.cpp"
+  "${CMAKE_CURRENT_SOURCE_DIR}/knlp/*.cpp"
   "${CMAKE_CURRENT_SOURCE_DIR}/re2/*.cc"
 
 

@@ -54,7 +54,11 @@ class AttributeTokenize
 		KString r(cate);
 		int32_t i=r.length()-1;
 		if (r[i] == '>')i--;
-		for ( ; i>=0 && ((g && r[i]=='/') || r[i]=='>'); --i);
+		if (g)
+		    for ( ; i>=0 && r[i]!='/' && r[i]!='>'; --i);
+        else
+		    for ( ; i>=0 && r[i]!='>'; --i);
+
 		if (i+1 < (int32_t)r.length())
   		  return r.substr(i+1);
 		return r;
@@ -62,10 +66,12 @@ class AttributeTokenize
 
 	KString normallize_(const std::string& str)
 	{
-	    return normallize_(KString(str));
-		KString r(str);
-		Normalize::normalize(r);
-		return r;
+	    try{
+	        return normallize_(KString(str));
+        }catch(...)
+        {
+        }
+        return KString();
 	}
 
 	KString normallize_(KString r)
@@ -167,7 +173,7 @@ public:
 
     AttributeTokenize(const std::string& dir)
         :token_dict_(dir+"/term.dict")
-		 ,attv_dict_(dir+"/att.v.score")
+		 //,attv_dict_(dir+"/att.v.score")
 		,syn_dict_(dir + "/syn.dict")
     {
     }

@@ -287,6 +287,11 @@ public:
 	{
 		return trie_.find_word(t);
 	}
+
+	KString id2term(uint32_t id)const
+    {
+        return trie_.id2word(id);
+    }
 };
 
 }

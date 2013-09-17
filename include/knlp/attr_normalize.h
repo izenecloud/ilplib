@@ -120,6 +120,7 @@ namespace ilplib{
                 std::string attr_normalize(std::string& s, const std::string& cate = "", const bool add_at = 0)
                 {
                     string res = trans_whole(s);
+cout<<res<<endl;                    
                     std::vector<std::string> atts;
                     boost::split(atts, res, boost::is_any_of("\t"));
                     res = "";
@@ -138,7 +139,7 @@ namespace ilplib{
                         {                            
                             if(syn_!=NULL)
                             {
-                                trans_syn(pairs0, 1);
+                                trans_syn(pairs0, 1, cate);
                                 trans_syn(pairs1);
                             }
 
@@ -191,6 +192,10 @@ namespace ilplib{
                     reg.push_back(std::make_pair("[ ]+([^a-z0-9]+)", "\\1"));
                     reg.push_back(std::make_pair("\\([^\\(\\)]*\\)", ""));
                     reg.push_back(std::make_pair("\\[[^\\[\\]]*\\]", ""));
+                    reg.push_back(std::make_pair("(<[^<>]*>)", ""));
+                    reg.push_back(std::make_pair("(:[\t])|(\t:)", "\t"));
+                    reg.push_back(std::make_pair("(^:)|(:$)", ""));
+
                     for (size_t i = 0; i < reg.size(); ++i)
                     {
                         whole_reg.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));                

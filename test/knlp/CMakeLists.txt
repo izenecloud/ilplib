@@ -220,10 +220,11 @@ ADD_EXECUTABLE(attr_util
 )
 
 TARGET_LINK_LIBRARIES(attr_util
-   ${libs}
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_REGEX_LIBRARY}
    ${Boost_THREAD_LIBRARY}
+   ${libs}
+   
 )
 
 ADD_EXECUTABLE(cluster_util
@@ -231,9 +232,9 @@ ADD_EXECUTABLE(cluster_util
 )
 
 TARGET_LINK_LIBRARIES(cluster_util
-   ${libs}
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_REGEX_LIBRARY}
    ${Boost_THREAD_LIBRARY}
+   ${libs}
 )
 

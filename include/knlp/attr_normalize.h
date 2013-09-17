@@ -120,7 +120,6 @@ namespace ilplib{
                 std::string attr_normalize(std::string& s, const std::string& cate = "", const bool add_at = 0)
                 {
                     string res = trans_whole(s);
-cout<<res<<endl;                    
                     std::vector<std::string> atts;
                     boost::split(atts, res, boost::is_any_of("\t"));
                     res = "";

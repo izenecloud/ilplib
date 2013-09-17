@@ -32,3 +32,5 @@ help
 /nbproject
 *.diff
 *.patch
+!/build/build.sh
+/include/ilplib-version.h

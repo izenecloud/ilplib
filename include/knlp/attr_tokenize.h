@@ -173,7 +173,7 @@ public:
 
     AttributeTokenize(const std::string& dir)
         :token_dict_(dir+"/term.dict")
-		 //,attv_dict_(dir+"/att.v.score")
+		 ,attv_dict_(dir+"/att.v.score")
 		,syn_dict_(dir + "/syn.dict")
     {
     }

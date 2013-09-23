@@ -239,10 +239,10 @@ public:
 
 	double att_weight(const std::string& nm, const std::string& cate)
     {
-        std::string att = nm;
+        KString att(nm);
         att += '@';
-        att += sub_cate_(cate);
-        return att_dict_.score(KString(att));
+        att += sub_cate_(cate).;
+        return att_dict_.score(att);
     }
 
 };

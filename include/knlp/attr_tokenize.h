@@ -241,7 +241,7 @@ public:
     {
         KString att(nm);
         att += '@';
-        att += sub_cate_(cate).;
+        att += sub_cate_(cate);
         return att_dict_.score(att);
     }
 

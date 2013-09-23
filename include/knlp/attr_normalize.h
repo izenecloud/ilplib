@@ -134,18 +134,22 @@ namespace ilplib{
                         pairs0 = trans_name(pairs0);
                         pairs1 = trans_value(pairs1);
 
-                        if(pairs0!=""&&pairs1!="")
+                        if(pairs0.empty() || pairs1.empty() || pairs0.length() > 30 || pairs1.find(":") != string::npos)
+                            continue;
                         {                            
                             if(syn_!=NULL)
                             {
                                 trans_syn(pairs0, 1, cate);
                                 trans_syn(pairs1);
                             }
-
-                            if(add_at)
-                                res = res + pairs0 + "@" + cate + ":" + pairs1 + ",";
-                            else
-                                res = res + pairs0 + ":" + pairs1 + ",";
+                            
+                            std::vector<std::string> values;
+                            boost::split(values, pairs1, boost::is_any_of("/"));
+                            for (size_t j = 0; j < values.size(); ++j)
+                                if(add_at)
+                                    res = res + pairs0 + "@" + cate + ":" + values[j] + ",";
+                                else
+                                    res = res + pairs0 + ":" + values[j] + ",";
 //                            name_set.insert(pairs0);
                         }
 
@@ -222,13 +226,14 @@ namespace ilplib{
                     reg.push_back(std::make_pair("([0-9]+),([0-9]{3})", "\\1\\2"));
                     reg.push_back(std::make_pair("[/,#@|]+", "/"));
 //                    reg.push_back(std::make_pair("([^0-9a-z])[ ]+([^0-9a-z])", "\\1/\\2"));
-                    reg.push_back(std::make_pair("([^a-z0-9]+)[ ]+", "\\1"));
-                    reg.push_back(std::make_pair("[ ]+([^a-z0-9]+)", "\\1"));
+//                    reg.push_back(std::make_pair("([^a-z0-9]+)[ ]+", "\\1"));
+//                    reg.push_back(std::make_pair("[ ]+([^a-z0-9]+)", "\\1"));
 //                    reg.push_back(std::make_pair("^", "/"));
 //                    reg.push_back(std::make_pair("$", "/"));
-                    reg.push_back(std::make_pair("/[^/]*(其他|其它|other)[^/]*/", "/"));
+                    reg.push_back(std::make_pair("[^/]*(其他|其它|other)[^/]*(/|$)", "/"));
                     reg.push_back(std::make_pair("[等\\-/\\.]+$", ""));
                     reg.push_back(std::make_pair("^[/:]+", ""));
+                    reg.push_back(std::make_pair("[/]+", "/"));
 
 /*
                     reg.push_back(std::make_pair("([0-9\\.]+)英寸($|/)", "\\1inches\\2"));

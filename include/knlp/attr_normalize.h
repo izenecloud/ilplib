@@ -7,7 +7,7 @@
 #include <boost/algorithm/string.hpp>
 #include "knlp/normalize.h"
 #include <set>
-#include "re2/re2.h"
+#include <3rdparty/re2/re2.h>
 #include "dictionary.h"
 using namespace izenelib::util;
 namespace ilplib{

@@ -46,6 +46,7 @@ class AttributeTokenize
 {
     DATrie token_dict_;
     DATrie attv_dict_;
+    DATrie att_dict_;
 	Dictionary syn_dict_;
 
 	KString sub_cate_(const std::string& cate, bool g=true)
@@ -173,7 +174,8 @@ public:
 
     AttributeTokenize(const std::string& dir)
         :token_dict_(dir+"/term.dict")
-		 //,attv_dict_(dir+"/att.v.score")
+		 ,attv_dict_(dir+"/att.nv.score")
+		 ,att_dict_(dir+"/att.n.score")
 		,syn_dict_(dir + "/syn.dict")
     {
     }
@@ -234,6 +236,14 @@ public:
 		}
 		return r;
 	}
+
+	double att_weight(const std::string& nm, const std::string& cate)
+    {
+        std::string att = nm;
+        nm += '@';
+        nm += sub_cate_(cate);
+        return att_dict_.score(KString(nm));
+    }
 
 };
 

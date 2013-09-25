@@ -54,7 +54,10 @@ class AttributeTokenize
 		if (cate.length() == 0)return KString();
 		KString r(cate);
 		int32_t i=r.length()-1;
-		if (r[i] == '>')i--;
+		if (r[i] == '>'){
+		    r = r.substr(0, r.length()-1);
+		    i--;
+        }
 		if (g)
 		    for ( ; i>=0 && r[i]!='/' && r[i]!='>'; --i);
         else

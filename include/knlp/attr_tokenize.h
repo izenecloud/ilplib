@@ -173,6 +173,15 @@ class AttributeTokenize
   				r.push_back(make_pair(it->first, it->second*100.));
 			return r;
 		}
+
+	uint32_t chn_num_(const KString& kstr)
+    {
+        uint32_t r = 0;
+        for (uint32_t i=0;i<kstr.length();i++)
+            if (KString::is_chinese(kstr[i]))
+                r++;
+        return r;
+    }
 public:
 
     AttributeTokenize(const std::string& dir)
@@ -243,9 +252,24 @@ public:
 	double att_weight(const std::string& nm, const std::string& cate)
     {
         KString att(nm);
+        if (chn_num_(att) > 5 || att.length() > 6)return 0.;
         att += '@';
         att += sub_cate_(cate);
         return att_dict_.score(att);
+    }
+
+	double att_weight(const std::string& nm, const std::string val, 
+	  const std::string& cate)
+    {
+        KString att(nm);
+        KString attv(val);
+        if (chn_num_(att) > 5 || chn_num_(attv) > 6
+          ||att.length() > 6 || attv.length() > 15)return 0.;
+        att += '@';
+        att += sub_cate_(cate);
+        att += attv;
+
+        return attv_dict_.score(att);
     }
 
 };

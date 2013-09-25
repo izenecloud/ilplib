@@ -221,10 +221,14 @@ public:
 		}
 		rr.push_back(make_pair(normallize_(title), max_avs));
 		rr.push_back(make_pair(normallize_(cate), max_avs));
-		rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
+		//rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
 		rr.push_back(make_pair(normallize_(source), max_avs));
 
-		return token_(rr);
+        std::vector<std::pair<std::string, double> > r = token_(rr);
+        std::vector<KString> v = normallize_(sub_cate_(ocate,false)).split('/');
+        for (uint32_t i=0;i<v.size(); ++i)
+            r.push_back(make_pair(v[i].get_bytes("utf-8"), max_avs));
+		return r;
     }
 
 	std::vector<std::string> tokenize(const std::string& Q)

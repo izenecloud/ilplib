@@ -187,6 +187,10 @@ class AttributeTokenize
 
 	bool bad_char_(const KString& kstr)
     {
+        if (kstr.length() == 1 &&
+          (KString::is_english(kstr[0])||KString::is_numeric(kstr[0]))
+        )
+           return true;
         static const KString oth1("其他");
         static const KString oth2("其它");
         static const KString oth3("other");

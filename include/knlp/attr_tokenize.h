@@ -165,7 +165,9 @@ class AttributeTokenize
 				std::vector<KString> tks = token_(av[i].first);
 				std::set<KString> set(tks.begin(), tks.end());
 				for ( std::set<KString>::iterator it=set.begin(); it!=set.end(); ++it)
-				  m[it->get_bytes("utf-8")] += av[i].second/sqrt(set.size());
+				    if (i > 0)//i == 0, it's title
+				        m[it->get_bytes("utf-8")] += av[i].second/sqrt(set.size());
+                    else m[it->get_bytes("utf-8")] += av[i].second;
 			}
 
 			std::vector<std::pair<std::string, double> > r;
@@ -227,6 +229,10 @@ public:
 		KString subcate = sub_cate_(cate);
 		const double hyper_p = sqrt(kattrs.size()/40.);
 
+		rr.push_back(make_pair(normallize_(title), max_avs));
+		rr.push_back(make_pair(normallize_(cate), max_avs));
+		rr.push_back(make_pair(normallize_(source), max_avs));
+
 		for ( uint32_t i=0; i<kattrs.size(); ++i)
 		{
 			std::vector<KString> p = kattrs[i].split(':');
@@ -238,10 +244,6 @@ public:
 			rr.push_back(make_pair(p[1], avs));
 			rr.push_back(make_pair(p[0], avs*hyper_p));
 		}
-		rr.push_back(make_pair(normallize_(title), max_avs));
-		rr.push_back(make_pair(normallize_(cate), max_avs));
-		//rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
-		rr.push_back(make_pair(normallize_(source), max_avs));
 
         std::vector<std::pair<std::string, double> > r = token_(rr);
         std::vector<KString> v = normallize_(sub_cate_(ocate,false)).split('/');

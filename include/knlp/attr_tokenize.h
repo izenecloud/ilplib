@@ -160,7 +160,7 @@ class AttributeTokenize
 		token_(const std::vector<std::pair<KString, double> >& av)
 		{
 			std::map<std::string, double> m;
-			for ( uint32_t i=0; i<av.size(); ++i)
+			for ( uint32_t i=0; i+1<av.size(); ++i)
 			{
 				std::vector<KString> tks = token_(av[i].first);
 				std::set<KString> set(tks.begin(), tks.end());
@@ -169,6 +169,14 @@ class AttributeTokenize
 				        m[it->get_bytes("utf-8")] += av[i].second/sqrt(set.size());
                     else m[it->get_bytes("utf-8")] += av[i].second;
 			}
+
+            std::vector<KString> v = av.back().first.split('/');
+            for (uint32_t i=0;i<v.size(); ++i)
+            {
+                const char* syn = syn_dict_.value(v[i]);
+                if (syn)v[i] = KString(syn);
+                m[v[i].get_bytes("utf-8")] += av.back().second;
+            }
 
 			std::vector<std::pair<std::string, double> > r;
 			for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end(); ++it)
@@ -257,15 +265,8 @@ public:
 			rr.push_back(make_pair(p[0], avs*hyper_p));
 		}
 
-        std::vector<std::pair<std::string, double> > r = token_(rr);
-        std::vector<KString> v = normallize_(sub_cate_(ocate,false)).split('/');
-        for (uint32_t i=0;i<v.size(); ++i)
-        {
-            const char* syn = syn_dict_.value(v[i]);
-            if (syn)v[i] = KString(syn);
-            r.push_back(make_pair(v[i].get_bytes("utf-8"), max_avs));
-        }
-		return r;
+		rr.push_back(normallize_(sub_cate_(ocate,false)));
+		return token_(rr);
     }
 
 	std::vector<std::string> tokenize(const std::string& Q)

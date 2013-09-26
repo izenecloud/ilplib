@@ -185,10 +185,16 @@ class AttributeTokenize
 
 	bool bad_char_(const KString& kstr)
     {
-        uint32_t r = 0;
+        static const KString oth1("其他");
+        static const KString oth2("其它");
+        static const KString oth3("other");
         for (uint32_t i=0;i<kstr.length();i++)
             if (kstr[i] == ':')
                 return true;
+        if (kstr.find(oth1) != (uint32_t)-1
+          ||kstr.find(oth2) != (uint32_t)-1
+          ||kstr.find(oth3) != (uint32_t)-1)
+            return true;
         return false;
     }
 

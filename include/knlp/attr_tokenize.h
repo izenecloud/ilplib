@@ -174,7 +174,7 @@ class AttributeTokenize
 			return r;
 		}
 
-	uint32_t chn_num_(const kstring& kstr)
+	uint32_t chn_num_(const KString& kstr)
     {
         uint32_t r = 0;
         for (uint32_t i=0;i<kstr.length();i++)
@@ -183,7 +183,7 @@ class AttributeTokenize
         return r;
     }
 
-	bool bad_char_(const kstring& kstr)
+	bool bad_char_(const KString& kstr)
     {
         uint32_t r = 0;
         for (uint32_t i=0;i<kstr.length();i++)

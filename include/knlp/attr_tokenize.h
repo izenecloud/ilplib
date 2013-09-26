@@ -178,7 +178,7 @@ class AttributeTokenize
     {
         uint32_t r = 0;
         for (uint32_t i=0;i<kstr.length();i++)
-            if (kstring::is_chinese(kstr[i]))
+            if (KString::is_chinese(kstr[i]))
                 r++;
         return r;
     }

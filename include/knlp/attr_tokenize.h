@@ -188,12 +188,15 @@ class AttributeTokenize
         static const KString oth1("其他");
         static const KString oth2("其它");
         static const KString oth3("other");
+        static const KString oth4("价格");
         for (uint32_t i=0;i<kstr.length();i++)
             if (kstr[i] == ':')
                 return true;
         if (kstr.find(oth1) != (uint32_t)-1
           ||kstr.find(oth2) != (uint32_t)-1
-          ||kstr.find(oth3) != (uint32_t)-1)
+          ||kstr.find(oth3) != (uint32_t)-1
+          ||kstr.find(oth4) != (uint32_t)-1
+          )
             return true;
         return false;
     }
@@ -289,7 +292,7 @@ public:
         KString attv(val);
         if (chn_num_(att) > 5 || chn_num_(attv) > 6
           ||att.length() > 6 || attv.length() > 15
-          ||bad_char_(attv)
+          ||bad_char_(attv) || bad_char_(att)
           )return 0.;
         att += '@';
         att += sub_cate_(cate);

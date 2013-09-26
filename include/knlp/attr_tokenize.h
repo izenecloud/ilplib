@@ -195,6 +195,10 @@ class AttributeTokenize
         static const KString oth2("其它");
         static const KString oth3("other");
         static const KString oth4("价格");
+        static const KString oth5("货号");
+        static const KString oth6("款号");
+        static const KString oth7("编号");
+        static const KString oth8("isbn");
         for (uint32_t i=0;i<kstr.length();i++)
             if (kstr[i] == ':')
                 return true;
@@ -202,6 +206,10 @@ class AttributeTokenize
           ||kstr.find(oth2) != (uint32_t)-1
           ||kstr.find(oth3) != (uint32_t)-1
           ||kstr.find(oth4) != (uint32_t)-1
+          ||kstr.find(oth5) != (uint32_t)-1
+          ||kstr.find(oth6) != (uint32_t)-1
+          ||kstr.find(oth7) != (uint32_t)-1
+          ||kstr.find(oth8) != (uint32_t)-1
           )
             return true;
         return false;
@@ -285,7 +293,7 @@ public:
 	double att_weight(const std::string& nm, const std::string& cate)
     {
         KString att(nm);
-        if (chn_num_(att) > 5 || att.length() > 6)return 0.;
+        if (chn_num_(att) > 5 || att.length() > 6 || bad_char_(att))return 0.;
         att += '@';
         att += sub_cate_(cate);
         return att_dict_.score(att);

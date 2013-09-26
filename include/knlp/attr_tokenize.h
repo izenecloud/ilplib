@@ -174,14 +174,24 @@ class AttributeTokenize
 			return r;
 		}
 
-	uint32_t chn_num_(const KString& kstr)
+	uint32_t chn_num_(const kstring& kstr)
     {
         uint32_t r = 0;
         for (uint32_t i=0;i<kstr.length();i++)
-            if (KString::is_chinese(kstr[i]))
+            if (kstring::is_chinese(kstr[i]))
                 r++;
         return r;
     }
+
+	bool bad_char_(const kstring& kstr)
+    {
+        uint32_t r = 0;
+        for (uint32_t i=0;i<kstr.length();i++)
+            if (kstr[i] == ':')
+                return true;
+        return false;
+    }
+
 public:
 
     AttributeTokenize(const std::string& dir)
@@ -227,7 +237,11 @@ public:
         std::vector<std::pair<std::string, double> > r = token_(rr);
         std::vector<KString> v = normallize_(sub_cate_(ocate,false)).split('/');
         for (uint32_t i=0;i<v.size(); ++i)
+        {
+            const char* syn = syn_dict_.value(v[i]);
+            if (syn)v[i] = KString(syn);
             r.push_back(make_pair(v[i].get_bytes("utf-8"), max_avs));
+        }
 		return r;
     }
 
@@ -268,7 +282,9 @@ public:
         KString att(nm);
         KString attv(val);
         if (chn_num_(att) > 5 || chn_num_(attv) > 6
-          ||att.length() > 6 || attv.length() > 15)return 0.;
+          ||att.length() > 6 || attv.length() > 15
+          ||bad_char_(attv)
+          )return 0.;
         att += '@';
         att += sub_cate_(cate);
         att += attv;

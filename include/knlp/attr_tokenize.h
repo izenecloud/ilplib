@@ -170,7 +170,8 @@ class AttributeTokenize
                     else m[it->get_bytes("utf-8")] += av[i].second;
 			}
 
-            std::vector<KString> v = av.back().first.split('/');
+            KString tmp = av.back().first;
+            std::vector<KString> v = tmp.split('/');
             for (uint32_t i=0;i<v.size(); ++i)
             {
                 const char* syn = syn_dict_.value(v[i]);
@@ -265,7 +266,7 @@ public:
 			rr.push_back(make_pair(p[0], avs*hyper_p));
 		}
 
-		rr.push_back(normallize_(sub_cate_(ocate,false)));
+		rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
 		return token_(rr);
     }
 

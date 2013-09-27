@@ -138,18 +138,19 @@ namespace ilplib{
                             continue;
                         {                            
                             if(syn_!=NULL)
-                            {
                                 trans_syn(pairs0, 1, cate);
-                                trans_syn(pairs1);
-                            }
                             
                             std::vector<std::string> values;
                             boost::split(values, pairs1, boost::is_any_of("/"));
                             for (size_t j = 0; j < values.size(); ++j)
+                            {
+                                if(syn_!=NULL)
+                                    trans_syn(values[j]);
                                 if(add_at)
                                     res = res + pairs0 + "@" + cate + ":" + values[j] + ",";
                                 else
                                     res = res + pairs0 + ":" + values[j] + ",";
+                            }
 //                            name_set.insert(pairs0);
                         }
 

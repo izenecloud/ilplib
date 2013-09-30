@@ -238,13 +238,13 @@ TARGET_LINK_LIBRARIES(cluster_util
    ${libs}
 )
 
-ADD_EXECUTABLE(attr_token
-		attr_token.cpp 
-)
+#ADD_EXECUTABLE(attr_token
+#		attr_token.cpp 
+#)
 
-TARGET_LINK_LIBRARIES(attr_token
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_REGEX_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
-   ${libs}
-)
+#TARGET_LINK_LIBRARIES(attr_token
+#   ${Boost_SYSTEM_LIBRARY}
+#   ${Boost_REGEX_LIBRARY}
+#   ${Boost_THREAD_LIBRARY}
+#   ${libs}
+#)

@@ -23,7 +23,7 @@ namespace ilplib
             size_t tot_length_;
             size_t max_num;
             double MINVALUE_; 
-            typedef struct {KString kstr; double value; size_t len;} word_type;
+            typedef struct {KString kstr; double value; size_t len; KString to_word;} word_type;
             std::vector<int> base_;
             std::vector<int> check_;
             std::vector<double> value_;
@@ -65,6 +65,28 @@ time1 = clock();
                 izenelib::am::util::LineReader lr(file_name);
 				while((st = lr.line(st)) != NULL)
 				{
+
+                  if (mode == 2)
+                  {
+				    if (strlen(st) == 0) continue;
+				    word_type tmpword;
+				    string s0 = string(st);
+//                    Normalize::normalize(s0);
+				    int p = s0.find("\t",0);
+				    if (p <= 0 || p >= (int)s0.length()) continue;
+				    KString kstr(s0.substr(0,p));
+                    Normalize::normalize(kstr);
+				    KString to_word = KString(s0.substr(p+1, s0.length()-p-1).c_str());
+				    Normalize::normalize(to_word);
+				    tmpword.kstr = kstr;
+				    tmpword.to_word = to_word;
+				    tmpword.len = kstr.length();
+				    tmpdict.push_back(tmpword);
+					if (kstr.length() > 0) 
+					ch1_[kstr[0]] = 1;
+					tot_length_ += tmpword.len;
+					max_length_ = std::max(max_length_, tmpword.len);
+                  }
 				  if (mode == 1)
                   {
 				    if (strlen(st) == 0) continue;
@@ -89,7 +111,6 @@ time1 = clock();
 				    if (strlen(st) == 0) continue;
 				    word_type tmpword;
 				    string s0 = string(st);
-				    s0 += '\t';
 //                    Normalize::normalize(s0);
 				    int p = s0.find("\t",0);
 				    if (p <= 0 || p >= (int)s0.length()) continue;
@@ -298,6 +319,26 @@ time1 = clock();
                 return NOT_FOUND;
             }
 
+            void find_syn(const KString& st, KString& syn)const
+            {
+//                KString st(kst);
+//                if (normalize)
+//                    Normalize::normalize(st);
+                int ad = 0, nextad = 0;
+                size_t len = st.length();
+                if (len == 0) return ;
+                for (size_t i = 0; i < len; ++i)
+                {
+                    nextad = abs(base_[ad]) + st[i];
+                    if (base_[nextad] == 0 || check_[nextad] != ad)
+                        return ;
+                    ad = nextad;
+                }
+                if (base_[ad] < 0)
+                    syn = dict_[value_[ad]].to_word;
+                return ;
+            }
+
             bool check_term(const KString& st, const bool normalize = 0)
             {
 //                KString st(kst);
@@ -382,6 +423,48 @@ time1 = clock();
                 return term;
             }
 
+            std::vector<KString> token(const KString& st, const bool score)
+            {
+                size_t i = 0;
+                size_t len = st.length();
+                std::vector<KString> term;
+                if (len == 0)
+                    return term;
+                size_t term_size = 0;
+                term.resize(len);
+                while(i < len)
+                {
+                    int maxlen = -1, ad = 0, nextad, flag = 0;
+                    for (size_t j = 0; j < len - i; ++j)
+                    {
+                        nextad = abs(base_[ad]) + st[i+j];                
+                        if (base_[nextad] == 0 || check_[nextad] != ad)
+                        {
+                            flag = 0;
+                            break;
+                        }
+                        ad = nextad;
+                        if (base_[ad] < 0)
+                        {
+                            maxlen = j+1;
+                        }
+                    }
+
+                    if (maxlen == -1)
+                    {
+                        term[term_size++] = st.substr(i, 1);
+                        i += 1;
+                    }
+                    else
+                    {
+                        term[term_size++] = st.substr(i, maxlen);
+                        i += maxlen;
+                    }
+                }
+                term.resize(term_size);
+                return term;
+            }
+
             std::vector<std::pair<KString, double> > sub_token(const KString& st)
             {
                 size_t r = find_word(st);
@@ -402,6 +485,30 @@ time1 = clock();
                         }
                     }
                     term.push_back(std::make_pair(st, dict_[r].value));
+                    return term;
+                }
+            }
+
+            std::vector<KString> sub_token(const KString& st, const bool score)
+            {
+                size_t r = find_word(st);
+                if (r == NOT_FOUND) return token(st, 0);
+                else
+                {
+                    size_t len = st.length();
+                    std::vector<KString> term;
+                    for (int32_t i = (int32_t)len-1; i > 0; --i)
+                    {
+                        size_t p = find_word(st, 0, i);
+                        size_t q = find_word(st, i, len);
+                        if (p != NOT_FOUND && q != NOT_FOUND)
+                        {
+                            term.push_back(st.substr(0, i));
+                            term.push_back(st.substr(i, len - i));
+                            return term;
+                        }
+                    }
+                    term.push_back(st);
                     return term;
                 }
             }

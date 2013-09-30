@@ -15,12 +15,18 @@ using namespace izenelib::am::util;
 string st;
 int main()
 {
+KString a("我们a和b");
+for(size_t i = 0; i< a.length(); ++i)
+    cout<<(int)a[i]<<endl;
 time_t t1,t2;
 t2 = clock();
-    string file_name = "brand.term";
-    DATrie dict(file_name,1);
+    string file_name = "data/syn.dict";
+    DATrie dict(file_name,2);
     vector<pair<KString, double> > term;
-
+    KString res;
+dict.find_syn(KString("health"), res);
+cout<<res<<endl;
+return 0;
 //    KString kstr("爱步");
 //cout<<dict.check_term(kstr)<<' '<<dict.find_word(kstr)<<endl;
 
@@ -33,7 +39,7 @@ cout<<dict.find_word(kstr)<<endl;
 kstr = KString("架鼓");
 cout<<dict.find_word(kstr)<<endl;
 */
-LineReader lr("/opt/kevin-sf1r-bin/new_cate.test");    
+LineReader lr("test");
 size_t tot = 0;
 char* line = NULL;
     while((line=lr.line(line))!=NULL)
@@ -41,7 +47,6 @@ char* line = NULL;
         ++tot;
 //if(tot == 100)break;        
 //        KString kstr(line);
-        KString kstr(line);
 //        vector<pair<string, double> > term(dict.token(kstr));
 //        vector<tuple<size_t, size_t, double> > term(dict.token(kstr));
 //        vector<pair<KString, double> > term;

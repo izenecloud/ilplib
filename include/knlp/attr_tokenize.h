@@ -47,7 +47,63 @@ class AttributeTokenize
     DATrie token_dict_;
     DATrie attv_dict_;
     DATrie att_dict_;
-	Dictionary syn_dict_;
+//	Dictionary syn_dict_;
+	DATrie syn_dict_;
+
+    string unicode_to_utf8_(const KString& kstr)
+    {  
+        string s;
+        for(size_t i = 0; i < kstr.length(); ++i)
+        {
+            uint16_t unic = kstr[i];
+            if ( unic <= 0x0000007F )   
+            {   
+                // * U-00000000 - U-0000007F:  0xxxxxxx  
+                s.append(1, unic & 0x7F);
+            }   
+            else if ( unic >= 0x00000080 && unic <= 0x000007FF )   
+            {   
+                // * U-00000080 - U-000007FF:  110xxxxx 10xxxxxx  
+                s.append(1, (((unic >> 6) & 0x1F) | 0xC0));
+                s.append(1, ((unic & 0x3F) | 0x80));
+            }   
+            else if ( unic >= 0x00000800 && unic <= 0x0000FFFF )   
+            {   
+                // * U-00000800 - U-0000FFFF:  1110xxxx 10xxxxxx 10xxxxxx  
+                s.append(1, (((unic >> 12) & 0x0F) | 0xE0));
+                s.append(1, (((unic >>  6) & 0x3F) | 0x80));
+                s.append(1, ((unic & 0x3F) | 0x80));
+            }   
+            else if ( unic >= 0x00010000 && unic <= 0x001FFFFF )   
+            {   
+                // * U-00010000 - U-001FFFFF:  11110xxx 10xxxxxx 10xxxxxx 10xxxxxx  
+                s.append(1, (((unic >> 18) & 0x07) | 0xF0));
+                s.append(1, (((unic >> 12) & 0x3F) | 0x80));
+                s.append(1, (((unic >>  6) & 0x3F) | 0x80));
+                s.append(1, ((unic & 0x3F) | 0x80));
+            }   
+            else if ( unic >= 0x00200000 && unic <= 0x03FFFFFF )   
+            {   
+                // * U-00200000 - U-03FFFFFF:  111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx  
+                s.append(1, (((unic >> 24) & 0x03) | 0xF8));
+                s.append(1, (((unic >> 18) & 0x3F) | 0x80));
+                s.append(1, (((unic >> 12) & 0x3F) | 0x80));
+                s.append(1, (((unic >>  6) & 0x3F) | 0x80));
+                s.append(1, ((unic & 0x3F) | 0x80));
+            }   
+            else if ( unic >= 0x04000000 && unic <= 0x7FFFFFFF )   
+            {   
+                // * U-04000000 - U-7FFFFFFF:  1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx  
+                s.append(1, (((unic >> 30) & 0x01) | 0xFC));
+                s.append(1, (((unic >> 24) & 0x3F) | 0x80));
+                s.append(1, (((unic >> 18) & 0x3F) | 0x80));
+                s.append(1, (((unic >> 12) & 0x3F) | 0x80));
+                s.append(1, (((unic >>  6) & 0x3F) | 0x80));
+                s.append(1, ((unic & 0x3F) | 0x80));
+            }   
+        }
+        return s;
+    }
 
 	KString sub_cate_(const std::string& cate, bool g=true)
 	{
@@ -91,7 +147,7 @@ class AttributeTokenize
 					|| c == '-' || c == ',' || c == '.'
 				);
 	}
-
+/*
 	std::vector<KString> token_(const KString& kstr)
 	{
 		std::vector<std::pair<uint32_t, uint32_t> > pos;
@@ -155,33 +211,86 @@ class AttributeTokenize
 			r.erase(r.begin()+i),--i;
 		return r;
 	}
-
+*/
 	std::vector<std::pair<std::string, double> >
 		token_(const std::vector<std::pair<KString, double> >& av)
 		{
-			std::map<std::string, double> m;
+			std::map<KString, double> m;
 			for ( uint32_t i=0; i+1<av.size(); ++i)
 			{
-				std::vector<KString> tks = token_(av[i].first);
-				std::set<KString> set(tks.begin(), tks.end());
-				for ( std::set<KString>::iterator it=set.begin(); it!=set.end(); ++it)
-				    if (i > 0)//i == 0, it's title
-				        m[it->get_bytes("utf-8")] += av[i].second/sqrt(set.size());
-                    else m[it->get_bytes("utf-8")] += av[i].second;
+                std::vector<KString> tks;
+                std::vector<KString> tmp = token_dict_.token(av[i].first, 0);
+                
+                KString tmpkstr;
+                size_t tmp_size = tmp.size();
+				std::set<KString> set;
+				double score = av[i].second;
+                for (size_t j = 0; j < tmp_size; ++j)
+                {
+                    if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
+                        tmpkstr+=tmp[j];
+                    else
+                    {
+                        if(tmpkstr.length()>0)
+                        {
+                            if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])) 
+                            {
+                                KString syn;
+                                syn_dict_.find_syn(tmpkstr, syn);
+                                if (syn.length() > 0)
+                                    set.insert(syn);
+                                else
+                                    set.insert(tmpkstr);
+                            }
+                            tmpkstr = KString("");
+                        }
+                        if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
+                        {
+                            KString syn;
+                            syn_dict_.find_syn(tmp[j], syn);
+                            if (syn.length() > 0)
+                                set.insert(syn);
+                            else 
+                                set.insert(tmp[j]);
+                        }
+                    }
+
+                }
+                if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
+                {
+                    KString syn;
+                    syn_dict_.find_syn(tmpkstr, syn);
+                    if (syn.length() > 0)
+                        set.insert(syn);
+                    else
+                        set.insert(tmpkstr);
+                }
+
+
+                const std::set<KString>::iterator set_end = set.end();
+				if (i>0) 
+				    score/=sqrt(set.size());
+				for ( std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
+				    m[*it]+=score;
 			}
 
             KString tmp = av.back().first;
             std::vector<KString> v = tmp.split('/');
             for (uint32_t i=0;i<v.size(); ++i)
             {
-                const char* syn = syn_dict_.value(v[i]);
-                if (syn)v[i] = KString(syn);
-                m[v[i].get_bytes("utf-8")] += av.back().second;
+                KString syn;
+                syn_dict_.find_syn(v[i], syn);
+                if (syn.length() > 0)
+                    m[syn]+=av.back().second;
+                else
+                    m[v[i]]+=av.back().second;
             }
 
 			std::vector<std::pair<std::string, double> > r;
-			for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end(); ++it)
-  				r.push_back(make_pair(it->first, it->second*100.));
+
+			for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
+  				r.push_back(make_pair(unicode_to_utf8_(it->first), it->second*100.));
+  				
 			return r;
 		}
 
@@ -230,7 +339,7 @@ public:
         :token_dict_(dir+"/term.dict")
 		 ,attv_dict_(dir+"/att.nv.score")
 		 ,att_dict_(dir+"/att.n.score")
-		,syn_dict_(dir + "/syn.dict")
+		,syn_dict_(dir + "/syn.dict", 2)
     {
     }
 
@@ -243,6 +352,7 @@ public:
 					const std::string& cate, const std::string& ocate,
 					const std::string& source)
     {
+std::vector<std::pair<std::string, double> > r;
 		std::vector<std::pair<KString, double> > rr;
 		std::vector<KString> kattrs = KString(attr).split(',');
 
@@ -265,7 +375,6 @@ public:
 			rr.push_back(make_pair(p[1], avs));
 			rr.push_back(make_pair(p[0], avs*hyper_p));
 		}
-
 		rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
 		return token_(rr);
     }
@@ -273,10 +382,54 @@ public:
 	std::vector<std::string> tokenize(const std::string& Q)
 	{
 		KString	q = normallize_(Q);
-		std::vector<KString> v = token_(q);
-		std::vector<std::string> r;
+        std::vector<KString> v;
+        std::vector<KString> tmp = token_dict_.token(q, 0);
+        KString tmpkstr;
+        size_t tmp_size = tmp.size();
+        for (size_t j = 0; j < tmp_size; ++j)
+        {
+            if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
+                tmpkstr+=tmp[j];
+            else
+            {
+                if(tmpkstr.length()>0)
+                {
+                    if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])) 
+                    {
+                        KString syn;
+                        syn_dict_.find_syn(tmpkstr, syn);
+                        if (syn.length() > 0)
+                            v.push_back(syn);
+                        else
+                            v.push_back(tmpkstr);
+                    }
+                    tmpkstr = KString("");
+                }
+                if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
+                {
+                    KString syn;
+                    syn_dict_.find_syn(tmp[j], syn);
+                    if (syn.length() > 0)
+                        v.push_back(syn);
+                    else 
+                        v.push_back(tmp[j]);
+                }
+            }
+
+        }
+        if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
+        {
+            KString syn;
+            syn_dict_.find_syn(tmpkstr, syn);
+            if (syn.length() > 0)
+                v.push_back(syn);
+            else
+                v.push_back(tmpkstr);
+        }
+
+        std::vector<std::string> r;
 		for ( uint32_t i=0; i<v.size(); ++i)
-		  r.push_back(v[i].get_bytes("utf-8"));
+            r.push_back(unicode_to_utf8_(v[i]));
 		return r;
 	}
 
@@ -285,9 +438,10 @@ public:
 		std::vector<std::string> r;
 		for ( uint32_t i=0; i<tks.size(); ++i)
 		{
-			 std::vector<std::pair<KString, double> > v = token_dict_.sub_token(KString(tks[i]));
-			 for ( uint32_t j=0; j<v.size(); ++j)
-			   r.push_back(v[j].first.get_bytes("utf-8"));
+            std::vector<KString> v = token_dict_.sub_token(KString(tks[i]), 0);
+			for ( uint32_t j=0; j<v.size(); ++j)
+		        r.push_back(unicode_to_utf8_(v[j]));
+//			   r.push_back(v[j].get_bytes("utf-8"));
 		}
 		return r;
 	}

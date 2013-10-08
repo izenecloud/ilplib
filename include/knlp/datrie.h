@@ -41,6 +41,9 @@ namespace ilplib
             }
 
             DATrie():NOT_FOUND(-1) {}
+            //mode=0:word value
+            //mode=1:word
+            //mode=2:word word
             DATrie(const std::string& file_name, const size_t mode = 0):NOT_FOUND(-1)
             {
 time_t time1, time2;
@@ -60,7 +63,6 @@ time1 = clock();
                 tmpdict.reserve(1234567);
                 double value;
 
-//cout<<"mode = "<<mode<<endl;
                 char* st = NULL;
                 izenelib::am::util::LineReader lr(file_name);
 				while((st = lr.line(st)) != NULL)

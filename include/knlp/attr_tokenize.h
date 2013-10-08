@@ -147,152 +147,90 @@ class AttributeTokenize
 					|| c == '-' || c == ',' || c == '.'
 				);
 	}
-/*
-	std::vector<KString> token_(const KString& kstr)
-	{
-		std::vector<std::pair<uint32_t, uint32_t> > pos;
-		bool f = false;
-		for ( uint32_t i=0;i<kstr.length(); ++i)
-		  if (is_model_type_(kstr[i]))
-		  {
-			  if (f)continue;
-			  pos.push_back(make_pair(i, -1));
-			  f = true;
-  		  }else{
-			  if (f){
-				  assert(pos.size());
-				  assert(pos.back().second == (uint32_t)-1);
-				  assert(pos.back().first < i);
-				  pos.back().second = i;
-			  }
-			  f = false;
-		  }
-		if (f)pos.back().second = kstr.length();
 
-		std::vector<KString> chunks;
-		uint32_t last = 0;
-		for ( uint32_t i=0; i<pos.size(); ++i)
-		{
-			if (last < pos[i].first)
-			  chunks.push_back(kstr.substr(last, pos[i].first - last));
-			last = pos[i].second;
-		}
-		if (last < kstr.length())
-		  chunks.push_back(kstr.substr(last));
-
-		std::vector<KString> r;
-		for ( uint32_t i=0; i<chunks.size(); ++i)
-		{
-			std::vector<std::pair<KString, double> > v = token_dict_.token(chunks[i]);
-			for ( uint32_t j=0; j<v.size(); ++j)
-			{
-				const char* syn = syn_dict_.value(v[j].first);
-				if (syn)v[j].first = KString(syn);
-				r.push_back(v[j].first);
-			}
-		}
-		for ( uint32_t i=0; i<pos.size(); ++i)
-		{
-			assert(pos[i].second >= pos[i].first);
-			KString sub = kstr.substr(pos[i].first, pos[i].second-pos[i].first);
-			const char* syn = syn_dict_.value(sub);
-			if (syn)sub = KString(syn);
-			std::vector<std::pair<KString, double> > v = token_dict_.token(sub);
-			if (v.size() ==0 || v[0].first.length() < 3)
-  			  r.push_back(sub);
-			else for ( uint32_t j=0; j<v.size(); ++j)
-			  r.push_back(v[j].first);
-		}
-		for ( uint32_t i=0; i<r.size(); ++i)
-		  if (r[i].length() == 0 
-				|| (r.size() > 1 && r[i].length() == 1 
-			&& ((!KString::is_english(r[i][0]) && !KString::is_numeric(r[i][0]) && !KString::is_chinese(r[i][0]))))
-			)
-			r.erase(r.begin()+i),--i;
-		return r;
-	}
-*/
-	std::vector<std::pair<std::string, double> >
-		token_(const std::vector<std::pair<KString, double> >& av)
-		{
-			std::map<KString, double> m;
-			for ( uint32_t i=0; i+1<av.size(); ++i)
-			{
-                std::vector<KString> tks;
-                std::vector<KString> tmp = token_dict_.token(av[i].first, 0);
-                
-                KString tmpkstr;
-                size_t tmp_size = tmp.size();
-				std::set<KString> set;
-				double score = av[i].second;
-                for (size_t j = 0; j < tmp_size; ++j)
+    std::set<KString> token_(const KString& av)
+    {
+        std::vector<KString> tmp = token_dict_.token(av, 0);
+        KString tmpkstr;
+        size_t tmp_size = tmp.size();
+        std::set<KString> set;
+        for (size_t j = 0; j < tmp_size; ++j)
+        {
+            if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
+                tmpkstr+=tmp[j];
+            else
+            {
+                if(tmpkstr.length()>0)
                 {
-                    if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
-                        tmpkstr+=tmp[j];
-                    else
+                    if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])) 
                     {
-                        if(tmpkstr.length()>0)
-                        {
-                            if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])) 
-                            {
-                                KString syn;
-                                syn_dict_.find_syn(tmpkstr, syn);
-                                if (syn.length() > 0)
-                                    set.insert(syn);
-                                else
-                                    set.insert(tmpkstr);
-                            }
-                            tmpkstr = KString("");
-                        }
-                        if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
-                        {
-                            KString syn;
-                            syn_dict_.find_syn(tmp[j], syn);
-                            if (syn.length() > 0)
-                                set.insert(syn);
-                            else 
-                                set.insert(tmp[j]);
-                        }
+                        KString syn;
+                        syn_dict_.find_syn(tmpkstr, syn);
+                        if (syn.length() > 0)
+                            set.insert(syn);
+                        else
+                            set.insert(tmpkstr);
                     }
-
+                    tmpkstr = KString("");
                 }
-                if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
+                if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
                 {
                     KString syn;
-                    syn_dict_.find_syn(tmpkstr, syn);
+                    syn_dict_.find_syn(tmp[j], syn);
                     if (syn.length() > 0)
                         set.insert(syn);
-                    else
-                        set.insert(tmpkstr);
+                    else 
+                        set.insert(tmp[j]);
                 }
-
-
-                const std::set<KString>::iterator set_end = set.end();
-				if (i>0) 
-				    score/=sqrt(set.size());
-				for ( std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
-				    m[*it]+=score;
-			}
-
-            KString tmp = av.back().first;
-            std::vector<KString> v = tmp.split('/');
-            for (uint32_t i=0;i<v.size(); ++i)
-            {
-                KString syn;
-                syn_dict_.find_syn(v[i], syn);
-                if (syn.length() > 0)
-                    m[syn]+=av.back().second;
-                else
-                    m[v[i]]+=av.back().second;
             }
 
-			std::vector<std::pair<std::string, double> > r;
+        }
+        if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
+        {
+            KString syn;
+            syn_dict_.find_syn(tmpkstr, syn);
+            if (syn.length() > 0)
+                set.insert(syn);
+            else
+                set.insert(tmpkstr);
+        }
+        return set;
+    }
 
-			for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
-  				r.push_back(make_pair(unicode_to_utf8_(it->first), it->second*100.));
-  				
-			return r;
-		}
+    //index
+	std::vector<std::pair<std::string, double> > token_(const std::vector<std::pair<KString, double> >& av)
+    {
+        std::map<KString, double> m;
+        for ( uint32_t i=0; i+1<av.size(); ++i)
+        {
+            std::set<KString> set(token_(av[i].first));
+            double score = av[i].second;
+            const std::set<KString>::iterator set_end = set.end();
+            if (i>0) 
+                score/=sqrt(set.size());
+            for (std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
+                m[*it]+=score;
+        }
+
+        KString tmp = av.back().first;
+        std::vector<KString> v = tmp.split('/');
+        for (uint32_t i=0;i<v.size(); ++i)
+        {
+            KString syn;
+            syn_dict_.find_syn(v[i], syn);
+            if (syn.length() > 0)
+                m[syn]+=av.back().second;
+            else
+                m[v[i]]+=av.back().second;
+        }
+
+        std::vector<std::pair<std::string, double> > r;
+
+        for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
+            r.push_back(make_pair(unicode_to_utf8_(it->first), it->second*100.));
+
+        return r;
+    }
 
 	uint32_t chn_num_(const KString& kstr)
     {
@@ -352,13 +290,12 @@ public:
 					const std::string& cate, const std::string& ocate,
 					const std::string& source)
     {
-std::vector<std::pair<std::string, double> > r;
 		std::vector<std::pair<KString, double> > rr;
 		std::vector<KString> kattrs = KString(attr).split(',');
 
 		double max_avs = attv_dict_.score(KString("[title]"));
 		KString subcate = sub_cate_(cate);
-		const double hyper_p = sqrt(kattrs.size()/40.);
+		const double hyper_p = sqrt(std::min(size_t(15), kattrs.size())/15.);
 
 		rr.push_back(make_pair(normallize_(title), max_avs));
 		rr.push_back(make_pair(normallize_(cate), max_avs));
@@ -379,57 +316,15 @@ std::vector<std::pair<std::string, double> > r;
 		return token_(rr);
     }
 
+    //query
 	std::vector<std::string> tokenize(const std::string& Q)
 	{
 		KString	q = normallize_(Q);
-        std::vector<KString> v;
-        std::vector<KString> tmp = token_dict_.token(q, 0);
-        KString tmpkstr;
-        size_t tmp_size = tmp.size();
-        for (size_t j = 0; j < tmp_size; ++j)
-        {
-            if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
-                tmpkstr+=tmp[j];
-            else
-            {
-                if(tmpkstr.length()>0)
-                {
-                    if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])) 
-                    {
-                        KString syn;
-                        syn_dict_.find_syn(tmpkstr, syn);
-                        if (syn.length() > 0)
-                            v.push_back(syn);
-                        else
-                            v.push_back(tmpkstr);
-                    }
-                    tmpkstr = KString("");
-                }
-                if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
-                {
-                    KString syn;
-                    syn_dict_.find_syn(tmp[j], syn);
-                    if (syn.length() > 0)
-                        v.push_back(syn);
-                    else 
-                        v.push_back(tmp[j]);
-                }
-            }
-
-        }
-        if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
-        {
-            KString syn;
-            syn_dict_.find_syn(tmpkstr, syn);
-            if (syn.length() > 0)
-                v.push_back(syn);
-            else
-                v.push_back(tmpkstr);
-        }
-
+        std::set<KString > set = token_(q);
         std::vector<std::string> r;
-		for ( uint32_t i=0; i<v.size(); ++i)
-            r.push_back(unicode_to_utf8_(v[i]));
+        const std::set<KString>::iterator set_end = set.end();
+        for (std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
+            r.push_back(unicode_to_utf8_(*it));
 		return r;
 	}
 

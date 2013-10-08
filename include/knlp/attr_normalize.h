@@ -117,6 +117,18 @@ namespace ilplib{
 */                    
                 }
 
+                size_t chs_num(std::string& name)
+                {
+                    size_t res = 0;
+                    for (size_t i = 0; i < name.length(); ++i)
+                        if (i+2<name.length() && name[i]&0x80)
+                        {
+                            ++res;
+                            i+=2;
+                        }
+                    return res;
+                }
+
                 std::string attr_normalize(std::string& s, const std::string& cate = "", const bool add_at = 0)
                 {
                     string res = trans_whole(s);
@@ -134,8 +146,23 @@ namespace ilplib{
                         pairs0 = trans_name(pairs0);
                         pairs1 = trans_value(pairs1);
 
-                        if(pairs0.empty() || pairs1.empty() || pairs0.length() > 30 || pairs1.find(":") != string::npos)
+                        if(pairs0.empty() || pairs1.empty() || pairs1.find(":") != string::npos)
                             continue;
+
+                        if (chs_num(pairs0) > 5)
+                            continue;
+                        bool too_long = 0;
+                        std::vector<std::string> values;
+                        boost::split(values, pairs1, boost::is_any_of("/"));
+                        for (size_t j = 0; j < values.size(); ++j)
+                            if (chs_num(values[j]) > 7)
+                            {
+                                too_long = 1;
+                                break;
+                            }
+                        if (too_long)
+                            continue;
+
                         {                            
                             if(syn_!=NULL)
                             {

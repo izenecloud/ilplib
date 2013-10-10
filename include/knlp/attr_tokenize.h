@@ -256,6 +256,7 @@ class AttributeTokenize
         static const KString oth7("编号");
         static const KString oth8("isbn");
         static const KString oth9("更多");
+        static const KString oth10("商品名称");
         for (uint32_t i=0;i<kstr.length();i++)
             if (kstr[i] == ':' || kstr[i] == '/')
                 return true;
@@ -268,6 +269,7 @@ class AttributeTokenize
           ||kstr.find(oth7) != (uint32_t)-1
           ||kstr.find(oth8) != (uint32_t)-1
           ||kstr.find(oth9) != (uint32_t)-1
+          ||kstr.find(oth10) != (uint32_t)-1
           )
             return true;
         return false;

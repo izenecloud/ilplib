@@ -40,12 +40,12 @@ public:
         kstr.trim_into_1();
         kstr.trim_head_tail();
     }
-	
-	static void normalize(std::string& str)
+
+    static void normalize(std::string& str)
     {
-		izenelib::util::KString kstr(str);
-		normalize(kstr);
-		str = kstr.get_bytes("utf-8");
+        izenelib::util::KString kstr(str);
+        normalize(kstr);
+        str = kstr.get_bytes("utf-8");
     }
 };
 

@@ -183,18 +183,19 @@ public:
             if (*m == '\n')
             {
                 *m = 0;
-				char* t = strchr(la, delimitor);
-				if (!t)
-				  throw std::runtime_error(std::string("File format is not correct: ")+la);
-				*t = 0;
-				t++;
+                char* t = strchr(la, delimitor);
+                if (!t)
+                    throw std::runtime_error(std::string("File format is not correct: ")+la);
+                *t = 0;
+                t++;
 
                 std::vector<char*>* vt = new std::vector<char*>();
                 vt->push_back(t);
-				t = strchr(t, delimitor);
-				while(t)
+                t = strchr(t, delimitor);
+                while(t)
                 {
-                    *t = 0;t++;
+                    *t = 0;
+                    t++;
                     vt->push_back(t);
                     t = strchr(t, delimitor);
                 }
@@ -207,16 +208,17 @@ public:
         }
         if (*la == 0 || la - buf_ >= bytes)
             return;
-		char* t = strchr(la, delimitor);
-		if (!t)
-		  return;
-		*t = 0, t++;
+        char* t = strchr(la, delimitor);
+        if (!t)
+            return;
+        *t = 0, t++;
         std::vector<char*>* vt = new std::vector<char*>();
         vt->push_back(t);
         t = strchr(t, delimitor);
         while(t)
         {
-            *t = 0;t++;
+            *t = 0;
+            t++;
             vt->push_back(t);
             t = strchr(t, delimitor);
         }
@@ -288,11 +290,11 @@ public:
             if (*m == '\n')
             {
                 *m = 0;
-				char* t = strchr(la, delimitor);
-				if (!t)
-				  throw std::runtime_error(std::string("File format is not correct: ")+la);
-				*t = 0;
-				t++;
+                char* t = strchr(la, delimitor);
+                if (!t)
+                    throw std::runtime_error(std::string("File format is not correct: ")+la);
+                *t = 0;
+                t++;
                 KString kstr(la);
                 Normalize::normalize(kstr);
                 dict_->insert(kstr, atof(t));
@@ -304,10 +306,10 @@ public:
         {
             return;
         }
-		char* t = strchr(la, delimitor);
-		if (!t)
-		  return;
-		*t = 0, t++;
+        char* t = strchr(la, delimitor);
+        if (!t)
+            return;
+        *t = 0, t++;
         KString kstr(la);
         Normalize::normalize(kstr);
         kstr = kstr.substr(0, kstr.index_of(delimitor));
@@ -325,7 +327,7 @@ public:
         return dict_->size();
     }
 
-	double value(KString kstr, bool nor = true)
+    double value(KString kstr, bool nor = true)
     {
         if(nor)Normalize::normalize(kstr);
         double* p = dict_->find(kstr);

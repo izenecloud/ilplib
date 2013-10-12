@@ -88,25 +88,25 @@ class Tokenize
 
         int32_t la = 0;
         for ( int32_t i=0; i<(int32_t)line.length(); ++i)
-		  if (KString::is_english(line[i]) || is_digit_(line[i]))
-		  {
-			  if (la < i)
-			  {
-				  r.push_back(line.substr(la, i-la));
-				  la = i;
-			  }
-			  while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
-				i++;
-			  if (i -la <= 1)
-              {
-                  --i;
-                  continue;
-              }
-			  r.push_back(line.substr(la, i-la));
-			  la = i;
-			  i--;
-		  }
-		  else if (delimiter_[line[i]])
+            if (KString::is_english(line[i]) || is_digit_(line[i]))
+            {
+                if (la < i)
+                {
+                    r.push_back(line.substr(la, i-la));
+                    la = i;
+                }
+                while(i<(int32_t)line.length() && (KString::is_english(line[i]) || is_digit_(line[i])))
+                    i++;
+                if (i -la <= 1)
+                {
+                    --i;
+                    continue;
+                }
+                r.push_back(line.substr(la, i-la));
+                la = i;
+                i--;
+            }
+            else if (delimiter_[line[i]])
             {
                 //std::cout<<line.substr(la, i-la+1)<<"OOOOOO\n";
                 if (i > la)r.push_back(line.substr(la, i-la));
@@ -116,15 +116,15 @@ class Tokenize
 
         if (la < (int32_t)line.length())
             r.push_back(line.substr(la));
-		//for ( uint32_t i=0; i<r.size(); ++i)
-		  //std::cout<<r[i]<<std::endl;
+        //for ( uint32_t i=0; i<r.size(); ++i)
+        //std::cout<<r[i]<<std::endl;
         return r;
     }
 
     double  term_freq_(const KString& ustr)
     {
-		if (minf_ == 0.0)
-				minf_= freq_.value(KString("[MIN]"));
+        if (minf_ == 0.0)
+            minf_= freq_.value(KString("[MIN]"));
 
         double f = freq_.value(ustr, false);
         if (f == (double)std::numeric_limits<int>::min())
@@ -186,13 +186,13 @@ class Tokenize
         return is_digit(c);
     }
 
-	bool is_alphanum_(const KString& str)
-	{
-		for ( uint32_t i=0; i<str.length(); ++i)
-		  if (!(is_digit_(str[i])||KString::is_english(str[i])))
-			return false;
-		return true;
-	}
+    bool is_alphanum_(const KString& str)
+    {
+        for ( uint32_t i=0; i<str.length(); ++i)
+            if (!(is_digit_(str[i])||KString::is_english(str[i])))
+                return false;
+        return true;
+    }
 
     std::vector<std::pair<KString, double> >
     merge_(std::vector<std::pair<KString, double> > v)
@@ -268,34 +268,34 @@ public:
         return term_freq_(kstr);
     }
 
-	void fmm(const KString& line, std::vector<std::pair<KString,double> >& r, bool smart=true)//forward maximize match
-	{
-		r.clear();
-		if (line.length() == 0)return;
-		std::vector<KString> chunks = chunk_(line);
-		for ( uint32_t i=0; i<chunks.size(); ++i)
-		{
-			if (smart && (is_alphanum_(chunks[i]) || chunks[i].length() < 3
-			  || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
-			{
+    void fmm(const KString& line, std::vector<std::pair<KString,double> >& r, bool smart=true)//forward maximize match
+    {
+        r.clear();
+        if (line.length() == 0)return;
+        std::vector<KString> chunks = chunk_(line);
+        for ( uint32_t i=0; i<chunks.size(); ++i)
+        {
+            if (smart && (is_alphanum_(chunks[i]) || chunks[i].length() < 3
+                          || (chunks[i].length() == 3 && KString::is_chinese(chunks[i][0]))))
+            {
                 //std::cout<<"::"<<chunks[i]<<"::\n";
-  				r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
-				continue;
-			}
-			uint32_t from = 0, to = 1;
-			while(to < chunks[i].length())
-			{
-				KString sub = chunks[i].substr(from, to-from +1);
+                r.push_back(make_pair(chunks[i], term_freq_(chunks[i])));
+                continue;
+            }
+            uint32_t from = 0, to = 1;
+            while(to < chunks[i].length())
+            {
+                KString sub = chunks[i].substr(from, to-from +1);
                 //std::cout<<sub<<std::endl;
-				double f = term_freq_(sub);
-				bool pre = (prefix_.find(sub)!=NULL);
-				if (f == minf_)
-				{
-					if (pre && to+1<chunks[i].length())
-					{
-						to++;
-						continue;
-					}
+                double f = term_freq_(sub);
+                bool pre = (prefix_.find(sub)!=NULL);
+                if (f == minf_)
+                {
+                    if (pre && to+1<chunks[i].length())
+                    {
+                        to++;
+                        continue;
+                    }
                     //std::cout<<chunks[i].substr(from, to-from)<<"xxxxxxxxxxx\n";
                     sub = chunks[i].substr(from, to-from);
                     f = term_freq_(sub);
@@ -305,26 +305,30 @@ public:
                         sub = chunks[i].substr(from, to-from);
                         f = term_freq_(sub);
                     }
-					r.push_back(make_pair(chunks[i].substr(from, to-from),f));
-					from = to, to++;
-					continue;
-				}
-				if (pre && to+1<chunks[i].length()){to++; continue;}
-				r.push_back(make_pair(sub, f));
-				from  = to + 1;
-				to+=2;
-			}
-			if (from >= chunks[i].length())
-			    continue;
-			KString sub = chunks[i].substr(from, to-from);
+                    r.push_back(make_pair(chunks[i].substr(from, to-from),f));
+                    from = to, to++;
+                    continue;
+                }
+                if (pre && to+1<chunks[i].length())
+                {
+                    to++;
+                    continue;
+                }
+                r.push_back(make_pair(sub, f));
+                from  = to + 1;
+                to+=2;
+            }
+            if (from >= chunks[i].length())
+                continue;
+            KString sub = chunks[i].substr(from, to-from);
             //std::cout<<sub<<"<><>><><><\n";
-			double f = term_freq_(sub);
-			if (f == minf_)
-			  for (;from < chunks[i].length();++from)
-  				r.push_back(make_pair(chunks[i].substr(from, 1), minf_));
-			else r.push_back(make_pair(sub, f));
-		}
-		for (uint32_t i=0;i<r.size();++i)
+            double f = term_freq_(sub);
+            if (f == minf_)
+                for (; from < chunks[i].length(); ++from)
+                    r.push_back(make_pair(chunks[i].substr(from, 1), minf_));
+            else r.push_back(make_pair(sub, f));
+        }
+        for (uint32_t i=0; i<r.size(); ++i)
         {
             r[i].first.trim();
             if (r[i].first.length() > 0)
@@ -332,18 +336,18 @@ public:
             r.erase(r.begin()+i);
             --i;
         }
-	}
+    }
 
 
-	std::vector<KString> fmm(const KString& line, bool smart=true)//forward maximize match
-	{
-		std::vector<std::pair<KString,double> > v;
-		fmm(line, v, smart);
-		std::vector<KString> r;
-		for ( uint32_t i=0; i<v.size(); ++i)
-		  r.push_back(v[i].first);
-		return r;
-	}
+    std::vector<KString> fmm(const KString& line, bool smart=true)//forward maximize match
+    {
+        std::vector<std::pair<KString,double> > v;
+        fmm(line, v, smart);
+        std::vector<KString> r;
+        for ( uint32_t i=0; i<v.size(); ++i)
+            r.push_back(v[i].first);
+        return r;
+    }
 
     void
     tokenize(const KString& line, std::vector<std::pair<KString, double> >& v)
@@ -353,11 +357,11 @@ public:
         std::vector<KString> chunks = chunk_(line);
         for ( uint32_t i=0; i<chunks.size(); ++i)
         {
-			if (is_alphanum_(chunks[i]))
-			{
-				v.insert(v.end(), std::pair<KString, double>(chunks[i], minf_/10.));
-				continue;
-			}
+            if (is_alphanum_(chunks[i]))
+            {
+                v.insert(v.end(), std::pair<KString, double>(chunks[i], minf_/10.));
+                continue;
+            }
             chunks[i]+=' ';
             std::vector<std::pair<uint32_t, double> > ps;/* {from:0, score:0.5} */
             ps.reserve(chunks[i].length());
@@ -390,8 +394,8 @@ public:
         return freq_.size();
     }
 
-    static void insert_table(std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>, 
-                std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> > para)
+    static void insert_table(std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>,
+                             std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> > para)
     {
         Dictionary* dict = para.first.first;
         //izenelib::am::KStringHashTable<KString, bool>* pref = para.first.second;
@@ -403,22 +407,22 @@ public:
             KString* s=NULL;
             q->pop(s, e);
             if (s == NULL)
-              return;
-             if (!dict->row(*s))
-             {
-                 delete s;
-                 continue;
-             }
+                return;
+            if (!dict->row(*s))
+            {
+                delete s;
+                continue;
+            }
             double* f = tb->find(*s);
             if (!f)
-              tb->insert(*s, 1);
+                tb->insert(*s, 1);
             else *f += 1;
             delete s;
         }
     }
 
     static void merge_table(std::pair<izenelib::am::KStringHashTable<KString, double>*,
-                                              izenelib::am::KStringHashTable<KString, double>*> para)
+                            izenelib::am::KStringHashTable<KString, double>*> para)
     {
         izenelib::am::KStringHashTable<KString, double>* a = para.first;
         izenelib::am::KStringHashTable<KString, double>* b = para.second;
@@ -431,7 +435,7 @@ public:
     }
 
     static bool asy_train(const std::string& dictnm, const std::vector<std::string>& corpus,
-                      const std::string& out, uint32_t parrallel=8)
+                          const std::string& out, uint32_t parrallel=8)
     {
         Dictionary dict(dictnm);
         izenelib::am::KStringHashTable<KString, bool> prefix;
@@ -445,13 +449,13 @@ public:
             gen_prefix_(dictnm, prefix);
         }
 
-        std::vector<izenelib::EventQueue<KString*>* > qs(parrallel, NULL); 
+        std::vector<izenelib::EventQueue<KString*>* > qs(parrallel, NULL);
         for ( uint32_t i=0; i<parrallel; ++i)
-          qs[i] = new izenelib::EventQueue<KString*>(100000);
+            qs[i] = new izenelib::EventQueue<KString*>(100000);
 
         std::vector<izenelib::am::KStringHashTable<KString, double>*> freq_tables(parrallel, NULL);
         for ( uint32_t i=0; i<parrallel; ++i)
-          freq_tables[i] = new izenelib::am::KStringHashTable<KString, double>(dict.size()*10, dict.size()+2);
+            freq_tables[i] = new izenelib::am::KStringHashTable<KString, double>(dict.size()*10, dict.size()+2);
 
         struct timeval tvafter,tvpre;
         struct timezone tz;
@@ -461,11 +465,11 @@ public:
             gettimeofday (&tvpre , &tz);
             izenelib::Asynchronization asyn(parrallel+1);
             for ( uint32_t i=0; i<parrallel; ++i)
-              asyn.new_static_thread(&Tokenize::insert_table, 
-                          std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>, 
-                          std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> >
-                          (std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>(&dict, &prefix), 
-                           std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*>(qs[i], freq_tables[i])));
+                asyn.new_static_thread(&Tokenize::insert_table,
+                                       std::pair<std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>,
+                                       std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*> >
+                                       (std::pair<Dictionary*, izenelib::am::KStringHashTable<KString, bool>*>(&dict, &prefix),
+                                        std::pair<izenelib::EventQueue<KString*>*, izenelib::am::KStringHashTable<KString, double>*>(qs[i], freq_tables[i])));
 
             for ( uint32_t t=0; t<corpus.size(); t++)
             {
@@ -479,17 +483,17 @@ public:
                     {
                         KString  u(line);
                         for ( uint32_t i=0; i<u.length(); ++i)
-                          for ( uint32_t j=i; j-i+1<10 && j<u.length(); ++j)
-                          {
-                              qs[C%parrallel]->push(new KString(u.substr(i, j-i+1)), C);
-                              C++;
-                          }
+                            for ( uint32_t j=i; j-i+1<10 && j<u.length(); ++j)
+                            {
+                                qs[C%parrallel]->push(new KString(u.substr(i, j-i+1)), C);
+                                C++;
+                            }
                     }
                     catch(...) {}
                 }
             }
             for ( uint32_t i=0; i<parrallel; ++i)
-              qs[i]->push(NULL, C);
+                qs[i]->push(NULL, C);
             asyn.join();
             gettimeofday (&tvafter , &tz);
             std::cout<<"\nPhase A: "<<((tvafter.tv_sec-tvpre.tv_sec)*1000+(tvafter.tv_usec-tvpre.tv_usec)/1000)/60000.<<" min"<<std::endl;
@@ -501,9 +505,9 @@ public:
             {
                 izenelib::Asynchronization asyn(parrallel+1);
                 for ( uint32_t i=0; i+gap<parrallel; i+=gap*2)
-                  asyn.new_static_thread(&Tokenize::merge_table, 
-                              std::pair<izenelib::am::KStringHashTable<KString, double>*, 
-                              izenelib::am::KStringHashTable<KString, double>*>(freq_tables[i], freq_tables[i+gap]));
+                    asyn.new_static_thread(&Tokenize::merge_table,
+                                           std::pair<izenelib::am::KStringHashTable<KString, double>*,
+                                           izenelib::am::KStringHashTable<KString, double>*>(freq_tables[i], freq_tables[i+gap]));
                 asyn.join();
                 gap*=2;
             }

@@ -220,7 +220,8 @@ class AttributeTokenize
     }
 
     //index
-    std::vector<std::pair<std::string, double> > token_(const std::vector<std::pair<KString, double> >& av)
+    void token_(const std::vector<std::pair<KString, double> >& av,
+        std::vector<std::pair<std::string, double> >& r )
     {
         std::map<KString, double> m;
         for ( uint32_t i=0; i+1<av.size(); ++i)
@@ -247,12 +248,8 @@ class AttributeTokenize
                 m[v[i]]+=av.back().second;
         }
 
-        std::vector<std::pair<std::string, double> > r;
-
         for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
             r.push_back(make_pair(unicode_to_utf8_(it->first), it->second*100.));
-
-        return r;
     }
 
     uint32_t chn_num_(const KString& kstr)
@@ -312,10 +309,10 @@ public:
     {
     }
 
-    std::vector<std::pair<std::string, double> >
-    tokenize(const std::string& title, const std::string& attr,
+    void tokenize(const std::string& title, const std::string& attr,
              const std::string& cate, const std::string& ocate,
-             const std::string& source)
+             const std::string& source,
+             std::vector<std::pair<std::string, double> >& r)
     {
         std::vector<std::pair<KString, double> > rr;
         std::vector<KString> kattrs = KString(attr).split(',');
@@ -341,24 +338,22 @@ public:
             rr.push_back(make_pair(p[0], avs*hyper_p));
         }
         rr.push_back(make_pair(normallize_(sub_cate_(ocate,false)), max_avs));
-        return token_(rr);
+        token_(rr,r);
     }
 
     //query
-    std::vector<std::string> tokenize(const std::string& Q)
+    void tokenize(const std::string& Q, std::vector<std::string>& r)
     {
-        KString	q = normallize_(Q);
+        KString q = normallize_(Q);
         std::set<KString > set = token_(q);
-        std::vector<std::string> r;
         const std::set<KString>::iterator set_end = set.end();
         for (std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
             r.push_back(unicode_to_utf8_(*it));
-        return r;
     }
 
-    std::vector<std::string> subtokenize(const std::vector<std::string>& tks)
+    void subtokenize(const std::vector<std::string>& tks,
+        std::vector<std::string>& r )
     {
-        std::vector<std::string> r;
         for ( uint32_t i=0; i<tks.size(); ++i)
         {
             std::vector<KString> v = token_dict_.sub_token(KString(tks[i]), 0);
@@ -366,7 +361,6 @@ public:
                 r.push_back(unicode_to_utf8_(v[j]));
 //			   r.push_back(v[j].get_bytes("utf-8"));
         }
-        return r;
     }
 
     double att_weight(const std::string& nm, const std::string& cate)

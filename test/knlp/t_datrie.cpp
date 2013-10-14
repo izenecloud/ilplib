@@ -45,7 +45,8 @@ BOOST_AUTO_TEST_CASE(testDATrie)
     BOOST_CHECK(da.score(KString("[min]")) == 0.01);
     BOOST_CHECK(da.min() == 0.01);
 
-    std::vector<std::pair<KString, double> > v = da.token(KString("a abc dDdds abc c dc "));
+    std::vector<std::pair<KString, double> > v;
+    da.token(KString("a abc dDdds abc c dc "), v);
     for(size_t i = 0; i < v.size(); ++i)
         cout<<i<<' '<<v[i].first<<' '<<v[i].second<<endl;
 //    cout<<da.dict_[da.find_word(KString("d"))].kstr<<' '<<da.score(KString("d"))<<endl;
@@ -64,29 +65,33 @@ BOOST_AUTO_TEST_CASE(testDATrie)
     BOOST_CHECK(v[11].first == KString("c") && v[11].second == 0.2);
     BOOST_CHECK(v[12].first == KString(" ") && v[12].second == 0.01);
 
-    v = da.sub_token(KString("ac"));
+    v.clear();
+    da.sub_token(KString("ac"), v);
     BOOST_CHECK(v.size() == 2);
     BOOST_CHECK(v[0].first == KString("a") && v[0].second == 0.1);
     BOOST_CHECK(v[1].first == KString("c") && v[1].second == 0.2);
 
-    v = da.sub_token(KString("abc"));
+    v.clear();
+    da.sub_token(KString("abc"), v);
     BOOST_CHECK(v.size() == 1);
     BOOST_CHECK(v[0].first == KString("abc") && v[0].second == 2.6);
 //    BOOST_CHECK(v[1].first == KString("b") && v[1].second == 3.6);
 //    BOOST_CHECK(v[2].first == KString("c") && v[2].second == 0.2);
 
-    v = da.sub_token(KString("abcd"));
+    v.clear();
+    da.sub_token(KString("abcd"), v);
     BOOST_CHECK(v.size() == 1);
     BOOST_CHECK(v[0].first == KString("abcd") && v[0].second == 2);
 
-    v = da.sub_token(KString("abce"));
+    v.clear();
+    da.sub_token(KString("abce"), v);
     BOOST_CHECK(v.size() == 2);
     BOOST_CHECK(v[0].first == KString("abc") && v[0].second == 2.6);
     BOOST_CHECK(v[1].first == KString("e") && v[1].second == 1);
 
 
-
-    v = da.token(KString(""));
+    v.clear();
+    da.token(KString(""), v);
     BOOST_CHECK(v.size() == 0);
 }
 

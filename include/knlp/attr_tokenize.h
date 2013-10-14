@@ -163,7 +163,8 @@ class AttributeTokenize
         }
         else
         {
-            std::vector<KString> v = token_dict_.sub_token(word, 0);
+            std::vector<KString> v;
+            token_dict_.sub_token(word, 0, v);
             for (size_t i = 0; i < v.size(); ++i)
                 res.insert(v[i]);
         }
@@ -172,7 +173,8 @@ class AttributeTokenize
 
     void token_(const KString& av, std::set<KString>& set)
     {
-        std::vector<KString> tmp = token_dict_.token(av, 0);
+        std::vector<KString> tmp;
+        token_dict_.token(av, 0, tmp);
         KString tmpkstr;
         size_t tmp_size = tmp.size();
         for (size_t j = 0; j < tmp_size; ++j)
@@ -356,7 +358,8 @@ public:
     {
         for ( uint32_t i=0; i<tks.size(); ++i)
         {
-            std::vector<KString> v = token_dict_.sub_token(KString(tks[i]), 0);
+            std::vector<KString> v;
+            token_dict_.sub_token(KString(tks[i]), 0, v);
             for ( uint32_t j=0; j<v.size(); ++j)
                 r.push_back(unicode_to_utf8_(v[j]));
 //			   r.push_back(v[j].get_bytes("utf-8"));

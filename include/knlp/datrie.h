@@ -385,13 +385,11 @@ public:
         return MINVALUE_;
     }
 
-    std::vector<std::pair<KString, double> > token(const KString& st)
+    void token(const KString& st, std::vector<std::pair<KString, double> >& term)
     {
         size_t i = 0;
         size_t len = st.length();
-        std::vector<std::pair<KString, double> > term;
-        if (len == 0)
-            return term;
+        if (len == 0) return;
         size_t term_size = 0;
         term.resize(len);
         while(i < len)
@@ -428,16 +426,13 @@ public:
             }
         }
         term.resize(term_size);
-        return term;
     }
 
-    std::vector<KString> token(const KString& st, const bool score)
+    void token(const KString& st, const bool score, std::vector<KString>& term)
     {
         size_t i = 0;
         size_t len = st.length();
-        std::vector<KString> term;
-        if (len == 0)
-            return term;
+        if (len == 0) return;
         size_t term_size = 0;
         term.resize(len);
         while(i < len)
@@ -470,17 +465,19 @@ public:
             }
         }
         term.resize(term_size);
-        return term;
     }
 
-    std::vector<std::pair<KString, double> > sub_token(const KString& st)
+    void sub_token(const KString& st, std::vector<std::pair<KString, double> >& term)
     {
         size_t r = find_word(st);
-        if (r == NOT_FOUND) return token(st);
+        if (r == NOT_FOUND) 
+	{
+            token(st, term);
+            return;
+        }
         else
         {
             size_t len = st.length();
-            std::vector<std::pair<KString, double> > term;
             for (int32_t i = (int32_t)len-1; i > 0; --i)
             {
                 size_t p = find_word(st, 0, i);
@@ -489,22 +486,24 @@ public:
                 {
                     term.push_back(std::make_pair(st.substr(0, i), dict_[p].value));
                     term.push_back(std::make_pair(st.substr(i, len - i), dict_[q].value));
-                    return term;
+                    return;
                 }
             }
             term.push_back(std::make_pair(st, dict_[r].value));
-            return term;
         }
     }
 
-    std::vector<KString> sub_token(const KString& st, const bool score)
+    void sub_token(const KString& st, const bool score, std::vector<KString>& term)
     {
         size_t r = find_word(st);
-        if (r == NOT_FOUND) return token(st, 0);
+        if (r == NOT_FOUND)
+        {
+            token(st, 0, term);
+            return;
+        }
         else
         {
             size_t len = st.length();
-            std::vector<KString> term;
             for (int32_t i = (int32_t)len-1; i > 0; --i)
             {
                 size_t p = find_word(st, 0, i);
@@ -513,11 +512,10 @@ public:
                 {
                     term.push_back(st.substr(0, i));
                     term.push_back(st.substr(i, len - i));
-                    return term;
+                    return;
                 }
             }
             term.push_back(st);
-            return term;
         }
     }
 

@@ -154,7 +154,8 @@ public:
         if (line.length() == 0)return;
 
         std::vector<KString> chunks = chunk_(line, (!bigterm));
-        for ( uint32_t i=0; i<chunks.size(); ++i)if(chunks[i].length()>0)
+        for ( uint32_t i=0; i<chunks.size(); ++i)
+            if(chunks[i].length()>0)
             {
                 if (smart && (is_alphanum_(chunks[i])
                               || (chunks[i].length() < 3 && ischinese(chunks[i]))
@@ -172,7 +173,8 @@ public:
                     }
                     continue;
                 }
-                std::vector<std::pair<KString,double> > v = trie_.token(chunks[i]);
+                std::vector<std::pair<KString,double> > v;
+                trie_.token(chunks[i], v);
                 r.insert(r.end(), v.begin(), v.end());
             }
         for (uint32_t i=0; i<r.size(); ++i)
@@ -212,7 +214,8 @@ public:
                 r.push_back(tks[i]);
                 continue;
             }
-            std::vector<std::pair<KString,double> > vv = trie_.sub_token(tks[i].first);
+            std::vector<std::pair<KString,double> > vv;
+            trie_.sub_token(tks[i].first, vv);
             r.insert(r.end(), vv.begin(), vv.end());
         }
         return r;

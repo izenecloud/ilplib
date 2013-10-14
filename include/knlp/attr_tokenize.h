@@ -53,7 +53,7 @@ class AttributeTokenize
     string unicode_to_utf8_(const KString& kstr)
     {
         string s;
-        s.reserve(kstr.length() >> 1);
+        s.reserve(kstr.length() << 1);
         for(size_t i = 0; i < kstr.length(); ++i)
         {
             uint16_t unic = kstr[i];

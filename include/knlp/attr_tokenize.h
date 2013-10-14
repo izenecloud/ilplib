@@ -151,6 +151,25 @@ class AttributeTokenize
                );
     }
 
+    void insert_(KString word, std::set<KString>& res)
+    {
+        size_t chs_num = 0;
+        for (size_t i = 0; i < word.length(); ++i)
+            if (KString::is_chinese(word[i]))
+                chs_num++;
+        if (chs_num<4)
+        {
+            res.insert(word);
+        }
+        else
+        {
+            std::vector<KString> v = token_dict_.sub_token(word, 0);
+            for (size_t i = 0; i < v.size(); ++i)
+                res.insert(v[i]);
+        }
+    
+    }
+
     std::set<KString> token_(const KString& av)
     {
         std::vector<KString> tmp = token_dict_.token(av, 0);
@@ -170,9 +189,9 @@ class AttributeTokenize
                         KString syn;
                         syn_dict_.find_syn(tmpkstr, syn);
                         if (syn.length() > 0)
-                            set.insert(syn);
+                            insert_(syn, set);
                         else
-                            set.insert(tmpkstr);
+                            insert_(tmpkstr, set);
                     }
                     tmpkstr = KString("");
                 }
@@ -181,9 +200,9 @@ class AttributeTokenize
                     KString syn;
                     syn_dict_.find_syn(tmp[j], syn);
                     if (syn.length() > 0)
-                        set.insert(syn);
+                        insert_(syn, set);
                     else
-                        set.insert(tmp[j]);
+                        insert_(tmp[j], set);
                 }
             }
 
@@ -193,9 +212,9 @@ class AttributeTokenize
             KString syn;
             syn_dict_.find_syn(tmpkstr, syn);
             if (syn.length() > 0)
-                set.insert(syn);
+                insert_(syn, set);
             else
-                set.insert(tmpkstr);
+                insert_(tmpkstr, set);
         }
         return set;
     }
@@ -211,6 +230,7 @@ class AttributeTokenize
             const std::set<KString>::iterator set_end = set.end();
             if (i>0)
                 score/=sqrt(set.size());
+            else score *= 10;
             for (std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
                 m[*it]+=score;
         }

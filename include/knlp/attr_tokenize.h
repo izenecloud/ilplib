@@ -170,12 +170,11 @@ class AttributeTokenize
     
     }
 
-    std::set<KString> token_(const KString& av)
+    void token_(const KString& av, std::set<KString>& set)
     {
         std::vector<KString> tmp = token_dict_.token(av, 0);
         KString tmpkstr;
         size_t tmp_size = tmp.size();
-        std::set<KString> set;
         for (size_t j = 0; j < tmp_size; ++j)
         {
             if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
@@ -216,7 +215,6 @@ class AttributeTokenize
             else
                 insert_(tmpkstr, set);
         }
-        return set;
     }
 
     //index
@@ -226,7 +224,8 @@ class AttributeTokenize
         std::map<KString, double> m;
         for ( uint32_t i=0; i+1<av.size(); ++i)
         {
-            std::set<KString> set(token_(av[i].first));
+            std::set<KString> set;
+            token_(av[i].first, set);
             double score = av[i].second;
             const std::set<KString>::iterator set_end = set.end();
             if (i>0)
@@ -345,7 +344,8 @@ public:
     void tokenize(const std::string& Q, std::vector<std::string>& r)
     {
         KString q = normallize_(Q);
-        std::set<KString > set = token_(q);
+        std::set<KString > set;
+        token_(q, set);
         const std::set<KString>::iterator set_end = set.end();
         for (std::set<KString>::iterator it=set.begin(); it!=set_end; ++it)
             r.push_back(unicode_to_utf8_(*it));

@@ -247,20 +247,23 @@ class AttributeTokenize
                     const double tot_sc, 
                     std::map<KString, double>& m)
     {
+	std::map<KString, double> mm;
         for(size_t i = 0; i < src.size(); ++i)
             for(size_t j = 0; j < src[i].size(); ++j)
             {
                 double sc  = tot_sc;
-		if (i >=2 && i <7)sc /= i;
-		else if (i >= 7)sc /= 7;
+		if (i >=2 && i <7)sc /= (i/1.5);
+		else if (i >= 7)sc /= (7./1.5);
 		sc *= weight_(src[i].size(), j, false);
                 KString syn;
                 syn_dict_.find_syn(src[i][j], syn);
-                if (syn.length() > 0)
-                    m[syn]+=sc;
-                else
-                    m[src[i][j]]+=sc;
+		KString t = (syn.length() > 0? syn :src[i][j]);
+		if (mm.find(t) != mm.end())
+			mm[t] = std::max(mm[t], sc);
+		else mm[t] = sc;
             }
+	for (std::map<KString, double>::iterator it=mm.begin();it!=mm.end();++it)
+		m[it->first] += it->second;
     }
 
     //index
@@ -374,7 +377,7 @@ public:
         KString subcate = sub_cate_(cate);
         const double hyper_p = sqrt(std::min(size_t(15), kattrs.size())/15.);
 
-        rr.push_back(make_pair(normallize_(title), max_avs*10));
+        rr.push_back(make_pair(normallize_(title), max_avs));
         rr.push_back(make_pair(normallize_(source), max_avs));
 
         for ( uint32_t i=0; i<kattrs.size(); ++i)
@@ -386,12 +389,12 @@ public:
             av+='@',av+=subcate,av+=':',av+=p[1];
             double avs = attv_dict_.score(av);
 
-            rr.push_back(make_pair(p[0], avs*hyper_p));
-            rr.push_back(make_pair(p[1], avs));
+            rr.push_back(make_pair(normallize_(p[0]), avs*hyper_p));
+            rr.push_back(make_pair(normallize_(p[1]), avs));
         }
 
-        rr.push_back(make_pair(normallize_(cate), max_avs*10));
-        rr.push_back(make_pair(normallize_(ocate), max_avs*10));
+        rr.push_back(make_pair(normallize_(cate), max_avs));
+        rr.push_back(make_pair(normallize_(ocate), max_avs));
         token_fields_(rr,r);
     }
 
@@ -406,7 +409,13 @@ public:
         token_(q, res);
         for(size_t i = 0; i < res.size(); ++i)
             for(size_t j = 0; j < res[i].size(); ++j)
-		r.push_back(make_pair(unicode_to_utf8_(res[i][j]), 10*(r.size()+1)));
+	{
+		KString syn;
+                syn_dict_.find_syn(res[i][j], syn);
+		if (syn.length() == 0)
+                    syn = res[i][j];
+		r.push_back(make_pair(unicode_to_utf8_(syn), 10*(r.size()+1)));
+	}
     }
 
     void subtokenize(const std::vector<std::pair<std::string, int32_t> >& tks,
@@ -417,8 +426,14 @@ public:
             std::vector<KString> v;
             token_dict_.sub_token(KString(tks[i].first), 0, v);
             for ( uint32_t j=0; j<v.size(); ++j)
-                r.push_back(make_pair(unicode_to_utf8_(v[j]), 
-		(int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
+	    {
+		KString syn;
+                syn_dict_.find_syn(v[j], syn);
+		if (syn.length() == 0)
+		    syn = v[j];
+                r.push_back(make_pair(unicode_to_utf8_(syn), 
+		           (int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
+	    }
         }
     }
 

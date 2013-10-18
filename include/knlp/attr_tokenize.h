@@ -409,15 +409,16 @@ public:
 		r.push_back(make_pair(unicode_to_utf8_(res[i][j]), 10*(r.size()+1)));
     }
 
-    void subtokenize(const std::vector<std::string>& tks,
-        std::vector<std::string>& r )
+    void subtokenize(const std::vector<std::pair<std::string, int32_t> >& tks,
+        std::vector<std::pair<std::string, int32_t> >& r )
     {
         for ( uint32_t i=0; i<tks.size(); ++i)
         {
             std::vector<KString> v;
-            token_dict_.sub_token(KString(tks[i]), 0, v);
+            token_dict_.sub_token(KString(tks[i].first), 0, v);
             for ( uint32_t j=0; j<v.size(); ++j)
-                r.push_back(unicode_to_utf8_(v[j]));
+                r.push_back(make_pair(unicode_to_utf8_(v[j]), 
+		(int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
         }
     }
 

@@ -190,6 +190,19 @@ class AttributeTokenize
         return chunks;
     }
 
+    KString reverse_chunks_(const KString& kstr)
+    {
+	std::vector<KString> chunks = split_chunk_(kstr);
+	KString r;
+        for (int32_t i = chunks.size()-1; i>=0;--i)
+	{
+	    r += chunks[i];
+	    if (i > 0)
+		r += ' ';
+	}
+	return r;
+    }
+
     void token_(const KString& av, std::vector<std::vector<KString> >& res, bool dochunk = true)
     {
         res.clear();
@@ -271,17 +284,11 @@ class AttributeTokenize
         std::vector<std::pair<std::string, double> >& r )
     {
         std::map<KString, double> m;
-        for ( uint32_t i = 0; i+2 < av.size(); ++i)
+        for ( uint32_t i = 0; i < av.size(); ++i)
         {
             std::vector<std::vector<KString> > res;
             token_(av[i].first, res);
             cal_score_(res, av[i].second, m);
-        }
-        for ( uint32_t i = av.size()-2; i < av.size(); ++i)
-        {
-            std::vector<std::vector<KString> > res;
-            token_(av[i].first, res, false);
-            cal_score_(res, av.back().second, m);
         }
 
         for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
@@ -393,8 +400,8 @@ public:
             rr.push_back(make_pair(normallize_(p[1]), avs));
         }
 
-        rr.push_back(make_pair(normallize_(cate), max_avs));
-        rr.push_back(make_pair(normallize_(ocate), max_avs));
+        rr.push_back(make_pair(reverse_chunks_(normallize_(cate)), max_avs));
+        rr.push_back(make_pair(reverse_chunks_(normallize_(ocate)), max_avs));
         token_fields_(rr,r);
     }
 
@@ -414,7 +421,7 @@ public:
                 syn_dict_.find_syn(res[i][j], syn);
 		if (syn.length() == 0)
                     syn = res[i][j];
-		r.push_back(make_pair(unicode_to_utf8_(syn), 10*(r.size()+1)));
+		r.push_back(make_pair(unicode_to_utf8_(syn), pow(10,(r.size()+1))));
 	}
     }
 

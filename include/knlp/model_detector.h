@@ -334,7 +334,6 @@ public:
         for (size_t i = 0; i < regs0.size(); ++i)
             re2::RE2::GlobalReplace(&s, *(regs0[i].first), regs0[i].second);
 
-
         for(size_t i = 0; i < s.length(); ++i)
         {
             if(s[i]>='0'&&s[i]<='9')
@@ -358,7 +357,7 @@ public:
                 if(-1==begin)
                     begin = i;
             }
-            else
+            else if (begin > -1)
             {
                 std::string tmp;
                 tmp = check(s, begin, len, eng, num, punc, mode);
@@ -383,7 +382,7 @@ public:
 
         std::vector<std::pair<std::string, std::string> > reg;
         reg.push_back(std::make_pair("[0-9\\.]+\\*[0-9\\.]+\\*[0-9\\.]+", ""));
-        reg.push_back(std::make_pair("[0-9\\.]+[\\*x\\-][0-9\\.]+", ""));
+        reg.push_back(std::make_pair("[0-9\\.]+\\*[0-9\\.]+", ""));
         for (size_t i = 0; i < reg.size(); ++i)
         {
             regs0.push_back(std::make_pair(new re2::RE2(reg[i].first), reg[i].second));
@@ -393,7 +392,7 @@ public:
 
 
         reg.push_back(std::make_pair("android|1573|cet|led|(spf[0-9\\-]+)|[0-9]*color[s]*", ""));
-        reg.push_back(std::make_pair("^\\.|\\.$||^-|-$", ""));
+        reg.push_back(std::make_pair("^\\.|\\.$|^-|-$", ""));
         reg.push_back(std::make_pair("[-]+", "-"));
         reg.push_back(std::make_pair("[\\.]+", "."));
         reg.push_back(std::make_pair("^([0-9\\.]+)x([0-9]+\\.)x([0-9]+\\.)$", ""));

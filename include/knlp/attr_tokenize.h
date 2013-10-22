@@ -203,7 +203,8 @@ class AttributeTokenize
 	return r;
     }
 
-    void token_(const KString& av, std::vector<std::vector<KString> >& res, bool dochunk = true)
+    void token_(const KString& av, std::vector<std::vector<KString> >& res, 
+      bool dochunk = true, bool remove_punc = true)
     {
         res.clear();
         std::vector<KString> chunks;
@@ -234,6 +235,8 @@ class AttributeTokenize
                     {
                         subtoken_(tmp[j], chunk_word);
                     }
+                    else if(!remove_punc)
+                        subtoken_(tmp[j], chunk_word);
                 }
 
             }
@@ -241,6 +244,7 @@ class AttributeTokenize
             {
                 subtoken_(tmpkstr, chunk_word);
             }
+
             res.push_back(chunk_word);
         }
     }
@@ -407,13 +411,14 @@ public:
 
     //query
     void tokenize(const std::string& Q, 
-		std::vector<std::pair<std::string, int> >& r)
+		std::vector<std::pair<std::string, int> >& r,
+		bool dochunk = true, bool remove_punc = true)
     {
         r.clear();
         KString q = normallize_(Q);
 
         std::vector<std::vector<KString> > res;
-        token_(q, res);
+        token_(q, res, dochunk, remove_punc);
         for(size_t i = 0; i < res.size(); ++i)
             for(size_t j = 0; j < res[i].size(); ++j)
 	{

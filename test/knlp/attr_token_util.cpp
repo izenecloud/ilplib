@@ -83,7 +83,7 @@ int main(int argc,char * argv[])
         {
 	 try{
 		std::vector<std::pair<std::string, int> > tks;
-		token->tokenize(line, tks);
+		token->tokenize(line, tks, false, false);
 		for (uint32_t i=0;i<tks.size();i++)
 		{
 		    std::cout<<tks[i].first<<"\t";

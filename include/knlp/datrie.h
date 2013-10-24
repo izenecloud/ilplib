@@ -33,11 +33,19 @@ private:
     std::vector<int> base_;
     std::vector<int> check_;
     std::vector<double> value_;
-    std::vector<int> cnt_;
+    std::vector<size_t> cnt_;
     std::vector<word_type> dict_;
-    std::vector<int> ad,next,pre;
+    std::vector<size_t> ad,next,pre;
     bool ch1_[123456];
 
+    template <class T, class R>
+      T& AT(std::vector<T>& ar, R& i)
+      {
+          if ((size_t)i >= ar.size())
+              ar.resize(ar.size()*2);
+          assert((size_t)i < ar.size());
+          return ar[(size_t)i];
+      }
 
 public:
     const size_t NOT_FOUND;
@@ -86,6 +94,7 @@ public:
                 Normalize::normalize(kstr);
                 KString to_word = KString(s0.substr(p+1, s0.length()-p-1).c_str());
                 Normalize::normalize(to_word);
+                if(kstr.length()==0 || to_word.length()==0) continue;
                 tmpword.kstr = kstr;
                 tmpword.to_word = to_word;
                 tmpword.len = kstr.length();
@@ -106,6 +115,7 @@ public:
                 if (p <= 0 || p >= (int)s0.length()) continue;
                 KString kstr(s0.substr(0,p));
                 Normalize::normalize(kstr);
+                if (kstr.length()==0) continue;
                 tmpword.kstr = kstr;
                 tmpword.len = kstr.length();
                 tmpdict.push_back(tmpword);
@@ -124,6 +134,7 @@ public:
                 if (p <= 0 || p >= (int)s0.length()) continue;
                 KString kstr(s0.substr(0,p));
                 Normalize::normalize(kstr);
+                if (kstr.length()==0) continue;
                 value = atof(s0.substr(p+1, s0.length()-p-1).c_str());
                 tmpword.kstr = kstr;
                 tmpword.value = value;
@@ -145,10 +156,9 @@ public:
             if (!(tmpdict[i].kstr == tmpdict[i+1].kstr))
                 dict_.push_back(tmpdict[i]);
         dict_.push_back(tmpdict[tmpdict.size() - 1]);
-
 //printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
 
-        max_num = tot_length_ * 2;
+        max_num = tot_length_ * 4;
         max_num = std::max((size_t)1000000, max_num);
         time2 = clock();
 //printf("before build dict time = %lf\n", (double)(time2 - time1) / 1000000);
@@ -163,16 +173,12 @@ public:
     void build(std::vector<word_type>& word)
     {
         if (word.empty()) return;
-        int lastad, tmpad, temp;
-        int dataNum;
-        int tryBase, tryBaseCount, tryBaseMax = 2;
+        size_t lastad, tmpad, temp;
+        size_t dataNum;
+        size_t tryBase, tryBaseCount, tryBaseMax = 2;
         int start;
         size_t word_size = word.size();
-//               int ad[word_size], next[word_size], pre[word_size];
 
-//                memset(ad, 0, sizeof(ad));
-//                memset(next, 0, sizeof(next));
-//                memset(pre, 0, sizeof(pre));
         ad.resize(word_size);
         next.resize(word_size);
         pre.resize(word_size);
@@ -181,7 +187,6 @@ public:
         check_.resize(max_num);
         cnt_.resize(max_num);
         value_.resize(max_num);
-
         for (size_t i = 0; i < word_size; ++i)
         {
             ad[i] = word[i].kstr[0];
@@ -193,39 +198,45 @@ public:
         tryBaseCount = 0;
         dataNum = 0;
         start = 0;
-
         for (size_t i = 0; i < max_length_; i++)
         {
             lastad = start;
             size_t j = 0;
-            for (j = next[start]; j < word_size; j = next[j])
+            for (j = AT(next, start); j < word_size; j = AT(next, j))
             {
                 size_t k = 0;
-                for (k = 0; k <= i && word[j].kstr[k] == word[pre[j]].kstr[k]; ++k);
+                for (k = 0; k <= i && AT(word, j).kstr[k] == AT(word, AT(pre, j)).kstr[k]; ++k);
                 if (k <= i)
                 {
                     size_t tmpBase = 0;
                     for (tmpBase = tryBase; tmpBase < max_num; ++tmpBase)
                     {
-                        for (k = lastad; k < j; k = next[k])
-                            if (i+1 < word[k].len && base_[tmpBase + word[k].kstr[i+1]] != 0)
-                                break;
+                        for (k = lastad; k < j; k = AT(next, k))
+                        {
+                            word_type tmpw = AT(word, k);
+                            if (i+1 < tmpw.len)
+                            {
+                                size_t ind = tmpBase + tmpw.kstr[i+1];
+                                if (AT(base_, ind) != 0)
+                                    break;
+                            }
+                        }
                         if (k == j)
                             break;
-                        ++cnt_[tmpBase];
+                        ++AT(cnt_, tmpBase);
                     }
 
-                    while (cnt_[tryBase] >= tryBaseMax)
+                    while (AT(cnt_, tryBase) >= tryBaseMax)
                         ++tryBase;
 
-                    base_[ad[lastad]] = tmpBase;
-                    for (k = lastad; k < j; k = next[k])
+                    AT(base_, AT(ad, lastad)) = tmpBase;
+                    for (k = lastad; k < j; k = AT(next, k))
                         if (i+1 < word[k].len)
                         {
                             temp = tmpBase + word[k].kstr[i+1];
-                            base_[temp] = 1;
-                            check_[temp] = ad[k];
-                            ad[k] = temp;
+                            AT(base_, temp) = 1;
+                            AT(check_, temp) = AT(ad, k);
+                            AT(ad, k) = temp;
                             dataNum = std::max(dataNum, temp);
                         }
                     lastad = j;
@@ -236,21 +247,28 @@ public:
             for (tmpBase = tryBase; tmpBase < max_num; ++tmpBase)
             {
                 size_t k = 0;
-                for (k = lastad; k < j; k = next[k])
-                    if (i+1 < word[k].len && base_[tmpBase + word[k].kstr[i+1]] != 0)
-                        break;
+                for (k = lastad; k < j; k = AT(next, k))
+                {
+                            word_type tmpw = AT(word, k);
+                            if (i+1 < tmpw.len)
+                            {
+                                size_t ind = tmpBase + tmpw.kstr[i+1];
+                                if (AT(base_, ind) != 0)
+                                    break;
+                            }
+                }
                 if (k == j)
                     break;
             }
 
-            base_[ad[lastad]] = tmpBase;
+            AT(base_, AT(ad, lastad)) = tmpBase;
             for (size_t k = lastad; k < j; k = next[k])
                 if (i+1 < word[k].len)
                 {
                     temp = tmpBase + word[k].kstr[i+1];
-                    base_[temp] = 1;
-                    check_[temp] = ad[k];
-                    ad[k] = temp;
+                    AT(base_, temp) = 1;
+                    AT(check_, temp) = AT(ad, k);
+                    AT(ad, k) = temp;
                     dataNum = std::max(dataNum, temp);
                 }
 
@@ -264,11 +282,11 @@ public:
                         lastad = j;
                         continue;
                     }
-                    next[lastad] = j;
-                    pre[j] = lastad;
+                    AT(next, lastad) = j;
+                    AT(pre, j) = lastad;
                     lastad = j;
                 }
-            next[lastad] = word_size;
+            AT(next, lastad) = word_size;
         }
 
         for (size_t i = 0; i < word_size; ++i)

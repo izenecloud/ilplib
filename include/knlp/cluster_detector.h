@@ -59,7 +59,8 @@ public:
         return md.model_detect(s, 2);
     }
 
-    std::string cluster_detect(std::string& title, std::string& cate, std::string& att, bool attr_normalize = 0)
+    std::string cluster_detect(std::string& title, std::string& cate, 
+      std::string& att, float price=0, bool attr_normalize = 0)
     {
         ilplib::knlp::Normalize::normalize(title);
         ilplib::knlp::Normalize::normalize(att);
@@ -123,7 +124,9 @@ public:
                 res = res + product_name[i];
 
 
-        return header + res;
+        char buf[1024];memset(buf, 0, sizeof(buf));
+        sprintf(buf, "[%d]", (int)round(price/20));
+        return header + res + buf;
     }
 
 

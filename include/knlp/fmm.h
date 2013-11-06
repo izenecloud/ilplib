@@ -197,7 +197,7 @@ public:
                 if (tks[i].first[j] == ' ')
                     tks[i].first[j] = ',';
             std::vector<KString> t;
-            chunk_(tks[i].firsti, t);
+            chunk_(tks[i].first, t);
             if (t.size() > 1)
             {
                 for (uint32_t j=0; j<t.size(); ++j)

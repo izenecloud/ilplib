@@ -46,10 +46,9 @@ class Fmm
     //WilliamTrie trie_;
     std::vector<uint8_t> delimiter_;
 
-    std::vector<KString> chunk_(const KString& line, bool deli=true)
+    void chunk_(const KString& line, 
+      std::vector<KString>& r, bool deli=true)
     {
-        std::vector<KString> r;
-
         int32_t la = 0;
         for ( int32_t i=0; i<(int32_t)line.length(); ++i)
             if (KString::is_english(line[i])||KString::is_numeric(line[i]))
@@ -82,9 +81,6 @@ class Fmm
 
         if (la < (int32_t)line.length())
             r.push_back(line.substr(la));
-        //for ( uint32_t i=0; i<r.size(); ++i)
-        //std::cout<<r[i]<<std::endl;
-        return r;
     }
 
     bool is_digit_(int c)const
@@ -153,7 +149,8 @@ public:
         r.clear();
         if (line.length() == 0)return;
 
-        std::vector<KString> chunks = chunk_(line, (!bigterm));
+        std::vector<KString> chunks;
+        chunk_(line, chunks, (!bigterm));
         for ( uint32_t i=0; i<chunks.size(); ++i)
             if(chunks[i].length()>0)
             {
@@ -199,7 +196,8 @@ public:
             for(uint32_t j=0; j<tks[i].first.length(); j++)
                 if (tks[i].first[j] == ' ')
                     tks[i].first[j] = ',';
-            std::vector<KString> t = chunk_(tks[i].first);
+            std::vector<KString> t;
+            chunk_(tks[i].firsti, t);
             if (t.size() > 1)
             {
                 for (uint32_t j=0; j<t.size(); ++j)

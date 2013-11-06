@@ -50,7 +50,7 @@ class AttributeTokenize
     DATrie att_dict_;
     DATrie syn_dict_;
     std::set<uint16_t> split_chars_;
-    enum WeightScope{WEIGHT_SCOPE=15};
+    enum WeightScope {WEIGHT_SCOPE=15};
     double weights_[2][WEIGHT_SCOPE][WEIGHT_SCOPE];//0 for chunk, 1 for tokens in chunk
 
     string unicode_to_utf8_(const KString& kstr)
@@ -174,41 +174,39 @@ class AttributeTokenize
         }
     }
 
-    std::vector<KString> split_chunk_(const KString& kstr)
+    void split_chunk_(const KString& kstr, std::vector<KString>& chunks)
     {
-        std::vector<KString> chunks;
         size_t pos = 0;
         for (size_t i = 0; i < kstr.length(); ++i)if(split_chars_.find(kstr[i])!=split_chars_.end())
-        {
-            if (i>pos)
-                chunks.push_back(kstr.substr(pos, i-pos));
-            pos = i+1;
-        }
+            {
+                if (i>pos)
+                    chunks.push_back(kstr.substr(pos, i-pos));
+                pos = i+1;
+            }
         if (pos < kstr.length())
             chunks.push_back(kstr.substr(pos));
-
-        return chunks;
     }
 
     KString reverse_chunks_(const KString& kstr)
     {
-	std::vector<KString> chunks = split_chunk_(kstr);
-	KString r;
-        for (int32_t i = chunks.size()-1; i>=0;--i)
-	{
-	    r += chunks[i];
-	    if (i > 0)
-		r += ' ';
-	}
-	return r;
+        std::vector<KString> chunks;
+        split_chunk_(kstr, chunks);
+        KString r;
+        for (int32_t i = chunks.size()-1; i>=0; --i)
+        {
+            r += chunks[i];
+            if (i > 0)
+                r += ' ';
+        }
+        return r;
     }
 
-    void token_(const KString& av, std::vector<std::vector<KString> >& res, 
-      bool dochunk = true, bool remove_punc = true)
+    void token_(const KString& av, std::vector<std::vector<KString> >& res,
+                bool dochunk = true, bool remove_punc = true)
     {
         res.clear();
         std::vector<KString> chunks;
-        if (dochunk)chunks=split_chunk_(av);
+        if (dochunk)split_chunk_(av, chunks);
         else chunks.push_back(av);
         std::vector<KString> tmp;
         for (size_t i = 0; i < chunks.size(); ++i)
@@ -260,32 +258,32 @@ class AttributeTokenize
         return weights_[chunkortoken ?0:1][tol][idx];
     }
 
-    void cal_score_(const std::vector<std::vector<KString> >& src, 
-                    const double tot_sc, 
+    void cal_score_(const std::vector<std::vector<KString> >& src,
+                    const double tot_sc,
                     std::map<KString, double>& m)
     {
-	std::map<KString, double> mm;
+        std::map<KString, double> mm;
         for(size_t i = 0; i < src.size(); ++i)
             for(size_t j = 0; j < src[i].size(); ++j)
             {
                 double sc  = tot_sc;
-		if (i >=2 && i <7)sc /= (i/1.5);
-		else if (i >= 7)sc /= (7./1.5);
-		sc *= weight_(src[i].size(), j, false);
+                if (i >=2 && i <7)sc /= (i/1.5);
+                else if (i >= 7)sc /= (7./1.5);
+                sc *= weight_(src[i].size(), j, false);
                 KString syn;
                 syn_dict_.find_syn(src[i][j], syn);
-		KString t = (syn.length() > 0? syn :src[i][j]);
-		if (mm.find(t) != mm.end())
-			mm[t] = std::max(mm[t], sc);
-		else mm[t] = sc;
+                KString t = (syn.length() > 0? syn :src[i][j]);
+                if (mm.find(t) != mm.end())
+                    mm[t] = std::max(mm[t], sc);
+                else mm[t] = sc;
             }
-	for (std::map<KString, double>::iterator it=mm.begin();it!=mm.end();++it)
-		m[it->first] += it->second;
+        for (std::map<KString, double>::iterator it=mm.begin(); it!=mm.end(); ++it)
+            m[it->first] += it->second;
     }
 
     //index
     void token_fields_(const std::vector<std::pair<KString, double> >& av,
-        std::vector<std::pair<std::string, double> >& r )
+                       std::vector<std::pair<std::string, double> >& r )
     {
         std::map<KString, double> m;
         for ( uint32_t i = 0; i < av.size(); ++i)
@@ -377,9 +375,9 @@ public:
     }
 
     void tokenize(const std::string& title, const std::string& attr,
-             const std::string& cate, const std::string& ocate,
-             const std::string& source,
-             std::vector<std::pair<std::string, double> >& r)
+                  const std::string& cate, const std::string& ocate,
+                  const std::string& source,
+                  std::vector<std::pair<std::string, double> >& r)
     {
         std::vector<std::pair<KString, double> > rr;
         std::vector<KString> kattrs = KString(attr).split(',');
@@ -410,9 +408,9 @@ public:
     }
 
     //query
-    void tokenize(const std::string& Q, 
-		std::vector<std::pair<std::string, int> >& r,
-		bool dochunk = true, bool remove_punc = true)
+    void tokenize(const std::string& Q,
+                  std::vector<std::pair<std::string, int> >& r,
+                  bool dochunk = true, bool remove_punc = true)
     {
         r.clear();
         KString q = normallize_(Q);
@@ -421,31 +419,31 @@ public:
         token_(q, res, dochunk, remove_punc);
         for(size_t i = 0; i < res.size(); ++i)
             for(size_t j = 0; j < res[i].size(); ++j)
-	{
-		KString syn;
+            {
+                KString syn;
                 syn_dict_.find_syn(res[i][j], syn);
-		if (syn.length() == 0)
+                if (syn.length() == 0)
                     syn = res[i][j];
-		r.push_back(make_pair(unicode_to_utf8_(syn), pow(10,(r.size()+1))));
-	}
+                r.push_back(make_pair(unicode_to_utf8_(syn), pow(10,(r.size()+1))));
+            }
     }
 
     void subtokenize(const std::vector<std::pair<std::string, int32_t> >& tks,
-        std::vector<std::pair<std::string, int32_t> >& r )
+                     std::vector<std::pair<std::string, int32_t> >& r )
     {
         for ( uint32_t i=0; i<tks.size(); ++i)
         {
             std::vector<KString> v;
             token_dict_.sub_token(KString(tks[i].first), 0, v);
             for ( uint32_t j=0; j<v.size(); ++j)
-	    {
-		KString syn;
+            {
+                KString syn;
                 syn_dict_.find_syn(v[j], syn);
-		if (syn.length() == 0)
-		    syn = v[j];
-                r.push_back(make_pair(unicode_to_utf8_(syn), 
-		           (int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
-	    }
+                if (syn.length() == 0)
+                    syn = v[j];
+                r.push_back(make_pair(unicode_to_utf8_(syn),
+                                      (int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
+            }
         }
     }
 

@@ -36,7 +36,6 @@ private:
     std::vector<size_t> cnt_;
     std::vector<word_type> dict_;
     std::vector<size_t> ad,next,pre;
-    bool ch1_[123456];
 
     template <class T, class R>
       T& AT(std::vector<T>& ar, R& i)
@@ -69,12 +68,10 @@ public:
         dict_.clear();
         max_length_ = 0;
         tot_length_ = 0;
-        MINVALUE_ = 0;
-        memset(ch1_, 0, sizeof(ch1_));
         MINVALUE_ = 0.123;
         std::vector<word_type> tmpdict;
         tmpdict.clear();
-        tmpdict.reserve(1234567);
+        tmpdict.reserve(3456789);
         double value;
 
         char* st = NULL;
@@ -82,7 +79,7 @@ public:
         while((st = lr.line(st)) != NULL)
         {
 
-            if (mode == 2)
+            if (mode == 2)//with synonym
             {
                 if (strlen(st) == 0) continue;
                 word_type tmpword;
@@ -99,12 +96,10 @@ public:
                 tmpword.to_word = to_word;
                 tmpword.len = kstr.length();
                 tmpdict.push_back(tmpword);
-                if (kstr.length() > 0)
-                    ch1_[kstr[0]] = 1;
                 tot_length_ += tmpword.len;
                 max_length_ = std::max(max_length_, tmpword.len);
             }
-            if (mode == 1)
+            if (mode == 1)//only word
             {
                 if (strlen(st) == 0) continue;
                 word_type tmpword;
@@ -119,12 +114,10 @@ public:
                 tmpword.kstr = kstr;
                 tmpword.len = kstr.length();
                 tmpdict.push_back(tmpword);
-                if (kstr.length() > 0)
-                    ch1_[kstr[0]] = 1;
                 tot_length_ += tmpword.len;
                 max_length_ = std::max(max_length_, tmpword.len);
             }
-            else if (mode == 0)
+            else if (mode == 0)//with score
             {
                 if (strlen(st) == 0) continue;
                 word_type tmpword;
@@ -140,8 +133,6 @@ public:
                 tmpword.value = value;
                 tmpword.len = kstr.length();
                 tmpdict.push_back(tmpword);
-                if (kstr.length() > 0)
-                    ch1_[kstr[0]] = 1;
                 if (kstr == "[min]") MINVALUE_ = value;
                 tot_length_ += tmpword.len;
                 max_length_ = std::max(max_length_, tmpword.len);
@@ -158,14 +149,14 @@ public:
         dict_.push_back(tmpdict[tmpdict.size() - 1]);
 //printf("word num = %zu, tot len = %zu, max len = %zu\n", dict_.size(), tot_length_, max_length_);
 
-        max_num = tot_length_ * 4;
+        max_num = tot_length_ * 3;
         max_num = std::max((size_t)1000000, max_num);
         time2 = clock();
 //printf("before build dict time = %lf\n", (double)(time2 - time1) / 1000000);
         build(dict_);
 //cout<<"build finish"<<endl;
         time1 = clock();
-//printf("build %zu dict time = %lf\n", dict_.size(), (double)(time1 - time2) / 1000000);
+//printf("build %zu dict time = %lf\n", max_num, (double)(time1 - time2) / 1000000);
     }
 
     ~DATrie() {}
@@ -300,6 +291,36 @@ public:
                 value_[tmpad] = i;
             }
         }
+
+        {
+            std::vector<size_t>().swap(cnt_);
+            std::vector<size_t>().swap(ad);
+            std::vector<size_t>().swap(next);
+            std::vector<size_t>().swap(pre);
+        }
+
+        size_t tmp1=0;
+        for(size_t i = max_num-1; i > 0; --i)
+            if (check_[i]!=0 || base_[i]!=0 || value_[i]!=0 )
+            {
+                tmp1=i+1;
+                break;
+            }
+        std::vector<int> t1;
+        t1.resize(tmp1);
+        memcpy(&t1[0], &check_[0], tmp1 * sizeof(int));
+        check_.swap(t1);
+
+        std::vector<int> t2;
+        t2.resize(tmp1);
+        memcpy(&t2[0], &base_[0], tmp1 * sizeof(int));
+        base_.swap(t2);
+
+        std::vector<double> t3;
+        t3.resize(tmp1);
+        memcpy(&t3[0], &value_[0], tmp1 * sizeof(double));
+        value_.swap(t3);
+
     }
 
     KString id2word(const size_t id)const

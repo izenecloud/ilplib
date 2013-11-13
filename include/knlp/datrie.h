@@ -340,7 +340,7 @@ public:
         for (size_t i = 0; i < len; ++i)
         {
             nextad = abs(base_[ad]) + st[i];
-            if (base_[nextad] == 0 || check_[nextad] != ad)
+            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 return NOT_FOUND;
             ad = nextad;
         }
@@ -357,7 +357,7 @@ public:
         for (size_t i = be; i < en; ++i)
         {
             nextad = abs(base_[ad]) + st[i];
-            if (base_[nextad] == 0 || check_[nextad] != ad)
+            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 return NOT_FOUND;
             ad = nextad;
         }
@@ -377,7 +377,7 @@ public:
         for (size_t i = 0; i < len; ++i)
         {
             nextad = abs(base_[ad]) + st[i];
-            if (base_[nextad] == 0 || check_[nextad] != ad)
+            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 return ;
             ad = nextad;
         }
@@ -397,7 +397,7 @@ public:
         for (size_t i = 0; i < len; ++i)
         {
             nextad = abs(base_[ad]) + st[i];
-            if (base_[nextad] == 0 || check_[nextad] != ad)
+            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 return 0;
             ad = nextad;
         }

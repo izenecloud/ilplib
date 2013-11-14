@@ -438,7 +438,7 @@ public:
             for (size_t j = 0; j < len - i; ++j)
             {
                 nextad = abs(base_[ad]) + st[i+j];
-                if (base_[nextad] == 0 || check_[nextad] != ad)
+                if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 {
                     flag = 0;
                     break;
@@ -480,7 +480,7 @@ public:
             for (size_t j = 0; j < len - i; ++j)
             {
                 nextad = abs(base_[ad]) + st[i+j];
-                if (base_[nextad] == 0 || check_[nextad] != ad)
+                if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
                 {
                     flag = 0;
                     break;

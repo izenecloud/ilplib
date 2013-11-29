@@ -286,12 +286,12 @@ public:
         return trie_.min();
     }
 
-    std::size_t termid(const KString& t)const
+    std::size_t termid(const KString& t)
     {
         return trie_.find_word(t);
     }
 
-    KString id2term(uint32_t id)const
+    KString id2term(uint32_t id)
     {
         return trie_.id2word(id);
     }

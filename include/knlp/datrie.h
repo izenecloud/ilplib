@@ -180,10 +180,10 @@ public:
         value_.resize(max_num);
         for (size_t i = 0; i < word_size; ++i)
         {
-            ad[i] = word[i].kstr[0];
-            base_[ad[i]] = 1;
-            next[i] = i + 1;
-            pre[i] = i - 1;
+            AT(ad,i) = AT(word,i).kstr[0];
+            AT(base_,AT(ad,i)) = 1;
+            AT(next,i) = i + 1;
+            AT(pre,i) = i - 1;
         }
         tryBase = 1;
         tryBaseCount = 0;
@@ -253,10 +253,10 @@ public:
             }
 
             AT(base_, AT(ad, lastad)) = tmpBase;
-            for (size_t k = lastad; k < j; k = next[k])
-                if (i+1 < word[k].len)
+            for (size_t k = lastad; k < j; k = AT(next, k))
+                if (i+1 < AT(word, k).len)
                 {
-                    temp = tmpBase + word[k].kstr[i+1];
+                    temp = tmpBase + AT(word, k).kstr[i+1];
                     AT(base_, temp) = 1;
                     AT(check_, temp) = AT(ad, k);
                     AT(ad, k) = temp;
@@ -265,7 +265,7 @@ public:
 
             start = -1;
             for (size_t j = 0; j < word_size; ++j)
-                if (word[j].len > i+1)
+                if (AT(word, j).len > i+1)
                 {
                     if (start == -1)
                     {
@@ -282,13 +282,13 @@ public:
 
         for (size_t i = 0; i < word_size; ++i)
         {
-            tmpad = word[i].kstr[0];
+            tmpad = AT(word, i).kstr[0];
             for (size_t j = 1; j < word[i].len; ++j)
-                tmpad = abs(base_[tmpad]) + word[i].kstr[j];
-            if (base_[tmpad] > 0)
+                tmpad = abs(AT(base_, tmpad)) + AT(word, i).kstr[j];
+            if (AT(base_, tmpad) > 0)
             {
-                base_[tmpad] = 0 - base_[tmpad];
-                value_[tmpad] = i;
+                AT(base_, tmpad) = 0 - AT(base_, tmpad);
+                AT(value_, tmpad) = i;
             }
         }
 
@@ -323,13 +323,13 @@ public:
 
     }
 
-    KString id2word(const size_t id)const
+    KString id2word(const size_t id)
     {
         if (id >= dict_.size())return KString();
-        return dict_[id].kstr;
+        return AT(dict_, id).kstr;
     }
 
-    size_t find_word(const KString& st, const bool normalize = 0)const
+    size_t find_word(const KString& st, const bool normalize = 0)
     {
 //                KString st(kst);
 //                if (normalize)
@@ -339,13 +339,13 @@ public:
         if (len == 0) return NOT_FOUND;
         for (size_t i = 0; i < len; ++i)
         {
-            nextad = abs(base_[ad]) + st[i];
-            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+            nextad = abs(AT(base_,ad)) + st[i];
+            if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 return NOT_FOUND;
             ad = nextad;
         }
-        if (base_[ad] < 0)
-            return value_[ad];
+        if (AT(base_, ad) < 0)
+            return AT(value_,ad);
         return NOT_FOUND;
     }
 
@@ -356,17 +356,17 @@ public:
         if (len == 0) return NOT_FOUND;
         for (size_t i = be; i < en; ++i)
         {
-            nextad = abs(base_[ad]) + st[i];
-            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+            nextad = abs(AT(base_, ad)) + st[i];
+            if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 return NOT_FOUND;
             ad = nextad;
         }
-        if (base_[ad] < 0)
-            return value_[ad];
+        if (AT(base_,ad) < 0)
+            return AT(value_,ad);
         return NOT_FOUND;
     }
 
-    void find_syn(const KString& st, KString& syn)const
+    void find_syn(const KString& st, KString& syn)
     {
 //                KString st(kst);
 //                if (normalize)
@@ -376,13 +376,13 @@ public:
         if (len == 0) return ;
         for (size_t i = 0; i < len; ++i)
         {
-            nextad = abs(base_[ad]) + st[i];
-            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+            nextad = abs(AT(base_, ad)) + st[i];
+            if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 return ;
             ad = nextad;
         }
-        if (base_[ad] < 0)
-            syn = dict_[value_[ad]].to_word;
+        if (AT(base_, ad) < 0)
+            syn = AT(dict_,AT(value_,ad)).to_word;
         return ;
     }
 
@@ -396,12 +396,12 @@ public:
         if (len == 0) return 0;
         for (size_t i = 0; i < len; ++i)
         {
-            nextad = abs(base_[ad]) + st[i];
-            if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+            nextad = abs(AT(base_, ad)) + st[i];
+            if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 return 0;
             ad = nextad;
         }
-        if (base_[ad] < 0)
+        if (AT(base_, ad) < 0)
             return 1;
         return 0;
     }
@@ -410,7 +410,7 @@ public:
     {
         size_t ind = find_word(st, normalize);
         if (ind != NOT_FOUND)
-            return dict_[ind].value;
+            return AT(dict_,ind).value;
         return MINVALUE_;
     }
 
@@ -437,14 +437,14 @@ public:
             double value = MINVALUE_;
             for (size_t j = 0; j < len - i; ++j)
             {
-                nextad = abs(base_[ad]) + st[i+j];
-                if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+                nextad = abs(AT(base_, ad)) + st[i+j];
+                if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 {
                     flag = 0;
                     break;
                 }
                 ad = nextad;
-                if (base_[ad] < 0)
+                if (AT(base_, ad) < 0)
                 {
                     maxlen = j+1;
                     value = value_[ad];
@@ -460,7 +460,7 @@ public:
             else
             {
                 term[term_size].first = st.substr(i, maxlen);
-                term[term_size++].second = dict_[value].value;
+                term[term_size++].second = AT(dict_,value).value;
                 i += maxlen;
             }
         }
@@ -479,14 +479,14 @@ public:
             int maxlen = -1, ad = 0, nextad, flag = 0;
             for (size_t j = 0; j < len - i; ++j)
             {
-                nextad = abs(base_[ad]) + st[i+j];
-                if ((size_t)nextad >= base_.size() || base_[nextad] == 0 || check_[nextad] != ad)
+                nextad = abs(AT(base_, ad)) + st[i+j];
+                if ((size_t)nextad >= base_.size() || AT(base_,nextad) == 0 || AT(check_,nextad) != ad)
                 {
                     flag = 0;
                     break;
                 }
                 ad = nextad;
-                if (base_[ad] < 0)
+                if (AT(base_, ad) < 0)
                 {
                     maxlen = j+1;
                 }
@@ -523,12 +523,12 @@ public:
                 size_t q = find_word(st, i, len);
                 if (p != NOT_FOUND && q != NOT_FOUND)
                 {
-                    term.push_back(std::make_pair(st.substr(0, i), dict_[p].value));
-                    term.push_back(std::make_pair(st.substr(i, len - i), dict_[q].value));
+                    term.push_back(std::make_pair(st.substr(0, i), AT(dict_,p).value));
+                    term.push_back(std::make_pair(st.substr(i, len - i), AT(dict_,q).value));
                     return;
                 }
             }
-            term.push_back(std::make_pair(st, dict_[r].value));
+            term.push_back(std::make_pair(st, AT(dict_,r).value));
         }
     }
 

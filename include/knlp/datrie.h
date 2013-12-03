@@ -35,7 +35,6 @@ private:
     std::vector<double> value_;
     std::vector<size_t> cnt_;
     std::vector<word_type> dict_;
-    std::vector<size_t> ad,next,pre;
 
     template <class T, class R>
       T& AT(std::vector<T>& ar, R& i)
@@ -44,8 +43,8 @@ private:
           {
               cout<<"resize datrie\n";
               ar.resize(ar.size()*2);
+              assert(false);
           }
-          assert((size_t)i < ar.size());
           return ar[(size_t)i];
       }
 
@@ -167,6 +166,7 @@ public:
     void build(std::vector<word_type>& word)
     {
         if (word.empty()) return;
+        std::vector<size_t> ad,next,pre;
         size_t lastad, tmpad, temp;
         size_t dataNum;
         size_t tryBase, tryBaseCount, tryBaseMax = 2;

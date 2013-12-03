@@ -41,7 +41,10 @@ private:
       T& AT(std::vector<T>& ar, R& i)
       {
           if ((size_t)i >= ar.size())
+          {
+              cout<<"resize datrie\n";
               ar.resize(ar.size()*2);
+          }
           assert((size_t)i < ar.size());
           return ar[(size_t)i];
       }

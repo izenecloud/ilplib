@@ -329,7 +329,8 @@ public:
     KString id2word(const size_t id)
     {
         if (id >= dict_.size())return KString();
-        return AT(dict_, id).kstr;
+        KString r = AT(dict_, id).kstr;
+        return KString(r.get_bytes(), r.get_bytes()+r.length());
     }
 
     size_t find_word(const KString& st, const bool normalize = 0)
@@ -385,7 +386,10 @@ public:
             ad = nextad;
         }
         if (AT(base_, ad) < 0)
-            syn = AT(dict_,AT(value_,ad)).to_word;
+        {
+            KString to_word = AT(dict_,AT(value_,ad)).to_word;
+            syn = KString(to_word.get_bytes(), to_word.get_bytes()+to_word.length());
+        }
         return ;
     }
 

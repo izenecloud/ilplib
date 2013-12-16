@@ -22,6 +22,15 @@ TARGET_LINK_LIBRARIES(tokenize_util
    ${Boost_SYSTEM_LIBRARY}
 )
 
+ADD_EXECUTABLE(horse_tokenize_util 
+			horse_tokenize_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(horse_tokenize_util
+   ${Boost_SYSTEM_LIBRARY}
+)
+
 ADD_EXECUTABLE(fill_idf 
 			fill_idf.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
@@ -124,6 +133,14 @@ ADD_EXECUTABLE(t_knlp_tokenize
 )
 
 TARGET_LINK_LIBRARIES(t_knlp_tokenize ${libs})
+
+
+ADD_EXECUTABLE(t_kdictionary
+  t_kdictionary.cpp
+  Runner.cpp
+)
+
+TARGET_LINK_LIBRARIES(t_kdictionary ${libs})
 
 
 ADD_EXECUTABLE(t_datrie

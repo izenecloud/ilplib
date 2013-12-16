@@ -226,7 +226,7 @@ void fmm_check()
 BOOST_AUTO_TEST_CASE(KDicarionaryDATrie)
 {
     fmm_check();
-    const uint32_t DICT_SIZE = 1000000;
+    const uint32_t DICT_SIZE = 1000;
     std::set<std::string> valid_keys, invalid_keys;
     generate_valid_keys(DICT_SIZE, &valid_keys);
     generate_invalid_keys(DICT_SIZE, valid_keys, &invalid_keys);

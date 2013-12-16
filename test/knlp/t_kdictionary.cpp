@@ -230,7 +230,7 @@ BOOST_AUTO_TEST_CASE(KDicarionaryDATrie)
     generate_valid_keys(DICT_SIZE, &valid_keys);
     generate_invalid_keys(DICT_SIZE, valid_keys, &invalid_keys);
 
-
+/*
     std::vector<std::string> tmp;
     tmp.reserve(valid_keys.size()+1);
     for (std::set<std::string>::const_iterator it=valid_keys.begin();it!=valid_keys.end();++it)
@@ -241,7 +241,7 @@ BOOST_AUTO_TEST_CASE(KDicarionaryDATrie)
     basic_check(valid_keys, invalid_keys);
     basic_check(valid_keys, invalid_keys);
     //datrie_basic_check(valid_keys, invalid_keys);
-    fmm_check();
+    fmm_check();*/
 }
 
 BOOST_AUTO_TEST_SUITE_END()

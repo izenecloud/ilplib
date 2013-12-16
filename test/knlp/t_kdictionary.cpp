@@ -225,8 +225,7 @@ void fmm_check()
 
 BOOST_AUTO_TEST_CASE(KDicarionaryDATrie)
 {
-    fmm_check();
-    const uint32_t DICT_SIZE = 1000;
+    const uint32_t DICT_SIZE = 10;
     std::set<std::string> valid_keys, invalid_keys;
     generate_valid_keys(DICT_SIZE, &valid_keys);
     generate_invalid_keys(DICT_SIZE, valid_keys, &invalid_keys);
@@ -241,7 +240,8 @@ BOOST_AUTO_TEST_CASE(KDicarionaryDATrie)
 
     basic_check(valid_keys, invalid_keys);
     basic_check(valid_keys, invalid_keys);
-    datrie_basic_check(valid_keys, invalid_keys);
+    //datrie_basic_check(valid_keys, invalid_keys);
+    fmm_check();
 }
 
 BOOST_AUTO_TEST_SUITE_END()

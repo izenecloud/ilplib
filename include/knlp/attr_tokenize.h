@@ -402,8 +402,8 @@ public:
             rr.push_back(make_pair(normallize_(p[1]), avs));
         }
 
-        rr.push_back(make_pair(reverse_chunks_(normallize_(cate)), max_avs));
-        rr.push_back(make_pair(reverse_chunks_(normallize_(ocate)), max_avs));
+        rr.push_back(make_pair(reverse_chunks_(normallize_(cate)), max_avs/10.));
+        rr.push_back(make_pair(reverse_chunks_(normallize_(ocate)), max_avs/10.));
         token_fields_(rr,r);
     }
 

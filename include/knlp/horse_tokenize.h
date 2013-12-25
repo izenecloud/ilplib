@@ -92,6 +92,12 @@ public:
         merge_(tks);
         rewrite_(tks);
     }
+
+    void subtokenize(const std::vector<std::pair<std::string, float> >& tks,
+      std::vector<std::pair<std::string, float> >& subtks)const
+    {
+        tk_dict_.subtokens(tks, subtks);
+    }
 };
 }
 }

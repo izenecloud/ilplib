@@ -31,6 +31,16 @@ TARGET_LINK_LIBRARIES(horse_tokenize_util
    ${Boost_SYSTEM_LIBRARY}
 )
 
+ADD_EXECUTABLE(title_pca_util 
+			title_pca_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(title_pca_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${LIBS}
+)
+
 ADD_EXECUTABLE(fill_idf 
 			fill_idf.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp

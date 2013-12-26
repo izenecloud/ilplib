@@ -74,6 +74,7 @@ class KDictionary
             return;
 
         std::set<std::pair<std::string,std::string> > k_v;
+        std::set<std::string> keySet;
         char* li = NULL;
         izenelib::am::util::LineReader lr(nm);
         while((li = lr.line(li)) != NULL)
@@ -87,7 +88,11 @@ class KDictionary
             }else
                 k = std::string(li);
             normalize_(k);
+            if (k.length() == 0 || keySet.find(k)!=keySet.end())
+                continue;
+
             k_v.insert(std::make_pair(k, v));
+            keySet.insert(k);
         }
         
         std::vector<const char *> keys(k_v.size());
@@ -104,6 +109,7 @@ class KDictionary
             if (it->second.length())
                 v[i]=it->second,ff=1;
         }
+        assert(keys.size() == v.size());
         trie_.build(keys.size(), &keys[0], &lengths[0], &values[0]);
         trie_.save((nm+".bin").c_str());
 

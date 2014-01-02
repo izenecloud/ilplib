@@ -256,7 +256,7 @@ public:
 };
 
 template<class T>
-  void store_values_(const std::vector<std::string>& v, KDictionary<T>& dict)
+  inline void store_values_(const std::vector<std::string>& v, KDictionary<T>& dict)
   {
       dict.values_.resize(v.size(), 0);
       for (uint32_t i=0;i<v.size();++i)
@@ -264,7 +264,7 @@ template<class T>
   }
 
 template<class T>
-  void save_values_(const std::string& nm, KDictionary<T>& dict)
+  inline void save_values_(const std::string& nm, KDictionary<T>& dict)
   {
       FILE* f = fopen(nm.c_str(), "w+");
       if (!f)
@@ -276,7 +276,7 @@ template<class T>
   }
 
 template<class T>
-  void load_values_(const std::string& nm, KDictionary<T>& dict)
+  inline void load_values_(const std::string& nm, KDictionary<T>& dict)
   {
       FILE* f = fopen(nm.c_str(), "r");
       if (!f)
@@ -289,7 +289,7 @@ template<class T>
   }
 
 template<>
-  void store_values_<const char*>(const std::vector<std::string>& v, KDictionary<const char*>& dict)
+  inline void store_values_<const char*>(const std::vector<std::string>& v, KDictionary<const char*>& dict)
   {
       dict.values_.resize(v.size(), NULL);
       for (uint32_t i=0;i<v.size();++i)
@@ -302,7 +302,7 @@ template<>
   }
 
 template<>
-  void store_values_<float>(const std::vector<std::string>& v, KDictionary<float>& dict)
+  inline void store_values_<float>(const std::vector<std::string>& v, KDictionary<float>& dict)
   {
       dict.values_.resize(v.size(), 0);
       for (uint32_t i=0;i<v.size();++i)
@@ -310,7 +310,7 @@ template<>
   }
 
 template<>
-  void store_values_<uint32_t>(const std::vector<std::string>& v, KDictionary<uint32_t>& dict)
+  inline void store_values_<uint32_t>(const std::vector<std::string>& v, KDictionary<uint32_t>& dict)
   {
       dict.values_.resize(v.size(), 0);
       for (uint32_t i=0;i<v.size();++i)
@@ -318,7 +318,7 @@ template<>
   }
 
 template<>
-  void save_values_<const char*>(const std::string& nm, KDictionary<const char*>& dict)
+  inline void save_values_<const char*>(const std::string& nm, KDictionary<const char*>& dict)
   {
       FILE* f = fopen(nm.c_str(), "w+");
       if (!f)
@@ -335,7 +335,7 @@ template<>
   }
 
 template<>
-  void load_values_<const char*>(const std::string& nm, KDictionary<const char*>& dict)
+  inline void load_values_<const char*>(const std::string& nm, KDictionary<const char*>& dict)
   {
       FILE* f = fopen(nm.c_str(), "r");
       if (!f)

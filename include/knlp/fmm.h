@@ -291,6 +291,11 @@ public:
         return trie_.find_word(t);
     }
 
+    double score(const size_t ind)
+    {
+        return trie_.score(ind);
+    }
+
     KString id2term(uint32_t id)
     {
         return trie_.id2word(id);

@@ -421,6 +421,13 @@ public:
         return MINVALUE_;
     }
 
+    double score(const size_t ind)
+    {
+        if (ind >= dict_.size())
+            return MINVALUE_;
+        return AT(dict_, ind).value;
+    }
+
     size_t size() const
     {
         return dict_.size();

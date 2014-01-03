@@ -9,6 +9,7 @@
 #include <algorithm>
 #include <istream>
 #include <ostream>
+#include <vector>
 #include <cctype>
 #include <math.h>
 #include <boost/algorithm/string.hpp>
@@ -28,6 +29,7 @@ namespace knlp
 class TitlePCA{
     HorseTokenize token_;
     KDictionary<> brand_;
+    std::vector<re2::RE2*> reg_;
 
     bool is_digit_(char c)const
     {
@@ -41,12 +43,14 @@ class TitlePCA{
 
     bool model_type_(const std::string& m)const
     {
-        if (!re2::RE2::FullMatch(m, "20[0-1][0-9]")
-          && re2::RE2::FullMatch(m, "[0-9a-z-]{3,}")
-          &&(re2::RE2::FullMatch(m, "[0-9]{3,}")
-            ||(re2::RE2::PartialMatch(m, "[0-9]{2,}") && re2::RE2::FullMatch(m, "[0-9a-z-]{4,}"))
-            ||(re2::RE2::PartialMatch(m, "[0-9]") && re2::RE2::FullMatch(m, "[0-9a-z-]{5,}")) 
-            ||(re2::RE2::PartialMatch(m, "[a-z0-9]-[a-z0-9]") && re2::RE2::FullMatch(m, "[0-9a-z-]{4,}"))
+        if (!m.empty() && (int)(m[0])<0)
+            return false;
+        if (!re2::RE2::FullMatch(m, *reg_[0])
+          && re2::RE2::FullMatch(m, *reg_[1])
+          &&(re2::RE2::FullMatch(m, *reg_[2])
+            ||(re2::RE2::PartialMatch(m, *reg_[3]) && re2::RE2::FullMatch(m, *reg_[4]))
+            ||(re2::RE2::PartialMatch(m, *reg_[5]) && re2::RE2::FullMatch(m, *reg_[6])) 
+            ||(re2::RE2::PartialMatch(m, *reg_[7]) && re2::RE2::FullMatch(m, *reg_[8]))
             )
           )return true;
         return false;
@@ -62,9 +66,19 @@ public:
       :token_(dir)
        ,brand_(dir + "/brand.dict")
     {
+        reg_.resize(9);
+        reg_[0]=new re2::RE2("20[0-1][0-9]");
+        reg_[1]=new re2::RE2("[0-9a-z-]{3,}");
+        reg_[2]=new re2::RE2("[0-9]{3,}");
+        reg_[3]=new re2::RE2("[0-9]{2,}");
+        reg_[4]=new re2::RE2("[0-9a-z-]{4,}");
+        reg_[5]=new re2::RE2("[0-9]");
+        reg_[6]=new re2::RE2("[0-9a-z-]{5,}");
+        reg_[7]=new re2::RE2("[a-z0-9]-[a-z0-9]");
+        reg_[8]=new re2::RE2("[0-9a-z-]{4,}");
     }
 
-    void pca(std::string line, 
+    void pca(std::string& line, 
       std::vector<std::pair<std::string, float> >& tks, 
       std::string& brand, std::string& model_type,
       std::vector<std::pair<std::string, float> >& sub_tks, bool do_sub = false)const
@@ -74,10 +88,10 @@ public:
 
         std::vector<std::string> models, brands;
         for(uint32_t i=0; i<tks.size();i++)
-            if (model_type_(tks[i].first))
-                models.push_back(tks[i].first);
-            else if (is_brand_(tks[i].first))
+            if (is_brand_(tks[i].first))
                 brands.push_back(tks[i].first);
+            else if (model_type_(tks[i].first))
+                models.push_back(tks[i].first);
 
         model_type = brand = "";
         for(uint32_t i=0; i<models.size();i++)if (model_type.length() < models[i].length())

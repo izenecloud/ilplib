@@ -78,6 +78,12 @@ public:
         reg_[8]=new re2::RE2("[0-9a-z-]{4,}");
     }
 
+    ~TitlePCA()
+    {
+        for (size_t i = 0; i < reg_.size(); ++i)
+            delete(reg_[i]);
+    }
+
     void pca(const std::string& line, 
       std::vector<std::pair<std::string, float> >& tks, 
       std::string& brand, std::string& model_type,

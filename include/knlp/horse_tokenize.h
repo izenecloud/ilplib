@@ -88,7 +88,7 @@ public:
     {
     }
 
-    void tokenize(std::string line, 
+    void tokenize(const std::string& line, 
       std::vector<std::pair<std::string, float> >& tks)const
     {
         tk_dict_.fmm(line, tks);

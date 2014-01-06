@@ -78,7 +78,7 @@ public:
         reg_[8]=new re2::RE2("[0-9a-z-]{4,}");
     }
 
-    void pca(std::string& line, 
+    void pca(const std::string& line, 
       std::vector<std::pair<std::string, float> >& tks, 
       std::string& brand, std::string& model_type,
       std::vector<std::pair<std::string, float> >& sub_tks, bool do_sub = false)const

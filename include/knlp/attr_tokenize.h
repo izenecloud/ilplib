@@ -412,6 +412,7 @@ public:
                   std::vector<std::pair<std::string, int> >& r,
                   bool dochunk = true, bool remove_punc = true)
     {
+        static const uint32_t GAP = 5;
         r.clear();
         KString q = normallize_(Q);
 
@@ -420,11 +421,13 @@ public:
         for(size_t i = 0; i < res.size(); ++i)
             for(size_t j = 0; j < res[i].size(); ++j)
             {
+                int32_t T = res[i].size();T = T*((T-1)*GAP+2)/2;
+                double s = (j*GAP+1.)/T;s *= GAP*(res.size()-i);
                 KString syn;
                 syn_dict_.find_syn(res[i][j], syn);
                 if (syn.length() == 0)
                     syn = res[i][j];
-                r.push_back(make_pair(unicode_to_utf8_(syn), pow(10,(r.size()+1))));
+                r.push_back(make_pair(unicode_to_utf8_(syn), (int)(s+0.5)));
             }
     }
 

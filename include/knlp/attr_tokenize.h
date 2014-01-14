@@ -422,7 +422,7 @@ public:
             for(size_t j = 0; j < res[i].size(); ++j)
             {
                 int32_t T = res[i].size();T = T*((T-1)*GAP+2)/2;
-                double s = (j*GAP+1.)/T;s *= GAP * std::max((int)10-i, (int)1);
+                double s = (j*GAP+1.)/T;s *= GAP * std::max((int)(10-i), (int)1);
                 KString syn;
                 syn_dict_.find_syn(res[i][j], syn);
                 if (syn.length() == 0)

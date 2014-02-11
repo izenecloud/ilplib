@@ -68,14 +68,25 @@ public:
     {
         reg_.resize(9);
         reg_[0]=new re2::RE2("20[0-1][0-9]");
-        reg_[1]=new re2::RE2("[0-9a-z-]{3,}");
+        reg_[1]=new re2::RE2("[0-9a-z/+-]{3,}");
         reg_[2]=new re2::RE2("[0-9]{3,}");
         reg_[3]=new re2::RE2("[0-9]{2,}");
-        reg_[4]=new re2::RE2("[0-9a-z-]{4,}");
+        reg_[4]=new re2::RE2("[0-9a-z/+-]{4,}");
         reg_[5]=new re2::RE2("[0-9]");
-        reg_[6]=new re2::RE2("[0-9a-z-]{5,}");
+        reg_[6]=new re2::RE2("[0-9a-z/+-]{5,}");
         reg_[7]=new re2::RE2("[a-z0-9]-[a-z0-9]");
-        reg_[8]=new re2::RE2("[0-9a-z-]{4,}");
+        reg_[8]=new re2::RE2("[0-9a-z/+-]{4,}");
+
+        std::string m = "kfr-35gw/sqb+3";
+        std::cout<<"<<<<<<>>>>>>"<<re2::RE2::FullMatch(m, *reg_[0])<<std::endl
+          <<re2::RE2::FullMatch(m, *reg_[1])<<std::endl
+            <<re2::RE2::FullMatch(m, *reg_[2])<<std::endl
+            <<re2::RE2::PartialMatch(m, *reg_[3])<<std::endl
+            <<re2::RE2::FullMatch(m, *reg_[4])<<std::endl
+            <<re2::RE2::PartialMatch(m, *reg_[5])<<std::endl
+            <<re2::RE2::FullMatch(m, *reg_[6])<<std::endl
+            <<re2::RE2::PartialMatch(m, *reg_[7])<<std::endl
+            << re2::RE2::FullMatch(m, *reg_[8])<<std::endl;
     }
 
     ~TitlePCA()

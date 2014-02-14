@@ -111,8 +111,19 @@ public:
                 models.push_back(tks[i].first);
 
         model_type = brand = "";
-        for(uint32_t i=0; i<models.size();i++)if (model_type.length() < models[i].length())
-            model_type = models[i];
+        if (models.size() > 0){
+            std::vector<double> mt(models.size(), 0);
+            for(uint32_t i=0; i<models.size();i++)
+            {
+                double n = 0;
+                for (uint32_t j=0;j<models[i].length();j++)if(models[i][j]>='0' && models[i][j]<='9')
+                    n++;
+                mt[i] = n/(models[i].length()+3.);
+            }
+            uint32_t maxi = std::max_element(mt.begin(), mt.end())-mt.begin();
+            if (maxi < mt.size())model_type = models[maxi];
+        }
+
         for(uint32_t i=0; i<brands.size();i++)if (brand.length() < brands[i].length())
             brand = brands[i];
     }

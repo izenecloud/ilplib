@@ -56,7 +56,8 @@ class HorseTokenize{
             while(i<tks.size() && flags[i])
             {
                 tks[t].first += tks[i].first;
-                tks[t].second += tks[i].second;
+                //tks[t].second += tks[i].second;
+                tks[t].second = tk_dict_.min();
                 tks.erase(tks.begin()+i);
                 flags.erase(flags.begin()+i);
             }

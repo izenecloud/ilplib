@@ -53,6 +53,9 @@ class TitlePCA{
             ||(re2::RE2::PartialMatch(m, *reg_[7]) && re2::RE2::FullMatch(m, *reg_[8]))
             )
           )return true;
+
+        if (re2::RE2::FullMatch(m, *reg_[9])||re2::RE2::FullMatch(m, *reg_[10]))
+            return true;
         return false;
     }
 
@@ -66,7 +69,7 @@ public:
       :token_(dir)
        ,brand_(dir + "/brand.dict")
     {
-        reg_.resize(9);
+        reg_.resize(11);
         reg_[0]=new re2::RE2("20[0-1][0-9]");
         reg_[1]=new re2::RE2("[0-9a-z/+-]{3,}");
         reg_[2]=new re2::RE2("[0-9]{3,}");
@@ -77,6 +80,9 @@ public:
         reg_[7]=new re2::RE2("[a-z0-9]-[a-z0-9]");
         reg_[8]=new re2::RE2("[0-9a-z/+-]{4,}");
 
+        reg_[9]=new re2::RE2("[0-9]+[a-z]+");
+        reg_[10]=new re2::RE2("[a-z]+[0-9]+");
+        /*
         std::string m = "kfr-35gw/sqb+3";
         std::cout<<"<<<<<<>>>>>>"<<re2::RE2::FullMatch(m, *reg_[0])<<std::endl
           <<re2::RE2::FullMatch(m, *reg_[1])<<std::endl
@@ -86,7 +92,7 @@ public:
             <<re2::RE2::PartialMatch(m, *reg_[5])<<std::endl
             <<re2::RE2::FullMatch(m, *reg_[6])<<std::endl
             <<re2::RE2::PartialMatch(m, *reg_[7])<<std::endl
-            << re2::RE2::FullMatch(m, *reg_[8])<<std::endl;
+            << re2::RE2::FullMatch(m, *reg_[8])<<std::endl;*/
     }
 
     ~TitlePCA()
@@ -101,6 +107,18 @@ public:
       std::vector<std::pair<std::string, float> >& sub_tks, bool do_sub = false)const
     {
         token_.tokenize(line, tks);
+        float sum = 0;
+        for(uint32_t i=0; i<tks.size();i++)
+            sum +=  tks[i].second;
+        sum /= tks.size();
+        for(uint32_t i=0; i<tks.size();i++)
+            for (uint32_t j=0;j<tks[i].first.length();++j)
+                if(tks[i].first[j]>='0' && tks[i].first[j]<='9' && tks[i].second < sum)
+                {
+                    tks[i].second += sum;
+                    break;
+                }
+            
         if (do_sub)token_.subtokenize(tks, sub_tks);
 
         std::vector<std::string> models, brands;

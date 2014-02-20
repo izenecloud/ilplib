@@ -54,7 +54,7 @@ class TitlePCA{
             )
           )return true;
 
-        if (re2::RE2::FullMatch(m, *reg_[9])||re2::RE2::FullMatch(m, *reg_[10]))
+        if (re2::RE2::FullMatch(m, *reg_[9])||re2::RE2::FullMatch(m, *reg_[10])||re2::RE2::FullMatch(m, *reg_[11]))
             return true;
         return false;
     }
@@ -69,7 +69,7 @@ public:
       :token_(dir)
        ,brand_(dir + "/brand.dict")
     {
-        reg_.resize(11);
+        reg_.resize(12);
         reg_[0]=new re2::RE2("20[0-1][0-9]");
         reg_[1]=new re2::RE2("[0-9a-z/+-]{3,}");
         reg_[2]=new re2::RE2("[0-9]{3,}");
@@ -82,6 +82,7 @@ public:
 
         reg_[9]=new re2::RE2("[0-9]+[a-z]+");
         reg_[10]=new re2::RE2("[a-z]+[0-9]+");
+        reg_[11]=new re2::RE2("i[^\t]{3,}");
         /*
         std::string m = "kfr-35gw/sqb+3";
         std::cout<<"<<<<<<>>>>>>"<<re2::RE2::FullMatch(m, *reg_[0])<<std::endl
@@ -107,18 +108,11 @@ public:
       std::vector<std::pair<std::string, float> >& sub_tks, bool do_sub = false)const
     {
         token_.tokenize(line, tks);
-        float sum = 0;
-        for(uint32_t i=0; i<tks.size();i++)
-            sum +=  tks[i].second;
-        sum /= tks.size();
-        for(uint32_t i=0; i<tks.size();i++)
-            for (uint32_t j=0;j<tks[i].first.length();++j)
-                if(tks[i].first[j]>='0' && tks[i].first[j]<='9' && tks[i].second < sum)
-                {
-                    tks[i].second += sum;
-                    break;
-                }
-            
+        std::vector<float> sc;
+        for(uint32_t i=0; i<tks.size();i++){
+            //std::cout<<tks[i].first<<":"<<tks[i].second<<std::endl;
+            sc.push_back(tks[i].second);
+        }
         if (do_sub)token_.subtokenize(tks, sub_tks);
 
         std::vector<std::string> models, brands;
@@ -140,6 +134,12 @@ public:
             }
             uint32_t maxi = std::max_element(mt.begin(), mt.end())-mt.begin();
             if (maxi < mt.size())model_type = models[maxi];
+            //assign model type to the third large score.
+            std::sort(sc.begin(), sc.end(),std::greater<float>());
+            for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == model_type)
+            {
+                tks[i].second = std::min((int)tks.size()-1, 2);break;
+            }
         }
 
         for(uint32_t i=0; i<brands.size();i++)if (brand.length() < brands[i].length())

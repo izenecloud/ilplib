@@ -115,10 +115,11 @@ public:
         }
         if (do_sub)token_.subtokenize(tks, sub_tks);
 
-        std::vector<std::string> models, brands;
+        std::vector<std::pair<float, std::string> > brands;
+        std::vector<std::string> models;
         for(uint32_t i=0; i<tks.size();i++)
             if (is_brand_(tks[i].first))
-                brands.push_back(tks[i].first);
+                brands.push_back(std::make_pair(tks[i].second, tks[i].first));
             else if (model_type_(tks[i].first))
                 models.push_back(tks[i].first);
 
@@ -138,12 +139,12 @@ public:
             std::sort(sc.begin(), sc.end(),std::greater<float>());
             for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == model_type)
             {
-                tks[i].second = std::min((int)tks.size()-1, 2);break;
+                tks[i].second = sc[std::min((int)sc.size()-1, 2)];break;
             }
         }
 
-        for(uint32_t i=0; i<brands.size();i++)if (brand.length() < brands[i].length())
-            brand = brands[i];
+        if (brands.size() > 0)
+            brand = std::max_element(brands.begin(), brands.end())->second;
     }
 };
 }

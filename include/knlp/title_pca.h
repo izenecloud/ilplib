@@ -123,6 +123,9 @@ public:
             else if (model_type_(tks[i].first))
                 models.push_back(tks[i].first);
 
+        if (sc.size())
+            std::sort(sc.begin(), sc.end(),std::greater<float>());
+
         model_type = brand = "";
         if (models.size() > 0){
             std::vector<double> mt(models.size(), 0);
@@ -136,15 +139,19 @@ public:
             uint32_t maxi = std::max_element(mt.begin(), mt.end())-mt.begin();
             if (maxi < mt.size())model_type = models[maxi];
             //assign model type to the third large score.
-            std::sort(sc.begin(), sc.end(),std::greater<float>());
             for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == model_type)
             {
                 tks[i].second = sc[std::min((int)sc.size()-1, 2)];break;
             }
         }
 
-        if (brands.size() > 0)
+        if (brands.size() > 0){
             brand = std::max_element(brands.begin(), brands.end())->second;
+            for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == model_type)
+            {
+                tks[i].second = sc[std::min((int)sc.size()-1, 1)];break;
+            }
+        }
     }
 };
 }

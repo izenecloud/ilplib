@@ -147,7 +147,7 @@ public:
 
         if (brands.size() > 0){
             brand = std::max_element(brands.begin(), brands.end())->second;
-            for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == model_type)
+            for(uint32_t i=0; i<tks.size();i++)if (tks[i].first == brand)
             {
                 tks[i].second = sc[std::min((int)sc.size()-1, 1)];break;
             }

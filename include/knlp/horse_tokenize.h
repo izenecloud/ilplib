@@ -120,6 +120,14 @@ public:
     {
         return tk_dict_.max();
     }
+
+    float token_weight(const std::string& tk)
+    {
+        float w = 0;
+        if (tk_dict_.value(tk, w) >=0 )
+            return w;
+        return tk_dict_.min();
+    }
 };
 }
 }

@@ -267,8 +267,8 @@ class AttributeTokenize
             for(size_t j = 0; j < src[i].size(); ++j)
             {
                 double sc  = tot_sc;
-                if (i >=2 && i <7)sc /= (i/1.5);
-                else if (i >= 7)sc /= (7./1.5);
+                if (i >=2 && i <7)sc *= (1-0.05*i);
+                else if (i >= 7)sc *= (1-0.05*7);
                 sc *= weight_(src[i].size(), j, false);
                 KString syn;
                 syn_dict_.find_syn(src[i][j], syn);
@@ -353,7 +353,7 @@ public:
             split_chars_.insert(tmp[i]);
 
         memset(weights_, 0, sizeof(weights_));
-        double C[2] = {0.5, 2};
+        double C[2] = {0.9, 1.1};
         for (uint32_t t = 0; t<2; t++)
             for(size_t i = 0; i < WEIGHT_SCOPE; ++i)
                 for(size_t j = 0; j <= i; ++j)

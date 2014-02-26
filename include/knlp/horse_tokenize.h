@@ -73,6 +73,7 @@ class HorseTokenize{
                 continue;
             assert(p != NULL);
             tks[i].first = std::string(p);
+            tks[i].second = token_weight(tks[i].first);
         }
         for (uint32_t i=0;i<tks.size();i++)
             if (tks[i].first == " ")
@@ -121,7 +122,7 @@ public:
         return tk_dict_.max();
     }
 
-    float token_weight(const std::string& tk)
+    float token_weight(const std::string& tk) const
     {
         float w = 0;
         if (tk_dict_.value(tk, w) >=0 )

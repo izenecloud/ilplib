@@ -201,7 +201,9 @@ public:
                 }
                 KString kstr(la);
                 Normalize::normalize(kstr);
-                dict_->insert(kstr, vt);
+                if(dict_->find(kstr) == NULL)
+                    dict_->insert(kstr, vt);
+                else delete vt;
                 la = m + 1;
             }
             m++;
@@ -225,14 +227,16 @@ public:
 
         KString kstr(la);
         Normalize::normalize(kstr);
-        dict_->insert(kstr, vt);
+        if(dict_->find(kstr) == NULL)
+            dict_->insert(kstr, vt);
+        else delete vt;
     }
 
     ~VectorDictionary()
     {
         for (DictT::iterator it = dict_->begin(); it != dict_->end(); ++it)
         {
-            delete *it.value();
+            delete[] *it.value();
         }
         delete dict_;
         delete[] buf_;

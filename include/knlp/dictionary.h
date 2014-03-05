@@ -236,7 +236,7 @@ public:
     {
         for (DictT::iterator it = dict_->begin(); it != dict_->end(); ++it)
         {
-            delete[] *it.value();
+            delete *it.value();
         }
         delete dict_;
         delete[] buf_;

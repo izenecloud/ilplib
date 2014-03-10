@@ -35,7 +35,7 @@
 #include "trd2simp.h"
 #include "am/util/line_reader.h"
 #include "datrie.h"
-//#include "knlp/william_trie.h"
+#include "knlp/title_pca.h"
 
 //#define WEIGHT_SCOPE 15
 namespace ilplib
@@ -45,13 +45,9 @@ namespace knlp
 
 class AttributeTokenize
 {
-    DATrie token_dict_;
+    TitlePCA token_dict_;
     DATrie attv_dict_;
     DATrie att_dict_;
-    DATrie syn_dict_;
-    std::set<uint16_t> split_chars_;
-    enum WeightScope {WEIGHT_SCOPE=15};
-    double weights_[2][WEIGHT_SCOPE][WEIGHT_SCOPE];//0 for chunk, 1 for tokens in chunk
 
     string unicode_to_utf8_(const KString& kstr)
     {
@@ -146,155 +142,38 @@ class AttributeTokenize
         Normalize::normalize(r);
         return r;
     }
-
-    bool is_model_type_(uint16_t c)
-    {
-        return (KString::is_english(c)
-                || KString::is_numeric(c)
-                || c == '-' || c == ',' || c == '.'
-               );
-    }
-
-    void subtoken_(const KString& word, std::vector<KString>& res)
-    {
-        size_t chs_num = 0;
-        for (size_t i = 0; i < word.length(); ++i)
-            if (KString::is_chinese(word[i]))
-                chs_num++;
-        if (chs_num<4)
-        {
-            res.push_back(word);
-        }
-        else
-        {
-            std::vector<KString> v;
-            token_dict_.sub_token(word, 0, v);
-            for(size_t i=0; i < v.size(); ++i)
-                res.push_back(v[i]);
-        }
-    }
-
-    void split_chunk_(const KString& kstr, std::vector<KString>& chunks)
-    {
-        size_t pos = 0;
-        for (size_t i = 0; i < kstr.length(); ++i)if(split_chars_.find(kstr[i])!=split_chars_.end())
-            {
-                if (i>pos)
-                    chunks.push_back(kstr.substr(pos, i-pos));
-                pos = i+1;
-            }
-        if (pos < kstr.length())
-            chunks.push_back(kstr.substr(pos));
-    }
-
-    KString reverse_chunks_(const KString& kstr)
-    {
-        std::vector<KString> chunks;
-        split_chunk_(kstr, chunks);
-        KString r;
-        for (int32_t i = chunks.size()-1; i>=0; --i)
-        {
-            r += chunks[i];
-            if (i > 0)
-                r += ' ';
-        }
-        return r;
-    }
-
-    void token_(const KString& av, std::vector<std::vector<KString> >& res,
-                bool dochunk = true, bool remove_punc = true)
-    {
-        res.clear();
-        std::vector<KString> chunks;
-        if (dochunk)split_chunk_(av, chunks);
-        else chunks.push_back(av);
-        std::vector<KString> tmp;
-        for (size_t i = 0; i < chunks.size(); ++i)
-        {
-            token_dict_.token(chunks[i], 0, tmp);
-            KString tmpkstr;
-            size_t tmp_size = tmp.size();
-            std::vector<KString> chunk_word;
-            for (size_t j = 0; j < tmp_size; ++j)
-            {
-                if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
-                    tmpkstr+=tmp[j];
-                else
-                {
-                    if(tmpkstr.length()>0)
-                    {
-                        if (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0]))
-                        {
-                            subtoken_(tmpkstr, chunk_word);
-                        }
-                        tmpkstr = KString("");
-                    }
-                    if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
-                    {
-                        subtoken_(tmp[j], chunk_word);
-                    }
-                    else if(!remove_punc)
-                        subtoken_(tmp[j], chunk_word);
-                }
-
-            }
-            if(tmpkstr.length()>0 && (tmpkstr.length()>1 || KString::is_english(tmpkstr[0]) || KString::is_numeric(tmpkstr[0])))
-            {
-                subtoken_(tmpkstr, chunk_word);
-            }
-
-            res.push_back(chunk_word);
-        }
-    }
-
-    double weight_(uint32_t tol, uint32_t idx, bool chunkortoken = true)const
-    {
-        tol--;
-        assert(idx <= tol);
-        if (tol >= WEIGHT_SCOPE)
-            tol = WEIGHT_SCOPE -1;
-        if (idx >= WEIGHT_SCOPE)
-            idx  = WEIGHT_SCOPE -1;
-        return weights_[chunkortoken ?0:1][tol][idx];
-    }
-
-    void cal_score_(const std::vector<std::vector<KString> >& src,
-                    const double tot_sc,
-                    std::map<KString, double>& m)
-    {
-        std::map<KString, double> mm;
-        for(size_t i = 0; i < src.size(); ++i)
-            for(size_t j = 0; j < src[i].size(); ++j)
-            {
-                double sc  = tot_sc;
-                if (i >=2 && i <7)sc *= (1-0.05*i);
-                else if (i >= 7)sc *= (1-0.05*7);
-                sc *= weight_(src[i].size(), j, false);
-                KString syn;
-                syn_dict_.find_syn(src[i][j], syn);
-                KString t = (syn.length() > 0? syn :src[i][j]);
-                if (mm.find(t) != mm.end())
-                    mm[t] = std::max(mm[t], sc);
-                else mm[t] = sc;
-            }
-        for (std::map<KString, double>::iterator it=mm.begin(); it!=mm.end(); ++it)
-            m[it->first] += it->second;
-    }
-
+    
     //index
-    void token_fields_(const std::vector<std::pair<KString, double> >& av,
-                       std::vector<std::pair<std::string, double> >& r )
+    void token_fields_(const std::string& line, double score,
+                       std::vector<std::pair<std::string, double> >& r,
+                       bool do_subtoken = true)
     {
-        std::map<KString, double> m;
-        for ( uint32_t i = 0; i < av.size(); ++i)
-        {
-            std::vector<std::vector<KString> > res;
-            token_(av[i].first, res);
-            cal_score_(res, av[i].second, m);
-        }
+        std::map<std::string, double> m, subm;
+        std::vector<std::pair<std::string,float> > tks, subtks;
+        std::string brand, model;
+        token_dict_.pca(line, tks, brand, model, subtks, do_subtoken);
+        float sum = 0;
+        for (uint32_t j=0; j<tks.size();j++)
+            sum += tks[j].second,
+                m[tks[j].first] = tks[j].second;
+        for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end();++it)
+            it->second /= sum;
 
-        for (std::map<KString, double>::iterator it=m.begin(); it!=m.end(); ++it)
-            r.push_back(make_pair(unicode_to_utf8_(it->first), it->second*100.));
+        for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end();++it)
+            r.push_back(std::make_pair(it->first, it->second*score));
+        if (!do_subtoken)return;
+
+        //subtokens
+        sum = 0;
+        for (uint32_t j=0; j<subtks.size();j++)
+            if(m.find(subtks[j].first) == m.end())
+                sum += subtks[j].second,
+                    subm[subtks[j].first] = subtks[j].second;
+        for (std::map<std::string, double>::iterator it=subm.begin(); it!=subm.end();++it)
+            it->second /= sum;
+
+        for (std::map<std::string, double>::iterator it=subm.begin(); it!=subm.end();++it)
+            r.push_back(std::make_pair(it->first, it->second*score/10.));
     }
 
     uint32_t chn_num_(const KString& kstr)
@@ -343,31 +222,10 @@ class AttributeTokenize
 public:
 
     AttributeTokenize(const std::string& dir)
-        :token_dict_(dir+"/term.dict")
+        :token_dict_(dir+"../title_pca")
         ,attv_dict_(dir+"/att.nv.score")
         ,att_dict_(dir+"/att.n.score")
-        ,syn_dict_(dir + "/syn.dict", 2)
     {
-        KString tmp("。？！“”‘’；：《》（）…￥、【】『』　!@#$%^&()_=+{}[]\\|;:\"'?/><, ");
-        for (size_t i = 0; i < tmp.length(); ++i)
-            split_chars_.insert(tmp[i]);
-
-        memset(weights_, 0, sizeof(weights_));
-        double C[2] = {0.9, 1.1};
-        for (uint32_t t = 0; t<2; t++)
-            for(size_t i = 0; i < WEIGHT_SCOPE; ++i)
-                for(size_t j = 0; j <= i; ++j)
-                    weights_[t][i][j] = pow(C[t], j+1);
-
-        for (uint32_t t = 0; t<2; t++)
-            for(size_t i = 0; i < WEIGHT_SCOPE; ++i)
-            {
-                double s = 0;
-                for(size_t j = 0; j <= i; ++j)
-                    s += weights_[t][i][j];
-                for(size_t j = 0; j <= i; ++j)
-                    weights_[t][i][j] /= s;
-            }
     }
 
     ~AttributeTokenize()
@@ -379,15 +237,15 @@ public:
                   const std::string& source,
                   std::vector<std::pair<std::string, double> >& r)
     {
-        std::vector<std::pair<KString, double> > rr;
         std::vector<KString> kattrs = KString(attr).split(',');
 
         double max_avs = attv_dict_.score(KString("[title]"));
         KString subcate = sub_cate_(cate);
-        const double hyper_p = sqrt(std::min(size_t(15), kattrs.size())/15.);
 
-        rr.push_back(make_pair(normallize_(title), max_avs));
-        rr.push_back(make_pair(normallize_(source), max_avs));
+        token_fields_(title, max_avs*30, r);
+        token_fields_(source, max_avs*10, r);
+        token_fields_(unicode_to_utf8_(subcate), max_avs, r);
+        token_fields_(unicode_to_utf8_(sub_cate_(ocate)), max_avs, r);
 
         for ( uint32_t i=0; i<kattrs.size(); ++i)
         {
@@ -398,56 +256,40 @@ public:
             av+='@',av+=subcate,av+=':',av+=p[1];
             double avs = attv_dict_.score(av);
 
-            rr.push_back(make_pair(normallize_(p[0]), avs*hyper_p));
-            rr.push_back(make_pair(normallize_(p[1]), avs));
+            p[0] += ' ';p[0] += p[1];
+            token_fields_(unicode_to_utf8_(p[0]), avs, r);
         }
 
-        rr.push_back(make_pair(reverse_chunks_(normallize_(cate)), max_avs/3.));
-        rr.push_back(make_pair(reverse_chunks_(normallize_(ocate)), max_avs/3.));
-        token_fields_(rr,r);
+        //sum up duplications
+        std::map<std::string, double> m;
+        double sum = 0;
+        for (uint32_t i=0;i<r.size();i++){
+            if(m.find(r[i].first) == m.end())
+                m[r[i].first] = r[i].second;
+            else m[r[i].first] += r[i].second;
+            sum += r[i].second;
+        }
+        r = std::vector<std::pair<std::string, double> >();
+        for (std::map<std::string, double>::iterator it=m.begin();it!=m.end();++it)
+            r.push_back(std::make_pair(it->first, it->second/sum));
     }
 
     //query
     void tokenize(const std::string& Q,
                   std::vector<std::pair<std::string, int> >& r,
-                  bool dochunk = true, bool remove_punc = true)
+                  bool do_subtoken=false)
     {
-        static const uint32_t GAP = 5;
-        r.clear();
-        KString q = normallize_(Q);
-
-        std::vector<std::vector<KString> > res;
-        token_(q, res, dochunk, remove_punc);
-        for(size_t i = 0; i < res.size(); ++i)
-            for(size_t j = 0; j < res[i].size(); ++j)
-            {
-                int32_t T = res[i].size();T = T*((T-1)*GAP+2)/2;
-                double s = (j*GAP+1.)/T;s *= GAP * std::max((int)(10-i), (int)1);
-                KString syn;
-                syn_dict_.find_syn(res[i][j], syn);
-                if (syn.length() == 0)
-                    syn = res[i][j];
-                r.push_back(make_pair(unicode_to_utf8_(syn), (int)(s+0.5)));
-            }
-    }
-
-    void subtokenize(const std::vector<std::pair<std::string, int32_t> >& tks,
-                     std::vector<std::pair<std::string, int32_t> >& r )
-    {
-        for ( uint32_t i=0; i<tks.size(); ++i)
-        {
-            std::vector<KString> v;
-            token_dict_.sub_token(KString(tks[i].first), 0, v);
-            for ( uint32_t j=0; j<v.size(); ++j)
-            {
-                KString syn;
-                syn_dict_.find_syn(v[j], syn);
-                if (syn.length() == 0)
-                    syn = v[j];
-                r.push_back(make_pair(unicode_to_utf8_(syn),
-                                      (int32_t)(weight_(v.size(), j, false)*tks[i].second+0.5)));
-            }
+        std::vector<std::pair<std::string, double> > rr;
+        token_fields_(Q, 100., rr, do_subtoken);
+        std::map<std::string, double> m;
+        double sum = 0;
+        for (uint32_t i=0;i<rr.size();i++)if(m.find(rr[i].first)==m.end()){
+            m[rr[i].first] = rr[i].second;
+            sum += rr[i].second;
         }
+
+        for (std::map<std::string, double>::iterator it=m.begin();it!=m.end();++it)
+            r.push_back(std::make_pair(it->first, int(it->second/sum+0.5)));
     }
 
     double att_weight(const std::string& nm, const std::string& cate)

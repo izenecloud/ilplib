@@ -19,7 +19,7 @@
 #include "kdictionary.h"
 #include "am/util/line_reader.h"
 #include "horse_tokenize.h"
-#include"re2/re2.h"
+#include "re2/re2.h"
 
 namespace ilplib
 {

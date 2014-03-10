@@ -153,9 +153,10 @@ class AttributeTokenize
         std::string brand, model;
         token_dict_.pca(line, tks, brand, model, subtks, do_subtoken);
         float sum = 0;
-        for (uint32_t j=0; j<tks.size();j++)
+        for (uint32_t j=0; j<tks.size();j++)if(m.find(tks[j].first) == m.end()){
             sum += tks[j].second,
                 m[tks[j].first] = tks[j].second;
+        }
         for (std::map<std::string, double>::iterator it=m.begin(); it!=m.end();++it)
             it->second /= sum;
 
@@ -289,7 +290,7 @@ public:
         }
 
         for (std::map<std::string, double>::iterator it=m.begin();it!=m.end();++it)
-            r.push_back(std::make_pair(it->first, int(it->second/sum+0.5)));
+            r.push_back(std::make_pair(it->first, int(it->second/sum*100.+0.5)));
     }
 
     double att_weight(const std::string& nm, const std::string& cate)

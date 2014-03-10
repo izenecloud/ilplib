@@ -272,7 +272,7 @@ public:
         }
         r = std::vector<std::pair<std::string, double> >();
         for (std::map<std::string, double>::iterator it=m.begin();it!=m.end();++it)
-            r.push_back(std::make_pair(it->first, it->second/sum));
+            r.push_back(std::make_pair(it->first, it->second/sum*100+0.5));
     }
 
     //query

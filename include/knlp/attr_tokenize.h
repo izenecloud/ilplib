@@ -222,7 +222,7 @@ class AttributeTokenize
 public:
 
     AttributeTokenize(const std::string& dir)
-        :token_dict_(dir+"../title_pca")
+        :token_dict_(dir+"/../title_pca")
         ,attv_dict_(dir+"/att.nv.score")
         ,att_dict_(dir+"/att.n.score")
     {

@@ -153,6 +153,36 @@ public:
             }
         }
     }
+
+    std::vector<std::pair<std::string,float> > 
+      top_n(const std::string& line, float thr = 0.8)
+    {
+        std::vector<std::pair<std::string, float> > tks,sub_tks;
+        std::string brand, model_type;
+        pca(line, tks, brand, model_type, sub_tks, false);
+        std::vector<std::pair<float, uint32_t> > v;
+        std::set<std::string> set;
+        float sum = 0;
+        for(uint32_t i=0; i<tks.size();i++)if (set.find(tks[i].first) == set.end())
+        {
+            set.insert(tks[i].first);
+            v.push_back(std::make_pair(tks[i].second, i));
+            sum += tks[i].second;
+        }
+        std::sort(v.begin(), v.end(), std::greater<std::pair<float, uint32_t> >());
+
+        std::vector<std::pair<std::string,float> > r;
+        for (uint32_t i=0;thr>0 && i<v.size();i++)
+        {
+            assert(ks[v[i].second].second == v[i].first);
+
+            v[i].first /= sum;
+            r.push_back(std::make_pair(tks[v[i].second].first, v[i].first));
+            assert(sum != 0);
+            thr -= v[i].first;
+        }
+        return r;
+    }
 };
 }
 }

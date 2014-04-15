@@ -273,6 +273,9 @@ public:
         r = std::vector<std::pair<std::string, double> >();
         for (std::map<std::string, double>::iterator it=m.begin();it!=m.end();++it)
             r.push_back(std::make_pair(it->first, it->second/(sum+100*max_avs)*400+0.5));
+
+        if (strstr(cate.c_str(), "图书") || strstr(ocate.c_str(), "图书"))
+            for (uint32_t i=0;i<r.size();i++)r[i].second /= 2.;
     }
 
     //query

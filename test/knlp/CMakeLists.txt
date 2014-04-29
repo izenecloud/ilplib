@@ -37,7 +37,6 @@ ADD_EXECUTABLE(title_pca_util
 )
 
 TARGET_LINK_LIBRARIES(title_pca_util
-   ${Boost_SYSTEM_LIBRARY}
    ${LIBS}
 )
 
@@ -241,6 +240,16 @@ TARGET_LINK_LIBRARIES(maxent_util
    ${Boost_REGEX_LIBRARY}
 )
 
+ADD_EXECUTABLE(kw_condition_util
+			kw_condition_util.cpp 
+)
+TARGET_LINK_LIBRARIES(kw_condition_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+   ${Boost_THREAD_LIBRARY}
+   ${libs}
+   
+)
 
 ADD_EXECUTABLE(attr_normalize_util
 			attr_normalize_util.cpp 

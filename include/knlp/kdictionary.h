@@ -29,6 +29,7 @@
 #include <cctype>
 #include <math.h>
 
+#include <types.h>
 #include "util/string/kstring.hpp"
 #include "normalize.h"
 #include "darts.h"
@@ -270,8 +271,8 @@ template<class T>
       if (!f)
           return;
       uint32_t s = dict.values_.size();
-      fwrite(&s, 1, sizeof(s), f);
-      fwrite(&dict.values_[0], 1, dict.values_.size()*sizeof(T), f);
+      IASSERT(fwrite(&s, sizeof(s), 1, f) == 1);
+      IASSERT(fwrite(&dict.values_[0], dict.values_.size()*sizeof(T), 1, f) == 1);
       fclose(f);
   }
 
@@ -282,9 +283,9 @@ template<class T>
       if (!f)
           return;
       uint32_t s = 0;
-      fread(&s, 1, sizeof(s), f);
+      IASSERT(fread(&s, sizeof(s), 1, f) == 1);
       dict.values_.resize(s);
-      fread(&dict.values_[0], 1, dict.values_.size()*sizeof(T), f);
+      IASSERT(fread(&dict.values_[0], dict.values_.size()*sizeof(T), 1, f) == 1);
       fclose(f);
   }
 
@@ -341,13 +342,13 @@ template<>
       if (!f)
           return;
       uint32_t s = 0;
-      fread(&s, 1, sizeof(s), f);
+      IASSERT(fread(&s, sizeof(s), 1, f) == 1);
       dict.values_.resize(s);
       for (uint32_t i=0;i<dict.values_.size();++i)
       {
-          fread(&s, 1, sizeof(s), f);
+          IASSERT(fread(&s, sizeof(s), 1, f) == 1);
           char* b = new char[s+1];memset(b, 0, s+1);
-          fread(b, 1, s, f);
+          IASSERT(fread(b, s, 1, f) == 1);
           dict.values_[i] = b;
       }
       fclose(f);

@@ -42,6 +42,7 @@ struct ConditionItem
 
 class KeywordCondition{
     KDictionary<const char*> price_dict_;
+    KDictionary<const char*> cmt_dict_;
     KDictionary<const char*> bigram_dict_;
     KDictionary<const char*> unigram_dict_;
     KDictionary<const char*> cate_dict_;
@@ -49,23 +50,23 @@ class KeywordCondition{
 
     std::string static_condition_(std::vector<ConditionItem> &condItems)
     {
-        std::vector<PropertyValue> values;
+        /*std::vector<PropertyValue> values;
         PropertyValue pv(10);
         values.push_back(pv);
         ConditionItem item1("CommentCount", ">", values);
         condItems.push_back(item1);
         std::string cmt = "{\"property\":\"CommentCount\",\"operator\":\">\",\"value\":[10]},";
-
+*/
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
         strftime(buf, 255, "%Y%m%dT%H%M%S", localtime(&t)); 
         std::vector<PropertyValue> values_DATA;
-        PropertyValue pv1(buf);
+        PropertyValue pv(buf);
         values_DATA.push_back(pv);
         ConditionItem item2("DATE", ">=", values_DATA);
         condItems.push_back(item2);
         std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[")+buf+"]}";
-        return cmt+dt;
+        return dt;
     }
 
     std::vector<std::string> lookup_(const std::string& kw, KDictionary<const char*>* dict)
@@ -112,6 +113,7 @@ class KeywordCondition{
 public:
     KeywordCondition(const std::string& dir)
       :price_dict_(dir+"/price.dict")
+       ,cmt_dict_(dir+"/comment.dict")
        ,bigram_dict_(dir + "/bigram.dict")
        ,unigram_dict_(dir + "/unigram.dict")
        ,cate_dict_(dir + "/cate.dict")
@@ -160,6 +162,19 @@ public:
             }
             if (v.size()) conds.push_back(v);
           }
+          
+          v = lookup_(kw, &cmt_dict_);
+          for (uint32_t i=0;i<v.size();i++)
+          {
+              std::vector<PropertyValue> values;
+              PropertyValue pv(v[i]);
+              values.push_back(pv);
+              ConditionItem item("CommentCount", "operator", values);
+              condItems.push_back(item);
+
+              v[i] = std::string("{\"property\":\"CommentCount\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
+          }
+          if (v.size()) conds.push_back(v);
 
           v = lookup_(kw, &cate_dict_);
           if (!hasCategoryFilter)

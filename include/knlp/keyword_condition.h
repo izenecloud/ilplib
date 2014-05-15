@@ -18,11 +18,28 @@
 #include "normalize.h"
 #include "kdictionary.h"
 #include "am/util/line_reader.h"
+#include <sf1common/PropertyValue.h>
 
+using namespace izenelib;
 namespace ilplib
 {
 namespace knlp
 {
+struct ConditionItem
+{
+    std::string property_;
+    std::string op_;
+    std::vector<PropertyValue> values_;
+    ConditionItem(std::string property, 
+                  std::string op,
+                  std::vector<PropertyValue> values)
+      : property_(property)
+      , op_(op)
+      , values_(values)
+    {
+    }
+};
+
 class KeywordCondition{
     KDictionary<const char*> price_dict_;
     KDictionary<const char*> bigram_dict_;
@@ -30,12 +47,23 @@ class KeywordCondition{
     KDictionary<const char*> cate_dict_;
     KDictionary<const char*> compare_dict_;
 
-    std::string static_condition_()
+    std::string static_condition_(std::vector<ConditionItem> &condItems)
     {
+        std::vector<PropertyValue> values;
+        PropertyValue pv(10);
+        values.push_back(pv);
+        ConditionItem item1("CommentCount", ">", values);
+        condItems.push_back(item1);
         std::string cmt = "{\"property\":\"CommentCount\",\"operator\":\">\",\"value\":[10]},";
+
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
         strftime(buf, 255, "%Y%m%dT%H%M%S", localtime(&t)); 
+        std::vector<PropertyValue> values_DATA;
+        PropertyValue pv1(buf);
+        values_DATA.push_back(pv);
+        ConditionItem item2("DATE", ">=", values_DATA);
+        condItems.push_back(item2);
         std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[")+buf+"]}";
         return cmt+dt;
     }
@@ -102,7 +130,8 @@ public:
     }
 
     std::vector<std::pair<std::string, std::string> >
-      conditions(std::string kw)
+      conditions(std::string kw, std::vector<ConditionItem> &condItems,
+                  bool hasPriceFilter = false, bool hasCategoryFilter = false)
       {
           kw = normalize_(kw);
 
@@ -114,19 +143,41 @@ public:
           exp.insert(exp.end(), v.begin(), v.end());
           exp.push_back(kw);
 
+          // ConditionItem
           std::vector<std::vector<std::string> > conds;
           v = lookup_(kw, &price_dict_);
-          for (uint32_t i=0;i<v.size();i++)
+          if (!hasPriceFilter)
+          {
+            for (uint32_t i=0;i<v.size();i++)
+            {
+              std::vector<PropertyValue> values;
+              PropertyValue pv(v[i]);
+              values.push_back(pv);
+              ConditionItem item("Price", "operator", values);
+              condItems.push_back(item);
+              
               v[i] = std::string("{\"property\":\"Price\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
-          if (v.size()) conds.push_back(v);
+            }
+            if (v.size()) conds.push_back(v);
+          }
 
           v = lookup_(kw, &cate_dict_);
-          for (uint32_t i=0;i<v.size();i++)
-              v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
-          if (v.size()) conds.push_back(v);
+          if (!hasCategoryFilter)
+          {
+            for (uint32_t i=0;i<v.size();i++)
+            {
+                std::vector<PropertyValue> values;
+                PropertyValue pv(v[i]);
+                values.push_back(pv);
+                ConditionItem item("Category", "starts_with", values);
+                condItems.push_back(item);
+                v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
+            }
+            if (v.size()) conds.push_back(v);
+          }
 
           std::vector<std::string> comb;
-          combination_(conds, static_condition_(), comb);
+          combination_(conds, static_condition_(condItems), comb);
           std::vector<std::pair<std::string, std::string> > r;
 
           for (uint32_t i=0;i<exp.size();i++)

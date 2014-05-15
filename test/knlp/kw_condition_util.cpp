@@ -17,8 +17,8 @@
  */
 #include <string>
 #include <algorithm>
-#include<iostream>
-#include<fstream>
+#include <iostream>
+#include <fstream>
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -61,7 +61,8 @@ int main(int argc,char * argv[])
     while(!std::getline(std::cin, line).eof())
     {
         std::cout<<line<<"SSssss\n";
-        std::vector<std::pair<std::string, std::string> > conds = kc.conditions(line);
+        std::vector<ConditionItem> condItems;
+        std::vector<std::pair<std::string, std::string> > conds = kc.conditions(line, condItems);
         for (uint32_t i=0;i<conds.size();i++)
             std::cout<<conds[i].first<<"\t"<<conds[i].second<<std::endl;
     }

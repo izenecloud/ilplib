@@ -212,10 +212,10 @@ class AttributeTokenize
         for (size_t i = 0; i < chunks.size(); ++i)
         {
             token_dict_.token(chunks[i], 0, tmp);
-            KString tmpkstr;
+            KString tmpkstr;//for merging unrecogonized term
             size_t tmp_size = tmp.size();
             std::vector<KString> chunk_word;
-            for (size_t j = 0; j < tmp_size; ++j)
+            for (size_t j = 0; j < tmp_size; ++j)if (tmp[j].length()>0)
             {
                 if(is_model_type_(tmp[j][0]) && is_model_type_(tmp[j][tmp[j].length()-1]))
                     tmpkstr+=tmp[j];
@@ -229,7 +229,7 @@ class AttributeTokenize
                         }
                         tmpkstr = KString("");
                     }
-                    if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))
+                    if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]) || KString::is_korean(tmp[j][0]))
                     {
                         subtoken_(tmp[j], chunk_word);
                     }

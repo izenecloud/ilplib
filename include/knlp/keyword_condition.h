@@ -46,6 +46,7 @@ class KeywordCondition{
     KDictionary<const char*> bigram_dict_;
     KDictionary<const char*> unigram_dict_;
     KDictionary<const char*> cate_dict_;
+    KDictionary<const char*> merchant_dict_;
     KDictionary<const char*> compare_dict_;
 
     std::string static_condition_(std::vector<ConditionItem> &condItems)
@@ -117,6 +118,7 @@ public:
        ,bigram_dict_(dir + "/bigram.dict")
        ,unigram_dict_(dir + "/unigram.dict")
        ,cate_dict_(dir + "/cate.dict")
+       ,merchant_dict_(dir + "/merchant.dict")
        ,compare_dict_(dir + "/compare.dict")
     {
     }
@@ -133,7 +135,9 @@ public:
 
     std::vector<std::pair<std::string, std::string> >
       conditions(std::string kw, std::vector<ConditionItem> &condItems,
-                  bool hasPriceFilter = false, bool hasCategoryFilter = false)
+                  bool hasPriceFilter = false, 
+                  bool hasCategoryFilter = false, 
+                  bool hasSourceFilter = false)
       {
           kw = normalize_(kw);
 
@@ -153,9 +157,9 @@ public:
             for (uint32_t i=0;i<v.size();i++)
             {
               std::vector<PropertyValue> values;
-              PropertyValue pv(v[i]);
+              PropertyValue pv(atof(v[i].c_str()));
               values.push_back(pv);
-              ConditionItem item("Price", "operator", values);
+              ConditionItem item("Price", ">=", values);
               condItems.push_back(item);
               
               v[i] = std::string("{\"property\":\"Price\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
@@ -167,9 +171,9 @@ public:
           for (uint32_t i=0;i<v.size();i++)
           {
               std::vector<PropertyValue> values;
-              PropertyValue pv(v[i]);
+              PropertyValue pv(int32_t(atoi(v[i].c_str())));
               values.push_back(pv);
-              ConditionItem item("CommentCount", "operator", values);
+              ConditionItem item("CommentCount", ">=", values);
               condItems.push_back(item);
 
               v[i] = std::string("{\"property\":\"CommentCount\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
@@ -187,6 +191,21 @@ public:
                 ConditionItem item("Category", "starts_with", values);
                 condItems.push_back(item);
                 v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
+            }
+            if (v.size()) conds.push_back(v);
+          }
+
+          v = lookup_(kw, &merchant_dict_);
+          if (!hasSourceFilter)
+          {
+            for (uint32_t i=0;i<v.size();i++)
+            {
+                std::vector<PropertyValue> values;
+                PropertyValue pv(v[i]);
+                values.push_back(pv);
+                ConditionItem item("Source", "starts_with", values);
+                condItems.push_back(item);
+                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
             }
             if (v.size()) conds.push_back(v);
           }

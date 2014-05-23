@@ -71,7 +71,7 @@ class KeywordCondition{
             assert(p);
             std::string strp(p);
             const char* t = strchr(strp.c_str(), '\t');
-            while(t)
+            while(t && r.size() < 2)
             {
                 r.push_back(strp.substr(0, t-strp.c_str()));
                 strp = t+1;

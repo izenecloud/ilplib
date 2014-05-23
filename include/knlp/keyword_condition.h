@@ -51,13 +51,13 @@ class KeywordCondition{
 
     std::string static_condition_(std::vector<ConditionItem> &condItems)
     {
-        /*std::vector<PropertyValue> values;
+        std::vector<PropertyValue> values;
         PropertyValue pv(10);
         values.push_back(pv);
         ConditionItem item1("CommentCount", ">", values);
         condItems.push_back(item1);
         std::string cmt = "{\"property\":\"CommentCount\",\"operator\":\">\",\"value\":[10]},";
-*/
+
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
         strftime(buf, 255, "%Y%m%dT%H%M%S", localtime(&t)); 

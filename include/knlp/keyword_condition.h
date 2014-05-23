@@ -183,7 +183,7 @@ public:
                 values.push_back(pv);
                 ConditionItem item("Category", "starts_with", values);
                 condItems.push_back(item);
-                v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
+                v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
             }
             if (v.size()) conds.push_back(v);
           }
@@ -198,7 +198,7 @@ public:
                 values.push_back(pv);
                 ConditionItem item("Source", "starts_with", values);
                 condItems.push_back(item);
-                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[")+v[i]+"]}";
+                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
             }
             if (v.size()) conds.push_back(v);
           }

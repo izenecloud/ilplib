@@ -55,7 +55,7 @@ class KeywordCondition{
         char buf[255];memset(buf, 0, sizeof(buf));
         strftime(buf, 255, "%Y%m%dT%H%M%S", localtime(&t)); 
         std::vector<PropertyValue> values_DATA;
-        PropertyValue pv(buf);
+        PropertyValue pv(int64_t(atol(buf)));
         values_DATA.push_back(pv);
         ConditionItem item2("DATE", ">=", values_DATA);
         condItems.push_back(item2);
@@ -150,7 +150,7 @@ public:
             for (uint32_t i=0;i<v.size();i++)
             {
               std::vector<PropertyValue> values;
-              PropertyValue pv(atof(v[i].c_str()));
+              PropertyValue pv(float(atof(v[i].c_str())));
               values.push_back(pv);
               ConditionItem item("Price", ">=", values);
               condItems.push_back(item);

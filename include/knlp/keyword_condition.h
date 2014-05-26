@@ -59,7 +59,7 @@ class KeywordCondition{
         values_DATA.push_back(pv);
         ConditionItem item2("DATE", ">=", values_DATA);
         condItems.push_back(item2);
-        std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[\"")+buf+"\"]}";
+        std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[")+buf+"]}";
         return dt;
     }
 

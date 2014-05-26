@@ -53,13 +53,13 @@ class KeywordCondition{
     {
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
-        strftime(buf, 255, "%Y%m%dT%H%M%S", localtime(&t)); 
+        strftime(buf, 255, "%Y%m%d%H%M%S", localtime(&t)); 
         std::vector<PropertyValue> values_DATA;
         PropertyValue pv(int64_t(atol(buf)));
         values_DATA.push_back(pv);
         ConditionItem item2("DATE", ">=", values_DATA);
         condItems.push_back(item2);
-        std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[")+buf+"]}";
+        std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[\"")+buf+"\"]}";
         return dt;
     }
 

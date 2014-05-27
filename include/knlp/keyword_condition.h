@@ -51,6 +51,15 @@ class KeywordCondition{
 
     std::string static_condition_(std::vector<ConditionItem> &condItems)
     {
+        std::vector<PropertyValue> values_DATA;
+        PropertyValue pv("淘宝网");
+        values_DATA.push_back(pv);
+        ConditionItem item2("Source", "not_in", values_DATA);
+        condItems.push_back(item2);
+
+        std::string dt = std::string("{ \"property\":\"Source\", \"operator\":\"not_in\", \"value\": [ \"淘宝网\" ]}");
+        return dt;
+/*
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
         strftime(buf, 255, "%Y%m%d%H%M%S", localtime(&t)); 
@@ -60,10 +69,10 @@ class KeywordCondition{
         ConditionItem item2("DATE", ">=", values_DATA);
         condItems.push_back(item2);
         std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[\"")+buf+"\"]}";
-        return dt;
+        return dt;*/
     }
 
-    std::vector<std::string> lookup_(const std::string& kw, KDictionary<const char*>* dict)
+    std::vector<std::string> lookup_(const std::string& kw, KDictionary<const char*>* dict, uint32_t max=-1)
     {
         std::vector<std::string> r;
         const char* p = NULL;
@@ -71,7 +80,7 @@ class KeywordCondition{
             assert(p);
             std::string strp(p);
             const char* t = strchr(strp.c_str(), '\t');
-            while(t && r.size() < 2)
+            while(t && r.size() < max)
             {
                 r.push_back(strp.substr(0, t-strp.c_str()));
                 strp = t+1;
@@ -134,16 +143,33 @@ public:
       {
           kw = normalize_(kw);
 
-          std::vector<std::string> v = lookup_(kw, &bigram_dict_);
+          std::vector<std::string> v = lookup_(kw, &bigram_dict_, 1);
           for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
           std::vector<std::string> exp(v.begin(), v.end());
-          v = lookup_(kw, &unigram_dict_);
+          v = lookup_(kw, &unigram_dict_, 4);
           for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
           exp.push_back(kw);
 
-          // ConditionItem
           std::vector<std::vector<std::string> > conds;
+          v = lookup_(kw, &merchant_dict_);
+          if (!hasSourceFilter)
+          {
+            for (uint32_t i=0;i<v.size();i++)
+            {
+                std::vector<PropertyValue> values;
+                PropertyValue pv(v[i]);
+                values.push_back(pv);
+                ConditionItem item("Source", "starts_with", values);
+                condItems.push_back(item);
+                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
+            }
+            if (v.size()){
+                conds.push_back(v);
+                goto __COMBINE__;
+            }
+          }
+
           v = lookup_(kw, &price_dict_);
           if (!hasPriceFilter)
           {
@@ -188,28 +214,17 @@ public:
             if (v.size()) conds.push_back(v);
           }
 
-          v = lookup_(kw, &merchant_dict_);
-          if (!hasSourceFilter)
-          {
-            for (uint32_t i=0;i<v.size();i++)
-            {
-                std::vector<PropertyValue> values;
-                PropertyValue pv(v[i]);
-                values.push_back(pv);
-                ConditionItem item("Source", "starts_with", values);
-                condItems.push_back(item);
-                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
-            }
-            if (v.size()) conds.push_back(v);
-          }
-
+__COMBINE__:
           std::vector<std::string> comb;
           combination_(conds, static_condition_(condItems), comb);
           std::vector<std::pair<std::string, std::string> > r;
 
           for (uint32_t i=0;i<exp.size();i++)
               for(uint32_t j=0;j<comb.size();j++)
+              {
                   r.push_back(std::make_pair(exp[i], comb[j]));
+                  std::cout<<exp[i]<<"\t"<<comb[j]<<std::endl;
+              }
           return r;
       }
 };

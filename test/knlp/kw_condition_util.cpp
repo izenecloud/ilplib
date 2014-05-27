@@ -60,11 +60,12 @@ int main(int argc,char * argv[])
     std::string line;
     while(!std::getline(std::cin, line).eof())
     {
-        std::cout<<line<<"SSssss\n";
-        std::vector<ConditionItem> condItems;
-        std::vector<std::pair<std::string, std::string> > conds = kc.conditions(line, condItems);
-        for (uint32_t i=0;i<conds.size();i++)
-            std::cout<<conds[i].first<<"\t"<<conds[i].second<<std::endl;
+        std::vector<std::pair<std::string, std::vector<ConditionItem> > > conds = kc.conditions(line);
+        for (uint32_t i=0;i<conds.size();i++){
+            std::cout<<conds[i].first<<"================================\n";
+            for (uint32_t j=0;j<conds[i].second.size();j++)
+                std::cout<<conds[i].second[j]<<std::endl;
+        }
     }
 
     return 0;

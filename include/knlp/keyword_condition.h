@@ -30,6 +30,7 @@ struct ConditionItem
     std::string property_;
     std::string op_;
     std::vector<PropertyValue> values_;
+
     ConditionItem(std::string property, 
                   std::string op,
                   std::vector<PropertyValue> values)
@@ -37,6 +38,61 @@ struct ConditionItem
       , op_(op)
       , values_(values)
     {
+    }
+
+    ConditionItem(const std::string& property, 
+                  const std::string& op,
+                  const float& v)
+      : property_(property)
+      , op_(op)
+    {
+        values_.push_back(PropertyValue(v));
+    }
+
+    ConditionItem(const std::string& property, 
+                  const std::string& op,
+                  const int32_t& v)
+      : property_(property)
+      , op_(op)
+    {
+        values_.push_back(PropertyValue(v));
+    }
+
+    ConditionItem(const std::string& property, 
+                  const std::string& op,
+                  const std::string& v)
+      : property_(property)
+      , op_(op)
+    {
+        values_.push_back(PropertyValue(v));
+    }
+
+    ConditionItem& operator = (const ConditionItem& it)
+    {
+        property_ = it.property_;
+        op_ = it.op_;
+        values_ = it.values_;
+        return *this;
+    }
+
+    ConditionItem(const ConditionItem& it)
+      :property_(it.property_)
+       ,op_(it.op_)
+       ,values_(it.values_)
+    {
+    }
+
+    friend std::ostream& operator << (std::ostream& os, ConditionItem cnd)
+    {
+        os << "{ \"property\":\""<<cnd.property_<<"\", \"operator\":\""<<cnd.op_<<"\", \"value\": [";
+        for(uint32_t i = 0;i<cnd.values_.size();i++){
+            if (cnd.values_[i].type() == typeid(std::string("")))os <<"\"";
+            if (i>0)os <<",";
+            os <<cnd.values_[i];
+            if (cnd.values_[i].type() == typeid(std::string("")))os <<"\"";
+        }
+        os <<"]}\n";
+        return os;
     }
 };
 
@@ -49,16 +105,24 @@ class KeywordCondition{
     KDictionary<const char*> merchant_dict_;
     KDictionary<const char*> compare_dict_;
 
-    std::string static_condition_(std::vector<ConditionItem> &condItems)
+    std::vector<ConditionItem> static_condition_()
     {
-        std::vector<PropertyValue> values_DATA;
-        PropertyValue pv("淘宝网");
-        values_DATA.push_back(pv);
-        ConditionItem item2("Source", "not_in", values_DATA);
-        condItems.push_back(item2);
-
-        std::string dt = std::string("{ \"property\":\"Source\", \"operator\":\"not_in\", \"value\": [ \"淘宝网\" ]}");
-        return dt;
+        std::vector<ConditionItem> r;
+        {
+            std::vector<PropertyValue> values_DATA;
+            values_DATA.push_back(PropertyValue("京东商城"));
+            values_DATA.push_back(PropertyValue("卓越亚马逊"));
+            values_DATA.push_back(PropertyValue("苏宁易购"));
+            values_DATA.push_back(PropertyValue("当当网"));
+            values_DATA.push_back(PropertyValue("天猫"));
+            values_DATA.push_back(PropertyValue("1号店官网"));
+            values_DATA.push_back(PropertyValue("国美电器官网"));
+            values_DATA.push_back(PropertyValue("易迅网"));
+            ConditionItem item2("Source", "in", values_DATA);
+            r.push_back(item2);
+        }
+        r.push_back(ConditionItem("itemcount", "=", 1));
+        return r;
 /*
         time_t t = time(NULL)-3600*24*5;   
         char buf[255];memset(buf, 0, sizeof(buf));
@@ -92,16 +156,22 @@ class KeywordCondition{
         return r;
     }
 
-    void combination_(const std::vector<std::vector<std::string> >& conds, std::string comb, 
-      std::vector<std::string>& r, uint32_t level=0)
+    // cond[a]: a1, a2, c3, c4
+    // cond[b]: b1, b2, b3, b4
+    // cond[c]: c1, c2, c3, c4
+    // return: <a1, b1, c1> <a1, b1, c2> <a1, b1, c3>...<a2, b1, c1> <a2, b2, c2> ....
+    void combination_(const std::vector<std::vector<ConditionItem> >& conds, std::vector<ConditionItem> comb, 
+      std::vector<std::vector<ConditionItem> >& r, uint32_t level=0)
     {
         if (level >= conds.size())
         {
             r.push_back(comb);return;
         }
 
-        for (uint32_t i=0;i<conds[level].size();i++)if(conds[level][i].length()>0)
-            combination_(conds, comb+","+conds[level][i], r, level+1);
+        for (uint32_t i=0;i<conds[level].size();i++)if(conds[level][i].property_.length()>0){
+            comb.push_back(conds[level][i]);
+            combination_(conds, comb, r, level+1);
+        }
     }
 
     std::string normalize_(const std::string& q)
@@ -135,8 +205,8 @@ public:
           return "{\"property\":\"itemcount\",\"operator\":\"=\",\"value\":[1]}";
     }
 
-    std::vector<std::pair<std::string, std::string> >
-      conditions(std::string kw, std::vector<ConditionItem> &condItems,
+    std::vector<std::pair<std::string, std::vector<ConditionItem> > >
+      conditions(std::string kw,
                   bool hasPriceFilter = false, 
                   bool hasCategoryFilter = false, 
                   bool hasSourceFilter = false)
@@ -151,80 +221,63 @@ public:
           exp.insert(exp.end(), v.begin(), v.end());
           exp.push_back(kw);
 
-          std::vector<std::vector<std::string> > conds;
-          v = lookup_(kw, &merchant_dict_);
+          std::vector<std::vector<ConditionItem> > conds;
+          std::vector<ConditionItem> cond_items;
+          v = lookup_(kw, &merchant_dict_);cond_items.clear();
           if (!hasSourceFilter)
           {
             for (uint32_t i=0;i<v.size();i++)
-            {
-                std::vector<PropertyValue> values;
-                PropertyValue pv(v[i]);
-                values.push_back(pv);
-                ConditionItem item("Source", "starts_with", values);
-                condItems.push_back(item);
-                v[i] = std::string("{\"property\":\"Source\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
-            }
-            if (v.size()){
-                conds.push_back(v);
+                cond_items.push_back(ConditionItem("Source", "starts_with", v[i]));
+            if (cond_items.size()){
+                conds.push_back(cond_items);
                 goto __COMBINE__;
             }
           }
 
-          v = lookup_(kw, &price_dict_);
+          v = lookup_(kw, &price_dict_);cond_items.clear();
           if (!hasPriceFilter)
           {
             for (uint32_t i=0;i<v.size();i++)
-            {
-              std::vector<PropertyValue> values;
-              PropertyValue pv(float(atof(v[i].c_str())));
-              values.push_back(pv);
-              ConditionItem item("Price", ">=", values);
-              condItems.push_back(item);
-              
-              v[i] = std::string("{\"property\":\"Price\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
-            }
-            if (v.size()) conds.push_back(v);
+              cond_items.push_back(ConditionItem("Price", ">=", float(atof(v[i].c_str()))));
+            if (cond_items.size()) conds.push_back(cond_items);
           }
           
-          v = lookup_(kw, &cmt_dict_);
+          v = lookup_(kw, &cmt_dict_);cond_items.clear();
           for (uint32_t i=0;i<v.size();i++)
-          {
-              std::vector<PropertyValue> values;
-              PropertyValue pv(int32_t(atoi(v[i].c_str())));
-              values.push_back(pv);
-              ConditionItem item("CommentCount", ">=", values);
-              condItems.push_back(item);
+              cond_items.push_back(ConditionItem("CommentCount", ">=", int32_t(atoi(v[i].c_str()))));
+          if (cond_items.size()) conds.push_back(cond_items);
 
-              v[i] = std::string("{\"property\":\"CommentCount\",\"operator\":\">=\",\"value\":[")+v[i]+"]}";
-          }
-          if (v.size()) conds.push_back(v);
-
-          v = lookup_(kw, &cate_dict_);
+          v = lookup_(kw, &cate_dict_);cond_items.clear();
           if (!hasCategoryFilter)
           {
             for (uint32_t i=0;i<v.size();i++)
-            {
-                std::vector<PropertyValue> values;
-                PropertyValue pv(v[i]);
-                values.push_back(pv);
-                ConditionItem item("Category", "starts_with", values);
-                condItems.push_back(item);
-                v[i] = std::string("{\"property\":\"Category\",\"operator\":\"starts_with\",\"value\":[\"")+v[i]+"\"]}";
-            }
-            if (v.size()) conds.push_back(v);
+                cond_items.push_back(ConditionItem("Category", "starts_with", v[i]));
+            if (cond_items.size()) conds.push_back(cond_items);
           }
 
 __COMBINE__:
-          std::vector<std::string> comb;
-          combination_(conds, static_condition_(condItems), comb);
-          std::vector<std::pair<std::string, std::string> > r;
+          std::vector<std::pair<std::string, std::vector<ConditionItem> > > r;
+          std::vector<std::vector<ConditionItem> > comb;
+          combination_(conds, static_condition_(), comb);
+          v = lookup_(kw, &compare_dict_);cond_items.clear();
+          if (v.size() > 0)
+          {
+              cond_items.push_back(ConditionItem("itemcount", ">", 1));
+              r.push_back(std::make_pair(kw, cond_items));
+          }
 
           for (uint32_t i=0;i<exp.size();i++)
               for(uint32_t j=0;j<comb.size();j++)
               {
                   r.push_back(std::make_pair(exp[i], comb[j]));
-                  std::cout<<exp[i]<<"\t"<<comb[j]<<std::endl;
+                  std::cout<<exp[i]<<"=============\n";
+                  for (uint32_t t=0;t<comb[j].size();t++)
+                      std::cout<<comb[j][t];
               }
+
+          if 
+          {//add itemcount > 1
+          }
           return r;
       }
 };

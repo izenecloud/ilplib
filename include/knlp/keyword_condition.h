@@ -275,9 +275,6 @@ __COMBINE__:
                       std::cout<<comb[j][t];
               }
 
-          if 
-          {//add itemcount > 1
-          }
           return r;
       }
 };

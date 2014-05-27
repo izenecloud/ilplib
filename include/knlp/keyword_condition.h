@@ -86,8 +86,8 @@ struct ConditionItem
     {
         os << "{ \"property\":\""<<cnd.property_<<"\", \"operator\":\""<<cnd.op_<<"\", \"value\": [";
         for(uint32_t i = 0;i<cnd.values_.size();i++){
-            if (cnd.values_[i].type() == typeid(std::string("")))os <<"\"";
             if (i>0)os <<",";
+            if (cnd.values_[i].type() == typeid(std::string("")))os <<"\"";
             os <<cnd.values_[i];
             if (cnd.values_[i].type() == typeid(std::string("")))os <<"\"";
         }

@@ -185,7 +185,7 @@ class KeywordCondition{
         for (uint32_t i=0;i<strs.size();i++)
         {
             uint32_t en = 0, nu = 0;
-            std::string str;
+            std::string str;if (strs[i].length()>0)str += strs[i][0];
             for (uint32_t j=1;j<strs[i].length();j++)
             {
                 if (isalpha(strs[i][j]))en++;

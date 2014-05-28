@@ -23,7 +23,7 @@ TARGET_LINK_LIBRARIES(tokenize_util
 )
 
 ADD_EXECUTABLE(horse_tokenize_util 
-			horse_tokenize_test.cpp 
+			horse_tokenize_util.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 )
 

@@ -179,6 +179,37 @@ class KeywordCondition{
         return kw;
     }
 
+    std::vector<std::string> normalize_(const std::vector<std::string>& strs)
+    {
+        std::vector<std::string> r;
+        for (uint32_t i=0;i<strs.size();i++)
+        {
+            uint32_t en = 0, nu = 0;
+            std::string str;
+            for (uint32_t j=1;j<strs[i].length();j++)
+            {
+                if (isalpha(strs[i][j]))en++;
+                if(isdigit(strs[i][j]))nu++;
+                //9300galaxy ==> 9300 galaxy
+                if (isalpha(strs[i][j]) && isdigit(strs[i][j-1]))
+                {
+                    if (nu > 2)
+                        str += ' ';
+                    nu = 0;
+                }
+                //iphone5s ==> iphone 5s
+                if (isalpha(strs[i][j-1]) && isdigit(strs[i][j]))
+                {
+                    if (en > 2)
+                        str += ' ';
+                    en = 0;
+                }
+                str += strs[i][j];
+            }
+            r.push_back(str);
+        }
+    }
+
 public:
     KeywordCondition(const std::string& dir)
       :price_dict_(dir+"/price.dict")
@@ -215,10 +246,10 @@ public:
           v = lookup_(kw, &unigram_dict_, 1);
           for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
+          exp = normalize_(exp);
           //exp.push_back(kw);
 
           std::vector<std::vector<ConditionItem> > conds;
-          conds.push_back(source_in_());
           conds.push_back(itemcount_());
 
           std::vector<ConditionItem> cond_items;
@@ -231,6 +262,7 @@ public:
                 conds.push_back(cond_items);
                 goto __COMBINE__;
             }
+            else conds.push_back(source_in_());
           }
 
           v = lookup_(kw, &price_dict_);cond_items.clear();

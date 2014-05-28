@@ -239,13 +239,14 @@ public:
                   bool hasCategoryFilter = false, 
                   bool hasSourceFilter = false)
       {
+          std::string query = kw;
           kw = normalize_(kw);
 
           std::vector<std::string> v = lookup_(kw, &bigram_dict_, 3);
-          for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
+          for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           std::vector<std::string> exp(v.begin(), v.end());
           v = lookup_(kw, &unigram_dict_, 1);
-          for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
+          for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
           exp = normalize_(exp);
           //exp.push_back(kw);

@@ -208,6 +208,7 @@ class KeywordCondition{
             }
             r.push_back(str);
         }
+        return r;
     }
 
 public:

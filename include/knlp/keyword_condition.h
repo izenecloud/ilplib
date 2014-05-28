@@ -31,6 +31,8 @@ struct ConditionItem
     std::string op_;
     std::vector<PropertyValue> values_;
 
+    ConditionItem(){}
+
     ConditionItem(std::string property, 
                   std::string op,
                   std::vector<PropertyValue> values)
@@ -160,9 +162,11 @@ class KeywordCondition{
             r.push_back(comb);return;
         }
 
-        for (uint32_t i=0;i<conds[level].size();i++)if(conds[level][i].property_.length()>0){
-            comb.push_back(conds[level][i]);
-            combination_(conds, comb, r, level+1);
+        for (uint32_t i=0;i<conds[level].size();i++){
+            std::vector<ConditionItem> c = comb;
+            if(conds[level][i].property_.length()>0)
+                c.push_back(conds[level][i]);
+            combination_(conds, c, r, level+1);
         }
     }
 
@@ -208,7 +212,7 @@ public:
           std::vector<std::string> v = lookup_(kw, &bigram_dict_, 3);
           for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
           std::vector<std::string> exp(v.begin(), v.end());
-          v = lookup_(kw, &unigram_dict_, 2);
+          v = lookup_(kw, &unigram_dict_, 1);
           for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
           //exp.push_back(kw);
@@ -240,7 +244,10 @@ public:
           v = lookup_(kw, &cmt_dict_);cond_items.clear();
           for (uint32_t i=0;i<v.size();i++)
               cond_items.push_back(ConditionItem("CommentCount", ">=", int32_t(atoi(v[i].c_str()))));
-          if (cond_items.size()) conds.push_back(cond_items);
+          if (cond_items.size()){
+              cond_items.push_back(ConditionItem());
+              conds.push_back(cond_items);
+          }
 
           v = lookup_(kw, &cate_dict_);cond_items.clear();
           if (!hasCategoryFilter)
@@ -254,13 +261,13 @@ __COMBINE__:
           std::vector<std::pair<std::string, std::vector<ConditionItem> > > r;
           std::vector<std::vector<ConditionItem> > comb;
           combination_(conds, std::vector<ConditionItem>(), comb);
-          {
+          /*{
               std::vector<ConditionItem> s = source_in_();
               std::vector<ConditionItem> it = itemcount_();
               s.insert(s.end(), it.begin(), it.end());
               comb.push_back(s);
           }
-          /*
+
           v = lookup_(kw, &compare_dict_);cond_items.clear();
           if (v.size() > 0)
           {

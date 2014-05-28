@@ -248,7 +248,7 @@ public:
           v = lookup_(kw, &unigram_dict_, 1);
           for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
-          exp = normalize_(exp);
+          //exp = normalize_(exp);
           //exp.push_back(kw);
 
           std::vector<std::vector<ConditionItem> > conds;

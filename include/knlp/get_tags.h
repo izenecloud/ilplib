@@ -24,9 +24,9 @@ private:
     std::map<std::string,int> tag_rank;
 
 public:
-    GetTags(const std::string& dict_file) {
-        tok = new HorseTokenize(dict_file);
-        read_tag_rank(dict_file);
+    GetTags(const std::string& dict_path) {
+        tok = new HorseTokenize(dict_path);
+        read_tag_rank(dict_path);
     }
 
     ~GetTags() {
@@ -42,7 +42,7 @@ public:
         
         std::map<int, std::string> rank_tag;
         for (unsigned int i = 0; i < tok_result.size(); ++i) {
-            std::map<string, int>::iterator ite = tag_rank.find(tok_result[i].first);
+            std::map<std::string, int>::iterator ite = tag_rank.find(tok_result[i].first);
             if (ite != tag_rank.end()) {
                 rank_tag.insert(make_pair(ite->second, ite->first));
             }
@@ -60,12 +60,12 @@ public:
     }
     
 private:
-    void read_tag_rank(const std::string& dict_file) {
+    void read_tag_rank(const std::string& dict_path) {
         // read tags and its rank in dict file
-        std::string dict_file_name = dict_file + "/token.dict";
-        std::ifstream fin(dict_file_name.c_str());
+        std::string dict_file = dict_path + "/token.dict";
+        std::ifstream fin(dict_file.c_str());
         if (!fin) {
-            std::cout << "in read_tag_rank(const string&), failed to open this file: " << dict_file_name << std::endl;
+            std::cout << "in read_tag_rank(const string&), failed to open this file: " << dict_file << std::endl;
             exit(1);
         }
 

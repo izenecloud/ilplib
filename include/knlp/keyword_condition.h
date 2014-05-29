@@ -31,6 +31,8 @@ struct ConditionItem
     std::string op_;
     std::vector<PropertyValue> values_;
 
+    ConditionItem(){}
+
     ConditionItem(std::string property, 
                   std::string op,
                   std::vector<PropertyValue> values)
@@ -105,35 +107,27 @@ class KeywordCondition{
     KDictionary<const char*> merchant_dict_;
     KDictionary<const char*> compare_dict_;
 
-    std::vector<ConditionItem> static_condition_()
+    std::vector<ConditionItem> source_in_()
+    {
+        std::vector<PropertyValue> values_DATA;
+        values_DATA.push_back(PropertyValue("京东商城"));
+        values_DATA.push_back(PropertyValue("卓越亚马逊"));
+        values_DATA.push_back(PropertyValue("苏宁易购"));
+        values_DATA.push_back(PropertyValue("当当网"));
+        values_DATA.push_back(PropertyValue("天猫"));
+        values_DATA.push_back(PropertyValue("1号店官网"));
+        values_DATA.push_back(PropertyValue("国美电器官网"));
+        values_DATA.push_back(PropertyValue("易迅网"));
+
+        std::vector<ConditionItem> r;r.push_back(ConditionItem("Source", "in", values_DATA));
+        return r;
+    }
+
+    std::vector<ConditionItem> itemcount_()
     {
         std::vector<ConditionItem> r;
-        {
-            std::vector<PropertyValue> values_DATA;
-            values_DATA.push_back(PropertyValue("京东商城"));
-            values_DATA.push_back(PropertyValue("卓越亚马逊"));
-            values_DATA.push_back(PropertyValue("苏宁易购"));
-            values_DATA.push_back(PropertyValue("当当网"));
-            values_DATA.push_back(PropertyValue("天猫"));
-            values_DATA.push_back(PropertyValue("1号店官网"));
-            values_DATA.push_back(PropertyValue("国美电器官网"));
-            values_DATA.push_back(PropertyValue("易迅网"));
-            ConditionItem item2("Source", "in", values_DATA);
-            r.push_back(item2);
-        }
         r.push_back(ConditionItem("itemcount", "=", 1));
         return r;
-/*
-        time_t t = time(NULL)-3600*24*5;   
-        char buf[255];memset(buf, 0, sizeof(buf));
-        strftime(buf, 255, "%Y%m%d%H%M%S", localtime(&t)); 
-        std::vector<PropertyValue> values_DATA;
-        PropertyValue pv(int64_t(atol(buf)));
-        values_DATA.push_back(pv);
-        ConditionItem item2("DATE", ">=", values_DATA);
-        condItems.push_back(item2);
-        std::string dt = std::string("{\"property\":\"DATE\",\"operator\":\">=\",\"value\":[\"")+buf+"\"]}";
-        return dt;*/
     }
 
     std::vector<std::string> lookup_(const std::string& kw, KDictionary<const char*>* dict, uint32_t max=-1)
@@ -168,9 +162,11 @@ class KeywordCondition{
             r.push_back(comb);return;
         }
 
-        for (uint32_t i=0;i<conds[level].size();i++)if(conds[level][i].property_.length()>0){
-            comb.push_back(conds[level][i]);
-            combination_(conds, comb, r, level+1);
+        for (uint32_t i=0;i<conds[level].size();i++){
+            std::vector<ConditionItem> c = comb;
+            if(conds[level][i].property_.length()>0)
+                c.push_back(conds[level][i]);
+            combination_(conds, c, r, level+1);
         }
     }
 
@@ -181,6 +177,38 @@ class KeywordCondition{
             if (q[i]>='A' && q[i]<='Z')kw += char(int(q[i])-(int('A')-int('a')));
             else if(q[i]!=' ')kw += q[i];
         return kw;
+    }
+
+    std::vector<std::string> normalize_(const std::vector<std::string>& strs)
+    {
+        std::vector<std::string> r;
+        for (uint32_t i=0;i<strs.size();i++)
+        {
+            uint32_t en = 0, nu = 0;
+            std::string str;if (strs[i].length()>0)str += strs[i][0];
+            for (uint32_t j=1;j<strs[i].length();j++)
+            {
+                if (isalpha(strs[i][j]))en++;
+                if(isdigit(strs[i][j]))nu++;
+                //9300galaxy ==> 9300 galaxy
+                if (isalpha(strs[i][j]) && isdigit(strs[i][j-1]))
+                {
+                    if (nu > 2)
+                        str += ' ';
+                    nu = 0;
+                }
+                //iphone5s ==> iphone 5s
+                if (isalpha(strs[i][j-1]) && isdigit(strs[i][j]))
+                {
+                    if (en > 2)
+                        str += ' ';
+                    en = 0;
+                }
+                str += strs[i][j];
+            }
+            r.push_back(str);
+        }
+        return r;
     }
 
 public:
@@ -211,17 +239,21 @@ public:
                   bool hasCategoryFilter = false, 
                   bool hasSourceFilter = false)
       {
+          std::string query = kw;
           kw = normalize_(kw);
 
-          std::vector<std::string> v = lookup_(kw, &bigram_dict_, 1);
-          for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
+          std::vector<std::string> v = lookup_(kw, &bigram_dict_, 3);
+          for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           std::vector<std::string> exp(v.begin(), v.end());
-          v = lookup_(kw, &unigram_dict_, 4);
-          for (uint32_t i=0;i<v.size();i++)v[i]=kw+" "+v[i];
+          v = lookup_(kw, &unigram_dict_, 1);
+          for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           exp.insert(exp.end(), v.begin(), v.end());
-          exp.push_back(kw);
+          //exp = normalize_(exp);
+          //exp.push_back(kw);
 
           std::vector<std::vector<ConditionItem> > conds;
+          conds.push_back(itemcount_());
+
           std::vector<ConditionItem> cond_items;
           v = lookup_(kw, &merchant_dict_);cond_items.clear();
           if (!hasSourceFilter)
@@ -232,6 +264,7 @@ public:
                 conds.push_back(cond_items);
                 goto __COMBINE__;
             }
+            else conds.push_back(source_in_());
           }
 
           v = lookup_(kw, &price_dict_);cond_items.clear();
@@ -245,7 +278,10 @@ public:
           v = lookup_(kw, &cmt_dict_);cond_items.clear();
           for (uint32_t i=0;i<v.size();i++)
               cond_items.push_back(ConditionItem("CommentCount", ">=", int32_t(atoi(v[i].c_str()))));
-          if (cond_items.size()) conds.push_back(cond_items);
+          if (cond_items.size()){
+              cond_items.push_back(ConditionItem());
+              conds.push_back(cond_items);
+          }
 
           v = lookup_(kw, &cate_dict_);cond_items.clear();
           if (!hasCategoryFilter)
@@ -258,13 +294,20 @@ public:
 __COMBINE__:
           std::vector<std::pair<std::string, std::vector<ConditionItem> > > r;
           std::vector<std::vector<ConditionItem> > comb;
-          combination_(conds, static_condition_(), comb);
+          combination_(conds, std::vector<ConditionItem>(), comb);
+          /*{
+              std::vector<ConditionItem> s = source_in_();
+              std::vector<ConditionItem> it = itemcount_();
+              s.insert(s.end(), it.begin(), it.end());
+              comb.push_back(s);
+          }
+
           v = lookup_(kw, &compare_dict_);cond_items.clear();
           if (v.size() > 0)
           {
               cond_items.push_back(ConditionItem("itemcount", ">", 1));
               r.push_back(std::make_pair(kw, cond_items));
-          }
+          }*/
 
           for (uint32_t i=0;i<exp.size();i++)
               for(uint32_t j=0;j<comb.size();j++)

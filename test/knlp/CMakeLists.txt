@@ -23,21 +23,11 @@ TARGET_LINK_LIBRARIES(tokenize_util
 )
 
 ADD_EXECUTABLE(horse_tokenize_util 
-			horse_tokenize_test.cpp 
+			horse_tokenize_util.cpp 
 			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
 )
 
 TARGET_LINK_LIBRARIES(horse_tokenize_util
-   ${Boost_SYSTEM_LIBRARY}
-)
-
-
-ADD_EXECUTABLE(horse_tokenize_test 
-			horse_tokenize_test.cpp 
-			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-)
-
-TARGET_LINK_LIBRARIES(horse_tokenize_test
    ${Boost_SYSTEM_LIBRARY}
 )
 
@@ -295,13 +285,6 @@ TARGET_LINK_LIBRARIES(cluster_util
    ${libs}
 )
 
-ADD_EXECUTABLE(statistic 
-			statistic.cpp 
-)
-
-ADD_EXECUTABLE(statistic02 
-			statistic02.cpp 
-)
 
 ADD_EXECUTABLE(get_tags_util 
 			get_tags_util.cpp 

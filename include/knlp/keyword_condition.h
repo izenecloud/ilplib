@@ -111,13 +111,13 @@ class KeywordCondition{
     {
         std::vector<PropertyValue> values_DATA;
         values_DATA.push_back(PropertyValue("京东商城"));
+        //values_DATA.push_back(PropertyValue("易迅网"));
         values_DATA.push_back(PropertyValue("卓越亚马逊"));
         values_DATA.push_back(PropertyValue("苏宁易购"));
         values_DATA.push_back(PropertyValue("当当网"));
-        values_DATA.push_back(PropertyValue("天猫"));
+        //values_DATA.push_back(PropertyValue("天猫"));
         values_DATA.push_back(PropertyValue("1号店官网"));
         values_DATA.push_back(PropertyValue("国美电器官网"));
-        values_DATA.push_back(PropertyValue("易迅网"));
 
         std::vector<ConditionItem> r;r.push_back(ConditionItem("Source", "in", values_DATA));
         return r;
@@ -255,6 +255,18 @@ public:
           conds.push_back(itemcount_());
 
           std::vector<ConditionItem> cond_items;
+
+          /// price filter
+          int32_t avr_price = 0;
+          v = lookup_(kw, &price_dict_);cond_items.clear();
+          if(v.size() > 0)avr_price = int32_t(atof(v[0].c_str())+0.5);
+          if (!hasPriceFilter)
+          {
+              for (uint32_t i=0;i<v.size();i++)
+                  cond_items.push_back(ConditionItem("Price", ">=", int32_t(atof(v[i].c_str())+0.5)));
+              if (cond_items.size()) conds.push_back(cond_items);
+          }
+
           v = lookup_(kw, &merchant_dict_);cond_items.clear();
           if (!hasSourceFilter)
           {
@@ -264,25 +276,22 @@ public:
                 conds.push_back(cond_items);
                 goto __COMBINE__;
             }
-            else conds.push_back(source_in_());
-          }
-
-          v = lookup_(kw, &price_dict_);cond_items.clear();
-          if (!hasPriceFilter)
-          {
-            for (uint32_t i=0;i<v.size();i++)
-              cond_items.push_back(ConditionItem("Price", ">=", int32_t(atof(v[i].c_str())+0.5)));
-            if (cond_items.size()) conds.push_back(cond_items);
+            else if(avr_price > 250)conds.push_back(source_in_());
           }
           
-          v = lookup_(kw, &cmt_dict_);cond_items.clear();
-          for (uint32_t i=0;i<v.size();i++)
-              cond_items.push_back(ConditionItem("CommentCount", ">=", int32_t(atoi(v[i].c_str()))));
-          if (cond_items.size()){
-              cond_items.push_back(ConditionItem());
-              conds.push_back(cond_items);
+          //comment number filter
+          if (avr_price < 250)
+          {
+              v = lookup_(kw, &cmt_dict_);cond_items.clear();
+              for (uint32_t i=0;i<v.size();i++)
+                  cond_items.push_back(ConditionItem("CommentCount", ">=", int32_t(atoi(v[i].c_str()))));
+              if (cond_items.size()){
+                  cond_items.push_back(ConditionItem());
+                  conds.push_back(cond_items);
+              }
           }
 
+          /// category filter
           v = lookup_(kw, &cate_dict_);cond_items.clear();
           if (!hasCategoryFilter)
           {

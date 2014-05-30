@@ -263,7 +263,7 @@ public:
           if (!hasPriceFilter)
           {
               for (uint32_t i=0;i<v.size();i++)
-                  cond_items.push_back(ConditionItem("Price", ">=", int32_t(atof(v[i].c_str())+0.5)));
+                  cond_items.push_back(ConditionItem("Price", ">=", float(int32_t(atof(v[i].c_str())+0.5))));
               if (cond_items.size()) conds.push_back(cond_items);
           }
 

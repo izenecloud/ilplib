@@ -144,7 +144,7 @@ class KeywordCondition{
                 strp = t+1;
                 t = strchr(strp.c_str(), '\t');
             }
-            if (strp.length() > 0)
+            if (strp.length() > 0 && r.size() < max)
                 r.push_back(strp);
         }
         return r;
@@ -242,7 +242,7 @@ public:
           std::string query = kw;
           kw = normalize_(kw);
 
-          std::vector<std::string> v = lookup_(kw, &bigram_dict_, 3);
+          std::vector<std::string> v = lookup_(kw, &bigram_dict_);
           for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
           std::vector<std::string> exp(v.begin(), v.end());
           v = lookup_(kw, &unigram_dict_, 1);

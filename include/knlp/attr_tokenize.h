@@ -150,7 +150,8 @@ class AttributeTokenize
     bool is_model_type_(uint16_t c)
     {
         return (KString::is_english(c)
-                || KString::is_numeric(c)
+                || KString::is_numeric(c) 
+                || KString::is_korean(c)
                 || c == '-' || c == ',' || c == '.'
                );
     }
@@ -229,7 +230,7 @@ class AttributeTokenize
                         }
                         tmpkstr = KString("");
                     }
-                    if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]) || KString::is_korean(tmp[j][0]))
+                    if (tmp[j].length()>1 || KString::is_chinese(tmp[j][0]))// || KString::is_korean(tmp[j][0]))
                     {
                         subtoken_(tmp[j], chunk_word);
                     }

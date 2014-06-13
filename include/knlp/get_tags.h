@@ -34,8 +34,8 @@ public:
     }
 
     std::vector<std::string> get_tags(const std::string& str, unsigned int top_n = 5) {
-        if (str.find("男") == std::string::npos && str.find("女") == std::string::npos)
-            return std::vector<std::string>();
+        //if (str.find("男") == std::string::npos && str.find("女") == std::string::npos)
+            //return std::vector<std::string>();
 
         std::vector<std::pair<std::string, float> > tok_result;
         tok->tokenize(str, tok_result);

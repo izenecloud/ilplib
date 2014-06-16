@@ -295,4 +295,13 @@ TARGET_LINK_LIBRARIES(get_tags_util
    ${Boost_SYSTEM_LIBRARY}
 )
 
+ADD_EXECUTABLE(differential_token_util
+			differential_token_util.cpp 
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(differential_token_util
+   ${Boost_SYSTEM_LIBRARY}
+)
+
 

@@ -66,7 +66,8 @@ public:
     std::vector<std::string> different(
       const std::vector<std::string>& titles, 
       const std::vector<float>& prices, 
-      const std::vector<uint32_t>& clicked) 
+      const std::vector<uint32_t>& clicked, 
+      const std::string& query = "") 
     {
         assert(titles.size() == prices.size());
         if (clicked.size() == 0)return std::vector<std::string>();
@@ -104,6 +105,7 @@ public:
 
         std::vector<std::string> r;
         for(uint32_t i=0;i<v.size();i++)
+            if(query.length()>0 && strstr(v[i].second.c_str(), query.c_str())==NULL)
             r.push_back(v[i].second);
 
         return r;

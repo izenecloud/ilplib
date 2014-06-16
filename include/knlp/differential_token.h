@@ -25,12 +25,14 @@ class DifferentialToken {
     {
         {//dup
             std::set<std::string> s;
-            for (uint32_t i=0;i<tks.size();i++)if(s.find(tks[i].first) == s.end())
-                s.insert(tks[i].first);
-            else{
-                tks.erase(tks.begin() + i);
-                i--;
-            }
+            for (uint32_t i=0;i<tks.size();i++)
+                if(izenelib::util::KString(tks[i].first).length()>1 
+                  && s.find(tks[i].first) == s.end())
+                    s.insert(tks[i].first);
+                else{
+                    tks.erase(tks.begin() + i);
+                    i--;
+                }
         }
 
         float sum = 0;
@@ -80,7 +82,7 @@ public:
         {
             std::vector<std::pair<std::string, float> > tks;
             token_.tokenize(titles[i], tks);
-            std::vector<std::string> tops = top_(tks, 0.5);
+            std::vector<std::string> tops = top_(tks, 0.8);
             std::map<std::string, int32_t>* map = NULL;
             if (cl.find(i) == cl.end())
                 map = &noncli_tk_freq;
@@ -90,23 +92,31 @@ public:
             {
                 if (map->find(tops[t]) == map->end())
                     map->insert(std::make_pair(tops[t], 0));
-                (*map)[tops[t]] += 1;
+                (*map)[tops[t]] += 1;//int32_t(token_.token_weight(tops[t]));
             }
         }
+
+        std::cout<<"Clicked: "<<cli_tk_freq.size()<<std::endl;
+        std::cout<<"Non-clicked: "<<noncli_tk_freq.size()<<std::endl;
 
         std::vector<std::pair<int32_t,std::string> > v;
         for (std::map<std::string, int32_t>::iterator it=cli_tk_freq.begin();
           it != cli_tk_freq.end(); it++)
-            if (noncli_tk_freq.find(it->first) != noncli_tk_freq.end())
-                v.push_back(std::make_pair(it->second - noncli_tk_freq[it->first], it->first));
-            else v.push_back(std::make_pair(it->second,it->first));
+            if (noncli_tk_freq.find(it->first) == noncli_tk_freq.end())
+        {
+            if (clicked.size()>1 && it->second == (int32_t)clicked.size())
+                v.push_back(std::make_pair(int32_t(token_.max()), it->first));
+            else
+                v.push_back(std::make_pair(int32_t(token_.token_weight(it->first)),it->first));
+        }
 
         std::sort(v.begin(), v.end(), std::greater<std::pair<int32_t, std::string> >());
 
         std::vector<std::string> r;
         for(uint32_t i=0;i<v.size();i++)
-            if(query.length()>0 && strstr(v[i].second.c_str(), query.c_str())==NULL)
-            r.push_back(v[i].second);
+            if((query.length()>0 && strstr(v[i].second.c_str(), query.c_str())==NULL)
+              ||query.length() == 0)
+                r.push_back(v[i].second);
 
         return r;
     }

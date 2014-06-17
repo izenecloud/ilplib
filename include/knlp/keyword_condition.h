@@ -106,6 +106,7 @@ class KeywordCondition{
     KDictionary<const char*> cate_dict_;
     KDictionary<const char*> merchant_dict_;
     KDictionary<const char*> compare_dict_;
+    KDictionary<const char*> subsource_dict_;
 
     std::vector<ConditionItem> source_in_()
     {
@@ -220,6 +221,7 @@ public:
        ,cate_dict_(dir + "/cate.dict")
        ,merchant_dict_(dir + "/merchant.dict")
        ,compare_dict_(dir + "/compare.dict")
+       ,subsource_dict_(dir + "/subsource.dict")
     {
     }
 
@@ -267,6 +269,7 @@ public:
               if (cond_items.size()) conds.push_back(cond_items);
           }
 
+          //Source filter
           v = lookup_(kw, &merchant_dict_);cond_items.clear();
           if (!hasSourceFilter)
           {
@@ -277,6 +280,18 @@ public:
                 goto __COMBINE__;
             }
             else if(avr_price > 250)conds.push_back(source_in_());
+          }
+
+          //subSource filter
+          v = lookup_(kw, &subsource_dict_);cond_items.clear();
+          if (!hasSourceFilter)
+          {
+            for (uint32_t i=0;i<v.size();i++)
+                cond_items.push_back(ConditionItem("SubSource", "starts_with", v[i]));
+            if (cond_items.size()){
+                conds.push_back(cond_items);
+                goto __COMBINE__;
+            }
           }
           
           //comment number filter

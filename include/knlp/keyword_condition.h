@@ -254,20 +254,9 @@ public:
           //exp.push_back(kw);
 
           std::vector<std::vector<ConditionItem> > conds;
-          conds.push_back(itemcount_());
-
           std::vector<ConditionItem> cond_items;
-
-          /// price filter
           int32_t avr_price = 0;
-          v = lookup_(kw, &price_dict_);cond_items.clear();
-          if(v.size() > 0)avr_price = int32_t(atof(v[0].c_str())+0.5);
-          if (!hasPriceFilter)
-          {
-              for (uint32_t i=0;i<v.size();i++)
-                  cond_items.push_back(ConditionItem("Price", ">=", float(int32_t(atof(v[i].c_str())+0.5)/2*2)));
-              if (cond_items.size()) conds.push_back(cond_items);
-          }
+          conds.push_back(itemcount_());
 
           //Source filter
           v = lookup_(kw, &merchant_dict_);cond_items.clear();
@@ -277,9 +266,9 @@ public:
                 cond_items.push_back(ConditionItem("Source", "starts_with", v[i]));
             if (cond_items.size()){
                 conds.push_back(cond_items);
+                exp.clear();exp.push_back(kw);
                 goto __COMBINE__;
             }
-            else if(avr_price > 250)conds.push_back(source_in_());
           }
 
           //subSource filter
@@ -290,11 +279,23 @@ public:
                 cond_items.push_back(ConditionItem("SubSource", "starts_with", v[i]));
             if (cond_items.size()){
                 conds.push_back(cond_items);
+                exp.clear();exp.push_back(kw);
                 goto __COMBINE__;
             }
           }
-          
-          //comment number filter
+
+          /// price filter
+          v = lookup_(kw, &price_dict_);cond_items.clear();
+          if(v.size() > 0)avr_price = int32_t(atof(v[0].c_str())+0.5);
+          if (!hasPriceFilter)
+          {
+              for (uint32_t i=0;i<v.size();i++)
+                  cond_items.push_back(ConditionItem("Price", ">=", float(int32_t(atof(v[i].c_str())+0.5)/2*2)));
+              if (cond_items.size()) conds.push_back(cond_items);
+          }
+          if(!hasSourceFilter && avr_price > 250)conds.push_back(source_in_());
+
+                    //comment number filter
           if (avr_price < 250)
           {
               v = lookup_(kw, &cmt_dict_);cond_items.clear();

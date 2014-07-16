@@ -305,3 +305,14 @@ TARGET_LINK_LIBRARIES(differential_token_util
 )
 
 
+ADD_EXECUTABLE(scd_treater_util
+			scd_treater_util.cpp
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(scd_treater_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+

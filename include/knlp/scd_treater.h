@@ -5,7 +5,7 @@
 #include <map>
 #include <string>
 #include <fstream>
-#include "/home/lscm/codebase/ilplib/include/knlp/horse_tokenize.h"
+#include "knlp/horse_tokenize.h"
 #include "titleknn.h"
 
 using std::string;

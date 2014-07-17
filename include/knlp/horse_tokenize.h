@@ -36,6 +36,14 @@ class HorseTokenize{
         return false;
     }
 
+    bool is_punct_(char c)const
+    {
+        if (c == '.' || c == '-' || c == '+' || c == '/' || c == '=' || c== '*' || c== '%'
+          || c == ',' || c == '$' || c == '&' || c == '_')
+            return true;
+        return false;
+    }
+
     void merge_(std::vector<std::pair<std::string, float> >& tks)const
     {
         std::vector<int32_t> flags(tks.size(), 0);
@@ -44,7 +52,7 @@ class HorseTokenize{
             uint32_t j=0;
             for (;j<tks[i].first.length();j++)
                 if (is_digit_(tks[i].first[j])
-                  ||(tks[i].first[j]>='a' && tks[i].first[j]<='z'))
+                  ||(tks[i].first[j]>='a' && tks[i].first[j]<='z' && tks[i].first.length()<=2))
                     break;
             if (j < tks[i].first.length())flags[i] = 1;
         }
@@ -75,12 +83,19 @@ class HorseTokenize{
             tks[i].first = std::string(p);
             tks[i].second = token_weight(tks[i].first);
         }
-        for (uint32_t i=0;i<tks.size();i++)
+        for (uint32_t i=0;i<tks.size();i++){
             if (tks[i].first == " ")
             {
                 tks.erase(tks.begin()+i);
                 i--;
             }
+            int32_t t = tks[i].first.length()-1;
+            while(t>0 && is_punct_(tks[i].first[t]))
+            {
+                tks[i].first = tks[i].first.substr(0, t);
+                t--;
+            }
+        }
     }
 
 public:

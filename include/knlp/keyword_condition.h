@@ -128,6 +128,7 @@ class KeywordCondition{
     {
         std::vector<ConditionItem> r;
         r.push_back(ConditionItem("itemcount", "=", 1));
+        r.push_back(ConditionItem("isElite", "=", 1));
         return r;
     }
 
@@ -234,6 +235,50 @@ public:
           if (v.size() > 0)return "{\"property\":\"itemcount\",\"operator\":\">\",\"value\":[1]}";
           return "{\"property\":\"itemcount\",\"operator\":\"=\",\"value\":[1]}";
     }
+
+    std::vector<std::pair<std::string, std::vector<ConditionItem> > >
+      taosha(std::string kw,
+                  bool hasCategoryFilter = false, 
+                  bool hasSourceFilter = false)
+      {
+          if (hasSourceFilter)return std::vector<std::pair<std::string, std::vector<ConditionItem> > >();
+
+          std::string query = kw;
+          kw = normalize_(kw);
+
+          std::vector<std::string> exp;
+          if (!hasCategoryFilter){
+              std::vector<std::string> v = lookup_(kw, &bigram_dict_);
+              for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
+              exp  = std::vector<std::string>(v.begin(), v.end());
+              v = lookup_(kw, &unigram_dict_, 1);
+              for (uint32_t i=0;i<v.size();i++)v[i]=query+" "+v[i];
+              exp.insert(exp.end(), v.begin(), v.end());
+          }
+          else
+              exp.push_back(kw);
+
+          std::vector<std::vector<ConditionItem> > conds;
+          std::vector<ConditionItem> cond_items;
+          cond_items.push_back(ConditionItem("Source", "starts_with", "淘沙商城"));
+          conds.push_back(cond_items);
+          
+          std::vector<std::pair<std::string, std::vector<ConditionItem> > > r;
+          std::vector<std::vector<ConditionItem> > comb;
+          combination_(conds, std::vector<ConditionItem>(), comb);
+
+          for (uint32_t i=0;i<exp.size();i++)
+              for(uint32_t j=0;j<comb.size();j++)
+              {
+                  r.push_back(std::make_pair(exp[i], comb[j]));
+                  std::cout<<exp[i]<<"=============\n";
+                  for (uint32_t t=0;t<comb[j].size();t++)
+                      std::cout<<comb[j][t];
+              }
+
+          return r;
+
+      }
 
     std::vector<std::pair<std::string, std::vector<ConditionItem> > >
       conditions(std::string kw,

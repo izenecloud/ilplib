@@ -124,11 +124,17 @@ class KeywordCondition{
         return r;
     }
 
+    std::vector<ConditionItem> isElite_()
+    {
+        std::vector<ConditionItem> r;
+        r.push_back(ConditionItem("isElite", "=", 1));
+        return r;
+    }
+
     std::vector<ConditionItem> itemcount_()
     {
         std::vector<ConditionItem> r;
         r.push_back(ConditionItem("itemcount", "=", 1));
-        r.push_back(ConditionItem("isElite", "=", 1));
         return r;
     }
 
@@ -262,6 +268,7 @@ public:
           std::vector<ConditionItem> cond_items;
           cond_items.push_back(ConditionItem("Source", "starts_with", "淘沙商城"));
           conds.push_back(cond_items);
+          conds.push_back(itemcount_());
           
           std::vector<std::pair<std::string, std::vector<ConditionItem> > > r;
           std::vector<std::vector<ConditionItem> > comb;
@@ -302,6 +309,7 @@ public:
           std::vector<ConditionItem> cond_items;
           int32_t avr_price = 0;
           conds.push_back(itemcount_());
+          conds.push_back(isElite_());
 
           //Source filter
           v = lookup_(kw, &merchant_dict_);cond_items.clear();

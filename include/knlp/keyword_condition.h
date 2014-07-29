@@ -108,6 +108,8 @@ class KeywordCondition{
     KDictionary<const char*> compare_dict_;
     KDictionary<const char*> subsource_dict_;
 
+    std::set<std::string> taoshaQuery_;
+
     std::vector<ConditionItem> source_in_()
     {
         std::vector<PropertyValue> values_DATA;
@@ -230,6 +232,35 @@ public:
        ,compare_dict_(dir + "/compare.dict")
        ,subsource_dict_(dir + "/subsource.dict")
     {
+    }
+
+    bool loadTaoshaQuery(std::string path)
+    {
+        try
+        {
+          ifstream ifs;
+          ifs.open(path.c_str());
+          while(!ifs.eof())
+          {
+            std::string query;
+            getline(ifs, query);
+            taoshaQuery_.insert(query);
+            std::cout << query << std::endl;
+          }
+        }
+        catch(...)
+        {
+          std::cout << "load taosha query failed......";
+          return false;
+        }
+        return true;
+    }
+
+    bool isTaoshaQuery(std::string query)
+    {
+        if (taoshaQuery_.find(query) == taoshaQuery_.end())
+          return false;
+        return true;
     }
 
     std::string compare_price(std::string kw, bool& compare_first)

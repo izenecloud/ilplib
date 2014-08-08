@@ -115,12 +115,12 @@ class KeywordCondition{
         std::vector<PropertyValue> values_DATA;
         values_DATA.push_back(PropertyValue("京东商城"));
         //values_DATA.push_back(PropertyValue("易迅网"));
-        values_DATA.push_back(PropertyValue("卓越亚马逊"));
+        values_DATA.push_back(PropertyValue("亚马逊"));
         values_DATA.push_back(PropertyValue("苏宁易购"));
         values_DATA.push_back(PropertyValue("当当网"));
         //values_DATA.push_back(PropertyValue("天猫"));
         values_DATA.push_back(PropertyValue("1号店官网"));
-        values_DATA.push_back(PropertyValue("国美电器官网"));
+        values_DATA.push_back(PropertyValue("国美在线"));
 
         std::vector<ConditionItem> r;r.push_back(ConditionItem("Source", "in", values_DATA));
         return r;

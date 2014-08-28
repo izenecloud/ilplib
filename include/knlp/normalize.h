@@ -34,18 +34,23 @@ class Normalize
 public:
     static void normalize(izenelib::util::KString& kstr)
     {
+        try{
         kstr.to_dbc();
         kstr.to_lower_case();
         trd2smp_.transform(kstr);
         kstr.trim_into_1();
         kstr.trim_head_tail();
+        }catch(...){}
     }
 
     static void normalize(std::string& str)
     {
+        try{
         izenelib::util::KString kstr(str);
         normalize(kstr);
         str = unicode_to_utf8(kstr);
+        }
+        catch(...){}
     }
 
     static std::string unicode_to_utf8(const izenelib::util::KString& kstr)

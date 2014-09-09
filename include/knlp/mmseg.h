@@ -20,9 +20,7 @@ private:
 public:
 	MMseg(const std::string& dict_path) :dict_(dict_path + "/token.dict")
 	{
-cout << "test 00 in consturer" << endl;
 		load_freedegree(dict_path + "/freedegree.txt");
-cout << "test 01 in consturer" << endl;
 	}
 	
 	void seg(std::string str, std::vector<std::string>& words);

@@ -316,3 +316,15 @@ TARGET_LINK_LIBRARIES(scd_treater_util
 )
 
 
+ADD_EXECUTABLE(mmseg_util
+			mmseg_util.cpp
+			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
+)
+
+TARGET_LINK_LIBRARIES(mmseg_util
+   ${Boost_SYSTEM_LIBRARY}
+   ${Boost_REGEX_LIBRARY}
+)
+
+
+

@@ -68,15 +68,6 @@ boost::shared_ptr<Analyzer> getCMAAnalyzer()
     return cbana;
 }
 
-boost::shared_ptr<Analyzer> getKMAAnalyzer()
-{
-    KoreanAnalyzer* kana = new KoreanAnalyzer( getKmaKnowledgePath() );
-    kana->setLabelMode();
-    boost::shared_ptr<Analyzer> kbana( kana );
-    return kbana;
-}
-
-
 int main( int argc, char** argv )
 {
     if( argc < 2 )
@@ -166,23 +157,6 @@ int main( int argc, char** argv )
     {
         analyzer.reset( new EnglishAnalyzer );
     }
-    else if( type == "kr" )
-    {
-        cout << "KoreanAnalyzer Addition Params: [label | index]" << endl;
-        KoreanAnalyzer* ana = new KoreanAnalyzer( getKmaKnowledgePath() );
-        ana->setLabelMode();
-        for( int i = 2; i < argc; ++i )
-        {
-            string arg = argv[i];
-            if( arg == "label" )
-                ana->setLabelMode();
-            else if( arg == "index" )
-                ana->setIndexMode();
-            else
-                cerr << "Invalid Parameter: " << arg << endl;
-        }
-        analyzer.reset( ana );
-    }
     else if( type == "multi" )
     {
         ChineseAnalyzer* cana = new ChineseAnalyzer( getCmaKnowledgePath() );
@@ -190,15 +164,11 @@ int main( int argc, char** argv )
         cana->setAnalysisType(ChineseAnalyzer::minimum_match);
         boost::shared_ptr<Analyzer> cbana( cana );
 
-        KoreanAnalyzer* kana = new KoreanAnalyzer( getKmaKnowledgePath() );
-        kana->setLabelMode();
-        boost::shared_ptr<Analyzer> kbana( kana );
-
         EnglishAnalyzer* eana = new EnglishAnalyzer;
         boost::shared_ptr<Analyzer> ebana( eana );
 
         MultiLanguageAnalyzer* mana = new MultiLanguageAnalyzer;
-        mana->setDefaultAnalyzer( kbana );
+        mana->setDefaultAnalyzer( cbana );
         mana->setAnalyzer( MultiLanguageAnalyzer::CHINESE, cbana );
         mana->setAnalyzer( MultiLanguageAnalyzer::ENGLISH, ebana );
 

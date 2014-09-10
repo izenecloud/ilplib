@@ -8,7 +8,6 @@
 /**
 #include <la/analyzer/MultiLanguageAnalyzer.h>
 #include <la/analyzer/ChineseAnalyzer.h>
-#include <la/analyzer/KoreanAnalyzer.h>
 #include <la/analyzer/EnglishAnalyzer.h>
 */
 
@@ -78,9 +77,6 @@ BOOST_AUTO_TEST_CASE(test_normal)
     boost::shared_ptr<Analyzer> pChineseAnalyzer(new ChineseAnalyzer(CMA_KNOWLEDGE));
     boost::static_pointer_cast<ChineseAnalyzer, Analyzer>(pChineseAnalyzer)->setLabelMode();
     boost::static_pointer_cast<ChineseAnalyzer, Analyzer>(pChineseAnalyzer)->setAnalysisType(ChineseAnalyzer::minimum_match);
-
-    boost::shared_ptr<Analyzer> pKoreanAnalyzer(new KoreanAnalyzer(KMA_KNOWLEDGE));
-    boost::static_pointer_cast<KoreanAnalyzer, Analyzer>(pKoreanAnalyzer)->setLabelMode();
 
     boost::shared_ptr<Analyzer> pEnglishAnalyzer(new EnglishAnalyzer());
     boost::static_pointer_cast<EnglishAnalyzer, Analyzer>(pEnglishAnalyzer)->setCaseSensitive(true, false);

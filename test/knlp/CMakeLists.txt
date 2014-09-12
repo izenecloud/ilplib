@@ -79,38 +79,6 @@ TARGET_LINK_LIBRARIES(token_t-test
    ${Boost_THREAD_LIBRARY}
 )
 
-ADD_EXECUTABLE(etao_downloader 
-			etao_downloader.cpp 
-)
-
-TARGET_LINK_LIBRARIES(etao_downloader
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
-   ${Boost_REGEX_LIBRARY}
-   curl
-)
-
-ADD_EXECUTABLE(taobao_downloader 
-			taobao_downloader.cpp 
-)
-
-TARGET_LINK_LIBRARIES(taobao_downloader
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
-   ${Boost_REGEX_LIBRARY}
-   curl
-)
-
-ADD_EXECUTABLE(makeup_etao_downloader 
-			makeup_etao_downloader.cpp 
-)
-
-TARGET_LINK_LIBRARIES(makeup_etao_downloader
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
-   ${Boost_REGEX_LIBRARY}
-   curl
-)
 
 ADD_EXECUTABLE(fmm_util 
 			fmm_util.cpp 
@@ -131,7 +99,6 @@ SET(libs
   ${izenelib_LIBRARIES}
   ${izenecma_LIBRARIES}
   ${izenejma_LIBRARIES}
-  ${wisekma_LIBRARIES}
   ${Glog_LIBRARIES}
 )
 
@@ -159,15 +126,6 @@ ADD_EXECUTABLE(t_datrie
 
 TARGET_LINK_LIBRARIES(t_datrie ${libs})
 
-ADD_EXECUTABLE(tao_cate_test 
-			tao_cate_test.cpp 
-			${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-)
-
-TARGET_LINK_LIBRARIES(tao_cate_test
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
-)
 
 ADD_EXECUTABLE(william_trie_util
 			william_trie_util.cpp 
@@ -196,16 +154,6 @@ ADD_EXECUTABLE(normaize_util
 TARGET_LINK_LIBRARIES(normaize_util
    ${Boost_SYSTEM_LIBRARY}
    ${Boost_REGEX_LIBRARY}
-)
-
-ADD_EXECUTABLE(new_tao_cate_test 
-    new_tao_cate_test.cpp 
-${PROJECT_SOURCE_DIR}/source/knlp/normalize.cpp
-            )
-
-TARGET_LINK_LIBRARIES(new_tao_cate_test
-   ${Boost_SYSTEM_LIBRARY}
-   ${Boost_THREAD_LIBRARY}
 )
 
 

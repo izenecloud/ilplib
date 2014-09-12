@@ -54,7 +54,6 @@
 #include "./la/dict/SingletonDictionary.h"
 #include "./la/dict/UpdateDictThread.h"
 #include "./la/dict/UpdatableDict.h"
-#include "./question-answering/QuestionAnalysis.h"
 #include "./langid/knowledge.h"
 #include "./langid/analyzer.h"
 #include "./langid/language_id.h"

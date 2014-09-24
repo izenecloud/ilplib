@@ -141,19 +141,10 @@ ELSE(izenelib_FOUND)
 ENDIF(izenelib_FOUND)
 
 SET( USE_IZENECMA TRUE )
-SET( USE_WISEKMA TRUE)
 SET( USE_IZENEJMA TRUE )
 
 add_definitions("-fpermissive")
 
-IF( USE_WISEKMA )
-  FIND_PACKAGE(wisekma REQUIRED)
-  ADD_DEFINITIONS( -DUSE_WISEKMA=TRUE )
-ELSE( USE_WISEKMA )
-  SET( wisekma_LIBRARIES "" )
-  SET( wisekma_INCLUDE_DIRS "" )
-  SET( wisekma_LIBRARY_DIRS "" )
-ENDIF( USE_WISEKMA )
 
 IF( USE_IZENECMA )
   FIND_PACKAGE(izenecma REQUIRED)
@@ -195,7 +186,6 @@ ENDIF(Glog_FOUND)
 include_directories(
   ${PROJECT_SOURCE_DIR}/include
   ${izenelib_INCLUDE_DIRS}
-  ${wisekma_INCLUDE_DIRS}
   ${Boost_INCLUDE_DIRS}
   ${izenecma_INCLUDE_DIRS}
   ${izenejma_INCLUDE_DIRS}
@@ -213,7 +203,6 @@ ilplib
 ${Boost_LIBRARIES}
 ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY}
 ${izenecma_LIBRARIES}
-${wisekma_LIBRARIES}
 ${izenejma_LIBRARIES}
 ${izenelib_LIBRARIES}
 ${Glog_LIBRARIES}
@@ -237,7 +226,6 @@ SET(CPACK_DEBIAN_PACKAGE_DEPENDS
 
 LINK_DIRECTORIES(
     ${izenecma_LIBRARY_DIRS}
-    ${wisekma_LIBRARY_DIRS}
     ${izenejma_LIBRARIES_DIRS}
     ${izenelib_LIBRARY_DIRS}
     )
